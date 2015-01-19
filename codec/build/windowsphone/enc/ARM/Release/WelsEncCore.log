@@ -1,0 +1,133 @@
+﻿Build started 1/16/2015 11:06:06 AM.
+     1>Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\WelsEncCore.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe /c /I..\..\..\common\inc /I..\..\..\encoder\core\inc /I..\..\..\api\svc /I..\..\..\processing\interface /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /ZW /nologo /W1 /WX- /O2 /Oy- /GL /D _LIB /D NDEBUG /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"ARM\Release\\" /Fd"ARM\Release\vc110.pdb" /Gd /TP /FU"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\lib\arm\platform.winmd" /FU"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata\Windows.winmd" /analyze- /errorReport:prompt ..\..\..\common\src\common_tables.cpp ..\..\..\common\src\copy_mb.cpp ..\..\..\common\src\cpu.cpp ..\..\..\common\src\crt_util_safe_x.cpp ..\..\..\common\src\deblocking_common.cpp ..\..\..\common\src\expand_pic.cpp ..\..\..\common\src\intra_pred_common.cpp ..\..\..\common\src\sad_common.cpp ..\..\..\common\src\utils.cpp ..\..\..\common\src\WelsThreadLib.cpp ..\..\..\encoder\core\src\au_set.cpp ..\..\..\encoder\core\src\deblocking.cpp ..\..\..\encoder\core\src\decode_mb_aux.cpp ..\..\..\encoder\core\src\encoder.cpp ..\..\..\encoder\core\src\encoder_data_tables.cpp ..\..\..\encoder\core\src\encoder_ext.cpp ..\..\..\encoder\core\src\encode_mb_aux.cpp ..\..\..\encoder\core\src\get_intra_predictor.cpp ..\..\..\encoder\core\src\mc.cpp ..\..\..\encoder\core\src\md.cpp ..\..\..\encoder\core\src\memory_align.cpp ..\..\..\encoder\core\src\mv_pred.cpp ..\..\..\encoder\core\src\nal_encap.cpp ..\..\..\encoder\core\src\picture_handle.cpp ..\..\..\encoder\core\src\property.cpp ..\..\..\encoder\core\src\ratectl.cpp ..\..\..\encoder\core\src\ref_list_mgr_svc.cpp ..\..\..\encoder\core\src\sample.cpp ..\..\..\encoder\core\src\set_mb_syn_cabac.cpp ..\..\..\encoder\core\src\set_mb_syn_cavlc.cpp ..\..\..\encoder\core\src\slice_multi_threading.cpp ..\..\..\encoder\core\src\svc_base_layer_md.cpp ..\..\..\encoder\core\src\svc_encode_mb.cpp ..\..\..\encoder\core\src\svc_encode_slice.cpp ..\..\..\encoder\core\src\svc_enc_slice_segment.cpp ..\..\..\encoder\core\src\svc_mode_decision.cpp ..\..\..\encoder\core\src\svc_motion_estimate.cpp ..\..\..\encoder\core\src\svc_set_mb_syn_cabac.cpp ..\..\..\encoder\core\src\svc_set_mb_syn_cavlc.cpp ..\..\..\encoder\core\src\wels_preprocess.cpp
+         common_tables.cpp
+     1>..\..\..\common\src\common_tables.cpp(572): warning C4819: The file contains a character that cannot be represented in the current code page (936). Save the file in Unicode format to prevent data loss
+         copy_mb.cpp
+         cpu.cpp
+         crt_util_safe_x.cpp
+         deblocking_common.cpp
+         expand_pic.cpp
+         intra_pred_common.cpp
+         sad_common.cpp
+         utils.cpp
+         WelsThreadLib.cpp
+         au_set.cpp
+         deblocking.cpp
+         decode_mb_aux.cpp
+         encoder.cpp
+         encoder_data_tables.cpp
+         encoder_ext.cpp
+         encode_mb_aux.cpp
+         get_intra_predictor.cpp
+         mc.cpp
+         md.cpp
+         Compiling...
+         memory_align.cpp
+         mv_pred.cpp
+         nal_encap.cpp
+         picture_handle.cpp
+         property.cpp
+         ratectl.cpp
+         ref_list_mgr_svc.cpp
+         sample.cpp
+         set_mb_syn_cabac.cpp
+         set_mb_syn_cavlc.cpp
+         slice_multi_threading.cpp
+         svc_base_layer_md.cpp
+         svc_encode_mb.cpp
+         svc_encode_slice.cpp
+         svc_enc_slice_segment.cpp
+         svc_mode_decision.cpp
+         svc_motion_estimate.cpp
+         svc_set_mb_syn_cabac.cpp
+         svc_set_mb_syn_cavlc.cpp
+         wels_preprocess.cpp
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\Lib.exe /OUT:".\..\..\..\..\bin\ARM\Release\welsecore.lib" /NOLOGO /MACHINE:ARM /LTCG ARM\Release\common_tables.obj
+         ARM\Release\copy_mb.obj
+         ARM\Release\cpu.obj
+         ARM\Release\crt_util_safe_x.obj
+         ARM\Release\deblocking_common.obj
+         ARM\Release\expand_pic.obj
+         ARM\Release\intra_pred_common.obj
+         ARM\Release\sad_common.obj
+         ARM\Release\utils.obj
+         ARM\Release\WelsThreadLib.obj
+         ARM\Release\au_set.obj
+         ARM\Release\deblocking.obj
+         ARM\Release\decode_mb_aux.obj
+         ARM\Release\encoder.obj
+         ARM\Release\encoder_data_tables.obj
+         ARM\Release\encoder_ext.obj
+         ARM\Release\encode_mb_aux.obj
+         ARM\Release\get_intra_predictor.obj
+         ARM\Release\mc.obj
+         ARM\Release\md.obj
+         ARM\Release\memory_align.obj
+         ARM\Release\mv_pred.obj
+         ARM\Release\nal_encap.obj
+         ARM\Release\picture_handle.obj
+         ARM\Release\property.obj
+         ARM\Release\ratectl.obj
+         ARM\Release\ref_list_mgr_svc.obj
+         ARM\Release\sample.obj
+         ARM\Release\set_mb_syn_cabac.obj
+         ARM\Release\set_mb_syn_cavlc.obj
+         ARM\Release\slice_multi_threading.obj
+         ARM\Release\svc_base_layer_md.obj
+         ARM\Release\svc_encode_mb.obj
+         ARM\Release\svc_encode_slice.obj
+         ARM\Release\svc_enc_slice_segment.obj
+         ARM\Release\svc_mode_decision.obj
+         ARM\Release\svc_motion_estimate.obj
+         ARM\Release\svc_set_mb_syn_cabac.obj
+         ARM\Release\svc_set_mb_syn_cavlc.obj
+         ARM\Release\wels_preprocess.obj
+     1>ARM\Release\wels_preprocess.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+     1>ARM\Release\svc_set_mb_syn_cavlc.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+     1>ARM\Release\svc_set_mb_syn_cabac.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+     1>ARM\Release\svc_motion_estimate.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+     1>ARM\Release\svc_mode_decision.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+     1>ARM\Release\svc_enc_slice_segment.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+     1>ARM\Release\svc_encode_slice.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+     1>ARM\Release\svc_encode_mb.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+     1>ARM\Release\svc_base_layer_md.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+     1>ARM\Release\slice_multi_threading.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+     1>ARM\Release\set_mb_syn_cavlc.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+     1>ARM\Release\set_mb_syn_cabac.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+     1>ARM\Release\sample.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+     1>ARM\Release\ref_list_mgr_svc.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+     1>ARM\Release\ratectl.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+     1>ARM\Release\property.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+     1>ARM\Release\picture_handle.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+     1>ARM\Release\nal_encap.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+     1>ARM\Release\mv_pred.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+     1>ARM\Release\memory_align.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+     1>ARM\Release\md.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+     1>ARM\Release\mc.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+     1>ARM\Release\get_intra_predictor.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+     1>ARM\Release\encode_mb_aux.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+     1>ARM\Release\encoder_ext.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+     1>ARM\Release\encoder_data_tables.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+     1>ARM\Release\encoder.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+     1>ARM\Release\decode_mb_aux.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+     1>ARM\Release\deblocking.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+     1>ARM\Release\au_set.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+     1>ARM\Release\WelsThreadLib.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+     1>ARM\Release\utils.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+     1>ARM\Release\sad_common.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+     1>ARM\Release\intra_pred_common.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+     1>ARM\Release\expand_pic.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+     1>ARM\Release\deblocking_common.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+     1>ARM\Release\crt_util_safe_x.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+     1>ARM\Release\cpu.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+     1>ARM\Release\copy_mb.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+     1>ARM\Release\common_tables.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+         WelsEncCore.vcxproj -> E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\.\..\..\..\..\bin\ARM\Release\welsecore.lib
+     1>Done Building Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\WelsEncCore.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:13.32

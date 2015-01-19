@@ -1,0 +1,69 @@
+﻿Build started 1/16/2015 11:06:07 AM.
+     1>Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\WelsDecCore\WelsDecCore.vcxproj" on node 4 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe /c /I..\..\..\..\decoder\core\inc /I..\..\..\..\common\inc /I..\..\..\..\api\svc /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /nologo /W1 /WX- /O2 /Oy- /GL /D _LIB /D NDEBUG /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"ARM\Release\\" /Fd"ARM\Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\..\..\common\src\common_tables.cpp ..\..\..\..\common\src\copy_mb.cpp ..\..\..\..\common\src\cpu.cpp ..\..\..\..\common\src\crt_util_safe_x.cpp ..\..\..\..\common\src\deblocking_common.cpp ..\..\..\..\common\src\expand_pic.cpp ..\..\..\..\common\src\utils.cpp ..\..\..\..\decoder\core\src\au_parser.cpp ..\..\..\..\decoder\core\src\bit_stream.cpp ..\..\..\..\decoder\core\src\cabac_decoder.cpp ..\..\..\..\decoder\core\src\deblocking.cpp ..\..\..\..\decoder\core\src\decoder.cpp ..\..\..\..\decoder\core\src\decoder_core.cpp ..\..\..\..\decoder\core\src\decoder_data_tables.cpp ..\..\..\..\decoder\core\src\decode_mb_aux.cpp ..\..\..\..\decoder\core\src\decode_slice.cpp ..\..\..\..\decoder\core\src\error_concealment.cpp ..\..\..\..\decoder\core\src\fmo.cpp ..\..\..\..\decoder\core\src\get_intra_predictor.cpp ..\..\..\..\decoder\core\src\manage_dec_ref.cpp ..\..\..\..\decoder\core\src\mc.cpp ..\..\..\..\decoder\core\src\memmgr_nal_unit.cpp ..\..\..\..\decoder\core\src\mem_align.cpp ..\..\..\..\decoder\core\src\mv_pred.cpp ..\..\..\..\decoder\core\src\parse_mb_syn_cabac.cpp ..\..\..\..\decoder\core\src\parse_mb_syn_cavlc.cpp ..\..\..\..\decoder\core\src\pic_queue.cpp ..\..\..\..\decoder\core\src\rec_mb.cpp
+         common_tables.cpp
+     1>..\..\..\..\common\src\common_tables.cpp(572): warning C4819: The file contains a character that cannot be represented in the current code page (936). Save the file in Unicode format to prevent data loss
+         copy_mb.cpp
+         cpu.cpp
+         crt_util_safe_x.cpp
+         deblocking_common.cpp
+         expand_pic.cpp
+         utils.cpp
+         au_parser.cpp
+         bit_stream.cpp
+         cabac_decoder.cpp
+         deblocking.cpp
+         decoder.cpp
+         decoder_core.cpp
+         decoder_data_tables.cpp
+         decode_mb_aux.cpp
+         decode_slice.cpp
+         error_concealment.cpp
+         fmo.cpp
+         get_intra_predictor.cpp
+         manage_dec_ref.cpp
+         Compiling...
+         mc.cpp
+         memmgr_nal_unit.cpp
+         mem_align.cpp
+         mv_pred.cpp
+         parse_mb_syn_cabac.cpp
+         parse_mb_syn_cavlc.cpp
+         pic_queue.cpp
+         rec_mb.cpp
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\Lib.exe /OUT:"..\..\..\..\..\bin\ARM\Release\welsdcore.lib" /NOLOGO /MACHINE:ARM /LTCG ARM\Release\common_tables.obj
+         ARM\Release\copy_mb.obj
+         ARM\Release\cpu.obj
+         ARM\Release\crt_util_safe_x.obj
+         ARM\Release\deblocking_common.obj
+         ARM\Release\expand_pic.obj
+         ARM\Release\utils.obj
+         ARM\Release\au_parser.obj
+         ARM\Release\bit_stream.obj
+         ARM\Release\cabac_decoder.obj
+         ARM\Release\deblocking.obj
+         ARM\Release\decoder.obj
+         ARM\Release\decoder_core.obj
+         ARM\Release\decoder_data_tables.obj
+         ARM\Release\decode_mb_aux.obj
+         ARM\Release\decode_slice.obj
+         ARM\Release\error_concealment.obj
+         ARM\Release\fmo.obj
+         ARM\Release\get_intra_predictor.obj
+         ARM\Release\manage_dec_ref.obj
+         ARM\Release\mc.obj
+         ARM\Release\memmgr_nal_unit.obj
+         ARM\Release\mem_align.obj
+         ARM\Release\mv_pred.obj
+         ARM\Release\parse_mb_syn_cabac.obj
+         ARM\Release\parse_mb_syn_cavlc.obj
+         ARM\Release\pic_queue.obj
+         ARM\Release\rec_mb.obj
+         WelsDecCore.vcxproj -> E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\WelsDecCore\..\..\..\..\..\bin\ARM\Release\welsdcore.lib
+     1>Done Building Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\WelsDecCore\WelsDecCore.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:04.96

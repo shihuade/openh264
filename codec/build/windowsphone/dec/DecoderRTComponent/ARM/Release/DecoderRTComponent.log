@@ -1,0 +1,16 @@
+﻿Build started 1/15/2015 5:01:25 PM.
+     1>Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\DecoderRTComponent\DecoderRTComponent.vcxproj" on node 2 (Build target(s)).
+     1>Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\..\..\..\bin\ARM\Release\DecoderRTComponent.dll" /NOLOGO /LIBPATH:..\..\..\..\..\bin\ARM\Release\ openh264.lib WindowsPhoneCore.lib RuntimeObject.lib PhoneAppModelHost.lib /NODEFAULTLIB:ole32.lib /MANIFEST:NO /DEBUG /PDB:"..\..\..\..\..\bin\ARM\Release\DecoderRTComponent.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /WINMD /WINMDFILE:"..\..\..\..\..\bin\ARM\Release\DecoderRTComponent.winmd" /DYNAMICBASE /NXCOMPAT /MACHINE:ARM /DLL ARM\Release\read_config.obj
+         ARM\Release\d3d9_utils.obj
+         ARM\Release\h264dec.obj
+         ARM\Release\DecoderRTComponent.obj
+            Creating library ..\..\..\..\..\bin\ARM\Release\DecoderRTComponent.lib and object ..\..\..\..\..\bin\ARM\Release\DecoderRTComponent.exp
+         Generating code
+         Finished generating code
+         DecoderRTComponent.vcxproj -> E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\DecoderRTComponent\..\..\..\..\..\bin\ARM\Release\DecoderRTComponent.dll
+     1>Done Building Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\DecoderRTComponent\DecoderRTComponent.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.92

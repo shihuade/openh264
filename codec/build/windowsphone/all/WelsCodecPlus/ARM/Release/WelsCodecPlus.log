@@ -1,0 +1,20 @@
+﻿Build started 1/16/2015 11:06:20 AM.
+     1>Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsCodecPlus\WelsCodecPlus.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe /c /I..\..\..\..\decoder\plus\inc /I..\..\..\..\decoder\core\inc /I..\..\..\..\api\svc /I..\..\..\..\common\inc /I..\..\..\..\encoder\plus\inc /I..\..\..\..\encoder\core\inc /I..\..\..\..\processing\interface /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /ZW /nologo /W1 /WX- /O2 /Oy- /GL /D _USRDLL /D NDEBUG /D _WINDLL /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"ARM\Release\\" /Fd"ARM\Release\vc110.pdb" /Gd /TP /FU"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\lib\arm\platform.winmd" /FU"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata\Windows.winmd" /analyze- /errorReport:prompt ..\..\..\..\common\src\welsCodecTrace.cpp ..\..\..\..\decoder\plus\src\welsDecoderExt.cpp ..\..\..\..\encoder\plus\src\welsEncoderExt.cpp
+         welsCodecTrace.cpp
+         welsDecoderExt.cpp
+         welsEncoderExt.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\..\..\..\bin\ARM\Release\openh264.dll" /NOLOGO /LIBPATH:..\..\..\..\..\bin\ARM\Release\ welsecore.lib welsvp.lib welsdcore.lib WindowsPhoneCore.lib RuntimeObject.lib PhoneAppModelHost.lib /DEF:"..\..\..\..\..\openh264.def" /MANIFEST:NO /DEBUG /PDB:"..\..\..\..\..\bin\ARM\Release\openh264.pdb" /SUBSYSTEM:CONSOLE /LTCG /TLBID:1 /WINMD:NO /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\..\..\..\bin\ARM\Release\openh264.lib" /MACHINE:ARM /DLL ARM\Release\welsCodecTrace.obj
+         ARM\Release\welsDecoderExt.obj
+         ARM\Release\welsEncoderExt.obj
+            Creating library ..\..\..\..\..\bin\ARM\Release\openh264.lib and object ..\..\..\..\..\bin\ARM\Release\openh264.exp
+         Generating code
+         Finished generating code
+         WelsCodecPlus.vcxproj -> E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsCodecPlus\..\..\..\..\..\bin\ARM\Release\openh264.dll
+     1>Done Building Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsCodecPlus\WelsCodecPlus.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:06.80

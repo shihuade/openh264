@@ -1,0 +1,11 @@
+﻿Build started 1/7/2015 8:45:54 PM.
+     1>Project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\CL.exe /c /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /ZI /nologo /W1 /WX- /Od /Oy- /D _USRDLL /D _WINDLL /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"pch.h" /Fp"Debug\WelsVP.pch" /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt WelsVP.cpp
+         WelsVP.cpp
+     1>e:\project\openh264\source_wp8\codec\processing\build\windowsphone\welsvp.cpp(4): fatal error C1083: Cannot open precompiled header file: 'Debug\WelsVP.pch': No such file or directory
+     1>Done Building Project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.28

@@ -931,6 +931,26 @@ void LockToSingleCore() {
   return ;
 }
 
+#ifdef _LOAD_WP_DLL
+
+typedef int32_t  (*pfSVCEncCreateHandler)(ISVCEncoder** ppEncoder);
+typedef void     (*pfSVCEncDestroyHandler)(ISVCEncoder* pEncoder);
+
+int32_t CreateSVCEncHandle(pfSVCEncCreateHandler pfSVCEncCreator,ISVCEncoder** ppEncoder) {
+	int32_t ret = 0;
+	ret = pfSVCEncCreator(ppEncoder);
+	return ret;
+}
+
+void DestroySVCEncHandle(pfSVCEncDestroyHandler pfSVCEncDestructor, ISVCEncoder* pEncoder) {
+	if (pEncoder) {
+		pfSVCEncDestructor(pEncoder);
+	}
+}
+
+
+#else
+
 int32_t CreateSVCEncHandle (ISVCEncoder** ppEncoder) {
   int32_t ret = 0;
   ret = WelsCreateSVCEncoder (ppEncoder);
@@ -944,10 +964,12 @@ void DestroySVCEncHandle (ISVCEncoder* pEncoder) {
   }
 }
 
+#endif
+
 /****************************************************************************
  * main:
  ****************************************************************************/
-#if defined(ANDROID_NDK) || defined(APPLE_IOS)
+#if defined(ANDROID_NDK) || defined(APPLE_IOS) || defined (WELS_WIN_PHONE)
 extern "C" int EncMain (int argc, char** argv)
 #else
 int main (int argc, char** argv)
@@ -967,7 +989,35 @@ int main (int argc, char** argv)
   /* Control-C handler */
   signal (SIGINT, SigIntHandler);
 
+
+#ifdef _LOAD_WP_DLL
+  HMODULE                   phSVCDLLHandler     = NULL;
+  pfSVCEncCreateHandler     pfSVCEncCreator     = NULL;
+  pfSVCEncDestroyHandler    pfSVCEncDestructor  = NULL;
+  LPCWSTR                   cSVCDLLName         =  L"openh264.dll";//L"openh264"; //L"welsenc.dll";
+
+  phSVCDLLHandler  = LoadPackagedLibrary(cSVCDLLName, 0);
+  DWORD dw = GetLastError();
+  if (NULL == phSVCDLLHandler)
+  {
+	  std::cout << "failed to load dll,error code is : " << dw << std::endl;
+	  return 1;
+  }
+
+  pfSVCEncCreator    = (pfSVCEncCreateHandler)GetProcAddress(phSVCDLLHandler, "WelsCreateSVCEncoder");
+  pfSVCEncDestructor = (pfSVCEncDestroyHandler)GetProcAddress(phSVCDLLHandler, "WelsDestroySVCEncoder");
+  if (NULL == pfSVCEncCreator || NULL == pfSVCEncDestructor)
+  {
+	  std::cout << "failed to load function" << std::endl;
+	  return 2;
+  }
+
+  iRet = CreateSVCEncHandle(pfSVCEncCreator,&pSVCEncoder);
+#else
+
   iRet = CreateSVCEncHandle (&pSVCEncoder);
+#endif
+
   if (iRet) {
     cout << "WelsCreateSVCEncoder() failed!!" << endl;
     goto exit;
@@ -994,11 +1044,19 @@ int main (int argc, char** argv)
     }
   }
 
+#ifdef _LOAD_WP_DLL
+  DestroySVCEncHandle(pfSVCEncDestructor,pSVCEncoder);
+#else
   DestroySVCEncHandle (pSVCEncoder);
+#endif
   return 0;
 
 exit:
+#ifdef _LOAD_WP_DLL
+  DestroySVCEncHandle(pfSVCEncDestructor, pSVCEncoder);
+#else
   DestroySVCEncHandle (pSVCEncoder);
+#endif
   PrintHelp();
   return 1;
 }

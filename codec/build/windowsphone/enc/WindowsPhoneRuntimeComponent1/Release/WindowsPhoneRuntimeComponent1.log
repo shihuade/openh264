@@ -1,0 +1,26 @@
+﻿Build started 1/16/2015 10:35:14 AM.
+     1>Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\WindowsPhoneRuntimeComponent1\WindowsPhoneRuntimeComponent1.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\CL.exe /c /I..\..\..\..\console\enc\inc /I..\..\..\..\console\common\inc /I..\..\..\..\api\svc /I..\..\..\..\encoder\core\inc /I..\..\..\..\common\inc /I..\..\..\..\processing\interface /IE:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\WindowsPhoneRuntimeComponent1\ /I"Generated Files\\" /IRelease\ /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /ZW /ZW:nostdlib /nologo /W3 /WX- /sdl /MP /O2 /Oi /Oy- /GL /D _LOAD_WP_DLL /D WELS_WIN_PHONE /D _WINRT_DLL /D _CRT_SECURE_NO_WARNINGS /D _WINDLL /D _UNICODE /D UNICODE /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /FU"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\lib\platform.winmd" /FU"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata\Windows.winmd" /analyze- /errorReport:prompt ..\..\..\..\console\common\src\read_config.cpp ..\..\..\..\console\enc\src\welsenc.cpp WindowsPhoneRuntimeComponent1.cpp
+         read_config.cpp
+         welsenc.cpp
+         WindowsPhoneRuntimeComponent1.cpp
+     1>..\..\..\..\console\enc\src\welsenc.cpp(33): warning C4005: '_CRT_SECURE_NO_WARNINGS' : macro redefinition
+                 command-line arguments :  see previous definition of '_CRT_SECURE_NO_WARNINGS'
+     1>..\..\..\..\console\common\src\read_config.cpp(41): warning C4005: '_CRT_SECURE_NO_WARNINGS' : macro redefinition
+                 command-line arguments :  see previous definition of '_CRT_SECURE_NO_WARNINGS'
+     1>WindowsPhoneRuntimeComponent1.cpp(27): warning C4101: 'argv' : unreferenced local variable
+     1>WindowsPhoneRuntimeComponent1.cpp(188): warning C4101: 'Buffer' : unreferenced local variable
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\..\..\..\bin\Win32\Release\WindowsPhoneRuntimeComponent1.dll" /NOLOGO WindowsPhoneCore.lib RuntimeObject.lib PhoneAppModelHost.lib /NODEFAULTLIB:ole32.lib /MANIFEST:NO /DEBUG /PDB:"..\..\..\..\..\bin\Win32\Release\WindowsPhoneRuntimeComponent1.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /WINMD /WINMDFILE:"..\..\..\..\..\bin\Win32\Release\WindowsPhoneRuntimeComponent1.winmd" /DYNAMICBASE /NXCOMPAT /MACHINE:X86 /SAFESEH /DLL Release\read_config.obj
+         Release\welsenc.obj
+         Release\WindowsPhoneRuntimeComponent1.obj
+            Creating library ..\..\..\..\..\bin\Win32\Release\WindowsPhoneRuntimeComponent1.lib and object ..\..\..\..\..\bin\Win32\Release\WindowsPhoneRuntimeComponent1.exp
+         Generating code
+         Finished generating code
+         WindowsPhoneRuntimeComponent1.vcxproj -> E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\WindowsPhoneRuntimeComponent1\..\..\..\..\..\bin\Win32\Release\WindowsPhoneRuntimeComponent1.dll
+     1>Done Building Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\WindowsPhoneRuntimeComponent1\WindowsPhoneRuntimeComponent1.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.62
