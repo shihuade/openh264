@@ -1,5 +1,5 @@
-﻿Build started 1/20/2015 1:55:38 PM.
-     1>Project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" on node 3 (Build target(s)).
+﻿Build started 1/20/2015 2:16:56 PM.
+     1>Project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" on node 2 (Rebuild target(s)).
      1>Building with tools version "12.0".
      1>Target "_CheckForInvalidConfigurationAndPlatform" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" (entry point):
        Task "Error" skipped, due to false condition; ( '$(_InvalidConfigurationError)' == 'true' ) was evaluated as ( '' == 'true' ).
@@ -18,6 +18,88 @@
      1>Target "MSBuild64BitCheck" in file "C:\Program Files (x86)\MSBuild\Microsoft\WindowsPhone\v8.0\Microsoft.Cpp.WindowsPhone.8.0.targets" from project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" (entry point):
        Task "Error" skipped, due to false condition; ('$([System.Environment]::Is64BitProcess)'=='True') was evaluated as ('False'=='True').
      1>Done building target "MSBuild64BitCheck" in project "WelsVP.vcxproj".
+     1>Target "_PrepareForRebuild" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.BuildSteps.Targets" from project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" (target "Rebuild" depends on it):
+     1>Done building target "_PrepareForRebuild" in project "WelsVP.vcxproj".
+     1>Target "BeforeRebuild" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" (target "Rebuild" depends on it):
+     1>Done building target "BeforeRebuild" in project "WelsVP.vcxproj".
+     1>Target "_PrepareForClean" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.BuildSteps.Targets" from project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" (target "Clean" depends on it):
+       Using "Delete" task from assembly "Microsoft.Build.Tasks.v12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+       Task "Delete"
+         Deleting file "ARM\Release\WelsVP.lastbuildstate".
+       Done executing task "Delete".
+     1>Done building target "_PrepareForClean" in project "WelsVP.vcxproj".
+     1>Target "BeforeClean" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" (target "Clean" depends on it):
+     1>Done building target "BeforeClean" in project "WelsVP.vcxproj".
+       Target "UnmanagedUnregistration" skipped, due to false condition; ((('$(_AssemblyTimestampBeforeCompile)' != '$(_AssemblyTimestampAfterCompile)' or '$(RegisterForComInterop)' != 'true' or '$(OutputType)' != 'library') or
+                           ('$(_AssemblyTimestampBeforeCompile)' == '')) and
+                          Exists('@(_UnmanagedRegistrationCache)')) was evaluated as ((('' != '' or '' != 'true' or 'library' != 'library') or
+                           ('' == '')) and
+                          Exists('obj\WelsVP.vcxproj.UnmanagedRegistration.cache')).
+     1>Target "CoreClean" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" (target "Clean" depends on it):
+       Task "Delete"
+         File "ARM\Release\\TempCA\welsvp.pdb" doesn't exist. Skipping.
+         File "ARM\Release\\TempCA\welsvp.dll" doesn't exist. Skipping.
+       Done executing task "Delete".
+       Using "ReadLinesFromFile" task from assembly "Microsoft.Build.Tasks.v12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+       Task "ReadLinesFromFile"
+       Done executing task "ReadLinesFromFile".
+       Using "FindUnderPath" task from assembly "Microsoft.Build.Tasks.v12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+       Task "FindUnderPath"
+         Comparison path is "..\..\..\..\bin\ARM\Release\".
+       Done executing task "FindUnderPath".
+       Task "FindUnderPath"
+         Comparison path is "ARM\Release\".
+       Done executing task "FindUnderPath".
+       Task "Delete"
+       Done executing task "Delete".
+       Using "RemoveDuplicates" task from assembly "Microsoft.Build.Tasks.v12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+       Task "RemoveDuplicates"
+       Done executing task "RemoveDuplicates".
+       Using "MakeDir" task from assembly "Microsoft.Build.Tasks.v12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+       Task "MakeDir"
+       Done executing task "MakeDir".
+       Using "WriteLinesToFile" task from assembly "Microsoft.Build.Tasks.v12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+       Task "WriteLinesToFile"
+       Done executing task "WriteLinesToFile".
+     1>Done building target "CoreClean" in project "WelsVP.vcxproj".
+     1>Target "AssignProjectConfiguration" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" (target "CleanReferencedProjects" depends on it):
+       Using "AssignProjectConfiguration" task from assembly "Microsoft.Build.Tasks.v12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+       Task "AssignProjectConfiguration"
+       Done executing task "AssignProjectConfiguration".
+     1>Done building target "AssignProjectConfiguration" in project "WelsVP.vcxproj".
+     1>Target "_SplitProjectReferencesByFileExistence" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" (target "CleanReferencedProjects" depends on it):
+       Task "ResolveNonMSBuildProjectOutput" skipped, due to false condition; ('$(BuildingInsideVisualStudio)'=='true' and '@(ProjectReferenceWithConfiguration)'!='') was evaluated as ('true'=='true' and ''!='').
+     1>Done building target "_SplitProjectReferencesByFileExistence" in project "WelsVP.vcxproj".
+     1>Target "CleanReferencedProjects" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" (target "Clean" depends on it):
+       Task "MSBuild" skipped, due to false condition; ('$(BuildingInsideVisualStudio)' != 'true' and '$(BuildProjectReferences)' == 'true' and '@(_MSBuildProjectReferenceExistent)' != '') was evaluated as ('true' != 'true' and 'true' == 'true' and '' != '').
+     1>Done building target "CleanReferencedProjects" in project "WelsVP.vcxproj".
+     1>Target "CleanPublishFolder" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" (target "Clean" depends on it):
+       Task "RemoveDir" skipped, due to false condition; ('$(PublishDir)'=='$(OutputPath)app.publish\' and Exists('$(PublishDir)')) was evaluated as ('..\..\..\..\bin\ARM\Release\app.publish\'=='..\..\..\..\bin\ARM\Release\app.publish\' and Exists('..\..\..\..\bin\ARM\Release\app.publish\')).
+     1>Done building target "CleanPublishFolder" in project "WelsVP.vcxproj".
+     1>Target "AfterClean" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" (target "Clean" depends on it):
+     1>Done building target "AfterClean" in project "WelsVP.vcxproj".
+       Target "EntityClean" skipped, due to false condition; ('@(EntityDeploy)' != '') was evaluated as ('' != '').
+     1>Target "BeforeCppClean" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppClean.targets" from project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" (target "CppClean" depends on it):
+     1>Done building target "BeforeCppClean" in project "WelsVP.vcxproj".
+     1>Target "CoreCppClean" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppClean.targets" from project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" (target "CppClean" depends on it):
+       Task "MakeDir"
+       Done executing task "MakeDir".
+       Using "CppClean" task from assembly "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.Build.CppTasks.Common.dll".
+       Task "CppClean"
+       Done executing task "CppClean".
+       Task "WriteLinesToFile"
+       Done executing task "WriteLinesToFile".
+     1>Done building target "CoreCppClean" in project "WelsVP.vcxproj".
+     1>Target "AfterCppClean" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppClean.targets" from project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" (target "CppClean" depends on it):
+     1>Done building target "AfterCppClean" in project "WelsVP.vcxproj".
+     1>Target "PGInstrumentedClean" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppClean.targets" from project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" (target "CppClean" depends on it):
+       Task "Delete"
+       Done executing task "Delete".
+     1>Done building target "PGInstrumentedClean" in project "WelsVP.vcxproj".
+     1>Target "CppClean" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppClean.targets" from project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" (target "Clean" depends on it):
+     1>Done building target "CppClean" in project "WelsVP.vcxproj".
+     1>Target "Clean" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" (target "Rebuild" depends on it):
+     1>Done building target "Clean" in project "WelsVP.vcxproj".
      1>Target "_PrepareForBuild" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.BuildSteps.Targets" from project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" (target "Build" depends on it):
        Task "CreateItem" skipped, due to false condition; ('%(CustomBuild.IncludeFileToTool)'!='') was evaluated as (''!='').
      1>Done building target "_PrepareForBuild" in project "WelsVP.vcxproj".
@@ -27,15 +109,9 @@
        Target "ComputeCrtSDKReference" skipped, due to false condition; ('@(ClCompile)'!='' and '$(WindowsAppContainer)'=='true' and '$(UseCrtSDKReference)' != 'false') was evaluated as ('..\..\..\common\src\cpu.cpp;..\..\..\common\src\intra_pred_common.cpp;..\..\..\common\src\sad_common.cpp;..\..\..\common\src\WelsThreadLib.cpp;..\..\src\adaptivequantization\AdaptiveQuantization.cpp;..\..\src\backgrounddetection\BackgroundDetection.cpp;..\..\src\common\memory.cpp;..\..\src\common\WelsFrameWork.cpp;..\..\src\common\WelsFrameWorkEx.cpp;..\..\src\complexityanalysis\ComplexityAnalysis.cpp;..\..\src\denoise\denoise.cpp;..\..\src\denoise\denoise_filter.cpp;..\..\src\downsample\downsample.cpp;..\..\src\downsample\downsamplefuncs.cpp;..\..\src\imagerotate\imagerotate.cpp;..\..\src\imagerotate\imagerotatefuncs.cpp;..\..\src\scenechangedetection\SceneChangeDetection.cpp;..\..\src\scrolldetection\ScrollDetection.cpp;..\..\src\scrolldetection\ScrollDetectionFuncs.cpp;..\..\src\vaacalc\vaacalcfuncs.cpp;..\..\src\vaacalc\vaacalculation.cpp'!='' and 'false'=='true' and 'false' != 'false').
      1>Target "BeforeResolveReferences" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" (target "ResolveReferences" depends on it):
      1>Done building target "BeforeResolveReferences" in project "WelsVP.vcxproj".
-     1>Target "AssignProjectConfiguration" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" (target "ResolveReferences" depends on it):
-       Using "AssignProjectConfiguration" task from assembly "Microsoft.Build.Tasks.v12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
-       Task "AssignProjectConfiguration"
-       Done executing task "AssignProjectConfiguration".
-     1>Done building target "AssignProjectConfiguration" in project "WelsVP.vcxproj".
        Target "AssignProjectConfiguration" skipped. Previously built successfully.
-     1>Target "_SplitProjectReferencesByFileExistence" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" (target "ResolveProjectReferences" depends on it):
-       Task "ResolveNonMSBuildProjectOutput" skipped, due to false condition; ('$(BuildingInsideVisualStudio)'=='true' and '@(ProjectReferenceWithConfiguration)'!='') was evaluated as ('true'=='true' and ''!='').
-     1>Done building target "_SplitProjectReferencesByFileExistence" in project "WelsVP.vcxproj".
+       Target "AssignProjectConfiguration" skipped. Previously built successfully.
+       Target "_SplitProjectReferencesByFileExistence" skipped. Previously built successfully.
        Target "_RemoveNameMetadataFromProjectReferenceItems" skipped, due to false condition; ('@(ProjectReference)'!='') was evaluated as (''!='').
      1>Target "ResolveProjectReferences" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" (target "ResolveReferences" depends on it):
        Task "MSBuild" skipped, due to false condition; ('%(_MSBuildProjectReferenceExistent.BuildReference)' == 'true' and '@(ProjectReferenceWithConfiguration)' != '' and ('$(BuildingInsideVisualStudio)' == 'true' or '$(BuildProjectReferences)' != 'true') and '$(VisualStudioVersion)' != '10.0' and '@(_MSBuildProjectReferenceExistent)' != '') was evaluated as ('' == 'true' and '' != '' and ('true' == 'true' or 'true' != 'true') and '12.0' != '10.0' and '' != '').
@@ -88,7 +164,6 @@
      1>Done building target "SetCABuildNativeEnvironmentVariables" in project "WelsVP.vcxproj".
      1>Target "PrepareForBuild" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" (target "ResolveAssemblyReferences" depends on it):
        Task "VCMessage" skipped, due to false condition; ('$(DesignTimeBuild)'!='true' and '$(ConfigurationPlatformExists)' != 'true') was evaluated as (''!='true' and 'true' != 'true').
-       Using "MakeDir" task from assembly "Microsoft.Build.Tasks.v12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
        Task "MakeDir"
        Done executing task "MakeDir".
        Task "VCMessage" skipped, due to false condition; ('$(DesignTimeBuild)'!='true' and '$(WindowsAppContainer)'=='true' and '$(ConfigurationType)'!='Application' and '$(ConfigurationType)'!='DynamicLibrary' and '$(ConfigurationType)'!='StaticLibrary') was evaluated as (''!='true' and 'false'=='true' and 'DynamicLibrary'!='Application' and 'DynamicLibrary'!='DynamicLibrary' and 'DynamicLibrary'!='StaticLibrary').
@@ -214,10 +289,8 @@
        Target "PrepareForBuild" skipped. Previously built successfully.
        Target "PrepareForBuild" skipped. Previously built successfully.
      1>Target "InitializeBuildStatus" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" (target "Build" depends on it):
-       Using "ReadLinesFromFile" task from assembly "Microsoft.Build.Tasks.v12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
        Task "ReadLinesFromFile"
        Done executing task "ReadLinesFromFile".
-       Using "WriteLinesToFile" task from assembly "Microsoft.Build.Tasks.v12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
        Task "WriteLinesToFile"
        Done executing task "WriteLinesToFile".
        Using "Touch" task from assembly "Microsoft.Build.Tasks.v12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
@@ -301,7 +374,6 @@
        Target "GenerateTargetFrameworkMonikerAttribute" skipped, due to false condition; ('$(GenerateTargetFrameworkAttribute)' == 'true') was evaluated as ('false' == 'true').
        Target "ManagedIncrementalBuildPreProcessDependencyGraph" skipped, due to false condition; ('@(ClCompile)' != '' and '$(EnableManagedIncrementalBuild)' == 'True') was evaluated as ('..\..\..\common\src\cpu.cpp;..\..\..\common\src\intra_pred_common.cpp;..\..\..\common\src\sad_common.cpp;..\..\..\common\src\WelsThreadLib.cpp;..\..\src\adaptivequantization\AdaptiveQuantization.cpp;..\..\src\backgrounddetection\BackgroundDetection.cpp;..\..\src\common\memory.cpp;..\..\src\common\WelsFrameWork.cpp;..\..\src\common\WelsFrameWorkEx.cpp;..\..\src\complexityanalysis\ComplexityAnalysis.cpp;..\..\src\denoise\denoise.cpp;..\..\src\denoise\denoise_filter.cpp;..\..\src\downsample\downsample.cpp;..\..\src\downsample\downsamplefuncs.cpp;..\..\src\imagerotate\imagerotate.cpp;..\..\src\imagerotate\imagerotatefuncs.cpp;..\..\src\scenechangedetection\SceneChangeDetection.cpp;..\..\src\scrolldetection\ScrollDetection.cpp;..\..\src\scrolldetection\ScrollDetectionFuncs.cpp;..\..\src\vaacalc\vaacalcfuncs.cpp;..\..\src\vaacalc\vaacalculation.cpp' != '' and 'false' == 'True').
      1>Target "ClCompile" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppCommon.targets" from project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" (target "_ClCompile" depends on it):
-       Using "Delete" task from assembly "Microsoft.Build.Tasks.v12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
        Task "Delete"
        Done executing task "Delete".
        Task "CL" skipped, due to false condition; ('%(ClCompile.PrecompiledHeader)' == 'Create' and '%(ClCompile.ExcludedFromBuild)'!='true' and '%(ClCompile.CompilerIteration)' == '') was evaluated as ('NotUsing' == 'Create' and ''!='true' and '' == '').
@@ -309,10 +381,10 @@
        Task "CL"
          Forcing recompile of all source files due to missing PDB "ARM\Release\vc110.pdb".
          Environment Variables passed to tool:
-           VS_UNICODE_OUTPUT=1484
+           VS_UNICODE_OUTPUT=856
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe /c /I../../../common/inc /I../../interface /I../../src/common /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /ZW /nologo /W1 /WX- /O2 /Oy- /GL /D _USRDLL /D NDEBUG /D _WINDLL /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"ARM\Release\\" /Fd"ARM\Release\vc110.pdb" /Gd /TP /FU"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\lib\arm\platform.winmd" /FU"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata\Windows.winmd" /analyze- /errorReport:prompt ..\..\..\common\src\cpu.cpp ..\..\..\common\src\intra_pred_common.cpp ..\..\..\common\src\sad_common.cpp ..\..\..\common\src\WelsThreadLib.cpp ..\..\src\adaptivequantization\AdaptiveQuantization.cpp ..\..\src\backgrounddetection\BackgroundDetection.cpp ..\..\src\common\memory.cpp ..\..\src\common\WelsFrameWork.cpp ..\..\src\common\WelsFrameWorkEx.cpp ..\..\src\complexityanalysis\ComplexityAnalysis.cpp ..\..\src\denoise\denoise.cpp ..\..\src\denoise\denoise_filter.cpp ..\..\src\downsample\downsample.cpp ..\..\src\downsample\downsamplefuncs.cpp ..\..\src\imagerotate\imagerotate.cpp ..\..\src\imagerotate\imagerotatefuncs.cpp ..\..\src\scenechangedetection\SceneChangeDetection.cpp ..\..\src\scrolldetection\ScrollDetection.cpp ..\..\src\scrolldetection\ScrollDetectionFuncs.cpp ..\..\src\vaacalc\vaacalcfuncs.cpp ..\..\src\vaacalc\vaacalculation.cpp
          Tracking command:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\Tracker.exe /d C:\Windows\Microsoft.NET\Framework\v4.0.30319\FileTracker.dll /i E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\ARM\Release /r "E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\COMMON\SRC\CPU.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\COMMON\SRC\INTRA_PRED_COMMON.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\COMMON\SRC\SAD_COMMON.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\COMMON\SRC\WELSTHREADLIB.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\ADAPTIVEQUANTIZATION\ADAPTIVEQUANTIZATION.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\BACKGROUNDDETECTION\BACKGROUNDDETECTION.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\COMMON\MEMORY.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\COMMON\WELSFRAMEWORK.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\COMMON\WELSFRAMEWORKEX.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\COMPLEXITYANALYSIS\COMPLEXITYANALYSIS.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\DENOISE\DENOISE.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\DENOISE\DENOISE_FILTER.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\DOWNSAMPLE\DOWNSAMPLE.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\DOWNSAMPLE\DOWNSAMPLEFUNCS.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\IMAGEROTATE\IMAGEROTATE.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\IMAGEROTATE\IMAGEROTATEFUNCS.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\SCENECHANGEDETECTION\SCENECHANGEDETECTION.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\SCROLLDETECTION\SCROLLDETECTION.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\SCROLLDETECTION\SCROLLDETECTIONFUNCS.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\VAACALC\VAACALCFUNCS.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\VAACALC\VAACALCULATION.CPP" /b MSBuildConsole_CancelEvent60cdc9c5718f44789474f6643d5fe2b8  /c "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe"  /c /I../../../common/inc /I../../interface /I../../src/common /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /ZW /nologo /W1 /WX- /O2 /Oy- /GL /D _USRDLL /D NDEBUG /D _WINDLL /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"ARM\Release\\" /Fd"ARM\Release\vc110.pdb" /Gd /TP /FU"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\lib\arm\platform.winmd" /FU"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata\Windows.winmd" /analyze- /errorReport:prompt ..\..\..\common\src\cpu.cpp ..\..\..\common\src\intra_pred_common.cpp ..\..\..\common\src\sad_common.cpp ..\..\..\common\src\WelsThreadLib.cpp ..\..\src\adaptivequantization\AdaptiveQuantization.cpp ..\..\src\backgrounddetection\BackgroundDetection.cpp ..\..\src\common\memory.cpp ..\..\src\common\WelsFrameWork.cpp ..\..\src\common\WelsFrameWorkEx.cpp ..\..\src\complexityanalysis\ComplexityAnalysis.cpp ..\..\src\denoise\denoise.cpp ..\..\src\denoise\denoise_filter.cpp ..\..\src\downsample\downsample.cpp ..\..\src\downsample\downsamplefuncs.cpp ..\..\src\imagerotate\imagerotate.cpp ..\..\src\imagerotate\imagerotatefuncs.cpp ..\..\src\scenechangedetection\SceneChangeDetection.cpp ..\..\src\scrolldetection\ScrollDetection.cpp ..\..\src\scrolldetection\ScrollDetectionFuncs.cpp ..\..\src\vaacalc\vaacalcfuncs.cpp ..\..\src\vaacalc\vaacalculation.cpp
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\Tracker.exe /d C:\Windows\Microsoft.NET\Framework\v4.0.30319\FileTracker.dll /i E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\ARM\Release /r "E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\COMMON\SRC\CPU.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\COMMON\SRC\INTRA_PRED_COMMON.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\COMMON\SRC\SAD_COMMON.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\COMMON\SRC\WELSTHREADLIB.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\ADAPTIVEQUANTIZATION\ADAPTIVEQUANTIZATION.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\BACKGROUNDDETECTION\BACKGROUNDDETECTION.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\COMMON\MEMORY.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\COMMON\WELSFRAMEWORK.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\COMMON\WELSFRAMEWORKEX.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\COMPLEXITYANALYSIS\COMPLEXITYANALYSIS.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\DENOISE\DENOISE.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\DENOISE\DENOISE_FILTER.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\DOWNSAMPLE\DOWNSAMPLE.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\DOWNSAMPLE\DOWNSAMPLEFUNCS.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\IMAGEROTATE\IMAGEROTATE.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\IMAGEROTATE\IMAGEROTATEFUNCS.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\SCENECHANGEDETECTION\SCENECHANGEDETECTION.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\SCROLLDETECTION\SCROLLDETECTION.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\SCROLLDETECTION\SCROLLDETECTIONFUNCS.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\VAACALC\VAACALCFUNCS.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\VAACALC\VAACALCULATION.CPP" /b MSBuildConsole_CancelEventbf5875b700f94b168b67f31eee90fdbe  /c "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe"  /c /I../../../common/inc /I../../interface /I../../src/common /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /ZW /nologo /W1 /WX- /O2 /Oy- /GL /D _USRDLL /D NDEBUG /D _WINDLL /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"ARM\Release\\" /Fd"ARM\Release\vc110.pdb" /Gd /TP /FU"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\lib\arm\platform.winmd" /FU"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata\Windows.winmd" /analyze- /errorReport:prompt ..\..\..\common\src\cpu.cpp ..\..\..\common\src\intra_pred_common.cpp ..\..\..\common\src\sad_common.cpp ..\..\..\common\src\WelsThreadLib.cpp ..\..\src\adaptivequantization\AdaptiveQuantization.cpp ..\..\src\backgrounddetection\BackgroundDetection.cpp ..\..\src\common\memory.cpp ..\..\src\common\WelsFrameWork.cpp ..\..\src\common\WelsFrameWorkEx.cpp ..\..\src\complexityanalysis\ComplexityAnalysis.cpp ..\..\src\denoise\denoise.cpp ..\..\src\denoise\denoise_filter.cpp ..\..\src\downsample\downsample.cpp ..\..\src\downsample\downsamplefuncs.cpp ..\..\src\imagerotate\imagerotate.cpp ..\..\src\imagerotate\imagerotatefuncs.cpp ..\..\src\scenechangedetection\SceneChangeDetection.cpp ..\..\src\scrolldetection\ScrollDetection.cpp ..\..\src\scrolldetection\ScrollDetectionFuncs.cpp ..\..\src\vaacalc\vaacalcfuncs.cpp ..\..\src\vaacalc\vaacalculation.cpp
          cpu.cpp
          intra_pred_common.cpp
          sad_common.cpp
@@ -446,7 +518,7 @@
        Using "Link" task from assembly "Microsoft.Build.CppTasks.Common.v110, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
        Task "Link"
          Environment Variables passed to tool:
-           VS_UNICODE_OUTPUT=552
+           VS_UNICODE_OUTPUT=1204
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\..\..\bin\ARM\Release\welsvp.dll" /NOLOGO WindowsPhoneCore.lib RuntimeObject.lib PhoneAppModelHost.lib /DEF:"../../src/common/WelsVP.def" /MANIFEST:NO /DEBUG /PDB:"..\..\..\..\bin\ARM\Release\welsvp.pdb" /SUBSYSTEM:CONSOLE /LTCG /TLBID:1 /WINMD:NO /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\..\..\bin\ARM\Release\welsvp.lib" /MACHINE:ARM /DLL ARM\Release\cpu.obj
          ARM\Release\intra_pred_common.obj
          ARM\Release\sad_common.obj
@@ -469,7 +541,7 @@
          ARM\Release\vaacalcfuncs.obj
          ARM\Release\vaacalculation.obj
          Tracking command:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\Tracker.exe /a /d C:\Windows\Microsoft.NET\Framework\v4.0.30319\FileTracker.dll /i E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\ARM\Release /r "E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\ADAPTIVEQUANTIZATION.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\BACKGROUNDDETECTION.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\COMPLEXITYANALYSIS.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\CPU.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\DENOISE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\DENOISE_FILTER.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\DOWNSAMPLE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\DOWNSAMPLEFUNCS.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\IMAGEROTATE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\IMAGEROTATEFUNCS.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\INTRA_PRED_COMMON.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\MEMORY.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\SAD_COMMON.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\SCENECHANGEDETECTION.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\SCROLLDETECTION.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\SCROLLDETECTIONFUNCS.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\VAACALCFUNCS.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\VAACALCULATION.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\WELSFRAMEWORK.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\WELSFRAMEWORKEX.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\WELSTHREADLIB.OBJ" /b MSBuildConsole_CancelEvent1a1f200a48e341f89c2bc938d9a54d70  /c "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\link.exe"  /ERRORREPORT:PROMPT /OUT:"..\..\..\..\bin\ARM\Release\welsvp.dll" /NOLOGO WindowsPhoneCore.lib RuntimeObject.lib PhoneAppModelHost.lib /DEF:"../../src/common/WelsVP.def" /MANIFEST:NO /DEBUG /PDB:"..\..\..\..\bin\ARM\Release\welsvp.pdb" /SUBSYSTEM:CONSOLE /LTCG /TLBID:1 /WINMD:NO /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\..\..\bin\ARM\Release\welsvp.lib" /MACHINE:ARM /DLL ARM\Release\cpu.obj
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\Tracker.exe /a /d C:\Windows\Microsoft.NET\Framework\v4.0.30319\FileTracker.dll /i E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\ARM\Release /r "E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\ADAPTIVEQUANTIZATION.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\BACKGROUNDDETECTION.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\COMPLEXITYANALYSIS.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\CPU.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\DENOISE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\DENOISE_FILTER.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\DOWNSAMPLE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\DOWNSAMPLEFUNCS.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\IMAGEROTATE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\IMAGEROTATEFUNCS.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\INTRA_PRED_COMMON.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\MEMORY.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\SAD_COMMON.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\SCENECHANGEDETECTION.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\SCROLLDETECTION.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\SCROLLDETECTIONFUNCS.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\VAACALCFUNCS.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\VAACALCULATION.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\WELSFRAMEWORK.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\WELSFRAMEWORKEX.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\RELEASE\WELSTHREADLIB.OBJ" /b MSBuildConsole_CancelEvent3bc2538e3c554e9f9f47995deb97b450  /c "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\link.exe"  /ERRORREPORT:PROMPT /OUT:"..\..\..\..\bin\ARM\Release\welsvp.dll" /NOLOGO WindowsPhoneCore.lib RuntimeObject.lib PhoneAppModelHost.lib /DEF:"../../src/common/WelsVP.def" /MANIFEST:NO /DEBUG /PDB:"..\..\..\..\bin\ARM\Release\welsvp.pdb" /SUBSYSTEM:CONSOLE /LTCG /TLBID:1 /WINMD:NO /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\..\..\bin\ARM\Release\welsvp.lib" /MACHINE:ARM /DLL ARM\Release\cpu.obj
          ARM\Release\intra_pred_common.obj
          ARM\Release\sad_common.obj
          ARM\Release\WelsThreadLib.obj
@@ -612,10 +684,14 @@
          Touching "ARM\Release\WelsVP.lastbuildstate".
        Done executing task "Touch".
      1>Done building target "FinalizeBuildStatus" in project "WelsVP.vcxproj".
-     1>Target "Build" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.BuildSteps.Targets" from project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" (entry point):
+     1>Target "Build" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.BuildSteps.Targets" from project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" (target "Rebuild" depends on it):
      1>Done building target "Build" in project "WelsVP.vcxproj".
-     1>Done Building Project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" (Build target(s)).
+     1>Target "AfterRebuild" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" (target "Rebuild" depends on it):
+     1>Done building target "AfterRebuild" in project "WelsVP.vcxproj".
+     1>Target "Rebuild" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.BuildSteps.Targets" from project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" (entry point):
+     1>Done building target "Rebuild" in project "WelsVP.vcxproj".
+     1>Done Building Project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" (Rebuild target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:07.73
+Time Elapsed 00:00:07.03
