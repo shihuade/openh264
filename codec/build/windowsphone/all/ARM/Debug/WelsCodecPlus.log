@@ -1,4 +1,4 @@
-﻿Build started 1/20/2015 10:27:51 AM.
+﻿Build started 1/20/2015 1:16:32 PM.
      1>Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsCodecPlus.vcxproj" on node 2 (Build target(s)).
      1>Building with tools version "12.0".
      1>Target "_CheckForInvalidConfigurationAndPlatform" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsCodecPlus.vcxproj" (entry point):
@@ -53,33 +53,33 @@
          Global Properties:
            Configuration=Debug
            Platform=ARM
-     1>Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsCodecPlus.vcxproj" (1) is building "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\WelsDecCore\WelsDecCore.vcxproj" (2) on node 3 (GetTargetPath target(s)).
+     1>Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsCodecPlus.vcxproj" (1) is building "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsVPLip.vcxproj" (2) on node 3 (GetTargetPath target(s)).
      2>Building with tools version "12.0".
        Target "_CheckForInvalidConfigurationAndPlatform" skipped. Previously built successfully.
        Target "MSBuild64BitCheck" skipped. Previously built successfully.
        Target "_PrepareForReferenceResolution" skipped. Previously built successfully.
        Target "GetResolvedWinMD" skipped. Previously built successfully.
-     2>Target "GetTargetPath" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\WelsDecCore\WelsDecCore.vcxproj" (entry point):
-     2>Done building target "GetTargetPath" in project "WelsDecCore.vcxproj".
-     2>Done Building Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\WelsDecCore\WelsDecCore.vcxproj" (GetTargetPath target(s)).
-     1>Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsCodecPlus.vcxproj" (1) is building "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsVPLip.vcxproj" (3) on node 4 (GetTargetPath target(s)).
+     2>Target "GetTargetPath" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsVPLip.vcxproj" (entry point):
+     2>Done building target "GetTargetPath" in project "WelsVPLip.vcxproj".
+     2>Done Building Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsVPLip.vcxproj" (GetTargetPath target(s)).
+     1>Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsCodecPlus.vcxproj" (1) is building "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\WelsEncCore.vcxproj" (3) on node 2 (GetTargetPath target(s)).
      3>Building with tools version "12.0".
        Target "_CheckForInvalidConfigurationAndPlatform" skipped. Previously built successfully.
        Target "MSBuild64BitCheck" skipped. Previously built successfully.
        Target "_PrepareForReferenceResolution" skipped. Previously built successfully.
        Target "GetResolvedWinMD" skipped. Previously built successfully.
-     3>Target "GetTargetPath" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsVPLip.vcxproj" (entry point):
-     3>Done building target "GetTargetPath" in project "WelsVPLip.vcxproj".
-     3>Done Building Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsVPLip.vcxproj" (GetTargetPath target(s)).
-     1>Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsCodecPlus.vcxproj" (1) is building "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\WelsEncCore.vcxproj" (4) on node 2 (GetTargetPath target(s)).
+     3>Target "GetTargetPath" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\WelsEncCore.vcxproj" (entry point):
+     3>Done building target "GetTargetPath" in project "WelsEncCore.vcxproj".
+     3>Done Building Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\WelsEncCore.vcxproj" (GetTargetPath target(s)).
+     1>Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsCodecPlus.vcxproj" (1) is building "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\WelsDecCore\WelsDecCore.vcxproj" (4) on node 4 (GetTargetPath target(s)).
      4>Building with tools version "12.0".
        Target "_CheckForInvalidConfigurationAndPlatform" skipped. Previously built successfully.
        Target "MSBuild64BitCheck" skipped. Previously built successfully.
        Target "_PrepareForReferenceResolution" skipped. Previously built successfully.
        Target "GetResolvedWinMD" skipped. Previously built successfully.
-     4>Target "GetTargetPath" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\WelsEncCore.vcxproj" (entry point):
-     4>Done building target "GetTargetPath" in project "WelsEncCore.vcxproj".
-     4>Done Building Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\WelsEncCore.vcxproj" (GetTargetPath target(s)).
+     4>Target "GetTargetPath" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\WelsDecCore\WelsDecCore.vcxproj" (entry point):
+     4>Done building target "GetTargetPath" in project "WelsDecCore.vcxproj".
+     4>Done Building Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\WelsDecCore\WelsDecCore.vcxproj" (GetTargetPath target(s)).
      1>Done executing task "MSBuild".
        Task "MSBuild" skipped, due to false condition; ('%(_MSBuildProjectReferenceExistent.BuildReference)' == 'true' and '@(ProjectReferenceWithConfiguration)' != '' and ('$(BuildingInsideVisualStudio)' == 'true' or '$(BuildProjectReferences)' != 'true') and '$(VisualStudioVersion)' == '10.0' and '@(_MSBuildProjectReferenceExistent)' != '') was evaluated as ('true' == 'true' and '..\dec\WelsDecCore\WelsDecCore.vcxproj;..\enc\WelsEncCore.vcxproj;WelsVPLip.vcxproj' != '' and ('true' == 'true' or 'true' != 'true') and '12.0' == '10.0' and '..\dec\WelsDecCore\WelsDecCore.vcxproj;..\enc\WelsEncCore.vcxproj;WelsVPLip.vcxproj' != '').
        Task "MSBuild" skipped, due to false condition; ('%(_MSBuildProjectReferenceExistent.BuildReference)' == 'true' and '@(ProjectReferenceWithConfiguration)' != '' and '$(BuildingInsideVisualStudio)' != 'true' and '$(BuildProjectReferences)' == 'true' and '@(_MSBuildProjectReferenceExistent)' != '') was evaluated as ('true' == 'true' and '..\dec\WelsDecCore\WelsDecCore.vcxproj;..\enc\WelsEncCore.vcxproj;WelsVPLip.vcxproj' != '' and 'true' != 'true' and 'true' == 'true' and '..\dec\WelsDecCore\WelsDecCore.vcxproj;..\enc\WelsEncCore.vcxproj;WelsVPLip.vcxproj' != '').
@@ -87,27 +87,27 @@
          Global Properties:
            Configuration=Debug
            Platform=ARM
-     1>Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsCodecPlus.vcxproj" (1) is building "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsVPLip.vcxproj" (3:2) on node 4 (GetNativeManifest target(s)).
+     1>Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsCodecPlus.vcxproj" (1) is building "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\WelsEncCore.vcxproj" (3:2) on node 2 (GetNativeManifest target(s)).
    3:2>Building with tools version "12.0".
-     1>Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsCodecPlus.vcxproj" (1) is building "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\WelsEncCore.vcxproj" (4:2) on node 2 (GetNativeManifest target(s)).
-   4:2>Building with tools version "12.0".
-       Target "_CheckForInvalidConfigurationAndPlatform" skipped. Previously built successfully.
-   3:2>Target "_CheckForInvalidConfigurationAndPlatform" skipped. Previously built successfully.
-   4:2>Target "MSBuild64BitCheck" skipped. Previously built successfully.
-   3:2>Target "MSBuild64BitCheck" skipped. Previously built successfully.
-   4:2>Target "GetNativeManifest" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppCommon.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\WelsEncCore.vcxproj" (entry point):
-   4:2>Done building target "GetNativeManifest" in project "WelsEncCore.vcxproj".
-   3:2>Target "GetNativeManifest" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppCommon.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsVPLip.vcxproj" (entry point):
-   3:2>Done building target "GetNativeManifest" in project "WelsVPLip.vcxproj".
-   3:2>Done Building Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsVPLip.vcxproj" (GetNativeManifest target(s)).
-   4:2>Done Building Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\WelsEncCore.vcxproj" (GetNativeManifest target(s)).
-     1>Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsCodecPlus.vcxproj" (1) is building "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\WelsDecCore\WelsDecCore.vcxproj" (2:2) on node 3 (GetNativeManifest target(s)).
+     1>Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsCodecPlus.vcxproj" (1) is building "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsVPLip.vcxproj" (2:2) on node 3 (GetNativeManifest target(s)).
    2:2>Building with tools version "12.0".
        Target "_CheckForInvalidConfigurationAndPlatform" skipped. Previously built successfully.
        Target "MSBuild64BitCheck" skipped. Previously built successfully.
-   2:2>Target "GetNativeManifest" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppCommon.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\WelsDecCore\WelsDecCore.vcxproj" (entry point):
-   2:2>Done building target "GetNativeManifest" in project "WelsDecCore.vcxproj".
-   2:2>Done Building Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\WelsDecCore\WelsDecCore.vcxproj" (GetNativeManifest target(s)).
+   3:2>Target "_CheckForInvalidConfigurationAndPlatform" skipped. Previously built successfully.
+     1>Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsCodecPlus.vcxproj" (1) is building "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\WelsDecCore\WelsDecCore.vcxproj" (4:2) on node 4 (GetNativeManifest target(s)).
+   4:2>Building with tools version "12.0".
+       Target "_CheckForInvalidConfigurationAndPlatform" skipped. Previously built successfully.
+       Target "MSBuild64BitCheck" skipped. Previously built successfully.
+   3:2>Target "MSBuild64BitCheck" skipped. Previously built successfully.
+   4:2>Target "GetNativeManifest" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppCommon.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\WelsDecCore\WelsDecCore.vcxproj" (entry point):
+   4:2>Done building target "GetNativeManifest" in project "WelsDecCore.vcxproj".
+   4:2>Done Building Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\WelsDecCore\WelsDecCore.vcxproj" (GetNativeManifest target(s)).
+   3:2>Target "GetNativeManifest" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppCommon.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\WelsEncCore.vcxproj" (entry point):
+   3:2>Done building target "GetNativeManifest" in project "WelsEncCore.vcxproj".
+   3:2>Done Building Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\WelsEncCore.vcxproj" (GetNativeManifest target(s)).
+   2:2>Target "GetNativeManifest" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppCommon.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsVPLip.vcxproj" (entry point):
+   2:2>Done building target "GetNativeManifest" in project "WelsVPLip.vcxproj".
+   2:2>Done Building Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsVPLip.vcxproj" (GetNativeManifest target(s)).
      1>Done executing task "MSBuild".
        Task "Warning" skipped, due to false condition; ('@(ProjectReferenceWithConfiguration)' != '' and '@(_MSBuildProjectReferenceNonexistent)' != '') was evaluated as ('..\dec\WelsDecCore\WelsDecCore.vcxproj;..\enc\WelsEncCore.vcxproj;WelsVPLip.vcxproj' != '' and '' != '').
      1>Done building target "ResolveProjectReferences" in project "WelsCodecPlus.vcxproj".
@@ -379,10 +379,10 @@
          Write Tracking Logs:
          	ARM\Debug\cl.write.1.tlog
          Environment Variables passed to tool:
-           VS_UNICODE_OUTPUT=1236
+           VS_UNICODE_OUTPUT=1396
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe /c /I..\..\..\decoder\plus\inc /I..\..\..\decoder\core\inc /I..\..\..\api\svc /I..\..\..\common\inc /I..\..\..\encoder\plus\inc /I..\..\..\encoder\core\inc /I..\..\..\processing\interface /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /ZW /nologo /W1 /WX- /Od /Oy- /D _USRDLL /D _WINDLL /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"ARM\Debug\\" /Fd"ARM\Debug\vc110.pdb" /Gd /TP /FU"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\lib\arm\platform.winmd" /FU"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata\Windows.winmd" /analyze- /errorReport:prompt ..\..\..\common\src\welsCodecTrace.cpp ..\..\..\decoder\plus\src\welsDecoderExt.cpp ..\..\..\encoder\plus\src\welsEncoderExt.cpp
          Tracking command:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\Tracker.exe /d C:\Windows\Microsoft.NET\Framework\v4.0.30319\FileTracker.dll /i E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\ARM\Debug /r "E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\COMMON\SRC\WELSCODECTRACE.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\DECODER\PLUS\SRC\WELSDECODEREXT.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\ENCODER\PLUS\SRC\WELSENCODEREXT.CPP" /b MSBuildConsole_CancelEventf727ebf1babd445e9476958bc9357b8a  /c "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe"  /c /I..\..\..\decoder\plus\inc /I..\..\..\decoder\core\inc /I..\..\..\api\svc /I..\..\..\common\inc /I..\..\..\encoder\plus\inc /I..\..\..\encoder\core\inc /I..\..\..\processing\interface /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /ZW /nologo /W1 /WX- /Od /Oy- /D _USRDLL /D _WINDLL /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"ARM\Debug\\" /Fd"ARM\Debug\vc110.pdb" /Gd /TP /FU"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\lib\arm\platform.winmd" /FU"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata\Windows.winmd" /analyze- /errorReport:prompt ..\..\..\common\src\welsCodecTrace.cpp ..\..\..\decoder\plus\src\welsDecoderExt.cpp ..\..\..\encoder\plus\src\welsEncoderExt.cpp
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\Tracker.exe /d C:\Windows\Microsoft.NET\Framework\v4.0.30319\FileTracker.dll /i E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\ARM\Debug /r "E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\COMMON\SRC\WELSCODECTRACE.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\DECODER\PLUS\SRC\WELSDECODEREXT.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\ENCODER\PLUS\SRC\WELSENCODEREXT.CPP" /b MSBuildConsole_CancelEvent2bc94591ab9a40e98c0e820bf356936f  /c "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe"  /c /I..\..\..\decoder\plus\inc /I..\..\..\decoder\core\inc /I..\..\..\api\svc /I..\..\..\common\inc /I..\..\..\encoder\plus\inc /I..\..\..\encoder\core\inc /I..\..\..\processing\interface /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /ZW /nologo /W1 /WX- /Od /Oy- /D _USRDLL /D _WINDLL /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"ARM\Debug\\" /Fd"ARM\Debug\vc110.pdb" /Gd /TP /FU"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\lib\arm\platform.winmd" /FU"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata\Windows.winmd" /analyze- /errorReport:prompt ..\..\..\common\src\welsCodecTrace.cpp ..\..\..\decoder\plus\src\welsDecoderExt.cpp ..\..\..\encoder\plus\src\welsEncoderExt.cpp
          welsCodecTrace.cpp
          welsDecoderExt.cpp
          welsEncoderExt.cpp
@@ -453,9 +453,21 @@
          Global Properties:
            Configuration=Debug
            Platform=ARM
-     1>Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsCodecPlus.vcxproj" (1) is building "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\WelsDecCore\WelsDecCore.vcxproj" (2:3) on node 3 (GetResolvedLinkLibs target(s)).
+     1>Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsCodecPlus.vcxproj" (1) is building "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsVPLip.vcxproj" (2:3) on node 3 (GetResolvedLinkLibs target(s)).
    2:3>Building with tools version "12.0".
-     1>Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsCodecPlus.vcxproj" (1) is building "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsVPLip.vcxproj" (3:3) on node 4 (GetResolvedLinkLibs target(s)).
+       Target "_CheckForInvalidConfigurationAndPlatform" skipped. Previously built successfully.
+       Target "MSBuild64BitCheck" skipped. Previously built successfully.
+       Target "PrepareForBuild" skipped. Previously built successfully.
+       Target "ResolveReferences" skipped. Previously built successfully.
+       Target "PrepareForBuild" skipped. Previously built successfully.
+       Target "ResolveReferences" skipped. Previously built successfully.
+   2:3>Target "ResolvedLinkLib" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsVPLip.vcxproj" (target "GetResolvedLinkLibs" depends on it):
+       Task "MSBuild" skipped, due to false condition; ('%(_MSBuildProjectReferenceExistent.Extension)' == '.vcxproj' and '@(ProjectReferenceWithConfiguration)' != '' and '@(_MSBuildProjectReferenceExistent)' != '') was evaluated as ('' == '.vcxproj' and '' != '' and '' != '').
+   2:3>Done building target "ResolvedLinkLib" in project "WelsVPLip.vcxproj".
+   2:3>Target "GetResolvedLinkLibs" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsVPLip.vcxproj" (entry point):
+   2:3>Done building target "GetResolvedLinkLibs" in project "WelsVPLip.vcxproj".
+   2:3>Done Building Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsVPLip.vcxproj" (GetResolvedLinkLibs target(s)).
+     1>Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsCodecPlus.vcxproj" (1) is building "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\WelsEncCore.vcxproj" (3:3) on node 2 (GetResolvedLinkLibs target(s)).
    3:3>Building with tools version "12.0".
        Target "_CheckForInvalidConfigurationAndPlatform" skipped. Previously built successfully.
        Target "MSBuild64BitCheck" skipped. Previously built successfully.
@@ -463,25 +475,13 @@
        Target "ResolveReferences" skipped. Previously built successfully.
        Target "PrepareForBuild" skipped. Previously built successfully.
        Target "ResolveReferences" skipped. Previously built successfully.
-   3:3>Target "ResolvedLinkLib" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsVPLip.vcxproj" (target "GetResolvedLinkLibs" depends on it):
+   3:3>Target "ResolvedLinkLib" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\WelsEncCore.vcxproj" (target "GetResolvedLinkLibs" depends on it):
        Task "MSBuild" skipped, due to false condition; ('%(_MSBuildProjectReferenceExistent.Extension)' == '.vcxproj' and '@(ProjectReferenceWithConfiguration)' != '' and '@(_MSBuildProjectReferenceExistent)' != '') was evaluated as ('' == '.vcxproj' and '' != '' and '' != '').
-   3:3>Done building target "ResolvedLinkLib" in project "WelsVPLip.vcxproj".
-   2:3>Target "_CheckForInvalidConfigurationAndPlatform" skipped. Previously built successfully.
-       Target "MSBuild64BitCheck" skipped. Previously built successfully.
-       Target "PrepareForBuild" skipped. Previously built successfully.
-       Target "ResolveReferences" skipped. Previously built successfully.
-       Target "PrepareForBuild" skipped. Previously built successfully.
-       Target "ResolveReferences" skipped. Previously built successfully.
-   2:3>Target "ResolvedLinkLib" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\WelsDecCore\WelsDecCore.vcxproj" (target "GetResolvedLinkLibs" depends on it):
-       Task "MSBuild" skipped, due to false condition; ('%(_MSBuildProjectReferenceExistent.Extension)' == '.vcxproj' and '@(ProjectReferenceWithConfiguration)' != '' and '@(_MSBuildProjectReferenceExistent)' != '') was evaluated as ('' == '.vcxproj' and '' != '' and '' != '').
-   2:3>Done building target "ResolvedLinkLib" in project "WelsDecCore.vcxproj".
-   2:3>Target "GetResolvedLinkLibs" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\WelsDecCore\WelsDecCore.vcxproj" (entry point):
-   2:3>Done building target "GetResolvedLinkLibs" in project "WelsDecCore.vcxproj".
-   2:3>Done Building Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\WelsDecCore\WelsDecCore.vcxproj" (GetResolvedLinkLibs target(s)).
-   3:3>Target "GetResolvedLinkLibs" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsVPLip.vcxproj" (entry point):
-   3:3>Done building target "GetResolvedLinkLibs" in project "WelsVPLip.vcxproj".
-   3:3>Done Building Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsVPLip.vcxproj" (GetResolvedLinkLibs target(s)).
-     1>Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsCodecPlus.vcxproj" (1) is building "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\WelsEncCore.vcxproj" (4:3) on node 2 (GetResolvedLinkLibs target(s)).
+   3:3>Done building target "ResolvedLinkLib" in project "WelsEncCore.vcxproj".
+   3:3>Target "GetResolvedLinkLibs" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\WelsEncCore.vcxproj" (entry point):
+   3:3>Done building target "GetResolvedLinkLibs" in project "WelsEncCore.vcxproj".
+   3:3>Done Building Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\WelsEncCore.vcxproj" (GetResolvedLinkLibs target(s)).
+     1>Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsCodecPlus.vcxproj" (1) is building "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\WelsDecCore\WelsDecCore.vcxproj" (4:3) on node 4 (GetResolvedLinkLibs target(s)).
    4:3>Building with tools version "12.0".
        Target "_CheckForInvalidConfigurationAndPlatform" skipped. Previously built successfully.
        Target "MSBuild64BitCheck" skipped. Previously built successfully.
@@ -489,12 +489,12 @@
        Target "ResolveReferences" skipped. Previously built successfully.
        Target "PrepareForBuild" skipped. Previously built successfully.
        Target "ResolveReferences" skipped. Previously built successfully.
-   4:3>Target "ResolvedLinkLib" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\WelsEncCore.vcxproj" (target "GetResolvedLinkLibs" depends on it):
+   4:3>Target "ResolvedLinkLib" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\WelsDecCore\WelsDecCore.vcxproj" (target "GetResolvedLinkLibs" depends on it):
        Task "MSBuild" skipped, due to false condition; ('%(_MSBuildProjectReferenceExistent.Extension)' == '.vcxproj' and '@(ProjectReferenceWithConfiguration)' != '' and '@(_MSBuildProjectReferenceExistent)' != '') was evaluated as ('' == '.vcxproj' and '' != '' and '' != '').
-   4:3>Done building target "ResolvedLinkLib" in project "WelsEncCore.vcxproj".
-   4:3>Target "GetResolvedLinkLibs" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\WelsEncCore.vcxproj" (entry point):
-   4:3>Done building target "GetResolvedLinkLibs" in project "WelsEncCore.vcxproj".
-   4:3>Done Building Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\WelsEncCore.vcxproj" (GetResolvedLinkLibs target(s)).
+   4:3>Done building target "ResolvedLinkLib" in project "WelsDecCore.vcxproj".
+   4:3>Target "GetResolvedLinkLibs" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\WelsDecCore\WelsDecCore.vcxproj" (entry point):
+   4:3>Done building target "GetResolvedLinkLibs" in project "WelsDecCore.vcxproj".
+   4:3>Done Building Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\WelsDecCore\WelsDecCore.vcxproj" (GetResolvedLinkLibs target(s)).
      1>Done executing task "MSBuild".
      1>Done building target "ResolvedLinkLib" in project "WelsCodecPlus.vcxproj".
      1>Target "ComputeResolveLinkObj" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsCodecPlus.vcxproj" (target "ComputeReferenceLinkInputs" depends on it):
@@ -556,7 +556,7 @@
        Using "Link" task from assembly "Microsoft.Build.CppTasks.Common.v110, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
        Task "Link"
          Environment Variables passed to tool:
-           VS_UNICODE_OUTPUT=1436
+           VS_UNICODE_OUTPUT=1176
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\..\..\bin\ARM\Debug\openh264.dll" /INCREMENTAL /NOLOGO /LIBPATH:..\..\..\..\bin\ARM\Debug\ welsecore.lib welsvp.lib welsdcore.lib WindowsPhoneCore.lib RuntimeObject.lib PhoneAppModelHost.lib /DEF:"..\..\..\..\openh264.def" /MANIFEST:NO /DEBUG /PDB:"..\..\..\..\bin\ARM\Debug\openh264.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /WINMD:NO /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\..\..\bin\ARM\Debug\openh264.lib" /MACHINE:ARM /DLL ARM\Debug\welsCodecTrace.obj
          ARM\Debug\welsDecoderExt.obj
          ARM\Debug\welsEncoderExt.obj
@@ -564,7 +564,7 @@
          E:\Project\Openh264\Source_WP8\bin\ARM\Debug\welsecore.lib
          E:\Project\Openh264\Source_WP8\bin\ARM\Debug\welsvp.lib
          Tracking command:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\Tracker.exe /a /d C:\Windows\Microsoft.NET\Framework\v4.0.30319\FileTracker.dll /i E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\ARM\Debug /r "E:\PROJECT\OPENH264\SOURCE_WP8\BIN\ARM\DEBUG\WELSDCORE.LIB|E:\PROJECT\OPENH264\SOURCE_WP8\BIN\ARM\DEBUG\WELSECORE.LIB|E:\PROJECT\OPENH264\SOURCE_WP8\BIN\ARM\DEBUG\WELSVP.LIB|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ALL\ARM\DEBUG\WELSCODECTRACE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ALL\ARM\DEBUG\WELSDECODEREXT.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ALL\ARM\DEBUG\WELSENCODEREXT.OBJ" /b MSBuildConsole_CancelEvent17be542eb0444f979f1bddf7add80e88  /c "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\link.exe"  /ERRORREPORT:PROMPT /OUT:"..\..\..\..\bin\ARM\Debug\openh264.dll" /INCREMENTAL /NOLOGO /LIBPATH:..\..\..\..\bin\ARM\Debug\ welsecore.lib welsvp.lib welsdcore.lib WindowsPhoneCore.lib RuntimeObject.lib PhoneAppModelHost.lib /DEF:"..\..\..\..\openh264.def" /MANIFEST:NO /DEBUG /PDB:"..\..\..\..\bin\ARM\Debug\openh264.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /WINMD:NO /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\..\..\bin\ARM\Debug\openh264.lib" /MACHINE:ARM /DLL ARM\Debug\welsCodecTrace.obj
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\Tracker.exe /a /d C:\Windows\Microsoft.NET\Framework\v4.0.30319\FileTracker.dll /i E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\ARM\Debug /r "E:\PROJECT\OPENH264\SOURCE_WP8\BIN\ARM\DEBUG\WELSDCORE.LIB|E:\PROJECT\OPENH264\SOURCE_WP8\BIN\ARM\DEBUG\WELSECORE.LIB|E:\PROJECT\OPENH264\SOURCE_WP8\BIN\ARM\DEBUG\WELSVP.LIB|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ALL\ARM\DEBUG\WELSCODECTRACE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ALL\ARM\DEBUG\WELSDECODEREXT.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ALL\ARM\DEBUG\WELSENCODEREXT.OBJ" /b MSBuildConsole_CancelEventc988be33a68d4318a966317c804f0bf2  /c "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\link.exe"  /ERRORREPORT:PROMPT /OUT:"..\..\..\..\bin\ARM\Debug\openh264.dll" /INCREMENTAL /NOLOGO /LIBPATH:..\..\..\..\bin\ARM\Debug\ welsecore.lib welsvp.lib welsdcore.lib WindowsPhoneCore.lib RuntimeObject.lib PhoneAppModelHost.lib /DEF:"..\..\..\..\openh264.def" /MANIFEST:NO /DEBUG /PDB:"..\..\..\..\bin\ARM\Debug\openh264.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /WINMD:NO /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\..\..\bin\ARM\Debug\openh264.lib" /MACHINE:ARM /DLL ARM\Debug\welsCodecTrace.obj
          ARM\Debug\welsDecoderExt.obj
          ARM\Debug\welsEncoderExt.obj
          E:\Project\Openh264\Source_WP8\bin\ARM\Debug\welsdcore.lib
@@ -646,24 +646,24 @@
          Global Properties:
            Configuration=Debug
            Platform=ARM
-     1>Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsCodecPlus.vcxproj" (1) is building "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\WelsEncCore.vcxproj" (4:4) on node 2 (GetCopyToOutputDirectoryItems target(s)).
+     1>Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsCodecPlus.vcxproj" (1) is building "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\WelsEncCore.vcxproj" (3:4) on node 2 (GetCopyToOutputDirectoryItems target(s)).
+   3:4>Building with tools version "12.0".
+       Target "_CheckForInvalidConfigurationAndPlatform" skipped. Previously built successfully.
+       Target "MSBuild64BitCheck" skipped. Previously built successfully.
+       Target "GetCopyToOutputDirectoryItems" skipped. Previously built successfully.
+   3:4>Done Building Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\WelsEncCore.vcxproj" (GetCopyToOutputDirectoryItems target(s)).
+     1>Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsCodecPlus.vcxproj" (1) is building "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsVPLip.vcxproj" (2:4) on node 3 (GetCopyToOutputDirectoryItems target(s)).
+   2:4>Building with tools version "12.0".
+     1>Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsCodecPlus.vcxproj" (1) is building "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\WelsDecCore\WelsDecCore.vcxproj" (4:4) on node 4 (GetCopyToOutputDirectoryItems target(s)).
    4:4>Building with tools version "12.0".
        Target "_CheckForInvalidConfigurationAndPlatform" skipped. Previously built successfully.
        Target "MSBuild64BitCheck" skipped. Previously built successfully.
        Target "GetCopyToOutputDirectoryItems" skipped. Previously built successfully.
-   4:4>Done Building Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\WelsEncCore.vcxproj" (GetCopyToOutputDirectoryItems target(s)).
-     1>Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsCodecPlus.vcxproj" (1) is building "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\WelsDecCore\WelsDecCore.vcxproj" (2:4) on node 3 (GetCopyToOutputDirectoryItems target(s)).
-   2:4>Building with tools version "12.0".
-       Target "_CheckForInvalidConfigurationAndPlatform" skipped. Previously built successfully.
-     1>Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsCodecPlus.vcxproj" (1) is building "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsVPLip.vcxproj" (3:4) on node 4 (GetCopyToOutputDirectoryItems target(s)).
-   3:4>Building with tools version "12.0".
-   2:4>Target "MSBuild64BitCheck" skipped. Previously built successfully.
-   3:4>Target "_CheckForInvalidConfigurationAndPlatform" skipped. Previously built successfully.
+   4:4>Done Building Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\WelsDecCore\WelsDecCore.vcxproj" (GetCopyToOutputDirectoryItems target(s)).
+   2:4>Target "_CheckForInvalidConfigurationAndPlatform" skipped. Previously built successfully.
        Target "MSBuild64BitCheck" skipped. Previously built successfully.
-   2:4>Target "GetCopyToOutputDirectoryItems" skipped. Previously built successfully.
-   3:4>Target "GetCopyToOutputDirectoryItems" skipped. Previously built successfully.
-   2:4>Done Building Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\WelsDecCore\WelsDecCore.vcxproj" (GetCopyToOutputDirectoryItems target(s)).
-   3:4>Done Building Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsVPLip.vcxproj" (GetCopyToOutputDirectoryItems target(s)).
+       Target "GetCopyToOutputDirectoryItems" skipped. Previously built successfully.
+   2:4>Done Building Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsVPLip.vcxproj" (GetCopyToOutputDirectoryItems target(s)).
      1>Done executing task "MSBuild".
        Task "AssignTargetPath"
        Done executing task "AssignTargetPath".
@@ -717,4 +717,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.85
+Time Elapsed 00:00:01.84

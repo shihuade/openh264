@@ -160,9 +160,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WindowsPhoneRuntimeComponent1\WindowsPhoneRuntimeComponent1.vcxproj">
-      <Project>{c3738ce0-4717-4153-a385-6f8a174c0cf5}</Project>
-      <Name>WindowsPhoneRuntimeComponent1</Name>
+    <ProjectReference Include="..\EncoderRTComponent.vcxproj">
+      <Project>{6f3bdbba-b7cc-49a8-a787-162fa6a00317}</Project>
+      <Name>EncoderRTComponent</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />

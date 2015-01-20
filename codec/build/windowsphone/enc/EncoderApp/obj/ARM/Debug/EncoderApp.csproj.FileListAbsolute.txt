@@ -14,7 +14,6 @@ E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderApp\Bin\ARM\D
 E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderApp\Bin\ARM\Debug\Properties\WMAppManifest.xml
 E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderApp\Bin\ARM\Debug\EncoderApp_Debug_ARM.xap
 E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderApp\Bin\ARM\Debug\WindowsPhoneRuntimeComponent1.winmd
-E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderApp\Bin\ARM\Debug\WindowsPhoneRuntimeComponent1.pdb
 E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderApp\obj\ARM\Debug\EncoderApp.csprojResolveAssemblyReference.cache
 E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderApp\obj\ARM\Debug\App.g.cs
 E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderApp\obj\ARM\Debug\MainPage.g.cs
