@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{8f360feb-ca0e-472c-a0d0-64d6188c78cc}</ProjectGuid>
+    <ProjectGuid>{A8BCD97D-9EE3-4F72-9832-A6C3CF70EF3F}</ProjectGuid>
     <RootNamespace>WelsVPLip</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>

@@ -99,7 +99,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>$(OutDir)preprocessing_lib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(OutDir)preprocessing_lib.lib;$(OutDir)gtestd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
@@ -286,10 +286,6 @@
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\codec\processing\build\win32\WelsVP.vcxproj">
       <Project>{e8dfafa1-8dac-4127-8d27-fbd5819ee562}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\gtest\msvc\gtest.vcxproj">
-      <Project>{c8f6c172-56f2-4e76-b5fa-c3b423b31be7}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="preprocessing_lib.vcxproj">

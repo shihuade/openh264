@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="VAACalc">
+      <UniqueIdentifier>{f87c9185-f925-4a91-8eb5-648818c7a46b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AdaptiveQuantization">
+      <UniqueIdentifier>{19e8aa6f-25d0-49b5-9bac-7239b06b6ba0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BackgroundDetection">
+      <UniqueIdentifier>{ac61f290-4285-4359-aeeb-f213a9ce1c31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ComplexityAnalysis">
+      <UniqueIdentifier>{b449e4c5-65b7-47ab-862b-9ece72b818ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Denoise">
+      <UniqueIdentifier>{4244d48e-9c1d-4508-b3cc-61fa8690bac7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Downsample">
+      <UniqueIdentifier>{97a1915d-608e-4b3c-8b27-74d4c3e13dbb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{386a6562-f86a-4d3f-97df-efebc1ec795a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ImageRotate">
+      <UniqueIdentifier>{5a5c49b0-af14-4b4a-9b1f-bca7c92bb647}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface">
+      <UniqueIdentifier>{d913a845-d7fb-458f-8722-c1286391e4ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{df9f766c-68a9-4f18-9186-f24a4eda5619}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SceneChangeDetection">
+      <UniqueIdentifier>{b06dc8fc-173b-455b-9633-4344a81c2b23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scrolldetection">
+      <UniqueIdentifier>{5ffa6552-b129-4da9-96d6-6c18d3d02650}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{a3b1aa38-8fc3-4270-858a-48ff9545e51e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\processing\src\vaacalc\vaacalcfuncs.cpp">
+      <Filter>VAACalc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\processing\src\vaacalc\vaacalculation.cpp">
+      <Filter>VAACalc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\processing\src\adaptivequantization\AdaptiveQuantization.cpp">
+      <Filter>AdaptiveQuantization</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\processing\src\backgrounddetection\BackgroundDetection.cpp">
+      <Filter>BackgroundDetection</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\processing\src\complexityanalysis\ComplexityAnalysis.cpp">
+      <Filter>ComplexityAnalysis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\processing\src\denoise\denoise.cpp">
+      <Filter>Denoise</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\processing\src\denoise\denoise_filter.cpp">
+      <Filter>Denoise</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\processing\src\downsample\downsample.cpp">
+      <Filter>Downsample</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\processing\src\downsample\downsamplefuncs.cpp">
+      <Filter>Downsample</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\processing\src\imagerotate\imagerotate.cpp">
+      <Filter>ImageRotate</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\processing\src\imagerotate\imagerotatefuncs.cpp">
+      <Filter>ImageRotate</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\processing\src\scenechangedetection\SceneChangeDetection.cpp">
+      <Filter>SceneChangeDetection</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\processing\src\scrolldetection\ScrollDetection.cpp">
+      <Filter>scrolldetection</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\processing\src\scrolldetection\ScrollDetectionFuncs.cpp">
+      <Filter>scrolldetection</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\common\src\cpu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\common\src\intra_pred_common.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\common\src\sad_common.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\common\src\WelsThreadLib.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\processing\src\common\memory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\processing\src\common\WelsFrameWork.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\processing\src\common\WelsFrameWorkEx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\processing\src\vaacalc\vaacalculation.h">
+      <Filter>VAACalc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\processing\src\adaptivequantization\AdaptiveQuantization.h">
+      <Filter>AdaptiveQuantization</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\processing\src\backgrounddetection\BackgroundDetection.h">
+      <Filter>BackgroundDetection</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\processing\src\complexityanalysis\ComplexityAnalysis.h">
+      <Filter>ComplexityAnalysis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\processing\src\denoise\denoise.h">
+      <Filter>Denoise</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\processing\src\downsample\downsample.h">
+      <Filter>Downsample</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\common\inc\cpu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\common\inc\intra_pred_common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\common\inc\sad_common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\common\inc\typedefs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\common\inc\WelsThreadLib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\processing\src\common\common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\processing\src\common\memory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\processing\src\common\typedef.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\processing\src\common\util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\processing\src\common\WelsFrameWork.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\processing\src\imagerotate\imagerotate.h">
+      <Filter>ImageRotate</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\processing\interface\IWelsVP.h">
+      <Filter>Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\processing\src\common\resource.h">
+      <Filter>Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\processing\src\scenechangedetection\SceneChangeDetection.h">
+      <Filter>SceneChangeDetection</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\processing\src\scrolldetection\ScrollDetection.h">
+      <Filter>scrolldetection</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\processing\src\scrolldetection\ScrollDetectionFuncs.h">
+      <Filter>scrolldetection</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\processing\src\common\WelsVP.def">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

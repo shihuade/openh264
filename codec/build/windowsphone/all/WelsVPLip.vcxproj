@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{01F26B7B-9B7D-455D-82FB-C0E5B1E3F33C}</ProjectGuid>
+    <RootNamespace>WelsVPLip</RootNamespace>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110_wp80</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110_wp80</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v110_wp80</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v110_wp80</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <OutDir>..\..\..\..\bin\$(Platform)\$(Configuration)\</OutDir>
+    <TargetName>welsvp</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <OutDir>..\..\..\..\bin\$(Platform)\$(Configuration)\</OutDir>
+    <TargetName>welsvp</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>_LIB;HAVE_NEON;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalUsingDirectories>$(WindowsSDK_MetadataPath);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>_LIB;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalUsingDirectories>$(WindowsSDK_MetadataPath);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <ClCompile>
+      <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalUsingDirectories>$(WindowsSDK_MetadataPath);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
+      <AdditionalIncludeDirectories>..\..\..\processing\src\common;..\..\..\processing\interface;..\..\..\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsWinRT>true</CompileAsWinRT>
+      <MinimalRebuild>false</MinimalRebuild>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <ClCompile>
+      <PreprocessorDefinitions>_LIB;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalUsingDirectories>$(WindowsSDK_MetadataPath);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
+      <AdditionalIncludeDirectories>..\..\..\processing\src\common;..\..\..\processing\interface;..\..\..\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsWinRT>true</CompileAsWinRT>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Reference Include="Windows">
+      <IsWinMDFile>true</IsWinMDFile>
+    </Reference>
+    <Reference Include="platform.winmd">
+      <IsWinMDFile>true</IsWinMDFile>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\common\src\cpu.cpp" />
+    <ClCompile Include="..\..\..\common\src\intra_pred_common.cpp" />
+    <ClCompile Include="..\..\..\common\src\sad_common.cpp" />
+    <ClCompile Include="..\..\..\common\src\WelsThreadLib.cpp" />
+    <ClCompile Include="..\..\..\processing\src\adaptivequantization\AdaptiveQuantization.cpp" />
+    <ClCompile Include="..\..\..\processing\src\backgrounddetection\BackgroundDetection.cpp" />
+    <ClCompile Include="..\..\..\processing\src\common\memory.cpp" />
+    <ClCompile Include="..\..\..\processing\src\common\WelsFrameWork.cpp" />
+    <ClCompile Include="..\..\..\processing\src\common\WelsFrameWorkEx.cpp" />
+    <ClCompile Include="..\..\..\processing\src\complexityanalysis\ComplexityAnalysis.cpp" />
+    <ClCompile Include="..\..\..\processing\src\denoise\denoise.cpp" />
+    <ClCompile Include="..\..\..\processing\src\denoise\denoise_filter.cpp" />
+    <ClCompile Include="..\..\..\processing\src\downsample\downsample.cpp" />
+    <ClCompile Include="..\..\..\processing\src\downsample\downsamplefuncs.cpp" />
+    <ClCompile Include="..\..\..\processing\src\imagerotate\imagerotate.cpp" />
+    <ClCompile Include="..\..\..\processing\src\imagerotate\imagerotatefuncs.cpp" />
+    <ClCompile Include="..\..\..\processing\src\scenechangedetection\SceneChangeDetection.cpp" />
+    <ClCompile Include="..\..\..\processing\src\scrolldetection\ScrollDetection.cpp" />
+    <ClCompile Include="..\..\..\processing\src\scrolldetection\ScrollDetectionFuncs.cpp" />
+    <ClCompile Include="..\..\..\processing\src\vaacalc\vaacalcfuncs.cpp" />
+    <ClCompile Include="..\..\..\processing\src\vaacalc\vaacalculation.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\common\inc\cpu.h" />
+    <ClInclude Include="..\..\..\common\inc\intra_pred_common.h" />
+    <ClInclude Include="..\..\..\common\inc\sad_common.h" />
+    <ClInclude Include="..\..\..\common\inc\typedefs.h" />
+    <ClInclude Include="..\..\..\common\inc\WelsThreadLib.h" />
+    <ClInclude Include="..\..\..\processing\interface\IWelsVP.h" />
+    <ClInclude Include="..\..\..\processing\src\adaptivequantization\AdaptiveQuantization.h" />
+    <ClInclude Include="..\..\..\processing\src\backgrounddetection\BackgroundDetection.h" />
+    <ClInclude Include="..\..\..\processing\src\common\common.h" />
+    <ClInclude Include="..\..\..\processing\src\common\memory.h" />
+    <ClInclude Include="..\..\..\processing\src\common\resource.h" />
+    <ClInclude Include="..\..\..\processing\src\common\typedef.h" />
+    <ClInclude Include="..\..\..\processing\src\common\util.h" />
+    <ClInclude Include="..\..\..\processing\src\common\WelsFrameWork.h" />
+    <ClInclude Include="..\..\..\processing\src\complexityanalysis\ComplexityAnalysis.h" />
+    <ClInclude Include="..\..\..\processing\src\denoise\denoise.h" />
+    <ClInclude Include="..\..\..\processing\src\downsample\downsample.h" />
+    <ClInclude Include="..\..\..\processing\src\imagerotate\imagerotate.h" />
+    <ClInclude Include="..\..\..\processing\src\scenechangedetection\SceneChangeDetection.h" />
+    <ClInclude Include="..\..\..\processing\src\scrolldetection\ScrollDetection.h" />
+    <ClInclude Include="..\..\..\processing\src\scrolldetection\ScrollDetectionFuncs.h" />
+    <ClInclude Include="..\..\..\processing\src\vaacalc\vaacalculation.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\processing\src\common\WelsVP.def" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsPhone\v$(TargetPlatformVersion)\Microsoft.Cpp.WindowsPhone.$(TargetPlatformVersion).targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

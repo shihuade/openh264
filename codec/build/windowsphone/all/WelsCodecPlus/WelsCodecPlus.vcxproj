@@ -182,8 +182,8 @@
     <ProjectReference Include="..\..\enc\WelsEncCore.vcxproj">
       <Project>{786c4dc3-9f92-4ffb-bb16-694f31372eb1}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\WelsVPLip\WelsVPLip.vcxproj">
-      <Project>{8f360feb-ca0e-472c-a0d0-64d6188c78cc}</Project>
+    <ProjectReference Include="..\WelsVPLip.vcxproj">
+      <Project>{01f26b7b-9b7d-455d-82fb-c0e5b1e3f33c}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
