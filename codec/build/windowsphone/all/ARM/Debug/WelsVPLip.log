@@ -1,5 +1,5 @@
-﻿Build started 1/20/2015 1:16:50 PM.
-     1>Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsVPLip.vcxproj" on node 3 (Build target(s)).
+﻿Build started 1/20/2015 1:33:29 PM.
+     1>Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsVPLip.vcxproj" on node 2 (Build target(s)).
      1>Building with tools version "12.0".
      1>Target "_CheckForInvalidConfigurationAndPlatform" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\all\WelsVPLip.vcxproj" (entry point):
        Task "Error" skipped, due to false condition; ( '$(_InvalidConfigurationError)' == 'true' ) was evaluated as ( '' == 'true' ).
@@ -544,4 +544,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.04
+Time Elapsed 00:00:00.06
