@@ -4,6 +4,8 @@ E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderApp\Bin\ARM\D
 E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderApp\Bin\ARM\Debug\Assets\Tiles\FlipCycleTileSmall.png
 E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderApp\Bin\ARM\Debug\Assets\Tiles\IconicTileMediumLarge.png
 E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderApp\Bin\ARM\Debug\Assets\Tiles\IconicTileSmall.png
+E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderApp\Bin\ARM\Debug\welsenc.dll
+E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderApp\Bin\ARM\Debug\welsvp.dll
 E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderApp\Bin\ARM\Debug\welsenc.cfg
 E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderApp\Bin\ARM\Debug\CiscoVT2people_160x96_6fps.yuv
 E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderApp\Bin\ARM\Debug\layer2.cfg
@@ -22,5 +24,3 @@ E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderApp\obj\ARM\D
 E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderApp\obj\ARM\Debug\EncoderApp.dll
 E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderApp\obj\ARM\Debug\EncoderApp.pdb
 E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderApp\obj\ARM\Debug\XapCacheFile.xml
-E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderApp\Bin\ARM\Debug\welsenc.dll
-E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderApp\Bin\ARM\Debug\welsvp.dll

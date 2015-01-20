@@ -1,4 +1,4 @@
-﻿Build started 1/20/2015 1:42:53 PM.
+﻿Build started 1/20/2015 1:54:45 PM.
      1>Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\WelsEncCore.vcxproj" on node 2 (Build target(s)).
      1>Building with tools version "12.0".
      1>Target "_CheckForInvalidConfigurationAndPlatform" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\WelsEncCore.vcxproj" (entry point):
@@ -222,7 +222,7 @@
        Done executing task "WriteLinesToFile".
        Using "Touch" task from assembly "Microsoft.Build.Tasks.v12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
        Task "Touch"
-         Touching "ARM\Debug\WelsEncCore.unsuccessfulbuild".
+         Creating "ARM\Debug\WelsEncCore.unsuccessfulbuild" because "AlwaysCreate" was specified.
        Done executing task "Touch".
      1>Done building target "InitializeBuildStatus" in project "WelsEncCore.vcxproj".
        Target "AssignProjectConfiguration" skipped. Previously built successfully.
@@ -307,13 +307,13 @@
        Task "CL"
          Read Tracking Logs:
          	ARM\Debug\cl.read.1.tlog
-         	ARM\Debug\CL.10204.read.1.tlog
-         	ARM\Debug\CL.10492.read.1.tlog
-         	ARM\Debug\CL.4248.read.1.tlog
-         	ARM\Debug\CL.6880.read.1.tlog
-         	ARM\Debug\CL.8020.read.1.tlog
-         	ARM\Debug\CL.8672.read.1.tlog
-         	ARM\Debug\CL.9056.read.1.tlog
+         	ARM\Debug\CL.11192.read.1.tlog
+         	ARM\Debug\CL.2216.read.1.tlog
+         	ARM\Debug\CL.2852.read.1.tlog
+         	ARM\Debug\CL.4308.read.1.tlog
+         	ARM\Debug\CL.4492.read.1.tlog
+         	ARM\Debug\CL.5428.read.1.tlog
+         	ARM\Debug\CL.5676.read.1.tlog
          Outputs for E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\COMMON\SRC\COMMON_TABLES.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\COMMON\SRC\COPY_MB.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\COMMON\SRC\CPU.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\COMMON\SRC\CRT_UTIL_SAFE_X.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\COMMON\SRC\DEBLOCKING_COMMON.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\COMMON\SRC\EXPAND_PIC.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\COMMON\SRC\INTRA_PRED_COMMON.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\COMMON\SRC\SAD_COMMON.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\COMMON\SRC\UTILS.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\COMMON\SRC\WELSTHREADLIB.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\ENCODER\CORE\SRC\AU_SET.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\ENCODER\CORE\SRC\DEBLOCKING.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\ENCODER\CORE\SRC\DECODE_MB_AUX.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\ENCODER\CORE\SRC\ENCODER.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\ENCODER\CORE\SRC\ENCODER_DATA_TABLES.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\ENCODER\CORE\SRC\ENCODER_EXT.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\ENCODER\CORE\SRC\ENCODE_MB_AUX.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\ENCODER\CORE\SRC\GET_INTRA_PREDICTOR.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\ENCODER\CORE\SRC\MC.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\ENCODER\CORE\SRC\MD.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\ENCODER\CORE\SRC\MEMORY_ALIGN.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\ENCODER\CORE\SRC\MV_PRED.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\ENCODER\CORE\SRC\NAL_ENCAP.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\ENCODER\CORE\SRC\PICTURE_HANDLE.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\ENCODER\CORE\SRC\PROPERTY.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\ENCODER\CORE\SRC\RATECTL.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\ENCODER\CORE\SRC\REF_LIST_MGR_SVC.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\ENCODER\CORE\SRC\SAMPLE.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\ENCODER\CORE\SRC\SET_MB_SYN_CABAC.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\ENCODER\CORE\SRC\SET_MB_SYN_CAVLC.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\ENCODER\CORE\SRC\SLICE_MULTI_THREADING.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\ENCODER\CORE\SRC\SVC_BASE_LAYER_MD.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\ENCODER\CORE\SRC\SVC_ENCODE_MB.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\ENCODER\CORE\SRC\SVC_ENCODE_SLICE.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\ENCODER\CORE\SRC\SVC_ENC_SLICE_SEGMENT.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\ENCODER\CORE\SRC\SVC_MODE_DECISION.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\ENCODER\CORE\SRC\SVC_MOTION_ESTIMATE.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\ENCODER\CORE\SRC\SVC_SET_MB_SYN_CABAC.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\ENCODER\CORE\SRC\SVC_SET_MB_SYN_CAVLC.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\ENCODER\CORE\SRC\WELS_PREPROCESS.CPP:
          	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\COMMON_TABLES.OBJ
          	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\COPY_MB.OBJ
@@ -420,173 +420,9 @@
          	ARM\Debug\Lib-link.write.1.tlog
          Read Tracking Logs:
          	ARM\Debug\Lib-link.read.1.tlog
-         No output for E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\AU_SET.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\COMMON_TABLES.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\COPY_MB.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\CPU.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\CRT_UTIL_SAFE_X.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\DEBLOCKING.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\DEBLOCKING_COMMON.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\DECODE_MB_AUX.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\ENCODER.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\ENCODER_DATA_TABLES.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\ENCODER_EXT.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\ENCODE_MB_AUX.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\EXPAND_PIC.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\GET_INTRA_PREDICTOR.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\INTRA_PRED_COMMON.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\MC.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\MD.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\MEMORY_ALIGN.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\MV_PRED.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\NAL_ENCAP.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\PICTURE_HANDLE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\PROPERTY.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\RATECTL.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\REF_LIST_MGR_SVC.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SAD_COMMON.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SAMPLE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SET_MB_SYN_CABAC.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SET_MB_SYN_CAVLC.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SLICE_MULTI_THREADING.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SVC_BASE_LAYER_MD.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SVC_ENCODE_MB.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SVC_ENCODE_SLICE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SVC_ENC_SLICE_SEGMENT.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SVC_MODE_DECISION.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SVC_MOTION_ESTIMATE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SVC_SET_MB_SYN_CABAC.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SVC_SET_MB_SYN_CAVLC.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\UTILS.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\WELSTHREADLIB.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\WELS_PREPROCESS.OBJ was found in the tracking log; source compilation required.
-         Inputs for E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\AU_SET.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\COMMON_TABLES.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\COPY_MB.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\CPU.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\CRT_UTIL_SAFE_X.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\DEBLOCKING.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\DEBLOCKING_COMMON.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\DECODE_MB_AUX.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\ENCODER.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\ENCODER_DATA_TABLES.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\ENCODER_EXT.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\ENCODE_MB_AUX.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\EXPAND_PIC.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\GET_INTRA_PREDICTOR.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\INTRA_PRED_COMMON.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\MC.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\MD.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\MEMORY_ALIGN.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\MV_PRED.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\NAL_ENCAP.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\PICTURE_HANDLE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\PROPERTY.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\RATECTL.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\REF_LIST_MGR_SVC.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SAD_COMMON.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SAMPLE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SET_MB_SYN_CABAC.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SET_MB_SYN_CAVLC.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SLICE_MULTI_THREADING.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SVC_BASE_LAYER_MD.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SVC_ENCODE_MB.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SVC_ENCODE_SLICE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SVC_ENC_SLICE_SEGMENT.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SVC_MODE_DECISION.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SVC_MOTION_ESTIMATE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SVC_SET_MB_SYN_CABAC.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SVC_SET_MB_SYN_CAVLC.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\UTILS.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\WELSTHREADLIB.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\WELS_PREPROCESS.OBJ:
-         	C:\WINDOWS\GLOBALIZATION\SORTING\SORTDEFAULT.NLS
-         	C:\WINDOWS\SYSTEM32\TZRES.DLL
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\COMMON_TABLES.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\COPY_MB.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\CPU.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\CRT_UTIL_SAFE_X.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\DEBLOCKING_COMMON.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\EXPAND_PIC.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\INTRA_PRED_COMMON.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SAD_COMMON.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\UTILS.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\WELSTHREADLIB.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\AU_SET.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\DEBLOCKING.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\DECODE_MB_AUX.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\ENCODER.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\ENCODER_DATA_TABLES.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\ENCODER_EXT.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\ENCODE_MB_AUX.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\GET_INTRA_PREDICTOR.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\MC.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\MD.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\MEMORY_ALIGN.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\MV_PRED.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\NAL_ENCAP.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\PICTURE_HANDLE.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\PROPERTY.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\RATECTL.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\REF_LIST_MGR_SVC.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SAMPLE.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SET_MB_SYN_CABAC.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SET_MB_SYN_CAVLC.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SLICE_MULTI_THREADING.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SVC_BASE_LAYER_MD.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SVC_ENCODE_MB.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SVC_ENCODE_SLICE.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SVC_ENC_SLICE_SEGMENT.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SVC_MODE_DECISION.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SVC_MOTION_ESTIMATE.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SVC_SET_MB_SYN_CABAC.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SVC_SET_MB_SYN_CAVLC.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\WELS_PREPROCESS.OBJ
-         	C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 11.0\VC\WPSDK\WP80\BIN\X86_ARM\1033\LINKUI.DLL
-         Source compilation required: input E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\WELS_PREPROCESS.OBJ is newer than output .
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\Lib.exe /OUT:".\..\..\..\..\bin\ARM\Debug\welsecore.lib" /NOLOGO /MACHINE:ARM ARM\Debug\common_tables.obj
-         ARM\Debug\copy_mb.obj
-         ARM\Debug\cpu.obj
-         ARM\Debug\crt_util_safe_x.obj
-         ARM\Debug\deblocking_common.obj
-         ARM\Debug\expand_pic.obj
-         ARM\Debug\intra_pred_common.obj
-         ARM\Debug\sad_common.obj
-         ARM\Debug\utils.obj
-         ARM\Debug\WelsThreadLib.obj
-         ARM\Debug\au_set.obj
-         ARM\Debug\deblocking.obj
-         ARM\Debug\decode_mb_aux.obj
-         ARM\Debug\encoder.obj
-         ARM\Debug\encoder_data_tables.obj
-         ARM\Debug\encoder_ext.obj
-         ARM\Debug\encode_mb_aux.obj
-         ARM\Debug\get_intra_predictor.obj
-         ARM\Debug\mc.obj
-         ARM\Debug\md.obj
-         ARM\Debug\memory_align.obj
-         ARM\Debug\mv_pred.obj
-         ARM\Debug\nal_encap.obj
-         ARM\Debug\picture_handle.obj
-         ARM\Debug\property.obj
-         ARM\Debug\ratectl.obj
-         ARM\Debug\ref_list_mgr_svc.obj
-         ARM\Debug\sample.obj
-         ARM\Debug\set_mb_syn_cabac.obj
-         ARM\Debug\set_mb_syn_cavlc.obj
-         ARM\Debug\slice_multi_threading.obj
-         ARM\Debug\svc_base_layer_md.obj
-         ARM\Debug\svc_encode_mb.obj
-         ARM\Debug\svc_encode_slice.obj
-         ARM\Debug\svc_enc_slice_segment.obj
-         ARM\Debug\svc_mode_decision.obj
-         ARM\Debug\svc_motion_estimate.obj
-         ARM\Debug\svc_set_mb_syn_cabac.obj
-         ARM\Debug\svc_set_mb_syn_cavlc.obj
-         ARM\Debug\wels_preprocess.obj
-         Tracking command:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\Tracker.exe /d C:\Windows\Microsoft.NET\Framework\v4.0.30319\FileTracker.dll /i E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\ARM\Debug /r "E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\AU_SET.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\COMMON_TABLES.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\COPY_MB.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\CPU.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\CRT_UTIL_SAFE_X.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\DEBLOCKING.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\DEBLOCKING_COMMON.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\DECODE_MB_AUX.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\ENCODER.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\ENCODER_DATA_TABLES.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\ENCODER_EXT.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\ENCODE_MB_AUX.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\EXPAND_PIC.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\GET_INTRA_PREDICTOR.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\INTRA_PRED_COMMON.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\MC.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\MD.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\MEMORY_ALIGN.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\MV_PRED.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\NAL_ENCAP.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\PICTURE_HANDLE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\PROPERTY.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\RATECTL.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\REF_LIST_MGR_SVC.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SAD_COMMON.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SAMPLE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SET_MB_SYN_CABAC.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SET_MB_SYN_CAVLC.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SLICE_MULTI_THREADING.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SVC_BASE_LAYER_MD.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SVC_ENCODE_MB.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SVC_ENCODE_SLICE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SVC_ENC_SLICE_SEGMENT.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SVC_MODE_DECISION.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SVC_MOTION_ESTIMATE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SVC_SET_MB_SYN_CABAC.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SVC_SET_MB_SYN_CAVLC.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\UTILS.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\WELSTHREADLIB.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\WELS_PREPROCESS.OBJ" /b MSBuildConsole_CancelEventbf9ab2676b74425090431f4b9e447ae7  /c "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\Lib.exe"  /OUT:".\..\..\..\..\bin\ARM\Debug\welsecore.lib" /NOLOGO /MACHINE:ARM ARM\Debug\common_tables.obj
-         ARM\Debug\copy_mb.obj
-         ARM\Debug\cpu.obj
-         ARM\Debug\crt_util_safe_x.obj
-         ARM\Debug\deblocking_common.obj
-         ARM\Debug\expand_pic.obj
-         ARM\Debug\intra_pred_common.obj
-         ARM\Debug\sad_common.obj
-         ARM\Debug\utils.obj
-         ARM\Debug\WelsThreadLib.obj
-         ARM\Debug\au_set.obj
-         ARM\Debug\deblocking.obj
-         ARM\Debug\decode_mb_aux.obj
-         ARM\Debug\encoder.obj
-         ARM\Debug\encoder_data_tables.obj
-         ARM\Debug\encoder_ext.obj
-         ARM\Debug\encode_mb_aux.obj
-         ARM\Debug\get_intra_predictor.obj
-         ARM\Debug\mc.obj
-         ARM\Debug\md.obj
-         ARM\Debug\memory_align.obj
-         ARM\Debug\mv_pred.obj
-         ARM\Debug\nal_encap.obj
-         ARM\Debug\picture_handle.obj
-         ARM\Debug\property.obj
-         ARM\Debug\ratectl.obj
-         ARM\Debug\ref_list_mgr_svc.obj
-         ARM\Debug\sample.obj
-         ARM\Debug\set_mb_syn_cabac.obj
-         ARM\Debug\set_mb_syn_cavlc.obj
-         ARM\Debug\slice_multi_threading.obj
-         ARM\Debug\svc_base_layer_md.obj
-         ARM\Debug\svc_encode_mb.obj
-         ARM\Debug\svc_encode_slice.obj
-         ARM\Debug\svc_enc_slice_segment.obj
-         ARM\Debug\svc_mode_decision.obj
-         ARM\Debug\svc_motion_estimate.obj
-         ARM\Debug\svc_set_mb_syn_cabac.obj
-         ARM\Debug\svc_set_mb_syn_cavlc.obj
-         ARM\Debug\wels_preprocess.obj
-     1>ARM\Debug\wels_preprocess.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
-     1>ARM\Debug\svc_set_mb_syn_cavlc.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
-     1>ARM\Debug\svc_set_mb_syn_cabac.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
-     1>ARM\Debug\svc_motion_estimate.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
-     1>ARM\Debug\svc_mode_decision.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
-     1>ARM\Debug\svc_enc_slice_segment.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
-     1>ARM\Debug\svc_encode_slice.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
-     1>ARM\Debug\svc_encode_mb.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
-     1>ARM\Debug\svc_base_layer_md.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
-     1>ARM\Debug\slice_multi_threading.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
-     1>ARM\Debug\set_mb_syn_cavlc.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
-     1>ARM\Debug\set_mb_syn_cabac.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
-     1>ARM\Debug\sample.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
-     1>ARM\Debug\ref_list_mgr_svc.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
-     1>ARM\Debug\ratectl.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
-     1>ARM\Debug\property.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
-     1>ARM\Debug\picture_handle.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
-     1>ARM\Debug\nal_encap.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
-     1>ARM\Debug\mv_pred.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
-     1>ARM\Debug\memory_align.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
-     1>ARM\Debug\md.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
-     1>ARM\Debug\mc.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
-     1>ARM\Debug\get_intra_predictor.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
-     1>ARM\Debug\encode_mb_aux.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
-     1>ARM\Debug\encoder_ext.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
-     1>ARM\Debug\encoder_data_tables.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
-     1>ARM\Debug\encoder.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
-     1>ARM\Debug\decode_mb_aux.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
-     1>ARM\Debug\deblocking.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
-     1>ARM\Debug\au_set.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
-     1>ARM\Debug\WelsThreadLib.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
-     1>ARM\Debug\utils.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
-     1>ARM\Debug\sad_common.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
-     1>ARM\Debug\intra_pred_common.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
-     1>ARM\Debug\expand_pic.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
-     1>ARM\Debug\deblocking_common.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
-     1>ARM\Debug\crt_util_safe_x.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
-     1>ARM\Debug\cpu.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
-     1>ARM\Debug\copy_mb.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
-     1>ARM\Debug\common_tables.obj : warning LNK4264: archiving object file compiled with /ZW into a static library; note that when authoring Windows Runtime types it is not recommended to link with a static library that contains Windows Runtime metadata
+         Outputs for E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\AU_SET.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\COMMON_TABLES.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\COPY_MB.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\CPU.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\CRT_UTIL_SAFE_X.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\DEBLOCKING.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\DEBLOCKING_COMMON.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\DECODE_MB_AUX.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\ENCODER.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\ENCODER_DATA_TABLES.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\ENCODER_EXT.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\ENCODE_MB_AUX.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\EXPAND_PIC.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\GET_INTRA_PREDICTOR.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\INTRA_PRED_COMMON.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\MC.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\MD.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\MEMORY_ALIGN.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\MV_PRED.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\NAL_ENCAP.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\PICTURE_HANDLE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\PROPERTY.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\RATECTL.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\REF_LIST_MGR_SVC.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SAD_COMMON.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SAMPLE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SET_MB_SYN_CABAC.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SET_MB_SYN_CAVLC.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SLICE_MULTI_THREADING.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SVC_BASE_LAYER_MD.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SVC_ENCODE_MB.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SVC_ENCODE_SLICE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SVC_ENC_SLICE_SEGMENT.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SVC_MODE_DECISION.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SVC_MOTION_ESTIMATE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SVC_SET_MB_SYN_CABAC.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\SVC_SET_MB_SYN_CAVLC.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\UTILS.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\WELSTHREADLIB.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\WELS_PREPROCESS.OBJ:
+         	E:\PROJECT\OPENH264\SOURCE_WP8\BIN\ARM\DEBUG\WELSECORE.LIB
+         All outputs are up-to-date.
        Done executing task "LIB".
        Task "Message"
          WelsEncCore.vcxproj -> E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\.\..\..\..\..\bin\ARM\Debug\welsecore.lib
@@ -734,4 +570,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.29
+Time Elapsed 00:00:00.07

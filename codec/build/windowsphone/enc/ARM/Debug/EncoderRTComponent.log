@@ -1,4 +1,4 @@
-﻿Build started 1/20/2015 1:42:55 PM.
+﻿Build started 1/20/2015 1:54:39 PM.
      1>Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" on node 3 (Build target(s)).
      1>Building with tools version "12.0".
      1>Target "_CheckForInvalidConfigurationAndPlatform" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (entry point):
@@ -288,35 +288,37 @@
        Task "CL"
          Read Tracking Logs:
          	ARM\Debug\cl.read.1.tlog
-         	ARM\Debug\CL.10204.read.1.tlog
-         	ARM\Debug\CL.10492.read.1.tlog
-         	ARM\Debug\CL.4248.read.1.tlog
-         	ARM\Debug\CL.6880.read.1.tlog
-         	ARM\Debug\CL.8020.read.1.tlog
-         	ARM\Debug\CL.8672.read.1.tlog
-         	ARM\Debug\CL.9056.read.1.tlog
+         	ARM\Debug\CL.2216.read.1.tlog
+         	ARM\Debug\CL.2852.read.1.tlog
+         	ARM\Debug\CL.4492.read.1.tlog
+         	ARM\Debug\CL.5428.read.1.tlog
          Outputs for E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ENCODERRTCOMPONENT.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\CONSOLE\COMMON\SRC\READ_CONFIG.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\CONSOLE\ENC\SRC\WELSENC.CPP:
          	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\READ_CONFIG.OBJ
          	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\WELSENC.OBJ
          	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\ENCODERRTCOMPONENT.OBJ
-         ..\..\..\console\enc\src\welsenc.cpp will be compiled as E:\Project\Openh264\Source_WP8\codec\console\enc\src\welsenc.cpp was modified at 1/20/2015 1:36:20 PM.
+         ..\..\..\console\common\src\read_config.cpp will be compiled as it was not found in the tracking log.
+         ..\..\..\console\enc\src\welsenc.cpp will be compiled as it was not found in the tracking log.
+         EncoderRTComponent.cpp will be compiled as it was not found in the tracking log.
          Write Tracking Logs:
          	ARM\Debug\cl.write.1.tlog
-         	ARM\Debug\CL.10204.write.1.tlog
-         	ARM\Debug\CL.10492.write.1.tlog
-         	ARM\Debug\CL.4248.write.1.tlog
-         	ARM\Debug\CL.6880.write.1.tlog
-         	ARM\Debug\CL.8020.write.1.tlog
-         	ARM\Debug\CL.8672.write.1.tlog
-         	ARM\Debug\CL.9056.write.1.tlog
+         	ARM\Debug\CL.2216.write.1.tlog
+         	ARM\Debug\CL.2852.write.1.tlog
+         	ARM\Debug\CL.4492.write.1.tlog
+         	ARM\Debug\CL.5428.write.1.tlog
          Environment Variables passed to tool:
-           VS_UNICODE_OUTPUT=1128
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe /c /I..\..\..\console\enc\inc /I..\..\..\console\common\inc /I..\..\..\api\svc /I..\..\..\encoder\core\inc /I..\..\..\common\inc /I..\..\..\processing\interface /IE:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\ /I"Generated Files\\" /IARM\Debug\ /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /ZW /ZW:nostdlib /nologo /W3 /WX- /sdl /MP /Od /Oy- /D _LOAD_WP_DLL /D WELS_WIN_PHONE /D _WINRT_DLL /D _CRT_SECURE_NO_WARNINGS /D _WINDLL /D _UNICODE /D UNICODE /D _DEBUG /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"ARM\Debug\\" /Fd"ARM\Debug\vc110.pdb" /Gd /TP /FU"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\lib\arm\platform.winmd" /FU"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata\Windows.winmd" /analyze- /errorReport:prompt ..\..\..\console\enc\src\welsenc.cpp
+           VS_UNICODE_OUTPUT=1152
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe /c /I..\..\..\console\enc\inc /I..\..\..\console\common\inc /I..\..\..\api\svc /I..\..\..\encoder\core\inc /I..\..\..\common\inc /I..\..\..\processing\interface /IE:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\ /I"Generated Files\\" /IARM\Debug\ /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /ZW /ZW:nostdlib /nologo /W3 /WX- /sdl /MP /Od /Oy- /D _LOAD_WP_DLL /D WELS_WIN_PHONE /D _WINRT_DLL /D _CRT_SECURE_NO_WARNINGS /D _WINDLL /D _UNICODE /D UNICODE /D _DEBUG /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"ARM\Debug\\" /Fd"ARM\Debug\vc110.pdb" /Gd /TP /FU"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\lib\arm\platform.winmd" /FU"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata\Windows.winmd" /analyze- /errorReport:prompt ..\..\..\console\common\src\read_config.cpp ..\..\..\console\enc\src\welsenc.cpp EncoderRTComponent.cpp
          Tracking command:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\Tracker.exe /d C:\Windows\Microsoft.NET\Framework\v4.0.30319\FileTracker.dll /i E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\ARM\Debug /r E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\CONSOLE\ENC\SRC\WELSENC.CPP /b MSBuildConsole_CancelEvent349b70b1a0e846698542df57a7bf2b06  /c "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe"  /c /I..\..\..\console\enc\inc /I..\..\..\console\common\inc /I..\..\..\api\svc /I..\..\..\encoder\core\inc /I..\..\..\common\inc /I..\..\..\processing\interface /IE:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\ /I"Generated Files\\" /IARM\Debug\ /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /ZW /ZW:nostdlib /nologo /W3 /WX- /sdl /MP /Od /Oy- /D _LOAD_WP_DLL /D WELS_WIN_PHONE /D _WINRT_DLL /D _CRT_SECURE_NO_WARNINGS /D _WINDLL /D _UNICODE /D UNICODE /D _DEBUG /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"ARM\Debug\\" /Fd"ARM\Debug\vc110.pdb" /Gd /TP /FU"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\lib\arm\platform.winmd" /FU"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata\Windows.winmd" /analyze- /errorReport:prompt ..\..\..\console\enc\src\welsenc.cpp
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\Tracker.exe /d C:\Windows\Microsoft.NET\Framework\v4.0.30319\FileTracker.dll /i E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\ARM\Debug /r "E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ENCODERRTCOMPONENT.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\CONSOLE\COMMON\SRC\READ_CONFIG.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\CONSOLE\ENC\SRC\WELSENC.CPP" /b MSBuildConsole_CancelEvent4d03feac03f842fea798fafa90df9cf6  /c "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe"  /c /I..\..\..\console\enc\inc /I..\..\..\console\common\inc /I..\..\..\api\svc /I..\..\..\encoder\core\inc /I..\..\..\common\inc /I..\..\..\processing\interface /IE:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\ /I"Generated Files\\" /IARM\Debug\ /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /ZW /ZW:nostdlib /nologo /W3 /WX- /sdl /MP /Od /Oy- /D _LOAD_WP_DLL /D WELS_WIN_PHONE /D _WINRT_DLL /D _CRT_SECURE_NO_WARNINGS /D _WINDLL /D _UNICODE /D UNICODE /D _DEBUG /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"ARM\Debug\\" /Fd"ARM\Debug\vc110.pdb" /Gd /TP /FU"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\lib\arm\platform.winmd" /FU"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata\Windows.winmd" /analyze- /errorReport:prompt ..\..\..\console\common\src\read_config.cpp ..\..\..\console\enc\src\welsenc.cpp EncoderRTComponent.cpp
+         read_config.cpp
          welsenc.cpp
+         EncoderRTComponent.cpp
      1>..\..\..\console\enc\src\welsenc.cpp(33): warning C4005: '_CRT_SECURE_NO_WARNINGS' : macro redefinition
                  command-line arguments :  see previous definition of '_CRT_SECURE_NO_WARNINGS'
+     1>..\..\..\console\common\src\read_config.cpp(41): warning C4005: '_CRT_SECURE_NO_WARNINGS' : macro redefinition
+                 command-line arguments :  see previous definition of '_CRT_SECURE_NO_WARNINGS'
+     1>EncoderRTComponent.cpp(27): warning C4101: 'argv' : unreferenced local variable
+     1>EncoderRTComponent.cpp(188): warning C4101: 'Buffer' : unreferenced local variable
        Done executing task "CL".
      1>Done building target "ClCompile" in project "EncoderRTComponent.vcxproj".
        Target "ManagedIncrementalBuildPostProcessDependencyGraph" skipped, due to false condition; ('@(ClCompile)' != '' and '$(EnableManagedIncrementalBuild)' == 'True') was evaluated as ('..\..\..\console\common\src\read_config.cpp;..\..\..\console\enc\src\welsenc.cpp;EncoderRTComponent.cpp' != '' and 'false' == 'True').
@@ -425,12 +427,12 @@
        Using "Link" task from assembly "Microsoft.Build.CppTasks.Common.v110, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
        Task "Link"
          Environment Variables passed to tool:
-           VS_UNICODE_OUTPUT=2548
+           VS_UNICODE_OUTPUT=1800
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\..\..\bin\ARM\Debug\EncoderRTComponent.dll" /INCREMENTAL /NOLOGO /LIBPATH:..\..\..\..\bin\ARM\Debug\ WindowsPhoneCore.lib RuntimeObject.lib PhoneAppModelHost.lib /NODEFAULTLIB:ole32.lib /MANIFEST:NO /DEBUG /PDB:"..\..\..\..\bin\ARM\Debug\EncoderRTComponent.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /WINMD /WINMDFILE:"..\..\..\..\bin\ARM\Debug\WindowsPhoneRuntimeComponent1.winmd" /DYNAMICBASE /NXCOMPAT /MACHINE:ARM /DLL ARM\Debug\read_config.obj
          ARM\Debug\welsenc.obj
          ARM\Debug\EncoderRTComponent.obj
          Tracking command:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\Tracker.exe /a /d C:\Windows\Microsoft.NET\Framework\v4.0.30319\FileTracker.dll /i E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\ARM\Debug /r "E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\ENCODERRTCOMPONENT.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\READ_CONFIG.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\WELSENC.OBJ" /b MSBuildConsole_CancelEvent6d993049ddb94daab0cc817b7204d4ad  /c "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\link.exe"  /ERRORREPORT:PROMPT /OUT:"..\..\..\..\bin\ARM\Debug\EncoderRTComponent.dll" /INCREMENTAL /NOLOGO /LIBPATH:..\..\..\..\bin\ARM\Debug\ WindowsPhoneCore.lib RuntimeObject.lib PhoneAppModelHost.lib /NODEFAULTLIB:ole32.lib /MANIFEST:NO /DEBUG /PDB:"..\..\..\..\bin\ARM\Debug\EncoderRTComponent.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /WINMD /WINMDFILE:"..\..\..\..\bin\ARM\Debug\WindowsPhoneRuntimeComponent1.winmd" /DYNAMICBASE /NXCOMPAT /MACHINE:ARM /DLL ARM\Debug\read_config.obj
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\Tracker.exe /a /d C:\Windows\Microsoft.NET\Framework\v4.0.30319\FileTracker.dll /i E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\ARM\Debug /r "E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\ENCODERRTCOMPONENT.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\READ_CONFIG.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ARM\DEBUG\WELSENC.OBJ" /b MSBuildConsole_CancelEventc116fdb5cb3c49a48649e5adfc2061ba  /c "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\link.exe"  /ERRORREPORT:PROMPT /OUT:"..\..\..\..\bin\ARM\Debug\EncoderRTComponent.dll" /INCREMENTAL /NOLOGO /LIBPATH:..\..\..\..\bin\ARM\Debug\ WindowsPhoneCore.lib RuntimeObject.lib PhoneAppModelHost.lib /NODEFAULTLIB:ole32.lib /MANIFEST:NO /DEBUG /PDB:"..\..\..\..\bin\ARM\Debug\EncoderRTComponent.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /WINMD /WINMDFILE:"..\..\..\..\bin\ARM\Debug\WindowsPhoneRuntimeComponent1.winmd" /DYNAMICBASE /NXCOMPAT /MACHINE:ARM /DLL ARM\Debug\read_config.obj
          ARM\Debug\welsenc.obj
          ARM\Debug\EncoderRTComponent.obj
             Creating library ..\..\..\..\bin\ARM\Debug\EncoderRTComponent.lib and object ..\..\..\..\bin\ARM\Debug\EncoderRTComponent.exp
@@ -558,4 +560,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.37
+Time Elapsed 00:00:01.59

@@ -1,4 +1,4 @@
-﻿Build started 1/20/2015 1:42:53 PM.
+﻿Build started 1/20/2015 1:54:26 PM.
      1>Project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" on node 3 (Build target(s)).
      1>Building with tools version "12.0".
      1>Target "_CheckForInvalidConfigurationAndPlatform" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" (entry point):
@@ -222,7 +222,7 @@
        Done executing task "WriteLinesToFile".
        Using "Touch" task from assembly "Microsoft.Build.Tasks.v12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
        Task "Touch"
-         Touching "ARM\Debug\WelsVP.unsuccessfulbuild".
+         Creating "ARM\Debug\WelsVP.unsuccessfulbuild" because "AlwaysCreate" was specified.
        Done executing task "Touch".
      1>Done building target "InitializeBuildStatus" in project "WelsVP.vcxproj".
        Target "AssignProjectConfiguration" skipped. Previously built successfully.
@@ -301,35 +301,42 @@
        Target "GenerateTargetFrameworkMonikerAttribute" skipped, due to false condition; ('$(GenerateTargetFrameworkAttribute)' == 'true') was evaluated as ('false' == 'true').
        Target "ManagedIncrementalBuildPreProcessDependencyGraph" skipped, due to false condition; ('@(ClCompile)' != '' and '$(EnableManagedIncrementalBuild)' == 'True') was evaluated as ('..\..\..\common\src\cpu.cpp;..\..\..\common\src\intra_pred_common.cpp;..\..\..\common\src\sad_common.cpp;..\..\..\common\src\WelsThreadLib.cpp;..\..\src\adaptivequantization\AdaptiveQuantization.cpp;..\..\src\backgrounddetection\BackgroundDetection.cpp;..\..\src\common\memory.cpp;..\..\src\common\WelsFrameWork.cpp;..\..\src\common\WelsFrameWorkEx.cpp;..\..\src\complexityanalysis\ComplexityAnalysis.cpp;..\..\src\denoise\denoise.cpp;..\..\src\denoise\denoise_filter.cpp;..\..\src\downsample\downsample.cpp;..\..\src\downsample\downsamplefuncs.cpp;..\..\src\imagerotate\imagerotate.cpp;..\..\src\imagerotate\imagerotatefuncs.cpp;..\..\src\scenechangedetection\SceneChangeDetection.cpp;..\..\src\scrolldetection\ScrollDetection.cpp;..\..\src\scrolldetection\ScrollDetectionFuncs.cpp;..\..\src\vaacalc\vaacalcfuncs.cpp;..\..\src\vaacalc\vaacalculation.cpp' != '' and 'false' == 'True').
      1>Target "ClCompile" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppCommon.targets" from project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" (target "_ClCompile" depends on it):
-       Task "Delete" skipped, due to false condition; ('%(ClCompile.DebugInformationFormat)' != '' and '%(ClCompile.DebugInformationFormat)' != 'OldStyle' and '%(ClCompile.ProgramDataBaseFileName)' != '' and !Exists(%(ClCompile.ProgramDataBaseFileName))) was evaluated as ('ProgramDatabase' != '' and 'ProgramDatabase' != 'OldStyle' and 'ARM\Debug\vc110.pdb' != '' and !Exists(ARM\Debug\vc110.pdb)).
+       Using "Delete" task from assembly "Microsoft.Build.Tasks.v12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+       Task "Delete"
+       Done executing task "Delete".
        Task "CL" skipped, due to false condition; ('%(ClCompile.PrecompiledHeader)' == 'Create' and '%(ClCompile.ExcludedFromBuild)'!='true' and '%(ClCompile.CompilerIteration)' == '') was evaluated as ('NotUsing' == 'Create' and ''!='true' and '' == '').
        Using "CL" task from assembly "Microsoft.Build.CppTasks.Common.v110, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
        Task "CL"
-         Read Tracking Logs:
-         	ARM\Debug\cl.read.1.tlog
-         Outputs for E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\COMMON\SRC\CPU.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\COMMON\SRC\INTRA_PRED_COMMON.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\COMMON\SRC\SAD_COMMON.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\COMMON\SRC\WELSTHREADLIB.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\ADAPTIVEQUANTIZATION\ADAPTIVEQUANTIZATION.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\BACKGROUNDDETECTION\BACKGROUNDDETECTION.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\COMMON\MEMORY.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\COMMON\WELSFRAMEWORK.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\COMMON\WELSFRAMEWORKEX.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\COMPLEXITYANALYSIS\COMPLEXITYANALYSIS.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\DENOISE\DENOISE.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\DENOISE\DENOISE_FILTER.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\DOWNSAMPLE\DOWNSAMPLE.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\DOWNSAMPLE\DOWNSAMPLEFUNCS.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\IMAGEROTATE\IMAGEROTATE.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\IMAGEROTATE\IMAGEROTATEFUNCS.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\SCENECHANGEDETECTION\SCENECHANGEDETECTION.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\SCROLLDETECTION\SCROLLDETECTION.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\SCROLLDETECTION\SCROLLDETECTIONFUNCS.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\VAACALC\VAACALCFUNCS.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\VAACALC\VAACALCULATION.CPP:
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\CPU.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\INTRA_PRED_COMMON.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\SAD_COMMON.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\WELSTHREADLIB.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\ADAPTIVEQUANTIZATION.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\BACKGROUNDDETECTION.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\MEMORY.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\WELSFRAMEWORK.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\WELSFRAMEWORKEX.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\COMPLEXITYANALYSIS.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\DENOISE.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\DENOISE_FILTER.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\DOWNSAMPLE.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\DOWNSAMPLEFUNCS.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\IMAGEROTATE.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\IMAGEROTATEFUNCS.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\SCENECHANGEDETECTION.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\SCROLLDETECTION.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\SCROLLDETECTIONFUNCS.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\VAACALCFUNCS.OBJ
-         	E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\VAACALCULATION.OBJ
-         All outputs are up-to-date.
+         Forcing recompile of all source files due to missing PDB "ARM\Debug\vc110.pdb".
+         Environment Variables passed to tool:
+           VS_UNICODE_OUTPUT=1416
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe /c /I../../../common/inc /I../../interface /I../../src/common /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /ZW /nologo /W1 /WX- /Od /Oy- /D _USRDLL /D _WINDLL /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"ARM\Debug\\" /Fd"ARM\Debug\vc110.pdb" /Gd /TP /FU"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\lib\arm\platform.winmd" /FU"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata\Windows.winmd" /analyze- /errorReport:prompt ..\..\..\common\src\cpu.cpp ..\..\..\common\src\intra_pred_common.cpp ..\..\..\common\src\sad_common.cpp ..\..\..\common\src\WelsThreadLib.cpp ..\..\src\adaptivequantization\AdaptiveQuantization.cpp ..\..\src\backgrounddetection\BackgroundDetection.cpp ..\..\src\common\memory.cpp ..\..\src\common\WelsFrameWork.cpp ..\..\src\common\WelsFrameWorkEx.cpp ..\..\src\complexityanalysis\ComplexityAnalysis.cpp ..\..\src\denoise\denoise.cpp ..\..\src\denoise\denoise_filter.cpp ..\..\src\downsample\downsample.cpp ..\..\src\downsample\downsamplefuncs.cpp ..\..\src\imagerotate\imagerotate.cpp ..\..\src\imagerotate\imagerotatefuncs.cpp ..\..\src\scenechangedetection\SceneChangeDetection.cpp ..\..\src\scrolldetection\ScrollDetection.cpp ..\..\src\scrolldetection\ScrollDetectionFuncs.cpp ..\..\src\vaacalc\vaacalcfuncs.cpp ..\..\src\vaacalc\vaacalculation.cpp
+         Tracking command:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\Tracker.exe /d C:\Windows\Microsoft.NET\Framework\v4.0.30319\FileTracker.dll /i E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\ARM\Debug /r "E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\COMMON\SRC\CPU.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\COMMON\SRC\INTRA_PRED_COMMON.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\COMMON\SRC\SAD_COMMON.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\COMMON\SRC\WELSTHREADLIB.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\ADAPTIVEQUANTIZATION\ADAPTIVEQUANTIZATION.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\BACKGROUNDDETECTION\BACKGROUNDDETECTION.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\COMMON\MEMORY.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\COMMON\WELSFRAMEWORK.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\COMMON\WELSFRAMEWORKEX.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\COMPLEXITYANALYSIS\COMPLEXITYANALYSIS.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\DENOISE\DENOISE.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\DENOISE\DENOISE_FILTER.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\DOWNSAMPLE\DOWNSAMPLE.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\DOWNSAMPLE\DOWNSAMPLEFUNCS.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\IMAGEROTATE\IMAGEROTATE.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\IMAGEROTATE\IMAGEROTATEFUNCS.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\SCENECHANGEDETECTION\SCENECHANGEDETECTION.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\SCROLLDETECTION\SCROLLDETECTION.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\SCROLLDETECTION\SCROLLDETECTIONFUNCS.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\VAACALC\VAACALCFUNCS.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\SRC\VAACALC\VAACALCULATION.CPP" /b MSBuildConsole_CancelEvent22f521929f5045f2b7f2d27d59a44593  /c "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe"  /c /I../../../common/inc /I../../interface /I../../src/common /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /ZW /nologo /W1 /WX- /Od /Oy- /D _USRDLL /D _WINDLL /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"ARM\Debug\\" /Fd"ARM\Debug\vc110.pdb" /Gd /TP /FU"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\lib\arm\platform.winmd" /FU"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata\Windows.winmd" /analyze- /errorReport:prompt ..\..\..\common\src\cpu.cpp ..\..\..\common\src\intra_pred_common.cpp ..\..\..\common\src\sad_common.cpp ..\..\..\common\src\WelsThreadLib.cpp ..\..\src\adaptivequantization\AdaptiveQuantization.cpp ..\..\src\backgrounddetection\BackgroundDetection.cpp ..\..\src\common\memory.cpp ..\..\src\common\WelsFrameWork.cpp ..\..\src\common\WelsFrameWorkEx.cpp ..\..\src\complexityanalysis\ComplexityAnalysis.cpp ..\..\src\denoise\denoise.cpp ..\..\src\denoise\denoise_filter.cpp ..\..\src\downsample\downsample.cpp ..\..\src\downsample\downsamplefuncs.cpp ..\..\src\imagerotate\imagerotate.cpp ..\..\src\imagerotate\imagerotatefuncs.cpp ..\..\src\scenechangedetection\SceneChangeDetection.cpp ..\..\src\scrolldetection\ScrollDetection.cpp ..\..\src\scrolldetection\ScrollDetectionFuncs.cpp ..\..\src\vaacalc\vaacalcfuncs.cpp ..\..\src\vaacalc\vaacalculation.cpp
+         cpu.cpp
+         intra_pred_common.cpp
+         sad_common.cpp
+         WelsThreadLib.cpp
+         AdaptiveQuantization.cpp
+         BackgroundDetection.cpp
+         memory.cpp
+         WelsFrameWork.cpp
+         WelsFrameWorkEx.cpp
+         ComplexityAnalysis.cpp
+         denoise.cpp
+         denoise_filter.cpp
+         downsample.cpp
+         downsamplefuncs.cpp
+         imagerotate.cpp
+         imagerotatefuncs.cpp
+         SceneChangeDetection.cpp
+         ScrollDetection.cpp
+         ScrollDetectionFuncs.cpp
+         vaacalcfuncs.cpp
+         Generating Code...
+         Compiling...
+         vaacalculation.cpp
+         Generating Code...
        Done executing task "CL".
      1>Done building target "ClCompile" in project "WelsVP.vcxproj".
        Target "ManagedIncrementalBuildPostProcessDependencyGraph" skipped, due to false condition; ('@(ClCompile)' != '' and '$(EnableManagedIncrementalBuild)' == 'True') was evaluated as ('..\..\..\common\src\cpu.cpp;..\..\..\common\src\intra_pred_common.cpp;..\..\..\common\src\sad_common.cpp;..\..\..\common\src\WelsThreadLib.cpp;..\..\src\adaptivequantization\AdaptiveQuantization.cpp;..\..\src\backgrounddetection\BackgroundDetection.cpp;..\..\src\common\memory.cpp;..\..\src\common\WelsFrameWork.cpp;..\..\src\common\WelsFrameWorkEx.cpp;..\..\src\complexityanalysis\ComplexityAnalysis.cpp;..\..\src\denoise\denoise.cpp;..\..\src\denoise\denoise_filter.cpp;..\..\src\downsample\downsample.cpp;..\..\src\downsample\downsamplefuncs.cpp;..\..\src\imagerotate\imagerotate.cpp;..\..\src\imagerotate\imagerotatefuncs.cpp;..\..\src\scenechangedetection\SceneChangeDetection.cpp;..\..\src\scrolldetection\ScrollDetection.cpp;..\..\src\scrolldetection\ScrollDetectionFuncs.cpp;..\..\src\vaacalc\vaacalcfuncs.cpp;..\..\src\vaacalc\vaacalculation.cpp' != '' and 'false' == 'True').
@@ -441,7 +448,7 @@
        Using "Link" task from assembly "Microsoft.Build.CppTasks.Common.v110, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
        Task "Link"
          Environment Variables passed to tool:
-           VS_UNICODE_OUTPUT=2340
+           VS_UNICODE_OUTPUT=1688
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\..\..\bin\ARM\Debug\welsvp.dll" /INCREMENTAL /NOLOGO WindowsPhoneCore.lib RuntimeObject.lib PhoneAppModelHost.lib /DEF:"../../src/common/WelsVP.def" /MANIFEST:NO /DEBUG /PDB:"..\..\..\..\bin\ARM\Debug\welsvp.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /WINMD:NO /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\..\..\bin\ARM\Debug\welsvp.lib" /MACHINE:ARM /DLL ARM\Debug\cpu.obj
          ARM\Debug\intra_pred_common.obj
          ARM\Debug\sad_common.obj
@@ -464,7 +471,7 @@
          ARM\Debug\vaacalcfuncs.obj
          ARM\Debug\vaacalculation.obj
          Tracking command:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\Tracker.exe /a /d C:\Windows\Microsoft.NET\Framework\v4.0.30319\FileTracker.dll /i E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\ARM\Debug /r "E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\ADAPTIVEQUANTIZATION.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\BACKGROUNDDETECTION.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\COMPLEXITYANALYSIS.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\CPU.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\DENOISE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\DENOISE_FILTER.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\DOWNSAMPLE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\DOWNSAMPLEFUNCS.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\IMAGEROTATE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\IMAGEROTATEFUNCS.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\INTRA_PRED_COMMON.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\MEMORY.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\SAD_COMMON.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\SCENECHANGEDETECTION.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\SCROLLDETECTION.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\SCROLLDETECTIONFUNCS.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\VAACALCFUNCS.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\VAACALCULATION.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\WELSFRAMEWORK.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\WELSFRAMEWORKEX.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\WELSTHREADLIB.OBJ" /b MSBuildConsole_CancelEvent27717bf6eafd4178a25bc9c156620a04  /c "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\link.exe"  /ERRORREPORT:PROMPT /OUT:"..\..\..\..\bin\ARM\Debug\welsvp.dll" /INCREMENTAL /NOLOGO WindowsPhoneCore.lib RuntimeObject.lib PhoneAppModelHost.lib /DEF:"../../src/common/WelsVP.def" /MANIFEST:NO /DEBUG /PDB:"..\..\..\..\bin\ARM\Debug\welsvp.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /WINMD:NO /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\..\..\bin\ARM\Debug\welsvp.lib" /MACHINE:ARM /DLL ARM\Debug\cpu.obj
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\Tracker.exe /a /d C:\Windows\Microsoft.NET\Framework\v4.0.30319\FileTracker.dll /i E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\ARM\Debug /r "E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\ADAPTIVEQUANTIZATION.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\BACKGROUNDDETECTION.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\COMPLEXITYANALYSIS.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\CPU.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\DENOISE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\DENOISE_FILTER.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\DOWNSAMPLE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\DOWNSAMPLEFUNCS.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\IMAGEROTATE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\IMAGEROTATEFUNCS.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\INTRA_PRED_COMMON.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\MEMORY.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\SAD_COMMON.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\SCENECHANGEDETECTION.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\SCROLLDETECTION.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\SCROLLDETECTIONFUNCS.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\VAACALCFUNCS.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\VAACALCULATION.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\WELSFRAMEWORK.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\WELSFRAMEWORKEX.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\PROCESSING\BUILD\WINDOWSPHONE\ARM\DEBUG\WELSTHREADLIB.OBJ" /b MSBuildConsole_CancelEventefad3fbfb41b433faaf0d414406f1ce2  /c "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\link.exe"  /ERRORREPORT:PROMPT /OUT:"..\..\..\..\bin\ARM\Debug\welsvp.dll" /INCREMENTAL /NOLOGO WindowsPhoneCore.lib RuntimeObject.lib PhoneAppModelHost.lib /DEF:"../../src/common/WelsVP.def" /MANIFEST:NO /DEBUG /PDB:"..\..\..\..\bin\ARM\Debug\welsvp.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /WINMD:NO /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\..\..\bin\ARM\Debug\welsvp.lib" /MACHINE:ARM /DLL ARM\Debug\cpu.obj
          ARM\Debug\intra_pred_common.obj
          ARM\Debug\sad_common.obj
          ARM\Debug\WelsThreadLib.obj
@@ -598,7 +605,6 @@
      1>Target "AfterBuild" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.BuildSteps.Targets" from project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" (target "Build" depends on it):
      1>Done building target "AfterBuild" in project "WelsVP.vcxproj".
      1>Target "FinalizeBuildStatus" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\codec\processing\build\windowsphone\WelsVP.vcxproj" (target "Build" depends on it):
-       Using "Delete" task from assembly "Microsoft.Build.Tasks.v12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
        Task "Delete"
          Deleting file "ARM\Debug\WelsVP.unsuccessfulbuild".
        Done executing task "Delete".
@@ -612,4 +618,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.82
+Time Elapsed 00:00:10.40
