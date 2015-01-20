@@ -1,4 +1,4 @@
-﻿Build started 1/19/2015 9:58:26 AM.
+﻿Build started 1/20/2015 10:27:28 AM.
      1>Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\DecoderRTComponent\DecoderRTComponent.vcxproj" on node 2 (Clean target(s)).
      1>Building with tools version "12.0".
      1>Target "_CheckForInvalidConfigurationAndPlatform" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\DecoderRTComponent\DecoderRTComponent.vcxproj" (entry point):
@@ -18,9 +18,7 @@
        Task "Error" skipped, due to false condition; ('$([System.Environment]::Is64BitProcess)'=='True') was evaluated as ('False'=='True').
      1>Done building target "MSBuild64BitCheck" in project "DecoderRTComponent.vcxproj".
      1>Target "_PrepareForClean" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.BuildSteps.Targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\DecoderRTComponent\DecoderRTComponent.vcxproj" (target "Clean" depends on it):
-       Task "Delete"
-         Deleting file "ARM\Debug\DecoderRTComponent.lastbuildstate".
-       Done executing task "Delete".
+       Task "Delete" skipped, due to false condition; (Exists($(LastBuildState))) was evaluated as (Exists(ARM\Debug\DecoderRTComponent.lastbuildstate)).
      1>Done building target "_PrepareForClean" in project "DecoderRTComponent.vcxproj".
      1>Target "BeforeClean" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\DecoderRTComponent\DecoderRTComponent.vcxproj" (target "Clean" depends on it):
      1>Done building target "BeforeClean" in project "DecoderRTComponent.vcxproj".
