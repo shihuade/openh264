@@ -124,7 +124,7 @@
     <Content Include="BA_MW_D.264">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="openh264.dll">
+    <Content Include="welsdec.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Properties\AppManifest.xml" />
@@ -160,8 +160,8 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DecoderRTComponent\DecoderRTComponent.vcxproj">
-      <Project>{d2240762-c482-4971-ab70-1ca429023ae7}</Project>
+    <ProjectReference Include="..\DecoderRTComponent.vcxproj">
+      <Project>{7ed70b07-3c68-48ea-8c2b-ac5535d56c4e}</Project>
       <Name>DecoderRTComponent</Name>
     </ProjectReference>
   </ItemGroup>
@@ -176,6 +176,9 @@
   -->
   <ProjectExtensions />
   <PropertyGroup>
-    <PreBuildEvent>copy   /y  ..\..\..\..\..\..\..\..\bin\$(Platform)\$(Configuration)\openh264.dll   ..\..\..\</PreBuildEvent>
+    <PreBuildEvent>copy   /y  ..\..\..\..\..\..\..\..\bin\$(Platform)\$(Configuration)\welsdec.dll   ..\..\..\
+copy   /y  ..\..\..\..\..\..\..\..\res\BA_MW_D.264           ..\..\..\
+copy   /y  ..\..\..\..\..\..\..\..\res\BA1_FT_C.264            ..\..\..\
+copy   /y  ..\..\..\..\..\..\..\..\res\BAMQ1_JVC_C.264   ..\..\..\</PreBuildEvent>
   </PropertyGroup>
 </Project>

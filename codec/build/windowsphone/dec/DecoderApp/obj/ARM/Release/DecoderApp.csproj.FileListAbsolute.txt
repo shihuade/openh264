@@ -7,6 +7,7 @@ E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\DecoderApp\Bin\ARM\R
 E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\DecoderApp\Bin\ARM\Release\BA1_FT_C.264
 E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\DecoderApp\Bin\ARM\Release\BAMQ1_JVC_C.264
 E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\DecoderApp\Bin\ARM\Release\BA_MW_D.264
+E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\DecoderApp\Bin\ARM\Release\welsdec.dll
 E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\DecoderApp\Bin\ARM\Release\DecoderApp.dll
 E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\DecoderApp\Bin\ARM\Release\DecoderApp.pdb
 E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\DecoderApp\Bin\ARM\Release\AppManifest.xaml
@@ -23,4 +24,3 @@ E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\DecoderApp\obj\ARM\R
 E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\DecoderApp\obj\ARM\Release\DecoderApp.dll
 E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\DecoderApp\obj\ARM\Release\DecoderApp.pdb
 E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\DecoderApp\obj\ARM\Release\XapCacheFile.xml
-E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\DecoderApp\Bin\ARM\Release\openh264.dll
