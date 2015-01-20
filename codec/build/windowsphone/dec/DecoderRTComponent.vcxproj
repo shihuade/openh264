@@ -137,13 +137,13 @@
   <ItemGroup>
     <ClInclude Include="..\..\..\console\common\inc\read_config.h" />
     <ClInclude Include="..\..\..\console\dec\inc\d3d9_utils.h" />
-    <ClInclude Include="DecoderRTComponent\DecoderRTComponent.h" />
+    <ClInclude Include="DecoderRTComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\console\common\src\read_config.cpp" />
     <ClCompile Include="..\..\..\console\dec\src\d3d9_utils.cpp" />
     <ClCompile Include="..\..\..\console\dec\src\h264dec.cpp" />
-    <ClCompile Include="DecoderRTComponent\DecoderRTComponent.cpp" />
+    <ClCompile Include="DecoderRTComponent.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsPhone\v$(TargetPlatformVersion)\Microsoft.Cpp.WindowsPhone.$(TargetPlatformVersion).targets" />

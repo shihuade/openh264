@@ -15,7 +15,7 @@
     <ClInclude Include="..\..\..\console\dec\inc\d3d9_utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DecoderRTComponent\DecoderRTComponent.h" />
+    <ClInclude Include="DecoderRTComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\console\common\src\read_config.cpp">
@@ -27,6 +27,6 @@
     <ClCompile Include="..\..\..\console\dec\src\h264dec.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DecoderRTComponent\DecoderRTComponent.cpp" />
+    <ClCompile Include="DecoderRTComponent.cpp" />
   </ItemGroup>
 </Project>
