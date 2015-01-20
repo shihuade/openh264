@@ -175,17 +175,6 @@
     <ClInclude Include="..\..\..\decoder\plus\inc\welsDecoderExt.h" />
     <ClInclude Include="..\..\..\encoder\plus\inc\welsEncoderExt.h" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\dec\WelsDecCore\WelsDecCore.vcxproj">
-      <Project>{f0982ed2-a2b5-4b00-9396-36d275debb44}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\enc\WelsEncCore.vcxproj">
-      <Project>{786c4dc3-9f92-4ffb-bb16-694f31372eb1}</Project>
-    </ProjectReference>
-    <ProjectReference Include="WelsVPLip.vcxproj">
-      <Project>{01f26b7b-9b7d-455d-82fb-c0e5b1e3f33c}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsPhone\v$(TargetPlatformVersion)\Microsoft.Cpp.WindowsPhone.$(TargetPlatformVersion).targets" />
   <ImportGroup Label="ExtensionTargets">

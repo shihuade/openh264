@@ -1,0 +1,422 @@
+﻿Build started 1/20/2015 3:54:43 PM.
+     1>Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" on node 4 (Build target(s)).
+     1>Building with tools version "12.0".
+     1>Target "_CheckForInvalidConfigurationAndPlatform" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (entry point):
+       Task "Error" skipped, due to false condition; ( '$(_InvalidConfigurationError)' == 'true' ) was evaluated as ( '' == 'true' ).
+       Task "Warning" skipped, due to false condition; ( '$(_InvalidConfigurationWarning)' == 'true' ) was evaluated as ( '' == 'true' ).
+       Using "Message" task from assembly "Microsoft.Build.Tasks.v12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+       Task "Message"
+         Configuration=Debug
+       Done executing task "Message".
+       Task "Message"
+         Platform=Win32
+       Done executing task "Message".
+       Task "Error" skipped, due to false condition; ('$(OutDir)' != '' and !HasTrailingSlash('$(OutDir)')) was evaluated as ('..\..\..\..\..\bin\Win32\Debug\' != '' and !HasTrailingSlash('..\..\..\..\..\bin\Win32\Debug\')).
+       Task "Error" skipped, due to false condition; ('$(BaseIntermediateOutputPath)' != '' and !HasTrailingSlash('$(BaseIntermediateOutputPath)')) was evaluated as ('obj\' != '' and !HasTrailingSlash('obj\')).
+       Task "Error" skipped, due to false condition; ('$(IntermediateOutputPath)' != '' and !HasTrailingSlash('$(IntermediateOutputPath)')) was evaluated as ('Debug\' != '' and !HasTrailingSlash('Debug\')).
+     1>Done building target "_CheckForInvalidConfigurationAndPlatform" in project "EncoderRTComponent.vcxproj".
+     1>Target "MSBuild64BitCheck" in file "C:\Program Files (x86)\MSBuild\Microsoft\WindowsPhone\v8.0\Microsoft.Cpp.WindowsPhone.8.0.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (entry point):
+       Task "Error" skipped, due to false condition; ('$([System.Environment]::Is64BitProcess)'=='True') was evaluated as ('False'=='True').
+     1>Done building target "MSBuild64BitCheck" in project "EncoderRTComponent.vcxproj".
+     1>Target "_PrepareForBuild" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.BuildSteps.Targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "Build" depends on it):
+       Task "CreateItem" skipped, due to false condition; ('%(CustomBuild.IncludeFileToTool)'!='') was evaluated as (''!='').
+     1>Done building target "_PrepareForBuild" in project "EncoderRTComponent.vcxproj".
+     1>Target "_PrepareForReferenceResolution" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "ResolveReferences" depends on it):
+       Task "Message" skipped, due to false condition; ('$(_REFERENCE_DEBUG)'=='true') was evaluated as (''=='true').
+     1>Done building target "_PrepareForReferenceResolution" in project "EncoderRTComponent.vcxproj".
+       Target "ComputeCrtSDKReference" skipped, due to false condition; ('@(ClCompile)'!='' and '$(WindowsAppContainer)'=='true' and '$(UseCrtSDKReference)' != 'false') was evaluated as ('..\..\..\console\common\src\read_config.cpp;..\..\..\console\enc\src\welsenc.cpp;EncoderRTComponent.cpp'!='' and 'false'=='true' and 'false' != 'false').
+     1>Target "BeforeResolveReferences" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "ResolveReferences" depends on it):
+     1>Done building target "BeforeResolveReferences" in project "EncoderRTComponent.vcxproj".
+     1>Target "AssignProjectConfiguration" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "ResolveReferences" depends on it):
+       Using "AssignProjectConfiguration" task from assembly "Microsoft.Build.Tasks.v12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+       Task "AssignProjectConfiguration"
+       Done executing task "AssignProjectConfiguration".
+     1>Done building target "AssignProjectConfiguration" in project "EncoderRTComponent.vcxproj".
+       Target "AssignProjectConfiguration" skipped. Previously built successfully.
+     1>Target "_SplitProjectReferencesByFileExistence" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "ResolveProjectReferences" depends on it):
+       Task "ResolveNonMSBuildProjectOutput" skipped, due to false condition; ('$(BuildingInsideVisualStudio)'=='true' and '@(ProjectReferenceWithConfiguration)'!='') was evaluated as ('true'=='true' and ''!='').
+     1>Done building target "_SplitProjectReferencesByFileExistence" in project "EncoderRTComponent.vcxproj".
+       Target "_RemoveNameMetadataFromProjectReferenceItems" skipped, due to false condition; ('@(ProjectReference)'!='') was evaluated as (''!='').
+     1>Target "ResolveProjectReferences" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "ResolveReferences" depends on it):
+       Task "MSBuild" skipped, due to false condition; ('%(_MSBuildProjectReferenceExistent.BuildReference)' == 'true' and '@(ProjectReferenceWithConfiguration)' != '' and ('$(BuildingInsideVisualStudio)' == 'true' or '$(BuildProjectReferences)' != 'true') and '$(VisualStudioVersion)' != '10.0' and '@(_MSBuildProjectReferenceExistent)' != '') was evaluated as ('' == 'true' and '' != '' and ('true' == 'true' or 'true' != 'true') and '12.0' != '10.0' and '' != '').
+       Task "MSBuild" skipped, due to false condition; ('%(_MSBuildProjectReferenceExistent.BuildReference)' == 'true' and '@(ProjectReferenceWithConfiguration)' != '' and ('$(BuildingInsideVisualStudio)' == 'true' or '$(BuildProjectReferences)' != 'true') and '$(VisualStudioVersion)' == '10.0' and '@(_MSBuildProjectReferenceExistent)' != '') was evaluated as ('' == 'true' and '' != '' and ('true' == 'true' or 'true' != 'true') and '12.0' == '10.0' and '' != '').
+       Task "MSBuild" skipped, due to false condition; ('%(_MSBuildProjectReferenceExistent.BuildReference)' == 'true' and '@(ProjectReferenceWithConfiguration)' != '' and '$(BuildingInsideVisualStudio)' != 'true' and '$(BuildProjectReferences)' == 'true' and '@(_MSBuildProjectReferenceExistent)' != '') was evaluated as ('' == 'true' and '' != '' and 'true' != 'true' and 'true' == 'true' and '' != '').
+       Task "MSBuild" skipped, due to false condition; ('%(_MSBuildProjectReferenceExistent.BuildReference)' == 'true' and '@(ProjectReferenceWithConfiguration)' != '' and '$(BuildingProject)' == 'true' and '@(_MSBuildProjectReferenceExistent)' != '') was evaluated as ('' == 'true' and '' != '' and 'true' == 'true' and '' != '').
+       Task "Warning" skipped, due to false condition; ('@(ProjectReferenceWithConfiguration)' != '' and '@(_MSBuildProjectReferenceNonexistent)' != '') was evaluated as ('' != '' and '' != '').
+     1>Done building target "ResolveProjectReferences" in project "EncoderRTComponent.vcxproj".
+       Target "FindInvalidProjectReferences" skipped, due to false condition; ('$(FindInvalidProjectReferences)' == 'true') was evaluated as ('' == 'true').
+       Target "ResolveNativeReferences" skipped, due to false condition; ('@(NativeReference)'!='') was evaluated as (''!='').
+       Target "_PrepareForReferenceResolution" skipped. Previously built successfully.
+     1>Target "GetFrameworkPaths" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "ResolveAssemblyReferences" depends on it):
+     1>Done building target "GetFrameworkPaths" in project "EncoderRTComponent.vcxproj".
+     1>Target "GetReferenceAssemblyPaths" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "ResolveAssemblyReferences" depends on it):
+       Task "GetReferenceAssemblyPaths" skipped, due to false condition; ('$(TargetFrameworkMoniker)' != '' and ('$(_TargetFrameworkDirectories)' == '' or '$(_FullFrameworkReferenceAssemblyPaths)' == '')) was evaluated as ('' != '' and ('' == '' or '' == '')).
+     1>Done building target "GetReferenceAssemblyPaths" in project "EncoderRTComponent.vcxproj".
+     1>Target "SetBuildDefaultEnvironmentVariables" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.Cpp.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "PrepareForBuild" depends on it):
+       Using "SetEnv" task from assembly "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.Build.CppTasks.Common.dll".
+       Task "SetEnv"
+         PATH=C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin;C:\Program Files (x86)\Windows Phone Kits\8.0\bin\x86;;C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools;C:\Program Files (x86)\Windows Kits\8.0\bin\x86;C:\Program Files (x86)\Microsoft Visual Studio 11.0\Common7\Tools\bin;C:\Program Files (x86)\Microsoft Visual Studio 11.0\Common7\tools;C:\Program Files (x86)\Microsoft Visual Studio 11.0\Common7\ide;C:\Program Files (x86)\HTML Help Workshop;C:\Program Files (x86)\MSBuild\12.0\bin\;C:\Program Files (x86)\Microsoft Visual Studio 11.0\;C:\Windows\SysWow64;;C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\NativeBinaries/x86;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files (x86)\Microsoft SDKs\TypeScript\1.0\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\TortoiseSVN\bin;;C:\Windows\Microsoft.NET\Framework\v4.0.30319\;
+       Done executing task "SetEnv".
+       Task "SetEnv"
+         LIB=C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\lib;C:\Program Files (x86)\Windows Phone Kits\8.0\lib\x86;;
+       Done executing task "SetEnv".
+       Task "SetEnv"
+         LIBPATH=C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\lib
+       Done executing task "SetEnv".
+       Task "SetEnv"
+         INCLUDE=C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\include;C:\Program Files (x86)\Windows Phone Kits\8.0\Include;C:\Program Files (x86)\Windows Phone Kits\8.0\Include\abi;C:\Program Files (x86)\Windows Phone Kits\8.0\Include\mincore;C:\Program Files (x86)\Windows Phone Kits\8.0\Include\minwin;C:\Program Files (x86)\Windows Phone Kits\8.0\Include\wrl;;
+       Done executing task "SetEnv".
+     1>Done building target "SetBuildDefaultEnvironmentVariables" in project "EncoderRTComponent.vcxproj".
+       Target "SetUserMacroEnvironmentVariables" skipped, due to false condition; ('@(BuildMacro)' != '') was evaluated as ('' != '').
+     1>Target "GetResolvedWinMD" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "PrepareForBuild" depends on it):
+     1>Done building target "GetResolvedWinMD" in project "EncoderRTComponent.vcxproj".
+     1>Target "PlatformPrepareForBuild" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.Cpp.Platform.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "PrepareForBuild" depends on it):
+       Task "VCMessage" skipped, due to false condition; ('$(_Error64bitToolsNotInstalled)' == 'true') was evaluated as ('' == 'true').
+       Task "VCMessage" skipped, due to false condition; ('$(ConfigurationPlatformExists)' != 'true') was evaluated as ('true' != 'true').
+       Task "VCMessage" skipped, due to false condition; ('$(ToolsetTargetsFound)' != 'true') was evaluated as ('true' != 'true').
+     1>Done building target "PlatformPrepareForBuild" in project "EncoderRTComponent.vcxproj".
+       Target "PlatformPrepareForBuild" skipped. Previously built successfully.
+       Target "GetFrameworkPaths" skipped. Previously built successfully.
+       Target "GetReferenceAssemblyPaths" skipped. Previously built successfully.
+       Target "AssignLinkMetadata" skipped, due to false condition; ( '$(SynthesizeLinkMetadata)' == 'true' ) was evaluated as ( '' == 'true' ).
+     1>Target "SetCABuildNativeEnvironmentVariables" in file "C:\Program Files (x86)\MSBuild\Microsoft\VisualStudio\v12.0\CodeAnalysis\Microsoft.CodeAnalysis.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "PrepareForBuild" depends on it):
+       Initializing task factory "CodeTaskFactory" from assembly "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Build.Tasks.v12.0.dll".
+       Using "SetEnvironmentVariable" task from the task factory "Code Task Factory".
+       Task "SetEnvironmentVariable"
+       Done executing task "SetEnvironmentVariable".
+     1>Done building target "SetCABuildNativeEnvironmentVariables" in project "EncoderRTComponent.vcxproj".
+     1>Target "PrepareForBuild" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "ResolveAssemblyReferences" depends on it):
+       Task "VCMessage" skipped, due to false condition; ('$(DesignTimeBuild)'!='true' and '$(ConfigurationPlatformExists)' != 'true') was evaluated as (''!='true' and 'true' != 'true').
+       Using "MakeDir" task from assembly "Microsoft.Build.Tasks.v12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+       Task "MakeDir"
+       Done executing task "MakeDir".
+       Task "VCMessage" skipped, due to false condition; ('$(DesignTimeBuild)'!='true' and '$(WindowsAppContainer)'=='true' and '$(ConfigurationType)'!='Application' and '$(ConfigurationType)'!='DynamicLibrary' and '$(ConfigurationType)'!='StaticLibrary') was evaluated as (''!='true' and 'false'=='true' and 'DynamicLibrary'!='Application' and 'DynamicLibrary'!='DynamicLibrary' and 'DynamicLibrary'!='StaticLibrary').
+       Task "VCMessage" skipped, due to false condition; ('$(DesignTimeBuild)'!='true' and '$(VCInstallDir)'=='' and '$(UseEnv)' != 'true' and ($(TargetFrameworkVersion)=='v3.5' or $(TargetFrameworkVersion)=='v3.0' or $(TargetFrameworkVersion)=='v2.0' )) was evaluated as (''!='true' and 'C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\'=='' and '' != 'true' and (v8.0=='v3.5' or v8.0=='v3.0' or v8.0=='v2.0' )).
+       Task "VCMessage" skipped, due to false condition; ('$(DesignTimeBuild)'!='true' and '$(VCInstallDir)'=='' and '$(UseEnv)' != 'true' and '$(PlatformToolset)'=='v90') was evaluated as (''!='true' and 'C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\'=='' and '' != 'true' and 'v110_wp80'=='v90').
+       Task "VCMessage" skipped, due to false condition; ('$(VCInstallDir)'=='' and '$(UseEnv)' != 'true') was evaluated as ('C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\'=='' and '' != 'true').
+       Task "VCMessage" skipped, due to false condition; ('$(WindowsSDKDir)'=='' and '$(UseEnv)' != 'true') was evaluated as ('C:\Program Files (x86)\Windows Phone Kits\8.0\'=='' and '' != 'true').
+       Task "VCMessage" skipped, due to false condition; ('$(IntDirTrailingSlashWarning)'=='true') was evaluated as (''=='true').
+       Task "VCMessage" skipped, due to false condition; ('$(OutDirTrailingSlashWarning)'=='true') was evaluated as (''=='true').
+       Task "VCMessage" skipped, due to false condition; ('%(CompatibilityIssues.Identity)' != '' and '$(DesignTimeBuild)'!='true') was evaluated as ('' != '' and ''!='true').
+       Task "MakeDir"
+       Done executing task "MakeDir".
+     1>Done building target "PrepareForBuild" in project "EncoderRTComponent.vcxproj".
+       Target "_PrepareForReferenceResolution" skipped. Previously built successfully.
+       Target "ComputeCrtSDKReference" skipped, due to false condition; ('@(ClCompile)'!='' and '$(WindowsAppContainer)'=='true' and '$(UseCrtSDKReference)' != 'false') was evaluated as ('..\..\..\console\common\src\read_config.cpp;..\..\..\console\enc\src\welsenc.cpp;EncoderRTComponent.cpp'!='' and 'false'=='true' and 'false' != 'false').
+     1>Target "GetInstalledSDKLocations" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "ResolveSDKReferences" depends on it):
+       Task "GetInstalledSDKLocations" skipped, due to false condition; ('@(SDKReference)' != '') was evaluated as ('' != '').
+     1>Done building target "GetInstalledSDKLocations" in project "EncoderRTComponent.vcxproj".
+     1>Target "ResolveSDKReferences" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "ResolveAssemblyReferences" depends on it):
+       Task "ResolveSDKReference" skipped, due to false condition; ('@(SDKReference)'!='') was evaluated as (''!='').
+     1>Done building target "ResolveSDKReferences" in project "EncoderRTComponent.vcxproj".
+       Target "ResolveSDKReferences" skipped. Previously built successfully.
+     1>Target "ExpandSDKReferences" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "ResolveAssemblyReferences" depends on it):
+       Task "GetSDKReferenceFiles" skipped, due to false condition; ('@(ResolvedSDKReference)'!='') was evaluated as (''!='').
+     1>Done building target "ExpandSDKReferences" in project "EncoderRTComponent.vcxproj".
+     1>Target "ResolveAssemblyReferences" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "ResolveReferences" depends on it):
+       Using "ResolveAssemblyReference" task from assembly "Microsoft.Build.Tasks.v12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+       Task "ResolveAssemblyReference"
+         TargetFrameworkMoniker:
+             
+         TargetFrameworkMonikerDisplayName:
+             
+         TargetedRuntimeVersion:
+             
+         Assemblies:
+             platform.winmd
+                 Private = 'false'
+             C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata\Windows.winmd
+         AssemblyFiles:
+         CandidateAssemblyFiles:
+         TargetFrameworkDirectories:
+             C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata
+         InstalledAssemblyTables:
+         IgnoreInstalledAssemblyTable:
+             False
+         SearchPaths:
+             {CandidateAssemblyFiles}
+             C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\lib
+             {HintPathFromItem}
+             {TargetFrameworkDirectory}
+             {Registry:Software\Microsoft\,,AssemblyFoldersEx}
+             {GAC}
+             {RawFileName}
+             ..\..\..\..\..\bin\Win32\Debug\
+         AllowedAssemblyExtensions:
+             .winmd
+             .dll
+             .exe
+         AllowedRelatedFileExtensions:
+             .pdb
+             .xml
+             .pri
+         AppConfigFile:
+             
+         AutoUnify:
+             True
+         CopyLocalDependenciesWhenParentReferenceInGac:
+             True
+         FindDependencies:
+             False
+         TargetProcessorArchitecture:
+             x86
+         StateFile:
+             Debug\EncoderRTComponent.vcxprojResolveAssemblyReference.cache
+         InstalledAssemblySubsetTables:
+         IgnoreInstalledAssemblySubsetTable:
+             False
+         TargetFrameworkSubsets:
+         FullTargetFrameworkSubsetNames:
+             Full
+         ProfileName:
+             
+         FullFrameworkFolders:
+         LatestTargetFrameworkDirectories:
+         ProfileTablesLocation:
+         Primary reference "platform, Version=255.255.255.255, Culture=neutral, PublicKeyToken=null, ContentType=WindowsRuntime".
+             Resolved file path is "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\lib\platform.winmd".
+             Reference found at search path location "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\lib".
+                 For SearchPath "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\lib".
+                 Considered "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\lib\platform.winmd.winmd", but it didn't exist.
+                 Considered "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\lib\platform.winmd.dll", but it didn't exist.
+                 Considered "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\lib\platform.winmd.exe", but it didn't exist.
+             This reference is not "CopyLocal" because at least one source item had "Private" set to "false" and no source items had "Private" set to "true".
+             The ImageRuntimeVersion for this reference is "WindowsRuntime 1.2;Native code 1.2".
+             This reference is a WinMDFile.
+         Primary reference "Windows, Version=255.255.255.255, Culture=neutral, PublicKeyToken=null, ContentType=WindowsRuntime".
+             Resolved file path is "C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata\Windows.winmd".
+             Reference found at search path location "{RawFileName}".
+             This reference is not "CopyLocal" because it's in a Frameworks directory.
+             The ImageRuntimeVersion for this reference is "WindowsRuntime 1.2".
+             This reference is a WinMDFile.
+       Done executing task "ResolveAssemblyReference".
+     1>Done building target "ResolveAssemblyReferences" in project "EncoderRTComponent.vcxproj".
+       Target "GenerateBindingRedirects" skipped, due to false condition; ('$(AutoGenerateBindingRedirects)' == 'true' and '$(GenerateBindingRedirectsOutputType)' == 'true') was evaluated as ('' == 'true' and '' == 'true').
+       Target "GenerateBindingRedirectsUpdateAppConfig" skipped, due to false condition; ('$(AutoGenerateBindingRedirects)' == 'true' and '$(GenerateBindingRedirectsOutputType)' == 'true' and Exists('$(_GenerateBindingRedirectsIntermediateAppConfig)')) was evaluated as ('' == 'true' and '' == 'true' and Exists('Debug\EncoderRTComponent.vcxproj.EncoderRTComponent.dll.config')).
+       Target "ResolveComReferences" skipped, due to false condition; ('@(COMReference)'!='' or '@(COMFileReference)'!='') was evaluated as (''!='' or ''!='').
+     1>Target "AfterResolveReferences" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "ResolveReferences" depends on it):
+     1>Done building target "AfterResolveReferences" in project "EncoderRTComponent.vcxproj".
+       Target "ResolveTestReferences" skipped, due to false condition; ('@(Shadow)'!='') was evaluated as (''!='').
+     1>Target "ResolveReferences" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "Build" depends on it):
+     1>Done building target "ResolveReferences" in project "EncoderRTComponent.vcxproj".
+       Target "PrepareForBuild" skipped. Previously built successfully.
+       Target "PrepareForBuild" skipped. Previously built successfully.
+     1>Target "InitializeBuildStatus" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "Build" depends on it):
+       Using "ReadLinesFromFile" task from assembly "Microsoft.Build.Tasks.v12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+       Task "ReadLinesFromFile"
+       Done executing task "ReadLinesFromFile".
+       Using "WriteLinesToFile" task from assembly "Microsoft.Build.Tasks.v12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+       Task "WriteLinesToFile"
+       Done executing task "WriteLinesToFile".
+       Using "Touch" task from assembly "Microsoft.Build.Tasks.v12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+       Task "Touch"
+         Creating "Debug\EncoderRTComponent.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       Done executing task "Touch".
+     1>Done building target "InitializeBuildStatus" in project "EncoderRTComponent.vcxproj".
+       Target "AssignProjectConfiguration" skipped. Previously built successfully.
+       Target "_SplitProjectReferencesByFileExistence" skipped. Previously built successfully.
+     1>Target "BuildGenerateSourcesTraverse" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "BuildGenerateSources" depends on it):
+       Task "MSBuild" skipped, due to false condition; ('$(BuildPassReferences)' == 'true' and '@(ProjectReferenceWithConfiguration)' != '' and '@(_MSBuildProjectReferenceExistent)' != '' and '%(_MSBuildProjectReferenceExistent.BuildReference)' == 'true') was evaluated as ('' == 'true' and '' != '' and '' != '' and '' == 'true').
+     1>Done building target "BuildGenerateSourcesTraverse" in project "EncoderRTComponent.vcxproj".
+       Target "PrepareForBuild" skipped. Previously built successfully.
+       Target "ResolveReferences" skipped. Previously built successfully.
+     1>Target "BeforeBuildGenerateSources" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.BuildSteps.Targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "_BuildGenerateSourcesAction" depends on it):
+     1>Done building target "BeforeBuildGenerateSources" in project "EncoderRTComponent.vcxproj".
+     1>Target "PreBuildEvent" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppCommon.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "_BuildGenerateSourcesAction" depends on it):
+       Task "Message" skipped, due to false condition; ('%(PreBuildEvent.Message)' != '' and '%(PreBuildEvent.Command)' != '') was evaluated as ('' != '' and '' != '').
+       Task "Exec" skipped, due to false condition; ('%(PreBuildEvent.Command)' != '') was evaluated as ('' != '').
+     1>Done building target "PreBuildEvent" in project "EncoderRTComponent.vcxproj".
+       Target "CustomBuild" skipped, due to false condition; ('@(CustomBuild)' != '') was evaluated as ('' != '').
+       Target "FxCompile" skipped, due to false condition; ('@(FxCompile)' != '') was evaluated as ('' != '').
+       Target "Xsd" skipped, due to false condition; ('@(Xsd)' != '') was evaluated as ('' != '').
+     1>Target "_Xsd" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "_BuildGenerateSourcesAction" depends on it):
+     1>Done building target "_Xsd" in project "EncoderRTComponent.vcxproj".
+     1>Target "MakeDirsForMidl" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "_Midl" depends on it):
+       Task "Makedir"
+       Done executing task "Makedir".
+     1>Done building target "MakeDirsForMidl" in project "EncoderRTComponent.vcxproj".
+       Target "Midl" skipped, due to false condition; ('@(Midl)' != '') was evaluated as ('' != '').
+       Target "CustomBuild" skipped, due to false condition; ('@(CustomBuild)' != '') was evaluated as ('' != '').
+       Target "FxCompile" skipped, due to false condition; ('@(FxCompile)' != '') was evaluated as ('' != '').
+     1>Target "ComputeMIDLGeneratedCompileInputs" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "_Midl" depends on it):
+     1>Done building target "ComputeMIDLGeneratedCompileInputs" in project "EncoderRTComponent.vcxproj".
+     1>Target "AfterMidl" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "_Midl" depends on it):
+     1>Done building target "AfterMidl" in project "EncoderRTComponent.vcxproj".
+     1>Target "_Midl" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "_BuildGenerateSourcesAction" depends on it):
+     1>Done building target "_Midl" in project "EncoderRTComponent.vcxproj".
+     1>Target "AfterBuildGenerateSources" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.BuildSteps.Targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "_BuildGenerateSourcesAction" depends on it):
+     1>Done building target "AfterBuildGenerateSources" in project "EncoderRTComponent.vcxproj".
+     1>Target "AfterBuildGenerateSourcesEvent" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "_BuildGenerateSourcesAction" depends on it):
+     1>Done building target "AfterBuildGenerateSourcesEvent" in project "EncoderRTComponent.vcxproj".
+     1>Target "_BuildGenerateSourcesAction" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "BuildGenerateSources" depends on it):
+     1>Done building target "_BuildGenerateSourcesAction" in project "EncoderRTComponent.vcxproj".
+     1>Target "BuildGenerateSources" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "Build" depends on it):
+     1>Done building target "BuildGenerateSources" in project "EncoderRTComponent.vcxproj".
+       Target "AssignProjectConfiguration" skipped. Previously built successfully.
+       Target "_SplitProjectReferencesByFileExistence" skipped. Previously built successfully.
+     1>Target "BuildCompileTraverse" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "BuildCompile" depends on it):
+       Task "MSBuild" skipped, due to false condition; ('$(BuildPassReferences)' == 'true' and '@(ProjectReferenceWithConfiguration)' != '' and '@(_MSBuildProjectReferenceExistent)' != ''  and '%(_MSBuildProjectReferenceExistent.BuildReference)' == 'true') was evaluated as ('' == 'true' and '' != '' and '' != ''  and '' == 'true').
+     1>Done building target "BuildCompileTraverse" in project "EncoderRTComponent.vcxproj".
+       Target "PrepareForBuild" skipped. Previously built successfully.
+       Target "ResolveReferences" skipped. Previously built successfully.
+     1>Target "BeforeClCompile" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "_ClCompile" depends on it):
+     1>Done building target "BeforeClCompile" in project "EncoderRTComponent.vcxproj".
+       Target "ComputeMIDLGeneratedCompileInputs" skipped. Previously built successfully.
+     1>Target "ComputeCLInputPDBName" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "_ClCompile" depends on it):
+     1>Done building target "ComputeCLInputPDBName" in project "EncoderRTComponent.vcxproj".
+       Target "ResolveReferences" skipped. Previously built successfully.
+     1>Target "ComputeReferenceCLInput" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "_ClCompile" depends on it):
+       Task "WriteLinesToFile" skipped, due to false condition; (('@(_ReferenceCopyLocalPaths)'!='') and '$(DesignTimeBuild)' != 'true') was evaluated as ((''!='') and '' != 'true').
+       Task "Message" skipped, due to false condition; ('$(_REFERENCE_DEBUG)'=='true') was evaluated as (''=='true').
+     1>Done building target "ComputeReferenceCLInput" in project "EncoderRTComponent.vcxproj".
+     1>Target "MakeDirsForCl" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "_ClCompile" depends on it):
+       Task "MakeDir"
+       Done executing task "MakeDir".
+     1>Done building target "MakeDirsForCl" in project "EncoderRTComponent.vcxproj".
+       Target "PrepareForBuild" skipped. Previously built successfully.
+       Target "SetBuildDefaultEnvironmentVariables" skipped. Previously built successfully.
+       Target "SetUserMacroEnvironmentVariables" skipped, due to false condition; ('@(BuildMacro)' != '') was evaluated as ('' != '').
+     1>Target "_SelectedFiles" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "SelectClCompile" depends on it):
+     1>Done building target "_SelectedFiles" in project "EncoderRTComponent.vcxproj".
+       Target "ComputeMIDLGeneratedCompileInputs" skipped. Previously built successfully.
+       Target "ComputeCLInputPDBName" skipped. Previously built successfully.
+       Target "ComputeReferenceCLInput" skipped. Previously built successfully.
+       Target "_SelectedFiles" skipped. Previously built successfully.
+     1>Target "SelectCustomBuild" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "SelectClCompile" depends on it):
+     1>Done building target "SelectCustomBuild" in project "EncoderRTComponent.vcxproj".
+     1>Target "SelectClCompile" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "ClCompile" depends on it):
+     1>Done building target "SelectClCompile" in project "EncoderRTComponent.vcxproj".
+       Target "GenerateTargetFrameworkMonikerAttribute" skipped, due to false condition; ('$(GenerateTargetFrameworkAttribute)' == 'true') was evaluated as ('false' == 'true').
+       Target "ManagedIncrementalBuildPreProcessDependencyGraph" skipped, due to false condition; ('@(ClCompile)' != '' and '$(EnableManagedIncrementalBuild)' == 'True') was evaluated as ('..\..\..\console\common\src\read_config.cpp;..\..\..\console\enc\src\welsenc.cpp;EncoderRTComponent.cpp' != '' and 'false' == 'True').
+     1>Target "ClCompile" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppCommon.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (target "_ClCompile" depends on it):
+       Using "Delete" task from assembly "Microsoft.Build.Tasks.v12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+       Task "Delete"
+       Done executing task "Delete".
+       Task "CL" skipped, due to false condition; ('%(ClCompile.PrecompiledHeader)' == 'Create' and '%(ClCompile.ExcludedFromBuild)'!='true' and '%(ClCompile.CompilerIteration)' == '') was evaluated as ('NotUsing' == 'Create' and ''!='true' and '' == '').
+       Using "CL" task from assembly "Microsoft.Build.CppTasks.Common.v110, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+       Task "CL"
+         Forcing recompile of all source files due to missing PDB "Debug\vc110.pdb".
+         Environment Variables passed to tool:
+           VS_UNICODE_OUTPUT=564
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\CL.exe /c /I..\..\..\..\console\enc\inc /I..\..\..\..\console\common\inc /I..\..\..\..\api\svc /I..\..\..\..\encoder\core\inc /I..\..\..\..\common\inc /I..\..\..\..\processing\interface /IE:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\ /I"Generated Files\\" /IDebug\ /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /ZI /ZW /ZW:nostdlib /nologo /W3 /WX- /sdl /MP /Od /Oy- /D _LOAD_WP_DLL /D WELS_WIN_PHONE /D _WINRT_DLL /D _CRT_SECURE_NO_WARNINGS /D _WINDLL /D _UNICODE /D UNICODE /D _DEBUG /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /FU"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\lib\platform.winmd" /FU"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata\Windows.winmd" /analyze- /errorReport:prompt ..\..\..\console\common\src\read_config.cpp ..\..\..\console\enc\src\welsenc.cpp EncoderRTComponent.cpp
+         Tracking command:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\Tracker.exe /d C:\Windows\Microsoft.NET\Framework\v4.0.30319\FileTracker.dll /i E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\Debug /r "E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\BUILD\WINDOWSPHONE\ENC\ENCODERRTCOMPONENT.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\CONSOLE\COMMON\SRC\READ_CONFIG.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\CODEC\CONSOLE\ENC\SRC\WELSENC.CPP" /b MSBuildConsole_CancelEvent434f97d9a0d44498b53d38036d142af5  /c "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\CL.exe"  /c /I..\..\..\..\console\enc\inc /I..\..\..\..\console\common\inc /I..\..\..\..\api\svc /I..\..\..\..\encoder\core\inc /I..\..\..\..\common\inc /I..\..\..\..\processing\interface /IE:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\ /I"Generated Files\\" /IDebug\ /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /ZI /ZW /ZW:nostdlib /nologo /W3 /WX- /sdl /MP /Od /Oy- /D _LOAD_WP_DLL /D WELS_WIN_PHONE /D _WINRT_DLL /D _CRT_SECURE_NO_WARNINGS /D _WINDLL /D _UNICODE /D UNICODE /D _DEBUG /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /FU"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\lib\platform.winmd" /FU"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata\Windows.winmd" /analyze- /errorReport:prompt ..\..\..\console\common\src\read_config.cpp ..\..\..\console\enc\src\welsenc.cpp EncoderRTComponent.cpp
+         read_config.cpp
+         welsenc.cpp
+         EncoderRTComponent.cpp
+     1>e:\project\openh264\source_wp8\codec\console\common\src\read_config.cpp(41): warning C4005: '_CRT_SECURE_NO_WARNINGS' : macro redefinition
+                 command-line arguments :  see previous definition of '_CRT_SECURE_NO_WARNINGS'
+     1>e:\project\openh264\source_wp8\codec\console\enc\src\welsenc.cpp(33): warning C4005: '_CRT_SECURE_NO_WARNINGS' : macro redefinition
+                 command-line arguments :  see previous definition of '_CRT_SECURE_NO_WARNINGS'
+     1>e:\project\openh264\source_wp8\codec\console\common\src\read_config.cpp(44): fatal error C1083: Cannot open include file: 'read_config.h': No such file or directory
+     1>e:\project\openh264\source_wp8\codec\console\enc\src\welsenc.cpp(55): fatal error C1083: Cannot open include file: 'measure_time.h': No such file or directory
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\limits.h : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\crtdefs.h : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\crtdefs.h(2059): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\limits.h(124): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\climits(14): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\cmath : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\math.h : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\math.h(642): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\xtgmath.h : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\xtr1common : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\xtr1common(426): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\xtgmath.h(121): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\cmath(66): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\cstdio : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\stdio.h : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\swprintf.inl : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\swprintf.inl(130): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\stdio.h(728): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\cstdio(62): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\cstdlib : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\stdlib.h : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\stdlib.h(934): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\cstdlib(47): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\streambuf : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\xiosbase : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\xlocale : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\cstring : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\cstring(35): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\stdexcept : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\exception : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\xstddef : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\cstddef : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\stddef.h : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\stddef.h(78): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\cstddef(35): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\xstddef(1136): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\eh.h : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\eh.h(85): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\malloc.h : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\malloc.h(297): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\exception(572): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\xstring : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\xmemory0 : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\limits : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\ymath.h : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\ymath.h(77): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\cfloat : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\float.h : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\crtwrn.h : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\crtwrn.h(65): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\float.h(312): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\cfloat(14): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\cwchar : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\wchar.h : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\wtime.inl : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\wtime.inl(62): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\wchar.h(1304): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\cwchar(52): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\limits(1516): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\new : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\new(116): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\xutility : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\utility : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\iosfwd : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\crtdbg.h : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\crtdbg.h(1095): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\iosfwd(738): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\type_traits : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\xrefwrap : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\xrefwrap(931): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\type_traits(1832): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\utility(451): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\xutility(3694): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\xatomic0.h : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\xatomic0.h(323): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\intrin.h : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\setjmp.h : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\setjmp.h(185): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\immintrin.h : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\wmmintrin.h : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\nmmintrin.h : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\smmintrin.h : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\tmmintrin.h : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\pmmintrin.h : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\emmintrin.h : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\xmmintrin.h : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\mmintrin.h : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\mmintrin.h(189): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\xmmintrin.h(492): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\emmintrin.h(416): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\pmmintrin.h(105): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\tmmintrin.h(114): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\smmintrin.h(259): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\nmmintrin.h(137): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\wmmintrin.h(90): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\immintrin.h(1875): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\ammintrin.h : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\ammintrin.h(299): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\mm3dnow.h : error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\mm3dnow.h(71): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\intrin.h(1033): error C2471: cannot update program database 'e:\project\openh264\source_wp8\codec\build\windowsphone\enc\debug\vc110.pdb' (EncoderRTComponent.cpp)
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\wpsdk\wp80\include\intrin.h(1033): fatal error C1003: error count exceeds 100; stopping compilation (EncoderRTComponent.cpp)
+         The command exited with code 2.
+       Done executing task "CL" -- FAILED.
+     1>Done building target "ClCompile" in project "EncoderRTComponent.vcxproj" -- FAILED.
+     1>Done Building Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderRTComponent.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:01.03

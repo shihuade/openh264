@@ -124,7 +124,7 @@
     <Content Include="BA_MW_D.264">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="welsdec.dll">
+    <Content Include="openh264.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Properties\AppManifest.xml" />
@@ -176,7 +176,7 @@
   -->
   <ProjectExtensions />
   <PropertyGroup>
-    <PreBuildEvent>copy   /y  ..\..\..\..\..\..\..\..\bin\$(Platform)\$(Configuration)\welsdec.dll   ..\..\..\
+    <PreBuildEvent>copy   /y  ..\..\..\..\..\..\..\..\bin\$(Platform)\$(Configuration)\openh264.dll   ..\..\..\
 copy   /y  ..\..\..\..\..\..\..\..\res\BA_MW_D.264           ..\..\..\
 copy   /y  ..\..\..\..\..\..\..\..\res\BA1_FT_C.264            ..\..\..\
 copy   /y  ..\..\..\..\..\..\..\..\res\BAMQ1_JVC_C.264   ..\..\..\</PreBuildEvent>

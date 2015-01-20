@@ -115,12 +115,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="welsenc.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="welsvp.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="CiscoVT2people_160x96_6fps.yuv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -131,6 +125,9 @@
     <None Include="Properties\WMAppManifest.xml">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="openh264.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="welsenc.cfg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -179,8 +176,7 @@
   -->
   <ProjectExtensions />
   <PropertyGroup>
-    <PreBuildEvent>copy  /y   ..\..\..\..\..\..\..\..\bin\$(Platform)\$(Configuration)\welsenc.dll    ..\..\..\
-copy  /y   ..\..\..\..\..\..\..\..\bin\$(Platform)\$(Configuration)\welsvp.dll    ..\..\..\
+    <PreBuildEvent>copy  /y   ..\..\..\..\..\..\..\..\bin\$(Platform)\$(Configuration)\openh264.dll    ..\..\..\
 copy  /y   ..\..\..\..\..\..\..\..\res\*.yuv    ..\..\..\
 </PreBuildEvent>
   </PropertyGroup>

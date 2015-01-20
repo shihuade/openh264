@@ -1,0 +1,18 @@
+﻿<xapCache source="E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderApp\Bin\ARM\Release\EncoderApp_Release_ARM.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="1/20/2015 4:17:53 PM">
+  <file source="E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderApp\obj\ARM\Release\EncoderApp.dll" archivePath="EncoderApp.dll" lastWriteTime="1/20/2015 4:17:52 PM" />
+  <file source="E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderApp\openh264.dll" archivePath="openh264.dll" lastWriteTime="1/20/2015 4:16:29 PM" />
+  <file source="E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderApp\welsenc.cfg" archivePath="welsenc.cfg" lastWriteTime="1/20/2015 2:29:34 PM" />
+  <file source="E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderApp\Assets\AlignmentGrid.png" archivePath="Assets\AlignmentGrid.png" lastWriteTime="1/8/2015 2:41:31 PM" />
+  <file source="E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderApp\Assets\Tiles\FlipCycleTileLarge.png" archivePath="Assets\Tiles\FlipCycleTileLarge.png" lastWriteTime="1/8/2015 2:41:31 PM" />
+  <file source="E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderApp\Assets\Tiles\FlipCycleTileSmall.png" archivePath="Assets\Tiles\FlipCycleTileSmall.png" lastWriteTime="1/8/2015 2:41:31 PM" />
+  <file source="E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderApp\Assets\Tiles\IconicTileMediumLarge.png" archivePath="Assets\Tiles\IconicTileMediumLarge.png" lastWriteTime="1/8/2015 2:41:31 PM" />
+  <file source="E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderApp\Assets\Tiles\IconicTileSmall.png" archivePath="Assets\Tiles\IconicTileSmall.png" lastWriteTime="1/8/2015 2:41:31 PM" />
+  <file source="E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderApp\Bin\ARM\Release\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="1/20/2015 4:16:33 PM" />
+  <file source="E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderApp\Bin\ARM\Release\CiscoVT2people_160x96_6fps.yuv" archivePath="CiscoVT2people_160x96_6fps.yuv" lastWriteTime="1/7/2015 8:26:28 PM" />
+  <file source="E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderApp\Bin\ARM\Release\layer2.cfg" archivePath="layer2.cfg" lastWriteTime="1/20/2015 2:29:43 PM" />
+  <file source="E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderApp\Bin\ARM\Release\Assets\ApplicationIcon.png" archivePath="Assets\ApplicationIcon.png" lastWriteTime="1/8/2015 2:41:31 PM" />
+  <file source="E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderApp\Bin\ARM\Release\Assets\Tiles\FlipCycleTileMedium.png" archivePath="Assets\Tiles\FlipCycleTileMedium.png" lastWriteTime="1/8/2015 2:41:31 PM" />
+  <file source="E:\Project\Openh264\Source_WP8\bin\ARM\Release\WindowsPhoneRuntimeComponent1.winmd" archivePath="WindowsPhoneRuntimeComponent1.winmd" lastWriteTime="1/20/2015 4:16:31 PM" />
+  <file source="E:\Project\Openh264\Source_WP8\bin\ARM\Release\EncoderRTComponent.dll" archivePath="EncoderRTComponent.dll" lastWriteTime="1/20/2015 4:16:31 PM" />
+  <file source="E:\Project\Openh264\Source_WP8\codec\build\windowsphone\enc\EncoderApp\Bin\ARM\Release\Properties\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="1/20/2015 4:16:33 PM" />
+</xapCache>

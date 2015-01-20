@@ -994,7 +994,7 @@ int main (int argc, char** argv)
   HMODULE                   phSVCDLLHandler     = NULL;
   pfSVCEncCreateHandler     pfSVCEncCreator     = NULL;
   pfSVCEncDestroyHandler    pfSVCEncDestructor  = NULL;
-  LPCWSTR                   cSVCDLLName         =  L"welsenc.dll";//L"openh264"; //L"welsenc.dll";
+  LPCWSTR                   cSVCDLLName         =  L"openh264.dll";//L"openh264"; //L"welsenc.dll";
 
   phSVCDLLHandler  = LoadPackagedLibrary(cSVCDLLName, 0);
   DWORD dw = GetLastError();
