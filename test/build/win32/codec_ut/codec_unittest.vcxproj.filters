@@ -25,12 +25,6 @@
     <ClCompile Include="..\..\..\api\BaseEncoderTest.cpp">
       <Filter>api</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\api\c_interface_test.c">
-      <Filter>api</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\api\cpp_interface_test.cpp">
-      <Filter>api</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\api\DataGenerator.cpp">
       <Filter>api</Filter>
     </ClCompile>
@@ -133,5 +127,7 @@
     <ClCompile Include="..\..\..\common\ExpandPicture.cpp">
       <Filter>common</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\api\c_interface_test.c" />
+    <ClCompile Include="..\..\..\api\cpp_interface_test.cpp" />
   </ItemGroup>
 </Project>

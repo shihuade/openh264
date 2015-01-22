@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{c11a448e-21bc-428f-a1f0-1f6863b39712}</ProjectGuid>
+    <RootNamespace>Codec_UT_RTDLL</RootNamespace>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110_wp80</PlatformToolset>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110_wp80</PlatformToolset>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v110_wp80</PlatformToolset>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v110_wp80</PlatformToolset>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <OutDir>.\..\..\..\..\bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(OutDir)$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <AdditionalUsingDirectories>$(WindowsSDK_MetadataPath);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>_USRDLL;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <AdditionalUsingDirectories>$(WindowsSDK_MetadataPath);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <ClCompile>
+      <PreprocessorDefinitions>_VARIADIC_MAX=10;_CRT_SECURE_NO_WARNINGS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <CompileAsWinRT>true</CompileAsWinRT>
+      <AdditionalUsingDirectories>$(WindowsSDK_MetadataPath);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
+      <AdditionalIncludeDirectories>.\;..\..\..\;..\..\..\..\codec\encoder\plus\inc;..\..\..\..\codec\encoder\core\inc;..\..\..\..\codec\common\inc;..\..\..\..\codec\api\svc;..\..\..\..\gtest\include;..\..\..\codec\processing\src\common;..\..\..\..\codec\processing\interface;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MinimalRebuild>false</MinimalRebuild>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>gtest.lib;openh264.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <ClCompile>
+      <PreprocessorDefinitions>_USRDLL;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <AdditionalUsingDirectories>$(WindowsSDK_MetadataPath);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="Codec_UT_RTDLL.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\api\BaseDecoderTest.cpp" />
+    <ClCompile Include="..\..\..\api\BaseEncoderTest.cpp" />
+    <ClCompile Include="..\..\..\api\DataGenerator.cpp" />
+    <ClCompile Include="..\..\..\api\decoder_test.cpp" />
+    <ClCompile Include="..\..\..\api\decode_encode_test.cpp" />
+    <ClCompile Include="..\..\..\api\encoder_test.cpp" />
+    <ClCompile Include="..\..\..\api\encode_decode_api_test.cpp" />
+    <ClCompile Include="..\..\..\api\sha1.c">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">false</CompileAsWinRT>
+      <MinimalRebuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</MinimalRebuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\api\simple_test.cpp" />
+    <ClCompile Include="..\..\..\common\ExpandPicture.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\codec\processing\src\common;..\..\..\..\codec\decoder\core\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">..\..\..\codec\processing\src\common;..\..\..\..\codec\decoder\core\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\codec\processing\src\common;..\..\..\..\codec\decoder\core\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">..\..\..\codec\processing\src\common;..\..\..\..\codec\decoder\core\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\..\decoder\DecUT_Deblock.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\..\codec\api\svc;..\..\..\..\gtest\include;..\..\..\;..\..\..\..\codec\decoder\plus\inc;..\..\..\..\codec\common\inc;..\..\..\..\codec\decoder\core\inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">..\..\..\..\codec\api\svc;..\..\..\..\gtest\include;..\..\..\;..\..\..\..\codec\decoder\plus\inc;..\..\..\..\codec\common\inc;..\..\..\..\codec\decoder\core\inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\..\codec\api\svc;..\..\..\..\gtest\include;..\..\..\;..\..\..\..\codec\decoder\plus\inc;..\..\..\..\codec\common\inc;..\..\..\..\codec\decoder\core\inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">..\..\..\..\codec\api\svc;..\..\..\..\gtest\include;..\..\..\;..\..\..\..\codec\decoder\plus\inc;..\..\..\..\codec\common\inc;..\..\..\..\codec\decoder\core\inc</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\..\decoder\DecUT_DeblockCommon.cpp" />
+    <ClCompile Include="..\..\..\decoder\DecUT_DecExt.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\..\codec\api\svc;..\..\..\..\gtest\include;..\..\..\;..\..\..\..\codec\decoder\plus\inc;..\..\..\..\codec\common\inc;..\..\..\..\codec\decoder\core\inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">..\..\..\..\codec\api\svc;..\..\..\..\gtest\include;..\..\..\;..\..\..\..\codec\decoder\plus\inc;..\..\..\..\codec\common\inc;..\..\..\..\codec\decoder\core\inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\..\codec\api\svc;..\..\..\..\gtest\include;..\..\..\;..\..\..\..\codec\decoder\plus\inc;..\..\..\..\codec\common\inc;..\..\..\..\codec\decoder\core\inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">..\..\..\..\codec\api\svc;..\..\..\..\gtest\include;..\..\..\;..\..\..\..\codec\decoder\plus\inc;..\..\..\..\codec\common\inc;..\..\..\..\codec\decoder\core\inc</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\..\decoder\DecUT_ErrorConcealment.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\..\codec\api\svc;..\..\..\..\gtest\include;..\..\..\;..\..\..\..\codec\decoder\plus\inc;..\..\..\..\codec\common\inc;..\..\..\..\codec\decoder\core\inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">..\..\..\..\codec\api\svc;..\..\..\..\gtest\include;..\..\..\;..\..\..\..\codec\decoder\plus\inc;..\..\..\..\codec\common\inc;..\..\..\..\codec\decoder\core\inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\..\codec\api\svc;..\..\..\..\gtest\include;..\..\..\;..\..\..\..\codec\decoder\plus\inc;..\..\..\..\codec\common\inc;..\..\..\..\codec\decoder\core\inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">..\..\..\..\codec\api\svc;..\..\..\..\gtest\include;..\..\..\;..\..\..\..\codec\decoder\plus\inc;..\..\..\..\codec\common\inc;..\..\..\..\codec\decoder\core\inc</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\..\decoder\DecUT_IdctResAddPred.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\..\codec\api\svc;..\..\..\..\gtest\include;..\..\..\;..\..\..\..\codec\decoder\plus\inc;..\..\..\..\codec\common\inc;..\..\..\..\codec\decoder\core\inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">..\..\..\..\codec\api\svc;..\..\..\..\gtest\include;..\..\..\;..\..\..\..\codec\decoder\plus\inc;..\..\..\..\codec\common\inc;..\..\..\..\codec\decoder\core\inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\..\codec\api\svc;..\..\..\..\gtest\include;..\..\..\;..\..\..\..\codec\decoder\plus\inc;..\..\..\..\codec\common\inc;..\..\..\..\codec\decoder\core\inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">..\..\..\..\codec\api\svc;..\..\..\..\gtest\include;..\..\..\;..\..\..\..\codec\decoder\plus\inc;..\..\..\..\codec\common\inc;..\..\..\..\codec\decoder\core\inc</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\..\decoder\DecUT_IntraPrediction.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\..\codec\api\svc;..\..\..\..\gtest\include;..\..\..\;..\..\..\..\codec\decoder\plus\inc;..\..\..\..\codec\common\inc;..\..\..\..\codec\decoder\core\inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">..\..\..\..\codec\api\svc;..\..\..\..\gtest\include;..\..\..\;..\..\..\..\codec\decoder\plus\inc;..\..\..\..\codec\common\inc;..\..\..\..\codec\decoder\core\inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\..\codec\api\svc;..\..\..\..\gtest\include;..\..\..\;..\..\..\..\codec\decoder\plus\inc;..\..\..\..\codec\common\inc;..\..\..\..\codec\decoder\core\inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">..\..\..\..\codec\api\svc;..\..\..\..\gtest\include;..\..\..\;..\..\..\..\codec\decoder\plus\inc;..\..\..\..\codec\common\inc;..\..\..\..\codec\decoder\core\inc</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\..\decoder\DecUT_MotionCompensation.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\..\codec\api\svc;..\..\..\..\gtest\include;..\..\..\;..\..\..\..\codec\decoder\plus\inc;..\..\..\..\codec\common\inc;..\..\..\..\codec\decoder\core\inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">..\..\..\..\codec\api\svc;..\..\..\..\gtest\include;..\..\..\;..\..\..\..\codec\decoder\plus\inc;..\..\..\..\codec\common\inc;..\..\..\..\codec\decoder\core\inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\..\codec\api\svc;..\..\..\..\gtest\include;..\..\..\;..\..\..\..\codec\decoder\plus\inc;..\..\..\..\codec\common\inc;..\..\..\..\codec\decoder\core\inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">..\..\..\..\codec\api\svc;..\..\..\..\gtest\include;..\..\..\;..\..\..\..\codec\decoder\plus\inc;..\..\..\..\codec\common\inc;..\..\..\..\codec\decoder\core\inc</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\..\decoder\DecUT_PredMv.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\..\codec\api\svc;..\..\..\..\gtest\include;..\..\..\;..\..\..\..\codec\decoder\plus\inc;..\..\..\..\codec\common\inc;..\..\..\..\codec\decoder\core\inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">..\..\..\..\codec\api\svc;..\..\..\..\gtest\include;..\..\..\;..\..\..\..\codec\decoder\plus\inc;..\..\..\..\codec\common\inc;..\..\..\..\codec\decoder\core\inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\..\codec\api\svc;..\..\..\..\gtest\include;..\..\..\;..\..\..\..\codec\decoder\plus\inc;..\..\..\..\codec\common\inc;..\..\..\..\codec\decoder\core\inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">..\..\..\..\codec\api\svc;..\..\..\..\gtest\include;..\..\..\;..\..\..\..\codec\decoder\plus\inc;..\..\..\..\codec\common\inc;..\..\..\..\codec\decoder\core\inc</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\..\encoder\EncUT_DecodeMbAux.cpp" />
+    <ClCompile Include="..\..\..\encoder\EncUT_EncoderExt.cpp" />
+    <ClCompile Include="..\..\..\encoder\EncUT_EncoderMb.cpp" />
+    <ClCompile Include="..\..\..\encoder\EncUT_EncoderMbAux.cpp" />
+    <ClCompile Include="..\..\..\encoder\EncUT_ExpGolomb.cpp" />
+    <ClCompile Include="..\..\..\encoder\EncUT_GetIntraPredictor.cpp" />
+    <ClCompile Include="..\..\..\encoder\EncUT_InterfaceTest.cpp" />
+    <ClCompile Include="..\..\..\encoder\EncUT_MBCopy.cpp" />
+    <ClCompile Include="..\..\..\encoder\EncUT_MemoryAlloc.cpp" />
+    <ClCompile Include="..\..\..\encoder\EncUT_MemoryZero.cpp" />
+    <ClCompile Include="..\..\..\encoder\EncUT_MotionEstimate.cpp" />
+    <ClCompile Include="..\..\..\encoder\EncUT_Reconstruct.cpp" />
+    <ClCompile Include="..\..\..\encoder\EncUT_Sample.cpp" />
+    <ClCompile Include="..\..\..\encoder\EncUT_SVC_me.cpp" />
+    <ClCompile Include="..\..\..\processing\ProcessUT_AdaptiveQuantization.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\;..\..\..\..\codec\processing\src\adaptivequantization;..\..\..\..\codec\common\inc;..\..\..\..\gtest\include;..\..\..\..\codec\processing\src;..\..\..\..\codec\processing\interface;..\..\..\..\codec\processing\src\common</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">..\..\..\;..\..\..\..\codec\processing\src\adaptivequantization;..\..\..\..\codec\common\inc;..\..\..\..\gtest\include;..\..\..\..\codec\processing\src;..\..\..\..\codec\processing\interface;..\..\..\..\codec\processing\src\common</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\;..\..\..\..\codec\processing\src\adaptivequantization;..\..\..\..\codec\common\inc;..\..\..\..\gtest\include;..\..\..\..\codec\processing\src;..\..\..\..\codec\processing\interface;..\..\..\..\codec\processing\src\common</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">..\..\..\;..\..\..\..\codec\processing\src\adaptivequantization;..\..\..\..\codec\common\inc;..\..\..\..\gtest\include;..\..\..\..\codec\processing\src;..\..\..\..\codec\processing\interface;..\..\..\..\codec\processing\src\common</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\..\processing\ProcessUT_DownSample.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\;..\..\..\..\codec\processing\src\downsample;..\..\..\..\codec\common\inc;..\..\..\..\gtest\include;..\..\..\..\codec\processing\src;..\..\..\..\codec\processing\interface;..\..\..\..\codec\processing\src\common</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">..\..\..\;..\..\..\..\codec\processing\src\downsample;..\..\..\..\codec\common\inc;..\..\..\..\gtest\include;..\..\..\..\codec\processing\src;..\..\..\..\codec\processing\interface;..\..\..\..\codec\processing\src\common</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\;..\..\..\..\codec\processing\src\downsample;..\..\..\..\codec\common\inc;..\..\..\..\gtest\include;..\..\..\..\codec\processing\src;..\..\..\..\codec\processing\interface;..\..\..\..\codec\processing\src\common</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">..\..\..\;..\..\..\..\codec\processing\src\downsample;..\..\..\..\codec\common\inc;..\..\..\..\gtest\include;..\..\..\..\codec\processing\src;..\..\..\..\codec\processing\interface;..\..\..\..\codec\processing\src\common</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\..\processing\ProcessUT_ScrollDetection.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\;..\..\..\..\codec\processing\src\scrolldetection;..\..\..\..\codec\common\inc;..\..\..\..\gtest\include;..\..\..\..\codec\processing\src;..\..\..\..\codec\processing\interface;..\..\..\..\codec\processing\src\common</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">..\..\..\;..\..\..\..\codec\processing\src\scrolldetection;..\..\..\..\codec\common\inc;..\..\..\..\gtest\include;..\..\..\..\codec\processing\src;..\..\..\..\codec\processing\interface;..\..\..\..\codec\processing\src\common</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\;..\..\..\..\codec\processing\src\scrolldetection;..\..\..\..\codec\common\inc;..\..\..\..\gtest\include;..\..\..\..\codec\processing\src;..\..\..\..\codec\processing\interface;..\..\..\..\codec\processing\src\common</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">..\..\..\;..\..\..\..\codec\processing\src\scrolldetection;..\..\..\..\codec\common\inc;..\..\..\..\gtest\include;..\..\..\..\codec\processing\src;..\..\..\..\codec\processing\interface;..\..\..\..\codec\processing\src\common</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\..\processing\ProcessUT_VaaCalc.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\;..\..\..\..\codec\processing\src\vaacalc;..\..\..\..\codec\common\inc;..\..\..\..\gtest\include;..\..\..\..\codec\processing\src;..\..\..\..\codec\processing\interface;..\..\..\..\codec\processing\src\common</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">..\..\..\;..\..\..\..\codec\processing\src\vaacalc;..\..\..\..\codec\common\inc;..\..\..\..\gtest\include;..\..\..\..\codec\processing\src;..\..\..\..\codec\processing\interface;..\..\..\..\codec\processing\src\common</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\;..\..\..\..\codec\processing\src\vaacalc;..\..\..\..\codec\common\inc;..\..\..\..\gtest\include;..\..\..\..\codec\processing\src;..\..\..\..\codec\processing\interface;..\..\..\..\codec\processing\src\common</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">..\..\..\;..\..\..\..\codec\processing\src\vaacalc;..\..\..\..\codec\common\inc;..\..\..\..\gtest\include;..\..\..\..\codec\processing\src;..\..\..\..\codec\processing\interface;..\..\..\..\codec\processing\src\common</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="Codec_UT_RTDLL.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Windows">
+      <IsWinMDFile>true</IsWinMDFile>
+    </Reference>
+    <Reference Include="platform.winmd">
+      <IsWinMDFile>true</IsWinMDFile>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsPhone\v$(TargetPlatformVersion)\Microsoft.Cpp.WindowsPhone.$(TargetPlatformVersion).targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
