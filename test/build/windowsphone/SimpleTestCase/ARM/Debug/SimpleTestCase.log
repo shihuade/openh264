@@ -1,4 +1,4 @@
-﻿Build started 1/22/2015 11:00:15 AM.
+﻿Build started 1/26/2015 2:36:35 PM.
      1>Project "E:\Project\Openh264\Source_WP8\test\build\windowsphone\SimpleTestCase\SimpleTestCase.vcxproj" on node 2 (Build target(s)).
      1>Building with tools version "12.0".
      1>Target "_CheckForInvalidConfigurationAndPlatform" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\test\build\windowsphone\SimpleTestCase\SimpleTestCase.vcxproj" (entry point):
@@ -11,7 +11,7 @@
        Task "Message"
          Platform=ARM
        Done executing task "Message".
-       Task "Error" skipped, due to false condition; ('$(OutDir)' != '' and !HasTrailingSlash('$(OutDir)')) was evaluated as ('..\..\..\..\..\bin\ARM\Debug\' != '' and !HasTrailingSlash('..\..\..\..\..\bin\ARM\Debug\')).
+       Task "Error" skipped, due to false condition; ('$(OutDir)' != '' and !HasTrailingSlash('$(OutDir)')) was evaluated as ('..\..\..\..\bin\ARM\Debug\' != '' and !HasTrailingSlash('..\..\..\..\bin\ARM\Debug\')).
        Task "Error" skipped, due to false condition; ('$(BaseIntermediateOutputPath)' != '' and !HasTrailingSlash('$(BaseIntermediateOutputPath)')) was evaluated as ('obj\' != '' and !HasTrailingSlash('obj\')).
        Task "Error" skipped, due to false condition; ('$(IntermediateOutputPath)' != '' and !HasTrailingSlash('$(IntermediateOutputPath)')) was evaluated as ('ARM\Debug\' != '' and !HasTrailingSlash('ARM\Debug\')).
      1>Done building target "_CheckForInvalidConfigurationAndPlatform" in project "SimpleTestCase.vcxproj".
@@ -24,7 +24,7 @@
      1>Target "_PrepareForReferenceResolution" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\test\build\windowsphone\SimpleTestCase\SimpleTestCase.vcxproj" (target "ResolveReferences" depends on it):
        Task "Message" skipped, due to false condition; ('$(_REFERENCE_DEBUG)'=='true') was evaluated as (''=='true').
      1>Done building target "_PrepareForReferenceResolution" in project "SimpleTestCase.vcxproj".
-       Target "ComputeCrtSDKReference" skipped, due to false condition; ('@(ClCompile)'!='' and '$(WindowsAppContainer)'=='true' and '$(UseCrtSDKReference)' != 'false') was evaluated as ('SimpleTestCase.cpp'!='' and 'false'=='true' and 'false' != 'false').
+       Target "ComputeCrtSDKReference" skipped, due to false condition; ('@(ClCompile)'!='' and '$(WindowsAppContainer)'=='true' and '$(UseCrtSDKReference)' != 'false') was evaluated as ('SimpleTestCase.cpp;TestCases.cpp'!='' and 'false'=='true' and 'false' != 'false').
      1>Target "BeforeResolveReferences" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\test\build\windowsphone\SimpleTestCase\SimpleTestCase.vcxproj" (target "ResolveReferences" depends on it):
      1>Done building target "BeforeResolveReferences" in project "SimpleTestCase.vcxproj".
      1>Target "AssignProjectConfiguration" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\test\build\windowsphone\SimpleTestCase\SimpleTestCase.vcxproj" (target "ResolveReferences" depends on it):
@@ -103,7 +103,7 @@
        Done executing task "MakeDir".
      1>Done building target "PrepareForBuild" in project "SimpleTestCase.vcxproj".
        Target "_PrepareForReferenceResolution" skipped. Previously built successfully.
-       Target "ComputeCrtSDKReference" skipped, due to false condition; ('@(ClCompile)'!='' and '$(WindowsAppContainer)'=='true' and '$(UseCrtSDKReference)' != 'false') was evaluated as ('SimpleTestCase.cpp'!='' and 'false'=='true' and 'false' != 'false').
+       Target "ComputeCrtSDKReference" skipped, due to false condition; ('@(ClCompile)'!='' and '$(WindowsAppContainer)'=='true' and '$(UseCrtSDKReference)' != 'false') was evaluated as ('SimpleTestCase.cpp;TestCases.cpp'!='' and 'false'=='true' and 'false' != 'false').
      1>Target "GetInstalledSDKLocations" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\test\build\windowsphone\SimpleTestCase\SimpleTestCase.vcxproj" (target "ResolveSDKReferences" depends on it):
        Task "GetInstalledSDKLocations" skipped, due to false condition; ('@(SDKReference)' != '') was evaluated as ('' != '').
      1>Done building target "GetInstalledSDKLocations" in project "SimpleTestCase.vcxproj".
@@ -143,7 +143,7 @@
              {AssemblyFolders}
              {GAC}
              {RawFileName}
-             ..\..\..\..\..\bin\ARM\Debug\
+             ..\..\..\..\bin\ARM\Debug\
          AllowedAssemblyExtensions:
              .winmd
              .dll
@@ -222,7 +222,7 @@
        Done executing task "WriteLinesToFile".
        Using "Touch" task from assembly "Microsoft.Build.Tasks.v12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
        Task "Touch"
-         Touching "ARM\Debug\SimpleTestCase.unsuccessfulbuild".
+         Creating "ARM\Debug\SimpleTestCase.unsuccessfulbuild" because "AlwaysCreate" was specified.
        Done executing task "Touch".
      1>Done building target "InitializeBuildStatus" in project "SimpleTestCase.vcxproj".
        Target "AssignProjectConfiguration" skipped. Previously built successfully.
@@ -299,26 +299,26 @@
      1>Target "SelectClCompile" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\test\build\windowsphone\SimpleTestCase\SimpleTestCase.vcxproj" (target "ClCompile" depends on it):
      1>Done building target "SelectClCompile" in project "SimpleTestCase.vcxproj".
        Target "GenerateTargetFrameworkMonikerAttribute" skipped, due to false condition; ('$(GenerateTargetFrameworkAttribute)' == 'true') was evaluated as ('false' == 'true').
-       Target "ManagedIncrementalBuildPreProcessDependencyGraph" skipped, due to false condition; ('@(ClCompile)' != '' and '$(EnableManagedIncrementalBuild)' == 'True') was evaluated as ('SimpleTestCase.cpp' != '' and 'false' == 'True').
+       Target "ManagedIncrementalBuildPreProcessDependencyGraph" skipped, due to false condition; ('@(ClCompile)' != '' and '$(EnableManagedIncrementalBuild)' == 'True') was evaluated as ('SimpleTestCase.cpp;TestCases.cpp' != '' and 'false' == 'True').
      1>Target "ClCompile" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppCommon.targets" from project "E:\Project\Openh264\Source_WP8\test\build\windowsphone\SimpleTestCase\SimpleTestCase.vcxproj" (target "_ClCompile" depends on it):
-       Task "Delete" skipped, due to false condition; ('%(ClCompile.DebugInformationFormat)' != '' and '%(ClCompile.DebugInformationFormat)' != 'OldStyle' and '%(ClCompile.ProgramDataBaseFileName)' != '' and !Exists(%(ClCompile.ProgramDataBaseFileName))) was evaluated as ('ProgramDatabase' != '' and 'ProgramDatabase' != 'OldStyle' and 'ARM\Debug\vc110.pdb' != '' and !Exists(ARM\Debug\vc110.pdb)).
+       Using "Delete" task from assembly "Microsoft.Build.Tasks.v12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+       Task "Delete"
+       Done executing task "Delete".
        Task "CL" skipped, due to false condition; ('%(ClCompile.PrecompiledHeader)' == 'Create' and '%(ClCompile.ExcludedFromBuild)'!='true' and '%(ClCompile.CompilerIteration)' == '') was evaluated as ('NotUsing' == 'Create' and ''!='true' and '' == '').
        Using "CL" task from assembly "Microsoft.Build.CppTasks.Common.v110, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
        Task "CL"
-         Read Tracking Logs:
-         	ARM\Debug\cl.read.1.tlog
-         Outputs for E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\SIMPLETESTCASE\SIMPLETESTCASE.CPP:
-         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\SIMPLETESTCASE\ARM\DEBUG\SIMPLETESTCASE.OBJ
-         SimpleTestCase.cpp will be compiled as output E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\SIMPLETESTCASE\ARM\DEBUG\SIMPLETESTCASE.OBJ does not exist.
+         Forcing recompile of all source files due to missing PDB "ARM\Debug\vc110.pdb".
          Environment Variables passed to tool:
-           VS_UNICODE_OUTPUT=944
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe /c /I..\..\..\..\gtest\include /I..\..\..\..\gtest /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /nologo /W1 /WX- /Od /Oy- /D _VARIADIC_MAX=10 /D _CRT_SECURE_NO_WARNINGS /D _LIB /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"ARM\Debug\\" /Fd"ARM\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt SimpleTestCase.cpp
+           VS_UNICODE_OUTPUT=1348
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe /c /I..\..\..\..\gtest\include /I..\..\..\..\gtest /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /nologo /W1 /WX- /Od /Oy- /D _WINDOWS_PHONE_ /D _VARIADIC_MAX=10 /D _CRT_SECURE_NO_WARNINGS /D _LIB /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"ARM\Debug\\" /Fd"ARM\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt SimpleTestCase.cpp TestCases.cpp
          Tracking command:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\Tracker.exe /d C:\Windows\Microsoft.NET\Framework\v4.0.30319\FileTracker.dll /i E:\Project\Openh264\Source_WP8\test\build\windowsphone\SimpleTestCase\ARM\Debug /r E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\SIMPLETESTCASE\SIMPLETESTCASE.CPP /b MSBuildConsole_CancelEvent471b8e298c844c4cb0daff354fbe87b8  /c "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe"  /c /I..\..\..\..\gtest\include /I..\..\..\..\gtest /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /nologo /W1 /WX- /Od /Oy- /D _VARIADIC_MAX=10 /D _CRT_SECURE_NO_WARNINGS /D _LIB /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"ARM\Debug\\" /Fd"ARM\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt SimpleTestCase.cpp
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\Tracker.exe /d C:\Windows\Microsoft.NET\Framework\v4.0.30319\FileTracker.dll /i E:\Project\Openh264\Source_WP8\test\build\windowsphone\SimpleTestCase\ARM\Debug /r "E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\SIMPLETESTCASE\SIMPLETESTCASE.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\SIMPLETESTCASE\TESTCASES.CPP" /b MSBuildConsole_CancelEvent718d03cbec2445afa9847ab952d91f48  /c "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe"  /c /I..\..\..\..\gtest\include /I..\..\..\..\gtest /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /nologo /W1 /WX- /Od /Oy- /D _WINDOWS_PHONE_ /D _VARIADIC_MAX=10 /D _CRT_SECURE_NO_WARNINGS /D _LIB /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"ARM\Debug\\" /Fd"ARM\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt SimpleTestCase.cpp TestCases.cpp
+         TestCases.cpp
          SimpleTestCase.cpp
+         Generating Code...
        Done executing task "CL".
      1>Done building target "ClCompile" in project "SimpleTestCase.vcxproj".
-       Target "ManagedIncrementalBuildPostProcessDependencyGraph" skipped, due to false condition; ('@(ClCompile)' != '' and '$(EnableManagedIncrementalBuild)' == 'True') was evaluated as ('SimpleTestCase.cpp' != '' and 'false' == 'True').
+       Target "ManagedIncrementalBuildPostProcessDependencyGraph" skipped, due to false condition; ('@(ClCompile)' != '' and '$(EnableManagedIncrementalBuild)' == 'True') was evaluated as ('SimpleTestCase.cpp;TestCases.cpp' != '' and 'false' == 'True').
      1>Target "AfterClCompile" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\test\build\windowsphone\SimpleTestCase\SimpleTestCase.vcxproj" (target "_ClCompile" depends on it):
      1>Done building target "AfterClCompile" in project "SimpleTestCase.vcxproj".
      1>Target "_ClCompile" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\test\build\windowsphone\SimpleTestCase\SimpleTestCase.vcxproj" (target "_BuildCompileAction" depends on it):
@@ -364,10 +364,10 @@
        Done executing task "MakeDir".
      1>Done building target "MakeDirsForLib" in project "SimpleTestCase.vcxproj".
      1>Target "DoLibOutputFilesMatch" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\test\build\windowsphone\SimpleTestCase\SimpleTestCase.vcxproj" (target "_Lib" depends on it):
-       Task "VCMessage" skipped, due to false condition; ('@(_OutputFileFromLib)' == '') was evaluated as ('..\..\..\..\..\bin\ARM\Debug\SimpleTestCase.lib' == '').
-       Task "VCMessage" skipped, due to false condition; ('@(_OutputFileFromLib)' != '' and '%(_OutputFileFromLib.FullPath)' != '$([System.IO.Path]::GetFullPath($(TargetPath)))') was evaluated as ('..\..\..\..\..\bin\ARM\Debug\SimpleTestCase.lib' != '' and 'E:\Project\Openh264\bin\ARM\Debug\SimpleTestCase.lib' != 'E:\Project\Openh264\bin\ARM\Debug\SimpleTestCase.lib').
-       Task "VCMessage" skipped, due to false condition; ('@(_OutputFileFromLib)' != '' and '%(_OutputFileFromLib.Extension)' != '$(TargetExt)') was evaluated as ('..\..\..\..\..\bin\ARM\Debug\SimpleTestCase.lib' != '' and '.lib' != '.lib').
-       Task "VCMessage" skipped, due to false condition; ('@(_OutputFileFromLib)' != '' and '%(_OutputFileFromLib.Filename)' != '$(TargetName)') was evaluated as ('..\..\..\..\..\bin\ARM\Debug\SimpleTestCase.lib' != '' and 'SimpleTestCase' != 'SimpleTestCase').
+       Task "VCMessage" skipped, due to false condition; ('@(_OutputFileFromLib)' == '') was evaluated as ('..\..\..\..\bin\ARM\Debug\SimpleTestCase.lib' == '').
+       Task "VCMessage" skipped, due to false condition; ('@(_OutputFileFromLib)' != '' and '%(_OutputFileFromLib.FullPath)' != '$([System.IO.Path]::GetFullPath($(TargetPath)))') was evaluated as ('..\..\..\..\bin\ARM\Debug\SimpleTestCase.lib' != '' and 'E:\Project\Openh264\Source_WP8\bin\ARM\Debug\SimpleTestCase.lib' != 'E:\Project\Openh264\Source_WP8\bin\ARM\Debug\SimpleTestCase.lib').
+       Task "VCMessage" skipped, due to false condition; ('@(_OutputFileFromLib)' != '' and '%(_OutputFileFromLib.Extension)' != '$(TargetExt)') was evaluated as ('..\..\..\..\bin\ARM\Debug\SimpleTestCase.lib' != '' and '.lib' != '.lib').
+       Task "VCMessage" skipped, due to false condition; ('@(_OutputFileFromLib)' != '' and '%(_OutputFileFromLib.Filename)' != '$(TargetName)') was evaluated as ('..\..\..\..\bin\ARM\Debug\SimpleTestCase.lib' != '' and 'SimpleTestCase' != 'SimpleTestCase').
      1>Done building target "DoLibOutputFilesMatch" in project "SimpleTestCase.vcxproj".
      1>Target "PreLinkEvent" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppCommon.targets" from project "E:\Project\Openh264\Source_WP8\test\build\windowsphone\SimpleTestCase\SimpleTestCase.vcxproj" (target "_Lib" depends on it):
        Task "Message" skipped, due to false condition; ('%(PreLinkEvent.Message)' != '' and '%(PreLinkEvent.Command)' != '') was evaluated as ('' != '' and '' != '').
@@ -376,18 +376,15 @@
      1>Target "Lib" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppCommon.targets" from project "E:\Project\Openh264\Source_WP8\test\build\windowsphone\SimpleTestCase\SimpleTestCase.vcxproj" (target "_Lib" depends on it):
        Using "LIB" task from assembly "Microsoft.Build.CppTasks.Common.v110, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
        Task "LIB"
-         Write Tracking Logs:
-         	ARM\Debug\Lib-link.write.1.tlog
-         Read Tracking Logs:
-         	ARM\Debug\Lib-link.read.1.tlog
-         No output for E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\SIMPLETESTCASE\ARM\DEBUG\SIMPLETESTCASE.OBJ was found in the tracking log; source compilation required.
-         No dependencies for output E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\SIMPLETESTCASE\ARM\DEBUG\SIMPLETESTCASE.OBJ were found in the tracking log; source compilation required.
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\Lib.exe /OUT:"..\..\..\..\..\bin\ARM\Debug\SimpleTestCase.lib" /NOLOGO /MACHINE:ARM ARM\Debug\SimpleTestCase.obj
+         Forcing rebuild of all source files due to missing command TLog "E:\Project\Openh264\Source_WP8\test\build\windowsphone\SimpleTestCase\ARM\Debug\lib.command.1.tlog".
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\Lib.exe /OUT:"..\..\..\..\bin\ARM\Debug\SimpleTestCase.lib" /NOLOGO /MACHINE:ARM ARM\Debug\SimpleTestCase.obj
+         ARM\Debug\TestCases.obj
          Tracking command:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\Tracker.exe /d C:\Windows\Microsoft.NET\Framework\v4.0.30319\FileTracker.dll /i E:\Project\Openh264\Source_WP8\test\build\windowsphone\SimpleTestCase\ARM\Debug /r E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\SIMPLETESTCASE\ARM\DEBUG\SIMPLETESTCASE.OBJ /b MSBuildConsole_CancelEvent54d1cdf3be9c474ea45419a0267d5165  /c "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\Lib.exe"  /OUT:"..\..\..\..\..\bin\ARM\Debug\SimpleTestCase.lib" /NOLOGO /MACHINE:ARM ARM\Debug\SimpleTestCase.obj
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\Tracker.exe /d C:\Windows\Microsoft.NET\Framework\v4.0.30319\FileTracker.dll /i E:\Project\Openh264\Source_WP8\test\build\windowsphone\SimpleTestCase\ARM\Debug /r "E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\SIMPLETESTCASE\ARM\DEBUG\SIMPLETESTCASE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\SIMPLETESTCASE\ARM\DEBUG\TESTCASES.OBJ" /b MSBuildConsole_CancelEvent91376e46306748068175f01161b6cae7  /c "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\Lib.exe"  /OUT:"..\..\..\..\bin\ARM\Debug\SimpleTestCase.lib" /NOLOGO /MACHINE:ARM ARM\Debug\SimpleTestCase.obj
+         ARM\Debug\TestCases.obj
        Done executing task "LIB".
        Task "Message"
-         SimpleTestCase.vcxproj -> E:\Project\Openh264\Source_WP8\test\build\windowsphone\SimpleTestCase\..\..\..\..\..\bin\ARM\Debug\SimpleTestCase.lib
+         SimpleTestCase.vcxproj -> E:\Project\Openh264\Source_WP8\test\build\windowsphone\SimpleTestCase\..\..\..\..\bin\ARM\Debug\SimpleTestCase.lib
        Done executing task "Message".
      1>Done building target "Lib" in project "SimpleTestCase.vcxproj".
      1>Target "AfterLib" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\test\build\windowsphone\SimpleTestCase\SimpleTestCase.vcxproj" (target "_Lib" depends on it):
@@ -518,7 +515,6 @@
      1>Target "AfterBuild" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.BuildSteps.Targets" from project "E:\Project\Openh264\Source_WP8\test\build\windowsphone\SimpleTestCase\SimpleTestCase.vcxproj" (target "Build" depends on it):
      1>Done building target "AfterBuild" in project "SimpleTestCase.vcxproj".
      1>Target "FinalizeBuildStatus" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\test\build\windowsphone\SimpleTestCase\SimpleTestCase.vcxproj" (target "Build" depends on it):
-       Using "Delete" task from assembly "Microsoft.Build.Tasks.v12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
        Task "Delete"
          Deleting file "ARM\Debug\SimpleTestCase.unsuccessfulbuild".
        Done executing task "Delete".
@@ -532,4 +528,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.89
+Time Elapsed 00:00:04.29

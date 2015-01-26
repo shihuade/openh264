@@ -16,6 +16,7 @@ int main (int argc, char** argv) {
   sprintf (xmlPath, "xml:%s", argv[1]);
   ::testing::GTEST_FLAG (output) = xmlPath;
 #endif
+  ::testing::GTEST_FLAG(output) = "xml:E:\\";
   ::testing::InitGoogleTest (&argc, argv);
   unsigned int seed = (unsigned int) time (NULL);
   if (argc >= 2 && !strncmp (argv[1], "--seed=", 7))

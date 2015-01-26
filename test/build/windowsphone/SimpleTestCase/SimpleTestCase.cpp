@@ -5,18 +5,20 @@
 #include <stdio.h>
 #include <string.h>
 
+extern int add(int a, int b);
 
-#if (defined(ANDROID_NDK)||defined(APPLE_IOS))
+#if (defined(ANDROID_NDK)||defined(APPLE_IOS) || defined(_WINDOWS_PHONE_))
 int CodecUtMain(int argc, char** argv) {
 #else
 int main(int argc, char** argv) {
 #endif
 
-#if (defined(ANDROID_NDK)||defined(APPLE_IOS))
+#if (defined(ANDROID_NDK)||defined(APPLE_IOS) || defined(_WINDOWS_PHONE_))
 	char xmlPath[1024] = "";
 	sprintf(xmlPath, "xml:%s", argv[1]);
 	::testing::GTEST_FLAG(output) = xmlPath;
 #endif
+	
 	::testing::InitGoogleTest(&argc, argv);
 	unsigned int seed = (unsigned int)time(NULL);
 	if (argc >= 2 && !strncmp(argv[1], "--seed=", 7))
@@ -25,4 +27,13 @@ int main(int argc, char** argv) {
 	srand(seed);
 
 	return RUN_ALL_TESTS();
+}
+
+
+
+int TestAll()
+{
+
+
+	return add(10,20);
 }
