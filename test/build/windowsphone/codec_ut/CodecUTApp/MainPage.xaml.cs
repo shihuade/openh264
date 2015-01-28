@@ -32,16 +32,17 @@ namespace CodecUTApp
         {
             if (false == bFlag)
             {
-                UTInfo.Text = "Hello! UT test cases!";
+                UTInfo.Text = "UT test cases! Please wait for 20~30 minutes for C-only Cases....";
                 bFlag = true;
             }
             else
             {
-                UTInfo.Text = "Hello! UT test cases again!";
+                UTInfo.Text = "UT test cases! Please wait for 20~30 minutes for C-only Cases....";
                 bFlag = false;
             }
 
             cCodecUTHandler.TestAllCases();
+            UTInfo.Text = "UT cases on windows phone have been completed!";
         }
 
         // Sample code for building a localized ApplicationBar

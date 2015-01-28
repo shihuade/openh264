@@ -16,13 +16,13 @@ CodecUTTest::CodecUTTest()
 
 int CodecUTTest::TestAllCases()
 {
-	int   argc = 1;
+	int   argc = 2;
 	int   iRet = 0;
 	char *argv[6];
 
-	HMODULE                   phTestCasesDllHandler = NULL;
-	pfTestAllCases            pUTHandler = NULL;
-	LPCWSTR                   cTestCasesDllDLLName = L"Codec_UT_Dll.dll";
+	HMODULE         phTestCasesDllHandler = NULL;
+	pfTestAllCases  pUTHandler            = NULL;
+	LPCWSTR         cTestCasesDllDLLName  = L"Codec_UT_Dll.dll";
 
 	// output xml file location
 	char OutputPath[256] = { 0 };
@@ -53,51 +53,16 @@ int CodecUTTest::TestAllCases()
 
 	if (NULL == pUTHandler)
 	{
-		std::cout << "failed to load function" << std::endl;
+		std::cout << "failed to load function" <<std::endl;
 		return 2;
 	}
 
 
 	// test all cases
-	argv[0] = "CodecSimpleCaseAPP";
+	argv[0] = "CodecUTAPP";
 	argv[1] = OutputPath;
-	argc = 2;
-	iRet = pUTHandler(argc, argv);
+	argc    = 2;
+	iRet    = pUTHandler(argc, argv);
 
 	return iRet;
-}
-
-
-int CodecUTTest::TestAllCasesLib()
-{
-	int   c = 0;
-	int   argc = 1;
-	int   iRet = 0;
-	char *argv[6];
-
-	// output xml file location
-	char OutputPath[256] = { 0 };
-	Windows::Storage::StorageFolder^ OutputLocation;
-	Platform::String^ OutputLocationPath;
-
-	OutputLocation = ApplicationData::Current->LocalFolder;
-	OutputLocationPath = Platform::String::Concat(OutputLocation->Path, "\\");
-	const wchar_t *pWcharOutputFile = OutputLocationPath->Data();
-
-	int size = wcslen(pWcharOutputFile);
-	OutputPath[size] = 0;
-	for (int y = 0; y<size; y++)
-	{
-		OutputPath[y] = (char)pWcharOutputFile[y];
-	}
-
-
-	// test all cases
-	argv[0] = "CodecUTApp";
-	argv[1] = OutputPath;
-	argc = 2;
-	//iRet = CodecUtMain(argc, argv);
-
-	return iRet;
-
 }

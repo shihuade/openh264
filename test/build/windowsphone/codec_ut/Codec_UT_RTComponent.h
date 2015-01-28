@@ -6,8 +6,6 @@ namespace Codec_UT_RTComponent
     {
     public:
 		CodecUTTest();
-
-		int TestAllCasesLib();
 		int TestAllCases();
     };
 }

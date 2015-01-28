@@ -25,8 +25,3 @@ int main (int argc, char** argv) {
 
   return RUN_ALL_TESTS();
 }
-
-int MyTest()
-{
-	return 20;
-}
