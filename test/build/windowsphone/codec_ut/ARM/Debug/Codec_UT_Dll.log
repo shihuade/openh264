@@ -1,4 +1,4 @@
-﻿Build started 1/28/2015 9:28:03 AM.
+﻿Build started 1/28/2015 11:06:28 AM.
      1>Project "E:\Project\Openh264\Source_WP8\test\build\windowsphone\codec_ut\Codec_UT_Dll.vcxproj" on node 2 (Build target(s)).
      1>Building with tools version "12.0".
      1>Target "_CheckForInvalidConfigurationAndPlatform" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\test\build\windowsphone\codec_ut\Codec_UT_Dll.vcxproj" (entry point):
@@ -301,9 +301,7 @@
        Target "GenerateTargetFrameworkMonikerAttribute" skipped, due to false condition; ('$(GenerateTargetFrameworkAttribute)' == 'true') was evaluated as ('false' == 'true').
        Target "ManagedIncrementalBuildPreProcessDependencyGraph" skipped, due to false condition; ('@(ClCompile)' != '' and '$(EnableManagedIncrementalBuild)' == 'True') was evaluated as ('..\..\..\api\BaseDecoderTest.cpp;..\..\..\api\BaseEncoderTest.cpp;..\..\..\api\cpp_interface_test.cpp;..\..\..\api\c_interface_test.c;..\..\..\api\DataGenerator.cpp;..\..\..\api\decoder_test.cpp;..\..\..\api\decode_encode_test.cpp;..\..\..\api\encoder_test.cpp;..\..\..\api\encode_decode_api_test.cpp;..\..\..\api\sha1.c;..\..\..\api\simple_test.cpp;..\..\..\common\ExpandPicture.cpp;..\..\..\decoder\DecUT_Deblock.cpp;..\..\..\decoder\DecUT_DeblockCommon.cpp;..\..\..\decoder\DecUT_DecExt.cpp;..\..\..\decoder\DecUT_ErrorConcealment.cpp;..\..\..\decoder\DecUT_IdctResAddPred.cpp;..\..\..\decoder\DecUT_IntraPrediction.cpp;..\..\..\decoder\DecUT_MotionCompensation.cpp;..\..\..\decoder\DecUT_PredMv.cpp;..\..\..\encoder\EncUT_DecodeMbAux.cpp;..\..\..\encoder\EncUT_EncoderExt.cpp;..\..\..\encoder\EncUT_EncoderMb.cpp;..\..\..\encoder\EncUT_EncoderMbAux.cpp;..\..\..\encoder\EncUT_ExpGolomb.cpp;..\..\..\encoder\EncUT_GetIntraPredictor.cpp;..\..\..\encoder\EncUT_InterfaceTest.cpp;..\..\..\encoder\EncUT_MBCopy.cpp;..\..\..\encoder\EncUT_MemoryAlloc.cpp;..\..\..\encoder\EncUT_MemoryZero.cpp;..\..\..\encoder\EncUT_MotionEstimate.cpp;..\..\..\encoder\EncUT_Reconstruct.cpp;..\..\..\encoder\EncUT_Sample.cpp;..\..\..\encoder\EncUT_SVC_me.cpp;..\..\..\processing\ProcessUT_AdaptiveQuantization.cpp;..\..\..\processing\ProcessUT_DownSample.cpp;..\..\..\processing\ProcessUT_ScrollDetection.cpp;..\..\..\processing\ProcessUT_VaaCalc.cpp' != '' and 'false' == 'True').
      1>Target "ClCompile" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppCommon.targets" from project "E:\Project\Openh264\Source_WP8\test\build\windowsphone\codec_ut\Codec_UT_Dll.vcxproj" (target "_ClCompile" depends on it):
-       Using "Delete" task from assembly "Microsoft.Build.Tasks.v12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
-       Task "Delete"
-       Done executing task "Delete".
+       Task "Delete" skipped, due to false condition; ('%(ClCompile.DebugInformationFormat)' != '' and '%(ClCompile.DebugInformationFormat)' != 'OldStyle' and '%(ClCompile.ProgramDataBaseFileName)' != '' and !Exists(%(ClCompile.ProgramDataBaseFileName))) was evaluated as ('ProgramDatabase' != '' and 'ProgramDatabase' != 'OldStyle' and 'ARM\Debug\vc110.pdb' != '' and !Exists(ARM\Debug\vc110.pdb)).
        Task "CL" skipped, due to false condition; ('%(ClCompile.PrecompiledHeader)' == 'Create' and '%(ClCompile.ExcludedFromBuild)'!='true' and '%(ClCompile.CompilerIteration)' == '') was evaluated as ('NotUsing' == 'Create' and ''!='true' and '' == '').
        Task "CL" skipped, due to false condition; ('%(ClCompile.PrecompiledHeader)' == 'Create' and '%(ClCompile.ExcludedFromBuild)'!='true' and '%(ClCompile.CompilerIteration)' == '') was evaluated as ('NotUsing' == 'Create' and ''!='true' and '' == '').
        Task "CL" skipped, due to false condition; ('%(ClCompile.PrecompiledHeader)' == 'Create' and '%(ClCompile.ExcludedFromBuild)'!='true' and '%(ClCompile.CompilerIteration)' == '') was evaluated as ('NotUsing' == 'Create' and ''!='true' and '' == '').
@@ -314,60 +312,40 @@
        Task "CL" skipped, due to false condition; ('%(ClCompile.PrecompiledHeader)' == 'Create' and '%(ClCompile.ExcludedFromBuild)'!='true' and '%(ClCompile.CompilerIteration)' == '') was evaluated as ('NotUsing' == 'Create' and ''!='true' and '' == '').
        Using "CL" task from assembly "Microsoft.Build.CppTasks.Common.v110, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
        Task "CL"
-         Forcing recompile of all source files due to missing PDB "ARM\Debug\vc110.pdb".
+         Read Tracking Logs:
+         	ARM\Debug\cl.read.1.tlog
+         Outputs for E:\PROJECT\OPENH264\SOURCE_WP8\TEST\API\BASEDECODERTEST.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\API\BASEENCODERTEST.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\API\CPP_INTERFACE_TEST.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\API\DATAGENERATOR.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\API\DECODER_TEST.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\API\DECODE_ENCODE_TEST.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\API\ENCODER_TEST.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\API\ENCODE_DECODE_API_TEST.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\API\SIMPLE_TEST.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\DECODER\DECUT_DEBLOCKCOMMON.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\ENCODER\ENCUT_DECODEMBAUX.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\ENCODER\ENCUT_ENCODEREXT.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\ENCODER\ENCUT_ENCODERMB.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\ENCODER\ENCUT_ENCODERMBAUX.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\ENCODER\ENCUT_EXPGOLOMB.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\ENCODER\ENCUT_GETINTRAPREDICTOR.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\ENCODER\ENCUT_INTERFACETEST.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\ENCODER\ENCUT_MBCOPY.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\ENCODER\ENCUT_MEMORYALLOC.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\ENCODER\ENCUT_MEMORYZERO.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\ENCODER\ENCUT_MOTIONESTIMATE.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\ENCODER\ENCUT_RECONSTRUCT.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\ENCODER\ENCUT_SAMPLE.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\ENCODER\ENCUT_SVC_ME.CPP:
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\BASEDECODERTEST.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\BASEENCODERTEST.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\CPP_INTERFACE_TEST.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DATAGENERATOR.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECODER_TEST.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECODE_ENCODE_TEST.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCODER_TEST.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCODE_DECODE_API_TEST.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\SIMPLE_TEST.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_DEBLOCKCOMMON.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_DECODEMBAUX.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_ENCODEREXT.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_ENCODERMB.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_ENCODERMBAUX.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_EXPGOLOMB.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_GETINTRAPREDICTOR.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_INTERFACETEST.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_MBCOPY.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_MEMORYALLOC.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_MEMORYZERO.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_MOTIONESTIMATE.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_RECONSTRUCT.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_SAMPLE.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_SVC_ME.OBJ
+         ..\..\..\api\DataGenerator.cpp will be compiled as E:\Project\Openh264\Source_WP8\test\api\DataGenerator.cpp was modified at 1/28/2015 10:38:13 AM.
          Environment Variables passed to tool:
-           VS_UNICODE_OUTPUT=496
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe /c /I..\..\..\ /I..\..\..\..\codec\encoder\plus\inc /I..\..\..\..\codec\encoder\core\inc /I..\..\..\..\codec\common\inc /I..\..\..\..\codec\api\svc /I..\..\..\..\gtest\include /I..\..\..\codec\processing\src\common /I..\..\..\..\codec\processing\interface /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /nologo /W1 /WX- /Od /Oy- /D _USRDLL /D WELS_WIN_PHONE /D _VARIADIC_MAX=10 /D _CRT_SECURE_NO_WARNINGS /D _WINDLL /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"ARM\Debug\\" /Fd"ARM\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\..\api\BaseDecoderTest.cpp ..\..\..\api\BaseEncoderTest.cpp ..\..\..\api\cpp_interface_test.cpp ..\..\..\api\DataGenerator.cpp ..\..\..\api\decoder_test.cpp ..\..\..\api\decode_encode_test.cpp ..\..\..\api\encoder_test.cpp ..\..\..\api\encode_decode_api_test.cpp ..\..\..\api\simple_test.cpp ..\..\..\decoder\DecUT_DeblockCommon.cpp ..\..\..\encoder\EncUT_DecodeMbAux.cpp ..\..\..\encoder\EncUT_EncoderExt.cpp ..\..\..\encoder\EncUT_EncoderMb.cpp ..\..\..\encoder\EncUT_EncoderMbAux.cpp ..\..\..\encoder\EncUT_ExpGolomb.cpp ..\..\..\encoder\EncUT_GetIntraPredictor.cpp ..\..\..\encoder\EncUT_InterfaceTest.cpp ..\..\..\encoder\EncUT_MBCopy.cpp ..\..\..\encoder\EncUT_MemoryAlloc.cpp ..\..\..\encoder\EncUT_MemoryZero.cpp ..\..\..\encoder\EncUT_MotionEstimate.cpp ..\..\..\encoder\EncUT_Reconstruct.cpp ..\..\..\encoder\EncUT_Sample.cpp ..\..\..\encoder\EncUT_SVC_me.cpp
+           VS_UNICODE_OUTPUT=536
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe /c /I..\..\..\ /I..\..\..\..\codec\encoder\plus\inc /I..\..\..\..\codec\encoder\core\inc /I..\..\..\..\codec\common\inc /I..\..\..\..\codec\api\svc /I..\..\..\..\gtest\include /I..\..\..\codec\processing\src\common /I..\..\..\..\codec\processing\interface /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /nologo /W1 /WX- /Od /Oy- /D _USRDLL /D WELS_WIN_PHONE /D _VARIADIC_MAX=10 /D _CRT_SECURE_NO_WARNINGS /D _WINDLL /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"ARM\Debug\\" /Fd"ARM\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\..\api\DataGenerator.cpp
          Tracking command:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\Tracker.exe /d C:\Windows\Microsoft.NET\Framework\v4.0.30319\FileTracker.dll /i E:\Project\Openh264\Source_WP8\test\build\windowsphone\codec_ut\ARM\Debug /r "E:\PROJECT\OPENH264\SOURCE_WP8\TEST\API\BASEDECODERTEST.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\API\BASEENCODERTEST.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\API\CPP_INTERFACE_TEST.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\API\DATAGENERATOR.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\API\DECODER_TEST.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\API\DECODE_ENCODE_TEST.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\API\ENCODER_TEST.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\API\ENCODE_DECODE_API_TEST.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\API\SIMPLE_TEST.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\DECODER\DECUT_DEBLOCKCOMMON.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\ENCODER\ENCUT_DECODEMBAUX.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\ENCODER\ENCUT_ENCODEREXT.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\ENCODER\ENCUT_ENCODERMB.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\ENCODER\ENCUT_ENCODERMBAUX.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\ENCODER\ENCUT_EXPGOLOMB.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\ENCODER\ENCUT_GETINTRAPREDICTOR.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\ENCODER\ENCUT_INTERFACETEST.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\ENCODER\ENCUT_MBCOPY.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\ENCODER\ENCUT_MEMORYALLOC.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\ENCODER\ENCUT_MEMORYZERO.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\ENCODER\ENCUT_MOTIONESTIMATE.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\ENCODER\ENCUT_RECONSTRUCT.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\ENCODER\ENCUT_SAMPLE.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\ENCODER\ENCUT_SVC_ME.CPP" /b MSBuildConsole_CancelEventa8efde5773cb44048f2f901581d76bf1  /c "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe"  /c /I..\..\..\ /I..\..\..\..\codec\encoder\plus\inc /I..\..\..\..\codec\encoder\core\inc /I..\..\..\..\codec\common\inc /I..\..\..\..\codec\api\svc /I..\..\..\..\gtest\include /I..\..\..\codec\processing\src\common /I..\..\..\..\codec\processing\interface /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /nologo /W1 /WX- /Od /Oy- /D _USRDLL /D WELS_WIN_PHONE /D _VARIADIC_MAX=10 /D _CRT_SECURE_NO_WARNINGS /D _WINDLL /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"ARM\Debug\\" /Fd"ARM\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\..\api\BaseDecoderTest.cpp ..\..\..\api\BaseEncoderTest.cpp ..\..\..\api\cpp_interface_test.cpp ..\..\..\api\DataGenerator.cpp ..\..\..\api\decoder_test.cpp ..\..\..\api\decode_encode_test.cpp ..\..\..\api\encoder_test.cpp ..\..\..\api\encode_decode_api_test.cpp ..\..\..\api\simple_test.cpp ..\..\..\decoder\DecUT_DeblockCommon.cpp ..\..\..\encoder\EncUT_DecodeMbAux.cpp ..\..\..\encoder\EncUT_EncoderExt.cpp ..\..\..\encoder\EncUT_EncoderMb.cpp ..\..\..\encoder\EncUT_EncoderMbAux.cpp ..\..\..\encoder\EncUT_ExpGolomb.cpp ..\..\..\encoder\EncUT_GetIntraPredictor.cpp ..\..\..\encoder\EncUT_InterfaceTest.cpp ..\..\..\encoder\EncUT_MBCopy.cpp ..\..\..\encoder\EncUT_MemoryAlloc.cpp ..\..\..\encoder\EncUT_MemoryZero.cpp ..\..\..\encoder\EncUT_MotionEstimate.cpp ..\..\..\encoder\EncUT_Reconstruct.cpp ..\..\..\encoder\EncUT_Sample.cpp ..\..\..\encoder\EncUT_SVC_me.cpp
-         EncUT_SVC_me.cpp
-         EncUT_Sample.cpp
-         EncUT_Reconstruct.cpp
-         EncUT_MotionEstimate.cpp
-         EncUT_MemoryZero.cpp
-         EncUT_MemoryAlloc.cpp
-         EncUT_MBCopy.cpp
-         EncUT_InterfaceTest.cpp
-         EncUT_GetIntraPredictor.cpp
-         EncUT_ExpGolomb.cpp
-         EncUT_EncoderMbAux.cpp
-         EncUT_EncoderMb.cpp
-         EncUT_EncoderExt.cpp
-         EncUT_DecodeMbAux.cpp
-         DecUT_DeblockCommon.cpp
-         simple_test.cpp
-         encode_decode_api_test.cpp
-         encoder_test.cpp
-         decode_encode_test.cpp
-         decoder_test.cpp
-     1>E:\Project\Openh264\Source_WP8\gtest\include\gtest/gtest.h(1467): warning C4805: '==' : unsafe mix of type 'const bool' and type 'const int' in operation
-                 E:\Project\Openh264\Source_WP8\gtest\include\gtest/gtest.h(1501) : see reference to function template instantiation 'testing::AssertionResult testing::internal::CmpHelperEQ<T1,T2>(const char *,const char *,const T1 &,const T2 &)' being compiled
-                 with
-                 [
-                     T1=bool,
-                     T2=int
-                 ]
-                 ..\..\..\api\decoder_test.cpp(32) : see reference to function template instantiation 'testing::AssertionResult testing::internal::EqHelper<lhs_is_null_literal>::Compare<bool,int>(const char *,const char *,const T1 &,const T2 &)' being compiled
-                 with
-                 [
-                     lhs_is_null_literal=false,
-                     T1=bool,
-                     T2=int
-                 ]
-                 ..\..\..\api\decoder_test.cpp(32) : see reference to function template instantiation 'testing::AssertionResult testing::internal::EqHelper<lhs_is_null_literal>::Compare<bool,int>(const char *,const char *,const T1 &,const T2 &)' being compiled
-                 with
-                 [
-                     lhs_is_null_literal=false,
-                     T1=bool,
-                     T2=int
-                 ]
-         Generating Code...
-         Compiling...
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\Tracker.exe /d C:\Windows\Microsoft.NET\Framework\v4.0.30319\FileTracker.dll /i E:\Project\Openh264\Source_WP8\test\build\windowsphone\codec_ut\ARM\Debug /r E:\PROJECT\OPENH264\SOURCE_WP8\TEST\API\DATAGENERATOR.CPP /b MSBuildConsole_CancelEvent3b6b803886224602b14f947e9f4449f8  /c "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe"  /c /I..\..\..\ /I..\..\..\..\codec\encoder\plus\inc /I..\..\..\..\codec\encoder\core\inc /I..\..\..\..\codec\common\inc /I..\..\..\..\codec\api\svc /I..\..\..\..\gtest\include /I..\..\..\codec\processing\src\common /I..\..\..\..\codec\processing\interface /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /nologo /W1 /WX- /Od /Oy- /D _USRDLL /D WELS_WIN_PHONE /D _VARIADIC_MAX=10 /D _CRT_SECURE_NO_WARNINGS /D _WINDLL /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"ARM\Debug\\" /Fd"ARM\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\..\api\DataGenerator.cpp
          DataGenerator.cpp
-         cpp_interface_test.cpp
-         BaseEncoderTest.cpp
-         BaseDecoderTest.cpp
-         Generating Code...
        Done executing task "CL".
        Task "CL"
          Read Tracking Logs:
@@ -375,33 +353,18 @@
          Outputs for E:\PROJECT\OPENH264\SOURCE_WP8\TEST\API\C_INTERFACE_TEST.C|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\API\SHA1.C:
          	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\C_INTERFACE_TEST.OBJ
          	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\SHA1.OBJ
-         ..\..\..\api\c_interface_test.c will be compiled as it was not found in the tracking log.
-         ..\..\..\api\sha1.c will be compiled as it was not found in the tracking log.
-         Environment Variables passed to tool:
-           VS_UNICODE_OUTPUT=1916
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe /c /I..\..\..\ /I..\..\..\..\codec\encoder\plus\inc /I..\..\..\..\codec\encoder\core\inc /I..\..\..\..\codec\common\inc /I..\..\..\..\codec\api\svc /I..\..\..\..\gtest\include /I..\..\..\codec\processing\src\common /I..\..\..\..\codec\processing\interface /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /nologo /W1 /WX- /Od /Oy- /D _USRDLL /D WELS_WIN_PHONE /D _VARIADIC_MAX=10 /D _CRT_SECURE_NO_WARNINGS /D _WINDLL /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"ARM\Debug\\" /Fd"ARM\Debug\vc110.pdb" /Gd /TC /analyze- /errorReport:prompt ..\..\..\api\c_interface_test.c ..\..\..\api\sha1.c
-         Tracking command:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\Tracker.exe /d C:\Windows\Microsoft.NET\Framework\v4.0.30319\FileTracker.dll /i E:\Project\Openh264\Source_WP8\test\build\windowsphone\codec_ut\ARM\Debug /r "E:\PROJECT\OPENH264\SOURCE_WP8\TEST\API\C_INTERFACE_TEST.C|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\API\SHA1.C" /b MSBuildConsole_CancelEvent5a076b0cc0154ae68ba47c8446b5ddf5  /c "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe"  /c /I..\..\..\ /I..\..\..\..\codec\encoder\plus\inc /I..\..\..\..\codec\encoder\core\inc /I..\..\..\..\codec\common\inc /I..\..\..\..\codec\api\svc /I..\..\..\..\gtest\include /I..\..\..\codec\processing\src\common /I..\..\..\..\codec\processing\interface /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /nologo /W1 /WX- /Od /Oy- /D _USRDLL /D WELS_WIN_PHONE /D _VARIADIC_MAX=10 /D _CRT_SECURE_NO_WARNINGS /D _WINDLL /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"ARM\Debug\\" /Fd"ARM\Debug\vc110.pdb" /Gd /TC /analyze- /errorReport:prompt ..\..\..\api\c_interface_test.c ..\..\..\api\sha1.c
-         sha1.c
-         c_interface_test.c
-         Generating Code...
+         All outputs are up-to-date.
        Done executing task "CL".
        Task "CL"
-         Read Tracking Logs:
-         	ARM\Debug\cl.read.1.tlog
+         Using cached input dependency table built from:
+         	E:\Project\Openh264\Source_WP8\test\build\windowsphone\codec_ut\ARM\Debug\cl.read.1.tlog
          Outputs for E:\PROJECT\OPENH264\SOURCE_WP8\TEST\COMMON\EXPANDPICTURE.CPP:
          	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\EXPANDPICTURE.OBJ
-         ..\..\..\common\ExpandPicture.cpp will be compiled as it was not found in the tracking log.
-         Environment Variables passed to tool:
-           VS_UNICODE_OUTPUT=1312
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe /c /I..\..\..\codec\processing\src\common /I..\..\..\..\codec\decoder\core\inc /I..\..\..\ /I..\..\..\..\codec\encoder\plus\inc /I..\..\..\..\codec\encoder\core\inc /I..\..\..\..\codec\common\inc /I..\..\..\..\codec\api\svc /I..\..\..\..\gtest\include /I..\..\..\codec\processing\src\common /I..\..\..\..\codec\processing\interface /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /nologo /W1 /WX- /Od /Oy- /D _USRDLL /D WELS_WIN_PHONE /D _VARIADIC_MAX=10 /D _CRT_SECURE_NO_WARNINGS /D _WINDLL /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"ARM\Debug\\" /Fd"ARM\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\..\common\ExpandPicture.cpp
-         Tracking command:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\Tracker.exe /d C:\Windows\Microsoft.NET\Framework\v4.0.30319\FileTracker.dll /i E:\Project\Openh264\Source_WP8\test\build\windowsphone\codec_ut\ARM\Debug /r E:\PROJECT\OPENH264\SOURCE_WP8\TEST\COMMON\EXPANDPICTURE.CPP /b MSBuildConsole_CancelEventfc22c9d26c614dbfb72da6dbd83b1c6a  /c "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe"  /c /I..\..\..\codec\processing\src\common /I..\..\..\..\codec\decoder\core\inc /I..\..\..\ /I..\..\..\..\codec\encoder\plus\inc /I..\..\..\..\codec\encoder\core\inc /I..\..\..\..\codec\common\inc /I..\..\..\..\codec\api\svc /I..\..\..\..\gtest\include /I..\..\..\codec\processing\src\common /I..\..\..\..\codec\processing\interface /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /nologo /W1 /WX- /Od /Oy- /D _USRDLL /D WELS_WIN_PHONE /D _VARIADIC_MAX=10 /D _CRT_SECURE_NO_WARNINGS /D _WINDLL /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"ARM\Debug\\" /Fd"ARM\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\..\common\ExpandPicture.cpp
-         ExpandPicture.cpp
+         All outputs are up-to-date.
        Done executing task "CL".
        Task "CL"
-         Read Tracking Logs:
-         	ARM\Debug\cl.read.1.tlog
+         Using cached input dependency table built from:
+         	E:\Project\Openh264\Source_WP8\test\build\windowsphone\codec_ut\ARM\Debug\cl.read.1.tlog
          Outputs for E:\PROJECT\OPENH264\SOURCE_WP8\TEST\DECODER\DECUT_DEBLOCK.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\DECODER\DECUT_DECEXT.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\DECODER\DECUT_ERRORCONCEALMENT.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\DECODER\DECUT_IDCTRESADDPRED.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\DECODER\DECUT_INTRAPREDICTION.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\DECODER\DECUT_MOTIONCOMPENSATION.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\DECODER\DECUT_PREDMV.CPP:
          	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_DEBLOCK.OBJ
          	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_DECEXT.OBJ
@@ -410,99 +373,35 @@
          	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_INTRAPREDICTION.OBJ
          	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_MOTIONCOMPENSATION.OBJ
          	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_PREDMV.OBJ
-         ..\..\..\decoder\DecUT_Deblock.cpp will be compiled as it was not found in the tracking log.
-         ..\..\..\decoder\DecUT_DecExt.cpp will be compiled as it was not found in the tracking log.
-         ..\..\..\decoder\DecUT_ErrorConcealment.cpp will be compiled as it was not found in the tracking log.
-         ..\..\..\decoder\DecUT_IdctResAddPred.cpp will be compiled as it was not found in the tracking log.
-         ..\..\..\decoder\DecUT_IntraPrediction.cpp will be compiled as it was not found in the tracking log.
-         ..\..\..\decoder\DecUT_MotionCompensation.cpp will be compiled as it was not found in the tracking log.
-         ..\..\..\decoder\DecUT_PredMv.cpp will be compiled as it was not found in the tracking log.
-         Environment Variables passed to tool:
-           VS_UNICODE_OUTPUT=496
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe /c /I..\..\..\..\codec\api\svc /I..\..\..\..\gtest\include /I..\..\..\ /I..\..\..\..\codec\decoder\plus\inc /I..\..\..\..\codec\common\inc /I..\..\..\..\codec\decoder\core\inc /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /nologo /W1 /WX- /Od /Oy- /D _USRDLL /D WELS_WIN_PHONE /D _VARIADIC_MAX=10 /D _CRT_SECURE_NO_WARNINGS /D _WINDLL /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"ARM\Debug\\" /Fd"ARM\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\..\decoder\DecUT_Deblock.cpp ..\..\..\decoder\DecUT_DecExt.cpp ..\..\..\decoder\DecUT_ErrorConcealment.cpp ..\..\..\decoder\DecUT_IdctResAddPred.cpp ..\..\..\decoder\DecUT_IntraPrediction.cpp ..\..\..\decoder\DecUT_MotionCompensation.cpp ..\..\..\decoder\DecUT_PredMv.cpp
-         Tracking command:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\Tracker.exe /d C:\Windows\Microsoft.NET\Framework\v4.0.30319\FileTracker.dll /i E:\Project\Openh264\Source_WP8\test\build\windowsphone\codec_ut\ARM\Debug /r "E:\PROJECT\OPENH264\SOURCE_WP8\TEST\DECODER\DECUT_DEBLOCK.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\DECODER\DECUT_DECEXT.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\DECODER\DECUT_ERRORCONCEALMENT.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\DECODER\DECUT_IDCTRESADDPRED.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\DECODER\DECUT_INTRAPREDICTION.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\DECODER\DECUT_MOTIONCOMPENSATION.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\DECODER\DECUT_PREDMV.CPP" /b MSBuildConsole_CancelEvent8e8bba1e648940a0a16df6c2f5fac375  /c "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe"  /c /I..\..\..\..\codec\api\svc /I..\..\..\..\gtest\include /I..\..\..\ /I..\..\..\..\codec\decoder\plus\inc /I..\..\..\..\codec\common\inc /I..\..\..\..\codec\decoder\core\inc /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /nologo /W1 /WX- /Od /Oy- /D _USRDLL /D WELS_WIN_PHONE /D _VARIADIC_MAX=10 /D _CRT_SECURE_NO_WARNINGS /D _WINDLL /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"ARM\Debug\\" /Fd"ARM\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\..\decoder\DecUT_Deblock.cpp ..\..\..\decoder\DecUT_DecExt.cpp ..\..\..\decoder\DecUT_ErrorConcealment.cpp ..\..\..\decoder\DecUT_IdctResAddPred.cpp ..\..\..\decoder\DecUT_IntraPrediction.cpp ..\..\..\decoder\DecUT_MotionCompensation.cpp ..\..\..\decoder\DecUT_PredMv.cpp
-         DecUT_PredMv.cpp
-         DecUT_MotionCompensation.cpp
-         DecUT_IntraPrediction.cpp
-         DecUT_IdctResAddPred.cpp
-         DecUT_ErrorConcealment.cpp
-         DecUT_DecExt.cpp
-     1>E:\Project\Openh264\Source_WP8\gtest\include\gtest/gtest.h(1467): warning C4805: '==' : unsafe mix of type 'const int' and type 'const bool' in operation
-                 E:\Project\Openh264\Source_WP8\gtest\include\gtest/gtest.h(1501) : see reference to function template instantiation 'testing::AssertionResult testing::internal::CmpHelperEQ<T1,T2>(const char *,const char *,const T1 &,const T2 &)' being compiled
-                 with
-                 [
-                     T1=int,
-                     T2=bool
-                 ]
-                 ..\..\..\decoder\DecUT_DecExt.cpp(274) : see reference to function template instantiation 'testing::AssertionResult testing::internal::EqHelper<lhs_is_null_literal>::Compare<int,bool>(const char *,const char *,const T1 &,const T2 &)' being compiled
-                 with
-                 [
-                     lhs_is_null_literal=false,
-                     T1=int,
-                     T2=bool
-                 ]
-                 ..\..\..\decoder\DecUT_DecExt.cpp(274) : see reference to function template instantiation 'testing::AssertionResult testing::internal::EqHelper<lhs_is_null_literal>::Compare<int,bool>(const char *,const char *,const T1 &,const T2 &)' being compiled
-                 with
-                 [
-                     lhs_is_null_literal=false,
-                     T1=int,
-                     T2=bool
-                 ]
-         DecUT_Deblock.cpp
-         Generating Code...
+         All outputs are up-to-date.
        Done executing task "CL".
        Task "CL"
-         Read Tracking Logs:
-         	ARM\Debug\cl.read.1.tlog
+         Using cached input dependency table built from:
+         	E:\Project\Openh264\Source_WP8\test\build\windowsphone\codec_ut\ARM\Debug\cl.read.1.tlog
          Outputs for E:\PROJECT\OPENH264\SOURCE_WP8\TEST\PROCESSING\PROCESSUT_ADAPTIVEQUANTIZATION.CPP:
          	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\PROCESSUT_ADAPTIVEQUANTIZATION.OBJ
-         ..\..\..\processing\ProcessUT_AdaptiveQuantization.cpp will be compiled as it was not found in the tracking log.
-         Environment Variables passed to tool:
-           VS_UNICODE_OUTPUT=2208
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe /c /I..\..\..\ /I..\..\..\..\codec\processing\src\adaptivequantization /I..\..\..\..\codec\common\inc /I..\..\..\..\gtest\include /I..\..\..\..\codec\processing\src /I..\..\..\..\codec\processing\interface /I..\..\..\..\codec\processing\src\common /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /nologo /W1 /WX- /Od /Oy- /D _USRDLL /D WELS_WIN_PHONE /D _VARIADIC_MAX=10 /D _CRT_SECURE_NO_WARNINGS /D _WINDLL /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"ARM\Debug\\" /Fd"ARM\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\..\processing\ProcessUT_AdaptiveQuantization.cpp
-         Tracking command:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\Tracker.exe /d C:\Windows\Microsoft.NET\Framework\v4.0.30319\FileTracker.dll /i E:\Project\Openh264\Source_WP8\test\build\windowsphone\codec_ut\ARM\Debug /r E:\PROJECT\OPENH264\SOURCE_WP8\TEST\PROCESSING\PROCESSUT_ADAPTIVEQUANTIZATION.CPP /b MSBuildConsole_CancelEventae98f6ba3d5d439792f7f13611f77548  /c "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe"  /c /I..\..\..\ /I..\..\..\..\codec\processing\src\adaptivequantization /I..\..\..\..\codec\common\inc /I..\..\..\..\gtest\include /I..\..\..\..\codec\processing\src /I..\..\..\..\codec\processing\interface /I..\..\..\..\codec\processing\src\common /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /nologo /W1 /WX- /Od /Oy- /D _USRDLL /D WELS_WIN_PHONE /D _VARIADIC_MAX=10 /D _CRT_SECURE_NO_WARNINGS /D _WINDLL /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"ARM\Debug\\" /Fd"ARM\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\..\processing\ProcessUT_AdaptiveQuantization.cpp
-         ProcessUT_AdaptiveQuantization.cpp
+         All outputs are up-to-date.
        Done executing task "CL".
        Task "CL"
-         Read Tracking Logs:
-         	ARM\Debug\cl.read.1.tlog
+         Using cached input dependency table built from:
+         	E:\Project\Openh264\Source_WP8\test\build\windowsphone\codec_ut\ARM\Debug\cl.read.1.tlog
          Outputs for E:\PROJECT\OPENH264\SOURCE_WP8\TEST\PROCESSING\PROCESSUT_DOWNSAMPLE.CPP:
          	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\PROCESSUT_DOWNSAMPLE.OBJ
-         ..\..\..\processing\ProcessUT_DownSample.cpp will be compiled as it was not found in the tracking log.
-         Environment Variables passed to tool:
-           VS_UNICODE_OUTPUT=2000
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe /c /I..\..\..\ /I..\..\..\..\codec\processing\src\downsample /I..\..\..\..\codec\common\inc /I..\..\..\..\gtest\include /I..\..\..\..\codec\processing\src /I..\..\..\..\codec\processing\interface /I..\..\..\..\codec\processing\src\common /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /nologo /W1 /WX- /Od /Oy- /D _USRDLL /D WELS_WIN_PHONE /D _VARIADIC_MAX=10 /D _CRT_SECURE_NO_WARNINGS /D _WINDLL /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"ARM\Debug\\" /Fd"ARM\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\..\processing\ProcessUT_DownSample.cpp
-         Tracking command:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\Tracker.exe /d C:\Windows\Microsoft.NET\Framework\v4.0.30319\FileTracker.dll /i E:\Project\Openh264\Source_WP8\test\build\windowsphone\codec_ut\ARM\Debug /r E:\PROJECT\OPENH264\SOURCE_WP8\TEST\PROCESSING\PROCESSUT_DOWNSAMPLE.CPP /b MSBuildConsole_CancelEvent9659e7e257084f7cac69c8256807419c  /c "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe"  /c /I..\..\..\ /I..\..\..\..\codec\processing\src\downsample /I..\..\..\..\codec\common\inc /I..\..\..\..\gtest\include /I..\..\..\..\codec\processing\src /I..\..\..\..\codec\processing\interface /I..\..\..\..\codec\processing\src\common /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /nologo /W1 /WX- /Od /Oy- /D _USRDLL /D WELS_WIN_PHONE /D _VARIADIC_MAX=10 /D _CRT_SECURE_NO_WARNINGS /D _WINDLL /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"ARM\Debug\\" /Fd"ARM\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\..\processing\ProcessUT_DownSample.cpp
-         ProcessUT_DownSample.cpp
+         All outputs are up-to-date.
        Done executing task "CL".
        Task "CL"
-         Read Tracking Logs:
-         	ARM\Debug\cl.read.1.tlog
+         Using cached input dependency table built from:
+         	E:\Project\Openh264\Source_WP8\test\build\windowsphone\codec_ut\ARM\Debug\cl.read.1.tlog
          Outputs for E:\PROJECT\OPENH264\SOURCE_WP8\TEST\PROCESSING\PROCESSUT_SCROLLDETECTION.CPP:
          	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\PROCESSUT_SCROLLDETECTION.OBJ
-         ..\..\..\processing\ProcessUT_ScrollDetection.cpp will be compiled as it was not found in the tracking log.
-         Environment Variables passed to tool:
-           VS_UNICODE_OUTPUT=1076
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe /c /I..\..\..\ /I..\..\..\..\codec\processing\src\scrolldetection /I..\..\..\..\codec\common\inc /I..\..\..\..\gtest\include /I..\..\..\..\codec\processing\src /I..\..\..\..\codec\processing\interface /I..\..\..\..\codec\processing\src\common /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /nologo /W1 /WX- /Od /Oy- /D _USRDLL /D WELS_WIN_PHONE /D _VARIADIC_MAX=10 /D _CRT_SECURE_NO_WARNINGS /D _WINDLL /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"ARM\Debug\\" /Fd"ARM\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\..\processing\ProcessUT_ScrollDetection.cpp
-         Tracking command:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\Tracker.exe /d C:\Windows\Microsoft.NET\Framework\v4.0.30319\FileTracker.dll /i E:\Project\Openh264\Source_WP8\test\build\windowsphone\codec_ut\ARM\Debug /r E:\PROJECT\OPENH264\SOURCE_WP8\TEST\PROCESSING\PROCESSUT_SCROLLDETECTION.CPP /b MSBuildConsole_CancelEvente210108f16194bab8f0aba8842e35f8d  /c "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe"  /c /I..\..\..\ /I..\..\..\..\codec\processing\src\scrolldetection /I..\..\..\..\codec\common\inc /I..\..\..\..\gtest\include /I..\..\..\..\codec\processing\src /I..\..\..\..\codec\processing\interface /I..\..\..\..\codec\processing\src\common /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /nologo /W1 /WX- /Od /Oy- /D _USRDLL /D WELS_WIN_PHONE /D _VARIADIC_MAX=10 /D _CRT_SECURE_NO_WARNINGS /D _WINDLL /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"ARM\Debug\\" /Fd"ARM\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\..\processing\ProcessUT_ScrollDetection.cpp
-         ProcessUT_ScrollDetection.cpp
+         All outputs are up-to-date.
        Done executing task "CL".
        Task "CL"
-         Read Tracking Logs:
-         	ARM\Debug\cl.read.1.tlog
+         Using cached input dependency table built from:
+         	E:\Project\Openh264\Source_WP8\test\build\windowsphone\codec_ut\ARM\Debug\cl.read.1.tlog
          Outputs for E:\PROJECT\OPENH264\SOURCE_WP8\TEST\PROCESSING\PROCESSUT_VAACALC.CPP:
          	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\PROCESSUT_VAACALC.OBJ
-         ..\..\..\processing\ProcessUT_VaaCalc.cpp will be compiled as it was not found in the tracking log.
-         Environment Variables passed to tool:
-           VS_UNICODE_OUTPUT=2196
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe /c /I..\..\..\ /I..\..\..\..\codec\processing\src\vaacalc /I..\..\..\..\codec\common\inc /I..\..\..\..\gtest\include /I..\..\..\..\codec\processing\src /I..\..\..\..\codec\processing\interface /I..\..\..\..\codec\processing\src\common /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /nologo /W1 /WX- /Od /Oy- /D _USRDLL /D WELS_WIN_PHONE /D _VARIADIC_MAX=10 /D _CRT_SECURE_NO_WARNINGS /D _WINDLL /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"ARM\Debug\\" /Fd"ARM\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\..\processing\ProcessUT_VaaCalc.cpp
-         Tracking command:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\Tracker.exe /d C:\Windows\Microsoft.NET\Framework\v4.0.30319\FileTracker.dll /i E:\Project\Openh264\Source_WP8\test\build\windowsphone\codec_ut\ARM\Debug /r E:\PROJECT\OPENH264\SOURCE_WP8\TEST\PROCESSING\PROCESSUT_VAACALC.CPP /b MSBuildConsole_CancelEventff573c3b90fe41dab73d59914522161d  /c "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe"  /c /I..\..\..\ /I..\..\..\..\codec\processing\src\vaacalc /I..\..\..\..\codec\common\inc /I..\..\..\..\gtest\include /I..\..\..\..\codec\processing\src /I..\..\..\..\codec\processing\interface /I..\..\..\..\codec\processing\src\common /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /nologo /W1 /WX- /Od /Oy- /D _USRDLL /D WELS_WIN_PHONE /D _VARIADIC_MAX=10 /D _CRT_SECURE_NO_WARNINGS /D _WINDLL /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"ARM\Debug\\" /Fd"ARM\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\..\processing\ProcessUT_VaaCalc.cpp
-         ProcessUT_VaaCalc.cpp
+         All outputs are up-to-date.
        Done executing task "CL".
      1>Done building target "ClCompile" in project "Codec_UT_Dll.vcxproj".
        Target "ManagedIncrementalBuildPostProcessDependencyGraph" skipped, due to false condition; ('@(ClCompile)' != '' and '$(EnableManagedIncrementalBuild)' == 'True') was evaluated as ('..\..\..\api\BaseDecoderTest.cpp;..\..\..\api\BaseEncoderTest.cpp;..\..\..\api\cpp_interface_test.cpp;..\..\..\api\c_interface_test.c;..\..\..\api\DataGenerator.cpp;..\..\..\api\decoder_test.cpp;..\..\..\api\decode_encode_test.cpp;..\..\..\api\encoder_test.cpp;..\..\..\api\encode_decode_api_test.cpp;..\..\..\api\sha1.c;..\..\..\api\simple_test.cpp;..\..\..\common\ExpandPicture.cpp;..\..\..\decoder\DecUT_Deblock.cpp;..\..\..\decoder\DecUT_DeblockCommon.cpp;..\..\..\decoder\DecUT_DecExt.cpp;..\..\..\decoder\DecUT_ErrorConcealment.cpp;..\..\..\decoder\DecUT_IdctResAddPred.cpp;..\..\..\decoder\DecUT_IntraPrediction.cpp;..\..\..\decoder\DecUT_MotionCompensation.cpp;..\..\..\decoder\DecUT_PredMv.cpp;..\..\..\encoder\EncUT_DecodeMbAux.cpp;..\..\..\encoder\EncUT_EncoderExt.cpp;..\..\..\encoder\EncUT_EncoderMb.cpp;..\..\..\encoder\EncUT_EncoderMbAux.cpp;..\..\..\encoder\EncUT_ExpGolomb.cpp;..\..\..\encoder\EncUT_GetIntraPredictor.cpp;..\..\..\encoder\EncUT_InterfaceTest.cpp;..\..\..\encoder\EncUT_MBCopy.cpp;..\..\..\encoder\EncUT_MemoryAlloc.cpp;..\..\..\encoder\EncUT_MemoryZero.cpp;..\..\..\encoder\EncUT_MotionEstimate.cpp;..\..\..\encoder\EncUT_Reconstruct.cpp;..\..\..\encoder\EncUT_Sample.cpp;..\..\..\encoder\EncUT_SVC_me.cpp;..\..\..\processing\ProcessUT_AdaptiveQuantization.cpp;..\..\..\processing\ProcessUT_DownSample.cpp;..\..\..\processing\ProcessUT_ScrollDetection.cpp;..\..\..\processing\ProcessUT_VaaCalc.cpp' != '' and 'false' == 'True').
@@ -613,8 +512,74 @@
      1>Target "Link" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppCommon.targets" from project "E:\Project\Openh264\Source_WP8\test\build\windowsphone\codec_ut\Codec_UT_Dll.vcxproj" (target "_Link" depends on it):
        Using "Link" task from assembly "Microsoft.Build.CppTasks.Common.v110, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
        Task "Link"
+         Write Tracking Logs:
+         	ARM\Debug\link.write.1.tlog
+         Read Tracking Logs:
+         	ARM\Debug\link.read.1.tlog
+         Outputs for E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\BASEDECODERTEST.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\BASEENCODERTEST.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\CPP_INTERFACE_TEST.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\C_INTERFACE_TEST.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DATAGENERATOR.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECODER_TEST.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECODE_ENCODE_TEST.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_DEBLOCK.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_DEBLOCKCOMMON.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_DECEXT.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_ERRORCONCEALMENT.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_IDCTRESADDPRED.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_INTRAPREDICTION.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_MOTIONCOMPENSATION.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_PREDMV.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCODER_TEST.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCODE_DECODE_API_TEST.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_DECODEMBAUX.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_ENCODEREXT.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_ENCODERMB.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_ENCODERMBAUX.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_EXPGOLOMB.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_GETINTRAPREDICTOR.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_INTERFACETEST.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_MBCOPY.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_MEMORYALLOC.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_MEMORYZERO.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_MOTIONESTIMATE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_RECONSTRUCT.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_SAMPLE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_SVC_ME.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\EXPANDPICTURE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\PROCESSUT_ADAPTIVEQUANTIZATION.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\PROCESSUT_DOWNSAMPLE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\PROCESSUT_SCROLLDETECTION.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\PROCESSUT_VAACALC.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\SHA1.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\SIMPLE_TEST.OBJ:
+         	E:\PROJECT\OPENH264\SOURCE_WP8\BIN\ARM\DEBUG\CODEC_UT_DLL.ILK
+         	E:\PROJECT\OPENH264\SOURCE_WP8\BIN\ARM\DEBUG\CODEC_UT_DLL.DLL
+         	E:\PROJECT\OPENH264\SOURCE_WP8\BIN\ARM\DEBUG\CODEC_UT_DLL.PDB
+         Inputs for E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\BASEDECODERTEST.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\BASEENCODERTEST.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\CPP_INTERFACE_TEST.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\C_INTERFACE_TEST.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DATAGENERATOR.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECODER_TEST.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECODE_ENCODE_TEST.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_DEBLOCK.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_DEBLOCKCOMMON.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_DECEXT.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_ERRORCONCEALMENT.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_IDCTRESADDPRED.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_INTRAPREDICTION.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_MOTIONCOMPENSATION.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_PREDMV.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCODER_TEST.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCODE_DECODE_API_TEST.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_DECODEMBAUX.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_ENCODEREXT.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_ENCODERMB.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_ENCODERMBAUX.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_EXPGOLOMB.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_GETINTRAPREDICTOR.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_INTERFACETEST.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_MBCOPY.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_MEMORYALLOC.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_MEMORYZERO.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_MOTIONESTIMATE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_RECONSTRUCT.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_SAMPLE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_SVC_ME.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\EXPANDPICTURE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\PROCESSUT_ADAPTIVEQUANTIZATION.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\PROCESSUT_DOWNSAMPLE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\PROCESSUT_SCROLLDETECTION.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\PROCESSUT_VAACALC.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\SHA1.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\SIMPLE_TEST.OBJ:
+         	C:\WINDOWS\SYSTEM32\C_1252.NLS
+         	C:\WINDOWS\GLOBALIZATION\SORTING\SORTDEFAULT.NLS
+         	E:\PROJECT\OPENH264\SOURCE_WP8\BIN\ARM\DEBUG\GTEST.LIB
+         	E:\PROJECT\OPENH264\SOURCE_WP8\BIN\ARM\DEBUG\OPENH264.LIB
+         	E:\PROJECT\OPENH264\SOURCE_WP8\BIN\ARM\DEBUG\WELSDCORE.LIB
+         	E:\PROJECT\OPENH264\SOURCE_WP8\BIN\ARM\DEBUG\WELSECORE.LIB
+         	E:\PROJECT\OPENH264\SOURCE_WP8\BIN\ARM\DEBUG\WELSVP.LIB
+         	C:\PROGRAM FILES (X86)\WINDOWS PHONE KITS\8.0\LIB\ARM\WINDOWSPHONECORE.LIB
+         	C:\PROGRAM FILES (X86)\WINDOWS PHONE KITS\8.0\LIB\ARM\RUNTIMEOBJECT.LIB
+         	C:\PROGRAM FILES (X86)\WINDOWS PHONE KITS\8.0\LIB\ARM\PHONEAPPMODELHOST.LIB
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\BASEDECODERTEST.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\BASEENCODERTEST.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\CPP_INTERFACE_TEST.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\C_INTERFACE_TEST.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DATAGENERATOR.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECODER_TEST.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECODE_ENCODE_TEST.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCODER_TEST.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCODE_DECODE_API_TEST.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\SHA1.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\SIMPLE_TEST.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\EXPANDPICTURE.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_DEBLOCK.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_DEBLOCKCOMMON.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_DECEXT.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_ERRORCONCEALMENT.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_IDCTRESADDPRED.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_INTRAPREDICTION.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_MOTIONCOMPENSATION.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_PREDMV.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_DECODEMBAUX.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_ENCODEREXT.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_ENCODERMB.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_ENCODERMBAUX.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_EXPGOLOMB.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_GETINTRAPREDICTOR.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_INTERFACETEST.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_MBCOPY.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_MEMORYALLOC.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_MEMORYZERO.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_MOTIONESTIMATE.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_RECONSTRUCT.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_SAMPLE.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_SVC_ME.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\PROCESSUT_ADAPTIVEQUANTIZATION.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\PROCESSUT_DOWNSAMPLE.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\PROCESSUT_SCROLLDETECTION.OBJ
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\PROCESSUT_VAACALC.OBJ
+         	C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 11.0\VC\WPSDK\WP80\LIB\ARM\MSVCPRTD.LIB
+         	C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 11.0\VC\WPSDK\WP80\LIB\ARM\MSVCRTD.LIB
+         	C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 11.0\VC\WPSDK\WP80\LIB\ARM\OLDNAMES.LIB
+         	C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 11.0\VC\WPSDK\WP80\LIB\ARM\VCCORLIBD.LIB
+         	C:\PROGRAM FILES (X86)\WINDOWS PHONE KITS\8.0\LIB\ARM\UUID.LIB
+         	E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\CODEC_UT.DEF
+         	C:\WINDOWS\SYSTEM32\TZRES.DLL
+         	C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 11.0\VC\WPSDK\WP80\BIN\X86_ARM\1033\LINKUI.DLL
+         Source compilation required: input E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DATAGENERATOR.OBJ is newer than output E:\PROJECT\OPENH264\SOURCE_WP8\BIN\ARM\DEBUG\CODEC_UT_DLL.DLL.
          Environment Variables passed to tool:
-           VS_UNICODE_OUTPUT=996
+           VS_UNICODE_OUTPUT=768
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\link.exe /ERRORREPORT:PROMPT /OUT:".\..\..\..\..\bin\ARM\Debug\Codec_UT_Dll.dll" /INCREMENTAL /NOLOGO /LIBPATH:.\..\..\..\..\bin\ARM\Debug\ gtest.lib openh264.lib welsdcore.lib welsecore.lib welsvp.lib WindowsPhoneCore.lib RuntimeObject.lib PhoneAppModelHost.lib /DEF:"Codec_UT.def" /MANIFEST:NO /DEBUG /PDB:".\..\..\..\..\bin\ARM\Debug\Codec_UT_Dll.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /WINMD:NO /DYNAMICBASE /NXCOMPAT /IMPLIB:".\..\..\..\..\bin\ARM\Debug\Codec_UT_Dll.lib" /MACHINE:ARM /DLL ARM\Debug\BaseDecoderTest.obj
          ARM\Debug\BaseEncoderTest.obj
          ARM\Debug\cpp_interface_test.obj
@@ -654,7 +619,7 @@
          ARM\Debug\ProcessUT_ScrollDetection.obj
          ARM\Debug\ProcessUT_VaaCalc.obj
          Tracking command:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\Tracker.exe /a /d C:\Windows\Microsoft.NET\Framework\v4.0.30319\FileTracker.dll /i E:\Project\Openh264\Source_WP8\test\build\windowsphone\codec_ut\ARM\Debug /r "E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\BASEDECODERTEST.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\BASEENCODERTEST.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\CPP_INTERFACE_TEST.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\C_INTERFACE_TEST.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DATAGENERATOR.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECODER_TEST.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECODE_ENCODE_TEST.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_DEBLOCK.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_DEBLOCKCOMMON.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_DECEXT.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_ERRORCONCEALMENT.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_IDCTRESADDPRED.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_INTRAPREDICTION.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_MOTIONCOMPENSATION.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_PREDMV.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCODER_TEST.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCODE_DECODE_API_TEST.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_DECODEMBAUX.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_ENCODEREXT.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_ENCODERMB.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_ENCODERMBAUX.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_EXPGOLOMB.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_GETINTRAPREDICTOR.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_INTERFACETEST.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_MBCOPY.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_MEMORYALLOC.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_MEMORYZERO.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_MOTIONESTIMATE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_RECONSTRUCT.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_SAMPLE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_SVC_ME.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\EXPANDPICTURE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\PROCESSUT_ADAPTIVEQUANTIZATION.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\PROCESSUT_DOWNSAMPLE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\PROCESSUT_SCROLLDETECTION.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\PROCESSUT_VAACALC.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\SHA1.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\SIMPLE_TEST.OBJ" /b MSBuildConsole_CancelEventc6f2405846294b4e90945f162243f8c7  /c "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\link.exe"  /ERRORREPORT:PROMPT /OUT:".\..\..\..\..\bin\ARM\Debug\Codec_UT_Dll.dll" /INCREMENTAL /NOLOGO /LIBPATH:.\..\..\..\..\bin\ARM\Debug\ gtest.lib openh264.lib welsdcore.lib welsecore.lib welsvp.lib WindowsPhoneCore.lib RuntimeObject.lib PhoneAppModelHost.lib /DEF:"Codec_UT.def" /MANIFEST:NO /DEBUG /PDB:".\..\..\..\..\bin\ARM\Debug\Codec_UT_Dll.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /WINMD:NO /DYNAMICBASE /NXCOMPAT /IMPLIB:".\..\..\..\..\bin\ARM\Debug\Codec_UT_Dll.lib" /MACHINE:ARM /DLL ARM\Debug\BaseDecoderTest.obj
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\Tracker.exe /a /d C:\Windows\Microsoft.NET\Framework\v4.0.30319\FileTracker.dll /i E:\Project\Openh264\Source_WP8\test\build\windowsphone\codec_ut\ARM\Debug /r "E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\BASEDECODERTEST.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\BASEENCODERTEST.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\CPP_INTERFACE_TEST.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\C_INTERFACE_TEST.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DATAGENERATOR.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECODER_TEST.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECODE_ENCODE_TEST.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_DEBLOCK.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_DEBLOCKCOMMON.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_DECEXT.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_ERRORCONCEALMENT.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_IDCTRESADDPRED.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_INTRAPREDICTION.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_MOTIONCOMPENSATION.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\DECUT_PREDMV.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCODER_TEST.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCODE_DECODE_API_TEST.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_DECODEMBAUX.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_ENCODEREXT.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_ENCODERMB.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_ENCODERMBAUX.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_EXPGOLOMB.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_GETINTRAPREDICTOR.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_INTERFACETEST.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_MBCOPY.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_MEMORYALLOC.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_MEMORYZERO.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_MOTIONESTIMATE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_RECONSTRUCT.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_SAMPLE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\ENCUT_SVC_ME.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\EXPANDPICTURE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\PROCESSUT_ADAPTIVEQUANTIZATION.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\PROCESSUT_DOWNSAMPLE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\PROCESSUT_SCROLLDETECTION.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\PROCESSUT_VAACALC.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\SHA1.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\CODEC_UT\ARM\DEBUG\SIMPLE_TEST.OBJ" /b MSBuildConsole_CancelEvent239c92b8566f4063b02b18c9a10b0c0c  /c "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\link.exe"  /ERRORREPORT:PROMPT /OUT:".\..\..\..\..\bin\ARM\Debug\Codec_UT_Dll.dll" /INCREMENTAL /NOLOGO /LIBPATH:.\..\..\..\..\bin\ARM\Debug\ gtest.lib openh264.lib welsdcore.lib welsecore.lib welsvp.lib WindowsPhoneCore.lib RuntimeObject.lib PhoneAppModelHost.lib /DEF:"Codec_UT.def" /MANIFEST:NO /DEBUG /PDB:".\..\..\..\..\bin\ARM\Debug\Codec_UT_Dll.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /WINMD:NO /DYNAMICBASE /NXCOMPAT /IMPLIB:".\..\..\..\..\bin\ARM\Debug\Codec_UT_Dll.lib" /MACHINE:ARM /DLL ARM\Debug\BaseDecoderTest.obj
          ARM\Debug\BaseEncoderTest.obj
          ARM\Debug\cpp_interface_test.obj
          ARM\Debug\c_interface_test.obj
@@ -692,7 +657,6 @@
          ARM\Debug\ProcessUT_DownSample.obj
          ARM\Debug\ProcessUT_ScrollDetection.obj
          ARM\Debug\ProcessUT_VaaCalc.obj
-            Creating library .\..\..\..\..\bin\ARM\Debug\Codec_UT_Dll.lib and object .\..\..\..\..\bin\ARM\Debug\Codec_UT_Dll.exp
        Done executing task "Link".
        Task "Message"
          Codec_UT_Dll.vcxproj -> E:\Project\Openh264\Source_WP8\test\build\windowsphone\codec_ut\.\..\..\..\..\bin\ARM\Debug\Codec_UT_Dll.dll
@@ -805,6 +769,7 @@
      1>Target "AfterBuild" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.BuildSteps.Targets" from project "E:\Project\Openh264\Source_WP8\test\build\windowsphone\codec_ut\Codec_UT_Dll.vcxproj" (target "Build" depends on it):
      1>Done building target "AfterBuild" in project "Codec_UT_Dll.vcxproj".
      1>Target "FinalizeBuildStatus" in file "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets" from project "E:\Project\Openh264\Source_WP8\test\build\windowsphone\codec_ut\Codec_UT_Dll.vcxproj" (target "Build" depends on it):
+       Using "Delete" task from assembly "Microsoft.Build.Tasks.v12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
        Task "Delete"
          Deleting file "ARM\Debug\Codec_UT_Dll.unsuccessfulbuild".
        Done executing task "Delete".
@@ -818,4 +783,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:44.69
+Time Elapsed 00:00:03.29
