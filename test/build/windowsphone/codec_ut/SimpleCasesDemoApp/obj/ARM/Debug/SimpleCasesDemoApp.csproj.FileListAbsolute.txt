@@ -4,7 +4,6 @@ E:\Project\Openh264\Source_WP8\test\build\windowsphone\codec_ut\SimpleCasesDemoA
 E:\Project\Openh264\Source_WP8\test\build\windowsphone\codec_ut\SimpleCasesDemoApp\Bin\ARM\Debug\Assets\Tiles\FlipCycleTileSmall.png
 E:\Project\Openh264\Source_WP8\test\build\windowsphone\codec_ut\SimpleCasesDemoApp\Bin\ARM\Debug\Assets\Tiles\IconicTileMediumLarge.png
 E:\Project\Openh264\Source_WP8\test\build\windowsphone\codec_ut\SimpleCasesDemoApp\Bin\ARM\Debug\Assets\Tiles\IconicTileSmall.png
-E:\Project\Openh264\Source_WP8\test\build\windowsphone\codec_ut\SimpleCasesDemoApp\Bin\ARM\Debug\SimpleCaseDll.dll
 E:\Project\Openh264\Source_WP8\test\build\windowsphone\codec_ut\SimpleCasesDemoApp\Bin\ARM\Debug\SimpleCasesDemoApp.dll
 E:\Project\Openh264\Source_WP8\test\build\windowsphone\codec_ut\SimpleCasesDemoApp\Bin\ARM\Debug\SimpleCasesDemoApp.pdb
 E:\Project\Openh264\Source_WP8\test\build\windowsphone\codec_ut\SimpleCasesDemoApp\Bin\ARM\Debug\AppManifest.xaml

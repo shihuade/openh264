@@ -3,7 +3,7 @@
 #include <iostream>
 #include "SimpleCaseTestRTC.h"
 //#include "SimpleTestCase.h"
-#include "SimpleCaseDll.h"
+//#include "SimpleCaseDll.h"
 
 using namespace Platform;
 using namespace Windows;
@@ -12,6 +12,7 @@ using namespace SimpleCaseTestRTC;
 
 typedef int(*pfGTestHandler)();
 typedef  int(*pfTestAllCases)(int argc, char** argv);
+extern int CodecUtMain(int argc, char** argv);
 
 CodecSimpleCasesRTC::CodecSimpleCasesRTC()
 {

@@ -29,4 +29,7 @@
     </ClInclude>
     <ClInclude Include="..\..\..\common\inc\welsCodecTrace.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="codec.def" />
+  </ItemGroup>
 </Project>

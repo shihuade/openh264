@@ -40,8 +40,8 @@ namespace SimpleCasesDemoApp
                 bFlag = false;
             }
 
-            cSimpleRTCTest.SimpleTest();
-            cSimpleRTCTest.NonTest();
+            //cSimpleRTCTest.SimpleTest();
+            //cSimpleRTCTest.NonTest();
             cSimpleRTCTest.TestAllCasesRTC();
         }
 

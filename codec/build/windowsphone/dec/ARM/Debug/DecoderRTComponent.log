@@ -1,4 +1,4 @@
-﻿Build started 1/26/2015 2:24:04 PM.
+﻿Build started 1/27/2015 10:58:19 AM.
      1>Project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\DecoderRTComponent.vcxproj" on node 2 (Clean target(s)).
      1>Building with tools version "12.0".
      1>Target "_CheckForInvalidConfigurationAndPlatform" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\codec\build\windowsphone\dec\DecoderRTComponent.vcxproj" (entry point):
@@ -89,4 +89,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.00
+Time Elapsed 00:00:00.03

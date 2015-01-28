@@ -1,5 +1,5 @@
-﻿Build started 1/26/2015 2:36:35 PM.
-     1>Project "E:\Project\Openh264\Source_WP8\test\build\windowsphone\SimpleTestCase\SimpleTestCase.vcxproj" on node 2 (Build target(s)).
+﻿Build started 1/27/2015 10:35:19 AM.
+     1>Project "E:\Project\Openh264\Source_WP8\test\build\windowsphone\SimpleTestCase\SimpleTestCase.vcxproj" on node 3 (Build target(s)).
      1>Building with tools version "12.0".
      1>Target "_CheckForInvalidConfigurationAndPlatform" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "E:\Project\Openh264\Source_WP8\test\build\windowsphone\SimpleTestCase\SimpleTestCase.vcxproj" (entry point):
        Task "Error" skipped, due to false condition; ( '$(_InvalidConfigurationError)' == 'true' ) was evaluated as ( '' == 'true' ).
@@ -309,10 +309,10 @@
        Task "CL"
          Forcing recompile of all source files due to missing PDB "ARM\Debug\vc110.pdb".
          Environment Variables passed to tool:
-           VS_UNICODE_OUTPUT=1348
+           VS_UNICODE_OUTPUT=1084
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe /c /I..\..\..\..\gtest\include /I..\..\..\..\gtest /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /nologo /W1 /WX- /Od /Oy- /D _WINDOWS_PHONE_ /D _VARIADIC_MAX=10 /D _CRT_SECURE_NO_WARNINGS /D _LIB /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"ARM\Debug\\" /Fd"ARM\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt SimpleTestCase.cpp TestCases.cpp
          Tracking command:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\Tracker.exe /d C:\Windows\Microsoft.NET\Framework\v4.0.30319\FileTracker.dll /i E:\Project\Openh264\Source_WP8\test\build\windowsphone\SimpleTestCase\ARM\Debug /r "E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\SIMPLETESTCASE\SIMPLETESTCASE.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\SIMPLETESTCASE\TESTCASES.CPP" /b MSBuildConsole_CancelEvent718d03cbec2445afa9847ab952d91f48  /c "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe"  /c /I..\..\..\..\gtest\include /I..\..\..\..\gtest /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /nologo /W1 /WX- /Od /Oy- /D _WINDOWS_PHONE_ /D _VARIADIC_MAX=10 /D _CRT_SECURE_NO_WARNINGS /D _LIB /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"ARM\Debug\\" /Fd"ARM\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt SimpleTestCase.cpp TestCases.cpp
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\Tracker.exe /d C:\Windows\Microsoft.NET\Framework\v4.0.30319\FileTracker.dll /i E:\Project\Openh264\Source_WP8\test\build\windowsphone\SimpleTestCase\ARM\Debug /r "E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\SIMPLETESTCASE\SIMPLETESTCASE.CPP|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\SIMPLETESTCASE\TESTCASES.CPP" /b MSBuildConsole_CancelEvent20d813b76bec463285a4a0bcc2875822  /c "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe"  /c /I..\..\..\..\gtest\include /I..\..\..\..\gtest /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /nologo /W1 /WX- /Od /Oy- /D _WINDOWS_PHONE_ /D _VARIADIC_MAX=10 /D _CRT_SECURE_NO_WARNINGS /D _LIB /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"ARM\Debug\\" /Fd"ARM\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt SimpleTestCase.cpp TestCases.cpp
          TestCases.cpp
          SimpleTestCase.cpp
          Generating Code...
@@ -380,7 +380,7 @@
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\Lib.exe /OUT:"..\..\..\..\bin\ARM\Debug\SimpleTestCase.lib" /NOLOGO /MACHINE:ARM ARM\Debug\SimpleTestCase.obj
          ARM\Debug\TestCases.obj
          Tracking command:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\Tracker.exe /d C:\Windows\Microsoft.NET\Framework\v4.0.30319\FileTracker.dll /i E:\Project\Openh264\Source_WP8\test\build\windowsphone\SimpleTestCase\ARM\Debug /r "E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\SIMPLETESTCASE\ARM\DEBUG\SIMPLETESTCASE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\SIMPLETESTCASE\ARM\DEBUG\TESTCASES.OBJ" /b MSBuildConsole_CancelEvent91376e46306748068175f01161b6cae7  /c "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\Lib.exe"  /OUT:"..\..\..\..\bin\ARM\Debug\SimpleTestCase.lib" /NOLOGO /MACHINE:ARM ARM\Debug\SimpleTestCase.obj
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\Tracker.exe /d C:\Windows\Microsoft.NET\Framework\v4.0.30319\FileTracker.dll /i E:\Project\Openh264\Source_WP8\test\build\windowsphone\SimpleTestCase\ARM\Debug /r "E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\SIMPLETESTCASE\ARM\DEBUG\SIMPLETESTCASE.OBJ|E:\PROJECT\OPENH264\SOURCE_WP8\TEST\BUILD\WINDOWSPHONE\SIMPLETESTCASE\ARM\DEBUG\TESTCASES.OBJ" /b MSBuildConsole_CancelEvent29d2dd2865aa4d69adf24c3b5cffa14c  /c "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\Lib.exe"  /OUT:"..\..\..\..\bin\ARM\Debug\SimpleTestCase.lib" /NOLOGO /MACHINE:ARM ARM\Debug\SimpleTestCase.obj
          ARM\Debug\TestCases.obj
        Done executing task "LIB".
        Task "Message"
@@ -528,4 +528,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:04.29
+Time Elapsed 00:00:03.90
