@@ -51,7 +51,13 @@
 #include "typedefs.h"
 #include "measure_time.h"
 #include "d3d9_utils.h"
+#include <iostream>
 
+#if defined (WINDOWS_PHONE)
+double g_dDecTime = 0.0;
+float  g_fDecFPS = 0.0;
+int    g_iDecodedFrameNum = 0;
+#endif
 
 using namespace std;
 #if defined(ANDROID_NDK)
@@ -296,6 +302,12 @@ void H264DecodeInstance (ISVCDecoder* pDecoder, const char* kpH264FileName, cons
            iWidth, iHeight, iFrameCount, dElapsed, (iFrameCount * 1.0) / dElapsed);
   fprintf (stderr, "-------------------------------------------------------\n");
 
+#if defined (WINDOWS_PHONE)
+  g_dDecTime         = dElapsed;
+  g_fDecFPS          = (iFrameCount * 1.0) / dElapsed;
+  g_iDecodedFrameNum = iFrameCount;
+#endif
+
   // coverity scan uninitial
 label_exit:
   if (pBuf) {
@@ -315,8 +327,12 @@ label_exit:
     pOptionFile = NULL;
   }
 }
+#ifdef _LOAD_CODEC_DLL_
+typedef long(*pfDecoderCreateHandler)(ISVCDecoder** ppDecoder);
+typedef void(*pfDecoderDestroyHandler)(ISVCDecoder* pDecoder);
+#endif
 
-#if (defined(ANDROID_NDK)||defined(APPLE_IOS))
+#if (defined(ANDROID_NDK)||defined(APPLE_IOS) || defined (WINDOWS_PHONE))
 int32_t DecMain (int32_t iArgC, char* pArgV[]) {
 #else
 int32_t main (int32_t iArgC, char* pArgV[]) {
@@ -433,13 +449,38 @@ int32_t main (int32_t iArgC, char* pArgV[]) {
     return 1;
   }
 
+#ifdef _LOAD_CODEC_DLL_
+  HMODULE                   phSVCDLLHandler     = NULL;
+  pfDecoderCreateHandler    pfDecoderCreator    = NULL;
+  pfDecoderDestroyHandler   pfDecoderDestructor = NULL;
+  LPCWSTR                   cSVCDLLName         = L"openh264.dll";
 
+  phSVCDLLHandler = LoadPackagedLibrary(cSVCDLLName, 0);
+  DWORD dw = GetLastError();
+  if (NULL == phSVCDLLHandler)
+  {
+	  std::cout << "failed to load dll,error code is : " << dw << std::endl;
+	  return 1;
+  }
 
+  pfDecoderCreator    = (pfDecoderCreateHandler)GetProcAddress(phSVCDLLHandler,  "WelsCreateDecoder");
+  pfDecoderDestructor = (pfDecoderDestroyHandler)GetProcAddress(phSVCDLLHandler, "WelsDestroyDecoder");
+  if (NULL == pfDecoderCreator || NULL == pfDecoderDestructor)
+  {
+	  std::cout << "failed to load function" << std::endl;
+	  return 2;
+  }
 
+  if (pfDecoderCreator(&pDecoder) || (NULL == pDecoder)) {
+	  printf ("Create Decoder failed.\n");
+	  return 1;
+  }
+#else
   if (WelsCreateDecoder (&pDecoder)  || (NULL == pDecoder)) {
-    printf ("Create Decoder failed.\n");
+	  printf ("Create Decoder failed.\n");
     return 1;
   }
+#endif
   if (iLevelSetting >= 0) {
     pDecoder->SetOption (DECODER_OPTION_TRACE_LEVEL, &iLevelSetting);
   }
@@ -465,8 +506,11 @@ int32_t main (int32_t iArgC, char* pArgV[]) {
 
   if (pDecoder) {
     pDecoder->Uninitialize();
-
+#ifdef _LOAD_CODEC_DLL_
+	pfDecoderDestructor (pDecoder);
+#else
     WelsDestroyDecoder (pDecoder);
+#endif
   }
 
   return 0;

@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WelsDecCore", "WelsDecCore.vcproj", "{01B4AE41-6AD6-4CAF-AEB3-C42F7F9121D5}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WelsDecPlus", "WelsDecPlus.vcproj", "{1131558A-9986-4F4B-A13F-8B7F4C8438BF}"
@@ -8,10 +10,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WelsDecPlus", "WelsDecPlus.
 		{01B4AE41-6AD6-4CAF-AEB3-C42F7F9121D5} = {01B4AE41-6AD6-4CAF-AEB3-C42F7F9121D5}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "decConsole", "decConsole.vcproj", "{71973A8E-103D-4FB7-951F-55E35E7F60FA}"
-	ProjectSection(ProjectDependencies) = postProject
-		{1131558A-9986-4F4B-A13F-8B7F4C8438BF} = {1131558A-9986-4F4B-A13F-8B7F4C8438BF}
-	EndProjectSection
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "decConsole", "decConsole.vcxproj", "{71973A8E-103D-4FB7-951F-55E35E7F60FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -44,6 +44,12 @@
 #endif//ONLY_ENC_FRAMES_NUM
 #define ONLY_ENC_FRAMES_NUM		INT_MAX // 2, INT_MAX	// type the num you try to encode here, 2, 10, etc
 
+#if defined (WINDOWS_PHONE)
+float   g_fFPS           = 0.0;
+double  g_dEncoderTime   = 0.0;
+int     g_iEncodedFrame  = 0;
+#endif
+
 #if defined (ANDROID_NDK)
 #define LOG_TAG "welsenc"
 #define LOGI(...) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, __VA_ARGS__)
@@ -912,7 +918,14 @@ int ProcessEncoding (ISVCEncoder* pPtrEnc, int argc, char** argv, bool bConfigFi
     printf ("Width:		%d\nHeight:		%d\nFrames:		%d\nencode time:	%f sec\nFPS:		%f fps\n",
             sSvcParam.iPicWidth, sSvcParam.iPicHeight,
             iActualFrameEncodedCount, dElapsed, (iActualFrameEncodedCount * 1.0) / dElapsed);
-  }
+
+#if defined (WINDOWS_PHONE)
+	g_fFPS          = (iActualFrameEncodedCount * 1.0) / dElapsed;
+	g_dEncoderTime  = dElapsed;
+	g_iEncodedFrame = iActualFrameEncodedCount;
+#endif
+ }
+
 INSIDE_MEM_FREE:
   if (pFpBs) {
     fclose (pFpBs);
@@ -971,23 +984,46 @@ void LockToSingleCore() {
   return ;
 }
 
-int32_t CreateSVCEncHandle (ISVCEncoder** ppEncoder) {
-  int32_t ret = 0;
-  ret = WelsCreateSVCEncoder (ppEncoder);
-  return ret;
+#ifdef _LOAD_CODEC_DLL_
+
+typedef int32_t(*pfSVCEncCreateHandler)(ISVCEncoder** ppEncoder);
+typedef void(*pfSVCEncDestroyHandler)(ISVCEncoder* pEncoder);
+
+int32_t CreateSVCEncHandle(pfSVCEncCreateHandler pfSVCEncCreator, ISVCEncoder** ppEncoder) {
+	int32_t ret = 0;
+	ret = pfSVCEncCreator(ppEncoder);
+	return ret;
 }
 
-void DestroySVCEncHandle (ISVCEncoder* pEncoder) {
-  if (pEncoder) {
-    WelsDestroySVCEncoder (pEncoder);
-
-  }
+void DestroySVCEncHandle(pfSVCEncDestroyHandler pfSVCEncDestructor, ISVCEncoder* pEncoder) {
+	if (pEncoder) {
+		pfSVCEncDestructor(pEncoder);
+	}
 }
+
+
+#else
+
+int32_t CreateSVCEncHandle(ISVCEncoder** ppEncoder) {
+	int32_t ret = 0;
+	ret = WelsCreateSVCEncoder(ppEncoder);
+	return ret;
+}
+
+void DestroySVCEncHandle(ISVCEncoder* pEncoder) {
+	if (pEncoder) {
+		WelsDestroySVCEncoder(pEncoder);
+
+	}
+}
+
+#endif
+
 
 /****************************************************************************
  * main:
  ****************************************************************************/
-#if defined(ANDROID_NDK) || defined(APPLE_IOS)
+#if defined(ANDROID_NDK) || defined(APPLE_IOS) || defined (WINDOWS_PHONE)
 extern "C" int EncMain (int argc, char** argv)
 #else
 int main (int argc, char** argv)
@@ -1007,7 +1043,33 @@ int main (int argc, char** argv)
   /* Control-C handler */
   signal (SIGINT, SigIntHandler);
 
-  iRet = CreateSVCEncHandle (&pSVCEncoder);
+#ifdef _LOAD_CODEC_DLL_
+  HMODULE                   phSVCDLLHandler = NULL;
+  pfSVCEncCreateHandler     pfSVCEncCreator = NULL;
+  pfSVCEncDestroyHandler    pfSVCEncDestructor = NULL;
+  LPCWSTR                   cSVCDLLName = L"openh264.dll";
+
+  phSVCDLLHandler = LoadPackagedLibrary(cSVCDLLName, 0);
+  DWORD dw = GetLastError();
+  if (NULL == phSVCDLLHandler)
+  {
+	  std::cout << "failed to load dll,error code is : " << dw << std::endl;
+	  return 1;
+  }
+
+  pfSVCEncCreator = (pfSVCEncCreateHandler)GetProcAddress(phSVCDLLHandler, "WelsCreateSVCEncoder");
+  pfSVCEncDestructor = (pfSVCEncDestroyHandler)GetProcAddress(phSVCDLLHandler, "WelsDestroySVCEncoder");
+  if (NULL == pfSVCEncCreator || NULL == pfSVCEncDestructor)
+  {
+	  std::cout << "failed to load function" << std::endl;
+	  return 2;
+  }
+
+  iRet = CreateSVCEncHandle(pfSVCEncCreator, &pSVCEncoder);
+#else
+  iRet = CreateSVCEncHandle(&pSVCEncoder);
+#endif
+
   if (iRet) {
     cout << "WelsCreateSVCEncoder() failed!!" << endl;
     goto exit;
@@ -1033,12 +1095,20 @@ int main (int argc, char** argv)
         goto exit;
     }
   }
+#ifdef _LOAD_CODEC_DLL_
+  DestroySVCEncHandle(pfSVCEncDestructor, pSVCEncoder);
+#else
+  DestroySVCEncHandle(pSVCEncoder);
+#endif
 
-  DestroySVCEncHandle (pSVCEncoder);
   return 0;
 
 exit:
-  DestroySVCEncHandle (pSVCEncoder);
+#ifdef _LOAD_CODEC_DLL_
+  DestroySVCEncHandle(pfSVCEncDestructor, pSVCEncoder);
+#else
+  DestroySVCEncHandle(pSVCEncoder);
+#endif
   PrintHelp();
   return 1;
 }
