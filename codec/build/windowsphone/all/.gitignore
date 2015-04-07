@@ -1,0 +1,15 @@
+#App demo used bit steam and yuv file
+*.264
+*.yuv
+
+#folder
+ARM
+Debug
+Relase
+ipch
+obj
+
+#VC  temp file
+*.sdf
+*.suo
+*.user
