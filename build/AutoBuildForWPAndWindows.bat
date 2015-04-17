@@ -399,7 +399,7 @@ goto :EOF
      set aFileList=%DllFile% %LibFile% %PDBFile% %UTDllFile%
   )
   else (
-     set aFileList=%DllFile% %LibFile% %PDBFile% %UTBinFile% %EncBinFile% %DecBinFile% 
+     set aFileList=%DllFile% %LibFile% %PDBFile% %UTBinFile% %EncBinFile% %DecBinFile%
   )
   for %%k in (%aFileList%) do (
     bash -c "cp -f  %%k  %DestDir%"
