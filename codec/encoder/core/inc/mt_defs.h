@@ -44,7 +44,9 @@
 #include "codec_app_def.h"
 #include "wels_const.h"
 #include "WelsThreadLib.h"
+#include "nal_encap.h"
 
+using namespace WelsEnc;
 /*
  *  MT_DEBUG: output trace MT related into log file
  */
@@ -61,13 +63,19 @@ SFrameBSInfo*   pFrameBsInfo;
 int32_t         iSliceIndex;    // slice index, zero based
 int32_t         iThreadIndex;   // thread index, zero based
 
+uint8_t*        pThreadBsBuffer;
+int32_t*        pThreadNalLen;
+SWelsSliceBs*   pThreadSliceBs;
+int32_t         iCountNals;
+int32_t         iMaxSliceNum;
+
 // for dynamic slicing mode
 int32_t         iStartMbIndex;  // inclusive
 int32_t         iEndMbIndex;    // exclusive
 } SSliceThreadPrivateData;
 
 typedef struct TagSliceThreading {
-SSliceThreadPrivateData*        pThreadPEncCtx;// thread context, [iThreadIdx]
+SSliceThreadPrivateData        pThreadPEncCtx[MAX_THREADS_NUM];// thread context, [iThreadIdx]
 char eventNamespace[100];
 WELS_THREAD_HANDLE              pThreadHandles[MAX_THREADS_NUM];// thread handles, [iThreadIdx]
 WELS_EVENT                      pSliceCodedEvent[MAX_THREADS_NUM];// events for slice coded state, [iThreadIdx]
