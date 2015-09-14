@@ -564,8 +564,8 @@ void ReleaseMtResource (sWelsEncCtx** ppCtx) {
 	}
 
 	if (pSmt->pThreadPEncCtx[i].pThreadSliceBs) {
-		pMa->WelsFree(pSmt->pThreadPEncCtx[i].pThreadSliceBs, "pSmt->pThreadPEncCtx[i].pThreadSliceBs");
 		UinitialSliceBs(pSmt->pThreadPEncCtx[i].pThreadSliceBs, pSmt->pThreadPEncCtx[i].iThreadMaxSliceNum);
+		pMa->WelsFree(pSmt->pThreadPEncCtx[i].pThreadSliceBs, "pSmt->pThreadPEncCtx[i].pThreadSliceBs");
 		pSmt->pThreadPEncCtx[i].pThreadSliceBs = NULL;
 	}
   }
