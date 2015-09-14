@@ -107,7 +107,7 @@ SPicture*               pRefOri[MAX_REF_PIC_COUNT];
 
 SSliceCtx*              pSliceEncCtx;   // current slice context
 
-int32_t*                pNumSliceCodedOfPartition;      // for dynamic slicing mode
+//int32_t*                pNumSliceCodedOfPartition;
 int32_t*                pLastCodedMbIdxOfPartition;     // for dynamic slicing mode
 int32_t*                pLastMbIdxOfPartition;          // for dynamic slicing mode
 

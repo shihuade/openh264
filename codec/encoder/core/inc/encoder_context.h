@@ -112,7 +112,7 @@ typedef struct TagWelsEncCtx {
   SLogContext sLogCtx;
 // Input
   SWelsSvcCodingParam* pSvcParam;   // SVC parameter, WelsSVCParamConfig in svc_param_settings.h
-  SWelsSliceBs*     pSliceBs;       // bitstream buffering for various slices, [uiSliceIdx]
+//  SWelsSliceBs*     pSliceBs;       // bitstream buffering for various slices, [uiSliceIdx]
 
   int32_t*          pSadCostMb;
   /* MVD cost tables for Inter MB */

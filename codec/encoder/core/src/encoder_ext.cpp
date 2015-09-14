@@ -1078,9 +1078,9 @@ static inline int32_t InitpSliceInLayer (sWelsEncCtx** ppCtx, SDqLayer* pDqLayer
   while (iSliceIdx < iMaxSliceNum) {
     SSlice* pSlice = &pDqLayer->sLayerInfo.pSliceInLayer[iSliceIdx];
     pSlice->uiSliceIdx = iSliceIdx;
-    if (bMultithread)
-      pSlice->pSliceBsa = & (*ppCtx)->pSliceBs[iSliceIdx].sBsWrite;
-    else
+    if (false == bMultithread)
+ //     pSlice->pSliceBsa = & (*ppCtx)->pSliceBs[iSliceIdx].sBsWrite;
+ // else
       pSlice->pSliceBsa = & (*ppCtx)->pOut->sBsWrite;
     if (AllocMbCacheAligned (&pSlice->sMbCacheInfo, pMa)) {
       FreeMemorySvc (ppCtx);
@@ -1171,12 +1171,12 @@ static inline int32_t InitDqLayers (sWelsEncCtx** ppCtx, SExistingParasetList* p
     if (SM_DYN_SLICE == pDlayer->sSliceCfg.uiSliceMode) {
       const int32_t iSize                       = pParam->iCountThreadsNum * sizeof (int32_t);
 
-      pDqLayer->pNumSliceCodedOfPartition       = (int32_t*)pMa->WelsMallocz (iSize, "pNumSliceCodedOfPartition");
+      //pDqLayer->pNumSliceCodedOfPartition       = (int32_t*)pMa->WelsMallocz (iSize, "pNumSliceCodedOfPartition");
       pDqLayer->pLastCodedMbIdxOfPartition      = (int32_t*)pMa->WelsMallocz (iSize, "pLastCodedMbIdxOfPartition");
       pDqLayer->pLastMbIdxOfPartition           = (int32_t*)pMa->WelsMallocz (iSize, "pLastMbIdxOfPartition");
 
       WELS_VERIFY_RETURN_PROC_IF (1,
-                                  (NULL == pDqLayer->pNumSliceCodedOfPartition ||
+                                  (//NULL == pDqLayer->pNumSliceCodedOfPartition ||
                                    NULL == pDqLayer->pLastCodedMbIdxOfPartition ||
                                    NULL == pDqLayer->pLastMbIdxOfPartition),
                                   FreeMemorySvc (ppCtx))
@@ -2113,8 +2113,8 @@ void FreeMemorySvc (sWelsEncCtx** ppCtx) {
             pDq->sLayerInfo.pSliceInLayer = NULL;
           }
           if (kbIsDynamicSlicing) {
-            pMa->WelsFree (pDq->pNumSliceCodedOfPartition, "pNumSliceCodedOfPartition");
-            pDq->pNumSliceCodedOfPartition = NULL;
+            //pMa->WelsFree (pDq->pNumSliceCodedOfPartition, "pNumSliceCodedOfPartition");
+            //pDq->pNumSliceCodedOfPartition = NULL;
             pMa->WelsFree (pDq->pLastCodedMbIdxOfPartition, "pLastCodedMbIdxOfPartition");
             pDq->pLastCodedMbIdxOfPartition = NULL;
             pMa->WelsFree (pDq->pLastMbIdxOfPartition, "pLastMbIdxOfPartition");
@@ -4105,7 +4105,7 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
                 // pick up succeeding slice for threading
                 // thread_id equal to iEventId per implementation here
                 pCtx->pSliceThreading->pThreadPEncCtx[iEventId].iSliceIndex = iIndexOfSliceToBeCoded;
-                SetOneSliceBsBufferUnderMultithread (pCtx, iEventId, iIndexOfSliceToBeCoded);
+                SetOneSliceBsBufferUnderMultithread (pCtx, iEventId);
                 WelsEventSignal (&pCtx->pSliceThreading->pReadySliceCodingEvent[iEventId]);
                 WelsEventSignal (&pCtx->pSliceThreading->pThreadMasterEvent[iEventId]);
                 ++ iIndexOfSliceToBeCoded;
@@ -4852,9 +4852,9 @@ int32_t DynSliceRealloc (sWelsEncCtx* pCtx,
   while (uiSliceIdx < iMaxSliceNum) {
     SSliceHeaderExt* pSHExt = &pSliceIdx->sSliceHeaderExt;
     pSliceIdx->uiSliceIdx = uiSliceIdx;
-    if (pCtx->pSvcParam->iMultipleThreadIdc > 1)
-      pSliceIdx->pSliceBsa = &pCtx->pSliceBs[uiSliceIdx].sBsWrite;
-    else
+    if ( pCtx->pSvcParam->iMultipleThreadIdc <= 1)
+//      pSliceIdx->pSliceBsa = &pCtx->pSliceBs[uiSliceIdx].sBsWrite;
+ //   else
       pSliceIdx->pSliceBsa = &pCtx->pOut->sBsWrite;
     if (AllocMbCacheAligned (&pSliceIdx->sMbCacheInfo, pMA)) {
       WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR,
@@ -4966,7 +4966,8 @@ int32_t WelsCodeOnePicPartition (sWelsEncCtx* pCtx,
   //init
   {
     pSliceCtx->pFirstMbInSlice[iSliceIdx]               = iFirstMbInPartition;
-    pCurLayer->pNumSliceCodedOfPartition[kiPartitionId] = 1;    // one slice per partition intialized, dynamic slicing inside
+   // pCurLayer->pNumSliceCodedOfPartition[kiPartitionId] = 1;    // one slice per partition intialized, dynamic slicing inside
+	pCtx->pSliceThreading->pThreadPEncCtx[kiPartitionId].iThreadCodedSliceNum=1;
     pCurLayer->pLastMbIdxOfPartition[kiPartitionId]     = iEndMbInPartition - 1;
   }
   pCurLayer->pLastCodedMbIdxOfPartition[kiPartitionId] = 0;

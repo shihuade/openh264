@@ -63,11 +63,13 @@ SFrameBSInfo*   pFrameBsInfo;
 int32_t         iSliceIndex;    // slice index, zero based
 int32_t         iThreadIndex;   // thread index, zero based
 
-uint8_t*        pThreadBsBuffer;
-int32_t*        pThreadNalLen;
+uint8_t*        pThreadSliceBsBuffer;
+//int32_t*        pThreadNalLen;
+int32_t*        pThreadSliceIndex;
 SWelsSliceBs*   pThreadSliceBs;
-int32_t         iCountNals;
-int32_t         iMaxSliceNum;
+//int32_t         iCountNals;
+int32_t         iThreadMaxSliceNum;
+int32_t         iThreadCodedSliceNum;
 
 // for dynamic slicing mode
 int32_t         iStartMbIndex;  // inclusive

@@ -521,7 +521,7 @@ void RcInitSliceInformation (sWelsEncCtx* pEncCtx) {
 
   for (int32_t i = 0; i < kiSliceNum; i++) {
     pSOverRc->iStartMbSlice     =
-      pSOverRc->iEndMbSlice     = pCurSliceCtx->pFirstMbInSlice[i];
+    pSOverRc->iEndMbSlice       = pCurSliceCtx->pFirstMbInSlice[i];
     pSOverRc->iEndMbSlice      += (pCurSliceCtx->pCountMbNumInSlice[i] - 1);
     pSOverRc->iTotalQpSlice     = 0;
     pSOverRc->iTotalMbSlice     = 0;

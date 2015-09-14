@@ -599,7 +599,8 @@ TRY_REENCODING:
       pEncCtx->pFuncList->pfStashPopMBStatus (&sDss, pSlice);
       pCurLayer->pLastCodedMbIdxOfPartition[kiPartitionId] = iCurMbIdx -
           1; // update pLastCodedMbIdxOfPartition, need to -1 due to stepping back
-      ++ pCurLayer->pNumSliceCodedOfPartition[kiPartitionId];
+      //++ pCurLayer->pNumSliceCodedOfPartition[kiPartitionId];
+	  ++ pEncCtx->pSliceThreading->pThreadPEncCtx[kiPartitionId].iThreadCodedSliceNum;
 
       break;
     }
@@ -1112,8 +1113,8 @@ TRY_REENCODING:
       pSlice->iMbSkipRun = pEncCtx->pFuncList->pfStashPopMBStatus (&sDss, pSlice);
       pCurLayer->pLastCodedMbIdxOfPartition[kiPartitionId] = iCurMbIdx -
           1; // update pLastCodedMbIdxOfPartition, need to -1 due to stepping back
-      ++ pCurLayer->pNumSliceCodedOfPartition[kiPartitionId];
-
+      //++ pCurLayer->pNumSliceCodedOfPartition[kiPartitionId];
+	  ++pEncCtx->pSliceThreading->pThreadPEncCtx[kiPartitionId].iThreadCodedSliceNum;
       break;
     }
 

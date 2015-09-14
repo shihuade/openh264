@@ -765,7 +765,8 @@ void PerformDeblockingFilter (sWelsEncCtx* pEnc) {
       int32_t iPartitionIdx = 0;
 
       while (iPartitionIdx < kiNumPicPartition) {
-        iSliceCount     = pCurLayer->pNumSliceCodedOfPartition[iPartitionIdx];
+        //iSliceCount     = pCurLayer->pNumSliceCodedOfPartition[iPartitionIdx];
+		  iSliceCount = pEnc->pSliceThreading->pThreadPEncCtx[iPartitionIdx].iThreadCodedSliceNum;
         iSliceIdx       = iPartitionIdx;
         do {
           DeblockingFilterSliceAvcbase (pCurLayer, pEnc->pFuncList, iSliceIdx);
