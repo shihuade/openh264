@@ -753,6 +753,7 @@ void PerformDeblockingFilter (sWelsEncCtx* pEnc) {
   } else if (pCurLayer->iLoopFilterDisableIdc == 2) {
     int32_t iSliceCount = 0;
     int32_t iSliceIdx   = 0;
+	int32_t iThreadCodedSliceNum = 0;
 
     if (SM_DYN_SLICE != pSpatialLayer->sSliceCfg.uiSliceMode) {
       iSliceCount = GetCurrentSliceNum (pCurLayer->pSliceEncCtx);
@@ -767,11 +768,15 @@ void PerformDeblockingFilter (sWelsEncCtx* pEnc) {
       while (iPartitionIdx < kiNumPicPartition) {
         //iSliceCount     = pCurLayer->pNumSliceCodedOfPartition[iPartitionIdx];
 		  iSliceCount = pEnc->pSliceThreading->pThreadPEncCtx[iPartitionIdx].iThreadCodedSliceNum;
-        iSliceIdx       = iPartitionIdx;
+        //iSliceIdx       = iPartitionIdx;
+		  iThreadCodedSliceNum = 0;
+		  iSliceIdx            = pEnc->pSliceThreading->pThreadPEncCtx[iPartitionIdx].pThreadSliceIndex[iThreadCodedSliceNum];
         do {
           DeblockingFilterSliceAvcbase (pCurLayer, pEnc->pFuncList, iSliceIdx);
-          iSliceIdx += kiNumPicPartition;
-        } while (iSliceIdx < iSliceCount);
+		  iSliceIdx = pEnc->pSliceThreading->pThreadPEncCtx[iPartitionIdx].pThreadSliceIndex[iThreadCodedSliceNum];
+          //iSliceIdx += kiNumPicPartition;
+		  iThreadCodedSliceNum++;
+        } while (iThreadCodedSliceNum < iSliceCount);
         ++ iPartitionIdx;
       }
     }

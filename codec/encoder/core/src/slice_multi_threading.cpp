@@ -725,9 +725,13 @@ int32_t AppendSliceToFrameBs(sWelsEncCtx* pCtx, SLayerBSInfo* pLbi, const int32_
 	}
 
 	for (; iSliceIdx < iTotalSliceNum; iSliceIdx++) {
-		iThreadSliceIndexOffset = 0;
 		for (j = 0; j < iActiveThreadNum; j++) {
-			iThreadSliceIndexOffset += pCtx->pSliceThreading->pThreadPEncCtx[j].iThreadCodedSliceNum;
+			if (j >= 1) {
+				iThreadSliceIndexOffset += pCtx->pSliceThreading->pThreadPEncCtx[j - 1].iThreadCodedSliceNum;
+			}else {
+				iThreadSliceIndexOffset = 0;
+			}
+
 			k = aiAppendSliceBsNum[j];
 			iThreadSliceIndex = pCtx->pSliceThreading->pThreadPEncCtx[j].pThreadSliceIndex[k];
 
@@ -963,7 +967,7 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
         iSliceIdx = pPrivateData->iSliceIndex;
 
         pSliceCtx->pFirstMbInSlice[iSliceIdx]                   = kiFirstMbInPartition;
-		pPrivateData->iThreadCodedSliceNum                      = 1;
+		pPrivateData->iThreadCodedSliceNum                      = 0;
         //pCurDq->pNumSliceCodedOfPartition[kiPartitionId]        = 1;    // one pSlice per partition intialized, dynamic slicing inside
         pCurDq->pLastMbIdxOfPartition[kiPartitionId]            = kiEndMbInPartition - 1;
 

@@ -600,7 +600,7 @@ TRY_REENCODING:
       pCurLayer->pLastCodedMbIdxOfPartition[kiPartitionId] = iCurMbIdx -
           1; // update pLastCodedMbIdxOfPartition, need to -1 due to stepping back
       //++ pCurLayer->pNumSliceCodedOfPartition[kiPartitionId];
-	  ++ pEncCtx->pSliceThreading->pThreadPEncCtx[kiPartitionId].iThreadCodedSliceNum;
+	  //++ pEncCtx->pSliceThreading->pThreadPEncCtx[kiPartitionId].iThreadCodedSliceNum;
 
       break;
     }
@@ -1114,7 +1114,7 @@ TRY_REENCODING:
       pCurLayer->pLastCodedMbIdxOfPartition[kiPartitionId] = iCurMbIdx -
           1; // update pLastCodedMbIdxOfPartition, need to -1 due to stepping back
       //++ pCurLayer->pNumSliceCodedOfPartition[kiPartitionId];
-	  ++pEncCtx->pSliceThreading->pThreadPEncCtx[kiPartitionId].iThreadCodedSliceNum;
+	  //++pEncCtx->pSliceThreading->pThreadPEncCtx[kiPartitionId].iThreadCodedSliceNum;
       break;
     }
 
