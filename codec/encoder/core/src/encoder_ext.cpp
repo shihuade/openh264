@@ -1840,8 +1840,7 @@ int32_t RequestMemorySvc (sWelsEncCtx** ppCtx, SExistingParasetList* pExistingPa
   iCountBsLen = iNonVclLayersBsSizeCount + iVclLayersBsSizeCount;
 
   iMaxSliceBufferSize = WELS_MIN (iMaxSliceBufferSize, iTargetSpatialBsSize);
-  iTotalLength = (pParam->iMultipleThreadIdc == 1) ? iCountBsLen : (iCountBsLen + (*ppCtx)->iMaxSliceCount  *
-                 iMaxSliceBufferSize);
+  iTotalLength = iCountBsLen;
 
   pParam->iNumRefFrame = WELS_CLIP3 (pParam->iNumRefFrame, MIN_REF_PIC_COUNT,
                                       (pParam->iUsageType == CAMERA_VIDEO_REAL_TIME ? MAX_REFERENCE_PICTURE_COUNT_NUM_CAMERA :
