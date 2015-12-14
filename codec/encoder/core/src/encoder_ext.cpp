@@ -180,6 +180,11 @@ int32_t SliceArgumentValidationFixedSliceMode(SLogContext* pLogCtx,
 
   if (pSliceArgument->uiSliceNum == 0) {
     WelsCPUFeatureDetect (&iCpuCores);
+    if (0 == iCpuCores ) {
+      // cpuid not supported or doesn't expose the number of cores,
+      // use high level system API as followed to detect number of pysical/logic processor
+      iCpuCores = DynamicDetectCpuCores();
+    }
     pSliceArgument->uiSliceNum = iCpuCores;
   }
 
@@ -1186,7 +1191,7 @@ static inline int32_t InitDqLayers (sWelsEncCtx** ppCtx, SExistingParasetList* p
 
     // for dynamic slicing mode
     if (SM_SIZELIMITED_SLICE == pDlayer->sSliceArgument.uiSliceMode) {
-      const int32_t iSize                       = pParam->iCountThreadsNum * sizeof (int32_t);
+      const int32_t iSize                       = pParam->iMultipleThreadIdc * sizeof (int32_t);
 
       pDqLayer->pNumSliceCodedOfPartition       = (int32_t*)pMa->WelsMallocz (iSize, "pNumSliceCodedOfPartition");
       pDqLayer->pLastCodedMbIdxOfPartition      = (int32_t*)pMa->WelsMallocz (iSize, "pLastCodedMbIdxOfPartition");
@@ -2245,8 +2250,8 @@ void FreeMemorySvc (sWelsEncCtx** ppCtx) {
   }
 }
 
-int32_t InitSliceSettings (SLogContext* pLogCtx, SWelsSvcCodingParam* pCodingParam, const int32_t kiCpuCores,
-                           int16_t* pMaxSliceCount) {
+int32_t InitSliceSettings (SLogContext* pLogCtx,     SWelsSvcCodingParam* pCodingParam,
+                           const int32_t kiCpuCores, int16_t* pMaxSliceCount) {
   int32_t iSpatialIdx = 0, iSpatialNum = pCodingParam->iSpatialLayerNum;
   uint16_t iMaxSliceCount = 0;
 
@@ -2254,11 +2259,6 @@ int32_t InitSliceSettings (SLogContext* pLogCtx, SWelsSvcCodingParam* pCodingPar
     SSpatialLayerConfig* pDlp           = &pCodingParam->sSpatialLayers[iSpatialIdx];
     SSliceArgument* pSliceArgument      = &pDlp->sSliceArgument;
     int32_t iReturn                     = 0;
-    int32_t iSliceNum                   = (SM_FIXEDSLCNUM_SLICE == pSliceArgument->uiSliceMode && 0==pSliceArgument->uiSliceNum) ? kiCpuCores : pSliceArgument->uiSliceNum;
-    // NOTE: Per design, in case MT/DYNAMIC_SLICE_ASSIGN enabled, for SM_FIXEDSLCNUM_SLICE mode,
-    // uiSliceNum of current spatial layer settings equals to uiCpuCores number; SM_SIZELIMITED_SLICE mode,
-    // uiSliceNum intials as uiCpuCores also, stay tuned dynamically slicing in future
-    pSliceArgument->uiSliceNum = iSliceNum;    // used fixed one
 
     switch (pSliceArgument->uiSliceMode) {
     case SM_SIZELIMITED_SLICE:
@@ -2273,16 +2273,15 @@ int32_t InitSliceSettings (SLogContext* pLogCtx, SWelsSvcCodingParam* pCodingPar
       if (pSliceArgument->uiSliceNum > iMaxSliceCount) {
         iMaxSliceCount = pSliceArgument->uiSliceNum;
       }
-
     }
       break;
     case SM_SINGLE_SLICE:
-      if (iSliceNum > iMaxSliceCount)
-        iMaxSliceCount = iSliceNum;
+      if (pSliceArgument->uiSliceNum > iMaxSliceCount)
+        iMaxSliceCount = pSliceArgument->uiSliceNum;
       break;
     case SM_RASTER_SLICE:
-      if (iSliceNum > iMaxSliceCount)
-        iMaxSliceCount = iSliceNum;
+      if (pSliceArgument->uiSliceNum > iMaxSliceCount)
+        iMaxSliceCount = pSliceArgument->uiSliceNum;
       break;
     default:
       break;
@@ -2291,8 +2290,7 @@ int32_t InitSliceSettings (SLogContext* pLogCtx, SWelsSvcCodingParam* pCodingPar
     ++ iSpatialIdx;
   } while (iSpatialIdx < iSpatialNum);
 
-  pCodingParam->iCountThreadsNum = WELS_MIN (kiCpuCores, iMaxSliceCount);
-  pCodingParam->iMultipleThreadIdc = pCodingParam->iCountThreadsNum;
+  pCodingParam->iMultipleThreadIdc = WELS_MIN (kiCpuCores, iMaxSliceCount);
   if (pCodingParam->iLoopFilterDisableIdc == 0
       && pCodingParam->iMultipleThreadIdc != 1) // Loop filter requested to be enabled, with threading enabled
     pCodingParam->iLoopFilterDisableIdc =
@@ -2372,16 +2370,19 @@ int32_t GetMultipleThreadIdc (SLogContext* pLogCtx, SWelsSvcCodingParam* pCoding
   iCacheLineSize = 16; // 16 bytes aligned in default
 #endif//X86_ASM
 
-  if (pCodingParam->iMultipleThreadIdc > 0)
-    uiCpuCores = pCodingParam->iMultipleThreadIdc;
-  else {
-    if (uiCpuCores ==
-        0) { // cpuid not supported or doesn't expose the number of cores, use high level system API as followed to detect number of pysical/logic processor
-      uiCpuCores = DynamicDetectCpuCores();
-    }// So far so many cpu cores up to MAX_THREADS_NUM mean for server platforms,
-    // for client application here it is constrained by maximal to MAX_THREADS_NUM
+  if (0 == pCodingParam->iMultipleThreadIdc && uiCpuCores == 0) {
+    // cpuid not supported or doesn't expose the number of cores,
+    // use high level system API as followed to detect number of pysical/logic processor
+    uiCpuCores = DynamicDetectCpuCores();
   }
-  uiCpuCores = WELS_CLIP3 (uiCpuCores, 1, MAX_THREADS_NUM);
+
+  if(0 == pCodingParam->iMultipleThreadIdc)
+      pCodingParam->iMultipleThreadIdc = (uiCpuCores > 0) ? uiCpuCores : 1;
+
+  // So far so many cpu cores up to MAX_THREADS_NUM mean for server platforms,
+  // for client application here it is constrained by maximal to MAX_THREADS_NUM
+  pCodingParam->iMultipleThreadIdc = WELS_CLIP3 (pCodingParam->iMultipleThreadIdc, 1, MAX_THREADS_NUM);
+  uiCpuCores = pCodingParam->iMultipleThreadIdc;
 
   if (InitSliceSettings (pLogCtx, pCodingParam, uiCpuCores, &iSliceNum)) {
     WelsLog (pLogCtx, WELS_LOG_ERROR, "GetMultipleThreadIdc(), InitSliceSettings failed.");
@@ -2454,7 +2455,7 @@ int32_t WelsInitEncoderExt (sWelsEncCtx** ppCtx, SWelsSvcCodingParam* pCodingPar
   }
   InitFunctionPointers (pCtx, pCtx->pSvcParam, uiCpuFeatureFlags);
 
-  pCtx->iActiveThreadsNum = pCodingParam->iCountThreadsNum;
+  pCtx->iActiveThreadsNum = pCodingParam->iMultipleThreadIdc;
   pCtx->iMaxSliceCount = iSliceNum;
   iRet = RequestMemorySvc (&pCtx, pExistingParasetList);
   if (iRet != 0) {
@@ -2593,15 +2594,15 @@ void WelsUninitEncoderExt (sWelsEncCtx** ppCtx) {
     return;
 
   WelsLog (& (*ppCtx)->sLogCtx, WELS_LOG_INFO,
-           "WelsUninitEncoderExt(), pCtx= %p, iThreadCount= %d, iMultipleThreadIdc= %d.",
-           (void*) (*ppCtx), (*ppCtx)->pSvcParam->iCountThreadsNum, (*ppCtx)->pSvcParam->iMultipleThreadIdc);
+           "WelsUninitEncoderExt(), pCtx= %p, iMultipleThreadIdc= %d.",
+           (void*) (*ppCtx), (*ppCtx)->pSvcParam->iMultipleThreadIdc);
 
 #if defined(STAT_OUTPUT)
   StatOverallEncodingExt (*ppCtx);
 #endif
 
   if ((*ppCtx)->pSvcParam->iMultipleThreadIdc > 1 && (*ppCtx)->pSliceThreading != NULL) {
-    const int32_t iThreadCount = (*ppCtx)->pSvcParam->iCountThreadsNum;
+    const int32_t iThreadCount = (*ppCtx)->pSvcParam->iMultipleThreadIdc;
     int32_t iThreadIdx = 0;
 
     while (iThreadIdx < iThreadCount) {
@@ -2656,7 +2657,7 @@ void DynslcUpdateMbNeighbourInfoListForAllSlices (SDqLayer* pCurDq, SMB* pMbList
 int32_t PicPartitionNumDecision (sWelsEncCtx* pCtx) {
   int32_t iPartitionNum = 1;
   if (pCtx->pSvcParam->iMultipleThreadIdc > 1) {
-    iPartitionNum = pCtx->pSvcParam->iCountThreadsNum;
+    iPartitionNum = pCtx->pSvcParam->iMultipleThreadIdc;
   }
   return iPartitionNum;
 }
@@ -3964,7 +3965,7 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
       }
       // THREAD_FULLY_FIRE_MODE && SM_SIZELIMITED_SLICE
       else if ((SM_SIZELIMITED_SLICE == pParam->sSliceArgument.uiSliceMode) && (pSvcParam->iMultipleThreadIdc > 1)) {
-        const int32_t kiPartitionCnt = pCtx->iActiveThreadsNum; //pSvcParam->iCountThreadsNum;
+        const int32_t kiPartitionCnt = pCtx->iActiveThreadsNum;
 
 #if 0 //TODO: temporarily use this to keep old codes for a while, will remove old codes later
         int32_t iRet = 0;
@@ -3975,8 +3976,8 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
                                   pFbi, kiPartitionCnt, &pCtx->pCurDqLayer->sSliceEncCtx, true);
         if (iRet) {
           WelsLog (pLogCtx, WELS_LOG_ERROR,
-                   "[MT] WelsEncoderEncodeExt(), FiredSliceThreads return(%d) failed and exit encoding frame, iCountThreadsNum= %d, iSliceCount= %d, uiSliceMode= %d, iMultipleThreadIdc= %d!!",
-                   iRet, pSvcParam->iCountThreadsNum, iSliceCount, pParam->sSliceArgument.uiSliceMode, pSvcParam->iMultipleThreadIdc);
+                   "[MT] WelsEncoderEncodeExt(), FiredSliceThreads return(%d) failed and exit encoding frame, iSliceCount= %d, uiSliceMode= %d, iMultipleThreadIdc= %d!!",
+                   iRet, iSliceCount, pParam->sSliceArgument.uiSliceMode, pSvcParam->iMultipleThreadIdc);
           return ENC_RETURN_UNEXPECTED;
         }
 
