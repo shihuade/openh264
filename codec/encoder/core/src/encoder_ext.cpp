@@ -1122,6 +1122,8 @@ static inline int32_t InitpSliceInLayer (sWelsEncCtx** ppCtx, SDqLayer* pDqLayer
       pSlice->sSliceBs.pBs   = NULL;
     }
 
+    //SM_SINGLE_SLICE mode using single-thread bs writer pOut->sBsWrite
+    //even though multi-thread is on for other layers
     if( SM_SINGLE_SLICE == (*ppCtx)->pSvcParam->sSpatialLayers[kiDlayerIndex].sSliceArgument.uiSliceMode)
       pSlice->pSliceBsa      = & (*ppCtx)->pOut->sBsWrite;
 
@@ -3922,10 +3924,6 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
       }
 
       WelsLoadNal (pCtx->pOut, eNalType, eNalRefIdc);
-
-      //the following line is to fix a problem with a specific setting as in test DiffSlicingInDlayerMixed:
-      //      (multi-th on with SM_SINGLE_SLICE in one of the D layers)
-      pCtx->pCurDqLayer->sLayerInfo.pSliceInLayer[0].pSliceBsa = &(pCtx->pOut->sBsWrite);
 
       pCtx->iEncoderError = WelsCodeOneSlice (pCtx, 0, eNalType);
       WELS_VERIFY_RETURN_IFNEQ (pCtx->iEncoderError, ENC_RETURN_SUCCESS)
