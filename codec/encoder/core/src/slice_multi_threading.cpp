@@ -256,7 +256,6 @@ int32_t RequestMtResource (sWelsEncCtx** ppCtx, SWelsSvcCodingParam* pCodingPara
   int32_t iNumSpatialLayers     = 0;
   int32_t iThreadNum            = 0;
   int32_t iIdx                  = 0;
-  int16_t iMaxSliceNum          = 1;
   int32_t iReturn = ENC_RETURN_SUCCESS;
   bool bWillUseTaskManage = false;
 
@@ -267,7 +266,6 @@ int32_t RequestMtResource (sWelsEncCtx** ppCtx, SWelsSvcCodingParam* pCodingPara
   pPara = pCodingParam;
   iNumSpatialLayers = pPara->iSpatialLayerNum;
   iThreadNum = pPara->iMultipleThreadIdc;
-  iMaxSliceNum = (*ppCtx)->iMaxSliceCount;
 
   pSmt = (SSliceThreading*)pMa->WelsMalloc (sizeof (SSliceThreading), "SSliceThreading");
   WELS_VERIFY_RETURN_PROC_IF (1, (NULL == pSmt), FreeMemorySvc (ppCtx))
@@ -369,7 +367,7 @@ int32_t RequestMtResource (sWelsEncCtx** ppCtx, SWelsSvcCodingParam* pCodingPara
 
   MT_TRACE_LOG (*ppCtx, WELS_LOG_INFO, "RequestMtResource(), iThreadNum=%d, iMultipleThreadIdc= %d",
                 pPara->iMultipleThreadIdc,
-                iMaxSliceNum);
+                (*ppCtx)->iMaxSliceCount);
 
   return 0;
 }
