@@ -247,40 +247,6 @@ void DynamicAdjustSlicing (sWelsEncCtx* pCtx,
 
   pCurDqLayer->bNeedAdjustingSlicing = !DynamicAdjustSlicePEncCtxAll (pCurDqLayer, iRunLen);
 }
-/*
-int32_t SetMultiSliceBuffer (sWelsEncCtx** ppCtx, CMemoryAlign* pMa, SSliceThreading* pSmt,
-                             int32_t iMaxSliceNum, int32_t iSlice1Len, int32_t iSlice0Len, bool bDynamicSlice) {
-  (*ppCtx)->pSliceBs = (SWelsSliceBs*)pMa->WelsMalloc (sizeof (SWelsSliceBs) * iMaxSliceNum, "pSliceBs");
-  if (NULL == (*ppCtx)->pSliceBs) {
-    return ENC_RETURN_MEMALLOCERR;
-  }
-
-  if (iSlice0Len <= 0) {
-    return ENC_RETURN_UNEXPECTED;
-  }
-  //slice 0
-  (*ppCtx)->pSliceBs[0].uiSize = iSlice1Len;
-  (*ppCtx)->pSliceBs[0].pBs    = (*ppCtx)->pFrameBs + iSlice0Len;
-  (*ppCtx)->pSliceBs[0].uiBsPos = 0;
-  (*ppCtx)->pSliceBs[0].pBsBuffer = pSmt->pThreadBsBuffer[0];
-  if ((iMaxSliceNum == 1) && (!bDynamicSlice)) {
-    return ENC_RETURN_SUCCESS;
-  }
-  //slice >0
-  if (iSlice1Len <= 0) {
-    return ENC_RETURN_UNEXPECTED;
-  }
-  if ((*ppCtx)->iFrameBsSize < (iSlice0Len + (iMaxSliceNum - 1)*iSlice1Len)) {
-    return ENC_RETURN_MEMALLOCERR;
-  }
-  for (int32_t k = 1; k < iMaxSliceNum; k++) {
-    (*ppCtx)->pSliceBs[k].uiSize = iSlice1Len;
-    (*ppCtx)->pSliceBs[k].pBs    = (*ppCtx)->pSliceBs[k - 1].pBs + (*ppCtx)->pSliceBs[k - 1].uiSize;
-  }
-  return ENC_RETURN_SUCCESS;
-
-}
-*/
 
 int32_t RequestMtResource (sWelsEncCtx** ppCtx, SWelsSvcCodingParam* pCodingParam, const int32_t iCountBsLen,
                            const int32_t iMaxSliceBufferSize, bool bDynamicSlice) {
@@ -385,13 +351,7 @@ int32_t RequestMtResource (sWelsEncCtx** ppCtx, SWelsSvcCodingParam* pCodingPara
   err = WelsEventOpen (&pSmt->pSliceCodedMasterEvent, name);
   MT_TRACE_LOG (*ppCtx, WELS_LOG_INFO, "[MT] Open pSliceCodedMasterEvent named(%s) ret%d err%d", name, err, errno);
   //previous conflict ends
-/*
-  iReturn = SetMultiSliceBuffer (ppCtx, pMa, pSmt, iMaxSliceNum,
-                                 iMaxSliceBufferSize,
-                                 iCountBsLen,
-                                 bDynamicSlice);
-  WELS_VERIFY_RETURN_PROC_IF (iReturn, (ENC_RETURN_SUCCESS != iReturn), FreeMemorySvc (ppCtx))
-*/
+
   iReturn = WelsMutexInit (&pSmt->mutexSliceNumUpdate);
   WELS_VERIFY_RETURN_PROC_IF (1, (WELS_THREAD_ERROR_OK != iReturn), FreeMemorySvc (ppCtx))
 
@@ -469,21 +429,7 @@ void ReleaseMtResource (sWelsEncCtx** ppCtx) {
     }
   }
   memset (&pSmt->bThreadBsBufferUsage, 0, MAX_THREADS_NUM * sizeof (bool));
-/*
-  pSliceB = (*ppCtx)->pSliceBs;
-  iIdx = 0;
-  while (pSliceB != NULL && iIdx < uiSliceNum) {
-    pSliceB->pBsBuffer = NULL;
-    pSliceB->uiSize = 0;
-    pSliceB->uiBsPos = 0;
-    ++ iIdx;
-    ++ pSliceB;
-  }
-  if ((*ppCtx)->pSliceBs != NULL) {
-    pMa->WelsFree ((*ppCtx)->pSliceBs, "pSliceBs");
-    (*ppCtx)->pSliceBs = NULL;
-  }
-*/
+
   if ((*ppCtx)->pTaskManage != NULL) {
     delete (*ppCtx)->pTaskManage;
     (*ppCtx)->pTaskManage = NULL;
