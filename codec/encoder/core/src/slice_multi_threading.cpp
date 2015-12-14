@@ -379,13 +379,11 @@ void ReleaseMtResource (sWelsEncCtx** ppCtx) {
   CMemoryAlign* pMa                     = NULL;
   int32_t iIdx                          = 0;
   int32_t iThreadNum                    = 0;
-  int16_t uiSliceNum                    = 0;
 
   if (NULL == ppCtx || NULL == *ppCtx)
     return;
 
   pMa           = (*ppCtx)->pMemAlign;
-  uiSliceNum    = (*ppCtx)->iMaxSliceCount;
   iThreadNum    = (*ppCtx)->pSvcParam->iMultipleThreadIdc;
   pSmt          = (*ppCtx)->pSliceThreading;
 
