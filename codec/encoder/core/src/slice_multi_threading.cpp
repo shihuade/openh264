@@ -415,7 +415,6 @@ int32_t RequestMtResource (sWelsEncCtx** ppCtx, SWelsSvcCodingParam* pCodingPara
 }
 
 void ReleaseMtResource (sWelsEncCtx** ppCtx) {
-  SWelsSliceBs* pSliceB                 = NULL;
   SSliceThreading* pSmt                 = NULL;
   CMemoryAlign* pMa                     = NULL;
   int32_t iIdx                          = 0;
