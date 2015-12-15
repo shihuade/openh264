@@ -180,6 +180,11 @@ int32_t SliceArgumentValidationFixedSliceMode(SLogContext* pLogCtx,
 
   if (pSliceArgument->uiSliceNum == 0) {
     WelsCPUFeatureDetect (&iCpuCores);
+    if (0 == iCpuCores ) {
+      // cpuid not supported or doesn't expose the number of cores,
+      // use high level system API as followed to detect number of pysical/logic processor
+      iCpuCores = DynamicDetectCpuCores();
+    }
     pSliceArgument->uiSliceNum = iCpuCores;
   }
 
@@ -1090,15 +1095,38 @@ int32_t FindExistingPps (SWelsSPS* pSps, SSubsetSps* pSubsetSps, const bool kbUs
 }
 
 static inline int32_t InitpSliceInLayer (sWelsEncCtx** ppCtx, SDqLayer* pDqLayer, CMemoryAlign* pMa,
-    const int32_t iMaxSliceNum, bool bMultithread) {
-  int32_t iSliceIdx = 0;
+                                         const int32_t iMaxSliceNum, const int32_t kiDlayerIndex) {
+
+  bool bMultithread            = (*ppCtx)->pSvcParam->iMultipleThreadIdc > 1 ? true : false;
+  int32_t iMaxSliceBufferSize  = (*ppCtx)->iSliceBufferSize[kiDlayerIndex];
+  int32_t iSliceIdx            = 0;
+
+  if ( iMaxSliceBufferSize <= 0) {
+    return ENC_RETURN_UNEXPECTED;
+  }
+
   while (iSliceIdx < iMaxSliceNum) {
     SSlice* pSlice = &pDqLayer->sLayerInfo.pSliceInLayer[iSliceIdx];
-    pSlice->uiSliceIdx = iSliceIdx;
-    if (bMultithread)
-      pSlice->pSliceBsa = & (*ppCtx)->pSliceBs[iSliceIdx].sBsWrite;
-    else
-      pSlice->pSliceBsa = & (*ppCtx)->pOut->sBsWrite;
+
+    pSlice->uiSliceIdx       = iSliceIdx;
+    pSlice->sSliceBs.uiSize  = iMaxSliceBufferSize;
+    pSlice->sSliceBs.uiBsPos = 0;
+    if (bMultithread){
+      pSlice->pSliceBsa      = &pSlice->sSliceBs.sBsWrite;
+      pSlice->sSliceBs.pBs   = (uint8_t*)pMa->WelsMalloc (iMaxSliceBufferSize, "SliceBs");
+      if ( NULL == pSlice->sSliceBs.pBs) {
+        return ENC_RETURN_MEMALLOCERR;
+      }
+    } else {
+      pSlice->pSliceBsa      = & (*ppCtx)->pOut->sBsWrite;
+      pSlice->sSliceBs.pBs   = NULL;
+    }
+
+    //SM_SINGLE_SLICE mode using single-thread bs writer pOut->sBsWrite
+    //even though multi-thread is on for other layers
+    if( SM_SINGLE_SLICE == (*ppCtx)->pSvcParam->sSpatialLayers[kiDlayerIndex].sSliceArgument.uiSliceMode)
+      pSlice->pSliceBsa      = & (*ppCtx)->pOut->sBsWrite;
+
     if (AllocMbCacheAligned (&pSlice->sMbCacheInfo, pMa)) {
       FreeMemorySvc (ppCtx);
       return ENC_RETURN_MEMALLOCERR;
@@ -1206,7 +1234,7 @@ static inline int32_t InitDqLayers (sWelsEncCtx** ppCtx, SExistingParasetList* p
       pDqLayer->sLayerInfo.pSliceInLayer = (SSlice*)pMa->WelsMallocz (sizeof (SSlice) * iMaxSliceNum, "pSliceInLayer");
       WELS_VERIFY_RETURN_PROC_IF (1, (NULL == pDqLayer->sLayerInfo.pSliceInLayer), FreeMemorySvc (ppCtx))
 
-      int32_t iReturn = InitpSliceInLayer (ppCtx, pDqLayer, pMa, iMaxSliceNum, pParam->iMultipleThreadIdc > 1);
+      int32_t iReturn = InitpSliceInLayer (ppCtx, pDqLayer, pMa, iMaxSliceNum, iDlayerIndex);
       WELS_VERIFY_RETURN_PROC_IF (1, (ENC_RETURN_SUCCESS != iReturn), FreeMemorySvc (ppCtx))
     }
 
@@ -1804,16 +1832,15 @@ int32_t RequestMemorySvc (sWelsEncCtx** ppCtx, SExistingParasetList* pExistingPa
       (*ppCtx)->iMaxSliceCount = WELS_MAX ((*ppCtx)->iMaxSliceCount, (int) pSliceArgument->uiSliceNum);
       iSliceBufferSize = ((iLayerBsSize / pSliceArgument->uiSliceNum)<<1) + MAX_MACROBLOCK_SIZE_IN_BYTE_x2;
     }
-    iMaxSliceBufferSize = WELS_MAX(iMaxSliceBufferSize, iSliceBufferSize);
-
+    iMaxSliceBufferSize                = WELS_MAX(iMaxSliceBufferSize, iSliceBufferSize);
+    (*ppCtx)->iSliceBufferSize[iIndex] = iSliceBufferSize;
     ++ iIndex;
   }
   iTargetSpatialBsSize = iLayerBsSize;
   iCountBsLen = iNonVclLayersBsSizeCount + iVclLayersBsSizeCount;
 
   iMaxSliceBufferSize = WELS_MIN (iMaxSliceBufferSize, iTargetSpatialBsSize);
-  iTotalLength = (pParam->iMultipleThreadIdc == 1) ? iCountBsLen : (iCountBsLen + (*ppCtx)->iMaxSliceCount  *
-                 iMaxSliceBufferSize);
+  iTotalLength = iCountBsLen;
 
   pParam->iNumRefFrame = WELS_CLIP3 (pParam->iNumRefFrame, MIN_REF_PIC_COUNT,
                                       (pParam->iUsageType == CAMERA_VIDEO_REAL_TIME ? MAX_REFERENCE_PICTURE_COUNT_NUM_CAMERA :
@@ -2120,6 +2147,12 @@ void FreeMemorySvc (sWelsEncCtx** ppCtx) {
             while (iSliceIdx < iSliceNum) {
               SSlice* pSlice = &pDq->sLayerInfo.pSliceInLayer[iSliceIdx];
               FreeMbCache (&pSlice->sMbCacheInfo, pMa);
+
+              //slice bs buffer
+              if(NULL != pSlice->sSliceBs.pBs) {
+                pMa->WelsFree(pSlice->sSliceBs.pBs,"sSliceBs.pBs");
+                pSlice->sSliceBs.pBs = NULL;
+              }
               ++ iSliceIdx;
             }
             pMa->WelsFree (pDq->sLayerInfo.pSliceInLayer, "pSliceInLayer");
@@ -2245,8 +2278,8 @@ void FreeMemorySvc (sWelsEncCtx** ppCtx) {
   }
 }
 
-int32_t InitSliceSettings (SLogContext* pLogCtx, SWelsSvcCodingParam* pCodingParam, const int32_t kiCpuCores,
-                           int16_t* pMaxSliceCount) {
+int32_t InitSliceSettings (SLogContext* pLogCtx,     SWelsSvcCodingParam* pCodingParam,
+                           const int32_t kiCpuCores, int16_t* pMaxSliceCount) {
   int32_t iSpatialIdx = 0, iSpatialNum = pCodingParam->iSpatialLayerNum;
   uint16_t iMaxSliceCount = 0;
 
@@ -2254,11 +2287,6 @@ int32_t InitSliceSettings (SLogContext* pLogCtx, SWelsSvcCodingParam* pCodingPar
     SSpatialLayerConfig* pDlp           = &pCodingParam->sSpatialLayers[iSpatialIdx];
     SSliceArgument* pSliceArgument      = &pDlp->sSliceArgument;
     int32_t iReturn                     = 0;
-    int32_t iSliceNum                   = (SM_FIXEDSLCNUM_SLICE == pSliceArgument->uiSliceMode && 0==pSliceArgument->uiSliceNum) ? kiCpuCores : pSliceArgument->uiSliceNum;
-    // NOTE: Per design, in case MT/DYNAMIC_SLICE_ASSIGN enabled, for SM_FIXEDSLCNUM_SLICE mode,
-    // uiSliceNum of current spatial layer settings equals to uiCpuCores number; SM_SIZELIMITED_SLICE mode,
-    // uiSliceNum intials as uiCpuCores also, stay tuned dynamically slicing in future
-    pSliceArgument->uiSliceNum = iSliceNum;    // used fixed one
 
     switch (pSliceArgument->uiSliceMode) {
     case SM_SIZELIMITED_SLICE:
@@ -2273,16 +2301,15 @@ int32_t InitSliceSettings (SLogContext* pLogCtx, SWelsSvcCodingParam* pCodingPar
       if (pSliceArgument->uiSliceNum > iMaxSliceCount) {
         iMaxSliceCount = pSliceArgument->uiSliceNum;
       }
-
     }
       break;
     case SM_SINGLE_SLICE:
-      if (iSliceNum > iMaxSliceCount)
-        iMaxSliceCount = iSliceNum;
+      if (pSliceArgument->uiSliceNum > iMaxSliceCount)
+        iMaxSliceCount = pSliceArgument->uiSliceNum;
       break;
     case SM_RASTER_SLICE:
-      if (iSliceNum > iMaxSliceCount)
-        iMaxSliceCount = iSliceNum;
+      if (pSliceArgument->uiSliceNum > iMaxSliceCount)
+        iMaxSliceCount = pSliceArgument->uiSliceNum;
       break;
     default:
       break;
@@ -2371,16 +2398,19 @@ int32_t GetMultipleThreadIdc (SLogContext* pLogCtx, SWelsSvcCodingParam* pCoding
   iCacheLineSize = 16; // 16 bytes aligned in default
 #endif//X86_ASM
 
-  if (pCodingParam->iMultipleThreadIdc > 0)
-    uiCpuCores = pCodingParam->iMultipleThreadIdc;
-  else {
-    if (uiCpuCores ==
-        0) { // cpuid not supported or doesn't expose the number of cores, use high level system API as followed to detect number of pysical/logic processor
-      uiCpuCores = DynamicDetectCpuCores();
-    }// So far so many cpu cores up to MAX_THREADS_NUM mean for server platforms,
-    // for client application here it is constrained by maximal to MAX_THREADS_NUM
+  if (0 == pCodingParam->iMultipleThreadIdc && uiCpuCores == 0) {
+    // cpuid not supported or doesn't expose the number of cores,
+    // use high level system API as followed to detect number of pysical/logic processor
+    uiCpuCores = DynamicDetectCpuCores();
   }
-  uiCpuCores = WELS_CLIP3 (uiCpuCores, 1, MAX_THREADS_NUM);
+
+  if(0 == pCodingParam->iMultipleThreadIdc)
+      pCodingParam->iMultipleThreadIdc = (uiCpuCores > 0) ? uiCpuCores : 1;
+
+  // So far so many cpu cores up to MAX_THREADS_NUM mean for server platforms,
+  // for client application here it is constrained by maximal to MAX_THREADS_NUM
+  pCodingParam->iMultipleThreadIdc = WELS_CLIP3 (pCodingParam->iMultipleThreadIdc, 1, MAX_THREADS_NUM);
+  uiCpuCores = pCodingParam->iMultipleThreadIdc;
 
   if (InitSliceSettings (pLogCtx, pCodingParam, uiCpuCores, &iSliceNum)) {
     WelsLog (pLogCtx, WELS_LOG_ERROR, "GetMultipleThreadIdc(), InitSliceSettings failed.");
@@ -3894,11 +3924,6 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
 
       WelsLoadNal (pCtx->pOut, eNalType, eNalRefIdc);
 
-      //the following line is to fix a problem with a specific setting as in test DiffSlicingInDlayerMixed:
-      //      (multi-th on with SM_SINGLE_SLICE in one of the D layers)
-      //TODO: this may not be needed any more after the slice buffer refactoring
-      pCtx->pCurDqLayer->sLayerInfo.pSliceInLayer[0].pSliceBsa = &(pCtx->pOut->sBsWrite);
-
       pCtx->iEncoderError = WelsCodeOneSlice (pCtx, 0, eNalType);
       WELS_VERIFY_RETURN_IFNEQ (pCtx->iEncoderError, ENC_RETURN_SUCCESS)
 
@@ -4732,7 +4757,7 @@ int32_t DynSliceRealloc (sWelsEncCtx* pCtx,
     SSliceHeaderExt* pSHExt = &pSliceIdx->sSliceHeaderExt;
     pSliceIdx->uiSliceIdx = uiSliceIdx;
     if (pCtx->pSvcParam->iMultipleThreadIdc > 1)
-      pSliceIdx->pSliceBsa = &pCtx->pSliceBs[uiSliceIdx].sBsWrite;
+      pSliceIdx->pSliceBsa = &pSliceIdx->sSliceBs.sBsWrite;
     else
       pSliceIdx->pSliceBsa = &pCtx->pOut->sBsWrite;
     if (AllocMbCacheAligned (&pSliceIdx->sMbCacheInfo, pMA)) {
