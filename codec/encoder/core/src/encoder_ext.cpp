@@ -1096,10 +1096,14 @@ int32_t FindExistingPps (SWelsSPS* pSps, SSubsetSps* pSubsetSps, const bool kbUs
 
 static inline int32_t InitpSliceInLayer (sWelsEncCtx** ppCtx, SDqLayer* pDqLayer, CMemoryAlign* pMa,
                                          const int32_t iMaxSliceNum, const int32_t kiDlayerIndex) {
-
-  bool bMultithread            = (*ppCtx)->pSvcParam->iMultipleThreadIdc > 1 ? true : false;
   int32_t iMaxSliceBufferSize  = (*ppCtx)->iSliceBufferSize[kiDlayerIndex];
   int32_t iSliceIdx            = 0;
+  SliceModeEnum uiSliceMode    = (*ppCtx)->pSvcParam->sSpatialLayers[kiDlayerIndex].sSliceArgument.uiSliceMode;
+
+  //SM_SINGLE_SLICE mode using single-thread bs writer pOut->sBsWrite
+  //even though multi-thread is on for other layers
+  bool bIndependenceBsBuffer   = ((*ppCtx)->pSvcParam->iMultipleThreadIdc > 1 &&
+                                  SM_SINGLE_SLICE != uiSliceMode) ? true : false;
 
   if ( iMaxSliceBufferSize <= 0) {
     return ENC_RETURN_UNEXPECTED;
@@ -1111,7 +1115,7 @@ static inline int32_t InitpSliceInLayer (sWelsEncCtx** ppCtx, SDqLayer* pDqLayer
     pSlice->uiSliceIdx       = iSliceIdx;
     pSlice->sSliceBs.uiSize  = iMaxSliceBufferSize;
     pSlice->sSliceBs.uiBsPos = 0;
-    if (bMultithread){
+    if (bIndependenceBsBuffer){
       pSlice->pSliceBsa      = &pSlice->sSliceBs.sBsWrite;
       pSlice->sSliceBs.pBs   = (uint8_t*)pMa->WelsMalloc (iMaxSliceBufferSize, "SliceBs");
       if ( NULL == pSlice->sSliceBs.pBs) {
@@ -1121,11 +1125,6 @@ static inline int32_t InitpSliceInLayer (sWelsEncCtx** ppCtx, SDqLayer* pDqLayer
       pSlice->pSliceBsa      = & (*ppCtx)->pOut->sBsWrite;
       pSlice->sSliceBs.pBs   = NULL;
     }
-
-    //SM_SINGLE_SLICE mode using single-thread bs writer pOut->sBsWrite
-    //even though multi-thread is on for other layers
-    if( SM_SINGLE_SLICE == (*ppCtx)->pSvcParam->sSpatialLayers[kiDlayerIndex].sSliceArgument.uiSliceMode)
-      pSlice->pSliceBsa      = & (*ppCtx)->pOut->sBsWrite;
 
     if (AllocMbCacheAligned (&pSlice->sMbCacheInfo, pMa)) {
       FreeMemorySvc (ppCtx);
