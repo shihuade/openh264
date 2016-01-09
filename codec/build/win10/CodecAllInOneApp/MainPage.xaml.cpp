@@ -26,3 +26,9 @@ MainPage::MainPage()
 	InitializeComponent();
 
 }
+
+
+void CodecAllInOneApp::MainPage::button2_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+
+}

@@ -34,47 +34,47 @@ void ::CodecAllInOneApp::MainPage::Connect(int __connectionId, ::Platform::Objec
             break;
         case 2:
             {
-                this->contentPanel_Copy = safe_cast<::Windows::UI::Xaml::Controls::StackPanel^>(__target);
+                this->DecoderCall = safe_cast<::Windows::UI::Xaml::Controls::StackPanel^>(__target);
             }
             break;
         case 3:
             {
-                this->inputPanel1 = safe_cast<::Windows::UI::Xaml::Controls::StackPanel^>(__target);
+                this->contentPanel_Copy2 = safe_cast<::Windows::UI::Xaml::Controls::StackPanel^>(__target);
             }
             break;
         case 4:
             {
-                this->greetingOutput1 = safe_cast<::Windows::UI::Xaml::Controls::TextBlock^>(__target);
+                this->button2 = safe_cast<::Windows::UI::Xaml::Controls::Button^>(__target);
             }
             break;
         case 5:
             {
-                this->nameInput1 = safe_cast<::Windows::UI::Xaml::Controls::TextBox^>(__target);
+                this->textBox2 = safe_cast<::Windows::UI::Xaml::Controls::TextBox^>(__target);
             }
             break;
         case 6:
             {
-                this->inputButton1 = safe_cast<::Windows::UI::Xaml::Controls::Button^>(__target);
+                this->inputPanel2 = safe_cast<::Windows::UI::Xaml::Controls::StackPanel^>(__target);
             }
             break;
         case 7:
             {
-                this->inputPanel = safe_cast<::Windows::UI::Xaml::Controls::StackPanel^>(__target);
+                this->EncoderCall = safe_cast<::Windows::UI::Xaml::Controls::StackPanel^>(__target);
             }
             break;
         case 8:
             {
-                this->greetingOutput = safe_cast<::Windows::UI::Xaml::Controls::TextBlock^>(__target);
+                this->button1 = safe_cast<::Windows::UI::Xaml::Controls::Button^>(__target);
             }
             break;
         case 9:
             {
-                this->nameInput = safe_cast<::Windows::UI::Xaml::Controls::TextBox^>(__target);
+                this->textBox1 = safe_cast<::Windows::UI::Xaml::Controls::TextBox^>(__target);
             }
             break;
         case 10:
             {
-                this->inputButton = safe_cast<::Windows::UI::Xaml::Controls::Button^>(__target);
+                this->inputPanel1 = safe_cast<::Windows::UI::Xaml::Controls::StackPanel^>(__target);
             }
             break;
     }

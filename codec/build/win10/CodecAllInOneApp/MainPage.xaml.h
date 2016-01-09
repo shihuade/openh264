@@ -17,5 +17,7 @@ namespace CodecAllInOneApp
 	public:
 		MainPage();
 
+	private:
+		void button2_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 	};
 }
