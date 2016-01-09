@@ -2,6 +2,7 @@
 *.user
 *.ncb
 *.suo
+*.opendb
 
 Win32
 x64

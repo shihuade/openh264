@@ -25,8 +25,59 @@ void ::CodecAllInOneApp::MainPage::InitializeComponent()
 
 void ::CodecAllInOneApp::MainPage::Connect(int __connectionId, ::Platform::Object^ __target)
 {
-    __connectionId;         // unreferenced 
-    __target;               // unreferenced
+    switch (__connectionId)
+    {
+        case 1:
+            {
+                this->contentPanel = safe_cast<::Windows::UI::Xaml::Controls::StackPanel^>(__target);
+            }
+            break;
+        case 2:
+            {
+                this->contentPanel_Copy = safe_cast<::Windows::UI::Xaml::Controls::StackPanel^>(__target);
+            }
+            break;
+        case 3:
+            {
+                this->inputPanel1 = safe_cast<::Windows::UI::Xaml::Controls::StackPanel^>(__target);
+            }
+            break;
+        case 4:
+            {
+                this->greetingOutput1 = safe_cast<::Windows::UI::Xaml::Controls::TextBlock^>(__target);
+            }
+            break;
+        case 5:
+            {
+                this->nameInput1 = safe_cast<::Windows::UI::Xaml::Controls::TextBox^>(__target);
+            }
+            break;
+        case 6:
+            {
+                this->inputButton1 = safe_cast<::Windows::UI::Xaml::Controls::Button^>(__target);
+            }
+            break;
+        case 7:
+            {
+                this->inputPanel = safe_cast<::Windows::UI::Xaml::Controls::StackPanel^>(__target);
+            }
+            break;
+        case 8:
+            {
+                this->greetingOutput = safe_cast<::Windows::UI::Xaml::Controls::TextBlock^>(__target);
+            }
+            break;
+        case 9:
+            {
+                this->nameInput = safe_cast<::Windows::UI::Xaml::Controls::TextBox^>(__target);
+            }
+            break;
+        case 10:
+            {
+                this->inputButton = safe_cast<::Windows::UI::Xaml::Controls::Button^>(__target);
+            }
+            break;
+    }
     _contentLoaded = true;
 }
 

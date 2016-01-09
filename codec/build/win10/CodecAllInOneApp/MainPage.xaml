@@ -8,6 +8,24 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel x:Name="contentPanel" Margin="120,30,108,172">
+            <TextBlock HorizontalAlignment="Left" Text="Encoder" FontSize="36"/>
+            <TextBlock Text="What's your name?"/>
+            <StackPanel x:Name="inputPanel" Orientation="Horizontal" Margin="0,20,0,20">
+                <TextBox x:Name="nameInput" Width="300" HorizontalAlignment="Left"/>
+                <Button x:Name="inputButton" Content="Say &quot;Hello&quot;" Width="114"/>
+            </StackPanel>
+            <TextBlock x:Name="greetingOutput"/>
+        </StackPanel>
+        <StackPanel x:Name="contentPanel_Copy" Margin="120,182,108,20">
+            <TextBlock HorizontalAlignment="Left" Text="Decoder" FontSize="36"/>
+            <TextBlock Text="What's your name?"/>
+            <StackPanel x:Name="inputPanel1" Orientation="Horizontal" Margin="0,20,0,20">
+                <TextBox x:Name="nameInput1" Width="300" HorizontalAlignment="Left"/>
+                <Button x:Name="inputButton1" Content="Say &quot;Hello&quot;"/>
+            </StackPanel>
+            <TextBlock x:Name="greetingOutput1"/>
+        </StackPanel>
 
     </Grid>
 </Page>
