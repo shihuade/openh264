@@ -7,4 +7,47 @@ using namespace Platform;
 Class1::Class1()
 {
 }
-int Class1::Encode(){}int Class1::Decode(){}//Get encoder infofloat Class1::GetEncFPS(){}double Class1::GetEncTime(){}int  Class1::GetEncodedFrameNum(){}//get decoder infofloat Class1::GetDecFPS(){}double Class1::GetDecTime(){}int  Class1::GetDecodedFrameNum(){}
+
+int Class1::Encode()
+{
+	return 400;
+}
+
+int Class1::Decode()
+{
+	return 500;
+}
+
+//Get encoder info
+float Class1::GetEncFPS()
+{
+	return 32.3;
+
+}
+
+double Class1::GetEncTime()
+{
+	return 0.72;
+
+}
+
+int  Class1::GetEncodedFrameNum()
+{
+	return 128;
+}
+
+//get decoder info
+float Class1::GetDecFPS()
+{
+	return 86.3;
+
+}
+double Class1::GetDecTime()
+{
+	return 0.88;
+}
+
+int  Class1::GetDecodedFrameNum()
+{
+	return 128;
+}
