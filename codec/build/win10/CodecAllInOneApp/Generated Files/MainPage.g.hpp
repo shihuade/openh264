@@ -45,6 +45,8 @@ void ::CodecAllInOneApp::MainPage::Connect(int __connectionId, ::Platform::Objec
         case 4:
             {
                 this->button2 = safe_cast<::Windows::UI::Xaml::Controls::Button^>(__target);
+                (safe_cast<::Windows::UI::Xaml::Controls::Button^>(this->button2))->Click += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::CodecAllInOneApp::MainPage::*)
+                    (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&MainPage::CallDecoder);
             }
             break;
         case 5:
@@ -65,6 +67,8 @@ void ::CodecAllInOneApp::MainPage::Connect(int __connectionId, ::Platform::Objec
         case 8:
             {
                 this->button1 = safe_cast<::Windows::UI::Xaml::Controls::Button^>(__target);
+                (safe_cast<::Windows::UI::Xaml::Controls::Button^>(this->button1))->Click += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::CodecAllInOneApp::MainPage::*)
+                    (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&MainPage::CallEncoder);
             }
             break;
         case 9:

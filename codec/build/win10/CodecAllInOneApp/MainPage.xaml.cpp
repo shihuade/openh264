@@ -28,7 +28,14 @@ MainPage::MainPage()
 }
 
 
-void CodecAllInOneApp::MainPage::button2_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+
+void CodecAllInOneApp::MainPage::CallDecoder(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+
+}
+
+
+void CodecAllInOneApp::MainPage::CallEncoder(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
 
 }

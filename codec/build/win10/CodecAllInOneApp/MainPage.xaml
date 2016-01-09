@@ -10,14 +10,14 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel x:Name="contentPanel" Margin="17,30,108,172">
             <StackPanel x:Name="EncoderCall" Height="158">
-                <Button x:Name="button1" Content="Call Encoder" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,375,0"/>
+                <Button x:Name="button1" Content="Call Encoder" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,375,0" Click="CallEncoder"/>
                 <TextBox x:Name="textBox1" TextWrapping="Wrap" Text="TextBox" Height="111" Margin="140,0,31,0"/>
                 <StackPanel x:Name="inputPanel1" Orientation="Horizontal" Margin="0,20,0,20"/>
             </StackPanel>
         </StackPanel>
         <StackPanel x:Name="DecoderCall" Margin="17,210,108,-8">
             <StackPanel x:Name="contentPanel_Copy2" Height="158">
-                <Button x:Name="button2" Content="Call Decoder" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,375,0"/>
+                <Button x:Name="button2" Content="Call Decoder" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,375,0" Click="CallDecoder"/>
                 <TextBox x:Name="textBox2" TextWrapping="Wrap" Text="TextBox" Height="111" Margin="140,0,31,0"/>
                 <StackPanel x:Name="inputPanel2" Orientation="Horizontal" Margin="0,20,0,20"/>
             </StackPanel>
