@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CodecAllInOneApp", "CodecAl
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CodecRTComponentUW", "CodecRTComponent.vcxproj", "{CAA1D9D1-064E-4D99-89F7-FF97F26993AA}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CodecRTSimulator", "CodecRTSimulator\CodecRTSimulator.vcxproj", "{84DEAEA8-8F12-41F7-ABF7-FCD03C3C2A94}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
@@ -47,6 +49,18 @@ Global
 		{CAA1D9D1-064E-4D99-89F7-FF97F26993AA}.Release|x64.Build.0 = Release|x64
 		{CAA1D9D1-064E-4D99-89F7-FF97F26993AA}.Release|x86.ActiveCfg = Release|Win32
 		{CAA1D9D1-064E-4D99-89F7-FF97F26993AA}.Release|x86.Build.0 = Release|Win32
+		{84DEAEA8-8F12-41F7-ABF7-FCD03C3C2A94}.Debug|ARM.ActiveCfg = Debug|ARM
+		{84DEAEA8-8F12-41F7-ABF7-FCD03C3C2A94}.Debug|ARM.Build.0 = Debug|ARM
+		{84DEAEA8-8F12-41F7-ABF7-FCD03C3C2A94}.Debug|x64.ActiveCfg = Debug|x64
+		{84DEAEA8-8F12-41F7-ABF7-FCD03C3C2A94}.Debug|x64.Build.0 = Debug|x64
+		{84DEAEA8-8F12-41F7-ABF7-FCD03C3C2A94}.Debug|x86.ActiveCfg = Debug|Win32
+		{84DEAEA8-8F12-41F7-ABF7-FCD03C3C2A94}.Debug|x86.Build.0 = Debug|Win32
+		{84DEAEA8-8F12-41F7-ABF7-FCD03C3C2A94}.Release|ARM.ActiveCfg = Release|ARM
+		{84DEAEA8-8F12-41F7-ABF7-FCD03C3C2A94}.Release|ARM.Build.0 = Release|ARM
+		{84DEAEA8-8F12-41F7-ABF7-FCD03C3C2A94}.Release|x64.ActiveCfg = Release|x64
+		{84DEAEA8-8F12-41F7-ABF7-FCD03C3C2A94}.Release|x64.Build.0 = Release|x64
+		{84DEAEA8-8F12-41F7-ABF7-FCD03C3C2A94}.Release|x86.ActiveCfg = Release|Win32
+		{84DEAEA8-8F12-41F7-ABF7-FCD03C3C2A94}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
