@@ -42,7 +42,7 @@ namespace CodecAllInOneApp
         private: ::Windows::UI::Xaml::Controls::StackPanel^ inputPanel2;
         private: ::Windows::UI::Xaml::Controls::StackPanel^ EncoderCall;
         private: ::Windows::UI::Xaml::Controls::Button^ button1;
-        private: ::Windows::UI::Xaml::Controls::TextBox^ textBox1;
+        private: ::Windows::UI::Xaml::Controls::TextBox^ EncoderInfo;
         private: ::Windows::UI::Xaml::Controls::StackPanel^ inputPanel1;
     };
 }

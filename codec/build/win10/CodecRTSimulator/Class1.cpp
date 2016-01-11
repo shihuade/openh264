@@ -4,50 +4,50 @@
 using namespace CodecRTSimulator;
 using namespace Platform;
 
-Class1::Class1()
+CodecRTComponent::CodecRTComponent()
 {
 }
 
-int Class1::Encode()
+int CodecRTComponent::Encode()
 {
-	return 400;
+	return 0;  // 400;
 }
 
-int Class1::Decode()
+int CodecRTComponent::Decode()
 {
 	return 500;
 }
 
 //Get encoder info
-float Class1::GetEncFPS()
+float CodecRTComponent::GetEncFPS()
 {
 	return 32.3;
 
 }
 
-double Class1::GetEncTime()
+double CodecRTComponent::GetEncTime()
 {
 	return 0.72;
 
 }
 
-int  Class1::GetEncodedFrameNum()
+int  CodecRTComponent::GetEncodedFrameNum()
 {
 	return 128;
 }
 
 //get decoder info
-float Class1::GetDecFPS()
+float CodecRTComponent::GetDecFPS()
 {
 	return 86.3;
 
 }
-double Class1::GetDecTime()
+double CodecRTComponent::GetDecTime()
 {
 	return 0.88;
 }
 
-int  Class1::GetDecodedFrameNum()
+int  CodecRTComponent::GetDecodedFrameNum()
 {
 	return 128;
 }

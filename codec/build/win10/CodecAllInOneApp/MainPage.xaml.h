@@ -18,9 +18,7 @@ namespace CodecAllInOneApp
 		MainPage();
 
 	private:
-		void button2_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
-		void button1_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
-		void button2_Click_1(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		//CodecRTComponent^ vRTCCodec;
 		void CallDecoder(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void CallEncoder(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 	};

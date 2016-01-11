@@ -73,7 +73,7 @@ void ::CodecAllInOneApp::MainPage::Connect(int __connectionId, ::Platform::Objec
             break;
         case 9:
             {
-                this->textBox1 = safe_cast<::Windows::UI::Xaml::Controls::TextBox^>(__target);
+                this->EncoderInfo = safe_cast<::Windows::UI::Xaml::Controls::TextBox^>(__target);
             }
             break;
         case 10:

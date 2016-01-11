@@ -2,10 +2,10 @@
 
 namespace CodecRTSimulator
 {
-    public ref class Class1 sealed
+    public ref class CodecRTComponent sealed
     {
     public:
-        Class1();
+        CodecRTComponent();
 
 		int Encode();
 		int Decode();
