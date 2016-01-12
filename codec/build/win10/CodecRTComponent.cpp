@@ -1,6 +1,6 @@
 ﻿
 #include <collection.h>
-#include "Class1.h"
+#include "CodecRTComponent.h"
 
 using namespace CodecRTSimulator;
 using namespace Platform;
