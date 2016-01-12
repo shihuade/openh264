@@ -37,13 +37,13 @@ namespace CodecAllInOneApp
         private: ::Windows::UI::Xaml::Controls::StackPanel^ contentPanel;
         private: ::Windows::UI::Xaml::Controls::StackPanel^ DecoderCall;
         private: ::Windows::UI::Xaml::Controls::StackPanel^ contentPanel_Copy2;
-        private: ::Windows::UI::Xaml::Controls::Button^ button2;
+        private: ::Windows::UI::Xaml::Controls::Button^ DecoderButton;
         private: ::Windows::UI::Xaml::Controls::TextBox^ DecoderInfo;
-        private: ::Windows::UI::Xaml::Controls::StackPanel^ inputPanel2;
+        private: ::Windows::UI::Xaml::Controls::StackPanel^ DecoderPanel;
         private: ::Windows::UI::Xaml::Controls::StackPanel^ EncoderCall;
-        private: ::Windows::UI::Xaml::Controls::Button^ button1;
+        private: ::Windows::UI::Xaml::Controls::Button^ EncoderButton;
         private: ::Windows::UI::Xaml::Controls::TextBox^ EncoderInfo;
-        private: ::Windows::UI::Xaml::Controls::StackPanel^ inputPanel1;
+        private: ::Windows::UI::Xaml::Controls::StackPanel^ EncoderPanel;
     };
 }
 

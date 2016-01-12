@@ -44,8 +44,8 @@ void ::CodecAllInOneApp::MainPage::Connect(int __connectionId, ::Platform::Objec
             break;
         case 4:
             {
-                this->button2 = safe_cast<::Windows::UI::Xaml::Controls::Button^>(__target);
-                (safe_cast<::Windows::UI::Xaml::Controls::Button^>(this->button2))->Click += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::CodecAllInOneApp::MainPage::*)
+                this->DecoderButton = safe_cast<::Windows::UI::Xaml::Controls::Button^>(__target);
+                (safe_cast<::Windows::UI::Xaml::Controls::Button^>(this->DecoderButton))->Click += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::CodecAllInOneApp::MainPage::*)
                     (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&MainPage::CallDecoder);
             }
             break;
@@ -56,7 +56,7 @@ void ::CodecAllInOneApp::MainPage::Connect(int __connectionId, ::Platform::Objec
             break;
         case 6:
             {
-                this->inputPanel2 = safe_cast<::Windows::UI::Xaml::Controls::StackPanel^>(__target);
+                this->DecoderPanel = safe_cast<::Windows::UI::Xaml::Controls::StackPanel^>(__target);
             }
             break;
         case 7:
@@ -66,8 +66,8 @@ void ::CodecAllInOneApp::MainPage::Connect(int __connectionId, ::Platform::Objec
             break;
         case 8:
             {
-                this->button1 = safe_cast<::Windows::UI::Xaml::Controls::Button^>(__target);
-                (safe_cast<::Windows::UI::Xaml::Controls::Button^>(this->button1))->Click += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::CodecAllInOneApp::MainPage::*)
+                this->EncoderButton = safe_cast<::Windows::UI::Xaml::Controls::Button^>(__target);
+                (safe_cast<::Windows::UI::Xaml::Controls::Button^>(this->EncoderButton))->Click += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::CodecAllInOneApp::MainPage::*)
                     (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&MainPage::CallEncoder);
             }
             break;
@@ -78,7 +78,7 @@ void ::CodecAllInOneApp::MainPage::Connect(int __connectionId, ::Platform::Objec
             break;
         case 10:
             {
-                this->inputPanel1 = safe_cast<::Windows::UI::Xaml::Controls::StackPanel^>(__target);
+                this->EncoderPanel = safe_cast<::Windows::UI::Xaml::Controls::StackPanel^>(__target);
             }
             break;
     }
