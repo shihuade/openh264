@@ -1035,7 +1035,7 @@ void DestroySVCEncHandle (ISVCEncoder* pEncoder) {
 /****************************************************************************
  * main:
  ****************************************************************************/
-#if defined(ANDROID_NDK) || defined(APPLE_IOS) || defined (WINDOWS_PHONE)
+#if defined(ANDROID_NDK) || defined(APPLE_IOS) || defined (WINDOWS_PHONE) || defined (WINDOWS_UWP)
 extern "C" int EncMain (int argc, char** argv)
 #else
 int main (int argc, char** argv)
