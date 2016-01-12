@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resources">
+      <UniqueIdentifier>d97f60be-cf34-4e37-a67c-31cf08ba32bd</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tga;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Decoder">
+      <UniqueIdentifier>{fd1acf07-9f78-4a57-9611-e722df5878f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Encoder">
+      <UniqueIdentifier>{0fafa367-675f-4292-b84d-f2eeb8be0f7e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CodecRTComponent.cpp" />
+    <ClCompile Include="..\..\console\dec\src\d3d9_utils.cpp">
+      <Filter>Decoder</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\console\dec\src\h264dec.cpp">
+      <Filter>Decoder</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\console\enc\src\welsenc.cpp">
+      <Filter>Encoder</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\console\common\src\read_config.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CodecRTComponent.h" />
+    <ClInclude Include="..\..\console\common\inc\read_config.h" />
+  </ItemGroup>
+</Project>
