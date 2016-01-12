@@ -51,7 +51,7 @@ void ::CodecAllInOneApp::MainPage::Connect(int __connectionId, ::Platform::Objec
             break;
         case 5:
             {
-                this->textBox2 = safe_cast<::Windows::UI::Xaml::Controls::TextBox^>(__target);
+                this->DecoderInfo = safe_cast<::Windows::UI::Xaml::Controls::TextBox^>(__target);
             }
             break;
         case 6:

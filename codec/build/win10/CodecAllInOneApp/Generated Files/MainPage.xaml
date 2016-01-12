@@ -18,7 +18,7 @@
         <StackPanel x:ConnectionId='2' x:Name="DecoderCall" Margin="17,210,108,-8">
             <StackPanel x:ConnectionId='3' x:Name="contentPanel_Copy2" Height="158">
                 <Button x:ConnectionId='4' x:Name="button2" Content="Call Decoder" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,375,0"                    />
-                <TextBox x:ConnectionId='5' x:Name="textBox2" TextWrapping="Wrap" Text="TextBox" Height="111" Margin="140,0,31,0"/>
+                <TextBox x:ConnectionId='5' x:Name="DecoderInfo" TextWrapping="Wrap" Text="TextBox" Height="111" Margin="140,0,31,0"/>
                 <StackPanel x:ConnectionId='6' x:Name="inputPanel2" Orientation="Horizontal" Margin="0,20,0,20"/>
             </StackPanel>
         </StackPanel>

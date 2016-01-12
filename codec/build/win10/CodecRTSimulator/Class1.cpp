@@ -15,7 +15,7 @@ int CodecRTComponent::Encode()
 
 int CodecRTComponent::Decode()
 {
-	return 500;
+	return 0;
 }
 
 //Get encoder info

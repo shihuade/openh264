@@ -32,11 +32,11 @@ MainPage::MainPage()
 
 void CodecAllInOneApp::MainPage::CallDecoder(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
-
+	int iRetVal = 0;	float fFPS = 0.0F;	double dDecoderTime = 0.0;	int iDecodedFrame = 0;	String^ sDecoderInfo = "Decoder performance: \n";	auto vRTCCodec = ref new CodecRTComponent();	iRetVal = vRTCCodec->Decode();	if (0 == iRetVal) {		fFPS = vRTCCodec->GetDecFPS();		dDecoderTime = vRTCCodec->GetDecTime();		iDecodedFrame = vRTCCodec->GetDecodedFrameNum();		sDecoderInfo += "FPS : " + fFPS.ToString() + "\n";		sDecoderInfo += "DecTime(sec): " + dDecoderTime.ToString() + "\n";		sDecoderInfo += "DecodedFrameNum: " + iDecodedFrame.ToString() + "\n";		DecoderInfo->Text  = sDecoderInfo;	}	else {		DecoderInfo->Text = "Decoded failed!...";	}
 }
 
 
 void CodecAllInOneApp::MainPage::CallEncoder(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
-	int iRetVal = 0;	float fFPS = 0.0F;	double dEncoderTime = 0.0;	int iEncodedFrame = 0;	String^ sEncoderInfo = "Encoder performance: \n";	auto vRTCCodec = ref new CodecRTComponent();	iRetVal = vRTCCodec->Encode();	if (0 == iRetVal) {		fFPS = vRTCCodec->GetEncFPS();		dEncoderTime = vRTCCodec->GetEncTime();		iEncodedFrame = vRTCCodec->GetEncodedFrameNum();		sEncoderInfo += "FPS         : " + fFPS.ToString() + "\n";		sEncoderInfo += "EncTime(sec): " + dEncoderTime.ToString() + "\n";		sEncoderInfo += "EncodedNum  : " + iEncodedFrame.ToString() + "\n";		EncoderInfo->Text  = sEncoderInfo;	}	else {		EncoderInfo->Text = "ebcoded failed!...";	}}
+	int iRetVal = 0;	float fFPS = 0.0F;	double dEncoderTime = 0.0;	int iEncodedFrame = 0;	String^ sEncoderInfo = "Encoder performance: \n";	auto vRTCCodec = ref new CodecRTComponent();	iRetVal = vRTCCodec->Encode();	if (0 == iRetVal) {		fFPS = vRTCCodec->GetEncFPS();		dEncoderTime = vRTCCodec->GetEncTime();		iEncodedFrame = vRTCCodec->GetEncodedFrameNum();		sEncoderInfo += "FPS: " + fFPS.ToString() + "\n";		sEncoderInfo += "EncTime(sec): " + dEncoderTime.ToString() + "\n";		sEncoderInfo += "EncodedFrameNum: " + iEncodedFrame.ToString() + "\n";		EncoderInfo->Text  = sEncoderInfo;	}	else {		EncoderInfo->Text = "Encoded failed!...";	}}
 
