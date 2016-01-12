@@ -1,4 +1,5 @@
-﻿#include "pch.h"
+﻿
+#include <collection.h>
 #include "Class1.h"
 
 using namespace CodecRTSimulator;

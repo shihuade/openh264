@@ -1,10 +1,24 @@
 ﻿#pragma once
 
-namespace CodecRTComponentUW
+namespace CodecRTSimulator
 {
-    public ref class Class1 sealed
-    {
-    public:
-        Class1();
-    };
+	public ref class CodecRTComponent sealed
+	{
+	public:
+		CodecRTComponent();
+
+		int Encode();
+		int Decode();
+
+		//Get encoder info
+		float GetEncFPS();
+		double GetEncTime();
+		int  GetEncodedFrameNum();
+
+		//get decoder info
+		float GetDecFPS();
+		double GetDecTime();
+		int  GetDecodedFrameNum();
+
+	};
 }
