@@ -1,14 +1,25 @@
-﻿#include "pch.h"
+﻿
+#include <collection.h>
 #include "Class1.h"
 
 using namespace CodecRTSimulator;
 using namespace Platform;
 using namespace Windows::Storage;
 
-extern "C" int EncMain(int argc, char** argv);
-extern int32_t DecMain(int32_t iArgC, char* pArgV[]);
+//extern "C" int EncMain(int argc, char** argv);
+//extern int32_t DecMain(int32_t iArgC, char* pArgV[]);
 //encoder info
+int EncMain(int argc, char** argv)
+{
+	return 0;
 
+}
+int32_t DecMain(int32_t iArgC, char* pArgV[])
+{
+	return 0;
+}
+
+/*
 extern float   g_fFPS;
 extern double  g_dEncoderTime;
 extern int     g_iEncodedFrame;
@@ -17,6 +28,7 @@ extern int     g_iEncodedFrame;
 extern double g_dDecTime;
 extern float  g_fDecFPS;
 extern int    g_iDecodedFrameNum;
+*/
 
 CodecRTComponent::CodecRTComponent()
 {

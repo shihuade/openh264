@@ -2,10 +2,10 @@
 
 namespace CodecRTSimulator
 {
-	public ref class CodecRTComponent sealed
-	{
-	public:
-		CodecRTComponent();
+    public ref class CodecRTComponent sealed
+    {
+    public:
+        CodecRTComponent();
 
 		int Encode();
 		int Decode();
@@ -20,5 +20,5 @@ namespace CodecRTSimulator
 		double GetDecTime();
 		int  GetDecodedFrameNum();
 
-	};
+    };
 }
