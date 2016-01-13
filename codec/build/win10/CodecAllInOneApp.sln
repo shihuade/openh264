@@ -17,7 +17,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EncoderDllUWP", "EncoderDll
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VPUWP", "VPUWP.vcxproj", "{40B91492-49CD-47C3-8FD6-D353C620B156}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WelsEncCore", "..\win32\enc\WelsEncCore.vcxproj", "{59208004-1774-4816-AC24-31FF44C324B4}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WelsDecPlus", "..\win32\dec\WelsDecPlus.vcxproj", "{1131558A-9986-4F4B-A13F-8B7F4C8438BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -119,16 +119,16 @@ Global
 		{40B91492-49CD-47C3-8FD6-D353C620B156}.Release|x64.Build.0 = Release|x64
 		{40B91492-49CD-47C3-8FD6-D353C620B156}.Release|x86.ActiveCfg = Release|Win32
 		{40B91492-49CD-47C3-8FD6-D353C620B156}.Release|x86.Build.0 = Release|Win32
-		{59208004-1774-4816-AC24-31FF44C324B4}.Debug|ARM.ActiveCfg = Debug|Win32
-		{59208004-1774-4816-AC24-31FF44C324B4}.Debug|x64.ActiveCfg = Debug|x64
-		{59208004-1774-4816-AC24-31FF44C324B4}.Debug|x64.Build.0 = Debug|x64
-		{59208004-1774-4816-AC24-31FF44C324B4}.Debug|x86.ActiveCfg = Debug|Win32
-		{59208004-1774-4816-AC24-31FF44C324B4}.Debug|x86.Build.0 = Debug|Win32
-		{59208004-1774-4816-AC24-31FF44C324B4}.Release|ARM.ActiveCfg = Release|Win32
-		{59208004-1774-4816-AC24-31FF44C324B4}.Release|x64.ActiveCfg = Release|x64
-		{59208004-1774-4816-AC24-31FF44C324B4}.Release|x64.Build.0 = Release|x64
-		{59208004-1774-4816-AC24-31FF44C324B4}.Release|x86.ActiveCfg = Release|Win32
-		{59208004-1774-4816-AC24-31FF44C324B4}.Release|x86.Build.0 = Release|Win32
+		{1131558A-9986-4F4B-A13F-8B7F4C8438BF}.Debug|ARM.ActiveCfg = Debug|Win32
+		{1131558A-9986-4F4B-A13F-8B7F4C8438BF}.Debug|x64.ActiveCfg = Debug|x64
+		{1131558A-9986-4F4B-A13F-8B7F4C8438BF}.Debug|x64.Build.0 = Debug|x64
+		{1131558A-9986-4F4B-A13F-8B7F4C8438BF}.Debug|x86.ActiveCfg = Debug|Win32
+		{1131558A-9986-4F4B-A13F-8B7F4C8438BF}.Debug|x86.Build.0 = Debug|Win32
+		{1131558A-9986-4F4B-A13F-8B7F4C8438BF}.Release|ARM.ActiveCfg = Release|Win32
+		{1131558A-9986-4F4B-A13F-8B7F4C8438BF}.Release|x64.ActiveCfg = Release|x64
+		{1131558A-9986-4F4B-A13F-8B7F4C8438BF}.Release|x64.Build.0 = Release|x64
+		{1131558A-9986-4F4B-A13F-8B7F4C8438BF}.Release|x86.ActiveCfg = Release|Win32
+		{1131558A-9986-4F4B-A13F-8B7F4C8438BF}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

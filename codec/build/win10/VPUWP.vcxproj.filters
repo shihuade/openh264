@@ -5,5 +5,194 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tga;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="AdaptiveQuantization">
+      <UniqueIdentifier>{671c0813-24c7-4f62-aead-eee593dac697}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ASM">
+      <UniqueIdentifier>{d1d58a30-e133-4803-8ac6-2de5637cbddb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BackgroundDetection">
+      <UniqueIdentifier>{0a14ad86-41f5-4d11-a4ba-64f8654d5b09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ComplexityAnalysis">
+      <UniqueIdentifier>{510ac218-50fd-4eb5-8ca1-64ae977e484e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Downsample">
+      <UniqueIdentifier>{6ec04e3e-d002-4f5f-89e3-6fc81cee45a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Denoise">
+      <UniqueIdentifier>{2baebdea-d278-4f9e-8062-1b95a83f37f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{9845343e-fc32-409a-971a-397d0c255be5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ImageRotate">
+      <UniqueIdentifier>{0b84b4e9-42c1-4d64-9de1-629df3032551}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface">
+      <UniqueIdentifier>{a49f6335-d26d-4d19-8d0c-2d2d2aaf2e9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SceneChangeDetection">
+      <UniqueIdentifier>{de2391e7-b79a-4397-a215-2863bb631b1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScrollDetection">
+      <UniqueIdentifier>{0286abd3-107e-46f9-bece-8d78208f9126}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="VAACalc">
+      <UniqueIdentifier>{16514964-2e63-42cb-b2eb-869a85169eac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{e260b6b1-d7a1-4f77-ae46-d7b2091ff132}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\processing\src\adaptivequantization\AdaptiveQuantization.cpp">
+      <Filter>AdaptiveQuantization</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\processing\src\backgrounddetection\BackgroundDetection.cpp">
+      <Filter>BackgroundDetection</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\processing\src\complexityanalysis\ComplexityAnalysis.cpp">
+      <Filter>ComplexityAnalysis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\processing\src\downsample\downsample.cpp">
+      <Filter>Downsample</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\processing\src\downsample\downsamplefuncs.cpp">
+      <Filter>Downsample</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\processing\src\denoise\denoise.cpp">
+      <Filter>Denoise</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\processing\src\denoise\denoise_filter.cpp">
+      <Filter>Denoise</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\processing\src\imagerotate\imagerotate.cpp">
+      <Filter>ImageRotate</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\processing\src\imagerotate\imagerotatefuncs.cpp">
+      <Filter>ImageRotate</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\processing\src\scenechangedetection\SceneChangeDetection.cpp">
+      <Filter>SceneChangeDetection</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\processing\src\scrolldetection\ScrollDetection.cpp">
+      <Filter>ScrollDetection</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\processing\src\scrolldetection\ScrollDetectionFuncs.cpp">
+      <Filter>ScrollDetection</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\processing\src\vaacalc\vaacalcfuncs.cpp">
+      <Filter>VAACalc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\processing\src\vaacalc\vaacalculation.cpp">
+      <Filter>VAACalc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\src\cpu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\src\intra_pred_common.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\src\sad_common.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\src\WelsThreadLib.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\processing\src\common\memory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\processing\src\common\WelsFrameWork.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\processing\src\common\WelsFrameWorkEx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\processing\src\adaptivequantization\AdaptiveQuantization.h">
+      <Filter>AdaptiveQuantization</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\processing\src\backgrounddetection\BackgroundDetection.h">
+      <Filter>BackgroundDetection</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\processing\src\complexityanalysis\ComplexityAnalysis.h">
+      <Filter>ComplexityAnalysis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\processing\src\downsample\downsample.h">
+      <Filter>Downsample</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\processing\src\denoise\denoise.h">
+      <Filter>Denoise</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\inc\cpu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\inc\intra_pred_common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\inc\sad_common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\inc\WelsThreadLib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\processing\src\common\common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\processing\src\common\memory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\processing\src\common\typedef.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\processing\src\common\util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\processing\src\common\WelsFrameWork.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\processing\src\imagerotate\imagerotate.h">
+      <Filter>ImageRotate</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\processing\interface\IWelsVP.h">
+      <Filter>Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\processing\src\common\resource.h">
+      <Filter>Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\processing\src\scenechangedetection\SceneChangeDetection.h">
+      <Filter>SceneChangeDetection</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\processing\src\scrolldetection\ScrollDetection.h">
+      <Filter>ScrollDetection</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\processing\src\scrolldetection\ScrollDetectionFuncs.h">
+      <Filter>ScrollDetection</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\processing\src\vaacalc\vaacalculation.h">
+      <Filter>VAACalc</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\common\x86\cpuid.asm">
+      <Filter>ASM</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\common\x86\intra_pred_com.asm">
+      <Filter>ASM</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\common\x86\satd_sad.asm">
+      <Filter>ASM</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\processing\src\x86\denoisefilter.asm">
+      <Filter>ASM</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\processing\src\x86\downsample_bilinear.asm">
+      <Filter>ASM</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\processing\src\x86\vaa.asm">
+      <Filter>ASM</Filter>
+    </CustomBuild>
   </ItemGroup>
 </Project>

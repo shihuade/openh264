@@ -26,6 +26,184 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\common\src\cpu.cpp" />
+    <ClCompile Include="..\..\common\src\intra_pred_common.cpp" />
+    <ClCompile Include="..\..\common\src\sad_common.cpp" />
+    <ClCompile Include="..\..\common\src\WelsThreadLib.cpp" />
+    <ClCompile Include="..\..\processing\src\adaptivequantization\AdaptiveQuantization.cpp" />
+    <ClCompile Include="..\..\processing\src\backgrounddetection\BackgroundDetection.cpp" />
+    <ClCompile Include="..\..\processing\src\common\memory.cpp" />
+    <ClCompile Include="..\..\processing\src\common\WelsFrameWork.cpp" />
+    <ClCompile Include="..\..\processing\src\common\WelsFrameWorkEx.cpp" />
+    <ClCompile Include="..\..\processing\src\complexityanalysis\ComplexityAnalysis.cpp" />
+    <ClCompile Include="..\..\processing\src\denoise\denoise.cpp" />
+    <ClCompile Include="..\..\processing\src\denoise\denoise_filter.cpp" />
+    <ClCompile Include="..\..\processing\src\downsample\downsample.cpp" />
+    <ClCompile Include="..\..\processing\src\downsample\downsamplefuncs.cpp" />
+    <ClCompile Include="..\..\processing\src\imagerotate\imagerotate.cpp" />
+    <ClCompile Include="..\..\processing\src\imagerotate\imagerotatefuncs.cpp" />
+    <ClCompile Include="..\..\processing\src\scenechangedetection\SceneChangeDetection.cpp" />
+    <ClCompile Include="..\..\processing\src\scrolldetection\ScrollDetection.cpp" />
+    <ClCompile Include="..\..\processing\src\scrolldetection\ScrollDetectionFuncs.cpp" />
+    <ClCompile Include="..\..\processing\src\vaacalc\vaacalcfuncs.cpp" />
+    <ClCompile Include="..\..\processing\src\vaacalc\vaacalculation.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\common\inc\cpu.h" />
+    <ClInclude Include="..\..\common\inc\intra_pred_common.h" />
+    <ClInclude Include="..\..\common\inc\sad_common.h" />
+    <ClInclude Include="..\..\common\inc\WelsThreadLib.h" />
+    <ClInclude Include="..\..\processing\interface\IWelsVP.h" />
+    <ClInclude Include="..\..\processing\src\adaptivequantization\AdaptiveQuantization.h" />
+    <ClInclude Include="..\..\processing\src\backgrounddetection\BackgroundDetection.h" />
+    <ClInclude Include="..\..\processing\src\common\common.h" />
+    <ClInclude Include="..\..\processing\src\common\memory.h" />
+    <ClInclude Include="..\..\processing\src\common\resource.h" />
+    <ClInclude Include="..\..\processing\src\common\typedef.h" />
+    <ClInclude Include="..\..\processing\src\common\util.h" />
+    <ClInclude Include="..\..\processing\src\common\WelsFrameWork.h" />
+    <ClInclude Include="..\..\processing\src\complexityanalysis\ComplexityAnalysis.h" />
+    <ClInclude Include="..\..\processing\src\denoise\denoise.h" />
+    <ClInclude Include="..\..\processing\src\downsample\downsample.h" />
+    <ClInclude Include="..\..\processing\src\imagerotate\imagerotate.h" />
+    <ClInclude Include="..\..\processing\src\scenechangedetection\SceneChangeDetection.h" />
+    <ClInclude Include="..\..\processing\src\scrolldetection\ScrollDetection.h" />
+    <ClInclude Include="..\..\processing\src\scrolldetection\ScrollDetectionFuncs.h" />
+    <ClInclude Include="..\..\processing\src\vaacalc\vaacalculation.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\common\x86\cpuid.asm">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
+</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
+</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
+</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
+</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
+</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\common\x86\intra_pred_com.asm">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
+</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
+</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
+</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
+</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
+</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\common\x86\satd_sad.asm">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
+</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
+</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
+</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
+</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
+</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\processing\src\x86\denoisefilter.asm">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
+</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
+</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
+</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
+</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
+</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\processing\src\x86\downsample_bilinear.asm">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
+</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
+</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
+</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
+</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
+</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\processing\src\x86\vaa.asm">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
+</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
+</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
+</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
+</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
+</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+    </CustomBuild>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{40B91492-49CD-47C3-8FD6-D353C620B156}</ProjectGuid>
     <Keyword>StaticLibrary</Keyword>
@@ -100,27 +278,34 @@
   <PropertyGroup />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <GenerateManifest>false</GenerateManifest>
+    <OutDir>..\..\..\bin\$(Platform)\$(Configuration)</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <GenerateManifest>false</GenerateManifest>
+    <OutDir>..\..\..\bin\$(Platform)\$(Configuration)</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <GenerateManifest>false</GenerateManifest>
+    <OutDir>..\..\..\bin\$(Platform)\$(Configuration)</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <GenerateManifest>false</GenerateManifest>
+    <OutDir>..\..\..\bin\$(Platform)\$(Configuration)</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <GenerateManifest>false</GenerateManifest>
+    <OutDir>..\..\..\bin\$(Platform)\$(Configuration)</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <GenerateManifest>false</GenerateManifest>
+    <OutDir>..\..\..\bin\$(Platform)\$(Configuration)</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\..\processing\src\common;..\..\processing\interface;..\..\..\codec\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -133,6 +318,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\..\processing\src\common;..\..\processing\interface;..\..\..\codec\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -145,6 +331,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\..\processing\src\common;..\..\processing\interface;..\..\..\codec\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -157,6 +344,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\..\processing\src\common;..\..\processing\interface;..\..\..\codec\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -169,6 +357,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\..\processing\src\common;..\..\processing\interface;..\..\..\codec\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -181,6 +370,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\..\processing\src\common;..\..\processing\interface;..\..\..\codec\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
