@@ -184,7 +184,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CodecRTComponentTemp.vcxproj">
+    <ProjectReference Include="..\CodecRTComponent.vcxproj">
       <Project>{84deaea8-8f12-41f7-abf7-fcd03c3c2a94}</Project>
     </ProjectReference>
   </ItemGroup>
