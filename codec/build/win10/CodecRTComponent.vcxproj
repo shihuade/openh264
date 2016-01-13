@@ -40,7 +40,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{84deaea8-8f12-41f7-abf7-fcd03c3c2a94}</ProjectGuid>
     <Keyword>WindowsRuntimeComponent</Keyword>
-    <ProjectName>CodecRTComponentTemp</ProjectName>
+    <ProjectName>CodecRTComponent</ProjectName>
     <RootNamespace>CodecRTSimulator</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
