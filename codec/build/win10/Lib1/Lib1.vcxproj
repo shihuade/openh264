@@ -27,10 +27,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{d083c6e9-ecf1-4de0-a309-85115cf45b98}</ProjectGuid>
-    <Keyword>DynamicLibrary</Keyword>
-    <ProjectName>WelsDecPlus</ProjectName>
-    <RootNamespace>WelsDecPlus</RootNamespace>
+    <ProjectGuid>{c1e28720-4e19-45bb-8bca-b9178c87e15b}</ProjectGuid>
+    <Keyword>StaticLibrary</Keyword>
+    <ProjectName>Lib1</ProjectName>
+    <RootNamespace>Lib1</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
     <AppContainerApplication>true</AppContainerApplication>
@@ -41,34 +41,34 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <PlatformToolset>v140</PlatformToolset>
@@ -100,32 +100,27 @@
   <PropertyGroup />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>false</IgnoreImportLibrary>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>false</IgnoreImportLibrary>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>false</IgnoreImportLibrary>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>false</IgnoreImportLibrary>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>false</IgnoreImportLibrary>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>false</IgnoreImportLibrary>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
+      <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -137,6 +132,7 @@
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
+      <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -148,6 +144,8 @@
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\..\api\svc;..\..\common\inc;..\..\decoder\core\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -159,6 +157,7 @@
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
+      <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -170,6 +169,7 @@
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
+      <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -181,6 +181,7 @@
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
+      <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -188,6 +189,95 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\common\inc\copy_mb.h" />
+    <ClInclude Include="..\..\..\common\inc\cpu.h" />
+    <ClInclude Include="..\..\..\common\inc\cpu_core.h" />
+    <ClInclude Include="..\..\..\common\inc\deblocking_common.h" />
+    <ClInclude Include="..\..\..\common\inc\expand_pic.h" />
+    <ClInclude Include="..\..\..\common\inc\ls_defines.h" />
+    <ClInclude Include="..\..\..\common\inc\macros.h" />
+    <ClInclude Include="..\..\..\common\inc\mc.h" />
+    <ClInclude Include="..\..\..\common\inc\measure_time.h" />
+    <ClInclude Include="..\..\..\common\inc\memory_align.h" />
+    <ClInclude Include="..\..\..\common\inc\typedefs.h" />
+    <ClInclude Include="..\..\..\common\inc\utils.h" />
+    <ClInclude Include="..\..\..\common\inc\wels_common_defs.h" />
+    <ClInclude Include="..\..\..\common\inc\wels_const_common.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\au_parser.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\bit_stream.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\cabac_decoder.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\deblocking.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\decoder.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\decoder_context.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\decoder_core.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\decode_mb_aux.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\decode_slice.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\dec_frame.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\dec_golomb.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\error_code.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\error_concealment.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\fmo.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\get_intra_predictor.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\manage_dec_ref.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\mb_cache.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\memmgr_nal_unit.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\mv_pred.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\nalu.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\nal_prefix.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\parameter_sets.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\parse_mb_syn_cabac.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\parse_mb_syn_cavlc.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\picture.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\pic_queue.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\rec_mb.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\slice.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\vlc_decoder.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\wels_common_basis.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\wels_const.h" />
+    <ClInclude Include="Lib1.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\common\src\common_tables.cpp" />
+    <ClCompile Include="..\..\..\common\src\copy_mb.cpp" />
+    <ClCompile Include="..\..\..\common\src\cpu.cpp" />
+    <ClCompile Include="..\..\..\common\src\crt_util_safe_x.cpp" />
+    <ClCompile Include="..\..\..\common\src\deblocking_common.cpp" />
+    <ClCompile Include="..\..\..\common\src\expand_pic.cpp" />
+    <ClCompile Include="..\..\..\common\src\mc.cpp" />
+    <ClCompile Include="..\..\..\common\src\memory_align.cpp" />
+    <ClCompile Include="..\..\..\common\src\utils.cpp" />
+    <ClCompile Include="..\..\..\decoder\core\src\au_parser.cpp" />
+    <ClCompile Include="..\..\..\decoder\core\src\bit_stream.cpp" />
+    <ClCompile Include="..\..\..\decoder\core\src\cabac_decoder.cpp" />
+    <ClCompile Include="..\..\..\decoder\core\src\deblocking.cpp" />
+    <ClCompile Include="..\..\..\decoder\core\src\decoder.cpp" />
+    <ClCompile Include="..\..\..\decoder\core\src\decoder_core.cpp" />
+    <ClCompile Include="..\..\..\decoder\core\src\decoder_data_tables.cpp" />
+    <ClCompile Include="..\..\..\decoder\core\src\decode_mb_aux.cpp" />
+    <ClCompile Include="..\..\..\decoder\core\src\decode_slice.cpp" />
+    <ClCompile Include="..\..\..\decoder\core\src\error_concealment.cpp" />
+    <ClCompile Include="..\..\..\decoder\core\src\fmo.cpp" />
+    <ClCompile Include="..\..\..\decoder\core\src\get_intra_predictor.cpp" />
+    <ClCompile Include="..\..\..\decoder\core\src\manage_dec_ref.cpp" />
+    <ClCompile Include="..\..\..\decoder\core\src\memmgr_nal_unit.cpp" />
+    <ClCompile Include="..\..\..\decoder\core\src\mv_pred.cpp" />
+    <ClCompile Include="..\..\..\decoder\core\src\parse_mb_syn_cabac.cpp" />
+    <ClCompile Include="..\..\..\decoder\core\src\parse_mb_syn_cavlc.cpp" />
+    <ClCompile Include="..\..\..\decoder\core\src\pic_queue.cpp" />
+    <ClCompile Include="..\..\..\decoder\core\src\rec_mb.cpp" />
+    <ClCompile Include="Lib1.cpp" />
+    <ClCompile Include="pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
