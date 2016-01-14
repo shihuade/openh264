@@ -66,10 +66,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 #ifdef  _WIN32
 
 #ifdef WINAPI_FAMILY
+
+#ifdef WINDOWS_UWP 
+// for windows uwp app 
+#else
 #if !WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 #define WP80
 using namespace Platform;
@@ -82,6 +85,7 @@ using namespace Windows::System::Threading;
 #define CreateEvent(attr, reset, init, name) CreateEventEx(attr, name, ((reset) ? CREATE_EVENT_MANUAL_RESET : 0) | ((init) ? CREATE_EVENT_INITIAL_SET : 0), EVENT_ALL_ACCESS)
 #define WaitForSingleObject(a, b) WaitForSingleObjectEx(a, b, FALSE)
 #define WaitForMultipleObjects(a, b, c, d) WaitForMultipleObjectsEx(a, b, c, d, FALSE)
+#endif
 #endif
 #endif
 
