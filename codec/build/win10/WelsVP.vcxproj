@@ -280,11 +280,13 @@
     <GenerateManifest>false</GenerateManifest>
     <OutDir>..\..\..\bin\$(Platform)\$(Configuration)</OutDir>
     <TargetName>welsvp</TargetName>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <GenerateManifest>false</GenerateManifest>
     <OutDir>..\..\..\bin\$(Platform)\$(Configuration)</OutDir>
     <TargetName>welsvp</TargetName>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <GenerateManifest>false</GenerateManifest>
