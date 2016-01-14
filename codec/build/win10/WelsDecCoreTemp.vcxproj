@@ -282,7 +282,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{3a2b2915-f26a-45e9-ac06-0dcd4e51c375}</ProjectGuid>
     <Keyword>StaticLibrary</Keyword>
-    <ProjectName>WelsDecCore</ProjectName>
+    <ProjectName>WelsDecCoreTemp</ProjectName>
     <RootNamespace>WelsDecCore</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
@@ -421,7 +421,7 @@
       <CompileAsWinRT>false</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>..\..\api\svc;..\..\common\inc;..\..\decoder\core\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WINDOWS_UWP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_ARM_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE=1;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -435,7 +435,7 @@
       <CompileAsWinRT>false</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>..\..\api\svc;..\..\common\inc;..\..\decoder\core\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WINDOWS_UWP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WINDOWS_UWP;_ARM_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE=1;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
