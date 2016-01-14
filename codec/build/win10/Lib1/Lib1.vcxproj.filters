@@ -13,8 +13,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Lib1.cpp" />
-    <ClCompile Include="pch.cpp" />
     <ClCompile Include="..\..\..\common\src\common_tables.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -101,9 +99,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Lib1.h" />
-    <ClInclude Include="pch.h" />
-    <ClInclude Include="targetver.h" />
     <ClInclude Include="..\..\..\common\inc\copy_mb.h">
       <Filter>Header Files</Filter>
     </ClInclude>

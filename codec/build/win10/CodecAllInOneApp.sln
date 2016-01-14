@@ -17,6 +17,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WelsEncPlus", "WelsEncPlus.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WelsDecCoreTemp", "WelsDecCoreTemp.vcxproj", "{3A2B2915-F26A-45E9-AC06-0DCD4E51C375}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Lib1", "Lib1\Lib1.vcxproj", "{C1E28720-4E19-45BB-8BCA-B9178C87E15B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
@@ -117,6 +119,18 @@ Global
 		{3A2B2915-F26A-45E9-AC06-0DCD4E51C375}.Release|x64.Build.0 = Release|x64
 		{3A2B2915-F26A-45E9-AC06-0DCD4E51C375}.Release|x86.ActiveCfg = Release|Win32
 		{3A2B2915-F26A-45E9-AC06-0DCD4E51C375}.Release|x86.Build.0 = Release|Win32
+		{C1E28720-4E19-45BB-8BCA-B9178C87E15B}.Debug|ARM.ActiveCfg = Debug|ARM
+		{C1E28720-4E19-45BB-8BCA-B9178C87E15B}.Debug|ARM.Build.0 = Debug|ARM
+		{C1E28720-4E19-45BB-8BCA-B9178C87E15B}.Debug|x64.ActiveCfg = Debug|x64
+		{C1E28720-4E19-45BB-8BCA-B9178C87E15B}.Debug|x64.Build.0 = Debug|x64
+		{C1E28720-4E19-45BB-8BCA-B9178C87E15B}.Debug|x86.ActiveCfg = Debug|Win32
+		{C1E28720-4E19-45BB-8BCA-B9178C87E15B}.Debug|x86.Build.0 = Debug|Win32
+		{C1E28720-4E19-45BB-8BCA-B9178C87E15B}.Release|ARM.ActiveCfg = Release|ARM
+		{C1E28720-4E19-45BB-8BCA-B9178C87E15B}.Release|ARM.Build.0 = Release|ARM
+		{C1E28720-4E19-45BB-8BCA-B9178C87E15B}.Release|x64.ActiveCfg = Release|x64
+		{C1E28720-4E19-45BB-8BCA-B9178C87E15B}.Release|x64.Build.0 = Release|x64
+		{C1E28720-4E19-45BB-8BCA-B9178C87E15B}.Release|x86.ActiveCfg = Release|Win32
+		{C1E28720-4E19-45BB-8BCA-B9178C87E15B}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
