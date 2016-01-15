@@ -9,3 +9,4 @@
 #include <ppltasks.h>
 
 #include "App.xaml.h"
+#include "..\Win32Project1\giraffe.h"

@@ -24,8 +24,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WelsDecCore", "WelsDecCore.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Win32Project1", "Win32Project1\Win32Project1.vcxproj", "{6EB8672B-5164-4B0D-B025-5B4B46AC1DA8}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Dll1", "Dll1\Dll1.vcxproj", "{9E1D6A92-4B23-4CCE-99C5-86FF05D08734}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
@@ -124,18 +122,6 @@ Global
 		{6EB8672B-5164-4B0D-B025-5B4B46AC1DA8}.Release|x64.Build.0 = Release|x64
 		{6EB8672B-5164-4B0D-B025-5B4B46AC1DA8}.Release|x86.ActiveCfg = Release|Win32
 		{6EB8672B-5164-4B0D-B025-5B4B46AC1DA8}.Release|x86.Build.0 = Release|Win32
-		{9E1D6A92-4B23-4CCE-99C5-86FF05D08734}.Debug|ARM.ActiveCfg = Debug|ARM
-		{9E1D6A92-4B23-4CCE-99C5-86FF05D08734}.Debug|ARM.Build.0 = Debug|ARM
-		{9E1D6A92-4B23-4CCE-99C5-86FF05D08734}.Debug|x64.ActiveCfg = Debug|x64
-		{9E1D6A92-4B23-4CCE-99C5-86FF05D08734}.Debug|x64.Build.0 = Debug|x64
-		{9E1D6A92-4B23-4CCE-99C5-86FF05D08734}.Debug|x86.ActiveCfg = Debug|Win32
-		{9E1D6A92-4B23-4CCE-99C5-86FF05D08734}.Debug|x86.Build.0 = Debug|Win32
-		{9E1D6A92-4B23-4CCE-99C5-86FF05D08734}.Release|ARM.ActiveCfg = Release|ARM
-		{9E1D6A92-4B23-4CCE-99C5-86FF05D08734}.Release|ARM.Build.0 = Release|ARM
-		{9E1D6A92-4B23-4CCE-99C5-86FF05D08734}.Release|x64.ActiveCfg = Release|x64
-		{9E1D6A92-4B23-4CCE-99C5-86FF05D08734}.Release|x64.Build.0 = Release|x64
-		{9E1D6A92-4B23-4CCE-99C5-86FF05D08734}.Release|x86.ActiveCfg = Release|Win32
-		{9E1D6A92-4B23-4CCE-99C5-86FF05D08734}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
