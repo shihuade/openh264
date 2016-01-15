@@ -5,9 +5,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tga;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="asm">
-      <UniqueIdentifier>{e197a013-465b-417f-afc2-08b20078e1a4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{652de7ad-3ff4-4ee7-89b2-979d7160d752}</UniqueIdentifier>
     </Filter>
@@ -17,59 +14,6 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{b83a259f-e9d4-4fe9-8a9e-81116033c2e6}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="..\..\common\x86\cpuid.asm">
-      <Filter>asm</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\common\x86\deblock.asm">
-      <Filter>asm</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\common\x86\expand_picture.asm">
-      <Filter>asm</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\common\x86\intra_pred_com.asm">
-      <Filter>asm</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\common\x86\mb_copy.asm">
-      <Filter>asm</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\common\x86\mc_chroma.asm">
-      <Filter>asm</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\common\x86\mc_luma.asm">
-      <Filter>asm</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\common\x86\satd_sad.asm">
-      <Filter>asm</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\common\x86\vaa.asm">
-      <Filter>asm</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\encoder\core\x86\coeff.asm">
-      <Filter>asm</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\encoder\core\x86\dct.asm">
-      <Filter>asm</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\encoder\core\x86\intra_pred.asm">
-      <Filter>asm</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\encoder\core\x86\matrix_transpose.asm">
-      <Filter>asm</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\encoder\core\x86\memzero.asm">
-      <Filter>asm</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\encoder\core\x86\quant.asm">
-      <Filter>asm</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\encoder\core\x86\sample_sc.asm">
-      <Filter>asm</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\encoder\core\x86\score.asm">
-      <Filter>asm</Filter>
-    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\common\inc\copy_mb.h">

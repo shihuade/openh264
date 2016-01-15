@@ -5,41 +5,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tga;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="asm">
-      <UniqueIdentifier>{5b6e920b-15d2-4d94-96ef-fe52b760d21b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{9bfe48be-1a48-4e4e-97b8-d4f4ed881e82}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{3e1170ac-bff5-40c9-ad58-4a786c23ad91}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="..\..\common\x86\cpuid.asm">
-      <Filter>asm</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\common\x86\deblock.asm">
-      <Filter>asm</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\common\x86\expand_picture.asm">
-      <Filter>asm</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\common\x86\mb_copy.asm">
-      <Filter>asm</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\common\x86\mc_chroma.asm">
-      <Filter>asm</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\common\x86\mc_luma.asm">
-      <Filter>asm</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\decoder\core\x86\dct.asm">
-      <Filter>asm</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\decoder\core\x86\intra_pred.asm">
-      <Filter>asm</Filter>
-    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\common\inc\copy_mb.h">

@@ -8,9 +8,6 @@
     <Filter Include="AdaptiveQuantization">
       <UniqueIdentifier>{d9c43554-5575-4c4f-944f-16bb19c2ced3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ASM">
-      <UniqueIdentifier>{0d62df91-2e79-453c-81ba-8acabe44e6be}</UniqueIdentifier>
-    </Filter>
     <Filter Include="BackgroundDetection">
       <UniqueIdentifier>{0b0d6c46-7ec3-4a5f-a03d-faa2c7ec4630}</UniqueIdentifier>
     </Filter>
@@ -174,25 +171,5 @@
     <ClInclude Include="..\..\processing\src\vaacalc\vaacalculation.h">
       <Filter>VAACalc</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="..\..\common\x86\cpuid.asm">
-      <Filter>ASM</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\common\x86\intra_pred_com.asm">
-      <Filter>ASM</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\common\x86\satd_sad.asm">
-      <Filter>ASM</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\processing\src\x86\denoisefilter.asm">
-      <Filter>ASM</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\processing\src\x86\downsample_bilinear.asm">
-      <Filter>ASM</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\processing\src\x86\vaa.asm">
-      <Filter>ASM</Filter>
-    </CustomBuild>
   </ItemGroup>
 </Project>

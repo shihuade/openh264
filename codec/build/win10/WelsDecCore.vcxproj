@@ -26,8 +26,85 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\common\inc\copy_mb.h" />
+    <ClInclude Include="..\..\common\inc\cpu.h" />
+    <ClInclude Include="..\..\common\inc\cpu_core.h" />
+    <ClInclude Include="..\..\common\inc\deblocking_common.h" />
+    <ClInclude Include="..\..\common\inc\expand_pic.h" />
+    <ClInclude Include="..\..\common\inc\ls_defines.h" />
+    <ClInclude Include="..\..\common\inc\macros.h" />
+    <ClInclude Include="..\..\common\inc\mc.h" />
+    <ClInclude Include="..\..\common\inc\measure_time.h" />
+    <ClInclude Include="..\..\common\inc\memory_align.h" />
+    <ClInclude Include="..\..\common\inc\typedefs.h" />
+    <ClInclude Include="..\..\common\inc\utils.h" />
+    <ClInclude Include="..\..\common\inc\wels_common_defs.h" />
+    <ClInclude Include="..\..\common\inc\wels_const_common.h" />
+    <ClInclude Include="..\..\decoder\core\inc\au_parser.h" />
+    <ClInclude Include="..\..\decoder\core\inc\bit_stream.h" />
+    <ClInclude Include="..\..\decoder\core\inc\cabac_decoder.h" />
+    <ClInclude Include="..\..\decoder\core\inc\deblocking.h" />
+    <ClInclude Include="..\..\decoder\core\inc\decoder.h" />
+    <ClInclude Include="..\..\decoder\core\inc\decoder_context.h" />
+    <ClInclude Include="..\..\decoder\core\inc\decoder_core.h" />
+    <ClInclude Include="..\..\decoder\core\inc\decode_mb_aux.h" />
+    <ClInclude Include="..\..\decoder\core\inc\decode_slice.h" />
+    <ClInclude Include="..\..\decoder\core\inc\dec_frame.h" />
+    <ClInclude Include="..\..\decoder\core\inc\dec_golomb.h" />
+    <ClInclude Include="..\..\decoder\core\inc\error_code.h" />
+    <ClInclude Include="..\..\decoder\core\inc\error_concealment.h" />
+    <ClInclude Include="..\..\decoder\core\inc\fmo.h" />
+    <ClInclude Include="..\..\decoder\core\inc\get_intra_predictor.h" />
+    <ClInclude Include="..\..\decoder\core\inc\manage_dec_ref.h" />
+    <ClInclude Include="..\..\decoder\core\inc\mb_cache.h" />
+    <ClInclude Include="..\..\decoder\core\inc\memmgr_nal_unit.h" />
+    <ClInclude Include="..\..\decoder\core\inc\mv_pred.h" />
+    <ClInclude Include="..\..\decoder\core\inc\nalu.h" />
+    <ClInclude Include="..\..\decoder\core\inc\nal_prefix.h" />
+    <ClInclude Include="..\..\decoder\core\inc\parameter_sets.h" />
+    <ClInclude Include="..\..\decoder\core\inc\parse_mb_syn_cabac.h" />
+    <ClInclude Include="..\..\decoder\core\inc\parse_mb_syn_cavlc.h" />
+    <ClInclude Include="..\..\decoder\core\inc\picture.h" />
+    <ClInclude Include="..\..\decoder\core\inc\pic_queue.h" />
+    <ClInclude Include="..\..\decoder\core\inc\rec_mb.h" />
+    <ClInclude Include="..\..\decoder\core\inc\slice.h" />
+    <ClInclude Include="..\..\decoder\core\inc\vlc_decoder.h" />
+    <ClInclude Include="..\..\decoder\core\inc\wels_common_basis.h" />
+    <ClInclude Include="..\..\decoder\core\inc\wels_const.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\common\src\common_tables.cpp" />
+    <ClCompile Include="..\..\common\src\copy_mb.cpp" />
+    <ClCompile Include="..\..\common\src\cpu.cpp" />
+    <ClCompile Include="..\..\common\src\crt_util_safe_x.cpp" />
+    <ClCompile Include="..\..\common\src\deblocking_common.cpp" />
+    <ClCompile Include="..\..\common\src\expand_pic.cpp" />
+    <ClCompile Include="..\..\common\src\mc.cpp" />
+    <ClCompile Include="..\..\common\src\memory_align.cpp" />
+    <ClCompile Include="..\..\common\src\utils.cpp" />
+    <ClCompile Include="..\..\decoder\core\src\au_parser.cpp" />
+    <ClCompile Include="..\..\decoder\core\src\bit_stream.cpp" />
+    <ClCompile Include="..\..\decoder\core\src\cabac_decoder.cpp" />
+    <ClCompile Include="..\..\decoder\core\src\deblocking.cpp" />
+    <ClCompile Include="..\..\decoder\core\src\decoder.cpp" />
+    <ClCompile Include="..\..\decoder\core\src\decoder_core.cpp" />
+    <ClCompile Include="..\..\decoder\core\src\decoder_data_tables.cpp" />
+    <ClCompile Include="..\..\decoder\core\src\decode_mb_aux.cpp" />
+    <ClCompile Include="..\..\decoder\core\src\decode_slice.cpp" />
+    <ClCompile Include="..\..\decoder\core\src\error_concealment.cpp" />
+    <ClCompile Include="..\..\decoder\core\src\fmo.cpp" />
+    <ClCompile Include="..\..\decoder\core\src\get_intra_predictor.cpp" />
+    <ClCompile Include="..\..\decoder\core\src\manage_dec_ref.cpp" />
+    <ClCompile Include="..\..\decoder\core\src\memmgr_nal_unit.cpp" />
+    <ClCompile Include="..\..\decoder\core\src\mv_pred.cpp" />
+    <ClCompile Include="..\..\decoder\core\src\parse_mb_syn_cabac.cpp" />
+    <ClCompile Include="..\..\decoder\core\src\parse_mb_syn_cavlc.cpp" />
+    <ClCompile Include="..\..\decoder\core\src\pic_queue.cpp" />
+    <ClCompile Include="..\..\decoder\core\src\rec_mb.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{5dec9ac8-280a-4ed5-9c3d-62854ac56a21}</ProjectGuid>
+    <ProjectGuid>{3a2b2915-f26a-45e9-ac06-0dcd4e51c375}</ProjectGuid>
     <Keyword>StaticLibrary</Keyword>
     <ProjectName>WelsDecCore</ProjectName>
     <RootNamespace>WelsDecCore</RootNamespace>
@@ -100,27 +177,47 @@
   <PropertyGroup />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <GenerateManifest>false</GenerateManifest>
+    <TargetName>welsdcore</TargetName>
+    <OutDir>..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\$(ProjectName)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <GenerateManifest>false</GenerateManifest>
+    <TargetName>welsdcore</TargetName>
+    <OutDir>..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\$(ProjectName)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <GenerateManifest>false</GenerateManifest>
+    <TargetName>welsdcore</TargetName>
+    <OutDir>..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\$(ProjectName)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <GenerateManifest>false</GenerateManifest>
+    <TargetName>welsdcore</TargetName>
+    <OutDir>..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\$(ProjectName)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <GenerateManifest>false</GenerateManifest>
+    <TargetName>welsdcore</TargetName>
+    <OutDir>..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\$(ProjectName)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <GenerateManifest>false</GenerateManifest>
+    <TargetName>welsdcore</TargetName>
+    <OutDir>..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\$(ProjectName)</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\..\api\svc;..\..\common\inc;..\..\decoder\core\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WINDOWS_UWP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -130,9 +227,11 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\..\api\svc;..\..\common\inc;..\..\decoder\core\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WINDOWS_UWP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -142,9 +241,11 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|arm'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\..\api\svc;..\..\common\inc;..\..\decoder\core\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_ARM_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE=1;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -154,9 +255,11 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|arm'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\..\api\svc;..\..\common\inc;..\..\decoder\core\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WINDOWS_UWP;_ARM_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE=1;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -166,9 +269,11 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\..\api\svc;..\..\common\inc;..\..\decoder\core\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WINDOWS_UWP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -178,9 +283,11 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\..\api\svc;..\..\common\inc;..\..\decoder\core\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WINDOWS_UWP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
