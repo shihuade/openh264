@@ -1,0 +1,377 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\common\src\cpu.cpp" />
+    <ClCompile Include="..\..\common\src\intra_pred_common.cpp" />
+    <ClCompile Include="..\..\common\src\sad_common.cpp" />
+    <ClCompile Include="..\..\common\src\WelsThreadLib.cpp" />
+    <ClCompile Include="..\..\decoder\core\src\au_parser.cpp" />
+    <ClCompile Include="..\..\decoder\core\src\bit_stream.cpp" />
+    <ClCompile Include="..\..\decoder\core\src\cabac_decoder.cpp" />
+    <ClCompile Include="..\..\decoder\core\src\deblocking.cpp" />
+    <ClCompile Include="..\..\decoder\core\src\decoder.cpp" />
+    <ClCompile Include="..\..\decoder\core\src\decoder_core.cpp" />
+    <ClCompile Include="..\..\decoder\core\src\decoder_data_tables.cpp" />
+    <ClCompile Include="..\..\decoder\core\src\decode_mb_aux.cpp" />
+    <ClCompile Include="..\..\decoder\core\src\decode_slice.cpp" />
+    <ClCompile Include="..\..\decoder\core\src\error_concealment.cpp" />
+    <ClCompile Include="..\..\decoder\core\src\fmo.cpp" />
+    <ClCompile Include="..\..\decoder\core\src\get_intra_predictor.cpp" />
+    <ClCompile Include="..\..\decoder\core\src\manage_dec_ref.cpp" />
+    <ClCompile Include="..\..\decoder\core\src\memmgr_nal_unit.cpp" />
+    <ClCompile Include="..\..\decoder\core\src\mv_pred.cpp" />
+    <ClCompile Include="..\..\decoder\core\src\parse_mb_syn_cabac.cpp" />
+    <ClCompile Include="..\..\decoder\core\src\parse_mb_syn_cavlc.cpp" />
+    <ClCompile Include="..\..\decoder\core\src\pic_queue.cpp" />
+    <ClCompile Include="..\..\decoder\core\src\rec_mb.cpp" />
+    <ClCompile Include="..\..\decoder\plus\src\welsDecoderExt.cpp" />
+    <ClCompile Include="..\..\encoder\core\src\au_set.cpp" />
+    <ClCompile Include="..\..\encoder\core\src\deblocking.cpp" />
+    <ClCompile Include="..\..\encoder\core\src\decode_mb_aux.cpp" />
+    <ClCompile Include="..\..\encoder\core\src\encoder.cpp" />
+    <ClCompile Include="..\..\encoder\core\src\encoder_data_tables.cpp" />
+    <ClCompile Include="..\..\encoder\core\src\encoder_ext.cpp" />
+    <ClCompile Include="..\..\encoder\core\src\encode_mb_aux.cpp" />
+    <ClCompile Include="..\..\encoder\core\src\get_intra_predictor.cpp" />
+    <ClCompile Include="..\..\encoder\core\src\md.cpp" />
+    <ClCompile Include="..\..\encoder\core\src\mv_pred.cpp" />
+    <ClCompile Include="..\..\encoder\core\src\nal_encap.cpp" />
+    <ClCompile Include="..\..\encoder\core\src\picture_handle.cpp" />
+    <ClCompile Include="..\..\encoder\core\src\ratectl.cpp" />
+    <ClCompile Include="..\..\encoder\core\src\ref_list_mgr_svc.cpp" />
+    <ClCompile Include="..\..\encoder\core\src\sample.cpp" />
+    <ClCompile Include="..\..\encoder\core\src\set_mb_syn_cabac.cpp" />
+    <ClCompile Include="..\..\encoder\core\src\set_mb_syn_cavlc.cpp" />
+    <ClCompile Include="..\..\encoder\core\src\slice_multi_threading.cpp" />
+    <ClCompile Include="..\..\encoder\core\src\svc_base_layer_md.cpp" />
+    <ClCompile Include="..\..\encoder\core\src\svc_encode_mb.cpp" />
+    <ClCompile Include="..\..\encoder\core\src\svc_encode_slice.cpp" />
+    <ClCompile Include="..\..\encoder\core\src\svc_enc_slice_segment.cpp" />
+    <ClCompile Include="..\..\encoder\core\src\svc_mode_decision.cpp" />
+    <ClCompile Include="..\..\encoder\core\src\svc_motion_estimate.cpp" />
+    <ClCompile Include="..\..\encoder\core\src\svc_set_mb_syn_cabac.cpp" />
+    <ClCompile Include="..\..\encoder\core\src\svc_set_mb_syn_cavlc.cpp" />
+    <ClCompile Include="..\..\encoder\core\src\wels_preprocess.cpp" />
+    <ClCompile Include="..\..\encoder\core\src\wels_task_base.cpp" />
+    <ClCompile Include="..\..\encoder\core\src\wels_task_encoder.cpp" />
+    <ClCompile Include="..\..\encoder\core\src\wels_task_management.cpp" />
+    <ClCompile Include="..\..\encoder\plus\src\welsEncoderExt.cpp" />
+    <ClCompile Include="..\..\processing\src\adaptivequantization\AdaptiveQuantization.cpp" />
+    <ClCompile Include="..\..\processing\src\backgrounddetection\BackgroundDetection.cpp" />
+    <ClCompile Include="..\..\processing\src\common\memory.cpp" />
+    <ClCompile Include="..\..\processing\src\common\WelsFrameWork.cpp" />
+    <ClCompile Include="..\..\processing\src\common\WelsFrameWorkEx.cpp" />
+    <ClCompile Include="..\..\processing\src\complexityanalysis\ComplexityAnalysis.cpp" />
+    <ClCompile Include="..\..\processing\src\denoise\denoise.cpp" />
+    <ClCompile Include="..\..\processing\src\denoise\denoise_filter.cpp" />
+    <ClCompile Include="..\..\processing\src\downsample\downsample.cpp" />
+    <ClCompile Include="..\..\processing\src\downsample\downsamplefuncs.cpp" />
+    <ClCompile Include="..\..\processing\src\imagerotate\imagerotate.cpp" />
+    <ClCompile Include="..\..\processing\src\imagerotate\imagerotatefuncs.cpp" />
+    <ClCompile Include="..\..\processing\src\scenechangedetection\SceneChangeDetection.cpp" />
+    <ClCompile Include="..\..\processing\src\scrolldetection\ScrollDetection.cpp" />
+    <ClCompile Include="..\..\processing\src\scrolldetection\ScrollDetectionFuncs.cpp" />
+    <ClCompile Include="..\..\processing\src\vaacalc\vaacalcfuncs.cpp" />
+    <ClCompile Include="..\..\processing\src\vaacalc\vaacalculation.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\common\inc\cpu.h" />
+    <ClInclude Include="..\..\common\inc\intra_pred_common.h" />
+    <ClInclude Include="..\..\common\inc\sad_common.h" />
+    <ClInclude Include="..\..\common\inc\WelsThreadLib.h" />
+    <ClInclude Include="..\..\decoder\core\inc\au_parser.h" />
+    <ClInclude Include="..\..\decoder\core\inc\bit_stream.h" />
+    <ClInclude Include="..\..\decoder\core\inc\cabac_decoder.h" />
+    <ClInclude Include="..\..\decoder\core\inc\deblocking.h" />
+    <ClInclude Include="..\..\decoder\core\inc\decoder.h" />
+    <ClInclude Include="..\..\decoder\core\inc\decoder_context.h" />
+    <ClInclude Include="..\..\decoder\core\inc\decoder_core.h" />
+    <ClInclude Include="..\..\decoder\core\inc\decode_mb_aux.h" />
+    <ClInclude Include="..\..\decoder\core\inc\decode_slice.h" />
+    <ClInclude Include="..\..\decoder\core\inc\dec_frame.h" />
+    <ClInclude Include="..\..\decoder\core\inc\dec_golomb.h" />
+    <ClInclude Include="..\..\decoder\core\inc\error_code.h" />
+    <ClInclude Include="..\..\decoder\core\inc\error_concealment.h" />
+    <ClInclude Include="..\..\decoder\core\inc\fmo.h" />
+    <ClInclude Include="..\..\decoder\core\inc\get_intra_predictor.h" />
+    <ClInclude Include="..\..\decoder\core\inc\manage_dec_ref.h" />
+    <ClInclude Include="..\..\decoder\core\inc\mb_cache.h" />
+    <ClInclude Include="..\..\decoder\core\inc\memmgr_nal_unit.h" />
+    <ClInclude Include="..\..\decoder\core\inc\mv_pred.h" />
+    <ClInclude Include="..\..\decoder\core\inc\nalu.h" />
+    <ClInclude Include="..\..\decoder\core\inc\nal_prefix.h" />
+    <ClInclude Include="..\..\decoder\core\inc\parameter_sets.h" />
+    <ClInclude Include="..\..\decoder\core\inc\parse_mb_syn_cabac.h" />
+    <ClInclude Include="..\..\decoder\core\inc\parse_mb_syn_cavlc.h" />
+    <ClInclude Include="..\..\decoder\core\inc\picture.h" />
+    <ClInclude Include="..\..\decoder\core\inc\pic_queue.h" />
+    <ClInclude Include="..\..\decoder\core\inc\rec_mb.h" />
+    <ClInclude Include="..\..\decoder\core\inc\slice.h" />
+    <ClInclude Include="..\..\decoder\core\inc\vlc_decoder.h" />
+    <ClInclude Include="..\..\decoder\core\inc\wels_common_basis.h" />
+    <ClInclude Include="..\..\decoder\core\inc\wels_const.h" />
+    <ClInclude Include="..\..\decoder\plus\inc\welsDecoderExt.h" />
+    <ClInclude Include="..\..\encoder\core\inc\as264_common.h" />
+    <ClInclude Include="..\..\encoder\core\inc\au_set.h" />
+    <ClInclude Include="..\..\encoder\core\inc\deblocking.h" />
+    <ClInclude Include="..\..\encoder\core\inc\decode_mb_aux.h" />
+    <ClInclude Include="..\..\encoder\core\inc\dq_map.h" />
+    <ClInclude Include="..\..\encoder\core\inc\encoder.h" />
+    <ClInclude Include="..\..\encoder\core\inc\encoder_context.h" />
+    <ClInclude Include="..\..\encoder\core\inc\encode_mb_aux.h" />
+    <ClInclude Include="..\..\encoder\core\inc\extern.h" />
+    <ClInclude Include="..\..\encoder\core\inc\get_intra_predictor.h" />
+    <ClInclude Include="..\..\encoder\core\inc\mb_cache.h" />
+    <ClInclude Include="..\..\encoder\core\inc\md.h" />
+    <ClInclude Include="..\..\encoder\core\inc\mt_defs.h" />
+    <ClInclude Include="..\..\encoder\core\inc\mv_pred.h" />
+    <ClInclude Include="..\..\encoder\core\inc\nal_encap.h" />
+    <ClInclude Include="..\..\encoder\core\inc\parameter_sets.h" />
+    <ClInclude Include="..\..\encoder\core\inc\param_svc.h" />
+    <ClInclude Include="..\..\encoder\core\inc\picture.h" />
+    <ClInclude Include="..\..\encoder\core\inc\picture_handle.h" />
+    <ClInclude Include="..\..\encoder\core\inc\rc.h" />
+    <ClInclude Include="..\..\encoder\core\inc\ref_list_mgr_svc.h" />
+    <ClInclude Include="..\..\encoder\core\inc\sample.h" />
+    <ClInclude Include="..\..\encoder\core\inc\set_mb_syn_cabac.h" />
+    <ClInclude Include="..\..\encoder\core\inc\set_mb_syn_cavlc.h" />
+    <ClInclude Include="..\..\encoder\core\inc\slice.h" />
+    <ClInclude Include="..\..\encoder\core\inc\slice_multi_threading.h" />
+    <ClInclude Include="..\..\encoder\core\inc\stat.h" />
+    <ClInclude Include="..\..\encoder\core\inc\svc_base_layer_md.h" />
+    <ClInclude Include="..\..\encoder\core\inc\svc_encode_mb.h" />
+    <ClInclude Include="..\..\encoder\core\inc\svc_encode_slice.h" />
+    <ClInclude Include="..\..\encoder\core\inc\svc_enc_frame.h" />
+    <ClInclude Include="..\..\encoder\core\inc\svc_enc_golomb.h" />
+    <ClInclude Include="..\..\encoder\core\inc\svc_enc_macroblock.h" />
+    <ClInclude Include="..\..\encoder\core\inc\svc_enc_slice_segment.h" />
+    <ClInclude Include="..\..\encoder\core\inc\svc_mode_decision.h" />
+    <ClInclude Include="..\..\encoder\core\inc\svc_motion_estimate.h" />
+    <ClInclude Include="..\..\encoder\core\inc\svc_set_mb_syn.h" />
+    <ClInclude Include="..\..\encoder\core\inc\svc_set_mb_syn_cavlc.h" />
+    <ClInclude Include="..\..\encoder\core\inc\vlc_encoder.h" />
+    <ClInclude Include="..\..\encoder\core\inc\wels_common_basis.h" />
+    <ClInclude Include="..\..\encoder\core\inc\wels_const.h" />
+    <ClInclude Include="..\..\encoder\core\inc\wels_func_ptr_def.h" />
+    <ClInclude Include="..\..\encoder\core\inc\wels_preprocess.h" />
+    <ClInclude Include="..\..\encoder\core\inc\wels_task_base.h" />
+    <ClInclude Include="..\..\encoder\core\inc\wels_task_encoder.h" />
+    <ClInclude Include="..\..\encoder\core\inc\wels_task_management.h" />
+    <ClInclude Include="..\..\encoder\core\inc\wels_transpose_matrix.h" />
+    <ClInclude Include="..\..\encoder\plus\inc\welsEncoderExt.h" />
+    <ClInclude Include="..\..\processing\interface\IWelsVP.h" />
+    <ClInclude Include="..\..\processing\src\adaptivequantization\AdaptiveQuantization.h" />
+    <ClInclude Include="..\..\processing\src\backgrounddetection\BackgroundDetection.h" />
+    <ClInclude Include="..\..\processing\src\common\common.h" />
+    <ClInclude Include="..\..\processing\src\common\memory.h" />
+    <ClInclude Include="..\..\processing\src\common\resource.h" />
+    <ClInclude Include="..\..\processing\src\common\typedef.h" />
+    <ClInclude Include="..\..\processing\src\common\util.h" />
+    <ClInclude Include="..\..\processing\src\common\WelsFrameWork.h" />
+    <ClInclude Include="..\..\processing\src\complexityanalysis\ComplexityAnalysis.h" />
+    <ClInclude Include="..\..\processing\src\denoise\denoise.h" />
+    <ClInclude Include="..\..\processing\src\downsample\downsample.h" />
+    <ClInclude Include="..\..\processing\src\imagerotate\imagerotate.h" />
+    <ClInclude Include="..\..\processing\src\scenechangedetection\SceneChangeDetection.h" />
+    <ClInclude Include="..\..\processing\src\scrolldetection\ScrollDetection.h" />
+    <ClInclude Include="..\..\processing\src\scrolldetection\ScrollDetectionFuncs.h" />
+    <ClInclude Include="..\..\processing\src\vaacalc\vaacalculation.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{ffcd8245-783a-4cbc-9d5b-4a6ef15e542f}</ProjectGuid>
+    <Keyword>StaticLibrary</Keyword>
+    <ProjectName>WelsCodeclib</ProjectName>
+    <RootNamespace>WelsCodeclib</RootNamespace>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
+    <AppContainerApplication>true</AppContainerApplication>
+    <ApplicationType>Windows Store</ApplicationType>
+    <WindowsTargetPlatformVersion>10.0.10586.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformMinVersion>10.0.10240.0</WindowsTargetPlatformMinVersion>
+    <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\..\api\svc;..\..\processing\interface;..\..\encoder\plus\inc;..\..\encoder\core\inc;..\..\decoder\plus\inc;..\..\decoder\core\inc;..\..\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\..\api\svc;..\..\processing\interface;..\..\encoder\plus\inc;..\..\encoder\core\inc;..\..\decoder\plus\inc;..\..\decoder\core\inc;..\..\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|arm'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\..\api\svc;..\..\processing\interface;..\..\encoder\plus\inc;..\..\encoder\core\inc;..\..\decoder\plus\inc;..\..\decoder\core\inc;..\..\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|arm'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\..\api\svc;..\..\processing\interface;..\..\encoder\plus\inc;..\..\encoder\core\inc;..\..\decoder\plus\inc;..\..\decoder\core\inc;..\..\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\..\api\svc;..\..\processing\interface;..\..\encoder\plus\inc;..\..\encoder\core\inc;..\..\decoder\plus\inc;..\..\decoder\core\inc;..\..\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\..\api\svc;..\..\processing\interface;..\..\encoder\plus\inc;..\..\encoder\core\inc;..\..\decoder\plus\inc;..\..\decoder\core\inc;..\..\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

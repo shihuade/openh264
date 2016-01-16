@@ -321,7 +321,7 @@ label_exit:
   }
 }
 
-#if (defined(ANDROID_NDK)||defined(APPLE_IOS) || defined (WINDOWS_PHONE))
+#if (defined(ANDROID_NDK)||defined(APPLE_IOS) || defined (WINDOWS_PHONE) || defined (WINDOWS_UWP))
 int32_t DecMain (int32_t iArgC, char* pArgV[]) {
 #else
 int32_t main (int32_t iArgC, char* pArgV[]) {
