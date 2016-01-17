@@ -1,0 +1,372 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tga;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="WelsEncCore">
+      <UniqueIdentifier>{bf3793ed-5031-474b-995f-b4203c6fb3a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WelsEncCore\HeaderFiles">
+      <UniqueIdentifier>{65a1f919-4a25-4c8b-88ef-b76b72b072d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WelsEncCore\SourceFiles">
+      <UniqueIdentifier>{8e0ad2b8-9896-4f6c-9b5a-d89b9c97e895}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WelsEncPlus">
+      <UniqueIdentifier>{a5492667-edae-4bee-ab9a-de5feddac49a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WelsEncPlus\HeaderFiles">
+      <UniqueIdentifier>{7ac2a1dd-36ab-4383-9d4f-c937fde44aa0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WelsEncPlus\SourceFiles">
+      <UniqueIdentifier>{7977365a-b42f-49ac-bc52-45a5e4502970}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PreProcess">
+      <UniqueIdentifier>{ebd37347-1a8b-4d1b-b2d1-9a141d4cad72}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\common\inc\welsCodecTrace.h">
+      <Filter>WelsEncPlus\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\plus\inc\welsEncoderExt.h">
+      <Filter>WelsEncPlus\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\as264_common.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\au_set.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\inc\copy_mb.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\inc\cpu.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\inc\cpu_core.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\deblocking.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\inc\deblocking_common.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\decode_mb_aux.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\dq_map.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\encode_mb_aux.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\encoder.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\encoder_context.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\inc\expand_pic.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\extern.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\get_intra_predictor.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\inc\golomb_common.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\inc\ls_defines.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\inc\macros.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\mb_cache.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\inc\mc.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\md.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\inc\measure_time.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\inc\memory_align.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\mt_defs.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\mv_pred.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\nal_encap.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\param_svc.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\parameter_sets.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\picture.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\picture_handle.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\rc.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\ref_list_mgr_svc.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\inc\sad_common.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\sample.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\set_mb_syn_cabac.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\set_mb_syn_cavlc.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\slice.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\slice_multi_threading.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\stat.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\svc_base_layer_md.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\svc_enc_frame.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\svc_enc_golomb.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\svc_enc_macroblock.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\svc_enc_slice_segment.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\svc_encode_mb.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\svc_encode_slice.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\svc_mode_decision.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\svc_motion_estimate.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\svc_set_mb_syn.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\svc_set_mb_syn_cavlc.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\inc\typedefs.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\inc\utils.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\vlc_encoder.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\wels_common_basis.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\inc\wels_common_defs.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\wels_const.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\inc\wels_const_common.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\wels_func_ptr_def.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\inc\WelsThreadLib.h">
+      <Filter>WelsEncCore\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\core\inc\wels_preprocess.h">
+      <Filter>PreProcess</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\processing\interface\IWelsVP.h">
+      <Filter>PreProcess</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\encoder\plus\src\DllEntry.cpp">
+      <Filter>WelsEncPlus\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\src\welsCodecTrace.cpp">
+      <Filter>WelsEncPlus\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\encoder\plus\src\welsEncoderExt.cpp">
+      <Filter>WelsEncPlus\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\encoder\core\src\au_set.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\src\common_tables.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\src\copy_mb.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\src\cpu.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\src\crt_util_safe_x.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\encoder\core\src\deblocking.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\src\deblocking_common.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\encoder\core\src\decode_mb_aux.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\encoder\core\src\encode_mb_aux.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\encoder\core\src\encoder.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\encoder\core\src\encoder_data_tables.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\encoder\core\src\encoder_ext.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\src\expand_pic.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\encoder\core\src\get_intra_predictor.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\src\intra_pred_common.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\src\mc.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\encoder\core\src\md.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\src\memory_align.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\encoder\core\src\mv_pred.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\encoder\core\src\nal_encap.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\encoder\core\src\picture_handle.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\encoder\core\src\ratectl.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\encoder\core\src\ref_list_mgr_svc.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\src\sad_common.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\encoder\core\src\sample.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\encoder\core\src\set_mb_syn_cabac.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\encoder\core\src\set_mb_syn_cavlc.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\encoder\core\src\slice_multi_threading.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\encoder\core\src\svc_base_layer_md.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\encoder\core\src\svc_enc_slice_segment.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\encoder\core\src\svc_encode_mb.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\encoder\core\src\svc_encode_slice.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\encoder\core\src\svc_mode_decision.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\encoder\core\src\svc_motion_estimate.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\encoder\core\src\svc_set_mb_syn_cabac.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\encoder\core\src\svc_set_mb_syn_cavlc.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\src\utils.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\encoder\core\src\wels_task_base.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\encoder\core\src\wels_task_encoder.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\encoder\core\src\wels_task_management.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\src\WelsTaskThread.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\src\WelsThread.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\src\WelsThreadLib.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\src\WelsThreadPool.cpp">
+      <Filter>WelsEncCore\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\encoder\core\src\wels_preprocess.cpp">
+      <Filter>PreProcess</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\encoder\plus\src\wels_enc_export.def">
+      <Filter>WelsEncPlus\SourceFiles</Filter>
+    </None>
+  </ItemGroup>
+</Project>
