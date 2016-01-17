@@ -50,6 +50,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="CodecAllInOneApp_TemporaryKey.pfx" />
+    <None Include="..\..\..\..\testbin\welsenc.cfg">
+      <Filter>Assets</Filter>
+    </None>
+    <None Include="..\..\..\..\res\CiscoVT2people_160x96_6fps.yuv">
+      <Filter>Assets</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainPage.xaml" />
