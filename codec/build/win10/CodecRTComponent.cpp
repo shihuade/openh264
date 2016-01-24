@@ -88,16 +88,16 @@ int CodecRTComponent::Encode()
 	*/
 
 	strcpy(Output264Path, OutputPath);
-	strcat(Output264Path, "WP8_Test_CiscoVT2people_160x96_6fps.264");
+	strcat(Output264Path, "Win10_UWP_TestYUVInConfigureFile_Enc.264");
 
 	argv[0] = (char*)("EncoderApp");
 	argv[1] = InputWelsEncCfgPath;
-	argv[2] = (char*)("-org");
-	argv[3] = InputYUVPath;
-	argv[4] = (char*)("-bf");
-	argv[5] = Output264Path;
+	//argv[2] = (char*)("-org");
+	//argv[3] = InputYUVPath;
+	argv[2] = (char*)("-bf");
+	argv[3] = Output264Path;
 
-	argc = 6;
+	argc = 4;
 	iRet = EncMain(argc, argv);
 
 	return iRet;
