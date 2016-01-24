@@ -10,7 +10,7 @@ extern "C" int EncMain(int argc, char** argv);
 extern int32_t DecMain(int32_t iArgC, char* pArgV[]);
 //encoder info
 
-/*
+
 extern float   g_fFPS;
 extern double  g_dEncoderTime;
 extern int     g_iEncodedFrame;
@@ -19,7 +19,7 @@ extern int     g_iEncodedFrame;
 extern double g_dDecTime;
 extern float  g_fDecFPS;
 extern int    g_iDecodedFrameNum;
-*/
+
 
 CodecRTComponent::CodecRTComponent()
 {
@@ -165,34 +165,34 @@ int CodecRTComponent::Decode()
 //Get encoder info
 float CodecRTComponent::GetEncFPS()
 {
-	return 32.3;
+	return g_fFPS;
 
 }
 
 double CodecRTComponent::GetEncTime()
 {
-	return 0.72;
+	return g_dEncoderTime;
 
 }
 
 int  CodecRTComponent::GetEncodedFrameNum()
 {
-	return 128;
+	return g_iEncodedFrame;
 }
 
 //get decoder info
 float CodecRTComponent::GetDecFPS()
 {
-	return 86.3;
+	return g_fDecFPS;
 
 }
 
 double CodecRTComponent::GetDecTime()
 {
-	return 0.88;
+	return g_dDecTime;
 }
 
 int  CodecRTComponent::GetDecodedFrameNum()
 {
-	return 128;
+	return g_iDecodedFrameNum;
 }

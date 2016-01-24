@@ -92,7 +92,19 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="BA_MW_D.264">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="CiscoVT2people_160x96_6fps.yuv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="layer2.cfg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="project.json" />
+    <None Include="welsenc.cfg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -139,6 +151,12 @@
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>copy     ..\..\..\..\..\..\..\testbin\welsenc.cfg                                  ..\..\..\
+copy     ..\..\..\..\..\..\..\testbin\layer2.cfg                                      ..\..\..\
+copy     ..\..\..\..\..\..\..\res\CiscoVT2people_160x96_6fps.yuv    ..\..\..\
+copy     ..\..\..\..\..\..\..\res\BA_MW_D.264                                    ..\..\..\</PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
