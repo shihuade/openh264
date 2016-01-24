@@ -19,7 +19,7 @@ using namespace Windows::UI::Xaml::Data;
 using namespace Windows::UI::Xaml::Input;
 using namespace Windows::UI::Xaml::Media;
 using namespace Windows::UI::Xaml::Navigation;
-//using namespace CodecRTSimulator;
+using namespace CodecRTSimulator;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -42,7 +42,7 @@ void CodecAllInOneApp::MainPage::CallDecoder(Platform::Object^ sender, Windows::
 
 	String^ sDecoderInfo = "Decoder performance: \n";
 
-	/*
+	
 	auto vRTCCodec = ref new CodecRTComponent();
 	iRetVal = vRTCCodec->Decode();
 
@@ -58,7 +58,7 @@ void CodecAllInOneApp::MainPage::CallDecoder(Platform::Object^ sender, Windows::
 	else {
 		DecoderInfo->Text = "Decoded failed!...";
 	}
-	*/
+	
 }
 
 
@@ -70,7 +70,6 @@ void CodecAllInOneApp::MainPage::CallEncoder(Platform::Object^ sender, Windows::
 	int iEncodedFrame = 0;
 	String^ sEncoderInfo = "Encoder performance: \n";
 
-	/*
 	auto vRTCCodec = ref new CodecRTComponent();
 	iRetVal = vRTCCodec->Encode();
 
@@ -86,6 +85,6 @@ void CodecAllInOneApp::MainPage::CallEncoder(Platform::Object^ sender, Windows::
 	else {
 		EncoderInfo->Text = "Encoded failed!...";
 	}
-	*/
+
 }
 

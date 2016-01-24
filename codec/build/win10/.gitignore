@@ -6,6 +6,11 @@
 *.log
 *.idb
 
+# Files for codec
+*.264
+*.yuv
+*.cfg
+
 Win32
 x64
 ARM

@@ -101,57 +101,105 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IntDir>$(Platform)\$(Configuration)\$(ProjectName)</IntDir>
+    <OutDir>..\..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IntDir>$(Platform)\$(Configuration)\$(ProjectName)</IntDir>
+    <OutDir>..\..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <IntDir>$(Platform)\$(Configuration)\$(ProjectName)</IntDir>
+    <OutDir>..\..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <IntDir>$(Platform)\$(Configuration)\$(ProjectName)</IntDir>
+    <OutDir>..\..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IntDir>$(Platform)\$(Configuration)\$(ProjectName)</IntDir>
+    <OutDir>..\..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IntDir>$(Platform)\$(Configuration)\$(ProjectName)</IntDir>
+    <OutDir>..\..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <ClCompile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4453;28204</DisableSpecificWarnings>
     </ClCompile>
+    <PreBuildEvent>
+      <Command>md  ..\..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)\Appx
+copy  /y  ..\..\..\..\testbin\welsenc.cfg                                 ..\..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)\Appx
+copy  /y  ..\..\..\..\testbin\layer2.cfg                                      ..\..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)\Appx
+copy  /y   ..\..\..\..\res\CiscoVT2people_160x96_6fps.yuv   ..\..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)\Appx
+copy  /y   ..\..\..\..\res\BA_MW_D.264                                   ..\..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)\Appx</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <ClCompile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4453;28204</DisableSpecificWarnings>
     </ClCompile>
+    <PreBuildEvent>
+      <Command>md  ..\..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)\Appx
+copy  /y  ..\..\..\..\testbin\welsenc.cfg                                 ..\..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)\Appx
+copy  /y  ..\..\..\..\testbin\layer2.cfg                                      ..\..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)\Appx
+copy  /y   ..\..\..\..\res\CiscoVT2people_160x96_6fps.yuv   ..\..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)\Appx
+copy  /y   ..\..\..\..\res\BA_MW_D.264                                   ..\..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)\Appx</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4453;28204</DisableSpecificWarnings>
     </ClCompile>
+    <PreBuildEvent>
+      <Command>mkdir  ..\..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)\Appx
+copy  /y  ..\..\..\..\testbin\welsenc.cfg                                 ..\..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)\Appx
+copy  /y  ..\..\..\..\testbin\layer2.cfg                                      ..\..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)\Appx
+copy  /y   ..\..\..\..\res\CiscoVT2people_160x96_6fps.yuv   ..\..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)\Appx
+copy  /y   ..\..\..\..\res\BA_MW_D.264                                   ..\..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)\Appx</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4453;28204</DisableSpecificWarnings>
     </ClCompile>
+    <PreBuildEvent>
+      <Command>md  ..\..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)\Appx
+copy  /y  ..\..\..\..\testbin\welsenc.cfg                                 ..\..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)\Appx
+copy  /y  ..\..\..\..\testbin\layer2.cfg                                      ..\..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)\Appx
+copy  /y   ..\..\..\..\res\CiscoVT2people_160x96_6fps.yuv   ..\..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)\Appx
+copy  /y   ..\..\..\..\res\BA_MW_D.264                                   ..\..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)\Appx</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4453;28204</DisableSpecificWarnings>
     </ClCompile>
+    <PreBuildEvent>
+      <Command>md  ..\..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)\Appx
+copy  /y  ..\..\..\..\testbin\welsenc.cfg                                 ..\..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)\Appx
+copy  /y  ..\..\..\..\testbin\layer2.cfg                                      ..\..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)\Appx
+copy  /y   ..\..\..\..\res\CiscoVT2people_160x96_6fps.yuv   ..\..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)\Appx
+copy  /y   ..\..\..\..\res\BA_MW_D.264                                   ..\..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)\Appx</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4453;28204</DisableSpecificWarnings>
     </ClCompile>
+    <PreBuildEvent>
+      <Command>md  ..\..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)\Appx
+copy  /y  ..\..\..\..\testbin\welsenc.cfg                                 ..\..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)\Appx
+copy  /y  ..\..\..\..\testbin\layer2.cfg                                      ..\..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)\Appx
+copy  /y   ..\..\..\..\res\CiscoVT2people_160x96_6fps.yuv   ..\..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)\Appx
+copy  /y   ..\..\..\..\res\BA_MW_D.264                                   ..\..\..\..\bin\WindowsUWP\$(Platform)\$(Configuration)\Appx</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -174,9 +222,13 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="..\..\..\..\res\CiscoVT2people_160x96_6fps.yuv" />
-    <None Include="..\..\..\..\testbin\welsenc.cfg" />
+    <None Include="BA_MW_D.264">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="CiscoVT2people_160x96_6fps.yuv" />
     <None Include="CodecAllInOneApp_TemporaryKey.pfx" />
+    <None Include="layer2.cfg" />
+    <None Include="welsenc.cfg" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\LockScreenLogo.scale-200.png" />
