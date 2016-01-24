@@ -129,6 +129,12 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CodecRTComponent.vcxproj">
+      <Project>{84deaea8-8f12-41f7-abf7-fcd03c3c2a94}</Project>
+      <Name>CodecRTComponent</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
