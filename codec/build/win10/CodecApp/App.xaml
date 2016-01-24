@@ -1,9 +1,8 @@
 ﻿<Application
-    x:Class="CodecAllInOneApp.App"
+    x:Class="CodecApp.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:CodecAllInOneApp"
+    xmlns:local="using:CodecApp"
     RequestedTheme="Light">
 
 </Application>
-
