@@ -55,7 +55,7 @@
 
 using namespace std;
 
-#if defined (WINDOWS_PHONE)
+#if defined (WINDOWS_PHONE) || (WINDOWS_UWP)
 double g_dDecTime = 0.0;
 float  g_fDecFPS = 0.0;
 int    g_iDecodedFrameNum = 0;
@@ -295,7 +295,7 @@ void H264DecodeInstance (ISVCDecoder* pDecoder, const char* kpH264FileName, cons
            iWidth, iHeight, iFrameCount, dElapsed, (iFrameCount * 1.0) / dElapsed);
   fprintf (stderr, "-------------------------------------------------------\n");
 
-#if defined (WINDOWS_PHONE)
+#if defined (WINDOWS_PHONE) || (WINDOWS_UWP)
   g_dDecTime = dElapsed;
   g_fDecFPS = (iFrameCount * 1.0f) / (float) dElapsed;
   g_iDecodedFrameNum = iFrameCount;
