@@ -61,8 +61,8 @@
 		CEC291BA1A4AC2FF00777576 /* welsDecoderExt.h in Headers */ = {isa = PBXBuildFile; fileRef = CEC291B91A4AC2FF00777576 /* welsDecoderExt.h */; };
 		CEF1D5981A52A44100AAAA15 /* dct.asm in Sources */ = {isa = PBXBuildFile; fileRef = CEF1D5961A52A44100AAAA15 /* dct.asm */; };
 		CEF1D5991A52A44100AAAA15 /* intra_pred.asm in Sources */ = {isa = PBXBuildFile; fileRef = CEF1D5971A52A44100AAAA15 /* intra_pred.asm */; };
-		ECA2B9E51B5CEC880095A33B /* mc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ECA2B9E31B5CEC880095A33B /* mc.cpp */; };
-		ECA2B9E61B5CEC880095A33B /* memory_align.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ECA2B9E41B5CEC880095A33B /* memory_align.cpp */; };
+		EC6B60A01C5EF5BF00118BA4 /* mc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EC6B609E1C5EF5BF00118BA4 /* mc.cpp */; };
+		EC6B60A11C5EF5BF00118BA4 /* memory_align.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EC6B609F1C5EF5BF00118BA4 /* memory_align.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -135,8 +135,8 @@
 		CEC291B91A4AC2FF00777576 /* welsDecoderExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = welsDecoderExt.h; path = ../../../decoder/plus/inc/welsDecoderExt.h; sourceTree = "<group>"; };
 		CEF1D5961A52A44100AAAA15 /* dct.asm */ = {isa = PBXFileReference; explicitFileType = sourcecode.nasm; name = dct.asm; path = ../../../decoder/core/x86/dct.asm; sourceTree = "<group>"; };
 		CEF1D5971A52A44100AAAA15 /* intra_pred.asm */ = {isa = PBXFileReference; explicitFileType = sourcecode.nasm; name = intra_pred.asm; path = ../../../decoder/core/x86/intra_pred.asm; sourceTree = "<group>"; };
-		ECA2B9E31B5CEC880095A33B /* mc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mc.cpp; sourceTree = "<group>"; };
-		ECA2B9E41B5CEC880095A33B /* memory_align.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = memory_align.cpp; sourceTree = "<group>"; };
+		EC6B609E1C5EF5BF00118BA4 /* mc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mc.cpp; path = ../../../common/src/mc.cpp; sourceTree = "<group>"; };
+		EC6B609F1C5EF5BF00118BA4 /* memory_align.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = memory_align.cpp; path = ../../../common/src/memory_align.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,8 +197,8 @@
 		CEC291441A4AC26600777576 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				ECA2B9E31B5CEC880095A33B /* mc.cpp */,
-				ECA2B9E41B5CEC880095A33B /* memory_align.cpp */,
+				EC6B609E1C5EF5BF00118BA4 /* mc.cpp */,
+				EC6B609F1C5EF5BF00118BA4 /* memory_align.cpp */,
 				CEC291461A4AC27A00777576 /* au_parser.cpp */,
 				CEC291471A4AC27A00777576 /* bit_stream.cpp */,
 				CEC291481A4AC27A00777576 /* cabac_decoder.cpp */,
@@ -391,13 +391,13 @@
 				CEC291621A4AC27A00777576 /* decoder_data_tables.cpp in Sources */,
 				CEC2916A1A4AC27A00777576 /* memmgr_nal_unit.cpp in Sources */,
 				CEC291641A4AC27A00777576 /* error_concealment.cpp in Sources */,
-				ECA2B9E51B5CEC880095A33B /* mc.cpp in Sources */,
+				EC6B60A01C5EF5BF00118BA4 /* mc.cpp in Sources */,
 				CEC2915B1A4AC27A00777576 /* au_parser.cpp in Sources */,
 				CEC2915E1A4AC27A00777576 /* deblocking.cpp in Sources */,
 				CEC2915F1A4AC27A00777576 /* decode_mb_aux.cpp in Sources */,
 				CEC291631A4AC27A00777576 /* decoder.cpp in Sources */,
 				CEF1D5981A52A44100AAAA15 /* dct.asm in Sources */,
-				ECA2B9E61B5CEC880095A33B /* memory_align.cpp in Sources */,
+				EC6B60A11C5EF5BF00118BA4 /* memory_align.cpp in Sources */,
 				CEC291671A4AC27A00777576 /* manage_dec_ref.cpp in Sources */,
 				CEC2915C1A4AC27A00777576 /* bit_stream.cpp in Sources */,
 				CEC291B81A4AC2EC00777576 /* welsDecoderExt.cpp in Sources */,
