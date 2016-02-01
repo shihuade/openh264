@@ -63,7 +63,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "test.264  dec_640x360_415F.yuv"
+            argument = "test.264  dec_test.264_320x192.yuv"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
