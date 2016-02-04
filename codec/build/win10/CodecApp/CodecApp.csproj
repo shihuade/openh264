@@ -165,10 +165,10 @@
 copy     ..\..\..\..\..\..\..\res\*.264     ..\..\..\BitStream
 
 if not exist AppX  md AppX
-if exist  AppX        copy /y ..\..\..\welsenc.cfg               .\AppX
-if exist  AppX        copy /y  ..\..\..\layer2.cfg                  .\AppX
-if exist  AppX        copy /y  ..\..\..\..\..\..\..\res\*.yuv     .\AppX
-if exist  AppX        copy /y  ..\..\..\..\..\..\..\res\*.264     .\AppX</PreBuildEvent>
+if exist  AppX        copy /y ..\..\..\CodecConfigureFiles\welsenc.cfg       .\AppX
+if exist  AppX        copy /y  ..\..\..\CodecConfigureFiles\layer2.cfg          .\AppX
+if exist  AppX        copy /y  ..\..\..\..\..\..\..\res\*.yuv                                  .\AppX
+if exist  AppX        copy /y  ..\..\..\..\..\..\..\res\*.264                                   .\AppX</PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PostBuildEvent>

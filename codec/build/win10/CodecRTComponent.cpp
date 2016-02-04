@@ -150,7 +150,7 @@ int CodecRTComponent::Decode()
 	strcat_s(InputBitstreamPath, "BA_MW_D.264");
 
 	strcpy_s(OutputYUVPath, OutputPath);
-	strcat_s(OutputYUVPath, "WP8_Dec_BA_MW_D.yuv");
+	strcat_s(OutputYUVPath, "Win10_UWP_Dec_BA_MW_D.yuv");
 
 	argv[0] = (char*)("DecoderApp");
 	argv[1] = InputBitstreamPath;
