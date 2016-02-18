@@ -55,6 +55,7 @@
 		EC555D9A1BFB2A2000050F96 /* WelsTaskThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EC555D971BFB2A2000050F96 /* WelsTaskThread.cpp */; };
 		EC555D9B1BFB2A2000050F96 /* WelsThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EC555D981BFB2A2000050F96 /* WelsThread.cpp */; };
 		EC555D9C1BFB2A2000050F96 /* WelsThreadPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EC555D991BFB2A2000050F96 /* WelsThreadPool.cpp */; };
+		ECCBBA5E1C7590DB0081FBB2 /* memory_align.h in Headers */ = {isa = PBXBuildFile; fileRef = ECCBBA5D1C7590DB0081FBB2 /* memory_align.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -120,6 +121,7 @@
 		EC555D971BFB2A2000050F96 /* WelsTaskThread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WelsTaskThread.cpp; path = ../../../common/src/WelsTaskThread.cpp; sourceTree = "<group>"; };
 		EC555D981BFB2A2000050F96 /* WelsThread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WelsThread.cpp; path = ../../../common/src/WelsThread.cpp; sourceTree = "<group>"; };
 		EC555D991BFB2A2000050F96 /* WelsThreadPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WelsThreadPool.cpp; path = ../../../common/src/WelsThreadPool.cpp; sourceTree = "<group>"; };
+		ECCBBA5D1C7590DB0081FBB2 /* memory_align.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = memory_align.h; path = ../../../common/inc/memory_align.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +185,7 @@
 		CEC28FC01A4AB31E00777576 /* inc */ = {
 			isa = PBXGroup;
 			children = (
+				ECCBBA5D1C7590DB0081FBB2 /* memory_align.h */,
 				CEC28FD71A4AB36700777576 /* copy_mb.h */,
 				CEC28FD81A4AB36700777576 /* cpu_core.h */,
 				CEC28FD91A4AB36700777576 /* cpu.h */,
@@ -245,6 +248,7 @@
 				CEC28FEB1A4AB36700777576 /* cpu_core.h in Headers */,
 				CEC28FF41A4AB36700777576 /* measure_time.h in Headers */,
 				EC555D931BFB29E800050F96 /* WelsTask.h in Headers */,
+				ECCBBA5E1C7590DB0081FBB2 /* memory_align.h in Headers */,
 				EC555D911BFB29E800050F96 /* WelsList.h in Headers */,
 				EC555D901BFB29E800050F96 /* WelsCircleQueue.h in Headers */,
 				CEC28FED1A4AB36700777576 /* crt_util_safe_x.h in Headers */,
