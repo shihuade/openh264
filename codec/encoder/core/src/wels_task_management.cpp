@@ -63,9 +63,11 @@ IWelsTaskManage*   IWelsTaskManage::CreateTaskManage (sWelsEncCtx* pCtx, const i
 
   IWelsTaskManage* pTaskManage;
   pTaskManage = WELS_NEW_OP (CWelsTaskManageBase(), CWelsTaskManageBase);
+  WELS_VERIFY_RETURN_IF (NULL, NULL == pTaskManage)
 
-  if (pTaskManage) {
-    pTaskManage->Init (pCtx);
+  if ( ENC_RETURN_SUCCESS != pTaskManage->Init (pCtx) ) {
+    pTaskManage->Uninit();
+    WELS_DELETE_OP(pTaskManage);
   }
   return pTaskManage;
 }
@@ -98,7 +100,7 @@ WelsErrorType CWelsTaskManageBase::Init (sWelsEncCtx* pEncCtx) {
                                WelsCommon::CWelsThreadPool);
   WELS_VERIFY_RETURN_IF (ENC_RETURN_MEMALLOCERR, NULL == m_pThreadPool)
 
-  int32_t iReturn = 0;
+  int32_t iReturn = ENC_RETURN_SUCCESS;
   for (int32_t iDid = 0; iDid < MAX_DEPENDENCY_LAYER; iDid++) {
     m_pcAllTaskList[CWelsBaseTask::WELS_ENC_TASK_ENCODING][iDid] = m_cEncodingTaskList[iDid];
     m_pcAllTaskList[CWelsBaseTask::WELS_ENC_TASK_UPDATEMBMAP][iDid] = m_cPreEncodingTaskList[iDid];
@@ -114,8 +116,8 @@ void   CWelsTaskManageBase::Uninit() {
   WELS_DELETE_OP (m_pThreadPool);
 
   for (int32_t iDid = 0; iDid < MAX_DEPENDENCY_LAYER; iDid++) {
-    delete m_cEncodingTaskList[iDid];
-    delete m_cPreEncodingTaskList[iDid];
+    WELS_DELETE_OP(m_cEncodingTaskList[iDid]);
+    WELS_DELETE_OP(m_cPreEncodingTaskList[iDid]);
   }
   WelsEventClose (&m_hTaskEvent);
 }
@@ -132,19 +134,19 @@ WelsErrorType CWelsTaskManageBase::CreateTasks (sWelsEncCtx* pEncCtx, const int3
   }
 
   for (int idx = 0; idx < kiTaskCount; idx++) {
-    pTask = WELS_NEW_OP (CWelsUpdateMbMapTask (pEncCtx, idx), CWelsUpdateMbMapTask);
+    pTask = WELS_NEW_OP (CWelsUpdateMbMapTask (this, pEncCtx, idx), CWelsUpdateMbMapTask);
     WELS_VERIFY_RETURN_IF (ENC_RETURN_MEMALLOCERR, NULL == pTask)
     m_cPreEncodingTaskList[kiCurDid]->push_back (pTask);
   }
 
   for (int idx = 0; idx < kiTaskCount; idx++) {
     if (uiSliceMode==SM_SIZELIMITED_SLICE) {
-      pTask = WELS_NEW_OP (CWelsConstrainedSizeSlicingEncodingTask (pEncCtx, idx), CWelsConstrainedSizeSlicingEncodingTask);
+      pTask = WELS_NEW_OP (CWelsConstrainedSizeSlicingEncodingTask (this, pEncCtx, idx), CWelsConstrainedSizeSlicingEncodingTask);
     } else {
     if (pEncCtx->pSvcParam->bUseLoadBalancing) {
-      pTask = WELS_NEW_OP (CWelsLoadBalancingSlicingEncodingTask (pEncCtx, idx), CWelsLoadBalancingSlicingEncodingTask);
+      pTask = WELS_NEW_OP (CWelsLoadBalancingSlicingEncodingTask (this, pEncCtx, idx), CWelsLoadBalancingSlicingEncodingTask);
     } else {
-      pTask = WELS_NEW_OP (CWelsSliceEncodingTask (pEncCtx, idx), CWelsSliceEncodingTask);
+      pTask = WELS_NEW_OP (CWelsSliceEncodingTask (this, pEncCtx, idx), CWelsSliceEncodingTask);
     }
     }
     WELS_VERIFY_RETURN_IF (ENC_RETURN_MEMALLOCERR, NULL == pTask)

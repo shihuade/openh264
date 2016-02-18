@@ -135,6 +135,7 @@ int32_t CWelsPreProcess::AllocSpatialPictures (sWelsEncCtx* pCtx, SWelsSvcCoding
     const uint8_t kuiRefNumInTemporal = kuiLayerInTemporal + pParam->iLTRRefNum;
     uint8_t i = 0;
 
+    m_uiSpatialPicNum[iDlayerIndex] = kuiRefNumInTemporal;
     do {
       SPicture* pPic = AllocPicture (pMa, kiPicWidth, kiPicHeight, false, 0);
       WELS_VERIFY_RETURN_IF (1, (NULL == pPic))
@@ -147,7 +148,6 @@ int32_t CWelsPreProcess::AllocSpatialPictures (sWelsEncCtx* pCtx, SWelsSvcCoding
     else
       m_uiSpatialLayersInTemporal[iDlayerIndex] = kuiLayerInTemporal;
 
-    m_uiSpatialPicNum[iDlayerIndex] = kuiRefNumInTemporal;
     ++ iDlayerIndex;
   } while (iDlayerIndex < kiDlayerCount);
 
@@ -315,14 +315,14 @@ bool CWelsPreProcess::BuildSpatialLayer (sWelsEncCtx* pCtx, const SSourcePicture
       int32_t iPicturePos               = m_uiSpatialLayersInTemporal[iDependencyId] - 1;
       Scaled_Picture*  pScaledPicture = &m_sScaledPicture;
 
-      int32_t iSrcWidth                 = pSvcParam->SUsedPicRect.iWidth;
-      int32_t iSrcHeight                = pSvcParam->SUsedPicRect.iHeight;
       int32_t iTargetWidth              = pDlayerParam->iVideoWidth;
       int32_t iTargetHeight             = pDlayerParam->iVideoHeight;
 
       SPicture* pSrcPic                 = (pSpatialIndexMap + iMaxDid)->pSrc;; // large
       SPicture* pDstPic                 = m_pSpatialPic[iDependencyId][iPicturePos]; // small
 
+      int32_t iSrcWidth                 = pSrcPic->iWidthInPixel;
+      int32_t iSrcHeight                = pSrcPic->iHeightInPixel;
       int32_t iShrinkWidth = pScaledPicture->iScaledWidth[iDependencyId];
       int32_t iShrinkHeight = pScaledPicture->iScaledHeight[iDependencyId];
       DownsamplePadding (pSrcPic, pDstPic, iSrcWidth, iSrcHeight, iShrinkWidth, iShrinkHeight, iTargetWidth, iTargetHeight,
@@ -384,7 +384,6 @@ int32_t CWelsPreProcess::SingleLayerPreprocess (sWelsEncCtx* pCtx, const SSource
   }
   DownsamplePadding (pSrcPic, pDstPic, iSrcWidth, iSrcHeight, iShrinkWidth, iShrinkHeight, iTargetWidth, iTargetHeight,
                      false);
-
   if (pSvcParam->bEnableSceneChangeDetect && !pCtx->pVaa->bIdrPeriodFlag) {
     if (pSvcParam->iUsageType == SCREEN_CONTENT_REAL_TIME) {
       pCtx->pVaa->eSceneChangeIdc = (pDlayerParamInternal->bEncCurFrmAsIdrFlag ? LARGE_CHANGED_SCENE :
@@ -1346,13 +1345,13 @@ void  CWelsPreProcess::WelsMoveMemoryWrapper (SWelsSvcCodingParam* pSvcParam, SP
   const int32_t kiDstStrideUV = pDstPic->iLineSize[1];
 
   if (pSrcY) {
-    if (iSrcWidth <= 0 || iSrcWidth > MAX_WIDTH || iSrcHeight <= 0 || iSrcHeight > MAX_HEIGHT)
+    if (iSrcWidth <= 0 || iSrcHeight <= 0 || (iSrcWidth * iSrcHeight > (MAX_MBS_PER_FRAME << 8)))
       return;
     if (kiSrcTopOffsetY >= iSrcHeight || kiSrcLeftOffsetY >= iSrcWidth || iSrcWidth > kiSrcStrideY)
       return;
   }
   if (pDstY) {
-    if (kiTargetWidth <= 0 || kiTargetWidth > MAX_WIDTH || kiTargetHeight <= 0 || kiTargetHeight > MAX_HEIGHT)
+    if (kiTargetWidth <= 0 || kiTargetHeight <= 0 || (kiTargetWidth * kiTargetHeight > (MAX_MBS_PER_FRAME << 8)))
       return;
     if (kiTargetWidth > kiDstStrideY)
       return;

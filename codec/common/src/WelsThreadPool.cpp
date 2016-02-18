@@ -38,6 +38,7 @@
  *************************************************************************************
  */
 #include "typedefs.h"
+#include "memory_align.h"
 #include "WelsThreadPool.h"
 
 namespace WelsCommon {
@@ -50,16 +51,30 @@ CWelsThreadPool::CWelsThreadPool (IWelsThreadPoolSink* pSink, int32_t iMaxThread
   m_cBusyThreads = new CWelsList<CWelsTaskThread>();
   m_iMaxThreadNum = 0;
 
-  Init (iMaxThreadNum);
+  if (NULL == m_cWaitedTasks || NULL == m_cIdleThreads || NULL == m_cBusyThreads) {
+    WELS_DELETE_OP(m_cWaitedTasks);
+    WELS_DELETE_OP(m_cIdleThreads);
+    WELS_DELETE_OP(m_cBusyThreads);
+
+    return;
+  }
+
+  if (WELS_THREAD_ERROR_OK != Init (iMaxThreadNum)) {
+    Uninit();
+
+    WELS_DELETE_OP(m_cWaitedTasks);
+    WELS_DELETE_OP(m_cIdleThreads);
+    WELS_DELETE_OP(m_cBusyThreads);
+  }
 }
 
 
 CWelsThreadPool::~CWelsThreadPool() {
   Uninit();
 
-  delete m_cWaitedTasks;
-  delete m_cIdleThreads;
-  delete m_cBusyThreads;
+  WELS_DELETE_OP(m_cWaitedTasks);
+  WELS_DELETE_OP(m_cIdleThreads);
+  WELS_DELETE_OP(m_cBusyThreads);
 }
 
 WELS_THREAD_ERROR_CODE CWelsThreadPool::OnTaskStart (CWelsTaskThread* pThread, IWelsTask* pTask) {
@@ -133,7 +148,7 @@ WELS_THREAD_ERROR_CODE CWelsThreadPool::Uninit() {
 }
 
 void CWelsThreadPool::ExecuteTask() {
-  //WELS_INFO_TRACE("ThreadPool: schedule tasks");
+  //fprintf(stdout, "ThreadPool: schedule tasks\n");
   CWelsTaskThread* pThread = NULL;
   IWelsTask*    pTask = NULL;
   while (GetWaitedTaskNum() > 0) {
@@ -142,7 +157,7 @@ void CWelsThreadPool::ExecuteTask() {
       break;
     }
     pTask = GetWaitedTask();
-    //WELS_INFO_TRACE("ThreadPool:  ExecuteTask = "<<(uint32_t)(pTask)<<" at thread = "<<(uint32_t)(pThread));
+    //fprintf(stdout, "ThreadPool:  ExecuteTask = %x at thread %x\n", pTask, pThread);
     pThread->SetTask (pTask);
   }
 }
@@ -150,12 +165,12 @@ void CWelsThreadPool::ExecuteTask() {
 WELS_THREAD_ERROR_CODE CWelsThreadPool::QueueTask (IWelsTask* pTask) {
   CWelsAutoLock  cLock (m_cLockPool);
 
-  //WELS_INFO_TRACE("ThreadPool:  QueueTask = "<<(uint32_t)(pTask));
+  //fprintf(stdout, "ThreadPool:  QueueTask = %x\n", pTask);
   if (GetWaitedTaskNum() == 0) {
     CWelsTaskThread* pThread = GetIdleThread();
 
     if (pThread != NULL) {
-      //WELS_INFO_TRACE("ThreadPool:  ExecuteTask = "<<(uint32_t)(pTask));
+      //fprintf(stdout, "ThreadPool:  ExecuteTask = %x\n", pTask);
       pThread->SetTask (pTask);
 
       return WELS_THREAD_ERROR_OK;
@@ -163,7 +178,7 @@ WELS_THREAD_ERROR_CODE CWelsThreadPool::QueueTask (IWelsTask* pTask) {
   }
 
   AddTaskToWaitedList (pTask);
-
+  //fprintf(stdout, "ThreadPool:  AddTaskToWaitedList: %x\n", pTask);
   SignalThread();
   return WELS_THREAD_ERROR_OK;
 }
@@ -175,7 +190,9 @@ WELS_THREAD_ERROR_CODE CWelsThreadPool::CreateIdleThread() {
     return WELS_THREAD_ERROR_GENERAL;
   }
 
-  pThread->Start();
+  if (WELS_THREAD_ERROR_OK != pThread->Start()) {
+    return WELS_THREAD_ERROR_GENERAL;
+  }
   AddThreadToIdleQueue (pThread);
 
   return WELS_THREAD_ERROR_OK;
@@ -183,7 +200,7 @@ WELS_THREAD_ERROR_CODE CWelsThreadPool::CreateIdleThread() {
 
 void  CWelsThreadPool::DestroyThread (CWelsTaskThread* pThread) {
   pThread->Kill();
-  delete pThread;
+  WELS_DELETE_OP(pThread);
 
   return;
 }
