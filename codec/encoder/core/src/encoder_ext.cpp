@@ -895,84 +895,12 @@ int32_t   InitMbListD (sWelsEncCtx** ppCtx) {
   return 0;
 }
 
-int32_t AllocMbCacheAligned (SMbCache* pMbCache, CMemoryAlign* pMa) {
-  pMbCache->pCoeffLevel = (int16_t*)pMa->WelsMallocz (MB_COEFF_LIST_SIZE * sizeof (int16_t), "pMbCache->pCoeffLevel");
-  WELS_VERIFY_RETURN_IF (1, (NULL == pMbCache->pCoeffLevel));
-  pMbCache->pMemPredMb = (uint8_t*)pMa->WelsMallocz (2 * 256 * sizeof (uint8_t), "pMbCache->pMemPredMb");
-  WELS_VERIFY_RETURN_IF (1, (NULL == pMbCache->pMemPredMb));
-  pMbCache->pSkipMb = (uint8_t*)pMa->WelsMallocz (384 * sizeof (uint8_t), "pMbCache->pSkipMb");
-  WELS_VERIFY_RETURN_IF (1, (NULL == pMbCache->pSkipMb));
-  pMbCache->pMemPredBlk4 = (uint8_t*)pMa->WelsMallocz (2 * 16 * sizeof (uint8_t), "pMbCache->pMemPredBlk4");
-  WELS_VERIFY_RETURN_IF (1, (NULL == pMbCache->pMemPredBlk4));
-  pMbCache->pBufferInterPredMe = (uint8_t*)pMa->WelsMallocz (4 * 640 * sizeof (uint8_t), "pMbCache->pBufferInterPredMe");
-  WELS_VERIFY_RETURN_IF (1, (NULL == pMbCache->pBufferInterPredMe));
-  pMbCache->pPrevIntra4x4PredModeFlag = (bool*)pMa->WelsMallocz (16 * sizeof (bool),
-                                        "pMbCache->pPrevIntra4x4PredModeFlag");
-  WELS_VERIFY_RETURN_IF (1, (NULL == pMbCache->pPrevIntra4x4PredModeFlag));
-  pMbCache->pRemIntra4x4PredModeFlag = (int8_t*)pMa->WelsMallocz (16 * sizeof (int8_t),
-                                       "pMbCache->pRemIntra4x4PredModeFlag");
-  WELS_VERIFY_RETURN_IF (1, (NULL == pMbCache->pRemIntra4x4PredModeFlag));
-  pMbCache->pDct = (SDCTCoeff*)pMa->WelsMallocz (sizeof (SDCTCoeff), "pMbCache->pDct");
-  WELS_VERIFY_RETURN_IF (1, (NULL == pMbCache->pDct));
-  return 0;
-}
-
-void FreeMbCache (SMbCache* pMbCache, CMemoryAlign* pMa) {
-  if (NULL != pMbCache->pCoeffLevel) {
-    pMa->WelsFree (pMbCache->pCoeffLevel, "pMbCache->pCoeffLevel");
-    pMbCache->pCoeffLevel = NULL;
-  }
-  if (NULL != pMbCache->pMemPredMb) {
-    pMa->WelsFree (pMbCache->pMemPredMb, "pMbCache->pMemPredMb");
-    pMbCache->pMemPredMb = NULL;
-  }
-  if (NULL != pMbCache->pSkipMb) {
-    pMa->WelsFree (pMbCache->pSkipMb, "pMbCache->pSkipMb");
-    pMbCache->pSkipMb = NULL;
-  }
-  if (NULL != pMbCache->pMemPredBlk4) {
-    pMa->WelsFree (pMbCache->pMemPredBlk4, "pMbCache->pMemPredBlk4");
-    pMbCache->pMemPredBlk4 = NULL;
-  }
-  if (NULL != pMbCache->pBufferInterPredMe) {
-    pMa->WelsFree (pMbCache->pBufferInterPredMe, "pMbCache->pBufferInterPredMe");
-    pMbCache->pBufferInterPredMe = NULL;
-  }
-  if (NULL != pMbCache->pPrevIntra4x4PredModeFlag) {
-    pMa->WelsFree (pMbCache->pPrevIntra4x4PredModeFlag, "pMbCache->pPrevIntra4x4PredModeFlag");
-    pMbCache->pPrevIntra4x4PredModeFlag = NULL;
-  }
-  if (NULL != pMbCache->pRemIntra4x4PredModeFlag) {
-    pMa->WelsFree (pMbCache->pRemIntra4x4PredModeFlag, "pMbCache->pRemIntra4x4PredModeFlag");
-    pMbCache->pRemIntra4x4PredModeFlag = NULL;
-  }
-  if (NULL != pMbCache->pDct) {
-    pMa->WelsFree (pMbCache->pDct, "pMbCache->pDct");
-    pMbCache->pDct = NULL;
-  }
-}
-
 void FreeDqLayer (SDqLayer*& pDq, CMemoryAlign* pMa) {
   if (NULL == pDq) {
     return;
   }
 
-  if (NULL != pDq->sLayerInfo.pSliceInLayer) {
-    int32_t iSliceIdx = 0;
-    while (iSliceIdx < pDq->iMaxSliceNum) {
-      SSlice* pSlice = &pDq->sLayerInfo.pSliceInLayer[iSliceIdx];
-      FreeMbCache (&pSlice->sMbCacheInfo, pMa);
-
-      //slice bs buffer
-      if (NULL != pSlice->sSliceBs.pBs) {
-        pMa->WelsFree (pSlice->sSliceBs.pBs, "sSliceBs.pBs");
-        pSlice->sSliceBs.pBs = NULL;
-      }
-      ++ iSliceIdx;
-    }
-    pMa->WelsFree (pDq->sLayerInfo.pSliceInLayer, "pSliceInLayer");
-    pDq->sLayerInfo.pSliceInLayer = NULL;
-  }
+  FreeSliceBuffer(pDq->sLayerInfo.pSliceInLayer, pDq->iMaxSliceNum, pMa, "pSliceInLayer");
 
   if (pDq->pNumSliceCodedOfPartition) {
     pMa->WelsFree (pDq->pNumSliceCodedOfPartition, "pNumSliceCodedOfPartition");
@@ -1165,11 +1093,18 @@ int32_t FindExistingPps (SWelsSPS* pSps, SSubsetSps* pSubsetSps, const bool kbUs
   return INVALID_ID;
 }
 
-static inline int32_t InitpSliceInLayer (sWelsEncCtx** ppCtx, SDqLayer* pDqLayer, CMemoryAlign* pMa,
-    const int32_t iMaxSliceNum, const int32_t kiDlayerIndex) {
-  int32_t iMaxSliceBufferSize  = (*ppCtx)->iSliceBufferSize[kiDlayerIndex];
-  int32_t iSliceIdx            = 0;
-  SliceModeEnum uiSliceMode    = (*ppCtx)->pSvcParam->sSpatialLayers[kiDlayerIndex].sSliceArgument.uiSliceMode;
+static inline int32_t InitSliceInLayer (sWelsEncCtx** ppCtx,
+                                        SDqLayer* pDqLayer,
+                                        CMemoryAlign* pMa,
+                                        const int32_t kiMaxSliceNum,
+                                        const int32_t kiDlayerIndex) {
+  const int32_t kiMBWidth         = (*ppCtx)->pSvcParam->sSpatialLayers[kiDlayerIndex].iVideoWidth;
+  const int32_t kiMBHeight        = (*ppCtx)->pSvcParam->sSpatialLayers[kiDlayerIndex].iVideoHeight;
+  SSliceArgument* pSliceArgument  = &(*ppCtx)->pSvcParam->sSpatialLayers[kiDlayerIndex].sSliceArgument;
+  SliceModeEnum uiSliceMode       = pSliceArgument->uiSliceMode;
+  int32_t iMaxSliceBufferSize     = (*ppCtx)->iSliceBufferSize[kiDlayerIndex];
+  int32_t iSliceIdx               = 0;
+  int32_t iRet                    = 0;
 
   //SM_SINGLE_SLICE mode using single-thread bs writer pOut->sBsWrite
   //even though multi-thread is on for other layers
@@ -1180,27 +1115,30 @@ static inline int32_t InitpSliceInLayer (sWelsEncCtx** ppCtx, SDqLayer* pDqLayer
     return ENC_RETURN_UNEXPECTED;
   }
 
-  while (iSliceIdx < iMaxSliceNum) {
+  while (iSliceIdx < kiMaxSliceNum) {
     SSlice* pSlice = &pDqLayer->sLayerInfo.pSliceInLayer[iSliceIdx];
-
     pSlice->uiSliceIdx       = iSliceIdx;
-    pSlice->sSliceBs.uiSize  = iMaxSliceBufferSize;
-    pSlice->sSliceBs.uiBsPos = 0;
-    if (bIndependenceBsBuffer) {
-      pSlice->pSliceBsa      = &pSlice->sSliceBs.sBsWrite;
-      pSlice->sSliceBs.pBs   = (uint8_t*)pMa->WelsMalloc (iMaxSliceBufferSize, "SliceBs");
-      if (NULL == pSlice->sSliceBs.pBs) {
-        return ENC_RETURN_MEMALLOCERR;
-      }
-    } else {
-      pSlice->pSliceBsa      = & (*ppCtx)->pOut->sBsWrite;
-      pSlice->sSliceBs.pBs   = NULL;
-    }
 
-    if (AllocMbCacheAligned (&pSlice->sMbCacheInfo, pMa)) {
-      FreeMemorySvc (ppCtx);
-      return ENC_RETURN_MEMALLOCERR;
-    }
+    iRet = InitSliceBsBuffer(pSlice,
+                             &(*ppCtx)->pOut->sBsWrite,
+                             bIndependenceBsBuffer,
+                             iMaxSliceBufferSize,
+                             pMa);
+    if (ENC_RETURN_SUCCESS != iRet)
+      return iRet;
+
+    iRet = InitSliceMBInfo (pSliceArgument, pSlice,
+                            kiMBWidth, kiMBHeight,
+                            pMa);
+
+    if (ENC_RETURN_SUCCESS != iRet)
+      return iRet;
+
+    iRet = AllocateSliceMBBuffer(pSlice, pMa);
+
+    if (ENC_RETURN_SUCCESS != iRet)
+      return iRet;
+
     ++ iSliceIdx;
   }
   return ENC_RETURN_SUCCESS;
@@ -1313,7 +1251,7 @@ static inline int32_t InitDqLayers (sWelsEncCtx** ppCtx, SExistingParasetList* p
       pDqLayer->sLayerInfo.pSliceInLayer = (SSlice*)pMa->WelsMallocz (sizeof (SSlice) * iMaxSliceNum, "pSliceInLayer");
       WELS_VERIFY_RETURN_PROC_IF (1, (NULL == pDqLayer->sLayerInfo.pSliceInLayer), FreeDqLayer (pDqLayer, pMa))
 
-      int32_t iReturn = InitpSliceInLayer (ppCtx, pDqLayer, pMa, iMaxSliceNum, iDlayerIndex);
+      int32_t iReturn = InitSliceInLayer (ppCtx, pDqLayer, pMa, iMaxSliceNum, iDlayerIndex);
       WELS_VERIFY_RETURN_PROC_IF (1, (ENC_RETURN_SUCCESS != iReturn), FreeDqLayer (pDqLayer, pMa))
     }
 
