@@ -91,7 +91,6 @@ bool                            bThreadBsBufferUsage[MAX_THREADS_NUM];
 WELS_MUTEX                      mutexThreadBsBufferUsage;
 
 SSlice*                         pSliceInThread[MAX_THREADS_NUM]; //slice buffer
-int32_t*                        pSliceIndexInThread[MAX_THREADS_NUM];
 int32_t                         iMaxSliceNumInThread[MAX_THREADS_NUM];
 int32_t                         iEncodedSliceNumInThread[MAX_THREADS_NUM];
 
