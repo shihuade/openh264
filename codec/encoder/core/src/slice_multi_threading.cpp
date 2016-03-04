@@ -328,6 +328,7 @@ int32_t RequestMtResource (sWelsEncCtx** ppCtx, SWelsSvcCodingParam* pCodingPara
 
   assert (iThreadNum > 0);
   iMaxSliceNumInThread = ((*ppCtx)->iMaxSliceCount / iThreadNum + 1) * 2;
+  iMaxSliceNumInThread =  WELS_MIN ((*ppCtx)->iMaxSliceCount, (int) iMaxSliceNumInThread);
 
   pSmt = (SSliceThreading*)pMa->WelsMalloc (sizeof (SSliceThreading), "SSliceThreading");
   WELS_VERIFY_RETURN_PROC_IF (1, (NULL == pSmt), FreeMemorySvc (ppCtx))
