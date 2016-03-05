@@ -86,7 +86,8 @@ SWelsPPS*               pPpsP;          // current pPps used
 /* Layer Representation */
 struct TagDqLayer {
 SLayerInfo              sLayerInfo;
-SSliceThreadInfo*       sSliceThreadInfo;
+SSliceThreadInfo        sSliceThreadInfo;
+SSlice**                ppSliceInLayer;
 SSliceCtx               sSliceEncCtx;   // current slice context
 uint8_t*                pCsData[3];     // pointer to reconstructed picture pData
 int32_t                 iCsStride[3];   // Cs stride
