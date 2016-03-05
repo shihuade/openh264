@@ -4936,6 +4936,14 @@ int32_t SliceBufferRealloc (sWelsEncCtx* pCtx) {
   pCurLayer->sLayerInfo.pSliceInLayer = pSlice;
 
   // update for ppsliceInlayer
+  SSlice** ppSlice = (SSlice**)pMA->WelsMallocz (sizeof (SSlice*) * iMaxSliceNum, "ppSlice");
+  if (NULL == ppSlice) {
+    WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR, "CWelsH264SVCEncoder::DynSliceRealloc: ppSlice is NULL");
+    return ENC_RETURN_MEMALLOCERR;
+  }
+  pMA->WelsFree (pCurLayer->ppSliceInLayer, "ppSliceInLayer");
+  pCurLayer->ppSliceInLayer = ppSlice;
+
   for(uiSliceIdx = 0; uiSliceIdx < iMaxSliceNum; uiSliceIdx++){
     pCurLayer->ppSliceInLayer[uiSliceIdx] = &pCurLayer->sLayerInfo.pSliceInLayer[uiSliceIdx];
   }
