@@ -899,7 +899,9 @@ void FreeSliceInLayer (SDqLayer*& pDq, CMemoryAlign* pMa) {
 
   FreeSliceBuffer (pDq->sLayerInfo.pSliceInLayer, pDq->iMaxSliceNum, pMa, "pSliceInLayer");
   for (; iIdx < MAX_THREADS_NUM; iIdx ++) {
-    FreeSliceBuffer (pDq->sSliceThreadInfo.pSliceInThread[iIdx], pDq->iMaxSliceNum, pMa, "pSliceInLayer");
+    FreeSliceBuffer (pDq->sSliceThreadInfo.pSliceInThread[iIdx],
+                     pDq->sSliceThreadInfo.iMaxSliceNumInThread[iIdx],
+                     pMa, "pSliceInLayer");
   }
 }
 
@@ -1257,6 +1259,7 @@ static inline int32_t InitSliceInLayer (sWelsEncCtx** ppCtx,
   int32_t iMaxSliceNum          = pDqLayer->iMaxSliceNum;
 
   //if (pParam->iMultipleThreadIdc > 1) {
+
   InitSliceThreadInfo (ppCtx,
                        pDqLayer,
                        kiDlayerIndex,
