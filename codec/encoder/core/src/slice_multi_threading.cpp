@@ -247,64 +247,7 @@ void DynamicAdjustSlicing (sWelsEncCtx* pCtx,
 
   pCurDqLayer->bNeedAdjustingSlicing = !DynamicAdjustSlicePEncCtxAll (pCurDqLayer, iRunLen);
 }
-/*
-int32_t InitSliceInThread(sWelsEncCtx** ppCtx, const int32_t kiThreadIndex, CMemoryAlign* pMa) {
-  SSliceArgument* pSliceArgument  = &(*ppCtx)->pSvcParam->sSpatialLayers[0].sSliceArgument;
-  const int32_t kiMaxSliceNum     = (*ppCtx)->pSliceThreading->iMaxSliceNumInThread[kiThreadIndex];
-  SSlice * ppSliceInThread        = (*ppCtx)->pSliceThreading->pSliceInThread[kiThreadIndex];
-  int32_t iMBWidth                = 0;
-  int32_t iMBHeight               = 0;
-  int32_t iMaxSliceBufferSize     = 0;
-  int32_t iDlayerIndex            = 0;
-  int32_t iSliceIdx               = 0;
-  int32_t iRet                    = 0;
 
-  while (iDlayerIndex < (*ppCtx)->pSvcParam->iSpatialLayerNum) {
-    if (iMaxSliceBufferSize <  (*ppCtx)->iSliceBufferSize[iDlayerIndex])
-      iMaxSliceBufferSize = (*ppCtx)->iSliceBufferSize[iDlayerIndex];
-
-    if (iMBWidth < (*ppCtx)->pSvcParam->sSpatialLayers[iDlayerIndex].iVideoWidth)
-      iMBWidth = (*ppCtx)->pSvcParam->sSpatialLayers[iDlayerIndex].iVideoWidth;
-
-    if(iMBHeight < (*ppCtx)->pSvcParam->sSpatialLayers[iDlayerIndex].iVideoHeight)
-      iMBHeight = (*ppCtx)->pSvcParam->sSpatialLayers[iDlayerIndex].iVideoHeight;
-
-    ++ iDlayerIndex;
-  }
-
-  if ( 0 == iMaxSliceBufferSize || iMBWidth <=0 || iMBHeight <=0)
-    return ENC_RETURN_UNEXPECTED;
-
-  while (iSliceIdx < kiMaxSliceNum) {
-    SSlice* pSlice = ppSliceInThread + iSliceIdx;
-    if (NULL == pSlice)
-      return ENC_RETURN_MEMALLOCERR;
-
-    pSlice->uiSliceIdx = iSliceIdx;
-    iRet = InitSliceBsBuffer(pSlice,
-                             &(*ppCtx)->pOut->sBsWrite,
-                             true,
-                            iMaxSliceBufferSize,
-                            pMa);
-    if (ENC_RETURN_SUCCESS != iRet)
-      return iRet;
-
-    iRet = InitSliceMBInfo (pSliceArgument, pSlice,
-                            iMBWidth, iMBHeight,
-                            pMa);
-    if (ENC_RETURN_SUCCESS != iRet)
-      return iRet;
-
-    iRet = AllocateSliceMBBuffer(pSlice, pMa);
-    if (ENC_RETURN_SUCCESS != iRet)
-      return iRet;
-
-    ++ iSliceIdx;
-  }
-
-  return ENC_RETURN_SUCCESS;
-}
-*/
 int32_t RequestMtResource (sWelsEncCtx** ppCtx, SWelsSvcCodingParam* pCodingParam, const int32_t iCountBsLen,
                            const int32_t iMaxSliceBufferSize, bool bDynamicSlice) {
   CMemoryAlign* pMa             = NULL;
@@ -365,8 +308,6 @@ int32_t RequestMtResource (sWelsEncCtx** ppCtx, SWelsSvcCodingParam* pCodingPara
     pSmt->pThreadPEncCtx[iIdx].pWelsPEncCtx   = (void*) *ppCtx;
     pSmt->pThreadPEncCtx[iIdx].iSliceIndex    = iIdx;
     pSmt->pThreadPEncCtx[iIdx].iThreadIndex   = iIdx;
-    //pSmt->iMaxSliceNumInThread[iIdx]          = iMaxSliceNumInThread;
-    //pSmt->iEncodedSliceNumInThread[iIdx]      = 0;
     pSmt->pThreadHandles[iIdx]                = 0;
 
     WelsSnprintf (name, SEM_NAME_MAX, "ee%d%s", iIdx, pSmt->eventNamespace);
@@ -390,18 +331,10 @@ int32_t RequestMtResource (sWelsEncCtx** ppCtx, SWelsSvcCodingParam* pCodingPara
     err = WelsEventOpen (&pSmt->pReadySliceCodingEvent[iIdx], name);
     MT_TRACE_LOG (pLogCtx, WELS_LOG_INFO, "[MT] Open pReadySliceCodingEvent%d = 0x%p named(%s) ret%d err%d", iIdx,
                   (void*)pSmt->pReadySliceCodingEvent[iIdx], name, err, errno);
-
-    //pSmt->pSliceInThread[iIdx] = (SSlice*)pMa->WelsMalloc (sizeof (SSlice)*iMaxSliceNumInThread, "pSmt->pSliceInThread");
-    //WELS_VERIFY_RETURN_PROC_IF (1, (NULL == pSmt->pSliceInThread[iIdx]), FreeMemorySvc (ppCtx))
-
-    //iReturn = InitSliceInThread(ppCtx, iIdx, pMa);
-    //WELS_VERIFY_RETURN_PROC_IF (1, (ENC_RETURN_SUCCESS != iReturn), FreeMemorySvc (ppCtx));
-
     ++ iIdx;
   }
   for (; iIdx < MAX_THREADS_NUM; iIdx++) {
     pSmt->pThreadBsBuffer[iIdx]      = NULL;
-    //pSmt->pSliceInThread[iIdx]       = NULL;
   }
 
 
@@ -490,12 +423,6 @@ void ReleaseMtResource (sWelsEncCtx** ppCtx) {
       pMa->WelsFree (pSmt->pThreadBsBuffer[i], "pSmt->pThreadBsBuffer");
       pSmt->pThreadBsBuffer[i] = NULL;
     }
-
-//    if (pSmt->pSliceInThread[i]) {
-//      FreeSliceBuffer(pSmt->pSliceInThread[i],pSmt->iMaxSliceNumInThread[i],pMa,"pSliceInThread[i]");
-//      pSmt->pSliceInThread[i] = NULL;
-//    }
-
   }
   memset (&pSmt->bThreadBsBufferUsage, 0, MAX_THREADS_NUM * sizeof (bool));
 

@@ -62,8 +62,6 @@ int32_t NeedDynamicAdjust (void* pConsumeTime, const int32_t kiSliceNum);
 void DynamicAdjustSlicing (sWelsEncCtx* pCtx,
                            SDqLayer* pCurDqLayer,
                            int32_t iCurDid);
-int32_t InitSliceInThread(sWelsEncCtx** ppCtx, const int32_t kiThreadIndex, CMemoryAlign* pMa);
-
 int32_t RequestMtResource (sWelsEncCtx** ppCtx, SWelsSvcCodingParam* pParam, const int32_t kiCountBsLen,
                            const int32_t kiTargetSpatialBsSize, bool bDynamicSlice);
 

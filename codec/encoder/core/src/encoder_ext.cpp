@@ -1156,56 +1156,6 @@ static inline int32_t InitSliceList (sWelsEncCtx** ppCtx,
   }
   return ENC_RETURN_SUCCESS;
 }
-/*
-int32_t InitSliceInThread (sWelsEncCtx** ppCtx,
-                           const int32_t kiThreadIndex,
-                           const int32_t kiDlayerIndex,
-                           CMemoryAlign* pMa) {
-  SSliceArgument* pSliceArgument  = & (*ppCtx)->pSvcParam->sSpatialLayers[kiDlayerIndex].sSliceArgument;
-  const int32_t kiMaxSliceNum     = (*ppCtx)->pSliceThreading->iMaxSliceNumInThread[kiThreadIndex];
-
-    const int32_t kiMBWidth         = (*ppCtx)->pSvcParam->sSpatialLayers[kiDlayerIndex].iVideoWidth;
-    const int32_t kiMBHeight        = (*ppCtx)->pSvcParam->sSpatialLayers[kiDlayerIndex].iVideoHeight;
-    int32_t iMaxSliceBufferSize     = (*ppCtx)->iSliceBufferSize[kiDlayerIndex];
-
-
-  SSlice* ppSliceInThread         = (*ppCtx)->pSliceThreading->pSliceInThread[kiThreadIndex];
-  int32_t iSliceIdx               = 0;
-  int32_t iRet                    = 0;
-
-  if (0 == iMaxSliceBufferSize || kiMBWidth <= 0 || kiMBHeight <= 0)
-    return ENC_RETURN_UNEXPECTED;
-
-  while (iSliceIdx < kiMaxSliceNum) {
-    SSlice* pSlice = ppSliceInThread + iSliceIdx;
-    if (NULL == pSlice)
-      return ENC_RETURN_MEMALLOCERR;
-
-    pSlice->uiSliceIdx = iSliceIdx;
-    iRet = InitSliceBsBuffer (pSlice,
-                              & (*ppCtx)->pOut->sBsWrite,
-                              true,
-                              iMaxSliceBufferSize,
-                              pMa);
-    if (ENC_RETURN_SUCCESS != iRet)
-      return iRet;
-
-    iRet = InitSliceMBInfo (pSliceArgument, pSlice,
-                            kiMBWidth, kiMBHeight,
-                            pMa);
-    if (ENC_RETURN_SUCCESS != iRet)
-      return iRet;
-
-    iRet = AllocateSliceMBBuffer (pSlice, pMa);
-    if (ENC_RETURN_SUCCESS != iRet)
-      return iRet;
-
-    ++ iSliceIdx;
-  }
-
-  return ENC_RETURN_SUCCESS;
-}
-*/
 
 static inline int32_t InitSliceThreadInfo (sWelsEncCtx** ppCtx,
     SDqLayer* pDqLayer,
@@ -1259,7 +1209,7 @@ static inline int32_t InitSliceInLayer (sWelsEncCtx** ppCtx,
   int32_t iMaxSliceNum          = pDqLayer->iMaxSliceNum;
 
   //if (pParam->iMultipleThreadIdc > 1) {
-
+   // to do, will add later, slice buffer allocated based on thread mode if() else ()
   InitSliceThreadInfo (ppCtx,
                        pDqLayer,
                        kiDlayerIndex,
