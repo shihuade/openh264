@@ -912,6 +912,11 @@ void FreeDqLayer (SDqLayer*& pDq, CMemoryAlign* pMa) {
 
   FreeSliceInLayer (pDq, pMa);
 
+  if (pDq->ppSliceInLayer) {
+    pMa->WelsFree (pDq->ppSliceInLayer, "pDq->ppSliceInLayer");
+    pDq->ppSliceInLayer = NULL;
+  }
+
   if (pDq->pNumSliceCodedOfPartition) {
     pMa->WelsFree (pDq->pNumSliceCodedOfPartition, "pNumSliceCodedOfPartition");
     pDq->pNumSliceCodedOfPartition = NULL;
@@ -1206,10 +1211,15 @@ static inline int32_t InitSliceInLayer (sWelsEncCtx** ppCtx,
 
   //SWelsSvcCodingParam* pParam   = (*ppCtx)->pSvcParam;
   int32_t iRet                  = 0;
+  int32_t iSliceIdx             = 0;
   int32_t iMaxSliceNum          = pDqLayer->iMaxSliceNum;
 
+
+  pDqLayer->ppSliceInLayer = (SSlice**)pMa->WelsMallocz (sizeof (SSlice*) * iMaxSliceNum, "ppSliceInLayer");
+  WELS_VERIFY_RETURN_PROC_IF (1, (NULL == pDqLayer->ppSliceInLayer), FreeDqLayer (pDqLayer, pMa))
+
   //if (pParam->iMultipleThreadIdc > 1) {
-   // to do, will add later, slice buffer allocated based on thread mode if() else ()
+  // to do, will add later, slice buffer allocated based on thread mode if() else ()
   InitSliceThreadInfo (ppCtx,
                        pDqLayer,
                        kiDlayerIndex,
@@ -1229,7 +1239,15 @@ static inline int32_t InitSliceInLayer (sWelsEncCtx** ppCtx,
                  pMa);
   if (ENC_RETURN_SUCCESS != iRet)
     return iRet;
+
+  for (iSliceIdx = 0; iSliceIdx < iMaxSliceNum; iSliceIdx++) {
+    pDqLayer->ppSliceInLayer[iSliceIdx] = &pDqLayer->sLayerInfo.pSliceInLayer[iSliceIdx];
+  }
+
   //}
+
+
+
 
   return ENC_RETURN_SUCCESS;
 }
