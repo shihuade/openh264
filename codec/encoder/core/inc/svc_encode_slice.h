@@ -87,8 +87,7 @@ void FreeMbCache (SMbCache* pMbCache, CMemoryAlign* pMa);
 int32_t InitSliceMBInfo (SSliceArgument* pSliceArgument,
                          SSlice* pSlice,
                          const int32_t kiMBWidth,
-                         const int32_t kiMBHeight,
-                         CMemoryAlign* pMa);
+                         const int32_t kiMBHeight);
 
 int32_t AllocateSliceMBBuffer (SSlice* pSlice, CMemoryAlign* pMa);
 

@@ -1146,8 +1146,7 @@ static inline int32_t InitSliceList (sWelsEncCtx** ppCtx,
       return iRet;
 
     iRet = InitSliceMBInfo (pSliceArgument, pSlice,
-                            kiMBWidth, kiMBHeight,
-                            pMa);
+                            kiMBWidth, kiMBHeight);
 
     if (ENC_RETURN_SUCCESS != iRet)
       return iRet;
@@ -1159,6 +1158,40 @@ static inline int32_t InitSliceList (sWelsEncCtx** ppCtx,
 
     ++ iSliceIdx;
   }
+  return ENC_RETURN_SUCCESS;
+}
+static inline int32_t InitOneSliceInThread (sWelsEncCtx** ppCtx,
+    SSlice*& pSlice,
+    const int32_t kiThreadIdx,
+    const int32_t kiDlayerIndex,
+    const int32_t kiSliceIdx) {
+  SDqLayer* pDqLayer                  = (*ppCtx)->pCurDqLayer;
+  SSliceArgument* pSliceArgument      = & (*ppCtx)->pSvcParam->sSpatialLayers[kiDlayerIndex].sSliceArgument;
+  const int32_t kiMBWidth             = pDqLayer->iMbWidth;
+  const int32_t kiMBHeight            = pDqLayer->iMbHeight;
+  const int32_t kiCodedNumInThread    = pDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[kiThreadIdx];
+  const int32_t kiMaxSliceNumInThread = pDqLayer->sSliceThreadInfo.iMaxSliceNumInThread[kiThreadIdx];
+  int32_t iRet                        = 0;
+
+  if (kiCodedNumInThread >= kiMaxSliceNumInThread) {
+    //TODO: slicelist reallocate in thread
+    //iRet = ReallocateSliceInThread(pSliceArgument, pSlice, kiMBWidth, kiMBHeight);
+    if (ENC_RETURN_SUCCESS != iRet)
+      return iRet;
+
+  }
+
+  pSlice = pDqLayer->sSliceThreadInfo.pSliceInThread [kiThreadIdx] + kiCodedNumInThread;
+  // Initialize slice bs buffer info
+  pSlice->sSliceBs.uiBsPos   = 0;
+  pSlice->sSliceBs.iNalIndex = 0;
+  pSlice->sSliceBs.pBsBuffer = (*ppCtx)->pSliceThreading->pThreadBsBuffer[kiThreadIdx];
+
+  // init slice MB info
+  iRet = InitSliceMBInfo (pSliceArgument, pSlice, kiMBWidth, kiMBHeight);
+  if (ENC_RETURN_SUCCESS != iRet)
+    return iRet;
+
   return ENC_RETURN_SUCCESS;
 }
 
@@ -4944,7 +4977,7 @@ int32_t SliceBufferRealloc (sWelsEncCtx* pCtx) {
   pMA->WelsFree (pCurLayer->ppSliceInLayer, "ppSliceInLayer");
   pCurLayer->ppSliceInLayer = ppSlice;
 
-  for(uiSliceIdx = 0; uiSliceIdx < iMaxSliceNum; uiSliceIdx++){
+  for (uiSliceIdx = 0; uiSliceIdx < iMaxSliceNum; uiSliceIdx++) {
     pCurLayer->ppSliceInLayer[uiSliceIdx] = &pCurLayer->sLayerInfo.pSliceInLayer[uiSliceIdx];
   }
 

@@ -810,8 +810,7 @@ void FreeMbCache (SMbCache* pMbCache, CMemoryAlign* pMa) {
 int32_t InitSliceMBInfo (SSliceArgument* pSliceArgument,
                          SSlice* pSlice,
                          const int32_t kiMBWidth,
-                         const int32_t kiMBHeight,
-                         CMemoryAlign* pMa) {
+                         const int32_t kiMBHeight) {
   SSliceHeader* pSliceHeader          = &pSlice->sSliceHeaderExt.sSliceHeader;
   const int32_t* kpSlicesAssignList   = (int32_t*) & (pSliceArgument->uiSliceMbNum[0]);
   const int32_t kiCountNumMbInFrame   = kiMBWidth * kiMBHeight;
@@ -883,6 +882,7 @@ int32_t InitSliceBsBuffer (SSlice* pSlice,
   }
   return ENC_RETURN_SUCCESS;
 }
+
 
 //free slice bs buffer
 void FreeSliceBuffer (SSlice*& pSliceList, const int32_t kiMaxSliceNum, CMemoryAlign* pMa, const char* kpTag) {
