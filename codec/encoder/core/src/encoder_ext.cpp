@@ -1161,13 +1161,13 @@ static inline int32_t InitSliceList (sWelsEncCtx* pCtx,
   return ENC_RETURN_SUCCESS;
 }
 
-static inline int32_t InitOneSliceInThread (sWelsEncCtx** ppCtx,
+static inline int32_t InitOneSliceInThread (sWelsEncCtx* pCtx,
     SSlice*& pSlice,
     const int32_t kiThreadIdx,
     const int32_t kiDlayerIdx,
     const int32_t kiSliceIdx) {
-  SDqLayer* pDqLayer                  = (*ppCtx)->pCurDqLayer;
-  SSliceArgument* pSliceArgument      = & (*ppCtx)->pSvcParam->sSpatialLayers[kiDlayerIdx].sSliceArgument;
+  SDqLayer* pDqLayer                  = pCtx->pCurDqLayer;
+  SSliceArgument* pSliceArgument      = & pCtx->pSvcParam->sSpatialLayers[kiDlayerIdx].sSliceArgument;
   const int32_t kiMBWidth             = pDqLayer->iMbWidth;
   const int32_t kiMBHeight            = pDqLayer->iMbHeight;
   const int32_t kiCodedNumInThread    = pDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[kiThreadIdx];
@@ -1186,7 +1186,7 @@ static inline int32_t InitOneSliceInThread (sWelsEncCtx** ppCtx,
   // Initialize slice bs buffer info
   pSlice->sSliceBs.uiBsPos   = 0;
   pSlice->sSliceBs.iNalIndex = 0;
-  pSlice->sSliceBs.pBsBuffer = (*ppCtx)->pSliceThreading->pThreadBsBuffer[kiThreadIdx];
+  pSlice->sSliceBs.pBsBuffer = pCtx->pSliceThreading->pThreadBsBuffer[kiThreadIdx];
 
   // init slice MB info
   iRet = InitSliceMBInfo (pSliceArgument, pSlice, kiMBWidth, kiMBHeight);
