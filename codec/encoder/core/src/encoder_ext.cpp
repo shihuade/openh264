@@ -5036,8 +5036,9 @@ static inline int32_t CalculateNewSliceNum (SDqLayer* pDqLayer,
   if (CodedMBNum <= 0)
     return ENC_RETURN_UNEXPECTED;
 
-  iMaxSliceNumNew = iMaxSliceNumOld * (pDqLayer->iMbWidth * pDqLayer->iMbHeight / CodedMBNum + 1);
-
+  //iMaxSliceNumNew = iMaxSliceNumOld * (pDqLayer->iMbWidth * pDqLayer->iMbHeight / CodedMBNum + 1);
+  //TO DO, will used above logic later, here keep origin logic in order to pass ut
+  iMaxSliceNumNew *= SLICE_NUM_EXPAND_COEF;
   return ENC_RETURN_SUCCESS;
 }
 
