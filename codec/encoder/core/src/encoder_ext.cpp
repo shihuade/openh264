@@ -1215,10 +1215,13 @@ static inline int32_t InitSliceThreadInfo (sWelsEncCtx* pCtx,
   while (iIdx < iThreadNum) {
     pSliceThreadInfo->iMaxSliceNumInThread[iIdx]     = iMaxSliceNumInThread;
     pSliceThreadInfo->iEncodedSliceNumInThread[iIdx] = 0;
-    pSliceThreadInfo->pSliceInThread[iIdx]           = (SSlice*)pMa->WelsMallocz (sizeof (SSlice) *
+    pSliceThreadInfo->pSliceInThread[iIdx] = (SSlice*)pMa->WelsMallocz (sizeof (SSlice) *
         iMaxSliceNumInThread, "pSliceInThread");
-    WELS_VERIFY_RETURN_PROC_IF (1, (NULL == pSliceThreadInfo->pSliceInThread[iIdx]), FreeDqLayer (pDqLayer, pMa))
-
+    if (NULL == pSliceThreadInfo->pSliceInThread[iIdx]) {
+      WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR,
+               "CWelsH264SVCEncoder::InitSliceThreadInfo: pSliceThreadInfo->pSliceInThread[iIdx] is NULL");
+      return ENC_RETURN_MEMALLOCERR;
+    }
     iRet = InitSliceList (pCtx,
                           pDqLayer,
                           pSliceThreadInfo->pSliceInThread[iIdx],
@@ -1251,7 +1254,10 @@ static inline int32_t InitSliceInLayer (sWelsEncCtx* pCtx,
 
 
   pDqLayer->ppSliceInLayer = (SSlice**)pMa->WelsMallocz (sizeof (SSlice*) * iMaxSliceNum, "ppSliceInLayer");
-  WELS_VERIFY_RETURN_PROC_IF (1, (NULL == pDqLayer->ppSliceInLayer), FreeDqLayer (pDqLayer, pMa))
+  if (NULL ==  pDqLayer->ppSliceInLayer) {
+    WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR, "CWelsH264SVCEncoder::InitSliceInLayer() pDqLayer->ppSliceInLayer is NULL");
+    return ENC_RETURN_MEMALLOCERR;
+  }
 
   //if (pParam->iMultipleThreadIdc > 1) {
   // to do, will add later, slice buffer allocated based on thread mode if() else ()
@@ -1264,7 +1270,11 @@ static inline int32_t InitSliceInLayer (sWelsEncCtx* pCtx,
 
   //} else {
   pDqLayer->sLayerInfo.pSliceInLayer = (SSlice*)pMa->WelsMallocz (sizeof (SSlice) * iMaxSliceNum, "pSliceInLayer");
-  WELS_VERIFY_RETURN_PROC_IF (1, (NULL == pDqLayer->sLayerInfo.pSliceInLayer), FreeDqLayer (pDqLayer, pMa))
+  if (NULL ==  pDqLayer->sLayerInfo.pSliceInLayer) {
+    WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR,
+             "CWelsH264SVCEncoder::InitSliceInLayer: pDqLayer->sLayerInfo.pSliceInLayeris NULL");
+    return ENC_RETURN_MEMALLOCERR;
+  }
 
   iRet = InitSliceList (pCtx,
                         pDqLayer,
