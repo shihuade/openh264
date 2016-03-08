@@ -102,12 +102,12 @@ void FreeSliceBuffer (SSlice*& pSliceList,
                       CMemoryAlign* pMa,
                       const char* kpTag);
 
-static inline int32_t InitSliceList (sWelsEncCtx* pCtx,
-                                     SDqLayer* pDqLayer,
-                                     SSlice*& pSliceList,
-                                     const int32_t kiMaxSliceNum,
-                                     const int32_t kiDlayerIndex,
-                                     CMemoryAlign* pMa);
+int32_t InitSliceList (sWelsEncCtx* pCtx,
+                       SDqLayer* pDqLayer,
+                       SSlice*& pSliceList,
+                       const int32_t kiMaxSliceNum,
+                       const int32_t kiDlayerIndex,
+                       CMemoryAlign* pMa);
 
 int32_t InitOneSliceInThread (sWelsEncCtx* pCtx,
                               SSlice*& pSlice,
