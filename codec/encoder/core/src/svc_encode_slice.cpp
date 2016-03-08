@@ -903,12 +903,12 @@ void FreeSliceBuffer (SSlice*& pSliceList, const int32_t kiMaxSliceNum, CMemoryA
     pSliceList = NULL;
   }
 }
-static inline int32_t InitSliceList (sWelsEncCtx* pCtx,
-                                     SDqLayer* pDqLayer,
-                                     SSlice*& pSliceList,
-                                     const int32_t kiMaxSliceNum,
-                                     const int32_t kiDlayerIndex,
-                                     CMemoryAlign* pMa) {
+int32_t InitSliceList (sWelsEncCtx* pCtx,
+                       SDqLayer* pDqLayer,
+                       SSlice*& pSliceList,
+                       const int32_t kiMaxSliceNum,
+                       const int32_t kiDlayerIndex,
+                       CMemoryAlign* pMa) {
   const int32_t kiMBWidth         = pDqLayer->iMbWidth;
   const int32_t kiMBHeight        = pDqLayer->iMbHeight;
   SSliceArgument* pSliceArgument  = & pCtx->pSvcParam->sSpatialLayers[kiDlayerIndex].sSliceArgument;
