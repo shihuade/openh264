@@ -941,12 +941,12 @@ int32_t InitSliceList (sWelsEncCtx* pCtx,
       return iRet;
 
     //for multi thread, will init before encode one slice
-    if (pCtx->pSvcParam->iMultipleThreadIdc == 1) {
+    //if (pCtx->pSvcParam->iMultipleThreadIdc == 1) {
       iRet = InitSliceMBInfo (pSliceArgument, pSlice,
                               kiMBWidth, kiMBHeight);
       if (ENC_RETURN_SUCCESS != iRet)
         return iRet;
-    }
+    //}
 
     iRet = AllocateSliceMBBuffer (pSlice, pMa);
     if (ENC_RETURN_SUCCESS != iRet)
