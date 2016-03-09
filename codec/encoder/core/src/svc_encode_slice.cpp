@@ -1303,7 +1303,6 @@ int32_t ReallocSliceBuffer (sWelsEncCtx* pCtx) {
 }
 
 static inline int32_t ReOrderSliceInLayerDynamic (SDqLayer* pCurLayer, const int32_t kiThreadNum) {
-
   SSlice* pSliceInThread   = NULL;
   int32_t iThreadIdx       = 0;
   int32_t iSliceIdx        = 0;
@@ -1316,15 +1315,12 @@ static inline int32_t ReOrderSliceInLayerDynamic (SDqLayer* pCurLayer, const int
 
     for (iSliceIdx = 0; iSliceIdx < iSliceNumInThread ; iSliceIdx++) {
       pSliceInThread = pCurLayer->sSliceThreadInfo.pSliceInThread[iThreadIdx] + iSliceIdx;
-
       if (NULL == pSliceInThread)
         return ENC_RETURN_UNEXPECTED;
 
       pCurLayer->ppSliceInLayer[iIdxStep + iSliceIdx] = pSliceInThread;
     }
-
     iIdxStep += iSliceNumInThread;
-    pCurLayer->ppSliceInLayer[iSliceIdx] = pSliceInThread;
   }
 
   return ENC_RETURN_SUCCESS;
@@ -1412,7 +1408,6 @@ int32_t SliceLayerInfoUpdate (sWelsEncCtx* pCtx, const int32_t kiDlayerIndex) {
 
   return ENC_RETURN_SUCCESS;
 }
-
 
 int32_t WelsCodeOneSlice (sWelsEncCtx* pEncCtx, const int32_t kiSliceIdx, const int32_t kiNalType) {
   SDqLayer* pCurLayer                   = pEncCtx->pCurDqLayer;
