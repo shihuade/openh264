@@ -80,7 +80,7 @@ int32_t WelsPSliceMdEncDynamic (sWelsEncCtx* pEncCtx, SSlice* pSlice,  const boo
 int32_t WelsISliceMdEnc (sWelsEncCtx* pEncCtx, SSlice* pSlice);         // for intra non-dynamic slice
 int32_t WelsISliceMdEncDynamic (sWelsEncCtx* pEncCtx, SSlice* pSlice);  // for intra dynamic slice
 
-//slice buffer init, allocate/re-allocate and free process
+//slice list buffer init, allocate/re-allocate, update and free process
 int32_t AllocMbCacheAligned (SMbCache* pMbCache, CMemoryAlign* pMa);
 void FreeMbCache (SMbCache* pMbCache, CMemoryAlign* pMa);
 
@@ -132,6 +132,8 @@ int32_t ReallocateSliceInThread (sWelsEncCtx* pCtx,
                                  const int32_t kiThreadIndex);
 
 int32_t ReallocSliceBuffer (sWelsEncCtx* pCtx);
+
+int32_t SliceLayerInfoUpdate (sWelsEncCtx* pCtx);
 
 //slice encoding process
 int32_t WelsCodePSlice (sWelsEncCtx* pEncCtx, SSlice* pSlice);

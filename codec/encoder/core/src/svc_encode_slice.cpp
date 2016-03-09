@@ -1302,6 +1302,117 @@ int32_t ReallocSliceBuffer (sWelsEncCtx* pCtx) {
   return ENC_RETURN_SUCCESS;
 }
 
+static inline int32_t ReOrderSliceInLayerDynamic (SDqLayer* pCurLayer, const int32_t kiThreadNum) {
+
+  SSlice* pSliceInThread   = NULL;
+  int32_t iThreadIdx       = 0;
+  int32_t iSliceIdx        = 0;
+  int iIdxStep             = 0;
+  int iSliceNumInThread    = 0;
+
+  //update ppSliceInLayer based on pSliceInThread, reordering based on slice index
+  for (iThreadIdx = 0; iThreadIdx < kiThreadNum; iThreadIdx++) {
+    iSliceNumInThread = pCurLayer->sSliceThreadInfo.iEncodedSliceNumInThread[iThreadIdx];
+
+    for (iSliceIdx = 0; iSliceIdx < iSliceNumInThread ; iSliceIdx++) {
+      pSliceInThread = pCurLayer->sSliceThreadInfo.pSliceInThread[iThreadIdx] + iSliceIdx;
+
+      if (NULL == pSliceInThread)
+        return ENC_RETURN_UNEXPECTED;
+
+      pCurLayer->ppSliceInLayer[iIdxStep + iSliceIdx] = pSliceInThread;
+    }
+
+    iIdxStep += iSliceNumInThread;
+    pCurLayer->ppSliceInLayer[iSliceIdx] = pSliceInThread;
+  }
+
+  return ENC_RETURN_SUCCESS;
+}
+
+static inline int32_t ReOrderSliceInLayer (SDqLayer* pCurLayer,
+    const int32_t kiThreadNum,
+    const int32_t kiCodedSliceNum) {
+
+  bool bMatchedFlag        = false;
+  SSlice* pSliceInThread   = NULL;
+  int32_t iThreadIdx       = 0;
+  int32_t iSliceIdx        = 0;
+  int32_t iMatchThreadIdx  = 0;
+  int32_t aiSliceIndex[MAX_THREADS_NUM] = {0};
+
+  //update ppSliceInLayer based on pSliceInThread, reordering based on slice index
+  for (iSliceIdx = 0; iSliceIdx < kiCodedSliceNum; iSliceIdx++) {
+    bMatchedFlag     = false;
+    for (iThreadIdx = 0; iThreadIdx < kiThreadNum; iThreadIdx++) {
+      pSliceInThread = pCurLayer->sSliceThreadInfo.pSliceInThread[iThreadIdx] + aiSliceIndex[iThreadIdx];
+      if (NULL == pSliceInThread)
+        return ENC_RETURN_UNEXPECTED;
+      if (pSliceInThread->uiSliceIdx == iSliceIdx) {
+        aiSliceIndex[iThreadIdx]++;
+        iMatchThreadIdx  = iThreadIdx;
+        bMatchedFlag     = true;
+        break;
+      }
+    }
+
+    if (false == bMatchedFlag)
+      return ENC_RETURN_UNEXPECTED;
+
+    pCurLayer->ppSliceInLayer[iSliceIdx] = pSliceInThread;
+  }
+
+  return ENC_RETURN_SUCCESS;
+}
+
+int32_t SliceLayerInfoUpdate (sWelsEncCtx* pCtx, const int32_t kiDlayerIndex) {
+
+  CMemoryAlign* pMA       = pCtx->pMemAlign;
+  SDqLayer* pCurLayer     = pCtx->pCurDqLayer;
+  SSlice** ppSlice        = NULL;
+  int32_t iCodedSliceNum  = 0;
+  int32_t iThreadIdx      = 0;
+  int32_t iRet            = 0;
+  SSliceArgument* pSliceArgument = & pCtx->pSvcParam->sSpatialLayers[kiDlayerIndex].sSliceArgument;
+
+  for (; iThreadIdx < pCtx->iActiveThreadsNum; iThreadIdx++) {
+    iCodedSliceNum += pCurLayer->sSliceThreadInfo.iMaxSliceNumInThread[iThreadIdx];
+  }
+
+  if (iCodedSliceNum <= 0)
+    return ENC_RETURN_UNEXPECTED;
+
+  if (iCodedSliceNum > pCurLayer->sSliceEncCtx.iMaxSliceNumConstraint) {
+    ppSlice = (SSlice**)pMA->WelsMallocz (sizeof (SSlice*) * iCodedSliceNum, "ppSlice");
+    if (NULL == ppSlice) {
+      WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR, "CWelsH264SVCEncoder::SliceLayerInfoUpdate: ppSlice is NULL");
+      return ENC_RETURN_MEMALLOCERR;
+    }
+
+    pMA->WelsFree (pCurLayer->ppSliceInLayer, "ppSliceInLayer");
+    pCurLayer->ppSliceInLayer = ppSlice;
+    pCurLayer->sSliceEncCtx.iMaxSliceNumConstraint = iCodedSliceNum;
+  }
+
+  //update ppSliceInLayer based on pSliceInThread, reordering based on slice index
+  if (SM_SIZELIMITED_SLICE == pSliceArgument->uiSliceMode) {
+    iRet = ReOrderSliceInLayerDynamic (pCurLayer, pCtx->iActiveThreadsNum);
+    if (ENC_RETURN_SUCCESS != iRet) {
+      WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR,
+               "CWelsH264SVCEncoder::SliceLayerInfoUpdate: ReOrderSliceInLayerDynamic failed");
+      return iRet;
+    }
+  } else {
+    iRet = ReOrderSliceInLayer (pCurLayer, pCtx->iActiveThreadsNum, iCodedSliceNum);
+    if (ENC_RETURN_SUCCESS != iRet) {
+      WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR, "CWelsH264SVCEncoder::SliceLayerInfoUpdate: ReOrderSliceInLayer failed");
+      return iRet;
+    }
+  }
+
+  return ENC_RETURN_SUCCESS;
+}
+
 
 int32_t WelsCodeOneSlice (sWelsEncCtx* pEncCtx, const int32_t kiSliceIdx, const int32_t kiNalType) {
   SDqLayer* pCurLayer                   = pEncCtx->pCurDqLayer;
