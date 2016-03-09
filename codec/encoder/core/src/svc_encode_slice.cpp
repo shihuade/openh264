@@ -1330,23 +1330,23 @@ static inline int32_t ReOrderSliceInLayer (SDqLayer* pCurLayer,
     const int32_t kiThreadNum,
     const int32_t kiCodedSliceNum) {
 
-  bool bMatchedFlag        = false;
-  SSlice* pSliceInThread   = NULL;
-  int32_t iThreadIdx       = 0;
-  int32_t iSliceIdx        = 0;
-  int32_t iMatchThreadIdx  = 0;
+  bool bMatchedFlag      = false;
+  SSlice* pSliceInThread = NULL;
+  int32_t iThreadIdx     = 0;
+  int32_t iSliceIdx      = 0;
   int32_t aiSliceIndex[MAX_THREADS_NUM] = {0};
 
   //update ppSliceInLayer based on pSliceInThread, reordering based on slice index
   for (iSliceIdx = 0; iSliceIdx < kiCodedSliceNum; iSliceIdx++) {
     bMatchedFlag     = false;
+
     for (iThreadIdx = 0; iThreadIdx < kiThreadNum; iThreadIdx++) {
       pSliceInThread = pCurLayer->sSliceThreadInfo.pSliceInThread[iThreadIdx] + aiSliceIndex[iThreadIdx];
       if (NULL == pSliceInThread)
         return ENC_RETURN_UNEXPECTED;
+
       if (pSliceInThread->uiSliceIdx == iSliceIdx) {
         aiSliceIndex[iThreadIdx]++;
-        iMatchThreadIdx  = iThreadIdx;
         bMatchedFlag     = true;
         break;
       }
