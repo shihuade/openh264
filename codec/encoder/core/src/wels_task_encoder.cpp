@@ -112,7 +112,7 @@ WelsErrorType CWelsSliceEncodingTask::InitTask() {
     return ENC_RETURN_UNEXPECTED;
   }
 
-  //  InitOneSliceInThread();
+  //InitOneSliceInThread (m_pCtx, m_pSlice, m_iThreadIdx->uiDependencyId, m_iSliceIdx, m_iThreadIdx);
   SetOneSliceBsBufferUnderMultithread (m_pCtx, m_iThreadIdx, m_iSliceIdx);
 
   m_pSlice = m_pCtx->pCurDqLayer->ppSliceInLayer[m_iSliceIdx];

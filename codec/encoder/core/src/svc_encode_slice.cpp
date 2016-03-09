@@ -960,9 +960,9 @@ int32_t InitSliceList (sWelsEncCtx* pCtx,
 
 int32_t InitOneSliceInThread (sWelsEncCtx* pCtx,
                               SSlice*& pSlice,
-                              const int32_t kiThreadIdx,
                               const int32_t kiDlayerIdx,
-                              const int32_t kiSliceIdx) {
+                              const int32_t kiSliceIdx,
+                              const int32_t kiThreadIdx) {
   SDqLayer* pDqLayer                  = pCtx->pCurDqLayer;
   SSliceArgument* pSliceArgument      = & pCtx->pSvcParam->sSpatialLayers[kiDlayerIdx].sSliceArgument;
   const int32_t kiMBWidth             = pDqLayer->iMbWidth;
