@@ -1090,7 +1090,7 @@ int32_t InitSliceInLayer (sWelsEncCtx* pCtx,
   return ENC_RETURN_SUCCESS;
 }
 
-static inline int32_t InitSliceHeadWithBase (SSlice* pSlice, SSlice* pBaseSlice, const uint8_t kuiRefCount) {
+static inline int32_t InitSliceHeadWithBase (SSlice* pSlice, SSlice* pBaseSlice) {
   SSliceHeaderExt* pBaseSHExt  = &pBaseSlice->sSliceHeaderExt;
   SSliceHeaderExt* pSHExt      = &pSlice->sSliceHeaderExt;
 
@@ -1102,7 +1102,7 @@ static inline int32_t InitSliceHeadWithBase (SSlice* pSlice, SSlice* pBaseSlice,
   pSHExt->sSliceHeader.pPps       = pBaseSHExt->sSliceHeader.pPps;
   pSHExt->sSliceHeader.iSpsId     = pBaseSHExt->sSliceHeader.iSpsId;
   pSHExt->sSliceHeader.pSps       = pBaseSHExt->sSliceHeader.pSps;
-  pSHExt->sSliceHeader.uiRefCount = kuiRefCount;
+  pSHExt->sSliceHeader.uiRefCount = pBaseSHExt->sSliceHeader.uiRefCount;
   memcpy (&pSHExt->sSliceHeader.sRefMarking, &pBaseSHExt->sSliceHeader.sRefMarking, sizeof (SRefPicMarking));
   memcpy (&pSHExt->sSliceHeader.sRefReordering, &pBaseSHExt->sSliceHeader.sRefReordering,
           sizeof (SRefPicListReorderSyntax));
@@ -1188,7 +1188,7 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
     if (ENC_RETURN_SUCCESS != iRet)
       return iRet;
 
-    iRet = InitSliceHeadWithBase (pSlice, pBaseSlice, pCtx->iNumRef0);
+    iRet = InitSliceHeadWithBase (pSlice, pBaseSlice);
     if (ENC_RETURN_SUCCESS != iRet)
       return iRet;
 
