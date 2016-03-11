@@ -806,11 +806,10 @@ void FreeMbCache (SMbCache* pMbCache, CMemoryAlign* pMa) {
   }
 }
 
-//Initialize slice's MB info)
-int32_t InitSliceMBInfo (SSliceArgument* pSliceArgument,
-                         SSlice* pSlice,
-                         const int32_t kiMBWidth,
-                         const int32_t kiMBHeight) {
+static inline int32_t InitSliceMBInfo (SSliceArgument* pSliceArgument,
+                                       SSlice* pSlice,
+                                       const int32_t kiMBWidth,
+                                       const int32_t kiMBHeight) {
   SSliceHeader* pSliceHeader          = &pSlice->sSliceHeaderExt.sSliceHeader;
   const int32_t* kpSlicesAssignList   = (int32_t*) & (pSliceArgument->uiSliceMbNum[0]);
   const int32_t kiCountNumMbInFrame   = kiMBWidth * kiMBHeight;
@@ -853,7 +852,7 @@ int32_t InitSliceMBInfo (SSliceArgument* pSliceArgument,
 }
 
 //Allocate slice's MB info buffer
-int32_t AllocateSliceMBBuffer (SSlice* pSlice, CMemoryAlign* pMa) {
+static inline int32_t AllocateSliceMBBuffer (SSlice* pSlice, CMemoryAlign* pMa) {
   if (AllocMbCacheAligned (&pSlice->sMbCacheInfo, pMa)) {
     return ENC_RETURN_MEMALLOCERR;
   }
@@ -862,11 +861,11 @@ int32_t AllocateSliceMBBuffer (SSlice* pSlice, CMemoryAlign* pMa) {
 }
 
 // Initialize slice bs buffer info
-int32_t InitSliceBsBuffer (SSlice* pSlice,
-                           SBitStringAux* pBsWrite,
-                           bool bIndependenceBsBuffer,
-                           const int32_t iMaxSliceBufferSize,
-                           CMemoryAlign* pMa) {
+static inline int32_t InitSliceBsBuffer (SSlice* pSlice,
+    SBitStringAux* pBsWrite,
+    bool bIndependenceBsBuffer,
+    const int32_t iMaxSliceBufferSize,
+    CMemoryAlign* pMa) {
   pSlice->sSliceBs.uiSize  = iMaxSliceBufferSize;
   pSlice->sSliceBs.uiBsPos = 0;
 
@@ -942,10 +941,10 @@ int32_t InitSliceList (sWelsEncCtx* pCtx,
 
     //for multi thread, will init before encode one slice
     //if (pCtx->pSvcParam->iMultipleThreadIdc == 1) {
-      iRet = InitSliceMBInfo (pSliceArgument, pSlice,
-                              kiMBWidth, kiMBHeight);
-      if (ENC_RETURN_SUCCESS != iRet)
-        return iRet;
+    iRet = InitSliceMBInfo (pSliceArgument, pSlice,
+                            kiMBWidth, kiMBHeight);
+    if (ENC_RETURN_SUCCESS != iRet)
+      return iRet;
     //}
 
     iRet = AllocateSliceMBBuffer (pSlice, pMa);
@@ -1090,24 +1089,35 @@ int32_t InitSliceInLayer (sWelsEncCtx* pCtx,
   return ENC_RETURN_SUCCESS;
 }
 
-inline int32_t InitSliceHeadWithBase (SSlice* pSlice, SSlice* pBaseSlice) {
+static inline void InitSliceHeadWithBase (SSlice* pSlice, SSlice* pBaseSlice) {
   SSliceHeaderExt* pBaseSHExt  = &pBaseSlice->sSliceHeaderExt;
   SSliceHeaderExt* pSHExt      = &pSlice->sSliceHeaderExt;
-
-  if (NULL == pSlice || NULL == pBaseSlice)
-    return ENC_RETURN_INVALIDINPUT;
 
   pSlice->bSliceHeaderExtFlag     = pBaseSlice->bSliceHeaderExtFlag;
   pSHExt->sSliceHeader.iPpsId     = pBaseSHExt->sSliceHeader.iPpsId;
   pSHExt->sSliceHeader.pPps       = pBaseSHExt->sSliceHeader.pPps;
   pSHExt->sSliceHeader.iSpsId     = pBaseSHExt->sSliceHeader.iSpsId;
   pSHExt->sSliceHeader.pSps       = pBaseSHExt->sSliceHeader.pSps;
+}
+
+static inline void InitSliceRefInfoWithBase (SSlice* pSlice, SSlice* pBaseSlice) {
+  SSliceHeaderExt* pBaseSHExt  = &pBaseSlice->sSliceHeaderExt;
+  SSliceHeaderExt* pSHExt      = &pSlice->sSliceHeaderExt;
+
   pSHExt->sSliceHeader.uiRefCount = pBaseSHExt->sSliceHeader.uiRefCount;
   memcpy (&pSHExt->sSliceHeader.sRefMarking, &pBaseSHExt->sSliceHeader.sRefMarking, sizeof (SRefPicMarking));
   memcpy (&pSHExt->sSliceHeader.sRefReordering, &pBaseSHExt->sSliceHeader.sRefReordering,
           sizeof (SRefPicListReorderSyntax));
-  return ENC_RETURN_SUCCESS;
+}
 
+void InitSliceListHeadWithBase (SSlice** ppSliceList,
+                                SSlice* pBaseSlice,
+                                const int32_t kiSliceNum) {
+  int iIdx = 0;
+  while (iIdx < kiSliceNum) {
+    InitSliceHeadWithBase (ppSliceList[iIdx], pBaseSlice);
+    ++ iIdx;
+  }
 }
 
 int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
@@ -1170,11 +1180,9 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
     if (ENC_RETURN_SUCCESS != iRet)
       return iRet;
 
-    iRet = InitSliceHeadWithBase (pSlice, pBaseSlice);
-    if (ENC_RETURN_SUCCESS != iRet)
-      return iRet;
-
-    InitRCInfoForOneSlice(pSlice, iBitsPerMb, pCtx->iGlobalQp);
+    InitSliceHeadWithBase (pSlice, pBaseSlice);
+    InitSliceRefInfoWithBase (pSlice, pBaseSlice);
+    InitRCInfoForOneSlice (pSlice, iBitsPerMb, pCtx->iGlobalQp);
   }
 
   pMA->WelsFree (pSliceList, "Slice");

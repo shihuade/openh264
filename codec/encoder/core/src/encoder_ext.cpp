@@ -2709,14 +2709,12 @@ void WelsInitCurrentLayer (sWelsEncCtx* pCtx,
   SPicture* pDecPic             = pCtx->pDecPic;
   SDqLayer* pCurDq              = pCtx->pCurDqLayer;
   SSlice*   pBaseSlice          = pCurDq->ppSliceInLayer[0];
-  SSlice*   pSlice              = NULL;
   const uint8_t kiCurDid        = pCtx->uiDependencyId;
   const bool kbUseSubsetSpsFlag = (!pParam->bSimulcastAVC) && (kiCurDid > BASE_DEPENDENCY_ID);
   SSpatialLayerConfig* fDlp     = &pParam->sSpatialLayers[kiCurDid];
   SNalUnitHeaderExt* pNalHdExt  = &pCurDq->sLayerInfo.sNalHeaderExt;
   SNalUnitHeader* pNalHd        = &pNalHdExt->sNalUnitHeader;
   SDqIdc* pDqIdc                = &pCtx->pDqIdcMap[kiCurDid];
-  int32_t iIdx                  = 0;
   int32_t iSliceCount           = 0;
   SSpatialLayerInternal* pParamInternal = &pParam->sDependencyLayers[kiCurDid];
   if (NULL == pCurDq)
@@ -2754,17 +2752,7 @@ void WelsInitCurrentLayer (sWelsEncCtx* pCtx,
 
   pBaseSlice->bSliceHeaderExtFlag = (NAL_UNIT_CODED_SLICE_EXT == pCtx->eNalType);
 
-  iIdx = 1;
-  while (iIdx < iSliceCount) {
-    pSlice = pCurDq->ppSliceInLayer[iIdx];
-
-    pSlice->sSliceHeaderExt.sSliceHeader.iPpsId = pBaseSlice->sSliceHeaderExt.sSliceHeader.iPpsId;
-    pSlice->sSliceHeaderExt.sSliceHeader.pPps   = pBaseSlice->sSliceHeaderExt.sSliceHeader.pPps;
-    pSlice->sSliceHeaderExt.sSliceHeader.iSpsId = pBaseSlice->sSliceHeaderExt.sSliceHeader.iSpsId;
-    pSlice->sSliceHeaderExt.sSliceHeader.pSps   = pBaseSlice->sSliceHeaderExt.sSliceHeader.pSps;
-    pSlice->bSliceHeaderExtFlag                 = pBaseSlice->bSliceHeaderExtFlag;
-    ++ iIdx;
-  }
+  InitSliceListHeadWithBase (pCurDq->ppSliceInLayer, pBaseSlice, iSliceCount);
 
   memset (pNalHdExt, 0, sizeof (SNalUnitHeaderExt));
   pNalHd->uiNalRefIdc                   = pCtx->eNalPriority;
