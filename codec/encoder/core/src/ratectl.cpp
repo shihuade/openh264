@@ -508,7 +508,7 @@ void RcCalculatePictureQp (sWelsEncCtx* pEncCtx) {
   pEncCtx->iGlobalQp = iLumaQp;
 }
 
-inline void InitRCInfoForOneSlice(SSlice* pSlice, const int32_t kiBitsPerMb,const int32_t kiGlobalQp){
+void InitRCInfoForOneSlice(SSlice* pSlice, const int32_t kiBitsPerMb,const int32_t kiGlobalQp){
   SRCSlicing* pSOverRc            = &pSlice->sSlicingOverRc;
 
   pSOverRc->iStartMbSlice         = pSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice;
