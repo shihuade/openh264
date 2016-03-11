@@ -1120,6 +1120,31 @@ void InitSliceListHeadWithBase (SSlice** ppSliceList,
   }
 }
 
+static inline void InitRCInfoForOneSlice (SSlice* pSlice, const int32_t kiBitsPerMb, const int32_t kiGlobalQp) {
+  SRCSlicing* pSOverRc            = &pSlice->sSlicingOverRc;
+
+  pSOverRc->iStartMbSlice         = pSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice;
+  pSOverRc->iEndMbSlice           = pSOverRc->iStartMbSlice + (pSlice->iCountMbNumInSlice - 1);
+  pSOverRc->iTotalQpSlice         = 0;
+  pSOverRc->iTotalMbSlice         = 0;
+  pSOverRc->iTargetBitsSlice      = WELS_DIV_ROUND (kiBitsPerMb * pSlice->iCountMbNumInSlice, INT_MULTIPLY);
+  pSOverRc->iFrameBitsSlice       = 0;
+  pSOverRc->iGomBitsSlice         = 0;
+  pSOverRc->iComplexityIndexSlice = 0;
+  pSOverRc->iCalculatedQpSlice    = kiGlobalQp;
+  pSOverRc->iBsPosSlice           = 0;
+  pSOverRc->iGomTargetBits        = 0;
+}
+
+void InitRCInfoForSliceList (SSlice** pSliceList,
+                             const int32_t kiBitsPerMb,
+                             const int32_t kiGlobalQp,
+                             const int32_t kiSliceNum) {
+
+  for (int32_t i = 0; i < kiSliceNum; i++) {
+    InitRCInfoForOneSlice (pSliceList[i], kiBitsPerMb, kiGlobalQp);
+  }
+}
 int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
                              SSliceArgument* pSliceArgument,
                              SSlice*& pSliceList,

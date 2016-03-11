@@ -268,7 +268,6 @@ bool WelsRcPostFrameSkipping(sWelsEncCtx* pCtx, const int32_t iDid, const long l
 void WelsRcPostFrameSkippedUpdate (sWelsEncCtx* pCtx, const int32_t iDid);
 
 void RcTraceFrameBits (sWelsEncCtx* pEncCtx, long long uiTimeStamp);
-void InitRCInfoForOneSlice(SSlice* pSlice, const int32_t kiBitsPerMb,const int32_t kiGlobalQp);
 void WelsRcInitModule (sWelsEncCtx* pCtx, RC_MODES iRcMode);
 void WelsRcInitFuncPointers (sWelsEncCtx* pEncCtx, RC_MODES iRcMode);
 void WelsRcFreeMemory (sWelsEncCtx* pCtx);

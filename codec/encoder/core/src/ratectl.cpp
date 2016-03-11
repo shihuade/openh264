@@ -45,6 +45,7 @@
 #include "encoder_context.h"
 #include "utils.h"
 #include "svc_enc_golomb.h"
+#include "svc_encode_slice.h"
 
 
 namespace WelsEnc {
@@ -508,33 +509,15 @@ void RcCalculatePictureQp (sWelsEncCtx* pEncCtx) {
   pEncCtx->iGlobalQp = iLumaQp;
 }
 
-void InitRCInfoForOneSlice(SSlice* pSlice, const int32_t kiBitsPerMb,const int32_t kiGlobalQp){
-  SRCSlicing* pSOverRc            = &pSlice->sSlicingOverRc;
-
-  pSOverRc->iStartMbSlice         = pSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice;
-  pSOverRc->iEndMbSlice           = pSOverRc->iStartMbSlice + (pSlice->iCountMbNumInSlice - 1);
-  pSOverRc->iTotalQpSlice         = 0;
-  pSOverRc->iTotalMbSlice         = 0;
-  pSOverRc->iTargetBitsSlice      = WELS_DIV_ROUND (kiBitsPerMb * pSlice->iCountMbNumInSlice, INT_MULTIPLY);
-  pSOverRc->iFrameBitsSlice       = 0;
-  pSOverRc->iGomBitsSlice         = 0;
-  pSOverRc->iComplexityIndexSlice = 0;
-  pSOverRc->iCalculatedQpSlice    = kiGlobalQp;
-  pSOverRc->iBsPosSlice           = 0;
-  pSOverRc->iGomTargetBits        = 0;
-}
-
 void RcInitSliceInformation (sWelsEncCtx* pEncCtx) {
-  SSlice** ppSliceInLayer     = pEncCtx->pCurDqLayer->ppSliceInLayer;
   SWelsSvcRc* pWelsSvcRc      = &pEncCtx->pWelsSvcRc[pEncCtx->uiDependencyId];
-  const int32_t kiSliceNum    = pWelsSvcRc->iSliceNum;
-  const int32_t kiGlobalQp    = pEncCtx->iGlobalQp;
   const int32_t kiBitsPerMb   = WELS_DIV_ROUND (static_cast<int64_t> (pWelsSvcRc->iTargetBits) * INT_MULTIPLY,
                                   pWelsSvcRc->iNumberMbFrame);
 
-  for (int32_t i = 0; i < kiSliceNum; i++) {
-    InitRCInfoForOneSlice(ppSliceInLayer[i], kiBitsPerMb, kiGlobalQp);
-  }
+  InitRCInfoForSliceList(pEncCtx->pCurDqLayer->ppSliceInLayer,
+                         kiBitsPerMb,
+                         pEncCtx->iGlobalQp,
+                         pWelsSvcRc->iSliceNum);
 }
 
 void RcDecideTargetBits (sWelsEncCtx* pEncCtx) {
