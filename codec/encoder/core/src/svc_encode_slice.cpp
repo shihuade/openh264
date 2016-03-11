@@ -1090,14 +1090,14 @@ int32_t InitSliceInLayer (sWelsEncCtx* pCtx,
   return ENC_RETURN_SUCCESS;
 }
 
-int32_t InitSliceHeadWithBase (SSlice* pSlice, SSlice* pBaseSlice) {
+inline int32_t InitSliceHeadWithBase (SSlice* pSlice, SSlice* pBaseSlice) {
   SSliceHeaderExt* pBaseSHExt  = &pBaseSlice->sSliceHeaderExt;
   SSliceHeaderExt* pSHExt      = &pSlice->sSliceHeaderExt;
 
   if (NULL == pSlice || NULL == pBaseSlice)
     return ENC_RETURN_INVALIDINPUT;
 
-  pSlice->bSliceHeaderExtFlag  = pBaseSlice->bSliceHeaderExtFlag;
+  pSlice->bSliceHeaderExtFlag     = pBaseSlice->bSliceHeaderExtFlag;
   pSHExt->sSliceHeader.iPpsId     = pBaseSHExt->sSliceHeader.iPpsId;
   pSHExt->sSliceHeader.pPps       = pBaseSHExt->sSliceHeader.pPps;
   pSHExt->sSliceHeader.iSpsId     = pBaseSHExt->sSliceHeader.iSpsId;
