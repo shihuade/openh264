@@ -1443,11 +1443,11 @@ static inline int32_t ReOrderSliceInLayer (SDqLayer* pCurLayer,
   bool bMatchedFlag      = false;
   SSlice* pSliceInThread = NULL;
   int32_t iThreadIdx     = 0;
-  int32_t iSliceIdx      = 0;
+  int32_t uiSliceIdx      = 0;
   int32_t aiSliceIndex[MAX_THREADS_NUM] = {0};
 
   //update ppSliceInLayer based on pSliceInThread, reordering based on slice index
-  for (iSliceIdx = 0; iSliceIdx < kiCodedSliceNum; iSliceIdx++) {
+  for (uiSliceIdx = 0; uiSliceIdx < kiCodedSliceNum; uiSliceIdx++) {
     bMatchedFlag     = false;
 
     for (iThreadIdx = 0; iThreadIdx < kiThreadNum; iThreadIdx++) {
@@ -1455,7 +1455,7 @@ static inline int32_t ReOrderSliceInLayer (SDqLayer* pCurLayer,
       if (NULL == pSliceInThread)
         return ENC_RETURN_UNEXPECTED;
 
-      if (pSliceInThread->uiSliceIdx == iSliceIdx) {
+      if (pSliceInThread->uiSliceIdx == uiSliceIdx) {
         aiSliceIndex[iThreadIdx]++;
         bMatchedFlag     = true;
         break;
@@ -1465,7 +1465,7 @@ static inline int32_t ReOrderSliceInLayer (SDqLayer* pCurLayer,
     if (false == bMatchedFlag)
       return ENC_RETURN_UNEXPECTED;
 
-    pCurLayer->ppSliceInLayer[iSliceIdx] = pSliceInThread;
+    pCurLayer->ppSliceInLayer[uiSliceIdx] = pSliceInThread;
   }
 
   return ENC_RETURN_SUCCESS;
