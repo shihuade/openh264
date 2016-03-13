@@ -498,7 +498,6 @@ void WlesMarkMMCORefInfo (sWelsEncCtx* pCtx,
 void WelsMarkPic (sWelsEncCtx* pCtx) {
   SLTRState* pLtr               = &pCtx->pLtr[pCtx->uiDependencyId];
   const int32_t kiCountSliceNum = GetCurrentSliceNum (pCtx->pCurDqLayer);
-  SSlice** ppSliceList          = NULL;
 
   if (pCtx->pSvcParam->bEnableLongTermReference && pLtr->bLTRMarkEnable && pCtx->uiTemporalId == 0) {
     if (!pLtr->bReceivedT0LostFlag && pLtr->uiLtrMarkInterval > pCtx->pSvcParam->iLtrMarkPeriod
@@ -515,9 +514,7 @@ void WelsMarkPic (sWelsEncCtx* pCtx) {
       pLtr->bLTRMarkingFlag = false;
     }
   }
-
-  ppSliceList = pCtx->pCurDqLayer->ppSliceInLayer;
-  WlesMarkMMCORefInfo (pCtx, pLtr, ppSliceList, kiCountSliceNum);
+  WlesMarkMMCORefInfo (pCtx, pLtr, pCtx->pCurDqLayer->ppSliceInLayer, kiCountSliceNum);
 }
 
 int32_t FilterLTRRecoveryRequest (sWelsEncCtx* pCtx, SLTRRecoverRequest* pLTRRecoverRequest) {
