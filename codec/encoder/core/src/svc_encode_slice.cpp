@@ -1038,7 +1038,7 @@ int32_t InitSliceThreadInfo (sWelsEncCtx* pCtx,
   return ENC_RETURN_SUCCESS;
 }
 
-//TODO: will replaced with multi-thread init and later
+//TODO: will unitfy and replaced by multi-thread init later
 static inline int32_t InitSliceListInLayer (sWelsEncCtx* pCtx,
     SDqLayer* pDqLayer,
     CMemoryAlign* pMa) {
@@ -1079,7 +1079,7 @@ static inline int32_t InitSliceListInLayerMulti (sWelsEncCtx* pCtx,
   pDqLayer->ppSliceInLayer = (SSlice**)pMa->WelsMallocz (sizeof (SSlice*) * pDqLayer->iSliceBufferSize, "ppSliceInLayer");
   if (NULL ==  pDqLayer->ppSliceInLayer) {
     WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR,
-             "CWelsH264SVCEncoder::InitSliceListInLayer() pDqLayer->ppSliceInLayer is NULL");
+             "CWelsH264SVCEncoder::InitSliceListInLayerMulti() pDqLayer->ppSliceInLayer is NULL");
     return ENC_RETURN_MEMALLOCERR;
   }
 
