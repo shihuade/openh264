@@ -88,7 +88,7 @@ struct TagDqLayer {
 SLayerInfo              sLayerInfo;
 SSliceThreadInfo        sSliceThreadInfo;
 SSlice**                ppSliceInLayer;
-int32_t                 iSliceBufferSize;
+int32_t                 iAllocatedSliceNum;
 SSliceCtx               sSliceEncCtx;   // current slice context
 uint8_t*                pCsData[3];     // pointer to reconstructed picture pData
 int32_t                 iCsStride[3];   // Cs stride
