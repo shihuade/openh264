@@ -1004,9 +1004,9 @@ int32_t InitSliceThreadInfo (sWelsEncCtx* pCtx,
   int32_t iRet                        = 0;
 
   assert (iThreadNum > 0);
-  iMaxSliceNumInThread = (pCtx->iMaxSliceCount / iThreadNum + 1) * 2;
-  iMaxSliceNumInThread =  WELS_MIN (pCtx->iMaxSliceCount, (int) iMaxSliceNumInThread);
   //TODO: will replaced when thread slice buffer ready
+  //iMaxSliceNumInThread = (pCtx->iMaxSliceCount / iThreadNum + 1) * 2;
+  //iMaxSliceNumInThread =  WELS_MIN (pCtx->iMaxSliceCount, (int) iMaxSliceNumInThread);
   //MaxSliceNumInThread =  WELS_MIN (pDqLayer->iMaxSliceNum, (int) iMaxSliceNumInThread);
   iMaxSliceNumInThread = pDqLayer->iMaxSliceNum;
 
@@ -1066,10 +1066,12 @@ static inline int32_t InitSliceListInLayer (sWelsEncCtx* pCtx,
 
   for (iThreadIdx = 0; iThreadIdx < kiThreadNum; iThreadIdx++) {
     iStep = iSliceNumInThread * iThreadIdx;
+    //TODO: will remove if() when thread-slice buffer is ready
     if (iStep >= pDqLayer->iAllocatedSliceNum)
       break;
 
     for (iSliceIdx = 0; iSliceIdx < iSliceNumInThread; iSliceIdx++) {
+      //TODO: will remove if() when thread-slice buffer is ready
       if ((iStep + iSliceIdx) >= pDqLayer->iAllocatedSliceNum)
         break;
 
