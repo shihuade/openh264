@@ -856,17 +856,6 @@ int32_t FiredSliceThreads (sWelsEncCtx* pCtx, SSliceThreadPrivateData* pPriData,
     return 1;
   }
 
-  ////////////////////////////////////////
-  if (bIsDynamicSlicingMode) {
-    iEndMbIdx = pSliceCtx->iMbNumInFrame;
-    for (iIdx = kiEventCnt - 1; iIdx >= 0; --iIdx) {
-      const int32_t iFirstMbIdx         = ppSliceInLayer[iIdx]->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice;
-      pPriData[iIdx].iStartMbIndex      = iFirstMbIdx;
-      pPriData[iIdx].iEndMbIndex        = iEndMbIdx;
-      iEndMbIdx                         = iFirstMbIdx;
-    }
-  }
-
   pLbi->pBsBuf = pCtx->pFrameBs + pCtx->iPosBsBuffer;
   pLbi->uiLayerType   = VIDEO_CODING_LAYER;
   pLbi->uiSpatialId   = pCtx->uiDependencyId;

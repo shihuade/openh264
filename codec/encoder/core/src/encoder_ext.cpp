@@ -2612,13 +2612,14 @@ void WelsInitCurrentQBLayerMltslc (sWelsEncCtx* pCtx) {
   DynslcUpdateMbNeighbourInfoListForAllSlices (pCurDq, pCurDq->sMbDataP);
 }
 
-void UpdateSlicepEncCtxWithPartition (SDqLayer* pCurDq, int32_t iPartitionNum) {
+void UpdateSlicePartitionInfo (sWelsEncCtx* pCtx, SDqLayer* pCurDq, int32_t iPartitionNum) {
   SSliceCtx* pSliceCtx                  = &pCurDq->sSliceEncCtx;
   SSlice** ppSliceInLayer               = pCurDq->ppSliceInLayer;
   const int32_t kiMbNumInFrame          = pSliceCtx->iMbNumInFrame;
   int32_t iCountMbNumPerPartition       = kiMbNumInFrame;
   int32_t iAssignableMbLeft             = kiMbNumInFrame;
   int32_t iFirstMbIdx                   = 0;
+  int32_t iEndMbIdx                     = 0;
   int32_t i/*, j*/;
 
   if (iPartitionNum <= 0)
@@ -2639,18 +2640,24 @@ void UpdateSlicepEncCtxWithPartition (SDqLayer* pCurDq, int32_t iPartitionNum) {
     WelsSetMemMultiplebytes_c (pSliceCtx->pOverallMbMap + iFirstMbIdx, i,
                                ppSliceInLayer[i]->iCountMbNumInSlice, sizeof (uint16_t));
 
+    iEndMbIdx += ppSliceInLayer[i]->iCountMbNumInSlice;
+    if(pCtx->iActiveThreadsNum >1){
+      pCtx->pSliceThreading->pThreadPEncCtx[i].iStartMbIndex  = iFirstMbIdx;
+      pCtx->pSliceThreading->pThreadPEncCtx[i].iEndMbIndex    = iEndMbIdx;
+    }
     // for next partition(or pSlice)
     iFirstMbIdx       += ppSliceInLayer[i]->iCountMbNumInSlice;
     iAssignableMbLeft -= ppSliceInLayer[i]->iCountMbNumInSlice;
     ++ i;
   }
+
 }
 
 void WelsInitCurrentDlayerMltslc (sWelsEncCtx* pCtx, int32_t iPartitionNum) {
   SDqLayer* pCurDq      = pCtx->pCurDqLayer;
   SSliceCtx* pSliceCtx  = &pCurDq->sSliceEncCtx;
 
-  UpdateSlicepEncCtxWithPartition (pCurDq, iPartitionNum);
+  UpdateSlicePartitionInfo (pCtx, pCurDq, iPartitionNum);
 
   if (I_SLICE == pCtx->eSliceType) { //check if uiSliceSizeConstraint too small
 #define byte_complexIMBat26 (60)
@@ -3967,15 +3974,6 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
                                            &pCtx->pSliceThreading->pSliceCodedMasterEvent);
         WELS_VERIFY_RETURN_IFNEQ (pCtx->iEncoderError, ENC_RETURN_SUCCESS)
 #else
-        int32_t iEndMbIdx = pCtx->pCurDqLayer->sSliceEncCtx.iMbNumInFrame;
-        for (int32_t iIdx = kiPartitionCnt - 1; iIdx >= 0; --iIdx) {
-          const int32_t iFirstMbIdx         =
-            pCtx->pCurDqLayer->ppSliceInLayer[iIdx]->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice;
-          pCtx->pSliceThreading->pThreadPEncCtx[iIdx].iStartMbIndex      = iFirstMbIdx;
-          pCtx->pSliceThreading->pThreadPEncCtx[iIdx].iEndMbIndex        = iEndMbIdx;
-          iEndMbIdx                         = iFirstMbIdx;
-        }
-
         //TODO: use a function to remove duplicate code here and ln3994
         int32_t iLayerBsIdx       = pCtx->pOut->iLayerBsIndex;
         SLayerBSInfo* pLbi        = &pFbi->sLayerInfo[iLayerBsIdx];
