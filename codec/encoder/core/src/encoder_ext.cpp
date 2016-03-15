@@ -1340,7 +1340,7 @@ static inline int32_t InitDqLayers (sWelsEncCtx** ppCtx, SExistingParasetList* p
     iResult = InitSliceInLayer (ppCtx, pDqLayer, iDlayerIndex, pMa);
     if (iResult) {
       WelsLog (& (*ppCtx)->sLogCtx, WELS_LOG_WARNING, "InitDqLayers(), InitSliceInLayer failed(%d)!", iResult);
-      FreeMemorySvc (ppCtx);
+      FreeDqLayer (pDqLayer, pMa);
       return iResult;
     }
 
