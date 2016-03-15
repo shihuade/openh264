@@ -70,15 +70,13 @@ int32_t iHighFreMbCount;
 
 typedef struct TagSliceThreadInfo {
 SSlice*                 pSliceInThread[MAX_THREADS_NUM];// slice buffer for multi thread,
-                                                        // will not alloated when multi thread is off
+                                                        //  pSliceInThread[0] for single thread
 int32_t                 iMaxSliceNumInThread[MAX_THREADS_NUM];
 int32_t                 iEncodedSliceNumInThread[MAX_THREADS_NUM];
 }SSliceThreadInfo;
 
 typedef struct TagLayerInfo {
 SNalUnitHeaderExt       sNalHeaderExt;
-SSlice*                 pSliceInLayer;  // Here SSlice identify to Frame on concept, [iSliceIndex],
-                                        // may need extend list size for sliceMode=SM_SIZELIMITED_SLICE
 SSubsetSps*             pSubsetSpsP;    // current pSubsetSps used, memory alloc in external
 SWelsSPS*               pSpsP;          // current pSps based avc used, memory alloc in external
 SWelsPPS*               pPpsP;          // current pPps used
@@ -87,7 +85,7 @@ SWelsPPS*               pPpsP;          // current pPps used
 struct TagDqLayer {
 SLayerInfo              sLayerInfo;
 SSliceThreadInfo        sSliceThreadInfo;
-SSlice**                ppSliceInLayer;
+SSlice**                ppSliceInLayer;    // may need extend list size for sliceMode=SM_SIZELIMITED_SLICE
 int32_t                 iAllocatedSliceNum;
 SSliceCtx               sSliceEncCtx;   // current slice context
 uint8_t*                pCsData[3];     // pointer to reconstructed picture pData
