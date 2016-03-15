@@ -1006,7 +1006,11 @@ int32_t InitSliceThreadInfo (sWelsEncCtx* pCtx,
   assert (iThreadNum > 0);
   iMaxSliceNumInThread = (pCtx->iMaxSliceCount / iThreadNum + 1) * 2;
   iMaxSliceNumInThread =  WELS_MIN (pCtx->iMaxSliceCount, (int) iMaxSliceNumInThread);
-
+  //TODO: will replaced when thread slice buffer ready
+  //MaxSliceNumInThread =  WELS_MIN (pDqLayer->iMaxSliceNum, (int) iMaxSliceNumInThread);
+  iMaxSliceNumInThread = pDqLayer->iMaxSliceNum;
+    
+    
   while (iIdx < iThreadNum) {
     pSliceThreadInfo->iMaxSliceNumInThread[iIdx]      = iMaxSliceNumInThread;
     pSliceThreadInfo->iEncodedSliceNumInThread[iIdx]  = 0;
