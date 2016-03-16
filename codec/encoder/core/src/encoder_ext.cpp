@@ -894,7 +894,7 @@ int32_t   InitMbListD (sWelsEncCtx** ppCtx) {
 
   return 0;
 }
-void FreeSliceInLayer (SDqLayer*& pDq, CMemoryAlign* pMa) {
+void FreeSliceInLayer (SDqLayer* pDq, CMemoryAlign* pMa) {
   int32_t iIdx = 0;
 
   FreeSliceBuffer (pDq->sLayerInfo.pSliceInLayer, pDq->iMaxSliceNum, pMa, "pSliceInLayer");
@@ -1110,7 +1110,7 @@ int32_t FindExistingPps (SWelsSPS* pSps, SSubsetSps* pSubsetSps, const bool kbUs
 
 static inline int32_t InitSliceList (sWelsEncCtx* pCtx,
                                      SDqLayer* pDqLayer,
-                                     SSlice*& pSliceList,
+                                     SSlice* pSliceList,
                                      const int32_t kiMaxSliceNum,
                                      const int32_t kiDlayerIndex,
                                      CMemoryAlign* pMa) {
@@ -1217,7 +1217,8 @@ static inline int32_t InitSliceThreadInfo (sWelsEncCtx* pCtx,
     pSliceThreadInfo->iEncodedSliceNumInThread[iIdx] = 0;
     pSliceThreadInfo->pSliceInThread[iIdx]           = (SSlice*)pMa->WelsMallocz (sizeof (SSlice) *
         iMaxSliceNumInThread, "pSliceInThread");
-    WELS_VERIFY_RETURN_PROC_IF (1, (NULL == pSliceThreadInfo->pSliceInThread[iIdx]), FreeDqLayer (pDqLayer, pMa))
+    if(NULL == pSliceThreadInfo->pSliceInThread[iIdx])
+      return ENC_RETURN_MEMALLOCERR;
 
     iRet = InitSliceList (pCtx,
                           pDqLayer,
@@ -1251,7 +1252,8 @@ static inline int32_t InitSliceInLayer (sWelsEncCtx* pCtx,
 
 
   pDqLayer->ppSliceInLayer = (SSlice**)pMa->WelsMallocz (sizeof (SSlice*) * iMaxSliceNum, "ppSliceInLayer");
-  WELS_VERIFY_RETURN_PROC_IF (1, (NULL == pDqLayer->ppSliceInLayer), FreeDqLayer (pDqLayer, pMa))
+  if(NULL == pDqLayer->ppSliceInLayer)
+    return ENC_RETURN_MEMALLOCERR;
 
   //if (pParam->iMultipleThreadIdc > 1) {
   // to do, will add later, slice buffer allocated based on thread mode if() else ()
@@ -1264,7 +1266,8 @@ static inline int32_t InitSliceInLayer (sWelsEncCtx* pCtx,
 
   //} else {
   pDqLayer->sLayerInfo.pSliceInLayer = (SSlice*)pMa->WelsMallocz (sizeof (SSlice) * iMaxSliceNum, "pSliceInLayer");
-  WELS_VERIFY_RETURN_PROC_IF (1, (NULL == pDqLayer->sLayerInfo.pSliceInLayer), FreeDqLayer (pDqLayer, pMa))
+  if(NULL == pDqLayer->sLayerInfo.pSliceInLayer)
+    return ENC_RETURN_MEMALLOCERR;
 
   iRet = InitSliceList (pCtx,
                         pDqLayer,
@@ -1393,7 +1396,7 @@ static inline int32_t InitDqLayers (sWelsEncCtx** ppCtx, SExistingParasetList* p
     iResult = InitSliceInLayer (*ppCtx, pDqLayer, iDlayerIndex, pMa);
     if (iResult) {
       WelsLog (& (*ppCtx)->sLogCtx, WELS_LOG_WARNING, "InitDqLayers(), InitSliceInLayer failed(%d)!", iResult);
-      FreeMemorySvc (ppCtx);
+      FreeDqLayer (pDqLayer, pMa);
       return iResult;
     }
 
@@ -2128,8 +2131,7 @@ int32_t RequestMemorySvc (sWelsEncCtx** ppCtx, SExistingParasetList* pExistingPa
 
   //End of pVaa memory allocation
 
-  (*ppCtx)->ppRefPicListExt = (SRefList**)pMa->WelsMallocz (kiNumDependencyLayers * sizeof (SRefList*),
-                              "ppRefPicListExt");
+  (*ppCtx)->ppRefPicListExt = (SRefList**)pMa->WelsMallocz (kiNumDependencyLayers * sizeof (SRefList*), "ppRefPicListExt");
   WELS_VERIFY_RETURN_PROC_IF (1, (NULL == (*ppCtx)->ppRefPicListExt), FreeMemorySvc (ppCtx))
 
   (*ppCtx)->ppDqLayerList = (SDqLayer**)pMa->WelsMallocz (kiNumDependencyLayers * sizeof (SDqLayer*), "ppDqLayerList");
@@ -2371,7 +2373,7 @@ void FreeMemorySvc (sWelsEncCtx** ppCtx) {
     if ((*ppCtx)->pMemAlign != NULL) {
       WelsLog (& (*ppCtx)->sLogCtx, WELS_LOG_INFO, "FreeMemorySvc(), verify memory usage (%d bytes) after free..",
                (*ppCtx)->pMemAlign->WelsGetMemoryUsage());
-      WELS_DELETE_OP ((*ppCtx)->pMemAlign);
+      WELS_DELETE_OP((*ppCtx)->pMemAlign);
     }
 
     free (*ppCtx);
@@ -2559,7 +2561,7 @@ void WelsUninitEncoderExt (sWelsEncCtx** ppCtx) {
 
   if ((*ppCtx)->pVpp) {
     (*ppCtx)->pVpp->FreeSpatialPictures (*ppCtx);
-    WELS_DELETE_OP ((*ppCtx)->pVpp);
+    WELS_DELETE_OP((*ppCtx)->pVpp);
   }
   FreeMemorySvc (ppCtx);
   *ppCtx = NULL;
@@ -3797,7 +3799,7 @@ void ClearFrameBsInfo (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi) {
  * \pParam  pSrcPic         Source Picture
  * \return  EFrameType (videoFrameTypeIDR/videoFrameTypeI/videoFrameTypeP)
  */
-int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSourcePicture* pSrcPic) {
+int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSourcePicture* pSrcPic ) {
   if (pCtx == NULL) {
     return ENC_RETURN_MEMALLOCERR;
   }
@@ -3837,8 +3839,7 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
   pCtx->iEncoderError = ENC_RETURN_SUCCESS;
   pCtx->bCurFrameMarkedAsSceneLtr = false;
   pFbi->iLayerNum = 0; // for initialization
-  pFbi->uiTimeStamp = GetTimestampForRc (pSrcPic->uiTimeStamp, pCtx->uiLastTimestamp,
-                                         pCtx->pSvcParam->sSpatialLayers[pCtx->pSvcParam->iSpatialLayerNum - 1].fFrameRate);
+  pFbi->uiTimeStamp = GetTimestampForRc (pSrcPic->uiTimeStamp, pCtx->uiLastTimestamp, pCtx->pSvcParam->sSpatialLayers[pCtx->pSvcParam->iSpatialLayerNum - 1].fFrameRate);
   for (int32_t iNalIdx = 0; iNalIdx < MAX_LAYER_NUM_OF_FRAME; iNalIdx++) {
     pFbi->sLayerInfo[iNalIdx].eFrameType = videoFrameTypeSkip;
   }
@@ -5128,7 +5129,7 @@ int32_t DynSliceRealloc (sWelsEncCtx* pCtx,
   int32_t iRet = 0;
 
   iRet = FrameBsRealloc (pCtx, pFrameBsInfo, pLayerBsInfo);
-  if (ENC_RETURN_SUCCESS != iRet)
+  if(ENC_RETURN_SUCCESS != iRet)
     return iRet;
 
   iRet = ReallocSliceBuffer (pCtx);
