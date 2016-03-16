@@ -1217,7 +1217,8 @@ static inline int32_t InitSliceInLayer (sWelsEncCtx** ppCtx,
 
 
   pDqLayer->ppSliceInLayer = (SSlice**)pMa->WelsMallocz (sizeof (SSlice*) * iMaxSliceNum, "ppSliceInLayer");
-  WELS_VERIFY_RETURN_PROC_IF (1, (NULL == pDqLayer->ppSliceInLayer), FreeDqLayer (pDqLayer, pMa))
+  if(NULL == pDqLayer->ppSliceInLayer)
+    return ENC_RETURN_MEMALLOCERR;
 
   //if (pParam->iMultipleThreadIdc > 1) {
   // to do, will add later, slice buffer allocated based on thread mode if() else ()
