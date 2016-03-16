@@ -340,6 +340,16 @@ int32_t GetInitialSliceNum (const int32_t kiMbWidth, const int32_t kiMbHeight, S
 }
 
 /*!
+ *  Get actual allocated slice buffer num
+ */
+int32_t GetAllocateSliceNum (const SDqLayer* pCurDq){
+  if(NULL == pCurDq)
+    return -1;
+
+  return pCurDq->iAllocatedSliceNum;
+}
+
+/*!
  * \brief   Initialize slice segment (Single/multiple slices)
  *
  * \param   pCurDq              current layer which its SSlice segment will be initialized
