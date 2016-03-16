@@ -894,7 +894,7 @@ int32_t   InitMbListD (sWelsEncCtx** ppCtx) {
 
   return 0;
 }
-void FreeSliceInLayer (SDqLayer*& pDq, CMemoryAlign* pMa) {
+void FreeSliceInLayer (SDqLayer* pDq, CMemoryAlign* pMa) {
   int32_t iIdx = 0;
 
   FreeSliceBuffer (pDq->sLayerInfo.pSliceInLayer, pDq->iMaxSliceNum, pMa, "pSliceInLayer");
@@ -1105,7 +1105,7 @@ int32_t FindExistingPps (SWelsSPS* pSps, SSubsetSps* pSubsetSps, const bool kbUs
 
 static inline int32_t InitSliceList (sWelsEncCtx** ppCtx,
                                      SDqLayer* pDqLayer,
-                                     SSlice*& pSliceList,
+                                     SSlice* pSliceList,
                                      const int32_t kiMaxSliceNum,
                                      const int32_t kiDlayerIndex,
                                      CMemoryAlign* pMa) {
@@ -1177,7 +1177,8 @@ static inline int32_t InitSliceThreadInfo (sWelsEncCtx** ppCtx,
     pSliceThreadInfo->iEncodedSliceNumInThread[iIdx] = 0;
     pSliceThreadInfo->pSliceInThread[iIdx]           = (SSlice*)pMa->WelsMallocz (sizeof (SSlice) *
         iMaxSliceNumInThread, "pSliceInThread");
-    WELS_VERIFY_RETURN_PROC_IF (1, (NULL == pSliceThreadInfo->pSliceInThread[iIdx]), FreeDqLayer (pDqLayer, pMa))
+    if(NULL == pSliceThreadInfo->pSliceInThread[iIdx])
+      return ENC_RETURN_MEMALLOCERR;
 
     iRet = InitSliceList (ppCtx,
                           pDqLayer,
@@ -1219,7 +1220,8 @@ static inline int32_t InitSliceInLayer (sWelsEncCtx** ppCtx,
 
   //} else {
   pDqLayer->sLayerInfo.pSliceInLayer = (SSlice*)pMa->WelsMallocz (sizeof (SSlice) * iMaxSliceNum, "pSliceInLayer");
-  WELS_VERIFY_RETURN_PROC_IF (1, (NULL == pDqLayer->sLayerInfo.pSliceInLayer), FreeDqLayer (pDqLayer, pMa))
+  if(NULL == pDqLayer->sLayerInfo.pSliceInLayer)
+    return ENC_RETURN_MEMALLOCERR;
 
   InitSliceList (ppCtx,
                  pDqLayer,
@@ -2317,7 +2319,7 @@ void FreeMemorySvc (sWelsEncCtx** ppCtx) {
     if ((*ppCtx)->pMemAlign != NULL) {
       WelsLog (& (*ppCtx)->sLogCtx, WELS_LOG_INFO, "FreeMemorySvc(), verify memory usage (%d bytes) after free..",
                (*ppCtx)->pMemAlign->WelsGetMemoryUsage());
-      WELS_DELETE_OP ((*ppCtx)->pMemAlign);
+      WELS_DELETE_OP((*ppCtx)->pMemAlign);
     }
 
     free (*ppCtx);
@@ -2505,7 +2507,7 @@ void WelsUninitEncoderExt (sWelsEncCtx** ppCtx) {
 
   if ((*ppCtx)->pVpp) {
     (*ppCtx)->pVpp->FreeSpatialPictures (*ppCtx);
-    WELS_DELETE_OP ((*ppCtx)->pVpp);
+    WELS_DELETE_OP((*ppCtx)->pVpp);
   }
   FreeMemorySvc (ppCtx);
   *ppCtx = NULL;
