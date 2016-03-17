@@ -206,6 +206,6 @@ bool GomValidCheckSliceMbNum (const int32_t kiMbWidth, const int32_t kiMbHeight,
 //end of checking valid para
 
 int32_t DynamicAdjustSlicePEncCtxAll (SDqLayer* pCurDq,
-                                      int32_t* pRunLength);
+                                      unsigned int * pRunLength);
 }
 #endif//WELS_SLICE_SEGMENT_H__

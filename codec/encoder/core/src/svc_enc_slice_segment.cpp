@@ -654,12 +654,12 @@ int32_t GetCurrentSliceNum (const SDqLayer* pCurDq) {
   return (kpSliceCtx != NULL) ? (kpSliceCtx->iSliceNumInFrame) : (-1);
 }
 int32_t DynamicAdjustSlicePEncCtxAll (SDqLayer* pCurDq,
-                                      int32_t* pRunLength) {
+                                      unsigned int* pRunLength) {
   SSliceCtx* pSliceCtx                  = &pCurDq->sSliceEncCtx;
   SSlice* pSliceInLayer                 = pCurDq->sLayerInfo.pSliceInLayer;
   const int32_t iCountNumMbInFrame      = pSliceCtx->iMbNumInFrame;
   const int32_t iCountSliceNumInFrame   = pSliceCtx->iSliceNumInFrame;
-  int32_t iSameRunLenFlag               = 1;
+  bool  bSameRunLenFlag                 = true;
   int32_t iFirstMbIdx                   = 0;
   int32_t iSliceIdx                     = 0;
 
@@ -667,12 +667,12 @@ int32_t DynamicAdjustSlicePEncCtxAll (SDqLayer* pCurDq,
 
   while (iSliceIdx < iCountSliceNumInFrame) {
     if (pRunLength[iSliceIdx] != pSliceInLayer[iSliceIdx].iCountMbNumInSlice) {
-      iSameRunLenFlag = 0;
+      bSameRunLenFlag = false;
       break;
     }
     ++ iSliceIdx;
   }
-  if (iSameRunLenFlag) {
+  if (bSameRunLenFlag) {
     return 1; // do not need adjust it due to same running length as before to save complexity
   }
 
