@@ -510,14 +510,15 @@ void RcCalculatePictureQp (sWelsEncCtx* pEncCtx) {
 }
 
 void RcInitSliceInformation (sWelsEncCtx* pEncCtx) {
-  SWelsSvcRc* pWelsSvcRc      = &pEncCtx->pWelsSvcRc[pEncCtx->uiDependencyId];
-  const int32_t kiBitsPerMb   = WELS_DIV_ROUND (static_cast<int64_t> (pWelsSvcRc->iTargetBits) * INT_MULTIPLY,
+  SWelsSvcRc* pWelsSvcRc       = &pEncCtx->pWelsSvcRc[pEncCtx->uiDependencyId];
+  const int32_t kiInitSliceNum = pEncCtx->pCurDqLayer->iAllocatedSliceNum;
+  const int32_t kiBitsPerMb    = WELS_DIV_ROUND (static_cast<int64_t> (pWelsSvcRc->iTargetBits) * INT_MULTIPLY,
                                   pWelsSvcRc->iNumberMbFrame);
 
   InitRCInfoForSliceList(pEncCtx->pCurDqLayer->ppSliceInLayer,
                          kiBitsPerMb,
                          pEncCtx->iGlobalQp,
-                         pWelsSvcRc->iSliceNum);
+                         kiInitSliceNum);
 }
 
 void RcDecideTargetBits (sWelsEncCtx* pEncCtx) {

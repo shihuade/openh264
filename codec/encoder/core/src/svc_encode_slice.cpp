@@ -1451,6 +1451,8 @@ int32_t SliceLayerInfoUpdate (sWelsEncCtx* pCtx, const int32_t kiDlayerIndex) {
   if (iCodedSliceNum <= 0 || iTotalSliceNum <= 0 || iCodedSliceNum > iTotalSliceNum)
     return ENC_RETURN_UNEXPECTED;
 
+  pCurLayer->sSliceEncCtx.iSliceNumInFrame = iCodedSliceNum;
+
   if (iTotalSliceNum > pCurLayer->iAllocatedSliceNum) {
     ppSlice = (SSlice**)pMA->WelsMallocz (sizeof (SSlice*) * iTotalSliceNum, "ppSlice");
     if (NULL == ppSlice) {
