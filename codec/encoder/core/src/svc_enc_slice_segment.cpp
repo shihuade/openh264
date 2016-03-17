@@ -641,42 +641,42 @@ int32_t GetCurrentSliceNum (const SDqLayer* pCurDq) {
   return (kpSliceCtx != NULL) ? (kpSliceCtx->iSliceNumInFrame) : (-1);
 }
 int32_t DynamicAdjustSlicePEncCtxAll (SDqLayer* pCurDq,
-                                      int32_t* pRunLength) {
+                                      uint32_t* pRunLength) {
   SSliceCtx* pSliceCtx                  = &pCurDq->sSliceEncCtx;
   SSlice** ppSliceInLayer               = pCurDq->ppSliceInLayer;
-  const int32_t iCountNumMbInFrame      = pSliceCtx->iMbNumInFrame;
-  const int32_t iCountSliceNumInFrame   = pSliceCtx->iSliceNumInFrame;
-  int32_t iSameRunLenFlag               = 1;
-  int32_t iFirstMbIdx                   = 0;
-  int32_t iSliceIdx                     = 0;
+  const uint32_t uiCountNumMbInFrame    = pSliceCtx->iMbNumInFrame;
+  const uint32_t uiCountSliceNumInFrame = pSliceCtx->iSliceNumInFrame;
+  bool  bSameRunLenFlag                 = true;
+  uint32_t uiFirstMbIdx                 = 0;
+  uint32_t uiSliceIdx                   = 0;
 
-  assert (iCountSliceNumInFrame <= MAX_THREADS_NUM);
+  assert (uiCountSliceNumInFrame <= MAX_THREADS_NUM);
 
-  while (iSliceIdx < iCountSliceNumInFrame) {
-    if (pRunLength[iSliceIdx] != ppSliceInLayer[iSliceIdx]->iCountMbNumInSlice) {
-      iSameRunLenFlag = 0;
+  while (uiSliceIdx < uiCountSliceNumInFrame) {
+    if (pRunLength[uiSliceIdx] != ppSliceInLayer[uiSliceIdx]->iCountMbNumInSlice) {
+      bSameRunLenFlag = false;
       break;
     }
-    ++ iSliceIdx;
+    ++ uiSliceIdx;
   }
-  if (iSameRunLenFlag) {
+  if (bSameRunLenFlag) {
     return 1; // do not need adjust it due to same running length as before to save complexity
   }
 
-  iSliceIdx = 0;
+  uiSliceIdx = 0;
   do {
-    const int32_t kiSliceRun = pRunLength[iSliceIdx];
-    SSliceHeaderExt* pSliceHeaderExt              = &ppSliceInLayer[iSliceIdx]->sSliceHeaderExt;
-    pSliceHeaderExt->sSliceHeader.iFirstMbInSlice = iFirstMbIdx;
-    ppSliceInLayer[iSliceIdx]->iCountMbNumInSlice = kiSliceRun;
+    const uint32_t kuiSliceRun = pRunLength[uiSliceIdx];
+    SSliceHeaderExt* pSliceHeaderExt               = &ppSliceInLayer[uiSliceIdx]->sSliceHeaderExt;
+    pSliceHeaderExt->sSliceHeader.iFirstMbInSlice  = uiFirstMbIdx;
+    ppSliceInLayer[uiSliceIdx]->iCountMbNumInSlice = kuiSliceRun;
 
-    WelsSetMemMultiplebytes_c(pSliceCtx->pOverallMbMap + iFirstMbIdx, iSliceIdx,
-                              kiSliceRun, sizeof(uint16_t));
+    WelsSetMemMultiplebytes_c(pSliceCtx->pOverallMbMap + uiFirstMbIdx, uiSliceIdx,
+                              kuiSliceRun, sizeof(uint16_t));
 
-    iFirstMbIdx += kiSliceRun;
+    uiFirstMbIdx += kuiSliceRun;
 
-    ++ iSliceIdx;
-  } while (iSliceIdx < iCountSliceNumInFrame && iFirstMbIdx < iCountNumMbInFrame);
+    ++ uiSliceIdx;
+  } while (uiSliceIdx < uiCountSliceNumInFrame && uiFirstMbIdx < uiCountNumMbInFrame);
 
   return 0;
 }
