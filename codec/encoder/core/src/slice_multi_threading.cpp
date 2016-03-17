@@ -841,13 +841,10 @@ int32_t CreateSliceThreads (sWelsEncCtx* pCtx) {
 int32_t FiredSliceThreads (sWelsEncCtx* pCtx, SSliceThreadPrivateData* pPriData, WELS_EVENT* pEventsList,
                            WELS_EVENT* pMasterEventsList, SFrameBSInfo* pFrameBsInfo,
                            const uint32_t uiNumThreads, SSliceCtx* pSliceCtx, const bool bIsDynamicSlicingMode) {
-  int32_t iEndMbIdx         = 0;
   int32_t iIdx              = 0;
   const int32_t kiEventCnt  = uiNumThreads;
   int32_t iLayerBsIdx       = pCtx->pOut->iLayerBsIndex;
   SLayerBSInfo* pLbi        = &pFrameBsInfo->sLayerInfo[iLayerBsIdx];
-  SSlice** ppSliceInLayer   = pCtx->pCurDqLayer->ppSliceInLayer;
-
 
   if (pPriData == NULL || pFrameBsInfo == NULL || pLbi == NULL || kiEventCnt <= 0 || pEventsList == NULL) {
     WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR,
