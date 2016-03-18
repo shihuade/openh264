@@ -4990,13 +4990,17 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
                               bIndependenceBsBuffer,
                               iMaxSliceBufferSize,
                               pMA);
-    if (ENC_RETURN_SUCCESS != iRet)
+    if (ENC_RETURN_SUCCESS != iRet) {
+      FreeSliceBuffer(pNewSliceList, kiMaxSliceNumNew, pMA, "ReallocateSliceList()::InitSliceBsBuffer()");
       return iRet;
+    }
 
     iRet = AllocateSliceMBBuffer (pSlice, pMA);
 
-    if (ENC_RETURN_SUCCESS != iRet)
+    if (ENC_RETURN_SUCCESS != iRet) {
+      FreeSliceBuffer(pNewSliceList, kiMaxSliceNumNew, pMA, "ReallocateSliceList()::AllocateSliceMBBuffer()");
       return iRet;
+    }
 
 
     iRet = InitSliceMBInfo (pSliceArgument,
@@ -5004,16 +5008,22 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
                             pCurLayer->iMbWidth,
                             pCurLayer->iMbHeight);
 
-    if (ENC_RETURN_SUCCESS != iRet)
+    if (ENC_RETURN_SUCCESS != iRet){
+      FreeSliceBuffer(pNewSliceList, kiMaxSliceNumNew, pMA, "ReallocateSliceList()::InitSliceMBInfo()");
       return iRet;
+    }
 
     iRet = InitSliceHeadWithBase (pSlice, pBaseSlice, pCtx->iNumRef0);
-    if (ENC_RETURN_SUCCESS != iRet)
+    if (ENC_RETURN_SUCCESS != iRet){
+      FreeSliceBuffer(pNewSliceList, kiMaxSliceNumNew, pMA, "ReallocateSliceList()::InitSliceHeadWithBase()");
       return iRet;
+    }
 
     iRet = InitSliceRC (pSlice, pCtx->iGlobalQp, iBitsPerMb);
-    if (ENC_RETURN_SUCCESS != iRet)
+    if (ENC_RETURN_SUCCESS != iRet) {
+      FreeSliceBuffer(pNewSliceList, kiMaxSliceNumNew, pMA, "ReallocateSliceList()::InitSliceRC()");
       return iRet;
+    }
   }
 
   pMA->WelsFree (pSliceList, "Slice");
