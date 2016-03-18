@@ -1132,8 +1132,9 @@ static inline int32_t InitSliceList (sWelsEncCtx* pCtx,
 
   while (iSliceIdx < kiMaxSliceNum) {
     SSlice* pSlice = pSliceList + iSliceIdx;
-    if (NULL == pSlice)
+    if (NULL == pSlice) {
       return ENC_RETURN_MEMALLOCERR;
+    }
 
     pSlice->uiSliceIdx = iSliceIdx;
 
@@ -1142,8 +1143,9 @@ static inline int32_t InitSliceList (sWelsEncCtx* pCtx,
                               bIndependenceBsBuffer,
                               iMaxSliceBufferSize,
                               pMa);
-    if (ENC_RETURN_SUCCESS != iRet)
+    if (ENC_RETURN_SUCCESS != iRet) {
       return iRet;
+    }
 
     iRet = InitSliceMBInfo (pSliceArgument, pSlice,
                             kiMBWidth, kiMBHeight);
@@ -1153,9 +1155,9 @@ static inline int32_t InitSliceList (sWelsEncCtx* pCtx,
 
     iRet = AllocateSliceMBBuffer (pSlice, pMa);
 
-    if (ENC_RETURN_SUCCESS != iRet)
+    if (ENC_RETURN_SUCCESS != iRet) {
       return iRet;
-
+    }
     ++ iSliceIdx;
   }
   return ENC_RETURN_SUCCESS;
@@ -5070,16 +5072,18 @@ static inline int32_t ReallocateSliceInThread (sWelsEncCtx* pCtx,
                                iMaxSliceNumInThread,
                                iMaxSliceNumUpdate);
 
-  if (ENC_RETURN_SUCCESS != iRet)
+  if (ENC_RETURN_SUCCESS != iRet) {
     return iRet;
+  }
 
   iRet = ReallocateSliceList (pCtx,
                               pSliceArgument,
                               pDqLayer->sSliceThreadInfo.pSliceInThread[kiThreadIndex],
                               iMaxSliceNumInThread,
                               iMaxSliceNumUpdate);
-  if (ENC_RETURN_SUCCESS != iRet)
+  if (ENC_RETURN_SUCCESS != iRet) {
     return iRet;
+  }
 
   return ENC_RETURN_SUCCESS;
 }
@@ -5102,16 +5106,17 @@ int32_t ReallocSliceBuffer (sWelsEncCtx* pCtx) {
                                iMaxSliceNumOld,
                                iMaxSliceNumNew);
 
-  if (ENC_RETURN_SUCCESS != iRet)
+  if (ENC_RETURN_SUCCESS != iRet) {
     return iRet;
-
+  }
   iRet = ReallocateSliceList (pCtx,
                               pSliceArgument,
                               pCurLayer->sLayerInfo.pSliceInLayer,
                               iMaxSliceNumOld,
                               iMaxSliceNumNew);
-  if (ENC_RETURN_SUCCESS != iRet)
+  if (ENC_RETURN_SUCCESS != iRet) {
     return iRet;
+  }
 
   // update for ppsliceInlayer
   ppSlice = (SSlice**)pMA->WelsMallocz (sizeof (SSlice*) * iMaxSliceNumNew, "ppSlice");
@@ -5130,6 +5135,7 @@ int32_t ReallocSliceBuffer (sWelsEncCtx* pCtx) {
     pCtx->iMaxSliceCount = iMaxSliceNumNew;
   pCurLayer->sSliceEncCtx.iMaxSliceNumConstraint = iMaxSliceNumNew;
   pCurLayer->iMaxSliceNum = iMaxSliceNumNew;
+
   return ENC_RETURN_SUCCESS;
 }
 
@@ -5139,12 +5145,14 @@ int32_t DynSliceRealloc (sWelsEncCtx* pCtx,
   int32_t iRet = 0;
 
   iRet = FrameBsRealloc (pCtx, pFrameBsInfo, pLayerBsInfo);
-  if(ENC_RETURN_SUCCESS != iRet)
+  if(ENC_RETURN_SUCCESS != iRet) {
     return iRet;
+  }
 
   iRet = ReallocSliceBuffer (pCtx);
-  if (ENC_RETURN_SUCCESS != iRet)
+  if (ENC_RETURN_SUCCESS != iRet) {
     return iRet;
+  }
 
   return iRet;
 }
