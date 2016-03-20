@@ -202,6 +202,7 @@ int32_t         iMbSkipRun;
 int32_t         iCountMbNumInSlice;
 uint32_t        uiSliceConsumeTime;
 int32_t         iSliceComplexRatio;
+int32_t         iThreadIdx;      //for single thread mode, always equal to 0
 
 SRCSlicing      sSlicingOverRc;   //slice level rc statistic info
 } SSlice, *PSlice;

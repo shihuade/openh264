@@ -99,9 +99,10 @@ void InitRCInfoForSliceList(SSlice** pSliceList,
                             const int32_t kiSliceNum);
 
 int32_t InitSliceList (sWelsEncCtx* pCtx,
-                       SDqLayer* pDqLayer,
-                       SSlice*& pSliceList,
-                       const int32_t kiMaxSliceNum,
+                       SDqLayer* pCurDqLayer,
+                       SSlice* pSliceList,
+                       const int32_t kiStartIndex,
+                       const int32_t kiEndIndex,
                        const int32_t kiDlayerIndex,
                        CMemoryAlign* pMa);
 
