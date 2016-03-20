@@ -806,7 +806,18 @@ void FreeMbCache (SMbCache* pMbCache, CMemoryAlign* pMa) {
   }
 }
 
-static inline int32_t InitSliceMBInfo (SSliceArgument* pSliceArgument,
+static inline int32_t InitSliceMBInfoDynamic (SDqLayer* pCurDqLayer, SSlice* pSlice) {
+  int32_t iThreadIdx = pSlice->iThreadIdx;
+  int32_t iIdxInThread = pCurDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[iThreadIdx];
+
+
+
+  return ENC_RETURN_SUCCESS;
+
+}
+
+static inline int32_t InitSliceMBInfo (SDqLayer* pCurDqLayer,
+                                       SSliceArgument* pSliceArgument,
                                        SSlice* pSlice,
                                        const int32_t kiMBWidth,
                                        const int32_t kiMBHeight) {
@@ -945,8 +956,7 @@ int32_t InitSliceList (sWelsEncCtx* pCtx,
 
     //for multi thread, will init before encode one slice
     //if (pCtx->pSvcParam->iMultipleThreadIdc == 1) {
-    iRet = InitSliceMBInfo (pSliceArgument, pSlice,
-                            kiMBWidth, kiMBHeight);
+    iRet = InitSliceMBInfo (pCurDqLayer, pSliceArgument, pSlice, kiMBWidth, kiMBHeight);
     if (ENC_RETURN_SUCCESS != iRet) {
       return iRet;
       //}
@@ -982,6 +992,7 @@ int32_t InitOneSliceInThread (sWelsEncCtx* pCtx,
 
   pSlice = pDqLayer->sSliceThreadInfo.pSliceInThread [kiThreadIdx] + kiCodedNumInThread;
   pSlice->uiSliceIdx = kiSliceIdx;
+  pSlice->iThreadIdx = kiThreadIdx;
 
   // Initialize slice bs buffer info
   pSlice->sSliceBs.uiBsPos   = 0;
@@ -989,7 +1000,7 @@ int32_t InitOneSliceInThread (sWelsEncCtx* pCtx,
   pSlice->sSliceBs.pBsBuffer = pCtx->pSliceThreading->pThreadBsBuffer[kiThreadIdx];
 
   // init slice MB info,
-  iRet = InitSliceMBInfo (pSliceArgument, pSlice, kiMBWidth, kiMBHeight);
+  iRet = InitSliceMBInfo (pDqLayer, pSliceArgument, pSlice, kiMBWidth, kiMBHeight);
   if (ENC_RETURN_SUCCESS != iRet)
     return iRet;
 
