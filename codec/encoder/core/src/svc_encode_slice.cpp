@@ -1386,9 +1386,11 @@ static inline int32_t ReOrderSliceInLayerDynamic (SDqLayer* pCurLayer, const int
 
     for (iSliceIdx = 0; iSliceIdx < iSliceNumInThread ; iSliceIdx++) {
       pSliceInThread = pCurLayer->sSliceThreadInfo.pSliceInThread[iThreadIdx] + iSliceIdx;
-      if (NULL == pSliceInThread)
+      if (NULL == pSliceInThread) {
         return ENC_RETURN_UNEXPECTED;
+      }
 
+      pSliceInThread->uiSliceIdx = iIdxStep + iSliceIdx;
       pCurLayer->ppSliceInLayer[iIdxStep + iSliceIdx] = pSliceInThread;
     }
     iIdxStep += iSliceNumInThread;

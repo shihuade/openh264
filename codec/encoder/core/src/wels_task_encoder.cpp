@@ -95,6 +95,8 @@ int32_t CWelsSliceEncodingTask::QueryEmptyThread (bool* pThreadBsBufferUsage) {
 }
 
 WelsErrorType CWelsSliceEncodingTask::InitTask() {
+  int32_t iReturn = ENC_RETURN_SUCCESS;
+
   m_eNalType          = m_pCtx->eNalType;
   m_eNalRefIdc        = m_pCtx->eNalPriority;
   m_bNeedPrefix       = m_pCtx->bNeedPrefixNalFlag;
@@ -112,15 +114,15 @@ WelsErrorType CWelsSliceEncodingTask::InitTask() {
     return ENC_RETURN_UNEXPECTED;
   }
 
-  //InitOneSliceInThread (m_pCtx, m_pSlice, m_iThreadIdx->uiDependencyId, m_iSliceIdx, m_iThreadIdx);
-  SetOneSliceBsBufferUnderMultithread (m_pCtx, m_iThreadIdx, m_iSliceIdx);
+  iReturn = InitOneSliceInThread (m_pCtx, m_pSlice, m_pCtx->uiDependencyId, m_iSliceIdx, m_iThreadIdx);
+  if(ENC_RETURN_SUCCESS != iReturn) {
+    WelsLog (&m_pCtx->sLogCtx, WELS_LOG_ERROR,
+             "[MT] InitTask()::InitOneSliceInThread(%d) failed! Did(%d), ThrdId(), SliceId(%d)!",
+             m_pCtx->uiDependencyId, m_iThreadIdx, m_iSliceIdx);
+    return ENC_RETURN_UNEXPECTED;
+  }
 
-  m_pSlice = m_pCtx->pCurDqLayer->ppSliceInLayer[m_iSliceIdx];
   m_pSliceBs = &m_pSlice->sSliceBs;
-
-  m_pSliceBs->uiBsPos       = 0;
-  m_pSliceBs->iNalIndex     = 0;
-
   assert ((void*) (&m_pSliceBs->sBsWrite) == (void*)m_pSlice->pSliceBsa);
   InitBits (&m_pSliceBs->sBsWrite, m_pSliceBs->pBsBuffer, m_pSliceBs->uiSize);
   //printf ("CWelsSliceEncodingTask_InitTask slice %d\n", m_iSliceIdx);
@@ -229,18 +231,16 @@ void CWelsLoadBalancingSlicingEncodingTask::FinishTask() {
 
 //CWelsConstrainedSizeSlicingEncodingTask
 WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
-
-  SDqLayer* pCurDq            = m_pCtx->pCurDqLayer;
-
-  SSliceCtx* pSliceCtx                    = &pCurDq->sSliceEncCtx;
-  const int32_t kiSliceIdxStep            = m_pCtx->iActiveThreadsNum;
-
+  int32_t iReturn              = ENC_RETURN_SUCCESS;
+  SDqLayer* pCurDq             = m_pCtx->pCurDqLayer;
+  SSliceCtx* pSliceCtx         = &pCurDq->sSliceEncCtx;
+  const int32_t kiSliceIdxStep = m_pCtx->iActiveThreadsNum;
   SSpatialLayerInternal* pParamInternal = &m_pCtx->pSvcParam->sDependencyLayers[m_pCtx->uiDependencyId];
-  SSliceHeaderExt* pStartSliceHeaderExt   = &pCurDq->ppSliceInLayer[m_iSliceIdx]->sSliceHeaderExt;
+  SSliceHeaderExt* pStartSliceHeaderExt = &pCurDq->ppSliceInLayer[m_iSliceIdx]->sSliceHeaderExt;
 
   //deal with partition: TODO: here SSliceThreadPrivateData is just for parition info and actually has little relationship with threadbuffer, and iThreadIndex is not used in threadpool model, need renaming after removing old logic to avoid confusion
   const int32_t kiPartitionId             = m_iSliceIdx % kiSliceIdxStep;
-  SSliceThreadPrivateData* pPrivateData = & (m_pCtx->pSliceThreading->pThreadPEncCtx[kiPartitionId]);
+  SSliceThreadPrivateData* pPrivateData   = & (m_pCtx->pSliceThreading->pThreadPEncCtx[kiPartitionId]);
   const int32_t kiFirstMbInPartition      = pPrivateData->iStartMbIndex;  // inclusive
   const int32_t kiEndMbInPartition        = pPrivateData->iEndMbIndex;            // exclusive
   pStartSliceHeaderExt->sSliceHeader.iFirstMbInSlice      = kiFirstMbInPartition;
@@ -262,12 +262,15 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
       return ENC_RETURN_KNOWN_ISSUE;
     }
 
-    SetOneSliceBsBufferUnderMultithread (m_pCtx, m_iThreadIdx, iLocalSliceIdx);
-    m_pSlice = pCurDq->ppSliceInLayer[iLocalSliceIdx];
-    m_pSliceBs = &m_pSlice->sSliceBs;
+    iReturn = InitOneSliceInThread (m_pCtx, m_pSlice, m_pCtx->uiDependencyId, m_iSliceIdx, m_iThreadIdx);
+    if(ENC_RETURN_SUCCESS != iReturn) {
+      WelsLog (&m_pCtx->sLogCtx, WELS_LOG_ERROR,
+               "[MT] InitTask()::InitOneSliceInThread(%d) failed! Did(%d), ThrdId(), SliceId(%d)!",
+               m_pCtx->uiDependencyId, m_iThreadIdx, m_iSliceIdx);
+      return ENC_RETURN_UNEXPECTED;
+    }
 
-    m_pSliceBs->uiBsPos     = 0;
-    m_pSliceBs->iNalIndex   = 0;
+    m_pSliceBs = &m_pSlice->sSliceBs;
     InitBits (&m_pSliceBs->sBsWrite, m_pSliceBs->pBsBuffer, m_pSliceBs->uiSize);
 
     if (m_bNeedPrefix) {
