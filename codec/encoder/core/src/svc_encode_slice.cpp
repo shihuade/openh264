@@ -903,55 +903,59 @@ void FreeSliceBuffer (SSlice*& pSliceList, const int32_t kiMaxSliceNum, CMemoryA
 }
 
 int32_t InitSliceList (sWelsEncCtx* pCtx,
-                       SDqLayer* pDqLayer,
-                       SSlice*& pSliceList,
-                       const int32_t kiMaxSliceNum,
+                       SDqLayer* pCurDqLayer,
+                       SSlice* pSliceList,
+                       const int32_t kiStartIndex,
+                       const int32_t kiEndIndex,
                        const int32_t kiDlayerIndex,
                        CMemoryAlign* pMa) {
-  const int32_t kiMBWidth         = pDqLayer->iMbWidth;
-  const int32_t kiMBHeight        = pDqLayer->iMbHeight;
+  const int32_t kiMBWidth         = pCurDqLayer->iMbWidth;
+  const int32_t kiMBHeight        = pCurDqLayer->iMbHeight;
   SSliceArgument* pSliceArgument  = & pCtx->pSvcParam->sSpatialLayers[kiDlayerIndex].sSliceArgument;
   int32_t iMaxSliceBufferSize     = (pCtx)->iSliceBufferSize[kiDlayerIndex];
   int32_t iSliceIdx               = 0;
   int32_t iRet                    = 0;
+
+  if (NULL == pSliceList || NULL == pSliceArgument || kiStartIndex < 0 || kiEndIndex < 0 ||
+      kiStartIndex > kiEndIndex || iMaxSliceBufferSize <= 0 || kiMBWidth <= 0 || kiMBHeight <= 0) {
+    return ENC_RETURN_UNEXPECTED;
+  }
 
   //SM_SINGLE_SLICE mode using single-thread bs writer pOut->sBsWrite
   //even though multi-thread is on for other layers
   bool bIndependenceBsBuffer   = (pCtx->pSvcParam->iMultipleThreadIdc > 1 &&
                                   SM_SINGLE_SLICE != pSliceArgument->uiSliceMode) ? true : false;
 
-  if (iMaxSliceBufferSize <= 0 || kiMBWidth <= 0 || kiMBHeight <= 0) {
-    return ENC_RETURN_UNEXPECTED;
-  }
-
-  while (iSliceIdx < kiMaxSliceNum) {
+  for (iSliceIdx = kiStartIndex; iSliceIdx < kiEndIndex; iSliceIdx++) {
     SSlice* pSlice = pSliceList + iSliceIdx;
-    if (NULL == pSlice)
+    if (NULL == pSlice) {
       return ENC_RETURN_MEMALLOCERR;
+    }
 
     pSlice->uiSliceIdx = iSliceIdx;
-
+    pSlice->iThreadIdx = 0;
     iRet = InitSliceBsBuffer (pSlice,
                               & pCtx->pOut->sBsWrite,
                               bIndependenceBsBuffer,
                               iMaxSliceBufferSize,
                               pMa);
-    if (ENC_RETURN_SUCCESS != iRet)
+    if (ENC_RETURN_SUCCESS != iRet) {
       return iRet;
+    }
 
     //for multi thread, will init before encode one slice
     //if (pCtx->pSvcParam->iMultipleThreadIdc == 1) {
     iRet = InitSliceMBInfo (pSliceArgument, pSlice,
                             kiMBWidth, kiMBHeight);
-    if (ENC_RETURN_SUCCESS != iRet)
+    if (ENC_RETURN_SUCCESS != iRet) {
       return iRet;
-    //}
+      //}
+    }
 
     iRet = AllocateSliceMBBuffer (pSlice, pMa);
-    if (ENC_RETURN_SUCCESS != iRet)
+    if (ENC_RETURN_SUCCESS != iRet) {
       return iRet;
-
-    ++ iSliceIdx;
+    }
   }
 
   return ENC_RETURN_SUCCESS;
@@ -1025,6 +1029,7 @@ int32_t InitSliceThreadInfo (sWelsEncCtx* pCtx,
     iRet = InitSliceList (pCtx,
                           pDqLayer,
                           pSliceThreadInfo->pSliceInThread[iIdx],
+                          0,
                           iMaxSliceNumInThread,
                           kiDlayerIndex,
                           pMa);
@@ -1175,11 +1180,8 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
   int32_t iSliceIdx           = 0;
   int32_t iRet                = 0;
   const int32_t kiCurDid      = pCtx->uiDependencyId;
-  int32_t iMaxSliceBufferSize = (pCtx)->iSliceBufferSize[kiCurDid];
   int32_t iBitsPerMb          = WELS_DIV_ROUND (pCtx->pWelsSvcRc[kiCurDid].iTargetBits * INT_MULTIPLY,
                                 pCtx->pWelsSvcRc[kiCurDid].iNumberMbFrame);
-  bool bIndependenceBsBuffer  = (pCtx->pSvcParam->iMultipleThreadIdc > 1 &&
-                                 SM_SINGLE_SLICE != pSliceArgument->uiSliceMode) ? true : false;
 
   if (NULL == pSliceList || NULL == pSliceArgument)
     return ENC_RETURN_INVALIDINPUT;
@@ -1191,36 +1193,27 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
   }
 
   memcpy (pNewSliceList, pSliceList, sizeof (SSlice) * kiMaxSliceNumOld);
+  // allocate and init MB/bs buffer for
+  iRet = InitSliceList (pCtx,
+                        pCurLayer,
+                        pNewSliceList,
+                        kiMaxSliceNumOld,
+                        kiMaxSliceNumNew,
+                        kiCurDid,
+                        pMA);
+  if (ENC_RETURN_SUCCESS != iRet) {
+    pMA->WelsFree (pNewSliceList, "pNewSliceList in SliceBufferRealloc");
+    WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR, "CWelsH264SVCEncoder::SliceBufferRealloc: InitSliceList failed!");
+    return ENC_RETURN_MEMALLOCERR;
+
+  }
+
   iSliceIdx   = kiMaxSliceNumOld;
   pBaseSlice  = &pSliceList[0];
-
   for (; iSliceIdx < kiMaxSliceNumNew; iSliceIdx++) {
     pSlice = pNewSliceList + iSliceIdx;
     if (NULL == pSlice)
       return ENC_RETURN_MEMALLOCERR;
-
-    pSlice->uiSliceIdx = iSliceIdx;
-
-    iRet = InitSliceBsBuffer (pSlice,
-                              & pCtx->pOut->sBsWrite,
-                              bIndependenceBsBuffer,
-                              iMaxSliceBufferSize,
-                              pMA);
-    if (ENC_RETURN_SUCCESS != iRet)
-      return iRet;
-
-    iRet = AllocateSliceMBBuffer (pSlice, pMA);
-
-    if (ENC_RETURN_SUCCESS != iRet)
-      return iRet;
-
-    iRet = InitSliceMBInfo (pSliceArgument,
-                            pSlice,
-                            pCurLayer->iMbWidth,
-                            pCurLayer->iMbHeight);
-
-    if (ENC_RETURN_SUCCESS != iRet)
-      return iRet;
 
     InitSliceHeadWithBase (pSlice, pBaseSlice);
     InitSliceRefInfoWithBase (pSlice, pBaseSlice);
