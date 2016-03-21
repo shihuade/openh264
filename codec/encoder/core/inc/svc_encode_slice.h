@@ -98,6 +98,12 @@ void InitRCInfoForSliceList(SSlice** pSliceList,
                             const int32_t kiGlobalQp,
                             const int32_t kiSliceNum);
 
+int32_t InitSliceMBInfo (SDqLayer* pCurDqLayer,
+                             SSliceArgument* pSliceArgument,
+                             SSlice* pSlice,
+                             const int32_t kiMBWidth,
+                             const int32_t kiMBHeight);
+
 int32_t InitSliceList (sWelsEncCtx* pCtx,
                        SDqLayer* pCurDqLayer,
                        SSlice* pSliceList,

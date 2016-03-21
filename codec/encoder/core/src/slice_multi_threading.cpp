@@ -608,7 +608,7 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
       if (pParamD->sSliceArgument.uiSliceMode != SM_SIZELIMITED_SLICE) {
         int64_t iSliceStart = 0;
         bool bDsaFlag = false;
-        iSliceIdx               = pPrivateData->iSliceIndex;
+        iSliceIdx = pPrivateData->iSliceIndex;
 
        iReturn = InitOneSliceInThread (pEncPEncCtx, pSlice, kiCurDid, iSliceIdx, iThreadIdx);
        if(ENC_RETURN_SUCCESS != iReturn){

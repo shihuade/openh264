@@ -87,14 +87,22 @@ void WelsSliceHeaderScalExtInit (SDqLayer* pCurLayer, SSlice* pSlice) {
 }
 
 void WelsSliceHeaderExtInit (sWelsEncCtx* pEncCtx, SDqLayer* pCurLayer, SSlice* pSlice) {
-  SSliceHeaderExt* pCurSliceExt = &pSlice->sSliceHeaderExt;
+  SSliceHeaderExt* pCurSliceExt  = &pSlice->sSliceHeaderExt;
   SSliceHeader* pCurSliceHeader  = &pCurSliceExt->sSliceHeader;
   SSpatialLayerInternal* pParamInternal = &pEncCtx->pSvcParam->sDependencyLayers[pEncCtx->uiDependencyId];
+  const int32_t kiDlayerIdx           = pEncCtx->uiDependencyId;
+  SSliceArgument* pSliceArgument      = & pEncCtx->pSvcParam->sSpatialLayers[kiDlayerIdx].sSliceArgument;
+  const int32_t kiMBWidth             = pCurLayer->iMbWidth;
+  const int32_t kiMBHeight            = pCurLayer->iMbHeight;
+
   pCurSliceHeader->eSliceType = pEncCtx->eSliceType;
 
   pCurSliceExt->bStoreRefBasePicFlag = false;
 
-  pCurSliceHeader->iFirstMbInSlice = WelsGetFirstMbOfSlice (pCurLayer->ppSliceInLayer, pSlice->uiSliceIdx);
+  //update slice MB info,iFirstMBInSlice and iMBNumInSlice
+  if(SM_SIZELIMITED_SLICE != pSliceArgument->uiSliceMode) {
+    InitSliceMBInfo (pCurLayer, pSliceArgument, pSlice, kiMBWidth, kiMBHeight);
+  }
 
   pCurSliceHeader->iFrameNum      = pParamInternal->iFrameNum;
   pCurSliceHeader->uiIdrPicId     = pEncCtx->uiIdrPicId;
@@ -806,17 +814,7 @@ void FreeMbCache (SMbCache* pMbCache, CMemoryAlign* pMa) {
   }
 }
 
-static inline int32_t InitSliceMBInfoDynamic (SDqLayer* pCurDqLayer, SSlice* pSlice) {
-  int32_t iThreadIdx = pSlice->iThreadIdx;
-  int32_t iIdxInThread = pCurDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[iThreadIdx];
-
-
-
-  return ENC_RETURN_SUCCESS;
-
-}
-
-static inline int32_t InitSliceMBInfo (SDqLayer* pCurDqLayer,
+int32_t InitSliceMBInfo (SDqLayer* pCurDqLayer,
                                        SSliceArgument* pSliceArgument,
                                        SSlice* pSlice,
                                        const int32_t kiMBWidth,
@@ -837,6 +835,7 @@ static inline int32_t InitSliceMBInfo (SDqLayer* pCurDqLayer,
     iMbNumInSlice   = kiMBWidth;
   } else if (SM_RASTER_SLICE  == pSliceArgument->uiSliceMode ||
              SM_FIXEDSLCNUM_SLICE == pSliceArgument->uiSliceMode) {
+    //for SM_FIXEDSLCNUM_SLICE, will update if loadbalance is on
     int32_t iMbIdx  = 0;
     for (int i = 0; i < kiSliceIdx; i++) {
       iMbIdx += kpSlicesAssignList[i];
@@ -849,6 +848,8 @@ static inline int32_t InitSliceMBInfo (SDqLayer* pCurDqLayer,
     iMbNumInSlice   = kpSlicesAssignList[kiSliceIdx];
 
   } else if (SM_SIZELIMITED_SLICE == pSliceArgument->uiSliceMode) {
+    //init by UpdateSlicePartitionInfo()
+    //and will be updated dynamically slice by slice
     iFirstMBInSlice  = 0;
     iMbNumInSlice    = kiCountNumMbInFrame;
 
@@ -977,9 +978,6 @@ int32_t InitOneSliceInThread (sWelsEncCtx* pCtx,
                               const int32_t kiSliceIdx,
                               const int32_t kiThreadIdx) {
   SDqLayer* pDqLayer                  = pCtx->pCurDqLayer;
-  SSliceArgument* pSliceArgument      = & pCtx->pSvcParam->sSpatialLayers[kiDlayerIdx].sSliceArgument;
-  const int32_t kiMBWidth             = pDqLayer->iMbWidth;
-  const int32_t kiMBHeight            = pDqLayer->iMbHeight;
   const int32_t kiCodedNumInThread    = pDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[kiThreadIdx];
   const int32_t kiMaxSliceNumInThread = pDqLayer->sSliceThreadInfo.iMaxSliceNumInThread[kiThreadIdx];
   int32_t iRet                        = 0;
@@ -998,11 +996,6 @@ int32_t InitOneSliceInThread (sWelsEncCtx* pCtx,
   pSlice->sSliceBs.uiBsPos   = 0;
   pSlice->sSliceBs.iNalIndex = 0;
   pSlice->sSliceBs.pBsBuffer = pCtx->pSliceThreading->pThreadBsBuffer[kiThreadIdx];
-
-  // init slice MB info,
-  iRet = InitSliceMBInfo (pDqLayer, pSliceArgument, pSlice, kiMBWidth, kiMBHeight);
-  if (ENC_RETURN_SUCCESS != iRet)
-    return iRet;
 
   return ENC_RETURN_SUCCESS;
 }
@@ -1178,6 +1171,7 @@ void InitRCInfoForSliceList (SSlice** pSliceList,
     InitRCInfoForOneSlice (pSliceList[i], kiBitsPerMb, kiGlobalQp);
   }
 }
+
 int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
                              SSliceArgument* pSliceArgument,
                              SSlice*& pSliceList,
