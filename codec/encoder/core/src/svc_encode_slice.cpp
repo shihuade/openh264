@@ -601,7 +601,7 @@ int32_t WelsISliceMdEncDynamic (sWelsEncCtx* pEncCtx, SSlice* pSlice) { //pMd + 
   const int32_t kiTotalNumMb    = pCurLayer->iMbWidth * pCurLayer->iMbHeight;
   int32_t iCurMbIdx             = 0, iNumMbCoded = 0;
   const int32_t kiSliceIdx      = pSlice->uiSliceIdx;
-  const int32_t kiPartitionId   = (kiSliceIdx % pEncCtx->iActiveThreadsNum);
+  const int32_t kiPartitionId   = pSlice->iThreadIdx;
   const uint8_t kuiChromaQpIndexOffset = pCurLayer->sLayerInfo.pPpsP->uiChromaQpIndexOffset;
   int32_t iEncReturn = ENC_RETURN_SUCCESS;
 
