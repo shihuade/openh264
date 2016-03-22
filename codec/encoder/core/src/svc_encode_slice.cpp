@@ -944,7 +944,7 @@ int32_t InitSliceList (sWelsEncCtx* pCtx,
       return ENC_RETURN_MEMALLOCERR;
     }
 
-    pSlice->uiSliceIdx = iSliceIdx;
+    pSlice->uiSliceIdx = 0;
     pSlice->iThreadIdx = 0;
     iRet = InitSliceBsBuffer (pSlice,
                               & pCtx->pOut->sBsWrite,
@@ -1043,6 +1043,28 @@ int32_t InitSliceThreadInfo (sWelsEncCtx* pCtx,
     pSliceThreadInfo->pSliceInThread[iIdx]           = NULL;
   }
   return ENC_RETURN_SUCCESS;
+}
+
+void RefreshSliceInfoInThread (SDqLayer* pDqLayer, const int32_t kiThreadNum) {
+
+  SSliceThreadInfo* pSliceThreadInfo  = &pDqLayer->sSliceThreadInfo;
+  SSlice* pSliceInThread              = NULL;
+  int32_t iMaxSliceNumInThread        = 0;
+  int32_t iIdx                        = 0;
+  int32_t iSliceIdx                   = 0;
+
+  for (iIdx = 0; iIdx < kiThreadNum; iIdx ++) {
+    iMaxSliceNumInThread = pSliceThreadInfo->iMaxSliceNumInThread[iIdx];
+    pSliceInThread = pSliceThreadInfo->pSliceInThread[iIdx];
+    if (NULL == pSliceInThread) {
+      return;
+    }
+
+    for (iSliceIdx = 0; iSliceIdx < iMaxSliceNumInThread; iSliceIdx++) {
+      pSliceInThread[iSliceIdx].uiSliceIdx = 0;
+      pSliceInThread[iSliceIdx].iThreadIdx = iIdx;
+    }
+  }
 }
 
 static inline int32_t InitSliceListInLayer (sWelsEncCtx* pCtx,
@@ -1517,7 +1539,7 @@ int32_t WelsCodeOneSlice (sWelsEncCtx* pEncCtx,
 
 #if _DEBUG
   if (INCREASING_ID & pEncCtx->sPSOVector.eSpsPpsIdStrategy) {
-    const int32_t kiEncoderPpsId    = pCurSlice->sSliceHeaderExt.sSliceHeader.pPps->iPpsId;
+    const int32_t kiEncoderPpsId    = pSlice->sSliceHeaderExt.sSliceHeader.pPps->iPpsId;
     const int32_t kiTmpPpsIdInBs = kiEncoderPpsId +
                                    pEncCtx->sPSOVector.sParaSetOffsetVariable[PARA_SET_TYPE_PPS].iParaSetIdDelta[ kiEncoderPpsId ];
     assert (MAX_PPS_COUNT > kiTmpPpsIdInBs);

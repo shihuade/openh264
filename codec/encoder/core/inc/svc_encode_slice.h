@@ -93,16 +93,16 @@ void InitSliceListHeadWithBase (SSlice** ppSliceList,
                                 SSlice* pBaseSlice,
                                 const int32_t kiSliceNum);
 
-void InitRCInfoForSliceList(SSlice** pSliceList,
-                            const int32_t kiBitsPerMb,
-                            const int32_t kiGlobalQp,
-                            const int32_t kiSliceNum);
+void InitRCInfoForSliceList (SSlice** pSliceList,
+                             const int32_t kiBitsPerMb,
+                             const int32_t kiGlobalQp,
+                             const int32_t kiSliceNum);
 
 int32_t InitSliceMBInfo (SDqLayer* pCurDqLayer,
-                             SSliceArgument* pSliceArgument,
-                             SSlice* pSlice,
-                             const int32_t kiMBWidth,
-                             const int32_t kiMBHeight);
+                         SSliceArgument* pSliceArgument,
+                         SSlice* pSlice,
+                         const int32_t kiMBWidth,
+                         const int32_t kiMBHeight);
 
 int32_t InitSliceList (sWelsEncCtx* pCtx,
                        SDqLayer* pCurDqLayer,
@@ -117,6 +117,13 @@ int32_t InitOneSliceInThread (sWelsEncCtx* pCtx,
                               const int32_t kiDlayerIdx,
                               const int32_t kiSliceIdx,
                               const int32_t kiThreadIdx);
+
+int32_t InitSliceThreadInfo (sWelsEncCtx* pCtx,
+                             SDqLayer* pDqLayer,
+                             const int32_t kiDlayerIndex,
+                             CMemoryAlign* pMa);
+
+void RefreshSliceInfoInThread (SDqLayer* pDqLayer, const int32_t kiThreadNum);
 
 int32_t InitSliceInLayer (sWelsEncCtx* pCtx,
                           SDqLayer* pDqLayer,

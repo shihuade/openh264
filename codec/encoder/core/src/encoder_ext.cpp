@@ -2788,6 +2788,8 @@ void WelsInitCurrentLayer (sWelsEncCtx* pCtx,
     pCurDq->bBaseLayerAvailableFlag = false;
   }
 
+  RefreshSliceInfoInThread (pCurDq, pCtx->iActiveThreadsNum);
+
   if (pCtx->pTaskManage) {
     pCtx->pTaskManage->InitFrame (kiCurDid);
   }
