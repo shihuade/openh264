@@ -4770,8 +4770,7 @@ int32_t WelsCodeOnePicPartition (sWelsEncCtx* pCtx,
   SSlice* pStartSlice                   = pCurLayer->ppSliceInLayer[iStartSliceIdx];
   int32_t iNalIdxInLayer                = *pNalIdxInLayer;
   int32_t iSliceIdx                     = iStartSliceIdx;
-  const int32_t kiSliceStep             = pCtx->iActiveThreadsNum;
-  const int32_t kiPartitionId           = iStartSliceIdx % kiSliceStep;
+  const int32_t kiPartitionId           = pStartSlice->iThreadIdx;
   int32_t iPartitionBsSize              = 0;
   int32_t iAnyMbLeftInPartition         = iEndMbInPartition - iFirstMbInPartition;
   const EWelsNalUnitType keNalType      = pCtx->eNalType;
@@ -4846,7 +4845,7 @@ int32_t WelsCodeOnePicPartition (sWelsEncCtx* pCtx,
 #endif//SLICE_INFO_OUTPUT
 
     ++ iNalIdxInLayer;
-    iSliceIdx += kiSliceStep; //if uiSliceIdx is not continuous
+    iSliceIdx += 1;
     iAnyMbLeftInPartition = iEndMbInPartition - (1 + pCurLayer->pLastCodedMbIdxOfPartition[kiPartitionId]);
   }
 

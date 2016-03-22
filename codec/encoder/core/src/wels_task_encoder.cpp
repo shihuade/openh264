@@ -235,12 +235,11 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
   int32_t iReturn              = ENC_RETURN_SUCCESS;
   SDqLayer* pCurDq             = m_pCtx->pCurDqLayer;
   SSliceCtx* pSliceCtx         = &pCurDq->sSliceEncCtx;
-  const int32_t kiSliceIdxStep = m_pCtx->iActiveThreadsNum;
   SSpatialLayerInternal* pParamInternal = &m_pCtx->pSvcParam->sDependencyLayers[m_pCtx->uiDependencyId];
   SSliceHeaderExt* pStartSliceHeaderExt = &pCurDq->ppSliceInLayer[m_iSliceIdx]->sSliceHeaderExt;
 
   //deal with partition: TODO: here SSliceThreadPrivateData is just for parition info and actually has little relationship with threadbuffer, and iThreadIndex is not used in threadpool model, need renaming after removing old logic to avoid confusion
-  const int32_t kiPartitionId             = m_iSliceIdx % kiSliceIdxStep;
+  const int32_t kiPartitionId             = m_iThreadIdx;
   SSliceThreadPrivateData* pPrivateData   = & (m_pCtx->pSliceThreading->pThreadPEncCtx[kiPartitionId]);
   const int32_t kiFirstMbInPartition      = pPrivateData->iStartMbIndex;  // inclusive
   const int32_t kiEndMbInPartition        = pPrivateData->iEndMbIndex;            // exclusive
