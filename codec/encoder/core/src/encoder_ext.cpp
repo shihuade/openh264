@@ -4982,9 +4982,6 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
 
   for (; iSliceIdx < kiMaxSliceNumNew; iSliceIdx++) {
     pSlice = pNewSliceList + iSliceIdx;
-    if (NULL == pSlice)
-      return ENC_RETURN_MEMALLOCERR;
-
     pSlice->uiSliceIdx = iSliceIdx;
 
     iRet = InitSliceBsBuffer (pSlice,
