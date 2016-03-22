@@ -3897,6 +3897,7 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
                                            &pLayerBsInfo->pNalLengthInByte[iNalIdxInLayer]);
       WELS_VERIFY_RETURN_IFNEQ (pCtx->iEncoderError, ENC_RETURN_SUCCESS)
       iSliceSize = pLayerBsInfo->pNalLengthInByte[iNalIdxInLayer];
+      pCtx->pCurDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[pSlice->iThreadIdx] += 1;
 
       iLayerSize += iSliceSize;
       pCtx->iPosBsBuffer               += iSliceSize;
@@ -4061,6 +4062,7 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
                    eNalRefIdc,
                    iSliceSize);
 #endif//SLICE_INFO_OUTPUT
+          ++ pCtx->pCurDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[pSlice->iThreadIdx];
           ++ iNalIdxInLayer;
           ++ iSliceIdx;
         }
@@ -4828,7 +4830,7 @@ int32_t WelsCodeOnePicPartition (sWelsEncCtx* pCtx,
                              &pLayerBsInfo->pNalLengthInByte[iNalIdxInLayer]);
     WELS_VERIFY_RETURN_IFNEQ (iReturn, ENC_RETURN_SUCCESS)
     iSliceSize = pLayerBsInfo->pNalLengthInByte[iNalIdxInLayer];
-
+    pCtx->pCurDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[pSlice->iThreadIdx] += 1;
     pCtx->iPosBsBuffer  += iSliceSize;
     iPartitionBsSize    += iSliceSize;
 

@@ -1563,21 +1563,16 @@ void UpdateMbNeighbourInfoForNextSlice (SDqLayer* pCurDq,
 
 void AddSliceBoundary (sWelsEncCtx* pEncCtx, SSlice* pCurSlice, SSliceCtx* pSliceCtx, SMB* pCurMb,
                        int32_t iFirstMbIdxOfNextSlice, const int32_t kiLastMbIdxInPartition) {
-  SDqLayer*     pCurLayer       = pEncCtx->pCurDqLayer;
-  SSlice**      ppSliceInLayer  = pCurLayer->ppSliceInLayer;
-  int32_t       iCurMbIdx       = pCurMb->iMbXY;
-  uint16_t      iCurSliceIdc    = pSliceCtx->pOverallMbMap[ iCurMbIdx ];
-  const int32_t kiSliceIdxStep  = pEncCtx->iActiveThreadsNum;
-  uint16_t      iNextSliceIdc   = iCurSliceIdc + kiSliceIdxStep;
-  SSlice*       pNextSlice      = NULL;
+  SDqLayer* pCurLayer      = pEncCtx->pCurDqLayer;
+  int32_t iCurMbIdx        = pCurMb->iMbXY;
+  int32_t iThreadIdx       = pCurSlice->iThreadIdx;
+  uint16_t iNextSliceIdc   = pCurLayer->sSliceThreadInfo.iEncodedSliceNumInThread[iThreadIdx];
+  SSlice* pNextSlice       = pCurLayer->sSliceThreadInfo.pSliceInThread[iThreadIdx] + iNextSliceIdc;
 
   SMB* pMbList = pCurLayer->sMbDataP;
 
   //update cur pSlice info
   pCurSlice->sSliceHeaderExt.uiNumMbsInSlice = 1 + iCurMbIdx - pCurSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice;
-
-  //pNextSlice pointer/initialization
-  pNextSlice = pCurLayer->ppSliceInLayer[ iNextSliceIdc ];
 
 #if _DEBUG
   assert (NULL != pNextSlice);
@@ -1589,7 +1584,7 @@ void AddSliceBoundary (sWelsEncCtx* pEncCtx, SSlice* pCurSlice, SSliceCtx* pSlic
     (NAL_UNIT_CODED_SLICE_EXT == pCurLayer->sLayerInfo.sNalHeaderExt.sNalUnitHeader.eNalUnitType);
   memcpy (&pNextSlice->sSliceHeaderExt, &pCurSlice->sSliceHeaderExt,
           sizeof (SSliceHeaderExt)); // confirmed_safe_unsafe_usage
-  ppSliceInLayer[iNextSliceIdc]->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice = iFirstMbIdxOfNextSlice;
+  pNextSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice = iFirstMbIdxOfNextSlice;
   WelsSetMemMultiplebytes_c (pSliceCtx->pOverallMbMap + iFirstMbIdxOfNextSlice, iNextSliceIdc,
                              (kiLastMbIdxInPartition - iFirstMbIdxOfNextSlice + 1), sizeof (uint16_t));
 

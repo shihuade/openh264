@@ -796,7 +796,7 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
                         pEncPEncCtx->iCodingIndex, kiPartitionId, iSliceIdx, iSliceSize,
                         pSlice->iCountMbNumInSlice,
                         kiEndMbInPartition, kiPartitionId, pCurDq->pLastCodedMbIdxOfPartition[kiPartitionId]);
-
+          pSliceThreadInfo->iEncodedSliceNumInThread[iThreadIdx] +=1;
           iAnyMbLeftInPartition = kiEndMbInPartition - (1 + pCurDq->pLastCodedMbIdxOfPartition[kiPartitionId]);
           iSliceIdx ++;
         }
