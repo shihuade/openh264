@@ -1487,29 +1487,31 @@ int32_t SliceLayerInfoUpdate (sWelsEncCtx* pCtx, const int32_t kiDlayerIndex) {
   return ENC_RETURN_SUCCESS;
 }
 
-int32_t WelsCodeOneSlice (sWelsEncCtx* pEncCtx, const int32_t kiSliceIdx, const int32_t kiNalType) {
+int32_t WelsCodeOneSlice (sWelsEncCtx* pEncCtx,
+                          SSlice* pSlice,
+                          const int32_t kiSliceIdx,
+                          const int32_t kiNalType) {
   SDqLayer* pCurLayer                   = pEncCtx->pCurDqLayer;
   SNalUnitHeaderExt* pNalHeadExt        = &pCurLayer->sLayerInfo.sNalHeaderExt;
-  SSlice* pCurSlice                     = pCurLayer->ppSliceInLayer[kiSliceIdx];
-  SBitStringAux* pBs                    = pCurSlice->pSliceBsa;
+  SBitStringAux* pBs                    = pSlice->pSliceBsa;
   const int32_t kiDynamicSliceFlag      =
     (pEncCtx->pSvcParam->sSpatialLayers[pEncCtx->uiDependencyId].sSliceArgument.uiSliceMode
      ==
      SM_SIZELIMITED_SLICE);
 
-  assert (kiSliceIdx == (int) pCurSlice->uiSliceIdx);
+  assert (kiSliceIdx == (int) pSlice->uiSliceIdx);
 
   if (I_SLICE == pEncCtx->eSliceType) {
     pNalHeadExt->bIdrFlag = 1;
-    pCurSlice->sScaleShift = 0;
+    pSlice->sScaleShift = 0;
   } else {
     const uint32_t kuiTemporalId = pNalHeadExt->uiTemporalId;
-    pCurSlice->sScaleShift = kuiTemporalId ? (kuiTemporalId - pEncCtx->pRefPic->uiTemporalId) : 0;
+    pSlice->sScaleShift = kuiTemporalId ? (kuiTemporalId - pEncCtx->pRefPic->uiTemporalId) : 0;
   }
 
-  WelsSliceHeaderExtInit (pEncCtx, pCurLayer, pCurSlice);
+  WelsSliceHeaderExtInit (pEncCtx, pCurLayer, pSlice);
 
-  g_pWelsWriteSliceHeader[pCurSlice->bSliceHeaderExtFlag] (pEncCtx, pBs, pCurLayer, pCurSlice,
+  g_pWelsWriteSliceHeader[pSlice->bSliceHeaderExtFlag] (pEncCtx, pBs, pCurLayer, pSlice,
       ((SPS_PPS_LISTING != pEncCtx->pSvcParam->eSpsPpsIdStrategy) ? (&
           (pEncCtx->sPSOVector.sParaSetOffsetVariable[PARA_SET_TYPE_PPS].iParaSetIdDelta[0])) : NULL));
 
@@ -1525,13 +1527,13 @@ int32_t WelsCodeOneSlice (sWelsEncCtx* pEncCtx, const int32_t kiSliceIdx, const 
   }
 #endif
 
-  pCurSlice->uiLastMbQp = pCurLayer->sLayerInfo.pPpsP->iPicInitQp + pCurSlice->sSliceHeaderExt.sSliceHeader.iSliceQpDelta;
+  pSlice->uiLastMbQp = pCurLayer->sLayerInfo.pPpsP->iPicInitQp + pSlice->sSliceHeaderExt.sSliceHeader.iSliceQpDelta;
 
-  int32_t iEncReturn = g_pWelsSliceCoding[pNalHeadExt->bIdrFlag][kiDynamicSliceFlag] (pEncCtx, pCurSlice);
+  int32_t iEncReturn = g_pWelsSliceCoding[pNalHeadExt->bIdrFlag][kiDynamicSliceFlag] (pEncCtx, pSlice);
   if (ENC_RETURN_SUCCESS != iEncReturn)
     return iEncReturn;
 
-  WelsWriteSliceEndSyn (pCurSlice, pEncCtx->pSvcParam->iEntropyCodingModeFlag != 0);
+  WelsWriteSliceEndSyn (pSlice, pEncCtx->pSvcParam->iEntropyCodingModeFlag != 0);
 
   return ENC_RETURN_SUCCESS;
 }

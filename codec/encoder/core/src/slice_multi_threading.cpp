@@ -626,7 +626,7 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
         if (bDsaFlag)
           iSliceStart = WelsTime();
 
-        pSliceBs                = &pSlice->sSliceBs;
+        pSliceBs = &pSlice->sSliceBs;
         assert ((void*) (&pSliceBs->sBsWrite) == (void*)pSlice->pSliceBsa);
         InitBits (&pSliceBs->sBsWrite, pSliceBs->pBsBuffer, pSliceBs->uiSize);
 
@@ -648,7 +648,7 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
 
         WelsLoadNalForSlice (pSliceBs, eNalType, eNalRefIdc);
 
-        iReturn = WelsCodeOneSlice (pEncPEncCtx, iSliceIdx, eNalType);
+        iReturn = WelsCodeOneSlice (pEncPEncCtx, pSlice, iSliceIdx, eNalType);
         if (ENC_RETURN_SUCCESS != iReturn) {
           uiThrdRet = iReturn;
           WELS_THREAD_SIGNAL_AND_BREAK (pEncPEncCtx->pSliceThreading->pSliceCodedEvent,
@@ -756,7 +756,7 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
 
           WelsLoadNalForSlice (pSliceBs, eNalType, eNalRefIdc);
 
-          iReturn = WelsCodeOneSlice (pEncPEncCtx, iSliceIdx, eNalType);
+          iReturn = WelsCodeOneSlice (pEncPEncCtx, pSlice, iSliceIdx, eNalType);
           if (ENC_RETURN_SUCCESS != iReturn) {
             uiThrdRet = iReturn;
             WELS_THREAD_SIGNAL_AND_BREAK (pEncPEncCtx->pSliceThreading->pSliceCodedEvent,
