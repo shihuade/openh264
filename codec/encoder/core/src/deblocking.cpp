@@ -690,9 +690,9 @@ void  DeblockingFilterFrameAvcbase (SDqLayer* pCurDq, SWelsFuncPtrList* pFunc) {
   }
 }
 
-void DeblockingFilterSliceAvcbase (SDqLayer* pCurDq, SWelsFuncPtrList* pFunc, const int32_t kiSliceIdx) {
+void DeblockingFilterSliceAvcbase (SDqLayer* pCurDq, SWelsFuncPtrList* pFunc, SSlice* pSlice) {
   SMB* pMbList                          = pCurDq->sMbDataP;
-  SSliceHeaderExt* sSliceHeaderExt      = &pCurDq->ppSliceInLayer[kiSliceIdx]->sSliceHeaderExt;
+  SSliceHeaderExt* sSliceHeaderExt      = &pSlice->sSliceHeaderExt;
   SMB* pCurrentMbBlock;
 
   const int32_t kiMbWidth               = pCurDq->iMbWidth;
@@ -738,7 +738,7 @@ void DeblockingFilterSliceAvcbase (SDqLayer* pCurDq, SWelsFuncPtrList* pFunc, co
   }
 }
 
-void DeblockingFilterSliceAvcbaseNull (SDqLayer* pCurDq, SWelsFuncPtrList* pFunc, const int32_t kiSliceIdx) {
+void DeblockingFilterSliceAvcbaseNull (SDqLayer* pCurDq, SWelsFuncPtrList* pFunc, SSlice* pSlice) {
 }
 
 void PerformDeblockingFilter (sWelsEncCtx* pEnc) {
@@ -756,7 +756,7 @@ void PerformDeblockingFilter (sWelsEncCtx* pEnc) {
     if (SM_SIZELIMITED_SLICE != pSpatialLayer->sSliceArgument.uiSliceMode) {
       iSliceCount = GetCurrentSliceNum (pCurLayer);
       do {
-        DeblockingFilterSliceAvcbase (pCurLayer, pEnc->pFuncList, iSliceIdx);
+        DeblockingFilterSliceAvcbase (pCurLayer, pEnc->pFuncList, pCurLayer->ppSliceInLayer[iSliceIdx]);
         ++ iSliceIdx;
       } while (iSliceIdx < iSliceCount);
     } else { // for dynamic slicing mode
@@ -767,7 +767,7 @@ void PerformDeblockingFilter (sWelsEncCtx* pEnc) {
         iSliceCount     = pCurLayer->pNumSliceCodedOfPartition[iPartitionIdx];
         iSliceIdx       = iPartitionIdx;
         do {
-          DeblockingFilterSliceAvcbase (pCurLayer, pEnc->pFuncList, iSliceIdx);
+          DeblockingFilterSliceAvcbase (pCurLayer, pEnc->pFuncList, pCurLayer->ppSliceInLayer[iSliceIdx]);
           iSliceIdx += kiNumPicPartition;
         } while (iSliceIdx < iSliceCount);
         ++ iPartitionIdx;

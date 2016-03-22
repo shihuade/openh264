@@ -117,7 +117,7 @@ WelsErrorType CWelsSliceEncodingTask::InitTask() {
   iReturn = InitOneSliceInThread (m_pCtx, m_pSlice, m_pCtx->uiDependencyId, m_iSliceIdx, m_iThreadIdx);
   if(ENC_RETURN_SUCCESS != iReturn) {
     WelsLog (&m_pCtx->sLogCtx, WELS_LOG_ERROR,
-             "[MT] InitTask()::InitOneSliceInThread(%d) failed! Did(%d), ThrdId(), SliceId(%d)!",
+             "[MT] InitTask()::InitOneSliceInThread() failed! Did(%d), ThrdId(%d), SliceId(%d)!",
              m_pCtx->uiDependencyId, m_iThreadIdx, m_iSliceIdx);
     return ENC_RETURN_UNEXPECTED;
   }
@@ -182,7 +182,7 @@ WelsErrorType CWelsSliceEncodingTask::ExecuteTask() {
     return iReturn;
   }
 
-  m_pCtx->pFuncList->pfDeblocking.pfDeblockingFilterSlice (m_pCtx->pCurDqLayer, m_pCtx->pFuncList, m_iSliceIdx);
+  m_pCtx->pFuncList->pfDeblocking.pfDeblockingFilterSlice (m_pCtx->pCurDqLayer, m_pCtx->pFuncList, m_pSlice);
 
   WelsLog (&m_pCtx->sLogCtx, WELS_LOG_DETAIL,
            "@pSlice=%-6d sliceType:%c idc:%d size:%-6d",  m_iSliceIdx,
@@ -253,21 +253,22 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
   //end of deal with partition
 
   m_pCtx->pCurDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[m_iThreadIdx] = 0;
-  int32_t iAnyMbLeftInPartition           = kiEndMbInPartition - kiFirstMbInPartition;
-  int32_t iLocalSliceIdx = m_iSliceIdx;
+  int32_t iAnyMbLeftInPartition  = kiEndMbInPartition - kiFirstMbInPartition;
+
+  m_iSliceIdx = 0;
   while (iAnyMbLeftInPartition > 0) {
-    if (iLocalSliceIdx >= pSliceCtx->iMaxSliceNumConstraint) {
+    if (m_iSliceIdx >= pSliceCtx->iMaxSliceNumConstraint) {
       WelsLog (&m_pCtx->sLogCtx, WELS_LOG_WARNING,
                "[MT] CWelsConstrainedSizeSlicingEncodingTask ExecuteTask() coding_idx %d, uiLocalSliceIdx %d, pSliceCtx->iMaxSliceNumConstraint %d",
                pParamInternal->iCodingIndex,
-               iLocalSliceIdx, pSliceCtx->iMaxSliceNumConstraint);
+               m_iSliceIdx, pSliceCtx->iMaxSliceNumConstraint);
       return ENC_RETURN_KNOWN_ISSUE;
     }
 
     iReturn = InitOneSliceInThread (m_pCtx, m_pSlice, m_pCtx->uiDependencyId, m_iSliceIdx, m_iThreadIdx);
     if(ENC_RETURN_SUCCESS != iReturn) {
       WelsLog (&m_pCtx->sLogCtx, WELS_LOG_ERROR,
-               "[MT] InitTask()::InitOneSliceInThread(%d) failed! Did(%d), ThrdId(), SliceId(%d)!",
+               "[MT] InitTask()::InitOneSliceInThread() failed! Did(%d), ThrdId(%d), SliceId(%d)!",
                m_pCtx->uiDependencyId, m_iThreadIdx, m_iSliceIdx);
       return ENC_RETURN_UNEXPECTED;
     }
@@ -288,26 +289,26 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
     }
 
     WelsLoadNalForSlice (m_pSliceBs, m_eNalType, m_eNalRefIdc);
-    int32_t iReturn = WelsCodeOneSlice (m_pCtx, m_pSlice, iLocalSliceIdx, m_eNalType);
+    int32_t iReturn = WelsCodeOneSlice (m_pCtx, m_pSlice, m_iSliceIdx, m_eNalType);
     if (ENC_RETURN_SUCCESS != iReturn) {
       return iReturn;
     }
     WelsUnloadNalForSlice (m_pSliceBs);
 
-    iReturn    = WriteSliceBs (m_pCtx, m_pSliceBs, iLocalSliceIdx, m_iSliceSize);
+    iReturn = WriteSliceBs (m_pCtx, m_pSliceBs, m_iSliceIdx, m_iSliceSize);
     if (ENC_RETURN_SUCCESS != iReturn) {
       WelsLog (&m_pCtx->sLogCtx, WELS_LOG_WARNING,
                "[MT] CWelsConstrainedSizeSlicingEncodingTask ExecuteTask(), WriteSliceBs not successful: coding_idx %d, uiLocalSliceIdx %d, BufferSize %d, m_iSliceSize %d, iPayloadSize %d",
                pParamInternal->iCodingIndex,
-               iLocalSliceIdx, m_pSliceBs->uiSize, m_iSliceSize, m_pSliceBs->sNalList[0].iPayloadSize);
+               m_iSliceIdx, m_pSliceBs->uiSize, m_iSliceSize, m_pSliceBs->sNalList[0].iPayloadSize);
       return iReturn;
     }
 
-    m_pCtx->pFuncList->pfDeblocking.pfDeblockingFilterSlice (pCurDq, m_pCtx->pFuncList, iLocalSliceIdx);
+    m_pCtx->pFuncList->pfDeblocking.pfDeblockingFilterSlice (pCurDq, m_pCtx->pFuncList, m_pSlice);
 
     WelsLog (&m_pCtx->sLogCtx, WELS_LOG_DETAIL,
              "@pSlice=%-6d sliceType:%c idc:%d size:%-6d\n",
-             iLocalSliceIdx,
+             m_iSliceIdx,
              (m_pCtx->eSliceType == P_SLICE ? 'P' : 'I'),
              m_eNalRefIdc,
              m_iSliceSize
@@ -315,12 +316,12 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
 
     WelsLog (&m_pCtx->sLogCtx, WELS_LOG_DEBUG,
              "[MT] CWelsConstrainedSizeSlicingEncodingTask(), coding_idx %d, iPartitionId %d, m_iThreadIdx %d, iLocalSliceIdx %d, m_iSliceSize %d, ParamValidationExt(), invalid uiMaxNalSizeiEndMbInPartition %d, pCurDq->pLastCodedMbIdxOfPartition[%d] %d\n",
-             pParamInternal->iCodingIndex, kiPartitionId, m_iThreadIdx, iLocalSliceIdx, m_iSliceSize,
+             pParamInternal->iCodingIndex, kiPartitionId, m_iThreadIdx, m_iSliceIdx, m_iSliceSize,
              kiEndMbInPartition, kiPartitionId, pCurDq->pLastCodedMbIdxOfPartition[kiPartitionId]);
 
     m_pCtx->pCurDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[m_iThreadIdx] +=1;
     iAnyMbLeftInPartition = kiEndMbInPartition - (1 + pCurDq->pLastCodedMbIdxOfPartition[kiPartitionId]);
-    iLocalSliceIdx += kiSliceIdxStep;
+    m_iSliceIdx += 1;
   }
 
   return ENC_RETURN_SUCCESS;

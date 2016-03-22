@@ -613,7 +613,7 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
        iReturn = InitOneSliceInThread (pEncPEncCtx, pSlice, kiCurDid, iSliceIdx, iThreadIdx);
        if(ENC_RETURN_SUCCESS != iReturn){
          MT_TRACE_LOG (&(pEncPEncCtx->sLogCtx), WELS_LOG_INFO,
-                       "[MT] CodingSliceThreadProc()::InitOneSliceInThread(%d) failed! Did(%d), ThrdId(), SliceId(%d)!",
+                       "[MT] CodingSliceThreadProc()::InitOneSliceInThread() failed! Did(%d), ThrdId(%d), SliceId(%d)!",
                        kiCurDid, iThreadIdx, iSliceIdx);
          WELS_THREAD_SIGNAL_AND_BREAK (pEncPEncCtx->pSliceThreading->pSliceCodedEvent,
                                        pEncPEncCtx->pSliceThreading->pSliceCodedMasterEvent,
@@ -666,7 +666,7 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
                                         iEventIdx);
         }
 
-        pEncPEncCtx->pFuncList->pfDeblocking.pfDeblockingFilterSlice (pCurDq, pEncPEncCtx->pFuncList, iSliceIdx);
+        pEncPEncCtx->pFuncList->pfDeblocking.pfDeblockingFilterSlice (pCurDq, pEncPEncCtx->pFuncList, pSlice);
 
         if (bDsaFlag) {
             pSlice->uiSliceConsumeTime = (uint32_t) (
@@ -731,7 +731,7 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
           iReturn = InitOneSliceInThread (pEncPEncCtx, pSlice, kiCurDid, iSliceIdx, iThreadIdx);
           if(ENC_RETURN_SUCCESS != iReturn){
             MT_TRACE_LOG (&(pEncPEncCtx->sLogCtx), WELS_LOG_INFO,
-                          "[MT] CodingSliceThreadProc()::InitOneSliceInThread(%d) failed! Did(%d), ThrdId(), SliceId(%d)!",
+                          "[MT] CodingSliceThreadProc()::InitOneSliceInThread() failed! Did(%d), ThrdId(%d), SliceId(%d)!",
                           kiCurDid, iThreadIdx, iSliceIdx);
             WELS_THREAD_SIGNAL_AND_BREAK (pEncPEncCtx->pSliceThreading->pSliceCodedEvent,
                                          pEncPEncCtx->pSliceThreading->pSliceCodedMasterEvent,
@@ -779,7 +779,7 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
                                           iEventIdx);
           }
 
-          pEncPEncCtx->pFuncList->pfDeblocking.pfDeblockingFilterSlice (pCurDq, pEncPEncCtx->pFuncList, iSliceIdx);
+          pEncPEncCtx->pFuncList->pfDeblocking.pfDeblockingFilterSlice (pCurDq, pEncPEncCtx->pFuncList, pSlice);
 
 #if defined(SLICE_INFO_OUTPUT)
           fprintf (stderr,
