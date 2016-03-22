@@ -1055,7 +1055,7 @@ void RefreshSliceInfoInThread (SDqLayer* pDqLayer, const int32_t kiThreadNum) {
 
   for (iIdx = 0; iIdx < kiThreadNum; iIdx ++) {
     iMaxSliceNumInThread = pSliceThreadInfo->iMaxSliceNumInThread[iIdx];
-    pSliceInThread = pSliceThreadInfo->pSliceInThread[iIdx];
+    pSliceInThread       = pSliceThreadInfo->pSliceInThread[iIdx];
     if (NULL == pSliceInThread) {
       return;
     }
@@ -1064,6 +1064,8 @@ void RefreshSliceInfoInThread (SDqLayer* pDqLayer, const int32_t kiThreadNum) {
       pSliceInThread[iSliceIdx].uiSliceIdx = 0;
       pSliceInThread[iSliceIdx].iThreadIdx = iIdx;
     }
+
+    pSliceThreadInfo->iEncodedSliceNumInThread[iIdx] = 0;
   }
 }
 
