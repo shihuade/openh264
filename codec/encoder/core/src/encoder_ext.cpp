@@ -4912,11 +4912,12 @@ int32_t FrameBsRealloc (sWelsEncCtx* pCtx,
 
 }
 static inline int32_t InitSliceHeadWithBase (SSlice* pSlice, SSlice* pBaseSlice, const uint8_t kuiRefCount) {
-  SSliceHeaderExt* pBaseSHExt  = &pBaseSlice->sSliceHeaderExt;
-  SSliceHeaderExt* pSHExt      = &pSlice->sSliceHeaderExt;
-
+    
   if (NULL == pSlice || NULL == pBaseSlice)
     return ENC_RETURN_INVALIDINPUT;
+
+  SSliceHeaderExt* pBaseSHExt  = &pBaseSlice->sSliceHeaderExt;
+  SSliceHeaderExt* pSHExt      = &pSlice->sSliceHeaderExt;
 
   pSlice->bSliceHeaderExtFlag  = pBaseSlice->bSliceHeaderExtFlag;
   pSHExt->sSliceHeader.iPpsId     = pBaseSHExt->sSliceHeader.iPpsId;
