@@ -976,6 +976,7 @@ int32_t InitOneSliceInThread (sWelsEncCtx* pCtx,
                               const int32_t kiSliceIdx,
                               const int32_t kiThreadIdx) {
   SDqLayer* pDqLayer                  = pCtx->pCurDqLayer;
+  SSliceArgument* pSliceArgument      = & pCtx->pSvcParam->sSpatialLayers[kiDlayerIdx].sSliceArgument;
   const int32_t kiCodedNumInThread    = pDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[kiThreadIdx];
   const int32_t kiMaxSliceNumInThread = pDqLayer->sSliceThreadInfo.iMaxSliceNumInThread[kiThreadIdx];
   int32_t iRet                        = 0;
@@ -986,8 +987,12 @@ int32_t InitOneSliceInThread (sWelsEncCtx* pCtx,
       return iRet;
   }
 
+  if(SM_SIZELIMITED_SLICE == pSliceArgument->uiSliceMode && 0 == kiCodedNumInThread) {
+    pSlice->uiSliceIdx = 0;
+  } else {
+    pSlice->uiSliceIdx = kiSliceIdx;
+  }
   pSlice = pDqLayer->sSliceThreadInfo.pSliceInThread [kiThreadIdx] + kiCodedNumInThread;
-  pSlice->uiSliceIdx = kiSliceIdx;
   pSlice->iThreadIdx = kiThreadIdx;
 
   // Initialize slice bs buffer info
