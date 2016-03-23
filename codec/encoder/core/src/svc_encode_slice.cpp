@@ -1593,7 +1593,7 @@ void AddSliceBoundary (sWelsEncCtx* pEncCtx, SSlice* pCurSlice, SSliceCtx* pSlic
   SDqLayer* pCurLayer      = pEncCtx->pCurDqLayer;
   int32_t iCurMbIdx        = pCurMb->iMbXY;
   int32_t iThreadIdx       = pCurSlice->iThreadIdx;
-  uint16_t iNextSliceIdc   = pCurLayer->sSliceThreadInfo.iEncodedSliceNumInThread[iThreadIdx];
+  uint16_t iNextSliceIdc   = pCurLayer->sSliceThreadInfo.iEncodedSliceNumInThread[iThreadIdx] + 1;
   SSlice* pNextSlice       = pCurLayer->sSliceThreadInfo.pSliceInThread[iThreadIdx] + iNextSliceIdc;
 
   SMB* pMbList = pCurLayer->sMbDataP;
