@@ -987,13 +987,13 @@ int32_t InitOneSliceInThread (sWelsEncCtx* pCtx,
       return iRet;
   }
 
+  pSlice = pDqLayer->sSliceThreadInfo.pSliceInThread [kiThreadIdx] + kiCodedNumInThread;
+  pSlice->iThreadIdx = kiThreadIdx;
   if(SM_SIZELIMITED_SLICE == pSliceArgument->uiSliceMode && 0 == kiCodedNumInThread) {
     pSlice->uiSliceIdx = 0;
   } else {
     pSlice->uiSliceIdx = kiSliceIdx;
   }
-  pSlice = pDqLayer->sSliceThreadInfo.pSliceInThread [kiThreadIdx] + kiCodedNumInThread;
-  pSlice->iThreadIdx = kiThreadIdx;
 
   // Initialize slice bs buffer info
   pSlice->sSliceBs.uiBsPos   = 0;
