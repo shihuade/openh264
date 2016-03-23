@@ -878,6 +878,7 @@ static inline int32_t InitSliceBsBuffer (SSlice* pSlice,
     bool bIndependenceBsBuffer,
     const int32_t iMaxSliceBufferSize,
     CMemoryAlign* pMa) {
+
   pSlice->sSliceBs.uiSize  = iMaxSliceBufferSize;
   pSlice->sSliceBs.uiBsPos = 0;
 
@@ -1234,7 +1235,7 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
     InitRCInfoForOneSlice (pSlice, iBitsPerMb, pCtx->iGlobalQp);
   }
 
-  pMA->WelsFree (pSliceList, "Slice");
+  pMA->WelsFree (pSliceList, "SliceListOld in ReallocateSliceList ");
   pSliceList = pNewSliceList;
 
   return ENC_RETURN_SUCCESS;
@@ -1290,6 +1291,8 @@ int32_t ReallocateSliceInThread (sWelsEncCtx* pCtx,
   if (ENC_RETURN_SUCCESS != iRet) {
     return iRet;
   }
+
+  pDqLayer->sSliceThreadInfo.iMaxSliceNumInThread[kiThreadIndex] = iMaxSliceNumUpdate;
 
   return ENC_RETURN_SUCCESS;
 }
