@@ -1663,7 +1663,7 @@ bool DynSlcJudgeSliceBoundaryStepBack (void* pCtx, void* pSlice, SSliceCtx* pSli
   uint32_t uiLen = 0;
   int32_t iPosBitOffset = 0;
   const int32_t  kiActiveThreadsNum = pEncCtx->iActiveThreadsNum;
-  const int32_t  kiPartitaionId = pCurSlice->uiSliceIdx % kiActiveThreadsNum;
+  const int32_t  kiPartitaionId = pCurSlice->uiPartitionID;
   const int32_t  kiLastMbIdxInPartition = pEncCtx->pCurDqLayer->pLastMbIdxOfPartition[kiPartitaionId];
 
   const bool    kbCurMbNotFirstMbOfCurSlice      = ((iCurMbIdx > 0) && (pSliceCtx->pOverallMbMap[iCurMbIdx] ==
