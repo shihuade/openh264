@@ -343,10 +343,24 @@ int32_t GetInitialSliceNum (const int32_t kiMbWidth, const int32_t kiMbHeight, S
  *  Get actual allocated slice buffer num
  */
 int32_t GetAllocateSliceNum (const SDqLayer* pCurDq){
-  if(NULL == pCurDq)
+  if(NULL == pCurDq) {
     return -1;
+  }
 
   return pCurDq->iAllocatedSliceNum;
+}
+
+int32_t GetCodedSliceNum(const SDqLayer* pCurDq, const int32_t kiThreadNum) {
+  if(NULL == pCurDq){
+    return -1;
+  }
+    int32_t iThreadIdx     = 0;
+    int32_t iTotalCodecNum = 0;
+
+    for(; iThreadIdx < kiThreadNum; iThreadIdx++){
+        iTotalCodecNum += pCurDq->sSliceThreadInfo.iEncodedSliceNumInThread[iThreadIdx];
+    }
+  return iTotalCodecNum;
 }
 
 /*!

@@ -194,6 +194,7 @@ int32_t WelsGetNumMbInSlice (SDqLayer* pCurDq, SSlice* pSlice, const int32_t kiS
 int32_t GetInitialSliceNum (const int32_t kiMbWidth, const int32_t kiMbHeight, SSliceArgument* pSliceArgument);
 int32_t GetCurrentSliceNum (const SDqLayer* pCurDq);
 int32_t GetAllocateSliceNum (const SDqLayer* pCurDq);
+int32_t GetCodedSliceNum(const SDqLayer* pCurDq, const int32_t kiThreadNum);
 SSlice* GetSliceByIndex(sWelsEncCtx* pCtx, const int32_t kiSliceIdc);
 
 //checking valid para
