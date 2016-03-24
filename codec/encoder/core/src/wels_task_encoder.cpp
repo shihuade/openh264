@@ -239,7 +239,7 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
   SSliceHeaderExt* pStartSliceHeaderExt = &pCurDq->ppSliceInLayer[m_iSliceIdx]->sSliceHeaderExt;
 
   //deal with partition: TODO: here SSliceThreadPrivateData is just for parition info and actually has little relationship with threadbuffer, and iThreadIndex is not used in threadpool model, need renaming after removing old logic to avoid confusion
-  const int32_t kiPartitionId             = m_iThreadIdx;
+  const int32_t kiPartitionId             = m_iSliceIdx;
   SSliceThreadPrivateData* pPrivateData   = & (m_pCtx->pSliceThreading->pThreadPEncCtx[kiPartitionId]);
   const int32_t kiFirstMbInPartition      = pPrivateData->iStartMbIndex;  // inclusive
   const int32_t kiEndMbInPartition        = pPrivateData->iEndMbIndex;            // exclusive
@@ -262,6 +262,11 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
                pParamInternal->iCodingIndex,
                m_iSliceIdx, pSliceCtx->iMaxSliceNumConstraint);
       return ENC_RETURN_KNOWN_ISSUE;
+    }
+
+    m_pSlice->uiPartitionID = kiPartitionId;
+    if(m_iSliceIdx == 0 ) {
+      m_pSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice = kiFirstMbInPartition;
     }
 
     iReturn = InitOneSliceInThread (m_pCtx, m_pSlice, m_pCtx->uiDependencyId, m_iSliceIdx, m_iThreadIdx);

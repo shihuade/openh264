@@ -619,7 +619,6 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
                                        pEncPEncCtx->pSliceThreading->pSliceCodedMasterEvent,
                                        iEventIdx);
         }
-
         bDsaFlag = ((pParamD->sSliceArgument.uiSliceMode == SM_FIXEDSLCNUM_SLICE) &&
                     pCodingParam->iMultipleThreadIdc > 1 &&
                     pCodingParam->iMultipleThreadIdc >= pParamD->sSliceArgument.uiSliceNum);
@@ -738,7 +737,12 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
                                          iEventIdx);
           }
 
-          pSliceBs              = &pSlice->sSliceBs;
+          pSlice->uiPartitionID = kiPartitionId;
+          if(iSliceIdx == 0 ) {
+            pSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice = kiFirstMbInPartition;
+          }
+
+          pSliceBs = &pSlice->sSliceBs;
           InitBits (&pSliceBs->sBsWrite, pSliceBs->pBsBuffer, pSliceBs->uiSize);
 
           if (bNeedPrefix) {

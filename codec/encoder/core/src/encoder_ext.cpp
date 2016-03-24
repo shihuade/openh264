@@ -2613,13 +2613,13 @@ void WelsInitCurrentQBLayerMltslc (sWelsEncCtx* pCtx) {
 }
 
 void UpdateSlicePartitionInfo (sWelsEncCtx* pCtx, SDqLayer* pCurDq, int32_t iPartitionNum) {
-  SSliceCtx* pSliceCtx                  = &pCurDq->sSliceEncCtx;
-  SSlice* pSlice                        = NULL;
-  const int32_t kiMbNumInFrame          = pSliceCtx->iMbNumInFrame;
-  int32_t iCountMbNumPerPartition       = kiMbNumInFrame;
-  int32_t iAssignableMbLeft             = kiMbNumInFrame;
-  int32_t iFirstMbIdx                   = 0;
-  int32_t iEndMbIdx                     = 0;
+  SSliceCtx* pSliceCtx             = &pCurDq->sSliceEncCtx;
+  const int32_t kiMbNumInFrame     = pSliceCtx->iMbNumInFrame;
+  int32_t iCountMbNumPerPartition  = kiMbNumInFrame;
+  int32_t iAssignableMbLeft        = kiMbNumInFrame;
+  int32_t iFirstMbIdx              = 0;
+  int32_t iEndMbIdx                = 0;
+  int32_t iCountMbNumInSlice       = 0;
   int32_t i/*, j*/;
 
   if (iPartitionNum <= 0)
@@ -2630,26 +2630,23 @@ void UpdateSlicePartitionInfo (sWelsEncCtx* pCtx, SDqLayer* pCurDq, int32_t iPar
   pSliceCtx->iSliceNumInFrame = iPartitionNum;
   i = 0;
   while (i < iPartitionNum) {
-    pSlice = pCurDq->sSliceThreadInfo.pSliceInThread[i];
-
     if (i + 1 == iPartitionNum) {
-      pSlice->iCountMbNumInSlice = iAssignableMbLeft;
+      iCountMbNumInSlice = iAssignableMbLeft;
     } else {
-      pSlice->iCountMbNumInSlice = iCountMbNumPerPartition;
+      iCountMbNumInSlice = iCountMbNumPerPartition;
     }
-    pSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice = iFirstMbIdx;
 
     WelsSetMemMultiplebytes_c (pSliceCtx->pOverallMbMap + iFirstMbIdx, i,
-                               pSlice->iCountMbNumInSlice, sizeof (uint16_t));
+                               iCountMbNumInSlice, sizeof (uint16_t));
 
-    iEndMbIdx += pSlice->iCountMbNumInSlice;
+    iEndMbIdx += iCountMbNumInSlice;
     if(pCtx->iActiveThreadsNum >1){
       pCtx->pSliceThreading->pThreadPEncCtx[i].iStartMbIndex  = iFirstMbIdx;
       pCtx->pSliceThreading->pThreadPEncCtx[i].iEndMbIndex    = iEndMbIdx;
     }
     // for next partition(or pSlice)
-    iFirstMbIdx       += pSlice->iCountMbNumInSlice;
-    iAssignableMbLeft -= pSlice->iCountMbNumInSlice;
+    iFirstMbIdx       += iCountMbNumInSlice;
+    iAssignableMbLeft -= iCountMbNumInSlice;
     ++ i;
   }
 

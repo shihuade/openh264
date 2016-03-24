@@ -945,8 +945,9 @@ int32_t InitSliceList (sWelsEncCtx* pCtx,
       return ENC_RETURN_MEMALLOCERR;
     }
 
-    pSlice->uiSliceIdx = 0;
-    pSlice->iThreadIdx = 0;
+    pSlice->uiSliceIdx    = 0;
+    pSlice->iThreadIdx    = 0;
+    pSlice->uiPartitionID = 0;
     iRet = InitSliceBsBuffer (pSlice,
                               & pCtx->pOut->sBsWrite,
                               bIndependenceBsBuffer,
