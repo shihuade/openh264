@@ -446,8 +446,8 @@ int32_t AppendOneSliceToFrameBs(sWelsEncCtx* pCtx,
                                SLayerBSInfo* pLbi,
                                SWelsSliceBs* pSliceBs,
                                int &iNalIdxBase){
-  int32_t iLayerSize    = 0;
-  int32_t iNalIdx = 0;
+  int32_t iLayerSize  = 0;
+  int32_t iNalIdx     = 0;
 
   if (pSliceBs != NULL && pSliceBs->uiBsPos > 0) {
     const int32_t iCountNal = pSliceBs->iNalIndex;
@@ -471,47 +471,20 @@ int32_t AppendOneSliceToFrameBs(sWelsEncCtx* pCtx,
 }
 
 int32_t AppendSliceToFrameBs (sWelsEncCtx* pCtx, SLayerBSInfo* pLbi, const int32_t iSliceCount) {
-  SWelsSvcCodingParam* pCodingParam     = pCtx->pSvcParam;
-  SSpatialLayerConfig* pDlp             = &pCodingParam->sSpatialLayers[pCtx->uiDependencyId];
-  SSlice** ppSliceInlayer               = pCtx->pCurDqLayer->ppSliceInLayer;
-  SWelsSliceBs* pSliceBs                = NULL;
-  const bool kbIsDynamicSlicingMode     = (pDlp->sSliceArgument.uiSliceMode == SM_SIZELIMITED_SLICE);
+  SSlice** ppSliceInlayer = pCtx->pCurDqLayer->ppSliceInLayer;
+  SWelsSliceBs* pSliceBs  = NULL;
+  int32_t iLayerSize      = 0;
+  int32_t iSliceBsSize    = 0;
+  int32_t iNalIdxBase     = pLbi->iNalCount;
+  int32_t iSliceIdx       = 0;
 
-  int32_t iLayerSize    = 0;
-  int32_t iSliceBsSize  = 0;
-  int32_t iNalIdxBase   = pLbi->iNalCount;
-  int32_t iSliceIdx     = 0;
+  iNalIdxBase  = pLbi->iNalCount = 0;
+  while (iSliceIdx < iSliceCount) {
+    pSliceBs    = &ppSliceInlayer[iSliceIdx]->sSliceBs;
 
-  if (!kbIsDynamicSlicingMode) {
-    iNalIdxBase   = pLbi->iNalCount = 0;
-    while (iSliceIdx < iSliceCount) {
-      pSliceBs    = &ppSliceInlayer[iSliceIdx]->sSliceBs;
-
-      iSliceBsSize = AppendOneSliceToFrameBs(pCtx, pLbi, pSliceBs, iNalIdxBase);
-      iLayerSize  += iSliceBsSize;
-      ++ iSliceIdx;
-    }
-  } else { // for SM_SIZELIMITED_SLICE
-    const int32_t kiPartitionCnt        = iSliceCount;
-    int32_t iPartitionIdx               = 0;
-
-    // due partition_0 has been written to pFrameBsBuffer
-    // so iLayerSize need add it
-    while (iPartitionIdx < kiPartitionCnt) {
-      const int32_t kiCountSlicesCoded = pCtx->pCurDqLayer->pNumSliceCodedOfPartition[iPartitionIdx];
-      int32_t iIdx = 0;
-
-      iSliceIdx = iPartitionIdx;
-      while (iIdx < kiCountSlicesCoded) {
-        pSliceBs = &ppSliceInlayer[iSliceIdx]->sSliceBs;
-        iSliceBsSize = AppendOneSliceToFrameBs(pCtx, pLbi, pSliceBs, iNalIdxBase);
-        iLayerSize  += iSliceBsSize;
-
-        iSliceIdx += kiPartitionCnt;
-        ++ iIdx;
-      }
-      ++ iPartitionIdx;
-    }
+    iSliceBsSize = AppendOneSliceToFrameBs(pCtx, pLbi, pSliceBs, iNalIdxBase);
+    iLayerSize  += iSliceBsSize;
+    ++ iSliceIdx;
   }
 
   return iLayerSize;
