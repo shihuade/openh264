@@ -3955,7 +3955,7 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
           return iRet;
         }
 
-        iLayerSize = AppendSliceToFrameBs (pCtx, pLayerBsInfo, iSliceCount);
+        iLayerSize = AppendSliceToFrameBs (pCtx, pLayerBsInfo);
       }
       // THREAD_FULLY_FIRE_MODE && SM_SIZELIMITED_SLICE
       else if ((SM_SIZELIMITED_SLICE == pParam->sSliceArgument.uiSliceMode) && (pSvcParam->iMultipleThreadIdc > 1)) {
@@ -4015,7 +4015,7 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
           return iRet;
         }
 
-        iLayerSize = AppendSliceToFrameBs (pCtx, pLayerBsInfo, kiPartitionCnt);
+        iLayerSize = AppendSliceToFrameBs (pCtx, pLayerBsInfo);
       } else { // for non-dynamic-slicing mode single threading branch..
         const bool bNeedPrefix = pCtx->bNeedPrefixNalFlag;
         int32_t iSliceIdx = 0;

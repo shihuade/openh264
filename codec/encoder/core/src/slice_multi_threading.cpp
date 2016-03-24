@@ -470,14 +470,16 @@ int32_t AppendOneSliceToFrameBs(sWelsEncCtx* pCtx,
   return iLayerSize;
 }
 
-int32_t AppendSliceToFrameBs (sWelsEncCtx* pCtx, SLayerBSInfo* pLbi, const int32_t iSliceCount) {
+int32_t AppendSliceToFrameBs (sWelsEncCtx* pCtx, SLayerBSInfo* pLbi) {
   SSlice** ppSliceInlayer = pCtx->pCurDqLayer->ppSliceInLayer;
   SWelsSliceBs* pSliceBs  = NULL;
   int32_t iLayerSize      = 0;
   int32_t iSliceBsSize    = 0;
   int32_t iNalIdxBase     = pLbi->iNalCount;
   int32_t iSliceIdx       = 0;
+  int32_t iSliceCount     = 0;
 
+  iSliceCount = GetCodedSliceNum(pCtx->pCurDqLayer, pCtx->iActiveThreadsNum);
   iNalIdxBase  = pLbi->iNalCount = 0;
   while (iSliceIdx < iSliceCount) {
     pSliceBs    = &ppSliceInlayer[iSliceIdx]->sSliceBs;

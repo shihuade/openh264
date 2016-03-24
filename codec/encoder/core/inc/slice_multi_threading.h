@@ -68,7 +68,7 @@ int32_t RequestMtResource (sWelsEncCtx** ppCtx, SWelsSvcCodingParam* pParam, con
 
 void ReleaseMtResource (sWelsEncCtx** ppCtx);
 
-int32_t AppendSliceToFrameBs (sWelsEncCtx* pCtx, SLayerBSInfo* pLbi, const int32_t kiSliceCount);
+int32_t AppendSliceToFrameBs (sWelsEncCtx* pCtx, SLayerBSInfo* pLbi);
 
 #if !defined(_WIN32)
 WELS_THREAD_ROUTINE_TYPE UpdateMbListThreadProc (void* arg);
