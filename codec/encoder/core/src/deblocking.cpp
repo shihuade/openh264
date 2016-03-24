@@ -742,8 +742,6 @@ void DeblockingFilterSliceAvcbaseNull (SDqLayer* pCurDq, SWelsFuncPtrList* pFunc
 }
 
 void PerformDeblockingFilter (sWelsEncCtx* pEnc) {
-  const int32_t kiCurDid                = pEnc->uiDependencyId;
-  SWelsSvcCodingParam* pSvcParam        = pEnc->pSvcParam;
   SDqLayer* pCurLayer                   = pEnc->pCurDqLayer;
 
   if (pCurLayer->iLoopFilterDisableIdc == 0) {
