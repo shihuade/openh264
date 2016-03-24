@@ -442,7 +442,7 @@ void ReleaseMtResource (sWelsEncCtx** ppCtx) {
   (*ppCtx)->pSliceThreading = NULL;
 }
 
-int32_t AppendOnSliceToFrameBs(sWelsEncCtx* pCtx,
+int32_t AppendOneSliceToFrameBs(sWelsEncCtx* pCtx,
                                SLayerBSInfo* pLbi,
                                SWelsSliceBs* pSliceBs,
                                int &iNalIdxBase){
@@ -487,7 +487,7 @@ int32_t AppendSliceToFrameBs (sWelsEncCtx* pCtx, SLayerBSInfo* pLbi, const int32
     while (iSliceIdx < iSliceCount) {
       pSliceBs    = &ppSliceInlayer[iSliceIdx]->sSliceBs;
 
-      iSliceBsSize = AppendOnSliceToFrameBs(pCtx, pLbi, pSliceBs, iNalIdxBase);
+      iSliceBsSize = AppendOneSliceToFrameBs(pCtx, pLbi, pSliceBs, iNalIdxBase);
       iLayerSize  += iSliceBsSize;
       ++ iSliceIdx;
     }
@@ -504,7 +504,7 @@ int32_t AppendSliceToFrameBs (sWelsEncCtx* pCtx, SLayerBSInfo* pLbi, const int32
       iSliceIdx = iPartitionIdx;
       while (iIdx < kiCountSlicesCoded) {
         pSliceBs = &ppSliceInlayer[iSliceIdx]->sSliceBs;
-        iSliceBsSize = AppendOnSliceToFrameBs(pCtx, pLbi, pSliceBs, iNalIdxBase);
+        iSliceBsSize = AppendOneSliceToFrameBs(pCtx, pLbi, pSliceBs, iNalIdxBase);
         iLayerSize  += iSliceBsSize;
 
         iSliceIdx += kiPartitionCnt;
