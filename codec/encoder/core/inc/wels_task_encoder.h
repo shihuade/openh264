@@ -114,10 +114,10 @@ class CWelsConstrainedSizeSlicingEncodingTask : public CWelsLoadBalancingSlicing
       m_uiPartitionID        = 0;
       m_bPartitionIDInitFlag = false;
   };
-
+  virtual WelsErrorType InitTask();
   virtual WelsErrorType ExecuteTask();
 
-  virtual uint32_t        GetTaskType() const {
+  virtual uint32_t GetTaskType() const {
     return WELS_ENC_TASK_ENCODE_SLICE_SIZECONSTRAINED;
   }
 

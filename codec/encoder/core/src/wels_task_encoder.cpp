@@ -230,6 +230,17 @@ void CWelsLoadBalancingSlicingEncodingTask::FinishTask() {
            (m_pSlice->uiSliceConsumeTime + m_iSliceStart));
 }
 
+// CWelsConstrainedSizeSlicingEncodingTask
+WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::InitTask() {
+  WelsErrorType iReturn = CWelsSliceEncodingTask::InitTask();
+  if (ENC_RETURN_SUCCESS != iReturn) {
+    return iReturn;
+  }
+
+  SetPartitionID(m_iSliceIdx);
+  return ENC_RETURN_SUCCESS;
+}
+
 void CWelsConstrainedSizeSlicingEncodingTask::SetPartitionID(const uint32_t kuiPartitionID) {
   if(false == m_bPartitionIDInitFlag) {
     m_uiPartitionID = kuiPartitionID;
@@ -242,7 +253,6 @@ void CWelsConstrainedSizeSlicingEncodingTask::ResetPartitionID(const uint32_t ku
   m_bPartitionIDInitFlag = true;
 }
 
-//CWelsConstrainedSizeSlicingEncodingTask
 WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
   int32_t iReturn              = ENC_RETURN_SUCCESS;
   SDqLayer* pCurDq             = m_pCtx->pCurDqLayer;
@@ -251,8 +261,6 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
   SSliceHeaderExt* pStartSliceHeaderExt = &pCurDq->ppSliceInLayer[m_iSliceIdx]->sSliceHeaderExt;
 
   //deal with partition: TODO: here SSliceThreadPrivateData is just for parition info and actually has little relationship with threadbuffer, and iThreadIndex is not used in threadpool model, need renaming after removing old logic to avoid confusion
-  //init/update partitionID
-  SetPartitionID(m_iSliceIdx);
 
   const int32_t kiPartitionId             = m_uiPartitionID;
   SSliceThreadPrivateData* pPrivateData   = & (m_pCtx->pSliceThreading->pThreadPEncCtx[kiPartitionId]);
