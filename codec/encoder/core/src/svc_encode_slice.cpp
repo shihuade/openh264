@@ -1399,7 +1399,7 @@ static inline int32_t GetThreadIdxBasedPartitionID(SSliceThreadInfo* pSliceThrea
                                                    const int32_t kiThreadNum){
   int32_t iThreadIdx = 0;
   for (; iThreadIdx < kiThreadNum; iThreadIdx++) {
-    if(NULL != pSliceThreadInfo->pSliceInThread[iThreadIdx]){
+    if(NULL == pSliceThreadInfo->pSliceInThread[iThreadIdx]){
       return -1;
     }
     if(kuiPartitionID == pSliceThreadInfo->pSliceInThread[iThreadIdx]->uiPartitionID){
