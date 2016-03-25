@@ -1419,7 +1419,7 @@ static inline int32_t ReOrderSliceInLayerDynamic (SDqLayer* pCurLayer, const int
   int32_t iPartitionNum      = kiThreadNum;
 
   //update ppSliceInLayer based on pSliceInThread, reordering based on slice index
-  for (iPartitionIdx = 0; iThreadIdx < iPartitionNum; iPartitionIdx++) {
+  for (iPartitionIdx = 0; iPartitionIdx < iPartitionNum; iPartitionIdx++) {
     iThreadIdx = GetThreadIdxBasedPartitionID(&pCurLayer->sSliceThreadInfo, iPartitionIdx, kiThreadNum);
     if( -1 == iThreadIdx) {
       return ENC_RETURN_UNEXPECTED;
