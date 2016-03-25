@@ -264,17 +264,17 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
       return ENC_RETURN_KNOWN_ISSUE;
     }
 
-    m_pSlice->uiPartitionID = kiPartitionId;
-    if(m_iSliceIdx == 0 ) {
-      m_pSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice = kiFirstMbInPartition;
-    }
-
     iReturn = InitOneSliceInThread (m_pCtx, m_pSlice, m_pCtx->uiDependencyId, m_iSliceIdx, m_iThreadIdx);
     if(ENC_RETURN_SUCCESS != iReturn) {
       WelsLog (&m_pCtx->sLogCtx, WELS_LOG_ERROR,
                "[MT] InitTask()::InitOneSliceInThread() failed! Did(%d), ThrdId(%d), SliceId(%d)!",
                m_pCtx->uiDependencyId, m_iThreadIdx, m_iSliceIdx);
       return ENC_RETURN_UNEXPECTED;
+    }
+
+    m_pSlice->uiPartitionID = kiPartitionId;
+    if(m_iSliceIdx == 0 ) {
+      m_pSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice = kiFirstMbInPartition;
     }
 
     m_pSliceBs = &m_pSlice->sSliceBs;
