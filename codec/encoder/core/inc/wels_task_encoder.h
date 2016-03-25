@@ -111,6 +111,8 @@ class CWelsConstrainedSizeSlicingEncodingTask : public CWelsLoadBalancingSlicing
  public:
   CWelsConstrainedSizeSlicingEncodingTask (WelsCommon::IWelsTaskSink* pSink, sWelsEncCtx* pCtx,
       const int32_t iSliceIdx) : CWelsLoadBalancingSlicingEncodingTask (pSink, pCtx, iSliceIdx) {
+      m_uiPartitionID        = 0;
+      m_bPartitionIDInitFlag = false;
   };
 
   virtual WelsErrorType ExecuteTask();
@@ -119,6 +121,11 @@ class CWelsConstrainedSizeSlicingEncodingTask : public CWelsLoadBalancingSlicing
     return WELS_ENC_TASK_ENCODE_SLICE_SIZECONSTRAINED;
   }
 
+  void SetPartitionID(const uint32_t kuiPartitionID);
+  void ResetPartitionID(const uint32_t kuiPartitionID);
+  private:
+   uint32_t m_uiPartitionID;
+   bool     m_bPartitionIDInitFlag;
 };
 
 
