@@ -1403,10 +1403,10 @@ static inline int32_t GetThreadIdxBasedPartitionID(SSliceThreadInfo* pSliceThrea
       return -1;
     }
     if(kuiPartitionID == pSliceThreadInfo->pSliceInThread[iThreadIdx]->uiPartitionID){
-      break;
+      return iThreadIdx;
     }
   }
-  return iThreadIdx;
+  return -1;
 }
 
 static inline int32_t ReOrderSliceInLayerDynamic (SDqLayer* pCurLayer, const int32_t kiThreadNum) {
