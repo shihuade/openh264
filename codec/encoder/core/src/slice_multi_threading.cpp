@@ -673,6 +673,8 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
           &pEncPEncCtx->pSliceThreading->pSliceCodedMasterEvent);
       } else { // for SM_SIZELIMITED_SLICE parallelization
         SSliceCtx* pSliceCtx                    = &pCurDq->sSliceEncCtx;
+        const int32_t kiStartSliceIdx           = pPrivateData->iSliceIndex;
+        const int32_t kiSliceIdxStep            = pEncPEncCtx->iActiveThreadsNum;
         const int32_t kiPartitionId             = iThreadIdx;
         const int32_t kiFirstMbInPartition      = pPrivateData->iStartMbIndex;  // inclusive
         const int32_t kiEndMbInPartition        = pPrivateData->iEndMbIndex;            // exclusive
@@ -713,7 +715,7 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
           }
 
           pSlice->uiPartitionID = kiPartitionId;
-          if(iSliceIdx == 0 ) {
+          if(iSliceIdx == kiStartSliceIdx ) {
             pSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice = kiFirstMbInPartition;
           }
 
@@ -777,7 +779,7 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
                         kiEndMbInPartition, kiPartitionId, pCurDq->pLastCodedMbIdxOfPartition[kiPartitionId]);
           pSliceThreadInfo->iEncodedSliceNumInThread[iThreadIdx] +=1;
           iAnyMbLeftInPartition = kiEndMbInPartition - (1 + pCurDq->pLastCodedMbIdxOfPartition[kiPartitionId]);
-          iSliceIdx ++;
+          iSliceIdx += kiSliceIdxStep;
         }
 
         if (uiThrdRet) { // any exception??

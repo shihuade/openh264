@@ -261,7 +261,8 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
   SSliceHeaderExt* pStartSliceHeaderExt = &pCurDq->ppSliceInLayer[m_iSliceIdx]->sSliceHeaderExt;
 
   //deal with partition: TODO: here SSliceThreadPrivateData is just for parition info and actually has little relationship with threadbuffer, and iThreadIndex is not used in threadpool model, need renaming after removing old logic to avoid confusion
-
+  const int32_t kiStartSliceIdx           = m_iSliceIdx;
+  const int32_t kiSliceIdxStep            = m_pCtx->iActiveThreadsNum;
   const int32_t kiPartitionId             = m_uiPartitionID;
   SSliceThreadPrivateData* pPrivateData   = & (m_pCtx->pSliceThreading->pThreadPEncCtx[kiPartitionId]);
   const int32_t kiFirstMbInPartition      = pPrivateData->iStartMbIndex;  // inclusive
@@ -277,7 +278,6 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
   m_pCtx->pCurDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[m_iThreadIdx] = 0;
   int32_t iAnyMbLeftInPartition  = kiEndMbInPartition - kiFirstMbInPartition;
 
-  m_iSliceIdx = 0;
   while (iAnyMbLeftInPartition > 0) {
     if (m_iSliceIdx >= pSliceCtx->iMaxSliceNumConstraint) {
       WelsLog (&m_pCtx->sLogCtx, WELS_LOG_WARNING,
@@ -296,7 +296,7 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
     }
 
     m_pSlice->uiPartitionID = kiPartitionId;
-    if(m_iSliceIdx == 0 ) {
+    if(m_iSliceIdx == kiStartSliceIdx ) {
       m_pSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice = kiFirstMbInPartition;
     }
 
@@ -348,7 +348,7 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
 
     m_pCtx->pCurDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[m_iThreadIdx] +=1;
     iAnyMbLeftInPartition = kiEndMbInPartition - (1 + pCurDq->pLastCodedMbIdxOfPartition[kiPartitionId]);
-    m_iSliceIdx += 1;
+    m_iSliceIdx += kiSliceIdxStep;
   }
 
   return ENC_RETURN_SUCCESS;

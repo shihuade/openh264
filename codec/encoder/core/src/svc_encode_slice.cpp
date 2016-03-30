@@ -977,7 +977,6 @@ int32_t InitOneSliceInThread (sWelsEncCtx* pCtx,
                               const int32_t kiSliceIdx,
                               const int32_t kiThreadIdx) {
   SDqLayer* pDqLayer                  = pCtx->pCurDqLayer;
-  SSliceArgument* pSliceArgument      = & pCtx->pSvcParam->sSpatialLayers[kiDlayerIdx].sSliceArgument;
   const int32_t kiCodedNumInThread    = pDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[kiThreadIdx];
   const int32_t kiMaxSliceNumInThread = pDqLayer->sSliceThreadInfo.iMaxSliceNumInThread[kiThreadIdx];
   int32_t iRet                        = 0;
@@ -988,13 +987,9 @@ int32_t InitOneSliceInThread (sWelsEncCtx* pCtx,
       return iRet;
   }
 
-  pSlice = pDqLayer->sSliceThreadInfo.pSliceInThread [kiThreadIdx] + kiCodedNumInThread;
+  pSlice             = pDqLayer->sSliceThreadInfo.pSliceInThread [kiThreadIdx] + kiCodedNumInThread;
   pSlice->iThreadIdx = kiThreadIdx;
-  if(SM_SIZELIMITED_SLICE == pSliceArgument->uiSliceMode && 0 == kiCodedNumInThread) {
-    pSlice->uiSliceIdx = 0;
-  } else {
-    pSlice->uiSliceIdx = kiSliceIdx;
-  }
+  pSlice->uiSliceIdx = kiSliceIdx;
 
   // Initialize slice bs buffer info
   pSlice->sSliceBs.uiBsPos   = 0;
@@ -1629,6 +1624,8 @@ void AddSliceBoundary (sWelsEncCtx* pEncCtx, SSlice* pCurSlice, SSliceCtx* pSlic
   SDqLayer* pCurLayer      = pEncCtx->pCurDqLayer;
   int32_t iCurMbIdx        = pCurMb->iMbXY;
   int32_t iThreadIdx       = pCurSlice->iThreadIdx;
+  int32_t iSliceIdxStep    = pEncCtx->iActiveThreadsNum;
+  uint16_t iNexSliceIdx    = pCurSlice->uiSliceIdx + iSliceIdxStep;
   uint16_t iNextSliceIdc   = pCurLayer->sSliceThreadInfo.iEncodedSliceNumInThread[iThreadIdx] + 1;
   SSlice* pNextSlice       = pCurLayer->sSliceThreadInfo.pSliceInThread[iThreadIdx] + iNextSliceIdc;
 
@@ -1648,7 +1645,7 @@ void AddSliceBoundary (sWelsEncCtx* pEncCtx, SSlice* pCurSlice, SSliceCtx* pSlic
   memcpy (&pNextSlice->sSliceHeaderExt, &pCurSlice->sSliceHeaderExt,
           sizeof (SSliceHeaderExt)); // confirmed_safe_unsafe_usage
   pNextSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice = iFirstMbIdxOfNextSlice;
-  WelsSetMemMultiplebytes_c (pSliceCtx->pOverallMbMap + iFirstMbIdxOfNextSlice, iNextSliceIdc,
+  WelsSetMemMultiplebytes_c (pSliceCtx->pOverallMbMap + iFirstMbIdxOfNextSlice, iNexSliceIdx,
                              (kiLastMbIdxInPartition - iFirstMbIdxOfNextSlice + 1), sizeof (uint16_t));
 
   //DYNAMIC_SLICING_ONE_THREAD: update pMbList slice_neighbor_info
