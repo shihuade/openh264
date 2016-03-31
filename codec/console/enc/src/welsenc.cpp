@@ -895,6 +895,8 @@ int ProcessEncoding (ISVCEncoder* pPtrEnc, int argc, char** argv, bool bConfigFi
     // To encoder this frame
     iStart = WelsTime();
     pSrcPic->uiTimeStamp = WELS_ROUND (iFrameIdx * (1000 / sSvcParam.fMaxFrameRate));
+    printf("start to encode frame index is %d\n", iFrameIdx);
+    printf("*************************************\n");
     int iEncFrames = pPtrEnc->EncodeFrame (pSrcPic, &sFbi);
     iTotal += WelsTime() - iStart;
     ++ iFrameIdx;
