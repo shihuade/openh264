@@ -1473,25 +1473,29 @@ static inline int32_t ReOrderSliceInLayer (SDqLayer* pCurLayer,
   return ENC_RETURN_SUCCESS;
 }
 
-void TraceForSliceInfoUpdate(SSliceThreadInfo* pSliceThreadInfo, const int32_t kiThreadNum){
+void TraceForSliceInfoUpdate(SSliceArgument* pSliceArgument, SSliceThreadInfo* pSliceThreadInfo, const int32_t kiThreadNum){
   int32_t iCodecSliceNumInThread = 0;
   int32_t iThreadIdx = 0;
   int32_t iSliceIdx  = 0;
   SSlice* pSlice     = NULL;
 
+  printf("---------------Start----------------------------------- \n");
+    printf("    pSliceArgument info:(%d) \n", pSliceArgument->uiSliceMode);
   for (; iThreadIdx < kiThreadNum; iThreadIdx++) {
     if(NULL == pSliceThreadInfo->pSliceInThread[iThreadIdx]){
       return;
     }
     iCodecSliceNumInThread = pSliceThreadInfo->iEncodedSliceNumInThread[iThreadIdx];
-    printf("------iCodecSliceNumInThread(%d) \n", iCodecSliceNumInThread);
+    printf("    ------iCodecSliceNumInThread(%d) \n", iCodecSliceNumInThread);
 
     for(iSliceIdx = 0; iSliceIdx < iCodecSliceNumInThread; iSliceIdx ++ ) {
       pSlice = pSliceThreadInfo->pSliceInThread[iThreadIdx] + iSliceIdx;
-      printf("--ThrIdx(%d) bufferIdx(%d), sliceIdx(%d),ParIdx(%d),SliceThrIdx(%d) \n",
+      printf("      --ThrIdx(%d) bufferIdx(%d), sliceIdx(%d),ParIdx(%d),SliceThrIdx(%d) \n",
              iThreadIdx, iSliceIdx, pSlice->uiSliceIdx, pSlice->uiPartitionID, pSlice->iThreadIdx);
     }
   }
+  printf("---------------End------------------------------------- \n");
+
 }
 
 static inline int32_t ExtendSliceListInLayer(sWelsEncCtx* pCtx,
@@ -1525,7 +1529,7 @@ int32_t SliceLayerInfoUpdate (sWelsEncCtx* pCtx, const int32_t kiDlayerIndex) {
   int32_t iRet             = 0;
   SSliceArgument* pSliceArgument = & pCtx->pSvcParam->sSpatialLayers[kiDlayerIndex].sSliceArgument;
 
-  TraceForSliceInfoUpdate(&pCurLayer->sSliceThreadInfo, pCtx->iActiveThreadsNum);
+  TraceForSliceInfoUpdate(pSliceArgument, &pCurLayer->sSliceThreadInfo, pCtx->iActiveThreadsNum);
 
   for (; iThreadIdx < pCtx->iActiveThreadsNum; iThreadIdx++) {
     iCodedSliceNum   += pCurLayer->sSliceThreadInfo.iEncodedSliceNumInThread[iThreadIdx];
@@ -1546,8 +1550,8 @@ int32_t SliceLayerInfoUpdate (sWelsEncCtx* pCtx, const int32_t kiDlayerIndex) {
     if (ENC_RETURN_SUCCESS != iRet) {
       WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR,
                "CWelsH264SVCEncoder::SliceLayerInfoUpdate: ReOrderSliceInLayerDynamic failed");
-    printf("CWelsH264SVCEncoder::SliceLayerInfoUpdate: ReOrderSliceInLayerDynamic failed");
-    TraceForSliceInfoUpdate(&pCurLayer->sSliceThreadInfo, pCtx->iActiveThreadsNum);
+    printf("CWelsH264SVCEncoder::SliceLayerInfoUpdate: ReOrderSliceInLayerDynamic failed n");
+    TraceForSliceInfoUpdate(pSliceArgument, &pCurLayer->sSliceThreadInfo, pCtx->iActiveThreadsNum);
       return iRet;
     }
   } else {

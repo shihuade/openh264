@@ -3948,7 +3948,9 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
         }
 
         //update ppSliceInLayer module based slice index in pSliceInThread[iThreadIdx]
+        printf("-----------start SliceLayerInfoUpdate()--------------------\n");
         int32_t iRet = SliceLayerInfoUpdate (pCtx, iCurDid);
+        printf("-----------end SliceLayerInfoUpdate()----------------------\n");
         if (iRet) {
           WelsLog (pLogCtx, WELS_LOG_ERROR, "WelsEncoderEncodeExt(), SliceLayerInfoUpdate() failed! for current did %d",
                    iCurDid);
@@ -4008,7 +4010,9 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
 #endif
 
         //update ppSliceInLayer module based slice index in pSliceInThread[iThreadIdx]
+        printf("-----------start SliceLayerInfoUpdate()--------------------\n");
         int32_t iRet = SliceLayerInfoUpdate (pCtx, iCurDid);
+        printf("-----------end SliceLayerInfoUpdate()----------------------\n");
         if (iRet) {
           WelsLog (pLogCtx, WELS_LOG_ERROR, "WelsEncoderEncodeExt(), SliceLayerInfoUpdate() failed! for current did %d",
                    iCurDid);
