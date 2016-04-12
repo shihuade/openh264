@@ -117,6 +117,7 @@ void BaseEncoderTest::EncodeStream (InputStream* in, SEncParamExt* pEncParamExt,
     if (info.eFrameType != videoFrameTypeSkip && cbk != NULL) {
       cbk->onEncodeFrame (info);
     }
+	printf("*******-------frame index is(%d)-----\n ", iFrameIdx);
 	iFrameIdx++;
   }
 }
