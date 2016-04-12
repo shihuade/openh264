@@ -109,12 +109,15 @@ void BaseEncoderTest::EncodeStream (InputStream* in, SEncParamExt* pEncParamExt,
   pic.pData[0]     = buf.data();
   pic.pData[1]     = pic.pData[0] + pEncParamExt->iPicWidth * pEncParamExt->iPicHeight;
   pic.pData[2]     = pic.pData[1] + (pEncParamExt->iPicWidth * pEncParamExt->iPicHeight >> 2);
+  int iFrameIdx = 0;
+
   while (in->read (buf.data(), frameSize) == frameSize) {
     rv = encoder_->EncodeFrame (&pic, &info);
     ASSERT_TRUE (rv == cmResultSuccess);
     if (info.eFrameType != videoFrameTypeSkip && cbk != NULL) {
       cbk->onEncodeFrame (info);
     }
+	iFrameIdx++;
   }
 }
 
