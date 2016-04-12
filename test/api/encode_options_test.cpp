@@ -1192,6 +1192,7 @@ TEST_P (EncodeTestAPI, SetEncOptionSize) {
   }
 
   while (iIdx <= p.iNumframes) {
+	printf("********-------EncodeOneFrameRandom( for frame(%d) \n", iIdx);
     EncodeOneFrameRandom (0, p.bAllRandom);
     encToDecData (info, iLen);
     if (pFile) {
