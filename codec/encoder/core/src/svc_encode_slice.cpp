@@ -1473,14 +1473,19 @@ static inline int32_t ReOrderSliceInLayer (SDqLayer* pCurLayer,
   return ENC_RETURN_SUCCESS;
 }
 
-void TraceForSliceInfoUpdate(SSliceArgument* pSliceArgument, SSliceThreadInfo* pSliceThreadInfo, const int32_t kiThreadNum){
+void TraceForSliceInfoUpdate(SDqLayer* pCurLayer,
+                             SSliceArgument* pSliceArgument,
+                             SSliceThreadInfo* pSliceThreadInfo,
+                             const int32_t kiThreadNum) {
+
   int32_t iCodecSliceNumInThread = 0;
   int32_t iThreadIdx = 0;
   int32_t iSliceIdx  = 0;
   SSlice* pSlice     = NULL;
 
   printf("---------------Start----------------------------------- \n");
-    printf("    pSliceArgument info:(%d) \n", pSliceArgument->uiSliceMode);
+    printf("    slicemode info:(%d) \n", pSliceArgument->uiSliceMode);
+    printf("    layer size info: LayerW(%d), LayerH(%d) \n", pCurLayer->iMbWidth,pCurLayer->iMbHeight);
   for (; iThreadIdx < kiThreadNum; iThreadIdx++) {
     if(NULL == pSliceThreadInfo->pSliceInThread[iThreadIdx]){
       return;
@@ -1529,7 +1534,7 @@ int32_t SliceLayerInfoUpdate (sWelsEncCtx* pCtx, const int32_t kiDlayerIndex) {
   int32_t iRet             = 0;
   SSliceArgument* pSliceArgument = & pCtx->pSvcParam->sSpatialLayers[kiDlayerIndex].sSliceArgument;
 
-  TraceForSliceInfoUpdate(pSliceArgument, &pCurLayer->sSliceThreadInfo, pCtx->iActiveThreadsNum);
+  TraceForSliceInfoUpdate(pCurLayer, pSliceArgument, &pCurLayer->sSliceThreadInfo, pCtx->iActiveThreadsNum);
 
   for (; iThreadIdx < pCtx->iActiveThreadsNum; iThreadIdx++) {
     iCodedSliceNum   += pCurLayer->sSliceThreadInfo.iEncodedSliceNumInThread[iThreadIdx];
@@ -1551,7 +1556,7 @@ int32_t SliceLayerInfoUpdate (sWelsEncCtx* pCtx, const int32_t kiDlayerIndex) {
       WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR,
                "CWelsH264SVCEncoder::SliceLayerInfoUpdate: ReOrderSliceInLayerDynamic failed");
     printf("CWelsH264SVCEncoder::SliceLayerInfoUpdate: ReOrderSliceInLayerDynamic failed n");
-    TraceForSliceInfoUpdate(pSliceArgument, &pCurLayer->sSliceThreadInfo, pCtx->iActiveThreadsNum);
+    TraceForSliceInfoUpdate(pCurLayer, pSliceArgument, &pCurLayer->sSliceThreadInfo, pCtx->iActiveThreadsNum);
       return iRet;
     }
   } else {
