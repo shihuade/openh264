@@ -1404,18 +1404,25 @@ static inline int32_t GetThreadIdxBasedPartitionID(SSliceThreadInfo* pSliceThrea
   return -1;
 }
 
-static inline int32_t ReOrderSliceInLayerDynamic (SDqLayer* pCurLayer, const int32_t kiThreadNum) {
+static inline int32_t ReOrderSliceInLayerDynamic (sWelsEncCtx* pCtx) {
   SSlice* pSliceInThread     = NULL;
+  SDqLayer* pCurLayer        = pCtx->pCurDqLayer;
   int32_t iThreadIdx         = 0;
   int32_t iPartitionIdx      = 0;
   int32_t iSliceIdx          = 0;
   int32_t iIdxStep           = 0;
   int32_t iSliceNumInThread  = 0;
-  int32_t iPartitionNum      = kiThreadNum;
-
+  int32_t iPartitionNum      = pCtx->iActiveThreadsNum;
+  int32_t iMbNumInPartition  = 0;
   //update ppSliceInLayer based on pSliceInThread, reordering based on slice index
   for (iPartitionIdx = 0; iPartitionIdx < iPartitionNum; iPartitionIdx++) {
-    iThreadIdx = GetThreadIdxBasedPartitionID(&pCurLayer->sSliceThreadInfo, iPartitionIdx, kiThreadNum);
+    iMbNumInPartition = pCtx->pSliceThreading->pThreadPEncCtx[iPartitionIdx].iEndMbIndex -
+                        pCtx->pSliceThreading->pThreadPEncCtx[iPartitionIdx].iStartMbIndex;
+    if(0 == iMbNumInPartition) {
+      continue;
+    }
+
+    iThreadIdx = GetThreadIdxBasedPartitionID(&pCurLayer->sSliceThreadInfo, iPartitionIdx, iPartitionNum);
     if( -1 == iThreadIdx) {
       return ENC_RETURN_UNEXPECTED;
     }
@@ -1551,7 +1558,7 @@ int32_t SliceLayerInfoUpdate (sWelsEncCtx* pCtx, const int32_t kiDlayerIndex) {
 
   //update ppSliceInLayer based on pSliceInThread, reordering based on slice index
   if (SM_SIZELIMITED_SLICE == pSliceArgument->uiSliceMode) {
-    iRet = ReOrderSliceInLayerDynamic (pCurLayer, pCtx->iActiveThreadsNum);
+    iRet = ReOrderSliceInLayerDynamic (pCtx);
     if (ENC_RETURN_SUCCESS != iRet) {
       WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR,
                "CWelsH264SVCEncoder::SliceLayerInfoUpdate: ReOrderSliceInLayerDynamic failed");
