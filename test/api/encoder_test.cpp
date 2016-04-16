@@ -101,7 +101,7 @@ TEST_P (EncoderOutputTest, CompareOutput) {
   }
 }
 static const EncodeFileParam kFileParamArray[] = {
-  /*{
+  {
     "res/CiscoVT2people_320x192_12fps.yuv",
     "ee97bab09041362fbe8aed16f69a55f16b106f92", CAMERA_VIDEO_REAL_TIME, 320, 192, 12.0f, SM_SINGLE_SLICE, false, 1, false, false, false
   },
@@ -125,13 +125,13 @@ static const EncodeFileParam kFileParamArray[] = {
     "res/CiscoVT2people_320x192_12fps.yuv",
     "73156dfc1dc45924349b5b79f8debcac13d7231d", CAMERA_VIDEO_REAL_TIME, 320, 192, 12.0f, SM_SINGLE_SLICE, false, 2, false, false, false
   },
-   */
+   
   //6
   {
     "res/Cisco_Absolute_Power_1280x720_30fps.yuv",
     "84f97cff898055aaf96a303960abb76e12bf24c1", CAMERA_VIDEO_REAL_TIME, 1280, 720, 30.0f, SM_SIZELIMITED_SLICE, false, 1, false, false, false
   },
-    /*
+
   {
     "res/Cisco_Absolute_Power_1280x720_30fps.yuv",
     "b5f42875a550551d81e460017d2691d3c104cf2f", CAMERA_VIDEO_REAL_TIME, 1280, 720, 30.0f, SM_SINGLE_SLICE, false, 4, false, false, false
@@ -149,7 +149,7 @@ static const EncodeFileParam kFileParamArray[] = {
     "res/Static_152_100.yuv",
     "77a140c6bd80a6479ee13aecd2a8dac0a17cf03d", SCREEN_CONTENT_REAL_TIME, 152, 100, 6.0f, SM_SINGLE_SLICE, false, 1, false, false, false
   },
-     */
+
     //11
   {
     "res/Cisco_Absolute_Power_1280x720_30fps.yuv",
@@ -161,12 +161,10 @@ static const EncodeFileParam kFileParamArray[] = {
     "res/Cisco_Absolute_Power_1280x720_30fps.yuv",
     "0e1af98bd978e602cc15329ba70a2c4c2afe8016", SCREEN_CONTENT_REAL_TIME, 1280, 720, 30.0f, SM_SIZELIMITED_SLICE, false, 1, true, true, false
   },
-    /*
   {
     "res/CiscoVT2people_320x192_12fps.yuv",
     "a0c97ec484e8a8cca8868c893e38a5a7312a70a8", CAMERA_VIDEO_REAL_TIME, 320, 192, 12.0f, SM_SINGLE_SLICE, false, 1, false, false, true //turn on cabac
   },
-     */
   {
     "res/Cisco_Absolute_Power_1280x720_30fps.yuv",
     "c87ff55413efb14d95acd1de3be02bd601fcc3df", CAMERA_VIDEO_REAL_TIME, 1280, 720, 30.0f, SM_SIZELIMITED_SLICE, false, 1, false, false, true

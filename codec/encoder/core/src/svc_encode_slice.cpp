@@ -1541,7 +1541,7 @@ int32_t SliceLayerInfoUpdate (sWelsEncCtx* pCtx, const int32_t kiDlayerIndex) {
   int32_t iRet             = 0;
   SSliceArgument* pSliceArgument = & pCtx->pSvcParam->sSpatialLayers[kiDlayerIndex].sSliceArgument;
 
-  TraceForSliceInfoUpdate(pCurLayer, pSliceArgument, &pCurLayer->sSliceThreadInfo, pCtx->iActiveThreadsNum);
+  //TraceForSliceInfoUpdate(pCurLayer, pSliceArgument, &pCurLayer->sSliceThreadInfo, pCtx->iActiveThreadsNum);
 
   for (; iThreadIdx < pCtx->iActiveThreadsNum; iThreadIdx++) {
     iCodedSliceNum   += pCurLayer->sSliceThreadInfo.iEncodedSliceNumInThread[iThreadIdx];
