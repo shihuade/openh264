@@ -299,6 +299,10 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
     m_pSlice->uiPartitionID = kiPartitionId;
     if(m_iSliceIdx == kiStartSliceIdx ) {
       m_pSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice = kiFirstMbInPartition;
+      printf("m_iSliceIdx == kiStartSliceIdx m_uiPartitionID(%d), kiStartSliceIdx(%d) kiFirstMbInPartition(%d)\n",
+        m_uiPartitionID,
+        kiStartSliceIdx,
+        kiFirstMbInPartition);
     }
 
     m_pSliceBs = &m_pSlice->sSliceBs;
@@ -322,12 +326,15 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
       return iReturn;
     }
     WelsUnloadNalForSlice (m_pSliceBs);
-    printf("slice info: PartID(%d), SliceIdx(%d), ThreadIdx(%d)--FirstMBIndx(%d), MBNum(%d), CountMbNumInSlice(%d)\n ", kiPartitionId,
+    printf("slice info: PartID(%d), SliceIdx(%d), ThreadIdx(%d)--FirstMBIndx(%d), MBNum(%d), CountMbNumInSlice(%d), SlcThr(%d) kiStartSliceIdx(%d)\n ",
+             kiPartitionId,
              m_iSliceIdx,
              m_iThreadIdx,
              m_pSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice,
              m_pSlice->sSliceHeaderExt.uiNumMbsInSlice,
-             m_pSlice->iCountMbNumInSlice);
+             m_pSlice->iCountMbNumInSlice,
+             m_pSlice->iThreadIdx,
+             kiStartSliceIdx);
 
     iReturn = WriteSliceBs (m_pCtx, m_pSliceBs, m_iSliceIdx, m_iSliceSize);
     if (ENC_RETURN_SUCCESS != iReturn) {
