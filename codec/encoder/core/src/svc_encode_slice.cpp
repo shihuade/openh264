@@ -990,6 +990,7 @@ int32_t InitOneSliceInThread (sWelsEncCtx* pCtx,
   pSlice             = pDqLayer->sSliceThreadInfo.pSliceInThread [kiThreadIdx] + kiCodedNumInThread;
   pSlice->iThreadIdx = kiThreadIdx;
   pSlice->uiSliceIdx = kiSliceIdx;
+  pSlice->sSliceHeaderExt.uiNumMbsInSlice = 0;
 
   // Initialize slice bs buffer info
   pSlice->sSliceBs.uiBsPos   = 0;
@@ -1562,7 +1563,7 @@ int32_t SliceLayerInfoUpdate (sWelsEncCtx* pCtx, const int32_t kiDlayerIndex) {
     if (ENC_RETURN_SUCCESS != iRet) {
       WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR,
                "CWelsH264SVCEncoder::SliceLayerInfoUpdate: ReOrderSliceInLayerDynamic failed");
-    printf("CWelsH264SVCEncoder::SliceLayerInfoUpdate: ReOrderSliceInLayerDynamic failed n");
+    printf("CWelsH264SVCEncoder::SliceLayerInfoUpdate: ReOrderSliceInLayerDynamic failed \n");
     TraceForSliceInfoUpdate(pCurLayer, pSliceArgument, &pCurLayer->sSliceThreadInfo, pCtx->iActiveThreadsNum);
       return iRet;
     }
