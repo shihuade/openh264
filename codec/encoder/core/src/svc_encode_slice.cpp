@@ -1674,7 +1674,8 @@ void AddSliceBoundary (sWelsEncCtx* pEncCtx, SSlice* pCurSlice, SSliceCtx* pSlic
   SMB* pMbList = pCurLayer->sMbDataP;
 
   //update cur pSlice info
-  pCurSlice->sSliceHeaderExt.uiNumMbsInSlice = 1 + iCurMbIdx - pCurSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice;
+  pCurSlice->iCountMbNumInSlice              = iCurMbIdx - pCurSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice;
+  pCurSlice->sSliceHeaderExt.uiNumMbsInSlice = 1 + pCurSlice->iCountMbNumInSlice;
 
 #if _DEBUG
   assert (NULL != pNextSlice);
@@ -1975,6 +1976,7 @@ TRY_REENCODING:
     iNextMbIdx = WelsGetNextMbOfSlice (pCurLayer, iCurMbIdx);
     //whether all of MB in current pSlice encoded or not
     if (iNextMbIdx == -1 || iNextMbIdx >= kiTotalNumMb || iNumMbCoded >= kiTotalNumMb) {
+	  pSlice->iCountMbNumInSlice = iCurMbIdx - pCurLayer->pLastCodedMbIdxOfPartition[kiPartitionId];
       pCurLayer->pLastCodedMbIdxOfPartition[kiPartitionId] =
         iCurMbIdx; // update pLastCodedMbIdxOfPartition, finish coding, use pCurMb_idx directly
       break;
