@@ -1487,6 +1487,7 @@ void TraceForSliceInfoUpdate(SDqLayer* pCurLayer,
                              const int32_t kiThreadNum) {
 
   int32_t iCodecSliceNumInThread = 0;
+  int32_t iBufferSize = 0;
   int32_t iThreadIdx = 0;
   int32_t iSliceIdx  = 0;
   SSlice* pSlice     = NULL;
@@ -1500,11 +1501,18 @@ void TraceForSliceInfoUpdate(SDqLayer* pCurLayer,
     }
     iCodecSliceNumInThread = pSliceThreadInfo->iEncodedSliceNumInThread[iThreadIdx];
     printf("    ------iCodecSliceNumInThread(%d) \n", iCodecSliceNumInThread);
+    iBufferSize = pSliceThreadInfo->iMaxSliceNumInThread[iThreadIdx];
 
-    for(iSliceIdx = 0; iSliceIdx < iCodecSliceNumInThread; iSliceIdx ++ ) {
+    for(iSliceIdx = 0; iSliceIdx < iBufferSize; iSliceIdx ++ ) {
       pSlice = pSliceThreadInfo->pSliceInThread[iThreadIdx] + iSliceIdx;
-      printf("      --ThrIdx(%d) bufferIdx(%d), sliceIdx(%d),ParIdx(%d),SliceThrIdx(%d) \n",
-             iThreadIdx, iSliceIdx, pSlice->uiSliceIdx, pSlice->uiPartitionID, pSlice->iThreadIdx);
+      printf("      --ThrIdx(%d) bufferIdx(%d), sliceIdx(%d),ParIdx(%d),SliceThrIdx(%d),FirstMB(%d), CountMB(%d) \n",
+             iThreadIdx,
+             iSliceIdx,
+             pSlice->uiSliceIdx,
+             pSlice->uiPartitionID,
+             pSlice->iThreadIdx,
+             pSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice,
+             pSlice->iCountMbNumInSlice);
     }
   }
   printf("---------------End------------------------------------- \n");
@@ -1542,7 +1550,7 @@ int32_t SliceLayerInfoUpdate (sWelsEncCtx* pCtx, const int32_t kiDlayerIndex) {
   int32_t iRet             = 0;
   SSliceArgument* pSliceArgument = & pCtx->pSvcParam->sSpatialLayers[kiDlayerIndex].sSliceArgument;
 
-  //TraceForSliceInfoUpdate(pCurLayer, pSliceArgument, &pCurLayer->sSliceThreadInfo, pCtx->iActiveThreadsNum);
+  TraceForSliceInfoUpdate(pCurLayer, pSliceArgument, &pCurLayer->sSliceThreadInfo, pCtx->iActiveThreadsNum);
 
   for (; iThreadIdx < pCtx->iActiveThreadsNum; iThreadIdx++) {
     iCodedSliceNum   += pCurLayer->sSliceThreadInfo.iEncodedSliceNumInThread[iThreadIdx];

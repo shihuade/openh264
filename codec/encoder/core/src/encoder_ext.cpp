@@ -4787,7 +4787,7 @@ int32_t WelsCodeOnePicPartition (sWelsEncCtx* pCtx,
       1;    // one slice per partition intialized, dynamic slicing inside
     pCurLayer->pLastMbIdxOfPartition[kiPartitionId]     = iEndMbInPartition - 1;
   }
-  pCurLayer->pLastCodedMbIdxOfPartition[kiPartitionId] = 0;
+  pCurLayer->pLastCodedMbIdxOfPartition[kiPartitionId] = iFirstMbInPartition;
 
   while (iAnyMbLeftInPartition > 0) {
     int32_t iSliceSize      = 0;

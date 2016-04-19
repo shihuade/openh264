@@ -689,7 +689,7 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
           1;    // one pSlice per partition intialized, dynamic slicing inside
         pCurDq->pLastMbIdxOfPartition[kiPartitionId]            = kiEndMbInPartition - 1;
 
-        pCurDq->pLastCodedMbIdxOfPartition[kiPartitionId]       = 0;
+        pCurDq->pLastCodedMbIdxOfPartition[kiPartitionId]       = kiFirstMbInPartition;
         while (iAnyMbLeftInPartition > 0) {
           if (iSliceIdx >= pSliceCtx->iMaxSliceNumConstraint) {
             // TODO: need exception handler for not large enough of MAX_SLICES_NUM related memory usage

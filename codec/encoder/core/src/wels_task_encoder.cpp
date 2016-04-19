@@ -258,7 +258,7 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
   SDqLayer* pCurDq             = m_pCtx->pCurDqLayer;
   SSliceCtx* pSliceCtx         = &pCurDq->sSliceEncCtx;
   SSpatialLayerInternal* pParamInternal = &m_pCtx->pSvcParam->sDependencyLayers[m_pCtx->uiDependencyId];
-  SSliceHeaderExt* pStartSliceHeaderExt = &pCurDq->ppSliceInLayer[m_iSliceIdx]->sSliceHeaderExt;
+  //SSliceHeaderExt* pStartSliceHeaderExt = &pCurDq->ppSliceInLayer[m_iSliceIdx]->sSliceHeaderExt;
 
   //deal with partition: TODO: here SSliceThreadPrivateData is just for parition info and actually has little relationship with threadbuffer, and iThreadIndex is not used in threadpool model, need renaming after removing old logic to avoid confusion
   const int32_t kiStartSliceIdx           = m_uiPartitionID;
@@ -267,12 +267,12 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
   SSliceThreadPrivateData* pPrivateData   = & (m_pCtx->pSliceThreading->pThreadPEncCtx[kiPartitionId]);
   const int32_t kiFirstMbInPartition      = pPrivateData->iStartMbIndex;  // inclusive
   const int32_t kiEndMbInPartition        = pPrivateData->iEndMbIndex;            // exclusive
-  pStartSliceHeaderExt->sSliceHeader.iFirstMbInSlice      = kiFirstMbInPartition;
+  //pStartSliceHeaderExt->sSliceHeader.iFirstMbInSlice      = kiFirstMbInPartition;
   pCurDq->pNumSliceCodedOfPartition[kiPartitionId]        =
     1;    // one pSlice per partition intialized, dynamic slicing inside
   pCurDq->pLastMbIdxOfPartition[kiPartitionId]            = kiEndMbInPartition - 1;
 
-  pCurDq->pLastCodedMbIdxOfPartition[kiPartitionId]       = 0;
+  pCurDq->pLastCodedMbIdxOfPartition[kiPartitionId]       = kiFirstMbInPartition;
   //end of deal with partition
 
   m_pCtx->pCurDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[m_iThreadIdx] = 0;
