@@ -221,6 +221,9 @@ void CWelsThreadPool::ExecuteTask() {
     }
     pTask = GetWaitedTask();
     //fprintf(stdout, "ThreadPool:  ExecuteTask = %x at thread %x\n", pTask, pThread);
+    printf("-------------CWelsThreadPool SetTask taskInfo is %p, pThread is %p, pTask(%p) \n",
+           pThread,
+           pTask);
     pThread->SetTask (pTask);
   }
 }
@@ -235,13 +238,15 @@ WELS_THREAD_ERROR_CODE CWelsThreadPool::QueueTask (IWelsTask* pTask) {
     if (pThread != NULL) {
       //fprintf(stdout, "ThreadPool:  ExecuteTask = %x at thread %x\n", pTask, pThread);
       pThread->SetTask (pTask);
+      printf("-------------SetTask taskInfo is %p, pThread is %p, pthreadID(%lu) \n",
+             pTask, pThread, pThread->GetID());
 
       return WELS_THREAD_ERROR_OK;
     }
   }
   //fprintf(stdout, "ThreadPool:  AddTaskToWaitedList: %x\n", pTask);
   AddTaskToWaitedList (pTask);
-
+  printf("-------------AddTaskToWaitedList taskInfo is %p \n", pTask);
   //fprintf(stdout, "ThreadPool:  SignalThread: %x\n", pTask);
   SignalThread();
   return WELS_THREAD_ERROR_OK;
