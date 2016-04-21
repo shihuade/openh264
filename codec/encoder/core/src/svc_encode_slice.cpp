@@ -1405,77 +1405,92 @@ static inline int32_t GetThreadIdxBasedPartitionID(SSliceThreadInfo* pSliceThrea
   return -1;
 }
 
-static inline int32_t ReOrderSliceInLayerDynamic (sWelsEncCtx* pCtx) {
-  SSlice* pSliceInThread     = NULL;
-  SDqLayer* pCurLayer        = pCtx->pCurDqLayer;
-  int32_t iThreadIdx         = 0;
-  int32_t iPartitionIdx      = 0;
-  int32_t iSliceIdx          = 0;
-  int32_t iIdxStep           = 0;
-  int32_t iSliceNumInThread  = 0;
-  int32_t iPartitionNum      = pCtx->iActiveThreadsNum;
-  int32_t iMbNumInPartition  = 0;
-  //update ppSliceInLayer based on pSliceInThread, reordering based on slice index
-  for (iPartitionIdx = 0; iPartitionIdx < iPartitionNum; iPartitionIdx++) {
-    iMbNumInPartition = pCtx->pSliceThreading->pThreadPEncCtx[iPartitionIdx].iEndMbIndex -
-                        pCtx->pSliceThreading->pThreadPEncCtx[iPartitionIdx].iStartMbIndex;
-    if(0 == iMbNumInPartition) {
-      continue;
-    }
+static inline int32_t GetStartSliceIdxInPartition (SDqLayer* pCurLayer,
+                                                   const int32_t kiPartitionID) {
+  int32_t iFirstSliceIdxInPartition = 0;
+  int32_t iPartitionIdx = 0;
 
-    iThreadIdx = GetThreadIdxBasedPartitionID(&pCurLayer->sSliceThreadInfo, iPartitionIdx, iPartitionNum);
-    if( -1 == iThreadIdx) {
-      return ENC_RETURN_UNEXPECTED;
-    }
+  for(; iPartitionIdx < kiPartitionID; iPartitionIdx++) {
+    iFirstSliceIdxInPartition += pCurLayer->pNumSliceCodedOfPartition[iPartitionIdx];
+  }
 
-    iSliceNumInThread = pCurLayer->sSliceThreadInfo.iEncodedSliceNumInThread[iThreadIdx];
-    for (iSliceIdx = 0; iSliceIdx < iSliceNumInThread ; iSliceIdx++) {
-      pSliceInThread = pCurLayer->sSliceThreadInfo.pSliceInThread[iThreadIdx] + iSliceIdx;
-      if (NULL == pSliceInThread) {
-        return ENC_RETURN_UNEXPECTED;
-      }
+  return iFirstSliceIdxInPartition;
+}
 
-      pSliceInThread->uiSliceIdx = iIdxStep + iSliceIdx;
-      pCurLayer->ppSliceInLayer[iIdxStep + iSliceIdx] = pSliceInThread;
+//for those using partition encoding like but not limit dynamic etc.
+int32_t UpdateSliceIdxInfo(SDqLayer* pCurLayer,
+                           const int32_t kiThreadNum,
+                           const int32_t kiPartitionNum) {
+
+  int32_t iFirstSliceIdx         = 0;
+  int32_t iThreadIdx             = 0;
+  int32_t iSliceIdx              = 0;
+  int32_t iSliceIdxInLayer       = 0;
+  int32_t iCodedSliceNumInThread = 0;
+  int32_t iPartitionID           = 0;
+  SSlice* pSlice                 = NULL;
+
+  for(; iThreadIdx <kiThreadNum; iThreadIdx++) {
+    iCodedSliceNumInThread = pCurLayer->sSliceThreadInfo.iEncodedSliceNumInThread[iThreadIdx];
+
+    for(iSliceIdx = 0; iSliceIdx < iCodedSliceNumInThread; iSliceIdx++) {
+        pSlice             = pCurLayer->sSliceThreadInfo.pSliceInThread[iThreadIdx] + iSliceIdx;
+        if(NULL == pSlice ) {
+          return ENC_RETURN_UNEXPECTED;
+        }
+
+        iPartitionID       = pSlice->uiSliceIdx % kiPartitionNum;
+        iFirstSliceIdx     = GetStartSliceIdxInPartition(pCurLayer, iPartitionID);
+        iSliceIdxInLayer   = iFirstSliceIdx + pSlice->uiSliceIdx / kiPartitionNum;
+        pSlice->uiSliceIdx = iSliceIdxInLayer;
     }
-    iIdxStep += iSliceNumInThread;
   }
 
   return ENC_RETURN_SUCCESS;
 }
 
-static inline int32_t ReOrderSliceInLayer (SDqLayer* pCurLayer,
-    const int32_t kiThreadNum,
-    const int32_t kiCodedSliceNum) {
+int32_t ReOrderSliceBySliceIdx(SDqLayer* pCurLayer,
+                               const int32_t kiThreadNum,
+                               const int32_t kiSliceIdxInLayer) {
+  int32_t iThreadIdx             = 0;
+  int32_t iSliceIdx              = 0;
+  int32_t iCodedSliceNumInThread = 0;
+  SSlice* pSlice                 = NULL;
+  bool bMatchFlag                = false;
 
-  bool bMatchedFlag      = false;
-  SSlice* pSliceInThread = NULL;
-  int32_t iThreadIdx     = 0;
-  int32_t uiSliceIdx      = 0;
-  int32_t aiSliceIndex[MAX_THREADS_NUM] = {0};
+  for(; iThreadIdx <kiThreadNum; iThreadIdx++) {
+    iCodedSliceNumInThread = pCurLayer->sSliceThreadInfo.iEncodedSliceNumInThread[iThreadIdx];
 
-  //update ppSliceInLayer based on pSliceInThread, reordering based on slice index
-  for (uiSliceIdx = 0; uiSliceIdx < kiCodedSliceNum; uiSliceIdx++) {
-    bMatchedFlag = false;
-
-    for (iThreadIdx = 0; iThreadIdx < kiThreadNum; iThreadIdx++) {
-      pSliceInThread = pCurLayer->sSliceThreadInfo.pSliceInThread[iThreadIdx] + aiSliceIndex[iThreadIdx];
-      if (NULL == pSliceInThread) {
+    for(iSliceIdx = 0; iSliceIdx < iCodedSliceNumInThread; iSliceIdx++) {
+      pSlice = pCurLayer->sSliceThreadInfo.pSliceInThread[iThreadIdx] + iSliceIdx;
+      if(NULL == pSlice ) {
         return ENC_RETURN_UNEXPECTED;
       }
 
-      if (pSliceInThread->uiSliceIdx == uiSliceIdx) {
-        aiSliceIndex[iThreadIdx]++;
-        bMatchedFlag     = true;
+      if(pSlice->uiSliceIdx == kiSliceIdxInLayer ) {
+        pCurLayer->ppSliceInLayer[kiSliceIdxInLayer] = pSlice;
+        bMatchFlag = true;
         break;
       }
     }
+  }
 
-    if (false == bMatchedFlag) {
+  return (bMatchFlag == true) ? ENC_RETURN_SUCCESS : ENC_RETURN_UNEXPECTED;
+}
+
+int32_t ReOrderSliceInLayer (SDqLayer* pCurLayer,
+                             const int32_t kiThreadNum,
+                             const int32_t kiCodedSliceNum) {
+
+  int32_t uiSliceIdx     = 0;
+  int32_t iRetValue      = 0;
+  //update ppSliceInLayer based on pSliceInThread, reordering based on slice index
+  for (uiSliceIdx = 0; uiSliceIdx < kiCodedSliceNum; uiSliceIdx++) {
+
+    iRetValue = ReOrderSliceBySliceIdx(pCurLayer, kiThreadNum, uiSliceIdx);
+    if(ENC_RETURN_SUCCESS != iRetValue) {
       return ENC_RETURN_UNEXPECTED;
     }
-
-    pCurLayer->ppSliceInLayer[uiSliceIdx] = pSliceInThread;
   }
 
   return ENC_RETURN_SUCCESS;
@@ -1567,20 +1582,29 @@ int32_t SliceLayerInfoUpdate (sWelsEncCtx* pCtx, const int32_t kiDlayerIndex) {
 
   //update ppSliceInLayer based on pSliceInThread, reordering based on slice index
   if (SM_SIZELIMITED_SLICE == pSliceArgument->uiSliceMode) {
-    iRet = ReOrderSliceInLayerDynamic (pCtx);
+    iRet =  UpdateSliceIdxInfo(pCurLayer, pCtx->iActiveThreadsNum, pCtx->iActiveThreadsNum);
+
+    printf("************************************************************\n");
+    printf("********************start: after update****************************\n");
+    printf("************************************************************\n");
+    TraceForSliceInfoUpdate(pCurLayer, pSliceArgument, &pCurLayer->sSliceThreadInfo, pCtx->iActiveThreadsNum);
+    printf("************************************************************\n");
+    printf("********************end: after update****************************\n");
+    printf("************************************************************\n");
+
     if (ENC_RETURN_SUCCESS != iRet) {
       WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR,
-               "CWelsH264SVCEncoder::SliceLayerInfoUpdate: ReOrderSliceInLayerDynamic failed");
-    printf("CWelsH264SVCEncoder::SliceLayerInfoUpdate: ReOrderSliceInLayerDynamic failed \n");
-    TraceForSliceInfoUpdate(pCurLayer, pSliceArgument, &pCurLayer->sSliceThreadInfo, pCtx->iActiveThreadsNum);
-      return iRet;
+               "CWelsH264SVCEncoder::SliceLayerInfoUpdate: UpdateSliceIdxInfo failed");
+      printf("CWelsH264SVCEncoder::SliceLayerInfoUpdate: UpdateSliceIdxInfo failed \n");
+      TraceForSliceInfoUpdate(pCurLayer, pSliceArgument, &pCurLayer->sSliceThreadInfo, pCtx->iActiveThreadsNum);
+      return ENC_RETURN_UNEXPECTED;
     }
-  } else {
-    iRet = ReOrderSliceInLayer (pCurLayer, pCtx->iActiveThreadsNum, iCodedSliceNum);
-    if (ENC_RETURN_SUCCESS != iRet) {
-      WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR, "CWelsH264SVCEncoder::SliceLayerInfoUpdate: ReOrderSliceInLayer failed");
-      return iRet;
-    }
+  }
+
+  iRet = ReOrderSliceInLayer (pCurLayer, pCtx->iActiveThreadsNum, iCodedSliceNum);
+  if (ENC_RETURN_SUCCESS != iRet) {
+    WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR, "CWelsH264SVCEncoder::SliceLayerInfoUpdate: ReOrderSliceInLayer failed");
+    return iRet;
   }
 
   //update unused slice buffer with ppsliceInLayer
