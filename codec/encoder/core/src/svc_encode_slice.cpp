@@ -642,10 +642,7 @@ TRY_REENCODING:
 
     if (DynSlcJudgeSliceBoundaryStepBack (pEncCtx, pSlice, pSliceCtx, pCurMb, &sDss)) { //islice
       pEncCtx->pFuncList->pfStashPopMBStatus (&sDss, pSlice);
-      pCurLayer->pLastCodedMbIdxOfPartition[kiPartitionId] = iCurMbIdx -
-          1; // update pLastCodedMbIdxOfPartition, need to -1 due to stepping back
-      ++ pCurLayer->pNumSliceCodedOfPartition[kiPartitionId];
-
+      pCurLayer->pLastCodedMbIdxOfPartition[kiPartitionId] = iCurMbIdx - 1;
       break;
     }
 
@@ -1985,10 +1982,7 @@ TRY_REENCODING:
     sDss.iCurrentPos = BsGetBitsPos (pBs);
     if (DynSlcJudgeSliceBoundaryStepBack (pEncCtx, pSlice, pSliceCtx, pCurMb, &sDss)) {
       pSlice->iMbSkipRun = pEncCtx->pFuncList->pfStashPopMBStatus (&sDss, pSlice);
-      pCurLayer->pLastCodedMbIdxOfPartition[kiPartitionId] = iCurMbIdx -
-          1; // update pLastCodedMbIdxOfPartition, need to -1 due to stepping back
-      ++ pCurLayer->pNumSliceCodedOfPartition[kiPartitionId];
-
+      pCurLayer->pLastCodedMbIdxOfPartition[kiPartitionId] = iCurMbIdx - 1;
       break;
     }
 

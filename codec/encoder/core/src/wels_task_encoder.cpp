@@ -268,8 +268,7 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
   const int32_t kiFirstMbInPartition      = pPrivateData->iStartMbIndex;  // inclusive
   const int32_t kiEndMbInPartition        = pPrivateData->iEndMbIndex;            // exclusive
   //pStartSliceHeaderExt->sSliceHeader.iFirstMbInSlice      = kiFirstMbInPartition;
-  pCurDq->pNumSliceCodedOfPartition[kiPartitionId]        =
-    1;    // one pSlice per partition intialized, dynamic slicing inside
+  pCurDq->pNumSliceCodedOfPartition[kiPartitionId]        = 0;
   pCurDq->pLastMbIdxOfPartition[kiPartitionId]            = kiEndMbInPartition - 1;
 
   pCurDq->pLastCodedMbIdxOfPartition[kiPartitionId]       = kiFirstMbInPartition;
@@ -368,7 +367,8 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
              pParamInternal->iCodingIndex, kiPartitionId, m_iThreadIdx, m_iSliceIdx, m_iSliceSize,
              kiEndMbInPartition, kiPartitionId, pCurDq->pLastCodedMbIdxOfPartition[kiPartitionId]);
 
-    m_pCtx->pCurDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[m_iThreadIdx] +=1;
+    ++ m_pCtx->pCurDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[m_iThreadIdx];
+    ++ pCurDq->pNumSliceCodedOfPartition[kiPartitionId];
     iAnyMbLeftInPartition = kiEndMbInPartition - (1 + pCurDq->pLastCodedMbIdxOfPartition[kiPartitionId]);
     m_iSliceIdx += kiSliceIdxStep;
   }

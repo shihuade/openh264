@@ -685,8 +685,7 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
         iSliceIdx = 0;
         SSliceHeaderExt* pStartSliceHeaderExt   = &pSliceListInThread->sSliceHeaderExt;
         pStartSliceHeaderExt->sSliceHeader.iFirstMbInSlice      = kiFirstMbInPartition;
-        pCurDq->pNumSliceCodedOfPartition[kiPartitionId]        =
-          1;    // one pSlice per partition intialized, dynamic slicing inside
+        pCurDq->pNumSliceCodedOfPartition[kiPartitionId]        = 0;
         pCurDq->pLastMbIdxOfPartition[kiPartitionId]            = kiEndMbInPartition - 1;
 
         pCurDq->pLastCodedMbIdxOfPartition[kiPartitionId]       = kiFirstMbInPartition;
@@ -777,7 +776,9 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
                         pEncPEncCtx->iCodingIndex, kiPartitionId, iSliceIdx, iSliceSize,
                         pSlice->iCountMbNumInSlice,
                         kiEndMbInPartition, kiPartitionId, pCurDq->pLastCodedMbIdxOfPartition[kiPartitionId]);
-          pSliceThreadInfo->iEncodedSliceNumInThread[iThreadIdx] +=1;
+
+          ++ pSliceThreadInfo->iEncodedSliceNumInThread[iThreadIdx];
+          ++ pCurDq->pNumSliceCodedOfPartition[kiPartitionId];
           iAnyMbLeftInPartition = kiEndMbInPartition - (1 + pCurDq->pLastCodedMbIdxOfPartition[kiPartitionId]);
           iSliceIdx += kiSliceIdxStep;
         }
