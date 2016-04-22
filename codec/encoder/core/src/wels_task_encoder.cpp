@@ -267,15 +267,10 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
   SSliceThreadPrivateData* pPrivateData   = & (m_pCtx->pSliceThreading->pThreadPEncCtx[kiPartitionId]);
   const int32_t kiFirstMbInPartition      = pPrivateData->iStartMbIndex;  // inclusive
   const int32_t kiEndMbInPartition        = pPrivateData->iEndMbIndex;            // exclusive
-  //pStartSliceHeaderExt->sSliceHeader.iFirstMbInSlice      = kiFirstMbInPartition;
-  pCurDq->pNumSliceCodedOfPartition[kiPartitionId]        = 0;
-  pCurDq->pLastMbIdxOfPartition[kiPartitionId]            = kiEndMbInPartition - 1;
-
-  pCurDq->pLastCodedMbIdxOfPartition[kiPartitionId]       = kiFirstMbInPartition;
-  //end of deal with partition
-
-  //m_pCtx->pCurDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[m_iThreadIdx] = 0;
-  int32_t iAnyMbLeftInPartition  = kiEndMbInPartition - kiFirstMbInPartition;
+  int32_t iAnyMbLeftInPartition           = kiEndMbInPartition - kiFirstMbInPartition;
+  pCurDq->pNumSliceCodedOfPartition[kiPartitionId]  = 0;
+  pCurDq->pLastMbIdxOfPartition[kiPartitionId]      = kiEndMbInPartition - 1;
+  pCurDq->pLastCodedMbIdxOfPartition[kiPartitionId] = kiFirstMbInPartition;
 
   m_iSliceIdx = m_uiPartitionID;
   while (iAnyMbLeftInPartition > 0) {
@@ -335,7 +330,7 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
       return iReturn;
     }
     WelsUnloadNalForSlice (m_pSliceBs);
-    printf("--slice info: PartID(%d), SlcIdx(%d), ThrdIdx(%d)--FirstMbIdx(%d), MbNum(%d), MbNumInSlice(%d),ThrdUID(%d)\n ",
+    printf("--slice info: PartID(%d), SlcIdx(%d), ThrdIdx(%d)--FirstMbIdx(%d), MbNum(%d), MbNumInSlice(%d)\n ",
              kiPartitionId,
              m_iSliceIdx,
              m_iThreadIdx,
