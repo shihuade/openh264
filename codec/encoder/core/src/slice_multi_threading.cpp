@@ -683,8 +683,6 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
 
         pSliceThreadInfo->iEncodedSliceNumInThread[iThreadIdx] = 0;
         iSliceIdx = 0;
-        SSliceHeaderExt* pStartSliceHeaderExt   = &pSliceListInThread->sSliceHeaderExt;
-        pStartSliceHeaderExt->sSliceHeader.iFirstMbInSlice      = kiFirstMbInPartition;
         pCurDq->pNumSliceCodedOfPartition[kiPartitionId]        = 0;
         pCurDq->pLastMbIdxOfPartition[kiPartitionId]            = kiEndMbInPartition - 1;
 
