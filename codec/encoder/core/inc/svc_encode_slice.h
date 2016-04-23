@@ -100,15 +100,12 @@ void InitRCInfoForSliceList (SSlice** pSliceList,
 
 int32_t InitSliceMBInfo (SDqLayer* pCurDqLayer,
                          SSliceArgument* pSliceArgument,
-                         SSlice* pSlice,
-                         const int32_t kiMBWidth,
-                         const int32_t kiMBHeight);
+                         SSlice* pSlice);
 
 int32_t InitSliceList (sWelsEncCtx* pCtx,
                        SDqLayer* pCurDqLayer,
                        SSlice* pSliceList,
-                       const int32_t kiStartIndex,
-                       const int32_t kiEndIndex,
+                       const int32_t kiInitSliceNum,
                        const int32_t kiDlayerIndex,
                        CMemoryAlign* pMa);
 

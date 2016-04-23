@@ -914,8 +914,7 @@ void FreeSliceBuffer (SSlice*& pSliceList, const int32_t kiMaxSliceNum, CMemoryA
 int32_t InitSliceList (sWelsEncCtx* pCtx,
                        SDqLayer* pCurDqLayer,
                        SSlice* pSliceList,
-                       const int32_t kiStartIndex,
-                       const int32_t kiEndIndex,
+                       const int32_t kiInitSliceNum,
                        const int32_t kiDlayerIndex,
                        CMemoryAlign* pMa) {
   const int32_t kiMBWidth         = pCurDqLayer->iMbWidth;
@@ -925,8 +924,8 @@ int32_t InitSliceList (sWelsEncCtx* pCtx,
   int32_t iSliceIdx               = 0;
   int32_t iRet                    = 0;
 
-  if (NULL == pSliceList || NULL == pSliceArgument || kiStartIndex < 0 || kiEndIndex < 0 ||
-      kiStartIndex > kiEndIndex || iMaxSliceBufferSize <= 0 || kiMBWidth <= 0 || kiMBHeight <= 0) {
+  if (NULL == pSliceList || NULL == pSliceArgument || kiInitSliceNum < 0 || iMaxSliceBufferSize <= 0 ||
+      kiInitSliceNum > iMaxSliceBufferSize || kiMBWidth <= 0 || kiMBHeight <= 0) {
     return ENC_RETURN_UNEXPECTED;
   }
 
@@ -935,7 +934,7 @@ int32_t InitSliceList (sWelsEncCtx* pCtx,
   bool bIndependenceBsBuffer   = (pCtx->pSvcParam->iMultipleThreadIdc > 1 &&
                                   SM_SINGLE_SLICE != pSliceArgument->uiSliceMode) ? true : false;
 
-  for (iSliceIdx = kiStartIndex; iSliceIdx < kiEndIndex; iSliceIdx++) {
+  for (iSliceIdx = 0; iSliceIdx < kiInitSliceNum; iSliceIdx++) {
     SSlice* pSlice = pSliceList + iSliceIdx;
     if (NULL == pSlice) {
       return ENC_RETURN_MEMALLOCERR;
@@ -1025,7 +1024,6 @@ int32_t InitSliceThreadInfo (sWelsEncCtx* pCtx,
     iRet = InitSliceList (pCtx,
                           pDqLayer,
                           pSliceThreadInfo->pSliceInThread[iIdx],
-                          0,
                           iMaxSliceNumInThread,
                           kiDlayerIndex,
                           pMa);
@@ -1212,9 +1210,8 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
   // allocate and init MB/bs buffer for
   iRet = InitSliceList (pCtx,
                         pCurLayer,
-                        pNewSliceList,
-                        kiMaxSliceNumOld,
-                        kiMaxSliceNumNew,
+                        pNewSliceList + kiMaxSliceNumOld,
+                        kiMaxSliceNumNew - kiMaxSliceNumOld,
                         kiCurDid,
                         pMA);
   if (ENC_RETURN_SUCCESS != iRet) {
