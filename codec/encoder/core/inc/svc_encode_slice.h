@@ -100,7 +100,8 @@ void InitRCInfoForSliceList (SSlice** pSliceList,
 
 int32_t InitSliceMBInfo (SDqLayer* pCurDqLayer,
                          SSliceArgument* pSliceArgument,
-                         SSlice* pSlice);
+                         SSlice* pSlice,
+                         const int32_t kiThreadNum);
 
 int32_t InitSliceList (sWelsEncCtx* pCtx,
                        SDqLayer* pCurDqLayer,

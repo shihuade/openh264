@@ -857,7 +857,7 @@ int32_t InitSliceMBInfo (SDqLayer* pCurDqLayer,
   pSlice->iCountMbNumInSlice    = iMbNumInSlice;
   pSliceHeader->iFirstMbInSlice = iFirstMBInSlice;
   if(kiThreadNum >1) {
-    pCurDqLayer->piCountMbNumInSlice[kiSliceIdx] = iFirstMBInSlice;
+    pCurDqLayer->piCountMbNumInSlice[kiSliceIdx] = iMbNumInSlice;
     pCurDqLayer->piFirstMbIdxInSlice[kiSliceIdx] = iFirstMBInSlice;
   }
 
@@ -1064,8 +1064,8 @@ void RefreshSliceInfoInThread (SDqLayer* pDqLayer, const int32_t kiThreadNum) {
       pSliceInThread[iSliceIdx].iThreadIdx         = iIdx;
       if(kiThreadNum > 1) {
         //pSliceInThread[iSliceIdx].iCountMbNumInSlice = 0;
-        pSliceInThread[iSliceIdx].sSliceHeaderExt.uiNumMbsInSlice              = 0;
-        pSliceInThread[iSliceIdx].sSliceHeaderExt.sSliceHeader.iFirstMbInSlice = 0;
+        //pSliceInThread[iSliceIdx].sSliceHeaderExt.uiNumMbsInSlice              = 0;
+        //pSliceInThread[iSliceIdx].sSliceHeaderExt.sSliceHeader.iFirstMbInSlice = 0;
       }
     }
 
