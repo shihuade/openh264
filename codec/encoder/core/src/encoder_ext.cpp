@@ -916,6 +916,16 @@ void FreeDqLayer (SDqLayer*& pDq, CMemoryAlign* pMa) {
     pDq->ppSliceInLayer = NULL;
   }
 
+  if (pDq->piFirstMbIdxInSlice) {
+    pMa->WelsFree (pDq->piFirstMbIdxInSlice, "piFirstMbIdxInSlice");
+    pDq->piFirstMbIdxInSlice = NULL;
+  }
+
+  if (pDq->piCountMbNumInSlice) {
+    pMa->WelsFree (pDq->piCountMbNumInSlice, "piCountMbNumInSlice");
+    pDq->piCountMbNumInSlice = NULL;
+  }
+
   if (pDq->pNumSliceCodedOfPartition) {
     pMa->WelsFree (pDq->pNumSliceCodedOfPartition, "pNumSliceCodedOfPartition");
     pDq->pNumSliceCodedOfPartition = NULL;
@@ -1200,6 +1210,14 @@ static inline int32_t InitDqLayers (sWelsEncCtx** ppCtx, SExistingParasetList* p
                                    NULL == pDqLayer->pLastMbIdxOfPartition),
                                   FreeDqLayer (pDqLayer, pMa))
     }
+
+    pDqLayer->piCountMbNumInSlice = (int32_t*)pMa->WelsMallocz (pDqLayer->iMaxSliceNum, "piCountMbNumInSlice");
+    pDqLayer->piFirstMbIdxInSlice = (int32_t*)pMa->WelsMallocz (pDqLayer->iMaxSliceNum, "piFirstMbIdxInSlice");
+    WELS_VERIFY_RETURN_PROC_IF (1,
+                                (NULL == pDqLayer->piCountMbNumInSlice ||
+                                 NULL == pDqLayer->piFirstMbIdxInSlice),
+                                FreeDqLayer (pDqLayer, pMa))
+
     pDqLayer->bNeedAdjustingSlicing = false;
 
     pDqLayer->iMbWidth  = kiMbW;
