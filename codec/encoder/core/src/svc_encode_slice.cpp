@@ -92,8 +92,6 @@ void WelsSliceHeaderExtInit (sWelsEncCtx* pEncCtx, SDqLayer* pCurLayer, SSlice* 
   SSpatialLayerInternal* pParamInternal = &pEncCtx->pSvcParam->sDependencyLayers[pEncCtx->uiDependencyId];
   const int32_t kiDlayerIdx           = pEncCtx->uiDependencyId;
   SSliceArgument* pSliceArgument      = & pEncCtx->pSvcParam->sSpatialLayers[kiDlayerIdx].sSliceArgument;
-  const int32_t kiMBWidth             = pCurLayer->iMbWidth;
-  const int32_t kiMBHeight            = pCurLayer->iMbHeight;
 
   pCurSliceHeader->eSliceType = pEncCtx->eSliceType;
 
@@ -101,7 +99,7 @@ void WelsSliceHeaderExtInit (sWelsEncCtx* pEncCtx, SDqLayer* pCurLayer, SSlice* 
 
   //update slice MB info,iFirstMBInSlice and iMBNumInSlice
   if (SM_SIZELIMITED_SLICE != pSliceArgument->uiSliceMode) {
-    InitSliceMBInfo (pCurLayer, pSliceArgument, pSlice, kiMBWidth, kiMBHeight);
+    InitSliceMBInfo (pCurLayer, pSliceArgument, pSlice);
   }
 
   pCurSliceHeader->iFrameNum      = pParamInternal->iFrameNum;
@@ -813,13 +811,14 @@ void FreeMbCache (SMbCache* pMbCache, CMemoryAlign* pMa) {
 
 int32_t InitSliceMBInfo (SDqLayer* pCurDqLayer,
                          SSliceArgument* pSliceArgument,
-                         SSlice* pSlice,
-                         const int32_t kiMBWidth,
-                         const int32_t kiMBHeight) {
+                         SSlice* pSlice) {
   SSliceHeader* pSliceHeader          = &pSlice->sSliceHeaderExt.sSliceHeader;
   const int32_t* kpSlicesAssignList   = (int32_t*) & (pSliceArgument->uiSliceMbNum[0]);
-  const int32_t kiCountNumMbInFrame   = kiMBWidth * kiMBHeight;
   const int32_t kiSliceIdx            = pSlice->uiSliceIdx;
+  const int32_t kiMBWidth             = pCurDqLayer->iMbWidth;
+  const int32_t kiMBHeight            = pCurDqLayer->iMbHeight;
+  const int32_t kiCountNumMbInFrame   = kiMBWidth * kiMBHeight;
+
   int32_t iFirstMBInSlice             = 0;
   int32_t iMbNumInSlice               = 0;
 
@@ -954,7 +953,7 @@ int32_t InitSliceList (sWelsEncCtx* pCtx,
       return iRet;
     }
 
-    iRet = InitSliceMBInfo (pCurDqLayer, pSliceArgument, pSlice, kiMBWidth, kiMBHeight);
+    iRet = InitSliceMBInfo (pCurDqLayer, pSliceArgument, pSlice);
     if (ENC_RETURN_SUCCESS != iRet) {
       return iRet;
     }

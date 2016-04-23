@@ -1211,12 +1211,14 @@ static inline int32_t InitDqLayers (sWelsEncCtx** ppCtx, SExistingParasetList* p
                                   FreeDqLayer (pDqLayer, pMa))
     }
 
-    pDqLayer->piCountMbNumInSlice = (int32_t*)pMa->WelsMallocz (pDqLayer->iMaxSliceNum, "piCountMbNumInSlice");
-    pDqLayer->piFirstMbIdxInSlice = (int32_t*)pMa->WelsMallocz (pDqLayer->iMaxSliceNum, "piFirstMbIdxInSlice");
-    WELS_VERIFY_RETURN_PROC_IF (1,
-                                (NULL == pDqLayer->piCountMbNumInSlice ||
-                                 NULL == pDqLayer->piFirstMbIdxInSlice),
-                                FreeDqLayer (pDqLayer, pMa))
+    if((*ppCtx)->iActiveThreadsNum > 1) {
+      pDqLayer->piCountMbNumInSlice = (int32_t*)pMa->WelsMallocz (pDqLayer->iMaxSliceNum, "piCountMbNumInSlice");
+      pDqLayer->piFirstMbIdxInSlice = (int32_t*)pMa->WelsMallocz (pDqLayer->iMaxSliceNum, "piFirstMbIdxInSlice");
+      WELS_VERIFY_RETURN_PROC_IF (1,
+                                  (NULL == pDqLayer->piCountMbNumInSlice ||
+                                   NULL == pDqLayer->piFirstMbIdxInSlice),
+                                  FreeDqLayer (pDqLayer, pMa))
+    }
 
     pDqLayer->bNeedAdjustingSlicing = false;
 
