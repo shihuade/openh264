@@ -917,15 +917,13 @@ int32_t InitSliceList (sWelsEncCtx* pCtx,
                        const int32_t kiInitSliceNum,
                        const int32_t kiDlayerIndex,
                        CMemoryAlign* pMa) {
-  const int32_t kiMBWidth         = pCurDqLayer->iMbWidth;
-  const int32_t kiMBHeight        = pCurDqLayer->iMbHeight;
   SSliceArgument* pSliceArgument  = & pCtx->pSvcParam->sSpatialLayers[kiDlayerIndex].sSliceArgument;
   int32_t iMaxSliceBufferSize     = (pCtx)->iSliceBufferSize[kiDlayerIndex];
   int32_t iSliceIdx               = 0;
   int32_t iRet                    = 0;
 
   if (NULL == pSliceList || NULL == pSliceArgument || kiInitSliceNum < 0 || iMaxSliceBufferSize <= 0 ||
-      kiInitSliceNum > iMaxSliceBufferSize || kiMBWidth <= 0 || kiMBHeight <= 0) {
+      kiInitSliceNum > iMaxSliceBufferSize) {
     return ENC_RETURN_UNEXPECTED;
   }
 
