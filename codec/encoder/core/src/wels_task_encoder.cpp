@@ -126,13 +126,18 @@ WelsErrorType CWelsSliceEncodingTask::InitTask() {
 
   m_pSliceBs = &m_pSlice->sSliceBs;
  if((&m_pSliceBs->sBsWrite) != (void*)m_pSlice->pSliceBsa) {
-     int32_t iIdx = 0;
-     for(;iIdx<m_pCtx->pCurDqLayer->sSliceThreadInfo.iMaxSliceNumInThread[m_iThreadIdx]; iIdx++) {
-         printf("&m_pSliceBs->sBsWrite,m_pSlice->pSliceBsa for Idx(%d) is (%p,%p) \n",
-                iIdx,
-                &m_pSliceBs->sBsWrite,
-                m_pSlice->pSliceBsa);
-     }
+   int32_t iIdx = 0;
+   int32_t iThreadIdx = 0;
+   for (; iThreadIdx < m_pCtx->iActiveThreadsNum; iThreadIdx++) {
+     printf("****************************************************************\n");
+     printf("threadIdx,currentThreadIdx are (%d, %d) \n", iThreadIdx, m_iThreadIdx);
+	 for (iIdx = 0; iIdx < m_pCtx->pCurDqLayer->sSliceThreadInfo.iMaxSliceNumInThread[iThreadIdx]; iIdx++) {
+      printf("&m_pSliceBs->sBsWrite,m_pSlice->pSliceBsa for Idx(%d) is (%p,%p) \n",
+        iIdx,
+        &(m_pCtx->pCurDqLayer->sSliceThreadInfo.pSliceInThread[m_iThreadIdx] + iIdx)->sSliceBs.sBsWrite,
+        (m_pCtx->pCurDqLayer->sSliceThreadInfo.pSliceInThread[m_iThreadIdx] + iIdx)->pSliceBsa);
+      }
+    }
   }
   assert ((void*) (&m_pSliceBs->sBsWrite) == (void*)m_pSlice->pSliceBsa);
   InitBits (&m_pSliceBs->sBsWrite, m_pSliceBs->pBsBuffer, m_pSliceBs->uiSize);
