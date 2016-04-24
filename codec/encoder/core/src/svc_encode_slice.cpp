@@ -99,7 +99,7 @@ void WelsSliceHeaderExtInit (sWelsEncCtx* pEncCtx, SDqLayer* pCurLayer, SSlice* 
 
   //update slice MB info,iFirstMBInSlice and iMBNumInSlice
   if (SM_SIZELIMITED_SLICE != pSliceArgument->uiSliceMode) {
-    InitSliceMBInfo (pCurLayer, pSliceArgument, pSlice);
+    InitSliceMBInfo (pCurLayer, pSliceArgument, pSlice, pEncCtx->iActiveThreadsNum);
   }
 
   pCurSliceHeader->iFrameNum      = pParamInternal->iFrameNum;
@@ -811,7 +811,8 @@ void FreeMbCache (SMbCache* pMbCache, CMemoryAlign* pMa) {
 
 int32_t InitSliceMBInfo (SDqLayer* pCurDqLayer,
                          SSliceArgument* pSliceArgument,
-                         SSlice* pSlice) {
+                         SSlice* pSlice,
+                         const int32_t kiThreadNum) {
   SSliceHeader* pSliceHeader          = &pSlice->sSliceHeaderExt.sSliceHeader;
   const int32_t* kpSlicesAssignList   = (int32_t*) & (pSliceArgument->uiSliceMbNum[0]);
   const int32_t kiSliceIdx            = pSlice->uiSliceIdx;
@@ -855,7 +856,12 @@ int32_t InitSliceMBInfo (SDqLayer* pCurDqLayer,
 
   pSlice->iCountMbNumInSlice    = iMbNumInSlice;
   pSliceHeader->iFirstMbInSlice = iFirstMBInSlice;
-
+  if(kiThreadNum >1) {
+    //printf("pCurDqLayer->piCountMbNumInSlice[kiSliceIdx] is %p \n", &pCurDqLayer->piCountMbNumInSlice[kiSliceIdx]);
+    //printf("pCurDqLayer->piFirstMbIdxInSlice[kiSliceIdx] is %p \n", &pCurDqLayer->piFirstMbIdxInSlice[kiSliceIdx]);
+    //pCurDqLayer->piCountMbNumInSlice[kiSliceIdx] = iMbNumInSlice;
+    //pCurDqLayer->piFirstMbIdxInSlice[kiSliceIdx] = iFirstMBInSlice;
+  }
   return ENC_RETURN_SUCCESS;
 }
 
@@ -950,7 +956,7 @@ int32_t InitSliceList (sWelsEncCtx* pCtx,
       return iRet;
     }
 
-    iRet = InitSliceMBInfo (pCurDqLayer, pSliceArgument, pSlice);
+    iRet = InitSliceMBInfo (pCurDqLayer, pSliceArgument, pSlice, pCtx->iActiveThreadsNum);
     if (ENC_RETURN_SUCCESS != iRet) {
       return iRet;
     }
