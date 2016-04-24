@@ -125,6 +125,15 @@ WelsErrorType CWelsSliceEncodingTask::InitTask() {
   m_pSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice = m_pCtx->pCurDqLayer->piFirstMbIdxInSlice[m_iSliceIdx];
 
   m_pSliceBs = &m_pSlice->sSliceBs;
+ if((&m_pSliceBs->sBsWrite) != (void*)m_pSlice->pSliceBsa) {
+     int32_t iIdx = 0;
+     for(;iIdx<m_pCtx->pCurDqLayer->sSliceThreadInfo.iMaxSliceNumInThread[m_iThreadIdx]; iIdx++) {
+         printf("&m_pSliceBs->sBsWrite,m_pSlice->pSliceBsa for Idx(%d) is (%p,%p) \n",
+                iIdx,
+                &m_pSliceBs->sBsWrite,
+                m_pSlice->pSliceBsa);
+     }
+  }
   assert ((void*) (&m_pSliceBs->sBsWrite) == (void*)m_pSlice->pSliceBsa);
   InitBits (&m_pSliceBs->sBsWrite, m_pSliceBs->pBsBuffer, m_pSliceBs->uiSize);
   //printf ("CWelsSliceEncodingTask_InitTask slice %d\n", m_iSliceIdx);
