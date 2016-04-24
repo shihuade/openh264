@@ -40,6 +40,7 @@
 #include <string.h>
 #include "rc.h"
 #include "svc_enc_frame.h"
+#include "stdio.h"
 
 namespace WelsEnc {
 /*!
@@ -683,10 +684,23 @@ int32_t DynamicAdjustSlicePEncCtxAll (SDqLayer* pCurDq,
     SSliceHeaderExt* pSliceHeaderExt               = &ppSliceInLayer[uiSliceIdx]->sSliceHeaderExt;
     pSliceHeaderExt->sSliceHeader.iFirstMbInSlice  = uiFirstMbIdx;
     ppSliceInLayer[uiSliceIdx]->iCountMbNumInSlice = kuiSliceRun;
+    printf("********************************AAAAA*****************************************\n");
+    printf("pSliceHeaderExt->sSliceHeader.iFirstMbInSlice(%d) before is: %d\n", uiSliceIdx, pSliceHeaderExt->sSliceHeader.iFirstMbInSlice);
+    printf("ppSliceInLayer[uiSliceIdx]->iCountMbNumInSlice(%d) before is: %d\n", uiSliceIdx, ppSliceInLayer[uiSliceIdx]->iCountMbNumInSlice);
+    printf("pCurDq->piFirstMbIdxInSlice[uiSliceIdx(%d)] before is: %d\n", uiSliceIdx, pCurDq->piFirstMbIdxInSlice[uiSliceIdx] );
+    printf("pCurDq->piCountMbNumInSlice[uiSliceIdx(%d)] before is: %d\n", uiSliceIdx, pCurDq->piCountMbNumInSlice[uiSliceIdx] );
+    printf("*************************************************************************\n");
+
     //TODO: will remove all ppSliceInLayer inside this function,
     // as multi-thread on, iFirstMbInSlice will be update based on piFirstMbIdxInSlice
     pCurDq->piFirstMbIdxInSlice[uiSliceIdx]        = uiFirstMbIdx;
     pCurDq->piCountMbNumInSlice[uiSliceIdx]        = kuiSliceRun;
+
+    printf("pSliceHeaderExt->sSliceHeader.iFirstMbInSlice(%d) after is: %d\n", uiSliceIdx, pSliceHeaderExt->sSliceHeader.iFirstMbInSlice);
+    printf("ppSliceInLayer[uiSliceIdx]->iCountMbNumInSlice(%d) after is: %d\n", uiSliceIdx, ppSliceInLayer[uiSliceIdx]->iCountMbNumInSlice);
+    printf("pCurDq->piFirstMbIdxInSlice[uiSliceIdx(%d)] after is: %d\n", uiSliceIdx, pCurDq->piFirstMbIdxInSlice[uiSliceIdx] );
+    printf("pCurDq->piCountMbNumInSlice[uiSliceIdx(%d)] after is: %d\n", uiSliceIdx, pCurDq->piCountMbNumInSlice[uiSliceIdx] );
+    printf("***********************************BBBB**************************************\n");
 
     WelsSetMemMultiplebytes_c(pSliceCtx->pOverallMbMap + uiFirstMbIdx, uiSliceIdx,
                               kuiSliceRun, sizeof(uint16_t));
