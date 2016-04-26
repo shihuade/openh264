@@ -1223,8 +1223,8 @@ static inline int32_t InitDqLayers (sWelsEncCtx** ppCtx, SExistingParasetList* p
     }
 
     if((*ppCtx)->iActiveThreadsNum > 1) {
-      pDqLayer->piCountMbNumInSlice = (int32_t*)pMa->WelsMallocz (pDqLayer->iMaxSliceNum, "piCountMbNumInSlice");
-      pDqLayer->piFirstMbIdxInSlice = (int32_t*)pMa->WelsMallocz (pDqLayer->iMaxSliceNum, "piFirstMbIdxInSlice");
+	  pDqLayer->piCountMbNumInSlice = (int32_t*)pMa->WelsMallocz(pDqLayer->iMaxSliceNum * (sizeof(int32_t)), "piCountMbNumInSlice");
+	  pDqLayer->piFirstMbIdxInSlice = (int32_t*)pMa->WelsMallocz(pDqLayer->iMaxSliceNum * (sizeof(int32_t)), "piFirstMbIdxInSlice");
       WELS_VERIFY_RETURN_PROC_IF (1,
                                   (NULL == pDqLayer->piCountMbNumInSlice ||
                                   NULL == pDqLayer->piFirstMbIdxInSlice),
