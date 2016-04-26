@@ -1197,29 +1197,6 @@ static inline int32_t InitDqLayers (sWelsEncCtx** ppCtx, SExistingParasetList* p
     pDqLayer = (SDqLayer*)pMa->WelsMallocz (sizeof (SDqLayer), "pDqLayer");
     WELS_VERIFY_RETURN_PROC_IF (1, (NULL == pDqLayer), FreeDqLayer (pDqLayer, pMa))
 
-    // for dynamic slicing mode
-    if (SM_SIZELIMITED_SLICE == pDlayer->sSliceArgument.uiSliceMode) {
-      const int32_t iSize                       = pParam->iMultipleThreadIdc * sizeof (int32_t);
-
-      pDqLayer->pNumSliceCodedOfPartition       = (int32_t*)pMa->WelsMallocz (iSize, "pNumSliceCodedOfPartition");
-      pDqLayer->pLastCodedMbIdxOfPartition      = (int32_t*)pMa->WelsMallocz (iSize, "pLastCodedMbIdxOfPartition");
-      pDqLayer->pLastMbIdxOfPartition           = (int32_t*)pMa->WelsMallocz (iSize, "pLastMbIdxOfPartition");
-      WELS_VERIFY_RETURN_PROC_IF (1,
-                                  (NULL == pDqLayer->pNumSliceCodedOfPartition ||
-                                   NULL == pDqLayer->pLastCodedMbIdxOfPartition ||
-                                   NULL == pDqLayer->pLastMbIdxOfPartition),
-                                  FreeDqLayer (pDqLayer, pMa))
-    }
-
-    if((*ppCtx)->iActiveThreadsNum > 1) {
-      pDqLayer->piCountMbNumInSlice = (int32_t*)pMa->WelsMallocz (pDqLayer->iMaxSliceNum, "piCountMbNumInSlice");
-      pDqLayer->piFirstMbIdxInSlice = (int32_t*)pMa->WelsMallocz (pDqLayer->iMaxSliceNum, "piFirstMbIdxInSlice");
-      WELS_VERIFY_RETURN_PROC_IF (1,
-                                  (NULL == pDqLayer->piCountMbNumInSlice ||
-                                   NULL == pDqLayer->piFirstMbIdxInSlice),
-                                  FreeDqLayer (pDqLayer, pMa))
-    }
-
     pDqLayer->bNeedAdjustingSlicing = false;
 
     pDqLayer->iMbWidth  = kiMbW;
@@ -1230,6 +1207,29 @@ static inline int32_t InitDqLayers (sWelsEncCtx** ppCtx, SExistingParasetList* p
     if (iMaxSliceNum < kiSliceNum)
       iMaxSliceNum = kiSliceNum;
     pDqLayer->iMaxSliceNum = iMaxSliceNum;
+
+    // for dynamic slicing mode
+    if (SM_SIZELIMITED_SLICE == pDlayer->sSliceArgument.uiSliceMode) {
+      const int32_t iSize                       = pParam->iMultipleThreadIdc * sizeof (int32_t);
+
+      pDqLayer->pNumSliceCodedOfPartition       = (int32_t*)pMa->WelsMallocz (iSize, "pNumSliceCodedOfPartition");
+      pDqLayer->pLastCodedMbIdxOfPartition      = (int32_t*)pMa->WelsMallocz (iSize, "pLastCodedMbIdxOfPartition");
+      pDqLayer->pLastMbIdxOfPartition           = (int32_t*)pMa->WelsMallocz (iSize, "pLastMbIdxOfPartition");
+      WELS_VERIFY_RETURN_PROC_IF (1,
+                                 (NULL == pDqLayer->pNumSliceCodedOfPartition ||
+                                  NULL == pDqLayer->pLastCodedMbIdxOfPartition ||
+                                  NULL == pDqLayer->pLastMbIdxOfPartition),
+                                  FreeDqLayer (pDqLayer, pMa))
+    }
+
+    if((*ppCtx)->iActiveThreadsNum > 1) {
+      pDqLayer->piCountMbNumInSlice = (int32_t*)pMa->WelsMallocz (pDqLayer->iMaxSliceNum, "piCountMbNumInSlice");
+      pDqLayer->piFirstMbIdxInSlice = (int32_t*)pMa->WelsMallocz (pDqLayer->iMaxSliceNum, "piFirstMbIdxInSlice");
+      WELS_VERIFY_RETURN_PROC_IF (1,
+                                  (NULL == pDqLayer->piCountMbNumInSlice ||
+                                  NULL == pDqLayer->piFirstMbIdxInSlice),
+                                  FreeDqLayer (pDqLayer, pMa))
+    }
 
     iResult = InitSliceInLayer (*ppCtx, pDqLayer, iDlayerIndex, pMa);
     if (iResult) {
