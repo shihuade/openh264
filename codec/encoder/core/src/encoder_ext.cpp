@@ -2805,10 +2805,11 @@ void WelsInitCurrentLayer (sWelsEncCtx* pCtx,
     pCurDq->bBaseLayerAvailableFlag = false;
   }
 
-  RefreshSliceInfoInThread (pCurDq, pCtx->iActiveThreadsNum);
   if (pCtx->pTaskManage) {
     pCtx->pTaskManage->InitFrame (kiCurDid);
   }
+  RefreshSliceInfoInThread (pCurDq, pCtx->iActiveThreadsNum);
+
 }
 
 static inline void SetFastCodingFunc (SWelsFuncPtrList* pFuncList) {

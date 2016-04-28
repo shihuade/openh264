@@ -690,8 +690,8 @@ int32_t DynamicAdjustSlicePEncCtxAll (SDqLayer* pCurDq,
     printf("pCurDq->piCountMbNumInSlice[uiSliceIdx(%d)] before is: %d\n", uiSliceIdx, pCurDq->piCountMbNumInSlice[uiSliceIdx] );
     printf("*************************************************************************\n");
 
-    pSliceHeaderExt->sSliceHeader.iFirstMbInSlice  = uiFirstMbIdx;
-    ppSliceInLayer[uiSliceIdx]->iCountMbNumInSlice = kuiSliceRun;
+    //pSliceHeaderExt->sSliceHeader.iFirstMbInSlice  = uiFirstMbIdx;
+    //ppSliceInLayer[uiSliceIdx]->iCountMbNumInSlice = kuiSliceRun;
     //TODO: will remove all ppSliceInLayer inside this function,
     // as multi-thread on, iFirstMbInSlice will be update based on piFirstMbIdxInSlice
     pCurDq->piFirstMbIdxInSlice[uiSliceIdx]        = uiFirstMbIdx;
