@@ -856,11 +856,6 @@ int32_t InitSliceMBInfo (SDqLayer* pCurDqLayer,
 
   pSlice->iCountMbNumInSlice    = iMbNumInSlice;
   pSliceHeader->iFirstMbInSlice = iFirstMBInSlice;
-  if(kiThreadNum >1) {
-    pCurDqLayer->piCountMbNumInSlice[kiSliceIdx] = iMbNumInSlice;
-    pCurDqLayer->piFirstMbIdxInSlice[kiSliceIdx] = iFirstMBInSlice;
-  }
-
   return ENC_RETURN_SUCCESS;
 }
 

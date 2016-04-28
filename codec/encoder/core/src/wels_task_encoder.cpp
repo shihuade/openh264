@@ -121,8 +121,6 @@ WelsErrorType CWelsSliceEncodingTask::InitTask() {
              m_pCtx->uiDependencyId, m_iThreadIdx, m_iSliceIdx);
     return ENC_RETURN_UNEXPECTED;
   }
-  m_pSlice->iCountMbNumInSlice = m_pCtx->pCurDqLayer->piCountMbNumInSlice[m_iSliceIdx];
-  m_pSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice = m_pCtx->pCurDqLayer->piFirstMbIdxInSlice[m_iSliceIdx];
 
   m_pSliceBs = &m_pSlice->sSliceBs;
  if((&m_pSliceBs->sBsWrite) != (void*)m_pSlice->pSliceBsa) {
