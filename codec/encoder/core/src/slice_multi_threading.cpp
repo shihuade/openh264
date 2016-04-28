@@ -78,18 +78,27 @@
 
 namespace WelsEnc {
 void UpdateMbListNeighborParallel (SDqLayer* pCurDq,
+                                   SSliceArgument* pSliceArgument,
                                    SMB* pMbList,
-                                   const int32_t uiSliceIdc) {
-  SSliceCtx* pSliceCtx           = &pCurDq->sSliceEncCtx;
-  SSlice* pUpdateSlice           = pCurDq->ppSliceInLayer[uiSliceIdc];
-  const int32_t kiMbWidth        = pSliceCtx->iMbWidth;
-  int32_t iIdx                   = pUpdateSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice;
-  const int32_t kiEndMbInSlice   = iIdx + pUpdateSlice->iCountMbNumInSlice - 1;
+                                   const int32_t kiSliceIdc) {
+  SSliceCtx* pSliceCtx       = &pCurDq->sSliceEncCtx;
+  const int32_t kiMbWidth    = pSliceCtx->iMbWidth;
+  int32_t iFirstMbIdxInSlice = 0;
+  int32_t iEndMbInSlice      = 0;
+  int32_t iSliceIdx          = 0;
+  int32_t iMbIdx             = 0;
+
+  for(;iSliceIdx < kiSliceIdc; iSliceIdx++ ) {
+    iFirstMbIdxInSlice += pSliceArgument->uiSliceMbNum[iSliceIdx];
+  }
+
+  iMbIdx        = iFirstMbIdxInSlice;
+  iEndMbInSlice = iMbIdx + pSliceArgument->uiSliceMbNum[kiSliceIdc] - 1;
 
   do {
-    UpdateMbNeighbor(pCurDq, &pMbList[iIdx], kiMbWidth, uiSliceIdc);
-    ++ iIdx;
-  } while (iIdx <= kiEndMbInSlice);
+    UpdateMbNeighbor(pCurDq, &pMbList[iMbIdx], kiMbWidth, kiSliceIdc);
+    ++ iMbIdx;
+  } while (iMbIdx <= iEndMbInSlice);
 }
 
 void CalcSliceComplexRatio (SDqLayer* pCurDq) {
@@ -794,10 +803,13 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
       uiThrdRet = 0;
       break;
     } else if (WELS_THREAD_ERROR_WAIT_OBJECT_0 + 2 == iWaitRet) { // update pMb list singal
-      iSliceIdx =
-        iEventIdx; // pPrivateData->iSliceIndex; old threads can not be terminated, pPrivateData is not correct for applicable
-      pCurDq = pEncPEncCtx->pCurDqLayer;
-      UpdateMbListNeighborParallel (pCurDq, pCurDq->sMbDataP, iSliceIdx);
+      const int32_t kiCurDid         = pEncPEncCtx->uiDependencyId;
+      SSliceArgument* pSliceArgument = &pEncPEncCtx->pSvcParam->sSpatialLayers[kiCurDid].sSliceArgument;
+      // pPrivateData->iSliceIndex; old threads can not be terminated, pPrivateData is not correct for applicable
+      iSliceIdx = iEventIdx;
+      pCurDq    = pEncPEncCtx->pCurDqLayer;
+
+      UpdateMbListNeighborParallel (pCurDq, pSliceArgument, pCurDq->sMbDataP, iSliceIdx);
       WelsEventSignal (
         &pEncPEncCtx->pSliceThreading->pFinUpdateMbListEvent[iEventIdx]); // mean finished update pMb list for this pSlice
     } else { // WELS_THREAD_ERROR_WAIT_TIMEOUT, or WELS_THREAD_ERROR_WAIT_FAILED

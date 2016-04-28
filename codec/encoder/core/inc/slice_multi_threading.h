@@ -52,6 +52,7 @@
 
 namespace WelsEnc {
 void UpdateMbListNeighborParallel (SDqLayer* pCurDq,
+                                   SSliceArgument* pSliceArgument,
                                    SMB* pMbList,
                                    const int32_t kiSliceIdc);
 

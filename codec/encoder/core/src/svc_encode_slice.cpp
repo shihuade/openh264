@@ -1085,11 +1085,9 @@ void RefreshSliceInfoInThread (SDqLayer* pDqLayer, const int32_t kiThreadNum) {
     for (iSliceIdx = 0; iSliceIdx < iMaxSliceNumInThread; iSliceIdx++) {
       pSliceInThread[iSliceIdx].uiSliceIdx         = 0;
       pSliceInThread[iSliceIdx].iThreadIdx         = iIdx;
-      if(kiThreadNum > 1) {
-        pSliceInThread[iSliceIdx].iCountMbNumInSlice = 0;
-        pSliceInThread[iSliceIdx].sSliceHeaderExt.uiNumMbsInSlice              = 0;
-        pSliceInThread[iSliceIdx].sSliceHeaderExt.sSliceHeader.iFirstMbInSlice = 0;
-      }
+      //pSliceInThread[iSliceIdx].iCountMbNumInSlice = 0;
+      //pSliceInThread[iSliceIdx].sSliceHeaderExt.uiNumMbsInSlice              = 0;
+      //pSliceInThread[iSliceIdx].sSliceHeaderExt.sSliceHeader.iFirstMbInSlice = 0;
     }
 
     pSliceThreadInfo->iEncodedSliceNumInThread[iIdx] = 0;

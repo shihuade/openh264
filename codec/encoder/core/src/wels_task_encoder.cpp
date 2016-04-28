@@ -398,7 +398,10 @@ CWelsUpdateMbMapTask::~CWelsUpdateMbMapTask() {
 }
 
 WelsErrorType CWelsUpdateMbMapTask::Execute() {
-  UpdateMbListNeighborParallel (m_pCtx->pCurDqLayer, m_pCtx->pCurDqLayer->sMbDataP, m_iSliceIdx);
+  const int32_t kiCurDid         = m_pCtx->uiDependencyId;
+  SSliceArgument* pSliceArgument = &m_pCtx->pSvcParam->sSpatialLayers[kiCurDid].sSliceArgument;
+
+  UpdateMbListNeighborParallel (m_pCtx->pCurDqLayer, pSliceArgument, m_pCtx->pCurDqLayer->sMbDataP, m_iSliceIdx);
   return ENC_RETURN_SUCCESS;
 }
 

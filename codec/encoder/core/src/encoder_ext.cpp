@@ -2677,6 +2677,7 @@ void WelsInitCurrentDlayerMltslc (sWelsEncCtx* pCtx, int32_t iPartitionNum) {
   SSliceCtx* pSliceCtx  = &pCurDq->sSliceEncCtx;
 
   UpdateSlicePartitionInfo (pCtx, pCurDq, iPartitionNum);
+  WelsInitCurrentQBLayerMltslc (pCtx);
 
   if (I_SLICE == pCtx->eSliceType) { //check if uiSliceSizeConstraint too small
 #define byte_complexIMBat26 (60)
@@ -2720,7 +2721,6 @@ void WelsInitCurrentDlayerMltslc (sWelsEncCtx* pCtx, int32_t iPartitionNum) {
     }
   }
 
-  WelsInitCurrentQBLayerMltslc (pCtx);
 }
 
 /*!
@@ -2806,7 +2806,6 @@ void WelsInitCurrentLayer (sWelsEncCtx* pCtx,
   }
 
   RefreshSliceInfoInThread (pCurDq, pCtx->iActiveThreadsNum);
-
   if (pCtx->pTaskManage) {
     pCtx->pTaskManage->InitFrame (kiCurDid);
   }
