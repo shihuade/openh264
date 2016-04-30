@@ -1078,8 +1078,8 @@ void RefreshSliceInfoInThread (SDqLayer* pDqLayer, const int32_t kiThreadNum) {
     }
 
     for (iSliceIdx = 0; iSliceIdx < iMaxSliceNumInThread; iSliceIdx++) {
-      pSliceInThread[iSliceIdx].uiSliceIdx         = 0;
-      pSliceInThread[iSliceIdx].iThreadIdx         = iIdx;
+      // pSliceInThread[iSliceIdx].uiSliceIdx         = 0;
+      //pSliceInThread[iSliceIdx].iThreadIdx         = iIdx;
       //pSliceInThread[iSliceIdx].iCountMbNumInSlice = 0;
       //pSliceInThread[iSliceIdx].sSliceHeaderExt.uiNumMbsInSlice              = 0;
       //pSliceInThread[iSliceIdx].sSliceHeaderExt.sSliceHeader.iFirstMbInSlice = 0;
@@ -1638,7 +1638,7 @@ int32_t SliceLayerInfoUpdate (sWelsEncCtx* pCtx, const int32_t kiDlayerIndex) {
                                    pCtx->iActiveThreadsNum,
                                    iCodedSliceNum);
   if (ENC_RETURN_SUCCESS != iRet) {
-    WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR, "CWelsH264SVCEncoder::SliceLayerInfoUpdate: ReOrderSliceInLayer failed");
+    WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR, "CWelsH264SVCEncoder::SliceLayerInfoUpdate: ReOrderUnUsedSliceBuffer failed");
     return iRet;
   }
 
