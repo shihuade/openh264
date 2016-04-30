@@ -221,7 +221,7 @@ void CWelsThreadPool::ExecuteTask() {
     }
     pTask = GetWaitedTask();
     //fprintf(stdout, "ThreadPool:  ExecuteTask = %x at thread %x\n", pTask, pThread);
-    printf("-------------CWelsThreadPool SetTask taskInfo is %p, pThread is %p, pTask(%p) \n",
+    printf("-------------CWelsThreadPool SetTask taskInfo is pThread is %p, pTask(%p) \n",
            pThread,
            pTask);
     pThread->SetTask (pTask);
