@@ -690,7 +690,8 @@ int32_t DynamicAdjustSlicePEncCtxAll (SDqLayer* pCurDq,
 
     WelsSetMemMultiplebytes_c(pSliceCtx->pOverallMbMap + uiFirstMbIdx, uiSliceIdx,
                               kuiSliceRun, sizeof(uint16_t));
-
+    ppSliceInLayer[uiSliceIdx]->iCountMbNumInSlice = kuiSliceRun;
+    pSliceHeaderExt->sSliceHeader.iFirstMbInSlice  = uiFirstMbIdx;
     uiFirstMbIdx += kuiSliceRun;
 
     ++ uiSliceIdx;
