@@ -1522,7 +1522,7 @@ int32_t ReOrderSliceInLayer (SDqLayer* pCurLayer,
   return ENC_RETURN_SUCCESS;
 }
 
-void TraceForSliceInfoUpdate(SDqLayer* pCurLayer,
+void TraceForSliceInfoUpdate(sWelsEncCtx* pCtx,
                              SSliceArgument* pSliceArgument,
                              SSliceThreadInfo* pSliceThreadInfo,
                              const int32_t kiThreadNum) {
@@ -1532,10 +1532,12 @@ void TraceForSliceInfoUpdate(SDqLayer* pCurLayer,
   int32_t iThreadIdx = 0;
   int32_t iSliceIdx  = 0;
   SSlice* pSlice     = NULL;
+  SDqLayer* pCurLayer = pCtx->pCurDqLayer;
 
   printf("---------------Start----------------------------------- \n");
-    printf("    slicemode info:(%d) \n", pSliceArgument->uiSliceMode);
-    printf("    layer size info: LayerW(%d), LayerH(%d) \n", pCurLayer->iMbWidth,pCurLayer->iMbHeight);
+  printf("    slicemode info:(%d) \n", pSliceArgument->uiSliceMode);
+  printf("    pCtx->pSvcParam->iRCMode is : %d\n",  pCtx->pSvcParam->iRCMode);
+  printf("    layer size info: LayerW(%d), LayerH(%d) \n", pCurLayer->iMbWidth,pCurLayer->iMbHeight);
   for (; iThreadIdx < kiThreadNum; iThreadIdx++) {
     if(NULL == pSliceThreadInfo->pSliceInThread[iThreadIdx]){
       return;
@@ -1591,7 +1593,7 @@ int32_t SliceLayerInfoUpdate (sWelsEncCtx* pCtx, const int32_t kiDlayerIndex) {
   int32_t iRet             = 0;
   SSliceArgument* pSliceArgument = & pCtx->pSvcParam->sSpatialLayers[kiDlayerIndex].sSliceArgument;
 
-  TraceForSliceInfoUpdate(pCurLayer, pSliceArgument, &pCurLayer->sSliceThreadInfo, pCtx->iActiveThreadsNum);
+  TraceForSliceInfoUpdate(pCtx, pSliceArgument, &pCurLayer->sSliceThreadInfo, pCtx->iActiveThreadsNum);
 
   for (; iThreadIdx < pCtx->iActiveThreadsNum; iThreadIdx++) {
     iCodedSliceNum   += pCurLayer->sSliceThreadInfo.iEncodedSliceNumInThread[iThreadIdx];
@@ -1613,7 +1615,7 @@ int32_t SliceLayerInfoUpdate (sWelsEncCtx* pCtx, const int32_t kiDlayerIndex) {
     printf("************************************************************\n");
     printf("********************start: after update****************************\n");
     printf("************************************************************\n");
-    TraceForSliceInfoUpdate(pCurLayer, pSliceArgument, &pCurLayer->sSliceThreadInfo, pCtx->iActiveThreadsNum);
+    TraceForSliceInfoUpdate(pCtx, pSliceArgument, &pCurLayer->sSliceThreadInfo, pCtx->iActiveThreadsNum);
     printf("************************************************************\n");
     printf("********************end: after update****************************\n");
     printf("************************************************************\n");
@@ -1622,7 +1624,7 @@ int32_t SliceLayerInfoUpdate (sWelsEncCtx* pCtx, const int32_t kiDlayerIndex) {
       WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR,
                "CWelsH264SVCEncoder::SliceLayerInfoUpdate: UpdateSliceIdxInfo failed");
       printf("CWelsH264SVCEncoder::SliceLayerInfoUpdate: UpdateSliceIdxInfo failed \n");
-      TraceForSliceInfoUpdate(pCurLayer, pSliceArgument, &pCurLayer->sSliceThreadInfo, pCtx->iActiveThreadsNum);
+      TraceForSliceInfoUpdate(pCtx, pSliceArgument, &pCurLayer->sSliceThreadInfo, pCtx->iActiveThreadsNum);
       return ENC_RETURN_UNEXPECTED;
     }
   }
