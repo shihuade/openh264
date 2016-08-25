@@ -835,9 +835,9 @@ int32_t InitSliceMBInfo (SSliceArgument* pSliceArgument,
       iMbIdx += kpSlicesAssignList[i];
     }
 
-    if (iMbIdx >= kiCountNumMbInFrame)
+    if (iMbIdx >= kiCountNumMbInFrame) {
       return ENC_RETURN_UNEXPECTED;
-
+    }
     iFirstMBInSlice = iMbIdx;
     iMbNumInSlice   = kpSlicesAssignList[kiSliceIdx];
 
