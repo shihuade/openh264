@@ -1042,17 +1042,18 @@ static inline int32_t InitSliceThreadInfo (sWelsEncCtx** ppCtx,
     pSliceThreadInfo->iEncodedSliceNumInThread[iIdx] = 0;
     pSliceThreadInfo->pSliceInThread[iIdx]           = (SSlice*)pMa->WelsMallocz (sizeof (SSlice) *
         iMaxSliceNumInThread, "pSliceInThread");
-    if(NULL == pSliceThreadInfo->pSliceInThread[iIdx])
+    if(NULL == pSliceThreadInfo->pSliceInThread[iIdx]) {
       return ENC_RETURN_MEMALLOCERR;
-
+    }
     iRet = InitSliceList (ppCtx,
                           pDqLayer,
                           pSliceThreadInfo->pSliceInThread[iIdx],
                           iMaxSliceNumInThread,
                           kiDlayerIndex,
                           pMa);
-    if (ENC_RETURN_SUCCESS != iRet)
+    if (ENC_RETURN_SUCCESS != iRet) {
       return iRet;
+    }
 
     iIdx++;
   }
@@ -1089,9 +1090,9 @@ static inline int32_t InitSliceInLayer (sWelsEncCtx** ppCtx,
     return iRet;
   }
   pDqLayer->sLayerInfo.pSliceInLayer = (SSlice*)pMa->WelsMallocz (sizeof (SSlice) * iMaxSliceNum, "pSliceInLayer");
-  if(NULL == pDqLayer->sLayerInfo.pSliceInLayer)
+  if(NULL == pDqLayer->sLayerInfo.pSliceInLayer) {
     return ENC_RETURN_MEMALLOCERR;
-
+  }
   InitSliceList (ppCtx,
                  pDqLayer,
                  pDqLayer->sLayerInfo.pSliceInLayer,
@@ -2915,7 +2916,6 @@ static inline void WelsSwapDqLayers (sWelsEncCtx* pCtx, const int32_t kiNextDqId
  * \brief   prefetch reference picture after WelsBuildRefList
  */
 static inline void PrefetchReferencePicture (sWelsEncCtx* pCtx, const EVideoFrameType keFrameType) {
-  SSlice* pSliceBase = pCtx->pCurDqLayer->ppSliceInLayer[0];
   const int32_t kiSliceCount = GetCurrentSliceNum (pCtx->pCurDqLayer);
   int32_t iIdx = 0;
   uint8_t uiRefIdx = -1;
@@ -2933,8 +2933,7 @@ static inline void PrefetchReferencePicture (sWelsEncCtx* pCtx, const EVideoFram
 
   iIdx = 0;
   while (iIdx < kiSliceCount) {
-    pSliceBase = pCtx->pCurDqLayer->ppSliceInLayer[iIdx];
-    pSliceBase->sSliceHeaderExt.sSliceHeader.uiRefIndex = uiRefIdx;
+    pCtx->pCurDqLayer->ppSliceInLayer[iIdx]->sSliceHeaderExt.sSliceHeader.uiRefIndex = uiRefIdx;
     ++ iIdx;
   }
 }

@@ -118,8 +118,9 @@ void CalcSliceComplexRatio (SDqLayer* pCurDq) {
 }
 
 int32_t NeedDynamicAdjust (SSlice** ppSliceInLayer, const int32_t iSliceNum) {
-  if ( NULL == ppSliceInLayer )
+  if ( NULL == ppSliceInLayer ) {
     return false;
+  }
 
   uint32_t uiTotalConsume       = 0;
   int32_t iSliceIdx             = 0;
@@ -128,9 +129,9 @@ int32_t NeedDynamicAdjust (SSlice** ppSliceInLayer, const int32_t iSliceNum) {
   WelsEmms();
 
   while (iSliceIdx < iSliceNum) {
-    if ( NULL == ppSliceInLayer[iSliceIdx] )
+    if ( NULL == ppSliceInLayer[iSliceIdx] ) {
       return false;
-
+    }
     uiTotalConsume += ppSliceInLayer[iSliceIdx]->uiSliceConsumeTime;
     iSliceIdx ++;
   }

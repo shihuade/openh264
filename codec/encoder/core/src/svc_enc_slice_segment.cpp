@@ -532,9 +532,9 @@ uint16_t WelsMbToSliceIdc (SDqLayer* pCurDq, const int32_t kiMbXY) {
  * \return  iFirstMb - successful; -1 - failed;
  */
 int32_t WelsGetFirstMbOfSlice (SSlice** ppSliceInLayer, const int32_t kuiSliceIdc) {
-  if ( NULL == ppSliceInLayer || NULL == ppSliceInLayer[kuiSliceIdc] )
+  if ( NULL == ppSliceInLayer || NULL == ppSliceInLayer[kuiSliceIdc] ) {
     return -1;
-
+  }
   return ppSliceInLayer[kuiSliceIdc]->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice;
 }
 
