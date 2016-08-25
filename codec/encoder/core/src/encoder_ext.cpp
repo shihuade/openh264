@@ -3596,7 +3596,6 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
   pFbi->iLayerNum = 0; // for initialization
   pFbi->uiTimeStamp = GetTimestampForRc (pSrcPic->uiTimeStamp, pCtx->uiLastTimestamp,
                                          pCtx->pSvcParam->sSpatialLayers[pCtx->pSvcParam->iSpatialLayerNum - 1].fFrameRate);
-
   for (int32_t iNalIdx = 0; iNalIdx < MAX_LAYER_NUM_OF_FRAME; iNalIdx++) {
     pFbi->sLayerInfo[iNalIdx].eFrameType = videoFrameTypeSkip;
   }
@@ -4597,8 +4596,8 @@ static inline int32_t InitSliceHeadWithBase (SSlice* pSlice, SSlice* pBaseSlice,
   memcpy (&pSHExt->sSliceHeader.sRefReordering, &pBaseSHExt->sSliceHeader.sRefReordering,
           sizeof (SRefPicListReorderSyntax));
   return ENC_RETURN_SUCCESS;
-
 }
+
 static inline int32_t InitSliceRC (SSlice* pSlice, const int32_t kiGlobalQp, const int32_t kiBitsPerMb) {
 
   if (NULL == pSlice || kiGlobalQp < 0 ||  kiBitsPerMb < 0)
@@ -4641,7 +4640,7 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
   }
   pNewSliceList = (SSlice*)pMA->WelsMallocz (sizeof (SSlice) * kiMaxSliceNumNew, "Slice");
   if (NULL == pNewSliceList) {
-    WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR, "CWelsH264SVCEncoder::SliceBufferRealloc: pNewSliceList is NULL");
+    WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR, "CWelsH264SVCEncoder::ReallocateSliceList: pNewSliceList is NULL");
     return ENC_RETURN_MEMALLOCERR;
   }
 
@@ -4668,7 +4667,6 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
       FreeSliceBuffer(pNewSliceList, kiMaxSliceNumNew, pMA, "ReallocateSliceList()::AllocateSliceMBBuffer()");
       return iRet;
     }
-
 
     iRet = InitSliceMBInfo (pSliceArgument,
                             pSlice,
@@ -4697,7 +4695,6 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
   pSliceList = pNewSliceList;
 
   return ENC_RETURN_SUCCESS;
-
 }
 
 static inline int32_t CalculateNewSliceNum (SDqLayer* pDqLayer,
