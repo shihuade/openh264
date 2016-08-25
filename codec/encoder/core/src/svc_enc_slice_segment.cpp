@@ -535,6 +535,7 @@ int32_t WelsGetFirstMbOfSlice (SSlice** ppSliceInLayer, const int32_t kuiSliceId
   if ( NULL == ppSliceInLayer || NULL == ppSliceInLayer[kuiSliceIdc] ) {
     return -1;
   }
+
   return ppSliceInLayer[kuiSliceIdc]->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice;
 }
 
