@@ -1319,7 +1319,7 @@ int32_t ReallocSliceBuffer (sWelsEncCtx* pCtx) {
   pCurLayer->iMaxSliceNum = iMaxSliceNumNew;
   return ENC_RETURN_SUCCESS;
 }
-
+/*
 int32_t ReOrderSliceInLayer (SDqLayer* pCurLayer,
                              const int32_t kiThreadNum,
                              const int32_t kiPartitionNum) {
@@ -1422,6 +1422,7 @@ int32_t SliceLayerInfoUpdate (sWelsEncCtx* pCtx, const int32_t kiDlayerIndex) {
 
   return ENC_RETURN_SUCCESS;
 }
+*/
 
 int32_t WelsCodeOneSlice (sWelsEncCtx* pEncCtx, const int32_t kiSliceIdx, const int32_t kiNalType) {
   SDqLayer* pCurLayer                   = pEncCtx->pCurDqLayer;
