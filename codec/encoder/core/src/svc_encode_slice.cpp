@@ -46,7 +46,6 @@
 #include "svc_set_mb_syn.h"
 #include "decode_mb_aux.h"
 #include "svc_mode_decision.h"
-#include "svc_encode_slice.h"
 
 namespace WelsEnc {
 //#define ENC_TRACE
@@ -932,8 +931,9 @@ int32_t InitSliceList (sWelsEncCtx* pCtx,
 
   while (iSliceIdx < kiMaxSliceNum) {
     SSlice* pSlice = pSliceList + iSliceIdx;
-    if (NULL == pSlice)
+    if (NULL == pSlice) {
       return ENC_RETURN_MEMALLOCERR;
+    }
 
     pSlice->uiSliceIdx = iSliceIdx;
 
@@ -1045,12 +1045,9 @@ int32_t InitSliceInLayer (sWelsEncCtx* pCtx,
                           SDqLayer* pDqLayer,
                           const int32_t kiDlayerIndex,
                           CMemoryAlign* pMa)  {
-
-  //SWelsSvcCodingParam* pParam   = (*ppCtx)->pSvcParam;
   int32_t iRet                  = 0;
   int32_t iSliceIdx             = 0;
   int32_t iMaxSliceNum          = pDqLayer->iMaxSliceNum;
-
 
   pDqLayer->ppSliceInLayer = (SSlice**)pMa->WelsMallocz (sizeof (SSlice*) * iMaxSliceNum, "ppSliceInLayer");
   if (NULL ==  pDqLayer->ppSliceInLayer) {
@@ -1058,16 +1055,14 @@ int32_t InitSliceInLayer (sWelsEncCtx* pCtx,
     return ENC_RETURN_MEMALLOCERR;
   }
 
-  //if (pParam->iMultipleThreadIdc > 1) {
-  // to do, will add later, slice buffer allocated based on thread mode if() else ()
   InitSliceThreadInfo (pCtx,
                        pDqLayer,
                        kiDlayerIndex,
                        pMa);
-  if (ENC_RETURN_SUCCESS != iRet)
+  if (ENC_RETURN_SUCCESS != iRet) {
     return iRet;
+  }
 
-  //} else {
   pDqLayer->sLayerInfo.pSliceInLayer = (SSlice*)pMa->WelsMallocz (sizeof (SSlice) * iMaxSliceNum, "pSliceInLayer");
   if (NULL ==  pDqLayer->sLayerInfo.pSliceInLayer) {
     WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR,
@@ -1081,14 +1076,13 @@ int32_t InitSliceInLayer (sWelsEncCtx* pCtx,
                         iMaxSliceNum,
                         kiDlayerIndex,
                         pMa);
-  if (ENC_RETURN_SUCCESS != iRet)
+  if (ENC_RETURN_SUCCESS != iRet) {
     return iRet;
+  }
 
   for (iSliceIdx = 0; iSliceIdx < iMaxSliceNum; iSliceIdx++) {
     pDqLayer->ppSliceInLayer[iSliceIdx] = &pDqLayer->sLayerInfo.pSliceInLayer[iSliceIdx];
   }
-
-  //}
 
   return ENC_RETURN_SUCCESS;
 }
@@ -1149,12 +1143,13 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
   bool bIndependenceBsBuffer  = (pCtx->pSvcParam->iMultipleThreadIdc > 1 &&
                                  SM_SINGLE_SLICE != pSliceArgument->uiSliceMode) ? true : false;
 
-  if (NULL == pSliceList || NULL == pSliceArgument)
+  if (NULL == pSliceList || NULL == pSliceArgument) {
     return ENC_RETURN_INVALIDINPUT;
+  }
 
   pNewSliceList = (SSlice*)pMA->WelsMallocz (sizeof (SSlice) * kiMaxSliceNumNew, "Slice");
   if (NULL == pNewSliceList) {
-    WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR, "CWelsH264SVCEncoder::SliceBufferRealloc: pNewSliceList is NULL");
+    WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR, "CWelsH264SVCEncoder::ReallocateSliceList: pNewSliceList is NULL");
     return ENC_RETURN_MEMALLOCERR;
   }
 
@@ -1164,8 +1159,10 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
 
   for (; iSliceIdx < kiMaxSliceNumNew; iSliceIdx++) {
     pSlice = pNewSliceList + iSliceIdx;
-    if (NULL == pSlice)
+    if (NULL == pSlice) {
+      FreeSliceBuffer(pNewSliceList, kiMaxSliceNumNew, pMA, "ReallocateSliceList()::InitSliceBsBuffer()");
       return ENC_RETURN_MEMALLOCERR;
+    }
 
     pSlice->uiSliceIdx = iSliceIdx;
 
@@ -1174,8 +1171,10 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
                               bIndependenceBsBuffer,
                               iMaxSliceBufferSize,
                               pMA);
-    if (ENC_RETURN_SUCCESS != iRet)
+    if (ENC_RETURN_SUCCESS != iRet) {
+      FreeSliceBuffer(pNewSliceList, kiMaxSliceNumNew, pMA, "ReallocateSliceList()::InitSliceBsBuffer()");
       return iRet;
+    }
 
     iRet = AllocateSliceMBBuffer (pSlice, pMA);
     if (ENC_RETURN_SUCCESS != iRet) {
@@ -1309,8 +1308,10 @@ int32_t ReallocSliceBuffer (sWelsEncCtx* pCtx) {
     pCurLayer->ppSliceInLayer[iSliceIdx] = &pCurLayer->sLayerInfo.pSliceInLayer[iSliceIdx];
   }
 
-  if (pCtx->iMaxSliceCount < iMaxSliceNumNew)
+  if (pCtx->iMaxSliceCount < iMaxSliceNumNew) {
     pCtx->iMaxSliceCount = iMaxSliceNumNew;
+  }
+
   pCurLayer->sSliceEncCtx.iMaxSliceNumConstraint = iMaxSliceNumNew;
   pCurLayer->iMaxSliceNum = iMaxSliceNumNew;
   return ENC_RETURN_SUCCESS;
