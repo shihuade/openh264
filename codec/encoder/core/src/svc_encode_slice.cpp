@@ -1333,8 +1333,7 @@ int32_t ReOrderSliceInLayer (SDqLayer* pCurLayer,
   int32_t iActualSliceIdx   = 0;
   int32_t aiPartitionOffset[MAX_THREADS_NUM] = {0};
 
-  //for non-dynamic slice mode, kiPartitionNum = 1
-  iPartitionOffset = 0;
+  //for non-dynamic slice mode, kiPartitionNum = 1, iPartitionOffset = 0
   for(iPartitionIdx = 0; iPartitionIdx < kiPartitionNum; iPartitionIdx++) {
     aiPartitionOffset[iPartitionIdx] = iPartitionOffset;
     iPartitionOffset                += pCurLayer->pNumSliceCodedOfPartition[iPartitionIdx];
