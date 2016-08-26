@@ -451,7 +451,6 @@ bool CheckCurMarkFrameNumUsed (sWelsEncCtx* pCtx) {
 }
 void WlesMarkMMCORefInfo (sWelsEncCtx* pCtx, SLTRState* pLtr,
                           SSlice** ppSliceList, const int32_t kiCountSliceNum) {
-
   int32_t iSliceIdx = 0;
   int32_t iGoPFrameNumInterval = ((pCtx->pSvcParam->uiGopSize >> 1) > 1) ? (pCtx->pSvcParam->uiGopSize >> 1) : (1);
 
