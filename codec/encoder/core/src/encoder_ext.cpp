@@ -1022,6 +1022,7 @@ static inline int32_t InitSliceList (sWelsEncCtx* pCtx,
   return ENC_RETURN_SUCCESS;
 }
 
+/*
 static inline int32_t InitOneSliceInThread (sWelsEncCtx* pCtx,
     SSlice*& pSlice,
     const int32_t kiThreadIdx,
@@ -1036,12 +1037,10 @@ static inline int32_t InitOneSliceInThread (sWelsEncCtx* pCtx,
   int32_t iRet                        = 0;
 
   if (kiCodedNumInThread >= kiMaxSliceNumInThread) {
-    /*TODO: slicelist reallocate in thread
     iRet = ReallocateSliceInThread(pSliceArgument, pSlice, kiMBWidth, kiMBHeight);
     if (ENC_RETURN_SUCCESS != iRet) {
       return iRet;
     }
-    */
   }
 
   pSlice = pDqLayer->sSliceThreadInfo.pSliceInThread [kiThreadIdx] + kiCodedNumInThread;
@@ -1057,6 +1056,7 @@ static inline int32_t InitOneSliceInThread (sWelsEncCtx* pCtx,
   }
   return ENC_RETURN_SUCCESS;
 }
+*/
 
 static inline int32_t InitSliceThreadInfo (sWelsEncCtx* pCtx,
     SDqLayer* pDqLayer,
@@ -4718,6 +4718,7 @@ static inline int32_t CalculateNewSliceNum (SDqLayer* pDqLayer,
   return ENC_RETURN_SUCCESS;
 }
 
+/*
 static inline int32_t ReallocateSliceInThread (sWelsEncCtx* pCtx,
     SDqLayer* pDqLayer,
     const int32_t kiDlayerIdx,
@@ -4749,6 +4750,7 @@ static inline int32_t ReallocateSliceInThread (sWelsEncCtx* pCtx,
 
   return ENC_RETURN_SUCCESS;
 }
+*/
 
 int32_t ReallocSliceBuffer (sWelsEncCtx* pCtx) {
 
