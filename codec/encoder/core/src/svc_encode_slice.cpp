@@ -961,7 +961,7 @@ int32_t InitSliceList (sWelsEncCtx* pCtx,
   }
   return ENC_RETURN_SUCCESS;
 }
-
+/*
 int32_t InitOneSliceInThread (sWelsEncCtx* pCtx,
                               SSlice*& pSlice,
                               const int32_t kiThreadIdx,
@@ -995,6 +995,7 @@ int32_t InitOneSliceInThread (sWelsEncCtx* pCtx,
   }
   return ENC_RETURN_SUCCESS;
 }
+*/
 
 int32_t InitSliceThreadInfo (sWelsEncCtx* pCtx,
                              SDqLayer* pDqLayer,
@@ -1232,6 +1233,7 @@ int32_t CalculateNewSliceNum (SDqLayer* pDqLayer,
   return ENC_RETURN_SUCCESS;
 }
 
+/*
 int32_t ReallocateSliceInThread (sWelsEncCtx* pCtx,
                                  SDqLayer* pDqLayer,
                                  const int32_t kiDlayerIdx,
@@ -1263,6 +1265,7 @@ int32_t ReallocateSliceInThread (sWelsEncCtx* pCtx,
 
   return ENC_RETURN_SUCCESS;
 }
+*/
 
 int32_t ReallocSliceBuffer (sWelsEncCtx* pCtx) {
 
