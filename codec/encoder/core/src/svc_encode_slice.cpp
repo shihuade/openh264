@@ -1366,7 +1366,7 @@ void UpdateMbNeighbourInfoForNextSlice (SDqLayer* pCurDq,
   SMB* pMb = &pMbList[iIdx];
 
   do {
-    UpdateMbNeighbor (pCurDq, pMb, kiMbWidth, WelsMbToSliceIdc (pCurDq, pMb->iMbXY));
+    UpdateMbNeighbor(pCurDq, pMb, kiMbWidth, WelsMbToSliceIdc (pCurDq, pMb->iMbXY));
     ++ pMb;
     ++ iIdx;
   } while ((iIdx < kiEndMbNeedUpdate) &&
