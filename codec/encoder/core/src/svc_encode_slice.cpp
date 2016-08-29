@@ -983,6 +983,8 @@ int32_t InitOneSliceInThread (sWelsEncCtx* pCtx,
   }
 
   pSlice = pDqLayer->sSliceThreadInfo.pSliceInThread [kiThreadIdx] + kiCodedNumInThread;
+  pSlice->uiSliceIdx = kiSliceIdx;
+
   // Initialize slice bs buffer info
   pSlice->sSliceBs.uiBsPos   = 0;
   pSlice->sSliceBs.iNalIndex = 0;
@@ -1088,41 +1090,45 @@ int32_t InitSliceInLayer (sWelsEncCtx* pCtx,
   return ENC_RETURN_SUCCESS;
 }
 
-static inline int32_t InitSliceHeadWithBase (SSlice* pSlice, SSlice* pBaseSlice, const uint8_t kuiRefCount) {
+void InitSliceHeadWithBase (SSlice* pSlice, SSlice* pBaseSlice) {
+
   SSliceHeaderExt* pBaseSHExt  = &pBaseSlice->sSliceHeaderExt;
   SSliceHeaderExt* pSHExt      = &pSlice->sSliceHeaderExt;
 
-  if (NULL == pSlice || NULL == pBaseSlice)
-    return ENC_RETURN_INVALIDINPUT;
-
-  pSlice->bSliceHeaderExtFlag  = pBaseSlice->bSliceHeaderExtFlag;
+  pSlice->bSliceHeaderExtFlag     = pBaseSlice->bSliceHeaderExtFlag;
   pSHExt->sSliceHeader.iPpsId     = pBaseSHExt->sSliceHeader.iPpsId;
   pSHExt->sSliceHeader.pPps       = pBaseSHExt->sSliceHeader.pPps;
   pSHExt->sSliceHeader.iSpsId     = pBaseSHExt->sSliceHeader.iSpsId;
   pSHExt->sSliceHeader.pSps       = pBaseSHExt->sSliceHeader.pSps;
-  pSHExt->sSliceHeader.uiRefCount = kuiRefCount;
+
+}
+
+void InitSliceRefInfoWithBase (SSlice* pSlice, SSlice* pBaseSlice) {
+  SSliceHeaderExt* pBaseSHExt  = &pBaseSlice->sSliceHeaderExt;
+  SSliceHeaderExt* pSHExt      = &pSlice->sSliceHeaderExt;
+
+  pSHExt->sSliceHeader.uiRefCount = pBaseSHExt->sSliceHeader.uiRefCount;
   memcpy (&pSHExt->sSliceHeader.sRefMarking, &pBaseSHExt->sSliceHeader.sRefMarking, sizeof (SRefPicMarking));
   memcpy (&pSHExt->sSliceHeader.sRefReordering, &pBaseSHExt->sSliceHeader.sRefReordering,
           sizeof (SRefPicListReorderSyntax));
-  return ENC_RETURN_SUCCESS;
-
 }
-static inline int32_t InitSliceRC (SSlice* pSlice, const int32_t kiGlobalQp, const int32_t kiBitsPerMb) {
 
-  if (NULL == pSlice || kiGlobalQp < 0 ||  kiBitsPerMb < 0)
-    return ENC_RETURN_INVALIDINPUT;
+void InitSliceRCInfo (SSlice* pSlice,
+                      const int32_t kiBitsPerMb,
+                      const int32_t kiGlobalQp) {
+  SRCSlicing* pSOverRc            = &pSlice->sSlicingOverRc;
 
-  pSlice->sSlicingOverRc.iComplexityIndexSlice = 0;
-  pSlice->sSlicingOverRc.iCalculatedQpSlice    = kiGlobalQp;
-  pSlice->sSlicingOverRc.iTotalQpSlice         = 0;
-  pSlice->sSlicingOverRc.iTotalMbSlice         = 0;
-  pSlice->sSlicingOverRc.iTargetBitsSlice      = WELS_DIV_ROUND (kiBitsPerMb *
-      pSlice->iCountMbNumInSlice,
-      INT_MULTIPLY);
-  pSlice->sSlicingOverRc.iFrameBitsSlice       = 0;
-  pSlice->sSlicingOverRc.iGomBitsSlice         = 0;
-
-  return ENC_RETURN_SUCCESS;
+  pSOverRc->iStartMbSlice         = pSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice;
+  pSOverRc->iEndMbSlice           = pSOverRc->iStartMbSlice + (pSlice->iCountMbNumInSlice - 1);
+  pSOverRc->iTotalQpSlice         = 0;
+  pSOverRc->iTotalMbSlice         = 0;
+  pSOverRc->iTargetBitsSlice      = WELS_DIV_ROUND (kiBitsPerMb * pSlice->iCountMbNumInSlice, INT_MULTIPLY);
+  pSOverRc->iFrameBitsSlice       = 0;
+  pSOverRc->iGomBitsSlice         = 0;
+  pSOverRc->iComplexityIndexSlice = 0;
+  pSOverRc->iCalculatedQpSlice    = kiGlobalQp;
+  pSOverRc->iBsPosSlice           = 0;
+  pSOverRc->iGomTargetBits        = 0;
 }
 
 int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
@@ -1192,17 +1198,9 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
       return iRet;
     }
 
-    iRet = InitSliceHeadWithBase (pSlice, pBaseSlice, pCtx->iNumRef0);
-    if (ENC_RETURN_SUCCESS != iRet) {
-      FreeSliceBuffer(pNewSliceList, kiMaxSliceNumNew, pMA, "ReallocateSliceList()::InitSliceBsBuffer()");
-      return iRet;
-    }
-
-    iRet = InitSliceRC (pSlice, pCtx->iGlobalQp, iBitsPerMb);
-    if (ENC_RETURN_SUCCESS != iRet) {
-      FreeSliceBuffer(pNewSliceList, kiMaxSliceNumNew, pMA, "ReallocateSliceList()::InitSliceBsBuffer()");
-      return iRet;
-    }
+    InitSliceHeadWithBase (pSlice, pBaseSlice);
+    InitSliceRefInfoWithBase (pSlice, pBaseSlice);
+    InitSliceRCInfo (pSlice, pCtx->iGlobalQp, iBitsPerMb);
   }
 
   pMA->WelsFree (pSliceList, "Slice");
@@ -1226,6 +1224,7 @@ int32_t CalculateNewSliceNum (SDqLayer* pDqLayer,
   if (CodedMBNum <= 0) {
     return ENC_RETURN_UNEXPECTED;
   }
+
   //iMaxSliceNumNew = iMaxSliceNumOld * (pDqLayer->iMbWidth * pDqLayer->iMbHeight / CodedMBNum + 1);
   //TO DO, will used above logic later, here keep origin logic in order to pass ut
   iMaxSliceNumNew = iMaxSliceNumOld;
@@ -1319,6 +1318,7 @@ int32_t ReallocSliceBuffer (sWelsEncCtx* pCtx) {
   pCurLayer->iMaxSliceNum = iMaxSliceNumNew;
   return ENC_RETURN_SUCCESS;
 }
+
 /*
 int32_t ReOrderSliceInLayer (SDqLayer* pCurLayer,
                              const int32_t kiThreadNum,
@@ -1472,7 +1472,7 @@ void UpdateMbNeighbourInfoForNextSlice (SDqLayer* pCurDq,
   SMB* pMb = &pMbList[iIdx];
 
   do {
-    UpdateMbNeighbor(pCurDq, pMb, kiMbWidth, WelsMbToSliceIdc (pCurDq, pMb->iMbXY));
+    UpdateMbNeighbor (pCurDq, pMb, kiMbWidth, WelsMbToSliceIdc (pCurDq, pMb->iMbXY));
     ++ pMb;
     ++ iIdx;
   } while ((iIdx < kiEndMbNeedUpdate) &&

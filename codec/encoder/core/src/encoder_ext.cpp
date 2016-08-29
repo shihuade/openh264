@@ -899,8 +899,7 @@ int32_t   InitMbListD (sWelsEncCtx** ppCtx) {
 
   return 0;
 }
-
-void FreeSliceInLayer (SDqLayer* pDq, CMemoryAlign* pMa) {
+void FreeSliceInLayer (SDqLayer*& pDq, CMemoryAlign* pMa) {
   int32_t iIdx = 0;
 
   FreeSliceBuffer (pDq->sLayerInfo.pSliceInLayer, pDq->iMaxSliceNum, pMa, "pSliceInLayer");
@@ -1074,6 +1073,7 @@ static inline int32_t InitDqLayers (sWelsEncCtx** ppCtx, SExistingParasetList* p
     if (iResult) {
       WelsLog (& (*ppCtx)->sLogCtx, WELS_LOG_WARNING, "InitDqLayers(), InitSliceInLayer failed(%d)!", iResult);
       FreeDqLayer (pDqLayer, pMa);
+
       return iResult;
     }
 
@@ -2492,14 +2492,12 @@ void WelsInitCurrentLayer (sWelsEncCtx* pCtx,
   SPicture* pDecPic             = pCtx->pDecPic;
   SDqLayer* pCurDq              = pCtx->pCurDqLayer;
   SSlice*   pBaseSlice          = pCurDq->ppSliceInLayer[0];
-  SSlice*   pSlice              = NULL;
   const uint8_t kiCurDid        = pCtx->uiDependencyId;
   const bool kbUseSubsetSpsFlag = (!pParam->bSimulcastAVC) && (kiCurDid > BASE_DEPENDENCY_ID);
   SSpatialLayerConfig* fDlp     = &pParam->sSpatialLayers[kiCurDid];
   SNalUnitHeaderExt* pNalHdExt  = &pCurDq->sLayerInfo.sNalHeaderExt;
   SNalUnitHeader* pNalHd        = &pNalHdExt->sNalUnitHeader;
   SDqIdc* pDqIdc                = &pCtx->pDqIdcMap[kiCurDid];
-  int32_t iIdx                  = 0;
   int32_t iSliceCount           = 0;
   SSpatialLayerInternal* pParamInternal = &pParam->sDependencyLayers[kiCurDid];
   if (NULL == pCurDq)
@@ -2535,19 +2533,13 @@ void WelsInitCurrentLayer (sWelsEncCtx* pCtx,
   }
 
   pBaseSlice->bSliceHeaderExtFlag = (NAL_UNIT_CODED_SLICE_EXT == pCtx->eNalType);
-
-  iIdx = 1;
+  
+  int iIdx = 0;
   while (iIdx < iSliceCount) {
-    pSlice = pCurDq->ppSliceInLayer[iIdx];
-
-    pSlice->sSliceHeaderExt.sSliceHeader.iPpsId = pBaseSlice->sSliceHeaderExt.sSliceHeader.iPpsId;
-    pSlice->sSliceHeaderExt.sSliceHeader.pPps   = pBaseSlice->sSliceHeaderExt.sSliceHeader.pPps;
-    pSlice->sSliceHeaderExt.sSliceHeader.iSpsId = pBaseSlice->sSliceHeaderExt.sSliceHeader.iSpsId;
-    pSlice->sSliceHeaderExt.sSliceHeader.pSps   = pBaseSlice->sSliceHeaderExt.sSliceHeader.pSps;
-    pSlice->bSliceHeaderExtFlag                 = pBaseSlice->bSliceHeaderExtFlag;
+    InitSliceHeadWithBase (pCurDq->ppSliceInLayer[iIdx], pBaseSlice);
     ++ iIdx;
   }
-
+    
   memset (pNalHdExt, 0, sizeof (SNalUnitHeaderExt));
   pNalHd->uiNalRefIdc                   = pCtx->eNalPriority;
   pNalHd->eNalUnitType                  = pCtx->eNalType;

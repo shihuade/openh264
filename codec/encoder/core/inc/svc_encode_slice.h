@@ -50,7 +50,7 @@ namespace WelsEnc {
 void WelsCountMbType (int32_t (*iMbCount)[18], const EWelsSliceType eSt, const SMB* pMb);
 #endif
 
-void UpdateMbNeighbor(SDqLayer* pCurDq, SMB* pMb, const int32_t kiMbWidth, uint16_t uiSliceIdc);
+void UpdateMbNeighbor (SDqLayer* pCurDq, SMB* pMb, const int32_t kiMbWidth, uint16_t uiSliceIdc);
 
 void UpdateNonZeroCountCache (SMB* pMb, SMbCache* pMbCache);
 
@@ -101,6 +101,14 @@ void FreeSliceBuffer (SSlice*& pSliceList,
                       const int32_t kiMaxSliceNum,
                       CMemoryAlign* pMa,
                       const char* kpTag);
+
+void InitSliceHeadWithBase (SSlice* pSlice, SSlice* pBaseSlice);
+
+void InitSliceRefInfoWithBase (SSlice* pSlice, SSlice* pBaseSlice);
+
+void InitSliceRCInfo (SSlice* pSlice,
+                      const int32_t kiBitsPerMb,
+                      const int32_t kiGlobalQp);
 
 int32_t InitSliceList (sWelsEncCtx* pCtx,
                        SDqLayer* pDqLayer,
