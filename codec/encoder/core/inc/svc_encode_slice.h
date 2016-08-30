@@ -106,6 +106,8 @@ void InitSliceHeadWithBase (SSlice* pSlice, SSlice* pBaseSlice);
 
 void InitSliceRefInfoWithBase (SSlice* pSlice, SSlice* pBaseSlice, const uint8_t kuiRefCount);
 
+void InitSliceRCInfo (SSlice* pSlice, const int32_t kiBitsPerMb, const int32_t kiGlobalQp);
+
 int32_t InitSliceList (sWelsEncCtx* pCtx,
                        SDqLayer* pDqLayer,
                        SSlice*& pSliceList,
