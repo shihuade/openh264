@@ -598,18 +598,9 @@ void RcDecideTargetBitsTimestamp (sWelsEncCtx* pEncCtx) {
 }
 
 void RcInitGomParameters (sWelsEncCtx* pEncCtx) {
-  SSlice** ppSliceInLayer     = pEncCtx->pCurDqLayer->ppSliceInLayer;
-  SWelsSvcRc* pWelsSvcRc      = &pEncCtx->pWelsSvcRc[pEncCtx->uiDependencyId];
-  SRCSlicing* pSOverRc        = &ppSliceInLayer[0]->sSlicingOverRc;
-  const int32_t kiSliceNum    = pWelsSvcRc->iSliceNum;
-  const int32_t kiGlobalQp    = pEncCtx->iGlobalQp;
+  SWelsSvcRc* pWelsSvcRc = &pEncCtx->pWelsSvcRc[pEncCtx->uiDependencyId];
 
   pWelsSvcRc->iAverageFrameQp = 0;
-  for (int32_t i = 0; i < kiSliceNum; ++i) {
-    pSOverRc                            = &ppSliceInLayer[i]->sSlicingOverRc;
-    pSOverRc->iComplexityIndexSlice     = 0;
-    pSOverRc->iCalculatedQpSlice        = kiGlobalQp;
-  }
   memset (pWelsSvcRc->pGomComplexity, 0, pWelsSvcRc->iGomSize * sizeof (double));
   memset (pWelsSvcRc->pGomCost, 0, pWelsSvcRc->iGomSize * sizeof (int32_t));
 }
