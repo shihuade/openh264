@@ -1073,7 +1073,6 @@ static inline int32_t InitDqLayers (sWelsEncCtx** ppCtx, SExistingParasetList* p
     if (iResult) {
       WelsLog (& (*ppCtx)->sLogCtx, WELS_LOG_WARNING, "InitDqLayers(), InitSliceInLayer failed(%d)!", iResult);
       FreeDqLayer (pDqLayer, pMa);
-
       return iResult;
     }
 
@@ -2373,7 +2372,7 @@ void DynslcUpdateMbNeighbourInfoListForAllSlices (SDqLayer* pCurDq, SMB* pMbList
 
   do {
     SMB* pMb = &pMbList[iIdx];
-    UpdateMbNeighbor (pCurDq, pMb, kiMbWidth, WelsMbToSliceIdc (pCurDq, pMb->iMbXY));
+    UpdateMbNeighbor(pCurDq, pMb, kiMbWidth, WelsMbToSliceIdc (pCurDq, pMb->iMbXY));
     ++ iIdx;
   } while (iIdx <= kiEndMbInSlice);
 }
@@ -2533,13 +2532,13 @@ void WelsInitCurrentLayer (sWelsEncCtx* pCtx,
   }
 
   pBaseSlice->bSliceHeaderExtFlag = (NAL_UNIT_CODED_SLICE_EXT == pCtx->eNalType);
-  
+
   int iIdx = 0;
   while (iIdx < iSliceCount) {
     InitSliceHeadWithBase (pCurDq->ppSliceInLayer[iIdx], pBaseSlice);
     ++ iIdx;
   }
-    
+
   memset (pNalHdExt, 0, sizeof (SNalUnitHeaderExt));
   pNalHd->uiNalRefIdc                   = pCtx->eNalPriority;
   pNalHd->eNalUnitType                  = pCtx->eNalType;

@@ -673,7 +673,6 @@ void WelsUpdateSliceHeaderSyntax (sWelsEncCtx* pCtx,  const int32_t iAbsDiffPicN
           pRefReorder->SReorderingSyntax[iRefIdx].iLongTermPicNum = pCtx->pRefList0[iRefIdx]->iLongTermPicNum;
         }
         pRefReorder->SReorderingSyntax[iRefIdx].uiReorderingOfPicNumsIdc = 3;
-
       }
     }
 
@@ -713,7 +712,6 @@ void WelsUpdateRefSyntax (sWelsEncCtx* pCtx, const int32_t iPOC, const int32_t u
 
   ppSliceList = pCtx->pCurDqLayer->ppSliceInLayer;
   WelsUpdateSliceHeaderSyntax (pCtx, iAbsDiffPicNumMinus1, ppSliceList, uiFrameType);
-
 }
 
 static inline void UpdateOriginalPicInfo (SPicture* pOrigPic, SPicture* pReconPic) {
