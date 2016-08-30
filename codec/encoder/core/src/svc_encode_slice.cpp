@@ -1088,7 +1088,7 @@ int32_t InitSliceInLayer (sWelsEncCtx* pCtx,
   return ENC_RETURN_SUCCESS;
 }
 
-void InitSliceHeadWithBase (SSlice* pSlice, SSlice* pBaseSlice, const uint8_t kuiRefCount) {
+void InitSliceHeadWithBase (SSlice* pSlice, SSlice* pBaseSlice) {
   SSliceHeaderExt* pBaseSHExt  = &pBaseSlice->sSliceHeaderExt;
   SSliceHeaderExt* pSHExt      = &pSlice->sSliceHeaderExt;
 
@@ -1195,7 +1195,7 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
       return iRet;
     }
 
-    InitSliceHeadWithBase (pSlice, pBaseSlice, pCtx->iNumRef0);
+    InitSliceHeadWithBase (pSlice, pBaseSlice);
     InitSliceRefInfoWithBase (pSlice, pBaseSlice);
 
     iRet = InitSliceRC (pSlice, pCtx->iGlobalQp, iBitsPerMb);
