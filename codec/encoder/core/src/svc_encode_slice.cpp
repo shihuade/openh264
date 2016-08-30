@@ -1162,8 +1162,8 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
   bool bIndependenceBsBuffer  = (pCtx->pSvcParam->iMultipleThreadIdc > 1 &&
                                  SM_SINGLE_SLICE != pSliceArgument->uiSliceMode) ? true : false;
 
-  if (NULL == pSliceList || NULL == pSliceArgument) {
-    return ENC_RETURN_INVALIDINPUT;
+  if (NULL == pSliceList || NULL == pSliceArgument || 0 == iBitsPerMb) {
+    return ENC_RETURN_UNEXPECTED;
   }
 
   pNewSliceList = (SSlice*)pMA->WelsMallocz (sizeof (SSlice) * kiMaxSliceNumNew, "Slice");
@@ -1212,12 +1212,14 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
 
     InitSliceHeadWithBase (pSlice, pBaseSlice);
     InitSliceRefInfoWithBase (pSlice, pBaseSlice, pCtx->iNumRef0);
+    //InitSliceRCInfo (pSlice, iBitsPerMb, pCtx->iGlobalQp);
 
     iRet = InitSliceRC (pSlice, pCtx->iGlobalQp, iBitsPerMb);
     if (ENC_RETURN_SUCCESS != iRet) {
       FreeSliceBuffer(pNewSliceList, kiMaxSliceNumNew, pMA, "ReallocateSliceList()::InitSliceBsBuffer()");
       return iRet;
     }
+
   }
 
   pMA->WelsFree (pSliceList, "Slice");
