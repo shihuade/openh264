@@ -902,8 +902,6 @@ int32_t   InitMbListD (sWelsEncCtx** ppCtx) {
 
 void FreeSliceInLayer (SDqLayer* pDq, CMemoryAlign* pMa) {
   int32_t iIdx = 0;
-
-  FreeSliceBuffer (pDq->sLayerInfo.pSliceInLayer, pDq->iMaxSliceNum, pMa, "pSliceInLayer");
   for (; iIdx < MAX_THREADS_NUM; iIdx ++) {
     FreeSliceBuffer (pDq->sSliceThreadInfo.pSliceInThread[iIdx],
                      pDq->sSliceThreadInfo.iMaxSliceNumInThread[iIdx],
