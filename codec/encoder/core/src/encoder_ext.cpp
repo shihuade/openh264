@@ -3595,6 +3595,8 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
       WelsLoadNal (pCtx->pOut, eNalType, eNalRefIdc);
 
       pCtx->iEncoderError = WelsCodeOneSlice (pCtx, 0, eNalType);
+      //will update sSliceThreadInfo.iEncodedSliceNumInThread[iThreadIdx]
+
       WELS_VERIFY_RETURN_IFNEQ (pCtx->iEncoderError, ENC_RETURN_SUCCESS)
 
       WelsUnloadNal (pCtx->pOut);
@@ -3744,6 +3746,8 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
 
           WelsLoadNal (pCtx->pOut, eNalType, eNalRefIdc);
           pCtx->iEncoderError = WelsCodeOneSlice (pCtx, iSliceIdx, eNalType);
+          //will update sSliceThreadInfo.iEncodedSliceNumInThread[iThreadIdx]
+
           WELS_VERIFY_RETURN_IFNEQ (pCtx->iEncoderError, ENC_RETURN_SUCCESS)
 
           WelsUnloadNal (pCtx->pOut);
@@ -4486,6 +4490,9 @@ int32_t WelsCodeOnePicPartition (sWelsEncCtx* pCtx,
     WelsLoadNal (pCtx->pOut, keNalType, keNalRefIdc);
     iReturn = WelsCodeOneSlice (pCtx, iSliceIdx, keNalType);
     WELS_VERIFY_RETURN_IFNEQ (iReturn, ENC_RETURN_SUCCESS)
+
+    //will update sSliceThreadInfo.iEncodedSliceNumInThread[iThreadIdx]
+
     WelsUnloadNal (pCtx->pOut);
 
     iReturn = WelsEncodeNal (&pCtx->pOut->sNalList[pCtx->pOut->iNalIndex - 1],

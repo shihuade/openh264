@@ -169,6 +169,7 @@ WelsErrorType CWelsSliceEncodingTask::ExecuteTask() {
   }
   WelsUnloadNalForSlice (m_pSliceBs);
 
+  //will update sSliceThreadInfo.iEncodedSliceNumInThread[iThreadIdx]
   m_iSliceSize = 0;
   iReturn      = WriteSliceBs (m_pCtx, m_pSliceBs, m_iSliceIdx, m_iSliceSize);
 
@@ -287,6 +288,8 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
     if (ENC_RETURN_SUCCESS != iReturn) {
       return iReturn;
     }
+    //will update sSliceThreadInfo.iEncodedSliceNumInThread[iSliceIndex]
+
     WelsUnloadNalForSlice (m_pSliceBs);
 
     iReturn    = WriteSliceBs (m_pCtx, m_pSliceBs, iLocalSliceIdx, m_iSliceSize);

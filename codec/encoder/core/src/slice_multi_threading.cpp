@@ -649,6 +649,7 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
                                         pEncPEncCtx->pSliceThreading->pSliceCodedMasterEvent,
                                         iEventIdx);
         }
+        //will update sSliceThreadInfo.iEncodedSliceNumInThread[iThreadIdx]
 
         WelsUnloadNalForSlice (pSliceBs);
 
@@ -751,6 +752,8 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
                                           pEncPEncCtx->pSliceThreading->pSliceCodedMasterEvent,
                                           iEventIdx);
           }
+
+          //will update sSliceThreadInfo.iEncodedSliceNumInThread[iThreadIdx]
 
           WelsUnloadNalForSlice (pSliceBs);
 

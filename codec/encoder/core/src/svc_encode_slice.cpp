@@ -1012,6 +1012,8 @@ int32_t InitSliceThreadInfo (sWelsEncCtx* pCtx,
   //iMaxSliceNumInThread = (pCtx->iMaxSliceCount / iThreadNum + 1) * 2;
   iMaxSliceNumInThread = pDqLayer->iMaxSliceNum;
   iMaxSliceNumInThread =  WELS_MIN (pCtx->iMaxSliceCount, (int) iMaxSliceNumInThread);
+  //keep the same with origin design
+  //iMaxSliceNumInThread =  WELS_MIN ((*ppCtx)->iMaxSliceCount, (int) iMaxSliceNumInThread);
 
   while (iIdx < iThreadNum) {
     pSliceThreadInfo->iMaxSliceNumInThread[iIdx]     = iMaxSliceNumInThread;
@@ -1035,7 +1037,7 @@ int32_t InitSliceThreadInfo (sWelsEncCtx* pCtx,
   }
 
   for (; iIdx < MAX_THREADS_NUM; iIdx++) {
-    pSliceThreadInfo->iMaxSliceNumInThread[iIdx]     = iMaxSliceNumInThread;
+    pSliceThreadInfo->iMaxSliceNumInThread[iIdx]     = 0;
     pSliceThreadInfo->iEncodedSliceNumInThread[iIdx] = 0;
     pSliceThreadInfo->pSliceInThread[iIdx]           = NULL;
   }
@@ -1246,6 +1248,8 @@ int32_t ReallocateSliceInThread (sWelsEncCtx* pCtx,
     return iRet;
   }
 
+  pDqLayer->sSliceThreadInfo.iMaxSliceNumInThread[kiThreadIndex] = iMaxSliceNumUpdate;
+
   return ENC_RETURN_SUCCESS;
 }
 */
@@ -1368,7 +1372,7 @@ int32_t SliceLayerInfoUpdate (sWelsEncCtx* pCtx, const int32_t kiDlayerIndex) {
   int32_t iPartitionNum   = (SM_SIZELIMITED_SLICE == pSliceArgument->uiSliceMode) ? pCtx->iActiveThreadsNum : 1;
 
   for ( ; iThreadIdx < pCtx->iActiveThreadsNum; iThreadIdx++) {
-    iCodedSliceNum += pCurLayer->sSliceThreadInfo.iMaxSliceNumInThread[iThreadIdx];
+    iCodedSliceNum += pCurLayer->sSliceThreadInfo.iEncodedSliceNumInThread[iThreadIdx];
   }
 
   if (iCodedSliceNum <= 0) {
@@ -1385,6 +1389,14 @@ int32_t SliceLayerInfoUpdate (sWelsEncCtx* pCtx, const int32_t kiDlayerIndex) {
 
     pMA->WelsFree (pCurLayer->ppSliceInLayer, "ppSliceInLayer");
     pCurLayer->ppSliceInLayer = ppSlice;
+
+    //reallocate frame bs, pOut buffer
+    iRet = FrameBsRealloc (pCtx, pFrameBsInfo, pLayerBsInfo);
+    if(ENC_RETURN_SUCCESS != iRet) {
+       WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR, "CWelsH264SVCEncoder::SliceLayerInfoUpdate: FrameBsRealloc failed");
+      return iRet;
+    }
+
     pCurLayer->sSliceEncCtx.iMaxSliceNumConstraint = iCodedSliceNum;
   }
 
