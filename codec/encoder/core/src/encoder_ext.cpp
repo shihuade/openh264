@@ -3709,7 +3709,7 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
         while (iIdx < kiPartitionCnt) {
           pCtx->pSliceThreading->pThreadPEncCtx[iIdx].pFrameBsInfo = pFbi;
           pCtx->pSliceThreading->pThreadPEncCtx[iIdx].iSliceIndex  = iIdx;
-          SetOneSliceBsBufferUnderMultithread (pCtx, iIdx, iIdx);
+          SetOneSliceBsBufferUnderMultithread (pCtx, iIdx, pCtx->pCurDqLayer->ppSliceInLayer[iIdx]);
           ++ iIdx;
         }
         pCtx->pTaskManage->ExecuteTasks();

@@ -721,12 +721,12 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
                                           iEventIdx);
           }
 
-          SetOneSliceBsBufferUnderMultithread (pEncPEncCtx, kiPartitionId, iSliceIdx);
-          pSlice                = pCurDq->ppSliceInLayer[iSliceIdx];
+          pSlice = pCurDq->ppSliceInLayer[iSliceIdx];
           pSliceBs              = &pSlice->sSliceBs;
-
           pSliceBs->uiBsPos     = 0;
           pSliceBs->iNalIndex   = 0;
+
+          SetOneSliceBsBufferUnderMultithread (pEncPEncCtx, kiPartitionId, pSlice);
           InitBits (&pSliceBs->sBsWrite, pSliceBs->pBsBuffer, pSliceBs->uiSize);
 
           if (bNeedPrefix) {
@@ -882,7 +882,7 @@ int32_t FiredSliceThreads (sWelsEncCtx* pCtx, SSliceThreadPrivateData* pPriData,
   while (iIdx < kiEventCnt) {
     pPriData[iIdx].pFrameBsInfo = pFrameBsInfo;
     pPriData[iIdx].iSliceIndex  = iIdx;
-    SetOneSliceBsBufferUnderMultithread (pCtx, iIdx, iIdx);
+    SetOneSliceBsBufferUnderMultithread (pCtx, iIdx, pCtx->pCurDqLayer->ppSliceInLayer[iIdx]);
     if (pEventsList[iIdx])
       WelsEventSignal (&pEventsList[iIdx]);
     if (pMasterEventsList[iIdx])
@@ -1031,8 +1031,8 @@ void TrackSliceConsumeTime (sWelsEncCtx* pCtx, int32_t* pDidList, const int32_t 
 }
 #endif//#if defined(MT_DEBUG)
 
-void SetOneSliceBsBufferUnderMultithread (sWelsEncCtx* pCtx, const int32_t kiThreadIdx, const int32_t iSliceIdx) {
-  SWelsSliceBs* pSliceBs  = &pCtx->pCurDqLayer->ppSliceInLayer[iSliceIdx]->sSliceBs;
+void SetOneSliceBsBufferUnderMultithread (sWelsEncCtx* pCtx, const int32_t kiThreadIdx, SSlice* pSlice) {
+  SWelsSliceBs* pSliceBs  = &pSlice->sSliceBs;
   pSliceBs->pBsBuffer     = pCtx->pSliceThreading->pThreadBsBuffer[kiThreadIdx];
   pSliceBs->uiBsPos       = 0;
 }
