@@ -882,7 +882,6 @@ int32_t FiredSliceThreads (sWelsEncCtx* pCtx, SSliceThreadPrivateData* pPriData,
   while (iIdx < kiEventCnt) {
     pPriData[iIdx].pFrameBsInfo = pFrameBsInfo;
     pPriData[iIdx].iSliceIndex  = iIdx;
-    SetOneSliceBsBufferUnderMultithread (pCtx, iIdx, pCtx->pCurDqLayer->ppSliceInLayer[iIdx]);
     if (pEventsList[iIdx])
       WelsEventSignal (&pEventsList[iIdx]);
     if (pMasterEventsList[iIdx])
