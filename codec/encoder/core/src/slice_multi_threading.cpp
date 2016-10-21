@@ -844,31 +844,17 @@ int32_t CreateSliceThreads (sWelsEncCtx* pCtx) {
 
 int32_t FiredSliceThreads (sWelsEncCtx* pCtx, SSliceThreadPrivateData* pPriData, WELS_EVENT* pEventsList,
                            WELS_EVENT* pMasterEventsList, SFrameBSInfo* pFrameBsInfo,
-                           const uint32_t uiNumThreads, SSliceCtx* pSliceCtx, const bool bIsDynamicSlicingMode) {
-  int32_t iEndMbIdx         = 0;
+                           const uint32_t uiNumThreads) {
   int32_t iIdx              = 0;
   const int32_t kiEventCnt  = uiNumThreads;
   int32_t iLayerBsIdx       = pCtx->pOut->iLayerBsIndex;
   SLayerBSInfo* pLbi        = &pFrameBsInfo->sLayerInfo[iLayerBsIdx];
-  SSlice** ppSliceInLayer   = pCtx->pCurDqLayer->ppSliceInLayer;
-
 
   if (pPriData == NULL || pFrameBsInfo == NULL || pLbi == NULL || kiEventCnt <= 0 || pEventsList == NULL) {
     WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR,
              "FiredSliceThreads(), fail due pPriData == %p ||pFrameBsInfo == %p || pLbi == %p || iEventCnt(%d) <= 0 || pEventsList == %p!!",
              (void*)pPriData, (void*)pFrameBsInfo, (void*)pLbi, uiNumThreads, (void*)pEventsList);
     return 1;
-  }
-
-  ////////////////////////////////////////
-  if (bIsDynamicSlicingMode) {
-    iEndMbIdx = pSliceCtx->iMbNumInFrame;
-    for (iIdx = kiEventCnt - 1; iIdx >= 0; --iIdx) {
-      const int32_t iFirstMbIdx         = ppSliceInLayer[iIdx]->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice;
-      pCtx->pCurDqLayer->pFirstMbOfPartition[iIdx] = iFirstMbIdx;
-      pCtx->pCurDqLayer->pEndMbOfPartition[iIdx]   = iEndMbIdx;
-      iEndMbIdx                                    = iFirstMbIdx;
-    }
   }
 
   pLbi->pBsBuf = pCtx->pFrameBs + pCtx->iPosBsBuffer;
