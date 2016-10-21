@@ -930,6 +930,12 @@ void FreeDqLayer (SDqLayer*& pDq, CMemoryAlign* pMa) {
     pMa->WelsFree (pDq->pLastCodedMbIdxOfPartition, "pLastCodedMbIdxOfPartition");
     pDq->pLastCodedMbIdxOfPartition = NULL;
   }
+
+  if (pDq->pFirstMbOfPartition) {
+    pMa->WelsFree (pDq->pFirstMbOfPartition, "pFirstMbOfPartition");
+    pDq->pFirstMbOfPartition = NULL;
+  }
+
   if (pDq->pEndMbOfPartition) {
     pMa->WelsFree (pDq->pEndMbOfPartition, "pEndMbOfPartition");
     pDq->pEndMbOfPartition = NULL;
@@ -1050,10 +1056,12 @@ static inline int32_t InitDqLayers (sWelsEncCtx** ppCtx, SExistingParasetList* p
 
       pDqLayer->pNumSliceCodedOfPartition       = (int32_t*)pMa->WelsMallocz (iSize, "pNumSliceCodedOfPartition");
       pDqLayer->pLastCodedMbIdxOfPartition      = (int32_t*)pMa->WelsMallocz (iSize, "pLastCodedMbIdxOfPartition");
+      pDqLayer->pFirstMbOfPartition             = (int32_t*)pMa->WelsMallocz (iSize, "pFirstMbOfPartition");
       pDqLayer->pEndMbOfPartition               = (int32_t*)pMa->WelsMallocz (iSize, "pEndMbOfPartition");
       WELS_VERIFY_RETURN_PROC_IF (1,
-                                  (NULL == pDqLayer->pNumSliceCodedOfPartition ||
+                                  (NULL == pDqLayer->pNumSliceCodedOfPartition  ||
                                    NULL == pDqLayer->pLastCodedMbIdxOfPartition ||
+                                   NULL == pDqLayer->pFirstMbOfPartition        ||
                                    NULL == pDqLayer->pEndMbOfPartition),
                                   FreeDqLayer (pDqLayer, pMa))
     }
