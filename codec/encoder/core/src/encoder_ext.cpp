@@ -3698,7 +3698,7 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
           const int32_t iFirstMbIdx         =
             pCtx->pCurDqLayer->ppSliceInLayer[iIdx]->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice;
           pCtx->pSliceThreading->pThreadPEncCtx[iIdx].iStartMbIndex      = iFirstMbIdx;
-          pCtx->pSliceThreading->pThreadPEncCtx[iIdx].iEndMbIndex        = iEndMbIdx;
+          pCtx->pCurDqLayer->pEndMbOfPartition[iIdx]                     = iEndMbIdx;
           iEndMbIdx                         = iFirstMbIdx;
         }
 

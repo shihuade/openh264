@@ -696,7 +696,7 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
         const int32_t kiPartitionId             = iThreadIdx;
         const int32_t kiSliceIdxStep            = pEncPEncCtx->iActiveThreadsNum;
         const int32_t kiFirstMbInPartition      = pPrivateData->iStartMbIndex;  // inclusive
-        const int32_t kiEndMbInPartition        = pPrivateData->iEndMbIndex;            // exclusive
+        const int32_t kiEndMbInPartition        = pCurDq->pEndMbOfPartition[kiPartitionId];            // exclusive
         int32_t iAnyMbLeftInPartition           = kiEndMbInPartition - kiFirstMbInPartition;
         SSpatialLayerInternal *pParamInternal = &pCodingParam->sDependencyLayers[kiCurDid];
         iSliceIdx = pPrivateData->iSliceIndex;
@@ -866,7 +866,7 @@ int32_t FiredSliceThreads (sWelsEncCtx* pCtx, SSliceThreadPrivateData* pPriData,
     for (iIdx = kiEventCnt - 1; iIdx >= 0; --iIdx) {
       const int32_t iFirstMbIdx         = ppSliceInLayer[iIdx]->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice;
       pPriData[iIdx].iStartMbIndex      = iFirstMbIdx;
-      pPriData[iIdx].iEndMbIndex        = iEndMbIdx;
+      pCtx->pCurDqLayer->pEndMbOfPartition[iIdx] = iEndMbIdx;
       iEndMbIdx                         = iFirstMbIdx;
     }
   }

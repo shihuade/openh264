@@ -65,7 +65,6 @@ int32_t         iThreadIndex;   // thread index, zero based
 
 // for dynamic slicing mode
 int32_t         iStartMbIndex;  // inclusive
-int32_t         iEndMbIndex;    // exclusive
 } SSliceThreadPrivateData;
 
 typedef struct TagSliceThreading {

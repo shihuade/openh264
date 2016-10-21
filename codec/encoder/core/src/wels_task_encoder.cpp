@@ -242,7 +242,7 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
   const int32_t kiPartitionId             = m_iSliceIdx % kiSliceIdxStep;
   SSliceThreadPrivateData* pPrivateData = & (m_pCtx->pSliceThreading->pThreadPEncCtx[kiPartitionId]);
   const int32_t kiFirstMbInPartition      = pPrivateData->iStartMbIndex;  // inclusive
-  const int32_t kiEndMbInPartition        = pPrivateData->iEndMbIndex;            // exclusive
+  const int32_t kiEndMbInPartition        = pCurDq->pEndMbOfPartition[kiPartitionId];            // exclusive
   pStartSliceHeaderExt->sSliceHeader.iFirstMbInSlice      = kiFirstMbInPartition;
   pCurDq->pNumSliceCodedOfPartition[kiPartitionId]        =
     1;    // one pSlice per partition intialized, dynamic slicing inside
