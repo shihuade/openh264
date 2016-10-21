@@ -930,9 +930,9 @@ void FreeDqLayer (SDqLayer*& pDq, CMemoryAlign* pMa) {
     pMa->WelsFree (pDq->pLastCodedMbIdxOfPartition, "pLastCodedMbIdxOfPartition");
     pDq->pLastCodedMbIdxOfPartition = NULL;
   }
-  if (pDq->pLastMbIdxOfPartition) {
-    pMa->WelsFree (pDq->pLastMbIdxOfPartition, "pLastMbIdxOfPartition");
-    pDq->pLastMbIdxOfPartition = NULL;
+  if (pDq->pEndMbOfPartition) {
+    pMa->WelsFree (pDq->pEndMbOfPartition, "pEndMbOfPartition");
+    pDq->pEndMbOfPartition = NULL;
   }
 
   if (pDq->pFeatureSearchPreparation) {
@@ -1050,11 +1050,11 @@ static inline int32_t InitDqLayers (sWelsEncCtx** ppCtx, SExistingParasetList* p
 
       pDqLayer->pNumSliceCodedOfPartition       = (int32_t*)pMa->WelsMallocz (iSize, "pNumSliceCodedOfPartition");
       pDqLayer->pLastCodedMbIdxOfPartition      = (int32_t*)pMa->WelsMallocz (iSize, "pLastCodedMbIdxOfPartition");
-      pDqLayer->pLastMbIdxOfPartition           = (int32_t*)pMa->WelsMallocz (iSize, "pLastMbIdxOfPartition");
+      pDqLayer->pEndMbOfPartition               = (int32_t*)pMa->WelsMallocz (iSize, "pEndMbOfPartition");
       WELS_VERIFY_RETURN_PROC_IF (1,
                                   (NULL == pDqLayer->pNumSliceCodedOfPartition ||
                                    NULL == pDqLayer->pLastCodedMbIdxOfPartition ||
-                                   NULL == pDqLayer->pLastMbIdxOfPartition),
+                                   NULL == pDqLayer->pEndMbOfPartition),
                                   FreeDqLayer (pDqLayer, pMa))
     }
     pDqLayer->bNeedAdjustingSlicing = false;
@@ -4452,7 +4452,7 @@ int32_t WelsCodeOnePicPartition (sWelsEncCtx* pCtx,
     pStartSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice = iFirstMbInPartition;
     pCurLayer->pNumSliceCodedOfPartition[kiPartitionId] =
       1;    // one slice per partition intialized, dynamic slicing inside
-    pCurLayer->pLastMbIdxOfPartition[kiPartitionId]     = iEndMbInPartition - 1;
+    pCurLayer->pEndMbOfPartition[kiPartitionId]     = iEndMbInPartition;
   }
   pCurLayer->pLastCodedMbIdxOfPartition[kiPartitionId] = 0;
 

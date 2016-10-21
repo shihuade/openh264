@@ -246,7 +246,7 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
   pStartSliceHeaderExt->sSliceHeader.iFirstMbInSlice      = kiFirstMbInPartition;
   pCurDq->pNumSliceCodedOfPartition[kiPartitionId]        =
     1;    // one pSlice per partition intialized, dynamic slicing inside
-  pCurDq->pLastMbIdxOfPartition[kiPartitionId]            = kiEndMbInPartition - 1;
+  pCurDq->pEndMbOfPartition[kiPartitionId]            = kiEndMbInPartition;
 
   pCurDq->pLastCodedMbIdxOfPartition[kiPartitionId]       = 0;
   //end of deal with partition
