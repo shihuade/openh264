@@ -116,8 +116,8 @@ SPicture*               pRefOri[MAX_REF_PIC_COUNT];
 int32_t                 iMaxSliceNum;
 int32_t*                pNumSliceCodedOfPartition;      // for dynamic slicing mode
 int32_t*                pLastCodedMbIdxOfPartition;     // for dynamic slicing mode
-int32_t*                pFirstMbOfPartition;            // for dynamic slicing mode
-int32_t*                pEndMbOfPartition;              // for dynamic slicing mode
+int32_t*                pFirstMbIdxOfPartition;         // for dynamic slicing mode
+int32_t*                pEndMbIdxOfPartition;           // for dynamic slicing mode
 
 bool                    bNeedAdjustingSlicing;
 

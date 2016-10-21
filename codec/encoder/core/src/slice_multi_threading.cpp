@@ -695,18 +695,16 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
         SSliceCtx* pSliceCtx                    = &pCurDq->sSliceEncCtx;
         const int32_t kiPartitionId             = iThreadIdx;
         const int32_t kiSliceIdxStep            = pEncPEncCtx->iActiveThreadsNum;
-        const int32_t kiFirstMbInPartition      = pCurDq->pFirstMbOfPartition[kiPartitionId];
-        const int32_t kiEndMbInPartition        = pCurDq->pEndMbOfPartition[kiPartitionId];
+        const int32_t kiFirstMbInPartition      = pCurDq->pFirstMbIdxOfPartition[kiPartitionId];
+        const int32_t kiEndMbInPartition        = pCurDq->pEndMbIdxOfPartition[kiPartitionId];
         int32_t iAnyMbLeftInPartition           = kiEndMbInPartition - kiFirstMbInPartition;
         SSpatialLayerInternal *pParamInternal = &pCodingParam->sDependencyLayers[kiCurDid];
         iSliceIdx = pPrivateData->iSliceIndex;
         SSliceHeaderExt* pStartSliceHeaderExt                   = &pCurDq->ppSliceInLayer[iSliceIdx]->sSliceHeaderExt;
         pStartSliceHeaderExt->sSliceHeader.iFirstMbInSlice      = kiFirstMbInPartition;
-        pCurDq->pNumSliceCodedOfPartition[kiPartitionId]        =
-          1;    // one pSlice per partition intialized, dynamic slicing inside
-        pCurDq->pEndMbOfPartition[kiPartitionId]            = kiEndMbInPartition;
-
+        pCurDq->pNumSliceCodedOfPartition[kiPartitionId]        = 1;
         pCurDq->pLastCodedMbIdxOfPartition[kiPartitionId]       = 0;
+
         while (iAnyMbLeftInPartition > 0) {
           if (iSliceIdx >= pSliceCtx->iMaxSliceNumConstraint) {
             // TODO: need exception handler for not large enough of MAX_SLICES_NUM related memory usage

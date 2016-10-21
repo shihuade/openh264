@@ -931,14 +931,14 @@ void FreeDqLayer (SDqLayer*& pDq, CMemoryAlign* pMa) {
     pDq->pLastCodedMbIdxOfPartition = NULL;
   }
 
-  if (pDq->pFirstMbOfPartition) {
-    pMa->WelsFree (pDq->pFirstMbOfPartition, "pFirstMbOfPartition");
-    pDq->pFirstMbOfPartition = NULL;
+  if (pDq->pFirstMbIdxOfPartition) {
+    pMa->WelsFree (pDq->pFirstMbIdxOfPartition, "pFirstMbIdxOfPartition");
+    pDq->pFirstMbIdxOfPartition = NULL;
   }
 
-  if (pDq->pEndMbOfPartition) {
-    pMa->WelsFree (pDq->pEndMbOfPartition, "pEndMbOfPartition");
-    pDq->pEndMbOfPartition = NULL;
+  if (pDq->pEndMbIdxOfPartition) {
+    pMa->WelsFree (pDq->pEndMbIdxOfPartition, "pEndMbIdxOfPartition");
+    pDq->pEndMbIdxOfPartition = NULL;
   }
 
   if (pDq->pFeatureSearchPreparation) {
@@ -1056,13 +1056,13 @@ static inline int32_t InitDqLayers (sWelsEncCtx** ppCtx, SExistingParasetList* p
 
       pDqLayer->pNumSliceCodedOfPartition       = (int32_t*)pMa->WelsMallocz (iSize, "pNumSliceCodedOfPartition");
       pDqLayer->pLastCodedMbIdxOfPartition      = (int32_t*)pMa->WelsMallocz (iSize, "pLastCodedMbIdxOfPartition");
-      pDqLayer->pFirstMbOfPartition             = (int32_t*)pMa->WelsMallocz (iSize, "pFirstMbOfPartition");
-      pDqLayer->pEndMbOfPartition               = (int32_t*)pMa->WelsMallocz (iSize, "pEndMbOfPartition");
+      pDqLayer->pFirstMbIdxOfPartition          = (int32_t*)pMa->WelsMallocz (iSize, "pFirstMbIdxOfPartition");
+      pDqLayer->pEndMbIdxOfPartition            = (int32_t*)pMa->WelsMallocz (iSize, "pEndMbIdxOfPartition");
       WELS_VERIFY_RETURN_PROC_IF (1,
                                   (NULL == pDqLayer->pNumSliceCodedOfPartition  ||
                                    NULL == pDqLayer->pLastCodedMbIdxOfPartition ||
-                                   NULL == pDqLayer->pFirstMbOfPartition        ||
-                                   NULL == pDqLayer->pEndMbOfPartition),
+                                   NULL == pDqLayer->pFirstMbIdxOfPartition     ||
+                                   NULL == pDqLayer->pEndMbIdxOfPartition),
                                   FreeDqLayer (pDqLayer, pMa))
     }
     pDqLayer->bNeedAdjustingSlicing = false;
@@ -2425,8 +2425,8 @@ void UpdateSlicepEncCtxWithPartition (SDqLayer* pCurDq, int32_t iPartitionNum) {
       iCountMbNumInPartition = iCountMbNumPerPartition;
     }
 
-    pCurDq->pFirstMbOfPartition[i] = iFirstMbIdx;
-    pCurDq->pEndMbOfPartition[i]   = iFirstMbIdx + iCountMbNumInPartition;
+    pCurDq->pFirstMbIdxOfPartition[i] = iFirstMbIdx;
+    pCurDq->pEndMbIdxOfPartition[i]   = iFirstMbIdx + iCountMbNumInPartition;
 
     WelsSetMemMultiplebytes_c (pSliceCtx->pOverallMbMap + iFirstMbIdx, i,
                                iCountMbNumInPartition, sizeof (uint16_t));
@@ -4453,7 +4453,7 @@ int32_t WelsCodeOnePicPartition (sWelsEncCtx* pCtx,
     pStartSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice = iFirstMbInPartition;
     pCurLayer->pNumSliceCodedOfPartition[kiPartitionId] =
       1;    // one slice per partition intialized, dynamic slicing inside
-    pCurLayer->pEndMbOfPartition[kiPartitionId]     = iEndMbInPartition;
+    pCurLayer->pEndMbIdxOfPartition[kiPartitionId]     = iEndMbInPartition;
   }
   pCurLayer->pLastCodedMbIdxOfPartition[kiPartitionId] = 0;
 
