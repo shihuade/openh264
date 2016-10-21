@@ -2426,7 +2426,7 @@ void UpdateSlicepEncCtxWithPartition (SDqLayer* pCurDq, int32_t iPartitionNum) {
     }
 
     pCurDq->pFirstMbIdxOfPartition[i] = iFirstMbIdx;
-    pCurDq->pEndMbIdxOfPartition[i]   = iFirstMbIdx + iCountMbNumInPartition;
+    pCurDq->pEndMbIdxOfPartition[i]   = iFirstMbIdx + iCountMbNumInPartition - 1;
 
     WelsSetMemMultiplebytes_c (pSliceCtx->pOverallMbMap + iFirstMbIdx, i,
                                iCountMbNumInPartition, sizeof (uint16_t));
