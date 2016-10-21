@@ -3697,9 +3697,9 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
         for (int32_t iIdx = kiPartitionCnt - 1; iIdx >= 0; --iIdx) {
           const int32_t iFirstMbIdx         =
             pCtx->pCurDqLayer->ppSliceInLayer[iIdx]->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice;
-          pCtx->pSliceThreading->pThreadPEncCtx[iIdx].iStartMbIndex      = iFirstMbIdx;
-          pCtx->pCurDqLayer->pEndMbOfPartition[iIdx]                     = iEndMbIdx;
-          iEndMbIdx                         = iFirstMbIdx;
+          pCtx->pCurDqLayer->pFirstMbOfPartition[iIdx] = iFirstMbIdx;
+          pCtx->pCurDqLayer->pEndMbOfPartition[iIdx]   = iEndMbIdx;
+          iEndMbIdx                                    = iFirstMbIdx;
         }
 
         //TODO: use a function to remove duplicate code here and ln3994

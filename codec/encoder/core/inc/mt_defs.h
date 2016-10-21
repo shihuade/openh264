@@ -63,8 +63,6 @@ SFrameBSInfo*   pFrameBsInfo;
 int32_t         iSliceIndex;    // slice index, zero based
 int32_t         iThreadIndex;   // thread index, zero based
 
-// for dynamic slicing mode
-int32_t         iStartMbIndex;  // inclusive
 } SSliceThreadPrivateData;
 
 typedef struct TagSliceThreading {
