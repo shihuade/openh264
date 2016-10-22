@@ -261,6 +261,7 @@ PWelsUpdateMaxBrCheckWindowStatusFunc pfWelsUpdateMaxBrWindowStatus;
 PWelsRCPostFrameSkippingFunc    pfWelsRcPostFrameSkipping;
 } SWelsRcFunc;
 
+void RCInitOneSliceInformation(sWelsEncCtx* pEncCtx, SSlice* pSlice);
 void CheckFrameSkipBasedMaxbr (sWelsEncCtx* pCtx,const long long uiTimeStamp, int32_t iDidIdx);
 void UpdateBufferWhenFrameSkipped(sWelsEncCtx* pCtx, int32_t iSpatialNum);
 void UpdateMaxBrCheckWindowStatus(sWelsEncCtx* pCtx, int32_t iSpatialNum, const long long uiTimeStamp);
