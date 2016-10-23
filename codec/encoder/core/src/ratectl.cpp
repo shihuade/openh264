@@ -538,6 +538,9 @@ void RcInitSliceInformation (sWelsEncCtx* pEncCtx) {
       pSOverRc->iTotalMbSlice     = 0;
       pSOverRc->iFrameBitsSlice   = 0;
       pSOverRc->iGomBitsSlice     = 0;
+      pSOverRc->iStartMbSlice     = 0;
+      pSOverRc->iEndMbSlice       = 0;
+      pSOverRc->iTargetBitsSlice  = 0;
   }
 }
 
