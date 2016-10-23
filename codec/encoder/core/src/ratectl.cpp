@@ -1161,9 +1161,8 @@ void  WelsRcPictureInitGom (sWelsEncCtx* pEncCtx, long long uiTimeStamp) {
   } else {
     RcCalculatePictureQp (pEncCtx);
   }
-  RcInitGomParameters (pEncCtx);
   RcInitSliceInformation (pEncCtx);
-
+  RcInitGomParameters (pEncCtx);
 }
 
 void  WelsRcPictureInfoUpdateGom (sWelsEncCtx* pEncCtx, int32_t iLayerSize) {
