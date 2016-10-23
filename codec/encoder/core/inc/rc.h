@@ -168,6 +168,7 @@ double    dPreviousFps;
 
 // bits allocation and status
 int32_t   iRemainingBits;
+int32_t   iBitsPerMb;
 int32_t   iTargetBits;
 int32_t   iCurrentBitsLevel;//0:normal; 1:limited; 2:exceeded.
 

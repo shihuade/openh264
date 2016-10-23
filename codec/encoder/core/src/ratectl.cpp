@@ -516,16 +516,9 @@ void RCInitOneSliceInformation(sWelsEncCtx* pEncCtx, SSlice* pSlice) {
                  RC_BUFFERBASED_MODE == pEncCtx->pSvcParam->iRCMode ||
                  (RC_TIMESTAMP_MODE == pEncCtx->pSvcParam->iRCMode &&
                  pEncCtx->pSvcParam->iUsageType == SCREEN_CONTENT_REAL_TIME) ) ? false : true;
-
   if(bGomRC) {
     SRCSlicing* pSOverRc        = &pSlice->sSlicingOverRc;
-    SWelsSvcRc* pWelsSvcRc      = &pEncCtx->pWelsSvcRc[pEncCtx->uiDependencyId];
-    const int32_t kiBitsPerMb   = WELS_DIV_ROUND (static_cast<int64_t> (pWelsSvcRc->iTargetBits) * INT_MULTIPLY,
-                                                pWelsSvcRc->iNumberMbFrame);
-    pSOverRc->iTotalQpSlice     = 0;
-    pSOverRc->iTotalMbSlice     = 0;
-    pSOverRc->iFrameBitsSlice   = 0;
-    pSOverRc->iGomBitsSlice     = 0;
+    const int32_t kiBitsPerMb   = pEncCtx->pWelsSvcRc[pEncCtx->uiDependencyId].iBitsPerMb;
     pSOverRc->iStartMbSlice     = pSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice;
     pSOverRc->iEndMbSlice       = pSOverRc->iStartMbSlice + pSlice->iCountMbNumInSlice - 1;
     pSOverRc->iTargetBitsSlice  = WELS_DIV_ROUND (static_cast<int64_t> (kiBitsPerMb) * pSlice->iCountMbNumInSlice,
@@ -534,14 +527,18 @@ void RCInitOneSliceInformation(sWelsEncCtx* pEncCtx, SSlice* pSlice) {
 }
 
 void RcInitSliceInformation (sWelsEncCtx* pEncCtx) {
-  SSlice** ppSliceInLayer       = pEncCtx->pCurDqLayer->ppSliceInLayer;
-  SWelsSvcRc* pWelsSvcRc        = &pEncCtx->pWelsSvcRc[pEncCtx->uiDependencyId];
-  const int32_t kiSliceNum      = pWelsSvcRc->iSliceNum;
-
+  SSlice** ppSliceInLayer   = pEncCtx->pCurDqLayer->ppSliceInLayer;
+  SWelsSvcRc* pWelsSvcRc    = &pEncCtx->pWelsSvcRc[pEncCtx->uiDependencyId];
+  const int32_t kiSliceNum  = pWelsSvcRc->iSliceNum;
+  pWelsSvcRc->iBitsPerMb    = WELS_DIV_ROUND (static_cast<int64_t> (pWelsSvcRc->iTargetBits) * INT_MULTIPLY,
+                                              pWelsSvcRc->iNumberMbFrame);
   for (int32_t i = 0; i < kiSliceNum; i++) {
-    RCInitOneSliceInformation(pEncCtx, ppSliceInLayer[i]);
+      SRCSlicing* pSOverRc        = &ppSliceInLayer[i]->sSlicingOverRc;
+      pSOverRc->iTotalQpSlice     = 0;
+      pSOverRc->iTotalMbSlice     = 0;
+      pSOverRc->iFrameBitsSlice   = 0;
+      pSOverRc->iGomBitsSlice     = 0;
   }
-
 }
 
 void RcDecideTargetBits (sWelsEncCtx* pEncCtx) {
@@ -1165,7 +1162,7 @@ void  WelsRcPictureInitGom (sWelsEncCtx* pEncCtx, long long uiTimeStamp) {
     RcCalculatePictureQp (pEncCtx);
   }
   RcInitGomParameters (pEncCtx);
-    RcInitSliceInformation (pEncCtx);
+  RcInitSliceInformation (pEncCtx);
 
 }
 
