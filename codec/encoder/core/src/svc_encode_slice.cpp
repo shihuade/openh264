@@ -1056,11 +1056,22 @@ int32_t InitSliceInLayer (sWelsEncCtx* pCtx,
     return ENC_RETURN_MEMALLOCERR;
   }
 
+  pDqLayer->pFirstMbIdxOfSlice = (int32_t*)pMa->WelsMallocz (sizeof (int32_t*) * iMaxSliceNum, "pFirstMbIdxOfSlice");
+  if (NULL ==  pDqLayer->pFirstMbIdxOfSlice) {
+    WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR, "CWelsH264SVCEncoder::InitSliceInLayer() pDqLayer->pFirstMbIdxOfSlice is NULL");
+    return ENC_RETURN_MEMALLOCERR;
+  }
+
   InitSliceThreadInfo (pCtx,
                        pDqLayer,
                        kiDlayerIndex,
                        pMa);
   if (ENC_RETURN_SUCCESS != iRet) {
+    pMa->WelsFree (pDqLayer->ppSliceInLayer, "pDqLayer->ppSliceInLayer");
+    pDqLayer->ppSliceInLayer = NULL;
+    pMa->WelsFree (pDqLayer->pFirstMbIdxOfSlice, "pDqLayer->pFirstMbIdxOfSlice");
+    pDqLayer->pFirstMbIdxOfSlice = NULL;
+
     return iRet;
   }
 

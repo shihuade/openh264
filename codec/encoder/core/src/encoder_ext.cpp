@@ -921,6 +921,11 @@ void FreeDqLayer (SDqLayer*& pDq, CMemoryAlign* pMa) {
     pDq->ppSliceInLayer = NULL;
   }
 
+  if (pDq->pFirstMbIdxOfSlice) {
+    pMa->WelsFree (pDq->pFirstMbIdxOfSlice, "pDq->pFirstMbIdxOfSlice");
+    pDq->pFirstMbIdxOfSlice = NULL;
+  }
+
   if (pDq->pNumSliceCodedOfPartition) {
     pMa->WelsFree (pDq->pNumSliceCodedOfPartition, "pNumSliceCodedOfPartition");
     pDq->pNumSliceCodedOfPartition = NULL;
