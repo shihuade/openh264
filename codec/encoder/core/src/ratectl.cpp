@@ -45,7 +45,7 @@
 #include "encoder_context.h"
 #include "utils.h"
 #include "svc_enc_golomb.h"
-#include <iostream>
+
 
 namespace WelsEnc {
 
