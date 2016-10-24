@@ -3615,6 +3615,8 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
 
       WelsLoadNal (pCtx->pOut, eNalType, eNalRefIdc);
       assert (0 == (int) pCurSlice->uiSliceIdx);
+      pCurSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice = pCtx->pCurDqLayer->pFirstMbIdxOfSlice[0];
+      pCurSlice->iCountMbNumInSlice  = pCtx->pCurDqLayer->pCountMbNumInSlice[0];
       pCtx->iEncoderError   = WelsCodeOneSlice (pCtx, pCurSlice, eNalType);
       WELS_VERIFY_RETURN_IFNEQ (pCtx->iEncoderError, ENC_RETURN_SUCCESS)
 
@@ -3758,6 +3760,8 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
           WelsLoadNal (pCtx->pOut, eNalType, eNalRefIdc);
           pCurSlice = pCtx->pCurDqLayer->ppSliceInLayer[iSliceIdx];
           assert (iSliceIdx == (int) pCurSlice->uiSliceIdx);
+          pCurSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice = pCtx->pCurDqLayer->pFirstMbIdxOfSlice[iSliceIdx];
+          pCurSlice->iCountMbNumInSlice  = pCtx->pCurDqLayer->pCountMbNumInSlice[iSliceIdx];
           pCtx->iEncoderError = WelsCodeOneSlice (pCtx, pCurSlice, eNalType);
           WELS_VERIFY_RETURN_IFNEQ (pCtx->iEncoderError, ENC_RETURN_SUCCESS)
 

@@ -119,6 +119,9 @@ WelsErrorType CWelsSliceEncodingTask::InitTask() {
   m_pSliceBs->uiBsPos       = 0;
   m_pSliceBs->iNalIndex     = 0;
 
+  m_pSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice = m_pCtx->pCurDqLayer->pFirstMbIdxOfSlice[m_iSliceIdx];
+  m_pSlice->iCountMbNumInSlice  = m_pCtx->pCurDqLayer->pCountMbNumInSlice[m_iSliceIdx];
+
   SetOneSliceBsBufferUnderMultithread (m_pCtx, m_iThreadIdx, m_pSlice);
 
   assert ((void*) (&m_pSliceBs->sBsWrite) == (void*)m_pSlice->pSliceBsa);
