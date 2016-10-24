@@ -527,17 +527,17 @@ uint16_t WelsMbToSliceIdc (SDqLayer* pCurDq, const int32_t kiMbXY) {
 /*!
  * \brief   Get first mb in slice/slice_group: uiSliceIdc (apply in Single/multiple slices and FMO)
  *
- * \param   ppSliceInLayer  slice list in current layer
+ * \param   pCurLayer       current layer
  * \param   kuiSliceIdc     slice idc
  *
  * \return  iFirstMb - successful; -1 - failed;
  */
-int32_t WelsGetFirstMbOfSlice (SSlice** ppSliceInLayer, const int32_t kuiSliceIdc) {
-  if ( NULL == ppSliceInLayer || NULL == ppSliceInLayer[kuiSliceIdc] ) {
+int32_t WelsGetFirstMbOfSlice (SDqLayer* pCurLayer, const int32_t kuiSliceIdc) {
+  if ( NULL == pCurLayer || NULL == pCurLayer->pFirstMbIdxOfSlice ) {
     return -1;
   }
 
-  return ppSliceInLayer[kuiSliceIdc]->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice;
+  return pCurLayer->pFirstMbIdxOfSlice[kuiSliceIdc];
 }
 
 /*!
