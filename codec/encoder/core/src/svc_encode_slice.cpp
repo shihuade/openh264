@@ -949,6 +949,7 @@ int32_t InitSliceList (sWelsEncCtx* pCtx,
     }
 
     pSlice->uiSliceIdx = iSliceIdx;
+    pSlice->uiThreadIdx = 0;
     pSlice->iCountMbNumInSlice = 0;
     pSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice = 0;
 
@@ -1175,6 +1176,7 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
     }
 
     pSlice->uiSliceIdx = iSliceIdx;
+    pSlice->uiThreadIdx = 0;
     pSlice->iCountMbNumInSlice = 0;
     pSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice = 0;
 
