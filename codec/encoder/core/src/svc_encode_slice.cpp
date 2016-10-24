@@ -810,12 +810,13 @@ void FreeMbCache (SMbCache* pMbCache, CMemoryAlign* pMa) {
 }
 
 //Initialize slice's MB info)
-int32_t InitSliceMBInfo (SSliceArgument* pSliceArgument,
-                         SSlice* pSlice,
-                         const int32_t kiMBWidth,
-                         const int32_t kiMBHeight) {
+int32_t InitSliceMBInfo (SDqLayer* pCurLayer,
+                         SSliceArgument* pSliceArgument,
+                         SSlice* pSlice) {
   SSliceHeader* pSliceHeader          = &pSlice->sSliceHeaderExt.sSliceHeader;
   const int32_t* kpSlicesAssignList   = (int32_t*) & (pSliceArgument->uiSliceMbNum[0]);
+  const int32_t kiMBWidth             = pCurLayer->iMbWidth;
+  const int32_t kiMBHeight            = pCurLayer->iMbHeight;
   const int32_t kiCountNumMbInFrame   = kiMBWidth * kiMBHeight;
   const int32_t kiSliceIdx            = pSlice->uiSliceIdx;
   int32_t iFirstMBInSlice             = 0;
@@ -852,6 +853,8 @@ int32_t InitSliceMBInfo (SSliceArgument* pSliceArgument,
 
   pSlice->iCountMbNumInSlice    = iMbNumInSlice;
   pSliceHeader->iFirstMbInSlice = iFirstMBInSlice;
+  pCurLayer->pCountMbNumInSlice[kiSliceIdx] = iMbNumInSlice;
+  pCurLayer->pFirstMbIdxOfSlice[kiSliceIdx] = iFirstMBInSlice;
 
   return ENC_RETURN_SUCCESS;
 }
@@ -938,7 +941,7 @@ int32_t InitSliceList (sWelsEncCtx* pCtx,
     pSlice->uiSliceIdx = iSliceIdx;
 
     iRet = InitSliceBsBuffer (pSlice,
-                              & pCtx->pOut->sBsWrite,
+                              &pCtx->pOut->sBsWrite,
                               bIndependenceBsBuffer,
                               iMaxSliceBufferSize,
                               pMa);
@@ -946,9 +949,7 @@ int32_t InitSliceList (sWelsEncCtx* pCtx,
       return iRet;
     }
 
-    iRet = InitSliceMBInfo (pSliceArgument, pSlice,
-                            kiMBWidth, kiMBHeight);
-
+    iRet = InitSliceMBInfo (pDqLayer, pSliceArgument, pSlice);
     if (ENC_RETURN_SUCCESS != iRet) {
       return iRet;
     }
@@ -989,7 +990,7 @@ int32_t InitOneSliceInThread (sWelsEncCtx* pCtx,
   pSlice->sSliceBs.pBsBuffer = pCtx->pSliceThreading->pThreadBsBuffer[kiThreadIdx];
 
   // init slice MB info
-  iRet = InitSliceMBInfo (pSliceArgument, pSlice, kiMBWidth, kiMBHeight);
+  iRet = InitSliceMBInfo (pDqLayer, pSliceArgument, pSlice);
   if (ENC_RETURN_SUCCESS != iRet) {
     return iRet;
   }
@@ -1188,10 +1189,7 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
       return iRet;
     }
 
-    iRet = InitSliceMBInfo (pSliceArgument,
-                            pSlice,
-                            pCurLayer->iMbWidth,
-                            pCurLayer->iMbHeight);
+    iRet = InitSliceMBInfo (pCurLayer, pSliceArgument, pSlice);
     if (ENC_RETURN_SUCCESS != iRet) {
       FreeSliceBuffer(pNewSliceList, kiMaxSliceNumNew, pMA, "ReallocateSliceList()::InitSliceBsBuffer()");
       return iRet;
