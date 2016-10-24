@@ -811,7 +811,6 @@ void FreeMbCache (SMbCache* pMbCache, CMemoryAlign* pMa) {
 int32_t InitSliceMBInfo (SDqLayer* pCurLayer,
                          SSliceArgument* pSliceArgument,
                          SSlice* pSlice) {
-  SSliceHeader* pSliceHeader          = &pSlice->sSliceHeaderExt.sSliceHeader;
   const int32_t* kpSlicesAssignList   = (int32_t*) & (pSliceArgument->uiSliceMbNum[0]);
   const int32_t kiMBWidth             = pCurLayer->iMbWidth;
   const int32_t kiMBHeight            = pCurLayer->iMbHeight;
@@ -849,8 +848,8 @@ int32_t InitSliceMBInfo (SDqLayer* pCurLayer,
     assert (0);
   }
 
-  pSlice->iCountMbNumInSlice    = iMbNumInSlice;
-  pSliceHeader->iFirstMbInSlice = iFirstMBInSlice;
+  //pSlice->iCountMbNumInSlice    = iMbNumInSlice;
+  //pSliceHeader->iFirstMbInSlice = iFirstMBInSlice;
   pCurLayer->pCountMbNumInSlice[kiSliceIdx] = iMbNumInSlice;
   pCurLayer->pFirstMbIdxOfSlice[kiSliceIdx] = iFirstMBInSlice;
 
