@@ -1121,18 +1121,16 @@ void InitSliceRefInfoWithBase (SSlice* pSlice, SSlice* pBaseSlice, const uint8_t
 
 }
 
-static inline int32_t InitSliceRC (SSlice* pSlice, const int32_t kiGlobalQp, const int32_t kiBitsPerMb) {
+static inline int32_t InitSliceRC (SSlice* pSlice, const int32_t kiGlobalQp) {
 
-  if (NULL == pSlice || kiGlobalQp < 0 ||  kiBitsPerMb < 0)
+  if (NULL == pSlice || kiGlobalQp < 0)
     return ENC_RETURN_INVALIDINPUT;
 
   pSlice->sSlicingOverRc.iComplexityIndexSlice = 0;
   pSlice->sSlicingOverRc.iCalculatedQpSlice    = kiGlobalQp;
   pSlice->sSlicingOverRc.iTotalQpSlice         = 0;
   pSlice->sSlicingOverRc.iTotalMbSlice         = 0;
-  pSlice->sSlicingOverRc.iTargetBitsSlice      = WELS_DIV_ROUND (kiBitsPerMb *
-      pSlice->iCountMbNumInSlice,
-      INT_MULTIPLY);
+  pSlice->sSlicingOverRc.iTargetBitsSlice      = 0;
   pSlice->sSlicingOverRc.iFrameBitsSlice       = 0;
   pSlice->sSlicingOverRc.iGomBitsSlice         = 0;
 
@@ -1152,8 +1150,6 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
   int32_t iRet                = 0;
   const int32_t kiCurDid      = pCtx->uiDependencyId;
   int32_t iMaxSliceBufferSize = (pCtx)->iSliceBufferSize[kiCurDid];
-  int32_t iBitsPerMb          = WELS_DIV_ROUND (pCtx->pWelsSvcRc[kiCurDid].iTargetBits * INT_MULTIPLY,
-                                pCtx->pWelsSvcRc[kiCurDid].iNumberMbFrame);
   bool bIndependenceBsBuffer  = (pCtx->pSvcParam->iMultipleThreadIdc > 1 &&
                                  SM_SINGLE_SLICE != pSliceArgument->uiSliceMode) ? true : false;
 
@@ -1201,7 +1197,7 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
     InitSliceHeadWithBase (pSlice, pBaseSlice);
     InitSliceRefInfoWithBase (pSlice, pBaseSlice, pCtx->iNumRef0);
 
-    iRet = InitSliceRC (pSlice, pCtx->iGlobalQp, iBitsPerMb);
+    iRet = InitSliceRC (pSlice, pCtx->iGlobalQp);
     if (ENC_RETURN_SUCCESS != iRet) {
       FreeSliceBuffer(pNewSliceList, kiMaxSliceNumNew, pMA, "ReallocateSliceList()::InitSliceBsBuffer()");
       return iRet;
