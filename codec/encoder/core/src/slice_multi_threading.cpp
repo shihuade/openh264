@@ -599,7 +599,6 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
       const int32_t kiCurDid            = pEncPEncCtx->uiDependencyId;
       SWelsSvcCodingParam* pCodingParam = pEncPEncCtx->pSvcParam;
       SSpatialLayerConfig* pParamD      = &pCodingParam->sSpatialLayers[kiCurDid];
-      SSlice* pCurSlice                 = NULL;
 
       pCurDq            = pEncPEncCtx->pCurDqLayer;
       eNalType          = pEncPEncCtx->eNalType;
@@ -609,9 +608,9 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
       if (pParamD->sSliceArgument.uiSliceMode != SM_SIZELIMITED_SLICE) {
         int64_t iSliceStart = 0;
         bool bDsaFlag = false;
-        iSliceIdx               = pPrivateData->iSliceIndex;
-        pSlice                  = pCurDq->ppSliceInLayer[iSliceIdx];
-        pSliceBs                = &pSlice->sSliceBs;
+        iSliceIdx     = pPrivateData->iSliceIndex;
+        pSlice        = &pCurDq->sSliceThreadInfo.pSliceInThread[iThreadIdx][iSliceIdx];
+        pSliceBs      = &pSlice->sSliceBs;
 
         bDsaFlag = ((pParamD->sSliceArgument.uiSliceMode == SM_FIXEDSLCNUM_SLICE) &&
                     pCodingParam->iMultipleThreadIdc > 1 &&
@@ -641,9 +640,8 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
         }
 
         WelsLoadNalForSlice (pSliceBs, eNalType, eNalRefIdc);
-        pCurSlice = pEncPEncCtx->pCurDqLayer->ppSliceInLayer[iSliceIdx];
-        assert (iSliceIdx == (int) pCurSlice->uiSliceIdx);
-        iReturn = SetSliceBoundaryInfo(pEncPEncCtx->pCurDqLayer, pCurSlice, iSliceIdx);
+
+        iReturn = SetSliceBoundaryInfo(pEncPEncCtx->pCurDqLayer, pSlice, iSliceIdx);
         if (ENC_RETURN_SUCCESS != iReturn) {
           uiThrdRet = iReturn;
           WELS_THREAD_SIGNAL_AND_BREAK (pEncPEncCtx->pSliceThreading->pSliceCodedEvent,
@@ -651,7 +649,8 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
                                         iEventIdx);
         }
 
-        iReturn = WelsCodeOneSlice (pEncPEncCtx, pCurSlice, eNalType);
+        assert (iSliceIdx == (int) pSlice->uiSliceIdx);
+        iReturn = WelsCodeOneSlice (pEncPEncCtx, pSlice, eNalType);
         if (ENC_RETURN_SUCCESS != iReturn) {
           uiThrdRet = iReturn;
           WELS_THREAD_SIGNAL_AND_BREAK (pEncPEncCtx->pSliceThreading->pSliceCodedEvent,
@@ -727,8 +726,7 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
                                           pEncPEncCtx->pSliceThreading->pSliceCodedMasterEvent,
                                           iEventIdx);
           }
-
-          pSlice = pCurDq->ppSliceInLayer[iSliceIdx];
+          pSlice                = &pCurDq->sSliceThreadInfo.pSliceInThread[iThreadIdx][iSliceIdx];
           pSliceBs              = &pSlice->sSliceBs;
           pSliceBs->uiBsPos     = 0;
           pSliceBs->iNalIndex   = 0;
@@ -748,11 +746,9 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
             }
           }
 
-
           WelsLoadNalForSlice (pSliceBs, eNalType, eNalRefIdc);
-          pCurSlice = pEncPEncCtx->pCurDqLayer->ppSliceInLayer[iSliceIdx];
-          assert (iSliceIdx == (int) pCurSlice->uiSliceIdx);
-          iReturn = WelsCodeOneSlice (pEncPEncCtx, pCurSlice, eNalType);
+          assert (iSliceIdx == (int) pSlice->uiSliceIdx);
+          iReturn = WelsCodeOneSlice (pEncPEncCtx, pSlice, eNalType);
           if (ENC_RETURN_SUCCESS != iReturn) {
             uiThrdRet = iReturn;
             WELS_THREAD_SIGNAL_AND_BREAK (pEncPEncCtx->pSliceThreading->pSliceCodedEvent,
