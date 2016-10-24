@@ -643,8 +643,14 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
         WelsLoadNalForSlice (pSliceBs, eNalType, eNalRefIdc);
         pCurSlice = pEncPEncCtx->pCurDqLayer->ppSliceInLayer[iSliceIdx];
         assert (iSliceIdx == (int) pCurSlice->uiSliceIdx);
-        pCurSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice = pEncPEncCtx->pCurDqLayer->pFirstMbIdxOfSlice[iSliceIdx];
-        pCurSlice->iCountMbNumInSlice  = pEncPEncCtx->pCurDqLayer->pCountMbNumInSlice[iSliceIdx];
+        iReturn = SetSliceBoundaryInfo(pEncPEncCtx->pCurDqLayer, pCurSlice, iSliceIdx);
+        if (ENC_RETURN_SUCCESS != iReturn) {
+          uiThrdRet = iReturn;
+          WELS_THREAD_SIGNAL_AND_BREAK (pEncPEncCtx->pSliceThreading->pSliceCodedEvent,
+                                        pEncPEncCtx->pSliceThreading->pSliceCodedMasterEvent,
+                                        iEventIdx);
+        }
+
         iReturn = WelsCodeOneSlice (pEncPEncCtx, pCurSlice, eNalType);
         if (ENC_RETURN_SUCCESS != iReturn) {
           uiThrdRet = iReturn;

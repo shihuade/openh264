@@ -119,8 +119,8 @@ WelsErrorType CWelsSliceEncodingTask::InitTask() {
   m_pSliceBs->uiBsPos       = 0;
   m_pSliceBs->iNalIndex     = 0;
 
-  m_pSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice = m_pCtx->pCurDqLayer->pFirstMbIdxOfSlice[m_iSliceIdx];
-  m_pSlice->iCountMbNumInSlice  = m_pCtx->pCurDqLayer->pCountMbNumInSlice[m_iSliceIdx];
+  m_pCtx->iEncoderError   = SetSliceBoundaryInfo(m_pCtx->pCurDqLayer, m_pSlice, m_iSliceIdx);
+  WELS_VERIFY_RETURN_IFNEQ (m_pCtx->iEncoderError, ENC_RETURN_SUCCESS)
 
   SetOneSliceBsBufferUnderMultithread (m_pCtx, m_iThreadIdx, m_pSlice);
 

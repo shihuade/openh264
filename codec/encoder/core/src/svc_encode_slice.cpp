@@ -855,6 +855,20 @@ int32_t InitSliceBoundaryInfo (SDqLayer* pCurLayer, SSliceArgument* pSliceArgume
   return ENC_RETURN_SUCCESS;
 }
 
+int32_t SetSliceBoundaryInfo(SDqLayer* pCurLayer, SSlice* pSlice, const int32_t kiSliceIdx) {
+  if(NULL == pCurLayer || NULL == pSlice  ||
+    NULL == pCurLayer->pFirstMbIdxOfSlice ||
+    NULL == pCurLayer->pCountMbNumInSlice) {
+
+    return ENC_RETURN_UNEXPECTED;
+  }
+
+  pSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice = pCurLayer->pFirstMbIdxOfSlice[kiSliceIdx];
+  pSlice->iCountMbNumInSlice  = pCurLayer->pCountMbNumInSlice[kiSliceIdx];
+
+  return ENC_RETURN_SUCCESS;
+}
+
 //Allocate slice's MB info buffer
 int32_t AllocateSliceMBBuffer (SSlice* pSlice, CMemoryAlign* pMa) {
   if (AllocMbCacheAligned (&pSlice->sMbCacheInfo, pMa)) {
@@ -1131,7 +1145,6 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
                              const int32_t kiMaxSliceNumOld,
                              const int32_t kiMaxSliceNumNew) {
   CMemoryAlign* pMA           = pCtx->pMemAlign;
-  SDqLayer* pCurLayer         = pCtx->pCurDqLayer;
   SSlice* pBaseSlice          = NULL;
   SSlice* pNewSliceList       = NULL;
   SSlice* pSlice              = NULL;
