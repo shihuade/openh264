@@ -1062,6 +1062,12 @@ int32_t InitSliceInLayer (sWelsEncCtx* pCtx,
     return ENC_RETURN_MEMALLOCERR;
   }
 
+  pDqLayer->pCountMbNumInSlice = (int32_t*)pMa->WelsMallocz (sizeof (int32_t*) * iMaxSliceNum, "pCountMbNumInSlice");
+  if (NULL ==  pDqLayer->pCountMbNumInSlice) {
+    WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR, "CWelsH264SVCEncoder::InitSliceInLayer() pDqLayer->pCountMbNumInSlice is NULL");
+    return ENC_RETURN_MEMALLOCERR;
+  }
+
   InitSliceThreadInfo (pCtx,
                        pDqLayer,
                        kiDlayerIndex,
@@ -1071,6 +1077,8 @@ int32_t InitSliceInLayer (sWelsEncCtx* pCtx,
     pDqLayer->ppSliceInLayer = NULL;
     pMa->WelsFree (pDqLayer->pFirstMbIdxOfSlice, "pDqLayer->pFirstMbIdxOfSlice");
     pDqLayer->pFirstMbIdxOfSlice = NULL;
+    pMa->WelsFree (pDqLayer->pCountMbNumInSlice, "pDqLayer->pCountMbNumInSlice");
+    pDqLayer->pCountMbNumInSlice = NULL;
 
     return iRet;
   }
@@ -1261,6 +1269,7 @@ int32_t ReallocateSliceInThread (sWelsEncCtx* pCtx,
 }
 */
 
+
 int32_t ReallocSliceBuffer (sWelsEncCtx* pCtx) {
 
   CMemoryAlign* pMA        = pCtx->pMemAlign;
@@ -1273,6 +1282,7 @@ int32_t ReallocSliceBuffer (sWelsEncCtx* pCtx) {
   const int32_t kiCurDid   = pCtx->uiDependencyId;
 
   int32_t* pFirstMbIdxofSlice    = NULL;
+  int32_t* pCountMbNumInSlice    = NULL;
   SSlice* pLastCodedSlice        = pCurLayer->sSliceThreadInfo.pSliceInThread[0] + (iMaxSliceNumOld - 1);
   SSliceArgument* pSliceArgument = & pCtx->pSvcParam->sSpatialLayers[kiCurDid].sSliceArgument;
   iRet = CalculateNewSliceNum (pCurLayer,
@@ -1312,6 +1322,18 @@ int32_t ReallocSliceBuffer (sWelsEncCtx* pCtx) {
   memcpy (pFirstMbIdxofSlice, pCurLayer->pFirstMbIdxOfSlice, sizeof (int32_t) * iMaxSliceNumOld);
   pMA->WelsFree (pCurLayer->pFirstMbIdxOfSlice, "pFirstMbIdxofSlice");
   pCurLayer->pFirstMbIdxOfSlice = pFirstMbIdxofSlice;
+
+  // update for pCountMbNumInSlice
+  pCountMbNumInSlice = (int32_t*)pMA->WelsMallocz (sizeof (int32_t*) * iMaxSliceNumNew, "pCountMbNumInSlice");
+  if (NULL == pCountMbNumInSlice) {
+    WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR, "CWelsH264SVCEncoder::ReallocSliceBuffer: pCountMbNumInSlice is NULL");
+    return ENC_RETURN_MEMALLOCERR;
+  }
+  memset (pCountMbNumInSlice, 0, sizeof(int32_t) * iMaxSliceNumNew);
+  memcpy (pCountMbNumInSlice, pCurLayer->pCountMbNumInSlice, sizeof (int32_t) * iMaxSliceNumOld);
+  pMA->WelsFree (pCurLayer->pCountMbNumInSlice, "pCountMbNumInSlice");
+  pCurLayer->pCountMbNumInSlice = pCountMbNumInSlice;
+
 
   for (iSliceIdx = 0; iSliceIdx < iMaxSliceNumNew; iSliceIdx++) {
     pCurLayer->ppSliceInLayer[iSliceIdx] = pCurLayer->sSliceThreadInfo.pSliceInThread[0] + iSliceIdx;
