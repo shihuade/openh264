@@ -4452,7 +4452,6 @@ int32_t WelsCodeOnePicPartition (sWelsEncCtx* pCtx,
                                 ) {
 
   SDqLayer* pCurLayer                   = pCtx->pCurDqLayer;
-  SSliceCtx* pSliceCtx                  = &pCurLayer->sSliceEncCtx;
   SSlice* pStartSlice                   = pCurLayer->ppSliceInLayer[iStartSliceIdx];
   int32_t iNalIdxInLayer                = *pNalIdxInLayer;
   int32_t iSliceIdx                     = iStartSliceIdx;
