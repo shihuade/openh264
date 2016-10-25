@@ -4459,7 +4459,8 @@ int32_t WelsCodeOnePicPartition (sWelsEncCtx* pCtx,
 
   SDqLayer* pCurLayer                   = pCtx->pCurDqLayer;
   SSliceCtx* pSliceCtx                  = &pCurLayer->sSliceEncCtx;
-  SSlice* pStartSlice                   = pCurLayer->ppSliceInLayer[iStartSliceIdx];
+  uint32_t uiTheadIdx                   = 0;
+  SSlice* pStartSlice                   = &pCurLayer->sSliceThreadInfo.pSliceInThread[uiTheadIdx][iStartSliceIdx];
   int32_t iNalIdxInLayer                = *pNalIdxInLayer;
   int32_t iSliceIdx                     = iStartSliceIdx;
   const int32_t kiSliceStep             = pCtx->iActiveThreadsNum;
@@ -4471,7 +4472,6 @@ int32_t WelsCodeOnePicPartition (sWelsEncCtx* pCtx,
   const bool kbNeedPrefix               = pCtx->bNeedPrefixNalFlag;
   const int32_t kiSliceIdxStep          = pCtx->iActiveThreadsNum;
   int32_t iReturn = ENC_RETURN_SUCCESS;
-  uint32_t uiTheadIdx  = 0;
 
 
   //init
