@@ -528,7 +528,7 @@ int32_t WelsISliceMdEnc (sWelsEncCtx* pEncCtx, SSlice* pSlice) { //pMd + encodin
   int32_t iNextMbIdx            = kiSliceFirstMbXY;
   const int32_t kiTotalNumMb    = pCurLayer->iMbWidth * pCurLayer->iMbHeight;
   int32_t iCurMbIdx             = 0, iNumMbCoded = 0;
-  const int32_t kiSliceIdx      = pSlice->uiSliceIdx;
+  const int32_t kiSliceIdx      = pSlice->iSliceIdx;
   const uint8_t kuiChromaQpIndexOffset = pCurLayer->sLayerInfo.pPpsP->uiChromaQpIndexOffset;
 
   SWelsMD sMd;
@@ -591,7 +591,7 @@ int32_t WelsISliceMdEncDynamic (sWelsEncCtx* pEncCtx, SSlice* pSlice) { //pMd + 
   int32_t iNextMbIdx            = kiSliceFirstMbXY;
   const int32_t kiTotalNumMb    = pCurLayer->iMbWidth * pCurLayer->iMbHeight;
   int32_t iCurMbIdx             = 0, iNumMbCoded = 0;
-  const int32_t kiSliceIdx      = pSlice->uiSliceIdx;
+  const int32_t kiSliceIdx      = pSlice->iSliceIdx;
   const int32_t kiPartitionId   = (kiSliceIdx % pEncCtx->iActiveThreadsNum);
   const uint8_t kuiChromaQpIndexOffset = pCurLayer->sLayerInfo.pPpsP->uiChromaQpIndexOffset;
   int32_t iEncReturn = ENC_RETURN_SUCCESS;
@@ -948,8 +948,8 @@ int32_t InitSliceList (sWelsEncCtx* pCtx,
       return ENC_RETURN_MEMALLOCERR;
     }
 
-    pSlice->uiSliceIdx = iSliceIdx;
-    pSlice->uiThreadIdx = 0;
+    pSlice->iSliceIdx          = iSliceIdx;
+    pSlice->uiThreadIdx        = 0;
     pSlice->iCountMbNumInSlice = 0;
     pSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice = 0;
 
@@ -1175,7 +1175,7 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
       return ENC_RETURN_MEMALLOCERR;
     }
 
-    pSlice->uiSliceIdx = iSliceIdx;
+    pSlice->iSliceIdx = iSliceIdx;
     pSlice->uiThreadIdx = 0;
     pSlice->iCountMbNumInSlice = 0;
     pSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice = 0;
@@ -1372,8 +1372,8 @@ int32_t ReOrderSliceInLayer (SDqLayer* pCurLayer,
         return ENC_RETURN_UNEXPECTED;
       }
 
-      iPartitionID    = pSliceInThread->uiSliceIdx % kiPartitionNum;
-      iActualSliceIdx = aiPartitionOffset[iPartitionID] + pSliceInThread->uiSliceIdx / kiPartitionNum;
+      iPartitionID    = pSliceInThread->iSliceIdx % kiPartitionNum;
+      iActualSliceIdx = aiPartitionOffset[iPartitionID] + pSliceInThread->iSliceIdx / kiPartitionNum;
       pCurLayer->ppSliceInLayer[iActualSliceIdx] = pSliceInThread;
     }
   }
@@ -1388,7 +1388,7 @@ static inline int32_t CheckAllSliceBuffer(SDqLayer* pCurLayer, const int32_t kiC
       return ENC_RETURN_UNEXPECTED;
     }
 
-    if ( iSliceIdx != pCurLayer->ppSliceInLayer[iSliceIdx]->uiSliceIdx) {
+    if ( iSliceIdx != pCurLayer->ppSliceInLayer[iSliceIdx]->iSliceIdx) {
       return ENC_RETURN_UNEXPECTED;
     }
   }
@@ -1547,7 +1547,7 @@ bool DynSlcJudgeSliceBoundaryStepBack (void* pCtx, void* pSlice, SSliceCtx* pSli
   uint32_t uiLen = 0;
   int32_t iPosBitOffset = 0;
   const int32_t  kiActiveThreadsNum = pEncCtx->iActiveThreadsNum;
-  const int32_t  kiPartitaionId = pCurSlice->uiSliceIdx % kiActiveThreadsNum;
+  const int32_t  kiPartitaionId = pCurSlice->iSliceIdx % kiActiveThreadsNum;
   const int32_t  kiEndMbIdxOfPartition = pEncCtx->pCurDqLayer->pEndMbIdxOfPartition[kiPartitaionId];
 
   const bool    kbCurMbNotFirstMbOfCurSlice      = ((iCurMbIdx > 0) && (pSliceCtx->pOverallMbMap[iCurMbIdx] ==
@@ -1568,8 +1568,8 @@ bool DynSlcJudgeSliceBoundaryStepBack (void* pCtx, void* pSlice, SSliceCtx* pSli
       && kbCurMbNotLastMbOfCurPartition) { //decide to add new pSlice
 
     WelsLog (&pEncCtx->sLogCtx, WELS_LOG_DETAIL,
-             "DynSlcJudgeSliceBoundaryStepBack: AddSliceBoundary: iCurMbIdx=%d, uiLen=%d, uiSliceIdx=%d", iCurMbIdx, uiLen,
-             pCurSlice->uiSliceIdx);
+             "DynSlcJudgeSliceBoundaryStepBack: AddSliceBoundary: iCurMbIdx=%d, uiLen=%d, iSliceIdx=%d", iCurMbIdx, uiLen,
+             pCurSlice->iSliceIdx);
 
     if (pEncCtx->pSvcParam->iMultipleThreadIdc > 1) {
       WelsMutexLock (&pEncCtx->pSliceThreading->mutexSliceNumUpdate);
@@ -1582,7 +1582,7 @@ bool DynSlcJudgeSliceBoundaryStepBack (void* pCtx, void* pSlice, SSliceCtx* pSli
     //      and will also extend when reallocated,
     //  tmp change is:  iMaxSliceNumConstraint is alway set to be MAXSLICENUM, will not change even reallocate
     const bool kbSliceNumNotExceedConstraint = pSliceCtx->iSliceNumInFrame < pEncCtx->pCurDqLayer->iMaxSliceNum;
-    const bool kbSliceIdxNotExceedConstraint = ((int) pCurSlice->uiSliceIdx + kiActiveThreadsNum) < pEncCtx->pCurDqLayer->iMaxSliceNum;
+    const bool kbSliceIdxNotExceedConstraint = ((int) pCurSlice->iSliceIdx + kiActiveThreadsNum) < pEncCtx->pCurDqLayer->iMaxSliceNum;
     const bool kbSliceNumReachConstraint     = (pSliceCtx->iSliceNumInFrame == pEncCtx->pCurDqLayer->iMaxSliceNum);
 
     //DYNAMIC_SLICING_ONE_THREAD: judge jump_avoiding_pack_exceed
@@ -1642,7 +1642,7 @@ int32_t WelsMdInterMbLoop (sWelsEncCtx* pEncCtx, SSlice* pSlice, void* pWelsMd, 
   const int32_t kiTotalNumMb = pCurLayer->iMbWidth * pCurLayer->iMbHeight;
   const int32_t kiMvdInterTableStride = pEncCtx->iMvdCostTableStride;
   uint16_t* pMvdCostTable = &pEncCtx->pMvdCostTable[pEncCtx->iMvdCostTableSize];
-  const int32_t kiSliceIdx = pSlice->uiSliceIdx;
+  const int32_t kiSliceIdx = pSlice->iSliceIdx;
   const uint8_t kuiChromaQpIndexOffset = pCurLayer->sLayerInfo.pPpsP->uiChromaQpIndexOffset;
   int32_t iEncReturn = ENC_RETURN_SUCCESS;
   SDynamicSlicingStack sDss;
@@ -1733,7 +1733,7 @@ int32_t WelsMdInterMbLoopOverDynamicSlice (sWelsEncCtx* pEncCtx, SSlice* pSlice,
   int32_t iCurMbIdx = -1;
   const int32_t kiMvdInterTableStride = pEncCtx->iMvdCostTableStride;
   uint16_t* pMvdCostTable = &pEncCtx->pMvdCostTable[pEncCtx->iMvdCostTableSize];
-  const int32_t kiSliceIdx = pSlice->uiSliceIdx;
+  const int32_t kiSliceIdx = pSlice->iSliceIdx;
   const int32_t kiPartitionId = (kiSliceIdx % pEncCtx->iActiveThreadsNum);
   const uint8_t kuiChromaQpIndexOffset = pCurLayer->sLayerInfo.pPpsP->uiChromaQpIndexOffset;
   int32_t iEncReturn = ENC_RETURN_SUCCESS;

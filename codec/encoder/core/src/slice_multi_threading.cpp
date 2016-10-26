@@ -237,7 +237,7 @@ void DynamicAdjustSlicing (sWelsEncCtx* pCtx,
     }
     iRunLen[iSliceIdx] = iNumMbAssigning;
     MT_TRACE_LOG (&(pCtx->sLogCtx), WELS_LOG_DEBUG,
-                  "[MT] DynamicAdjustSlicing(), uiSliceIdx= %d, iSliceComplexRatio= %.2f, slice_run_org= %d, slice_run_adj= %d",
+                  "[MT] DynamicAdjustSlicing(), iSliceIdx= %d, iSliceComplexRatio= %.2f, slice_run_org= %d, slice_run_adj= %d",
                   iSliceIdx, ppSliceInLayer[iSliceIdx]->iSliceComplexRatio * 1.0f / INT_MULTIPLY,
                   ppSliceInLayer[iSliceIdx]->iCountMbNumInSlice,
                   iNumMbAssigning);
@@ -646,7 +646,7 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
                                         iEventIdx);
         }
 
-        assert (iSliceIdx == (int) pSlice->uiSliceIdx);
+        assert (iSliceIdx == pSlice->iSliceIdx);
         iReturn = WelsCodeOneSlice (pEncPEncCtx, pSlice, eNalType);
         if (ENC_RETURN_SUCCESS != iReturn) {
           uiThrdRet = iReturn;
@@ -670,7 +670,7 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
         if (bDsaFlag) {
           pSlice->uiSliceConsumeTime = (uint32_t) (WelsTime() - iSliceStart);
           MT_TRACE_LOG (& (pEncPEncCtx->sLogCtx), WELS_LOG_INFO,
-                        "[MT] CodingSliceThreadProc(), coding_idx %d, uiSliceIdx %d, uiSliceConsumeTime %d, iSliceSize %d, iFirstMbInSlice %d, count_num_mb_in_slice %d",
+                        "[MT] CodingSliceThreadProc(), coding_idx %d, iSliceIdx %d, uiSliceConsumeTime %d, iSliceSize %d, iFirstMbInSlice %d, count_num_mb_in_slice %d",
                         pEncPEncCtx->iCodingIndex, iSliceIdx,
                         pSlice->uiSliceConsumeTime, iSliceSize,
                         pSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice,
@@ -742,7 +742,7 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
           }
 
           WelsLoadNalForSlice (pSliceBs, eNalType, eNalRefIdc);
-          assert (iSliceIdx == (int) pSlice->uiSliceIdx);
+          assert (iSliceIdx == pSlice->iSliceIdx);
           iReturn = WelsCodeOneSlice (pEncPEncCtx, pSlice, eNalType);
           if (ENC_RETURN_SUCCESS != iReturn) {
             uiThrdRet = iReturn;
@@ -779,7 +779,7 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
 #endif//SLICE_INFO_OUTPUT
 
           MT_TRACE_LOG (&(pEncPEncCtx->sLogCtx), WELS_LOG_INFO,
-                        "[MT] CodingSliceThreadProc(), coding_idx %d, iPartitionId %d, uiSliceIdx %d, iSliceSize %d, count_mb_slice %d, iEndMbInPartition %d, pCurDq->pLastCodedMbIdxOfPartition[%d] %d\n",
+                        "[MT] CodingSliceThreadProc(), coding_idx %d, iPartitionId %d, iSliceIdx %d, iSliceSize %d, count_mb_slice %d, iEndMbInPartition %d, pCurDq->pLastCodedMbIdxOfPartition[%d] %d\n",
                         pEncPEncCtx->iCodingIndex, kiPartitionId, iSliceIdx, iSliceSize,
                         pSlice->iCountMbNumInSlice,
                         kiEndMbIdxInPartition, kiPartitionId, pCurDq->pLastCodedMbIdxOfPartition[kiPartitionId]);
