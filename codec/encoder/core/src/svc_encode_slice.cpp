@@ -972,6 +972,21 @@ int32_t InitSliceList (sWelsEncCtx* pCtx,
   return ENC_RETURN_SUCCESS;
 }
 
+int32_t InitAllSlicesInThread (sWelsEncCtx* pCtx) {
+  SDqLayer* pDqLayer = pCtx->pCurDqLayer;
+  int32_t iSliceIdx  = 0;
+
+  for( ; iSliceIdx < pDqLayer->iMaxSliceNum; iSliceIdx++) {
+    if(NULL == pDqLayer->ppSliceInLayer[iSliceIdx]) {
+      return ENC_RETURN_UNEXPECTED;
+    }
+
+    pDqLayer->ppSliceInLayer[iSliceIdx]->iSliceIdx = -1;
+  }
+
+  return ENC_RETURN_SUCCESS;
+}
+
 int32_t InitOneSliceInThread (sWelsEncCtx* pCtx,
                               SSlice*& pSlice,
                               const int32_t kiThreadIdx,

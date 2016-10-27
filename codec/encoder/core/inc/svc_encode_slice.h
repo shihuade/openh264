@@ -112,6 +112,8 @@ int32_t InitSliceList (sWelsEncCtx* pCtx,
                        const int32_t kiDlayerIndex,
                        CMemoryAlign* pMa);
 
+int32_t InitAllSlicesInThread (sWelsEncCtx* pCtx);
+
 int32_t InitOneSliceInThread (sWelsEncCtx* pCtx,
                               SSlice*& pSlice,
                               const int32_t kiThreadIdx,
