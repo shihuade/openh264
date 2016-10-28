@@ -138,6 +138,10 @@ int32_t ReallocateSliceInThread (sWelsEncCtx* pCtx,
 
 int32_t ReallocSliceBuffer (sWelsEncCtx* pCtx);
 
+int32_t FrameBsRealloc (sWelsEncCtx* pCtx,
+                        SFrameBSInfo* pFrameBsInfo,
+                        SLayerBSInfo* pLayerBsInfo);
+
 int32_t SliceLayerInfoUpdate (sWelsEncCtx* pCtx);
 
 //slice encoding process
