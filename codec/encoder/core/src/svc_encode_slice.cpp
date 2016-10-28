@@ -993,9 +993,6 @@ int32_t InitOneSliceInThread (sWelsEncCtx* pCtx,
                               const int32_t kiDlayerIdx,
                               const int32_t kiSliceIdx) {
   SDqLayer* pDqLayer                  = pCtx->pCurDqLayer;
-  SSliceArgument* pSliceArgument      = & pCtx->pSvcParam->sSpatialLayers[kiDlayerIdx].sSliceArgument;
-  const int32_t kiMBWidth             = pDqLayer->iMbWidth;
-  const int32_t kiMBHeight            = pDqLayer->iMbHeight;
   const int32_t kiCodedNumInThread    = pDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[kiThreadIdx];
   const int32_t kiMaxSliceNumInThread = pDqLayer->sSliceThreadInfo.iMaxSliceNumInThread[kiThreadIdx];
   int32_t iRet                        = 0;
@@ -1015,7 +1012,6 @@ int32_t InitOneSliceInThread (sWelsEncCtx* pCtx,
 
   return ENC_RETURN_SUCCESS;
 }
-
 
 int32_t InitSliceThreadInfo (sWelsEncCtx* pCtx,
                              SDqLayer* pDqLayer,
@@ -1368,18 +1364,26 @@ int32_t ReOrderSliceInLayer (SDqLayer* pCurLayer,
   int32_t iPartitionID      = 0;
   int32_t iSliceIdx         = 0;
   int32_t iSliceNumInThread = 0;
-  int32_t iPartitionOffset  = 0;
+  int32_t iEncodeSliceNum   = 0;
   int32_t iActualSliceIdx   = 0;
+  int32_t iNonUsedBufferNum = 0;
+  int32_t iUsedSliceNum     = 0;
   int32_t aiPartitionOffset[MAX_THREADS_NUM] = {0};
 
   //for non-dynamic slice mode, kiPartitionNum = 1, iPartitionOffset = 0
   for(iPartitionIdx = 0; iPartitionIdx < kiPartitionNum; iPartitionIdx++) {
-    aiPartitionOffset[iPartitionIdx] = iPartitionOffset;
-    iPartitionOffset                += pCurLayer->pNumSliceCodedOfPartition[iPartitionIdx];
+    aiPartitionOffset[iPartitionIdx] = iEncodeSliceNum;
+    iEncodeSliceNum                 += pCurLayer->pNumSliceCodedOfPartition[iPartitionIdx];
   }
 
+  if( iEncodeSliceNum != pCurLayer->sSliceEncCtx.iSliceNumInFrame) {
+    return ENC_RETURN_UNEXPECTED;
+  }
+
+  //before encode all slices in layer, slices' index are init with -1
+  //pSliceInThread->iSliceIdx will be set to actual slice index when encode one slice
   for (iThreadIdx = 0; iThreadIdx < kiThreadNum; iThreadIdx++) {
-    iSliceNumInThread = pCurLayer->sSliceThreadInfo.iEncodedSliceNumInThread[iThreadIdx];
+    iSliceNumInThread = pCurLayer->sSliceThreadInfo.iMaxSliceNumInThread[iThreadIdx];
 
     for(iSliceIdx =0; iSliceIdx < iSliceNumInThread; iSliceIdx++) {
       pSliceInThread = pCurLayer->sSliceThreadInfo.pSliceInThread[iThreadIdx] + iSliceIdx;
@@ -1387,10 +1391,21 @@ int32_t ReOrderSliceInLayer (SDqLayer* pCurLayer,
         return ENC_RETURN_UNEXPECTED;
       }
 
-      iPartitionID    = pSliceInThread->iSliceIdx % kiPartitionNum;
-      iActualSliceIdx = aiPartitionOffset[iPartitionID] + pSliceInThread->iSliceIdx / kiPartitionNum;
-      pCurLayer->ppSliceInLayer[iActualSliceIdx] = pSliceInThread;
+      if( -1 != pSliceInThread->iSliceIdx) {
+        iPartitionID    = pSliceInThread->iSliceIdx % kiPartitionNum;
+        iActualSliceIdx = aiPartitionOffset[iPartitionID] + pSliceInThread->iSliceIdx / kiPartitionNum;
+        pCurLayer->ppSliceInLayer[iActualSliceIdx] = pSliceInThread;
+        iUsedSliceNum ++;
+      } else {
+          pCurLayer->ppSliceInLayer[iEncodeSliceNum + iNonUsedBufferNum] = pSliceInThread;
+          iNonUsedBufferNum ++;
+      }
     }
+  }
+
+  if( iUsedSliceNum != iEncodeSliceNum ||
+     pCurLayer->iMaxSliceNum != (iNonUsedBufferNum + iUsedSliceNum)) {
+    return ENC_RETURN_UNEXPECTED;
   }
 
   return ENC_RETURN_SUCCESS;
