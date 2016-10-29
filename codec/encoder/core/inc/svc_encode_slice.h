@@ -143,7 +143,10 @@ int32_t FrameBsRealloc (sWelsEncCtx* pCtx,
                         SLayerBSInfo* pLayerBsInfo,
                         const int32_t kiMaxSliceNumOld);
 
-int32_t SliceLayerInfoUpdate (sWelsEncCtx* pCtx);
+int32_t SliceLayerInfoUpdate (sWelsEncCtx* pCtx,
+                              SFrameBSInfo* pFrameBsInfo,
+                              SLayerBSInfo* pLayerBsInfo,
+                              const int32_t kiPartitionNum);
 
 //slice encoding process
 int32_t WelsCodePSlice (sWelsEncCtx* pEncCtx, SSlice* pSlice);

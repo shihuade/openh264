@@ -4389,7 +4389,6 @@ int32_t DynSliceRealloc (sWelsEncCtx* pCtx,
   int32_t iRet = 0;
 
   iRet = FrameBsRealloc (pCtx, pFrameBsInfo, pLayerBsInfo, pCtx->pCurDqLayer->iMaxSliceNum);
-
   if(ENC_RETURN_SUCCESS != iRet) {
     return iRet;
   }

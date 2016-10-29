@@ -1481,17 +1481,15 @@ int32_t FrameBsRealloc (sWelsEncCtx* pCtx,
   return ENC_RETURN_SUCCESS;
 }
 
-int32_t SliceLayerInfoUpdate (sWelsEncCtx* pCtx, const int32_t kiDlayerIndex) {
-
-  CMemoryAlign* pMA       = pCtx->pMemAlign;
+int32_t SliceLayerInfoUpdate (sWelsEncCtx* pCtx,
+                              SFrameBSInfo* pFrameBsInfo,
+                              SLayerBSInfo* pLayerBsInfo,
+                              const int32_t kiPartitionNum) {
   SDqLayer* pCurLayer     = pCtx->pCurDqLayer;
-  SSlice** ppSlice        = NULL;
   int32_t iMaxSliceNum    = 0;
   int32_t iThreadIdx      = 0;
   int32_t iRet            = 0;
   int32_t iThreadNum      = 1; //TODO: should be equal to pCurLayer->iMaxSliceNum;
-  SSliceArgument* pSliceArgument = & pCtx->pSvcParam->sSpatialLayers[kiDlayerIndex].sSliceArgument;
-  int32_t iPartitionNum   = (SM_SIZELIMITED_SLICE == pSliceArgument->uiSliceMode) ? pCtx->iActiveThreadsNum : 1;
 
   for ( ; iThreadIdx < iThreadNum; iThreadIdx++) {
     iMaxSliceNum += pCurLayer->sSliceThreadInfo.iMaxSliceNumInThread[iThreadIdx];
@@ -1499,20 +1497,20 @@ int32_t SliceLayerInfoUpdate (sWelsEncCtx* pCtx, const int32_t kiDlayerIndex) {
 
   //reallocate ppSliceInLayer if total encoded slice num exceed max slice num
   if (iMaxSliceNum > pCurLayer->iMaxSliceNum) {
-    ppSlice = (SSlice**)pMA->WelsMallocz (sizeof (SSlice*) * iMaxSliceNum, "ppSlice");
-    if (NULL == ppSlice) {
-      WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR, "CWelsH264SVCEncoder::SliceLayerInfoUpdate: ppSlice is NULL");
-      return ENC_RETURN_MEMALLOCERR;
+    iRet = FrameBsRealloc (pCtx, pFrameBsInfo, pLayerBsInfo, pCtx->pCurDqLayer->iMaxSliceNum);
+    if(ENC_RETURN_SUCCESS != iRet) {
+      return iRet;
     }
 
-
-    pMA->WelsFree (pCurLayer->ppSliceInLayer, "ppSliceInLayer");
-    pCurLayer->ppSliceInLayer = ppSlice;
+    iRet = ExtendLayerBuffer(pCtx, pCtx->pCurDqLayer->iMaxSliceNum, iMaxSliceNum);
+    if (ENC_RETURN_SUCCESS != iRet) {
+      return iRet;
+    }
     pCurLayer->iMaxSliceNum = iMaxSliceNum;
   }
 
   //update ppSliceInLayer based on pSliceInThread, reordering based on slice index
-  iRet = ReOrderSliceInLayer (pCurLayer, iThreadNum, iPartitionNum);
+  iRet = ReOrderSliceInLayer (pCurLayer, iThreadNum, kiPartitionNum);
   if (ENC_RETURN_SUCCESS != iRet) {
     WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR,
              "CWelsH264SVCEncoder::SliceLayerInfoUpdate: ReOrderSliceInLayer failed");
@@ -1521,7 +1519,6 @@ int32_t SliceLayerInfoUpdate (sWelsEncCtx* pCtx, const int32_t kiDlayerIndex) {
 
   return ENC_RETURN_SUCCESS;
 }
-
 
 int32_t WelsCodeOneSlice (sWelsEncCtx* pEncCtx, SSlice* pCurSlice, const int32_t kiNalType) {
   SDqLayer* pCurLayer                   = pEncCtx->pCurDqLayer;
@@ -1577,7 +1574,6 @@ void UpdateMbNeighbourInfoForNextSlice (SDqLayer* pCurDq,
   } while ((iIdx < kiEndMbNeedUpdate) &&
            (iIdx <= kiLastMbIdxInPartition));
 }
-
 
 void AddSliceBoundary (sWelsEncCtx* pEncCtx, SSlice* pCurSlice, SSliceCtx* pSliceCtx, SMB* pCurMb,
                        int32_t iFirstMbIdxOfNextSlice, const int32_t kiLastMbIdxInPartition) {
