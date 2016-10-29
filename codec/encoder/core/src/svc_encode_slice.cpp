@@ -1444,15 +1444,11 @@ int32_t ReOrderSliceInLayer (SDqLayer* pCurLayer,
 
 int32_t FrameBsRealloc (sWelsEncCtx* pCtx,
                         SFrameBSInfo* pFrameBsInfo,
-                        SLayerBSInfo* pLayerBsInfo) {
-  CMemoryAlign* pMA = pCtx->pMemAlign;
-  SDqLayer* pCurLayer = pCtx->pCurDqLayer;
-
+                        SLayerBSInfo* pLayerBsInfo,
+                        const int32_t kiMaxSliceNumOld) {
+  CMemoryAlign* pMA  = pCtx->pMemAlign;
   int32_t iCountNals = pCtx->pOut->iCountNals;
-  int32_t iMaxSliceNumOld = pCurLayer->iMaxSliceNum;
-  int32_t iMaxSliceNum = iMaxSliceNumOld;
-  iCountNals += iMaxSliceNum * (pCtx->pSvcParam->iSpatialLayerNum + pCtx->bNeedPrefixNalFlag);
-  iMaxSliceNum *= SLICE_NUM_EXPAND_COEF;
+  iCountNals += kiMaxSliceNumOld * (pCtx->pSvcParam->iSpatialLayerNum + pCtx->bNeedPrefixNalFlag);
 
   SWelsNalRaw* pNalList = (SWelsNalRaw*)pMA->WelsMallocz (iCountNals * sizeof (SWelsNalRaw), "pOut->sNalList");
   if (NULL == pNalList) {

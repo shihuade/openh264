@@ -140,7 +140,8 @@ int32_t ReallocSliceBuffer (sWelsEncCtx* pCtx);
 
 int32_t FrameBsRealloc (sWelsEncCtx* pCtx,
                         SFrameBSInfo* pFrameBsInfo,
-                        SLayerBSInfo* pLayerBsInfo);
+                        SLayerBSInfo* pLayerBsInfo,
+                        const int32_t kiMaxSliceNumOld);
 
 int32_t SliceLayerInfoUpdate (sWelsEncCtx* pCtx);
 
