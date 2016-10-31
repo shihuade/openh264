@@ -975,15 +975,20 @@ int32_t InitSliceList (sWelsEncCtx* pCtx,
 }
 
 int32_t InitAllSlicesInThread (sWelsEncCtx* pCtx) {
-  SDqLayer* pDqLayer = pCtx->pCurDqLayer;
-  int32_t iSliceIdx  = 0;
+  SDqLayer* pCurDqLayer = pCtx->pCurDqLayer;
+  int32_t iSliceIdx     = 0;
+  int32_t iTheadIdx     = 0;
 
-  for( ; iSliceIdx < pDqLayer->iMaxSliceNum; iSliceIdx++) {
-    if(NULL == pDqLayer->ppSliceInLayer[iSliceIdx]) {
+  for( ; iSliceIdx < pCurDqLayer->iMaxSliceNum; iSliceIdx++) {
+    if(NULL == pCurDqLayer->ppSliceInLayer[iSliceIdx]) {
       return ENC_RETURN_UNEXPECTED;
     }
 
-    pDqLayer->ppSliceInLayer[iSliceIdx]->iSliceIdx = -1;
+    pCurDqLayer->ppSliceInLayer[iSliceIdx]->iSliceIdx = -1;
+  }
+
+  for( ; iTheadIdx < pCtx->iActiveThreadsNum; iTheadIdx++ ) {
+    pCurDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[iTheadIdx] = 0;
   }
 
   return ENC_RETURN_SUCCESS;
@@ -995,7 +1000,9 @@ int32_t InitOneSliceInThread (sWelsEncCtx* pCtx,
                               const int32_t kiDlayerIdx,
                               const int32_t kiSliceIdx) {
   SDqLayer* pDqLayer                  = pCtx->pCurDqLayer;
-  const int32_t kiCodedNumInThread    = pDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[kiThreadIdx];
+  //TODO: temp test change, will rollback
+  //const int32_t kiCodedNumInThread    = pDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[kiThreadIdx];
+  const int32_t kiCodedNumInThread    = pDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[0];
   const int32_t kiMaxSliceNumInThread = pDqLayer->sSliceThreadInfo.iMaxSliceNumInThread[kiThreadIdx];
   int32_t iRet                        = 0;
 
@@ -1005,8 +1012,11 @@ int32_t InitOneSliceInThread (sWelsEncCtx* pCtx,
       return iRet;
     }
   }
+  //TODO: temp test change, will rollback
+  //pSlice = pDqLayer->sSliceThreadInfo.pSliceInThread [kiThreadIdx] + kiCodedNumInThread;
+  pSlice = pDqLayer->sSliceThreadInfo.pSliceInThread [0] + kiSliceIdx;
+  pSlice->iSliceIdx = kiSliceIdx;
 
-  pSlice = pDqLayer->sSliceThreadInfo.pSliceInThread [kiThreadIdx] + kiCodedNumInThread;
   // Initialize slice bs buffer info
   pSlice->sSliceBs.uiBsPos   = 0;
   pSlice->sSliceBs.iNalIndex = 0;
@@ -1391,8 +1401,8 @@ static inline int32_t CheckAllSliceBuffer(SDqLayer* pCurLayer, const int32_t kiC
 
 
 int32_t ReOrderSliceInLayer (SDqLayer* pCurLayer,
-                             const int32_t kiThreadNum,
-                             const int32_t kiPartitionNum) {
+                             const SliceModeEnum kuiSliceMode,
+                             const int32_t kiThreadNum) {
   SSlice* pSliceInThread    = NULL;
   int32_t iThreadIdx        = 0;
   int32_t iPartitionIdx     = 0;
@@ -1403,12 +1413,18 @@ int32_t ReOrderSliceInLayer (SDqLayer* pCurLayer,
   int32_t iActualSliceIdx   = 0;
   int32_t iNonUsedBufferNum = 0;
   int32_t iUsedSliceNum     = 0;
+  int32_t iPartitionNum     = 0;
   int32_t aiPartitionOffset[MAX_THREADS_NUM] = {0};
 
-  //for non-dynamic slice mode, kiPartitionNum = 1, iPartitionOffset = 0
-  for(iPartitionIdx = 0; iPartitionIdx < kiPartitionNum; iPartitionIdx++) {
+  //for non-dynamic slice mode, iPartitionNum = 1, iPartitionOffset = 0
+  iPartitionNum = (SM_SIZELIMITED_SLICE == kuiSliceMode) ? kiThreadNum : 1;
+  for(iPartitionIdx = 0; iPartitionIdx < iPartitionNum; iPartitionIdx++) {
     aiPartitionOffset[iPartitionIdx] = iEncodeSliceNum;
-    iEncodeSliceNum                 += pCurLayer->pNumSliceCodedOfPartition[iPartitionIdx];
+    if ( SM_SIZELIMITED_SLICE == kuiSliceMode) {
+      iEncodeSliceNum  += pCurLayer->pNumSliceCodedOfPartition[iPartitionIdx];
+    } else {
+      iEncodeSliceNum = pCurLayer->sSliceEncCtx.iSliceNumInFrame;
+    }
   }
 
   if( iEncodeSliceNum != pCurLayer->sSliceEncCtx.iSliceNumInFrame) {
@@ -1427,8 +1443,8 @@ int32_t ReOrderSliceInLayer (SDqLayer* pCurLayer,
       }
 
       if( -1 != pSliceInThread->iSliceIdx) {
-        iPartitionID    = pSliceInThread->iSliceIdx % kiPartitionNum;
-        iActualSliceIdx = aiPartitionOffset[iPartitionID] + pSliceInThread->iSliceIdx / kiPartitionNum;
+        iPartitionID    = pSliceInThread->iSliceIdx % iPartitionNum;
+        iActualSliceIdx = aiPartitionOffset[iPartitionID] + pSliceInThread->iSliceIdx / iPartitionNum;
         pCurLayer->ppSliceInLayer[iActualSliceIdx] = pSliceInThread;
         iUsedSliceNum ++;
       } else {
@@ -1492,12 +1508,12 @@ int32_t FrameBsRealloc (sWelsEncCtx* pCtx,
 int32_t SliceLayerInfoUpdate (sWelsEncCtx* pCtx,
                               SFrameBSInfo* pFrameBsInfo,
                               SLayerBSInfo* pLayerBsInfo,
-                              const int32_t kiPartitionNum) {
-  SDqLayer* pCurLayer     = pCtx->pCurDqLayer;
-  int32_t iMaxSliceNum    = 0;
-  int32_t iThreadIdx      = 0;
-  int32_t iRet            = 0;
-  int32_t iThreadNum      = 1; //TODO: should be equal to pCurLayer->iMaxSliceNum;
+                              const SliceModeEnum kuiSliceMode) {
+  SDqLayer* pCurLayer  = pCtx->pCurDqLayer;
+  int32_t iMaxSliceNum = 0;
+  int32_t iThreadIdx   = 0;
+  int32_t iRet         = 0;
+  int32_t iThreadNum   = pCtx->iActiveThreadsNum;
 
   for ( ; iThreadIdx < iThreadNum; iThreadIdx++) {
     iMaxSliceNum += pCurLayer->sSliceThreadInfo.iMaxSliceNumInThread[iThreadIdx];
@@ -1505,6 +1521,7 @@ int32_t SliceLayerInfoUpdate (sWelsEncCtx* pCtx,
 
   //reallocate ppSliceInLayer if total encoded slice num exceed max slice num
   if (iMaxSliceNum > pCurLayer->iMaxSliceNum) {
+    //TODO: will add frame bs extend size as input parameters
     iRet = FrameBsRealloc (pCtx, pFrameBsInfo, pLayerBsInfo, pCtx->pCurDqLayer->iMaxSliceNum);
     if(ENC_RETURN_SUCCESS != iRet) {
       return iRet;
@@ -1518,7 +1535,7 @@ int32_t SliceLayerInfoUpdate (sWelsEncCtx* pCtx,
   }
 
   //update ppSliceInLayer based on pSliceInThread, reordering based on slice index
-  iRet = ReOrderSliceInLayer (pCurLayer, iThreadNum, kiPartitionNum);
+  iRet = ReOrderSliceInLayer (pCurLayer, kuiSliceMode, iThreadNum);
   if (ENC_RETURN_SUCCESS != iRet) {
     WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR,
              "CWelsH264SVCEncoder::SliceLayerInfoUpdate: ReOrderSliceInLayer failed");

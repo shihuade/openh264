@@ -112,18 +112,18 @@ WelsErrorType CWelsSliceEncodingTask::InitTask() {
     return ENC_RETURN_UNEXPECTED;
   }
 
-  //m_pCtx->iEncoderError = InitOneSliceInThread (m_pCtx, m_pSlice, m_iThreadIdx, m_pCtx->uiDependencyId, m_iSliceIdx);
-  //WELS_VERIFY_RETURN_IFNEQ (m_pCtx->iEncoderError, ENC_RETURN_SUCCESS)
-  m_pSlice = &m_pCtx->pCurDqLayer->sSliceThreadInfo.pSliceInThread[0][m_iSliceIdx];
+  m_pCtx->iEncoderError = InitOneSliceInThread (m_pCtx, m_pSlice, m_iThreadIdx, m_pCtx->uiDependencyId, m_iSliceIdx);
+  WELS_VERIFY_RETURN_IFNEQ (m_pCtx->iEncoderError, ENC_RETURN_SUCCESS)
+  //m_pSlice = &m_pCtx->pCurDqLayer->sSliceThreadInfo.pSliceInThread[0][m_iSliceIdx];
   m_pSliceBs = &m_pSlice->sSliceBs;
 
-  m_pSliceBs->uiBsPos       = 0;
-  m_pSliceBs->iNalIndex     = 0;
+  //m_pSliceBs->uiBsPos       = 0;
+  //m_pSliceBs->iNalIndex     = 0;
 
   m_pCtx->iEncoderError   = SetSliceBoundaryInfo(m_pCtx->pCurDqLayer, m_pSlice, m_iSliceIdx);
   WELS_VERIFY_RETURN_IFNEQ (m_pCtx->iEncoderError, ENC_RETURN_SUCCESS)
 
-  SetOneSliceBsBufferUnderMultithread (m_pCtx, m_iThreadIdx, m_pSlice);
+  //SetOneSliceBsBufferUnderMultithread (m_pCtx, m_iThreadIdx, m_pSlice);
 
   assert ((void*) (&m_pSliceBs->sBsWrite) == (void*)m_pSlice->pSliceBsa);
   InitBits (&m_pSliceBs->sBsWrite, m_pSliceBs->pBsBuffer, m_pSliceBs->uiSize);
@@ -196,8 +196,9 @@ WelsErrorType CWelsSliceEncodingTask::ExecuteTask() {
 #if MT_DEBUG_BS_WR
   m_pSliceBs->bSliceCodedFlag = true;
 #endif//MT_DEBUG_BS_WR
-
-  //m_pCtx->pCurDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[m_iThreadIdx] ++;
+    WelsMutexLock (&m_pCtx->pSliceThreading->mutexThreadBsBufferUsage);
+    m_pCtx->pCurDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[0] ++;
+    WelsMutexUnlock (&m_pCtx->pSliceThreading->mutexThreadBsBufferUsage);
 
   return ENC_RETURN_SUCCESS;
 }

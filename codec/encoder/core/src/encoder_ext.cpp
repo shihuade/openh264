@@ -3675,7 +3675,8 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
         pLayerBsInfo->eFrameType    = eFrameType;
         pLayerBsInfo->iSubSeqId = GetSubSequenceId (pCtx, eFrameType);
 
-        //InitAllSlicesInThread(pCtx);
+        InitAllSlicesInThread(pCtx);
+        pCtx->pCurDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[0] = 0;
         pCtx->pTaskManage->ExecuteTasks();
         if (pCtx->iEncoderError) {
           WelsLog (pLogCtx, WELS_LOG_ERROR,
@@ -3686,7 +3687,7 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
 
         //TO DO: add update ppSliceInLayer module based on pSliceInThread[ThreadNum]
 
-        //SliceLayerInfoUpdate (pCtx, pFbi, pLayerBsInfo, 1);
+        SliceLayerInfoUpdate (pCtx, pFbi, pLayerBsInfo, pParam->sSliceArgument.uiSliceMode);
         iLayerSize = AppendSliceToFrameBs (pCtx, pLayerBsInfo, iSliceCount);
       }
       // THREAD_FULLY_FIRE_MODE && SM_SIZELIMITED_SLICE
