@@ -4442,7 +4442,6 @@ int32_t WelsCodeOnePicPartition (sWelsEncCtx* pCtx,
     int32_t iPayloadSize    = 0;
     SSlice* pCurSlice = NULL;
 
-      //if (iSliceIdx >= (pCurLayer->iMaxSliceNum - kiSliceIdxStep)) { // insufficient memory in pSliceInLayer[]
     if (iSliceIdx >= (pCurLayer->sSliceThreadInfo.iMaxSliceNumInThread[uiTheadIdx] - kiSliceIdxStep)) { // insufficient memory in pSliceInLayer[]
       if (pCtx->iActiveThreadsNum == 1) {
         //only single thread support re-alloc now
