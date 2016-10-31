@@ -1289,7 +1289,7 @@ int32_t ExtendLayerBuffer(sWelsEncCtx* pCtx,
   // update for ppsliceInlayer
   ppSlice = (SSlice**)pMA->WelsMallocz (sizeof (SSlice*) * kiMaxSliceNumNew, "ppSlice");
   if (NULL == ppSlice) {
-    WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR, "CWelsH264SVCEncoder::ReallocSliceBuffer: ppSlice is NULL");
+    WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR, "CWelsH264SVCEncoder::ExtendLayerBuffer: ppSlice is NULL");
     return ENC_RETURN_MEMALLOCERR;
   }
   pMA->WelsFree (pCurLayer->ppSliceInLayer, "ppSliceInLayer");
@@ -1298,7 +1298,7 @@ int32_t ExtendLayerBuffer(sWelsEncCtx* pCtx,
   // update for pFirstMbIdxInSlice
   pFirstMbIdxofSlice = (int32_t*)pMA->WelsMallocz (sizeof (int32_t*) * kiMaxSliceNumNew, "pFirstMbIdxofSlice");
   if (NULL == pFirstMbIdxofSlice) {
-    WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR, "CWelsH264SVCEncoder::ReallocSliceBuffer: pFirstMbIdxofSlice is NULL");
+    WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR, "CWelsH264SVCEncoder::ExtendLayerBuffer: pFirstMbIdxofSlice is NULL");
     return ENC_RETURN_MEMALLOCERR;
   }
   memset (pFirstMbIdxofSlice, 0, sizeof(int32_t) * kiMaxSliceNumOld);
@@ -1309,7 +1309,7 @@ int32_t ExtendLayerBuffer(sWelsEncCtx* pCtx,
   // update for pCountMbNumInSlice
   pCountMbNumInSlice = (int32_t*)pMA->WelsMallocz (sizeof (int32_t*) * kiMaxSliceNumNew, "pCountMbNumInSlice");
   if (NULL == pCountMbNumInSlice) {
-    WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR, "CWelsH264SVCEncoder::ReallocSliceBuffer: pCountMbNumInSlice is NULL");
+    WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR, "CWelsH264SVCEncoder::ExtendLayerBuffer: pCountMbNumInSlice is NULL");
     return ENC_RETURN_MEMALLOCERR;
   }
   memset (pCountMbNumInSlice, 0, sizeof(int32_t) * kiMaxSliceNumNew);
