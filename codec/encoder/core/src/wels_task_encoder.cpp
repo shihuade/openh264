@@ -197,7 +197,7 @@ WelsErrorType CWelsSliceEncodingTask::ExecuteTask() {
   m_pSliceBs->bSliceCodedFlag = true;
 #endif//MT_DEBUG_BS_WR
     WelsMutexLock (&m_pCtx->pSliceThreading->mutexThreadBsBufferUsage);
-    m_pCtx->pCurDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[0] ++;
+    m_pCtx->pCurDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[m_iThreadIdx] ++;
     WelsMutexUnlock (&m_pCtx->pSliceThreading->mutexThreadBsBufferUsage);
 
   return ENC_RETURN_SUCCESS;

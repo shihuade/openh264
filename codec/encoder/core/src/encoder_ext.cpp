@@ -2510,22 +2510,17 @@ void WelsInitCurrentLayer (sWelsEncCtx* pCtx,
   SSlice*   pBaseSlice          = pCurDq->ppSliceInLayer[0];
   const uint8_t kiCurDid        = pCtx->uiDependencyId;
   const bool kbUseSubsetSpsFlag = (!pParam->bSimulcastAVC) && (kiCurDid > BASE_DEPENDENCY_ID);
-  SSpatialLayerConfig* fDlp     = &pParam->sSpatialLayers[kiCurDid];
   SNalUnitHeaderExt* pNalHdExt  = &pCurDq->sLayerInfo.sNalHeaderExt;
   SNalUnitHeader* pNalHd        = &pNalHdExt->sNalUnitHeader;
   SDqIdc* pDqIdc                = &pCtx->pDqIdcMap[kiCurDid];
   int32_t iIdx                  = 0;
-  int32_t iSliceCount           = 0;
+  int32_t iSliceCount           = pCurDq->iMaxSliceNum;
   SSpatialLayerInternal* pParamInternal = &pParam->sDependencyLayers[kiCurDid];
   if (NULL == pCurDq)
     return;
 
   pCurDq->pDecPic = pDecPic;
 
-  if (fDlp->sSliceArgument.uiSliceMode == SM_SIZELIMITED_SLICE) // need get extra slices for update
-    iSliceCount = GetInitialSliceNum (pCurDq->iMbWidth, pCurDq->iMbHeight, &fDlp->sSliceArgument);
-  else
-    iSliceCount = GetCurrentSliceNum (pCurDq);
   assert (iSliceCount > 0);
 
   int32_t iCurPpsId = pDqIdc->iPpsId;
@@ -2782,7 +2777,7 @@ static inline void WelsSwapDqLayers (sWelsEncCtx* pCtx, const int32_t kiNextDqId
  * \brief   prefetch reference picture after WelsBuildRefList
  */
 static inline void PrefetchReferencePicture (sWelsEncCtx* pCtx, const EVideoFrameType keFrameType) {
-  const int32_t kiSliceCount = GetCurrentSliceNum (pCtx->pCurDqLayer);
+  const int32_t kiSliceCount = pCtx->pCurDqLayer->iMaxSliceNum;
   int32_t iIdx = 0;
   uint8_t uiRefIdx = -1;
 
@@ -3676,7 +3671,6 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
         pLayerBsInfo->iSubSeqId = GetSubSequenceId (pCtx, eFrameType);
 
         InitAllSlicesInThread(pCtx);
-        pCtx->pCurDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[0] = 0;
         pCtx->pTaskManage->ExecuteTasks();
         if (pCtx->iEncoderError) {
           WelsLog (pLogCtx, WELS_LOG_ERROR,
@@ -4098,7 +4092,7 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
     if ((pCtx->iActiveThreadsNum > 1) && (MAX_NAL_UNITS_IN_LAYER < pFbi->sLayerInfo[k].iNalCount)) {
       WelsLog (& pCtx->sLogCtx, WELS_LOG_ERROR,
                "WelsEncoderEncodeExt(), iCountNumNals(%d) > MAX_NAL_UNITS_IN_LAYER(%d) under multi-thread(%d) NOT supported!",
-               pFbi->sLayerInfo[k].iNalCount, MAX_NAL_UNITS_IN_LAYER), pCtx->iActiveThreadsNum;
+               pFbi->sLayerInfo[k].iNalCount, MAX_NAL_UNITS_IN_LAYER, pCtx->iActiveThreadsNum;
       return ENC_RETURN_UNEXPECTED;
     }
   }
