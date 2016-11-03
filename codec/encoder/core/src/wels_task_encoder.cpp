@@ -176,7 +176,6 @@ WelsErrorType CWelsSliceEncodingTask::ExecuteTask() {
 
   m_iSliceSize = 0;
   iReturn      = WriteSliceBs (m_pCtx, m_pSliceBs, m_iSliceIdx, m_iSliceSize);
-
   if (ENC_RETURN_SUCCESS != iReturn) {
     WelsLog (&m_pCtx->sLogCtx, WELS_LOG_WARNING,
              "[MT] CWelsSliceEncodingTask ExecuteTask(), WriteSliceBs not successful: coding_idx %d, um_iSliceIdx %d",
@@ -184,6 +183,8 @@ WelsErrorType CWelsSliceEncodingTask::ExecuteTask() {
              m_iSliceIdx);
     return iReturn;
   }
+
+  OutputSliceInfo(m_pCtx, m_pSlice, m_iSliceSize);
 
   m_pCtx->pFuncList->pfDeblocking.pfDeblockingFilterSlice (m_pCtx->pCurDqLayer, m_pCtx->pFuncList, m_iSliceIdx);
 
