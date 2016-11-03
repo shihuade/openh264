@@ -1006,8 +1006,8 @@ int32_t InitOneSliceInThread (sWelsEncCtx* pCtx,
                               const int32_t kiSliceIdx) {
   SDqLayer* pDqLayer                  = pCtx->pCurDqLayer;
   //TODO: temp test change, will rollback
-  //const int32_t kiCodedNumInThread    = pDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[kiThreadIdx];
-  const int32_t kiCodedNumInThread    = pDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[0];
+  const int32_t kiCodedNumInThread    = pDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[kiThreadIdx];
+  //const int32_t kiCodedNumInThread    = pDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[0];
   const int32_t kiMaxSliceNumInThread = pDqLayer->sSliceThreadInfo.iMaxSliceNumInThread[kiThreadIdx];
   int32_t iRet                        = 0;
 
@@ -1018,17 +1018,12 @@ int32_t InitOneSliceInThread (sWelsEncCtx* pCtx,
     }
   }
   //TODO: temp test change, will rollback
-  //pSlice = &pDqLayer->sSliceThreadInfo.pSliceInThread [kiThreadIdx][kiCodedNumInThread];
-  pSlice = &pDqLayer->sSliceThreadInfo.pSliceInThread [0][kiSliceIdx];
+  pSlice = &pDqLayer->sSliceThreadInfo.pSliceInThread [kiThreadIdx][kiCodedNumInThread];
+  //pSlice = &pDqLayer->sSliceThreadInfo.pSliceInThread [0][kiSliceIdx];
   pSlice->iSliceIdx = kiSliceIdx;
   //TODO: temp test change, will rollback
-  //pSlice->uiThreadIdx = kiThreadIdx;
-  pSlice->uiThreadIdx = 0;
-  /*printf("kiSliceIdx %2d , kiThreadIdx %d, kiCodedNumInThread %2d \n",
-        kiSliceIdx,
-        kiThreadIdx,
-        kiCodedNumInThread);
-  */
+  pSlice->uiThreadIdx = kiThreadIdx;
+  //pSlice->uiThreadIdx = 0;
 
   // Initialize slice bs buffer info
   pSlice->sSliceBs.uiBsPos   = 0;
