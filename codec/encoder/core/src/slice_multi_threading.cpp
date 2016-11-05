@@ -443,43 +443,39 @@ void ReleaseMtResource (sWelsEncCtx** ppCtx) {
 }
 
 int32_t AppendSliceToFrameBs (sWelsEncCtx* pCtx, SLayerBSInfo* pLbi, const int32_t iSliceCount) {
-  SWelsSvcCodingParam* pCodingParam     = pCtx->pSvcParam;
-  SSpatialLayerConfig* pDlp             = &pCodingParam->sSpatialLayers[pCtx->uiDependencyId];
-  SSlice** ppSliceInlayer               = pCtx->pCurDqLayer->ppSliceInLayer;
-  SWelsSliceBs* pSliceBs                = NULL;
-  const bool kbIsDynamicSlicingMode     = (pDlp->sSliceArgument.uiSliceMode == SM_SIZELIMITED_SLICE);
+  SSlice** ppSliceInlayer = pCtx->pCurDqLayer->ppSliceInLayer;
+  SWelsSliceBs* pSliceBs  = NULL;
+  int32_t iLayerSize      = 0;
+  int32_t iNalIdxBase     = pLbi->iNalCount;
+  int32_t iSliceIdx       = 0;
 
-  int32_t iLayerSize    = 0;
-  int32_t iNalIdxBase   = pLbi->iNalCount;
-  int32_t iSliceIdx     = 0;
-
-  if (!kbIsDynamicSlicingMode) {
-    iNalIdxBase   = pLbi->iNalCount = 0;
-    while (iSliceIdx < iSliceCount) {
-      pSliceBs    = &ppSliceInlayer[iSliceIdx]->sSliceBs;
-      if (pSliceBs != NULL && pSliceBs->uiBsPos > 0) {
-        int32_t iNalIdx = 0;
-        const int32_t iCountNal = pSliceBs->iNalIndex;
+  iNalIdxBase  = pLbi->iNalCount = 0;
+  while (iSliceIdx < iSliceCount) {
+    pSliceBs    = &ppSliceInlayer[iSliceIdx]->sSliceBs;
+    if (pSliceBs != NULL && pSliceBs->uiBsPos > 0) {
+    int32_t iNalIdx = 0;
+    const int32_t iCountNal = pSliceBs->iNalIndex;
 
 #if MT_DEBUG_BS_WR
-        assert (pSliceBs->bSliceCodedFlag);
+    assert (pSliceBs->bSliceCodedFlag);
 #endif//MT_DEBUG_BS_WR
 
-        memmove (pCtx->pFrameBs + pCtx->iPosBsBuffer, pSliceBs->pBs, pSliceBs->uiBsPos); // confirmed_safe_unsafe_usage
-        pCtx->iPosBsBuffer += pSliceBs->uiBsPos;
+    memmove (pCtx->pFrameBs + pCtx->iPosBsBuffer, pSliceBs->pBs, pSliceBs->uiBsPos); // confirmed_safe_unsafe_usage
+    pCtx->iPosBsBuffer += pSliceBs->uiBsPos;
 
-        iLayerSize += pSliceBs->uiBsPos;
+    iLayerSize += pSliceBs->uiBsPos;
 
-        while (iNalIdx < iCountNal) {
-          pLbi->pNalLengthInByte[iNalIdxBase + iNalIdx] = pSliceBs->iNalLen[iNalIdx];
-          ++ iNalIdx;
-        }
-        pLbi->iNalCount += iCountNal;
-        iNalIdxBase     += iCountNal;
-      }
-      ++ iSliceIdx;
+    while (iNalIdx < iCountNal) {
+        pLbi->pNalLengthInByte[iNalIdxBase + iNalIdx] = pSliceBs->iNalLen[iNalIdx];
+        ++ iNalIdx;
     }
-  } else { // for SM_SIZELIMITED_SLICE
+    pLbi->iNalCount += iCountNal;
+    iNalIdxBase     += iCountNal;
+    }
+    ++ iSliceIdx;
+  }
+//  }
+/*else { // for SM_SIZELIMITED_SLICE
     const int32_t kiPartitionCnt        = iSliceCount;
     int32_t iPartitionIdx               = 0;
 
@@ -513,7 +509,7 @@ int32_t AppendSliceToFrameBs (sWelsEncCtx* pCtx, SLayerBSInfo* pLbi, const int32
       ++ iPartitionIdx;
     }
   }
-
+*/
   return iLayerSize;
 }
 

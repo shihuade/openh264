@@ -742,10 +742,12 @@ void DeblockingFilterSliceAvcbaseNull (SDqLayer* pCurDq, SWelsFuncPtrList* pFunc
 }
 
 void PerformDeblockingFilter (sWelsEncCtx* pEnc) {
-  const int32_t kiCurDid                = pEnc->uiDependencyId;
-  SWelsSvcCodingParam* pSvcParam        = pEnc->pSvcParam;
-  SSpatialLayerConfig* pSpatialLayer    = &pSvcParam->sSpatialLayers[kiCurDid];
-  SDqLayer* pCurLayer                   = pEnc->pCurDqLayer;
+  const int32_t kiCurDid             = pEnc->uiDependencyId;
+  SWelsSvcCodingParam* pSvcParam     = pEnc->pSvcParam;
+  SSpatialLayerConfig* pSpatialLayer = &pSvcParam->sSpatialLayers[kiCurDid];
+  SDqLayer* pCurLayer                = pEnc->pCurDqLayer;
+  bool bPatitionMode                 = SM_SIZELIMITED_SLICE == pSpatialLayer->sSliceArgument.uiSliceMode
+                                       && pEnc->iActiveThreadsNum >1;
 
   if (pCurLayer->iLoopFilterDisableIdc == 0) {
     DeblockingFilterFrameAvcbase (pCurLayer, pEnc->pFuncList);
@@ -753,7 +755,7 @@ void PerformDeblockingFilter (sWelsEncCtx* pEnc) {
     int32_t iSliceCount = 0;
     int32_t iSliceIdx   = 0;
 
-    if (SM_SIZELIMITED_SLICE != pSpatialLayer->sSliceArgument.uiSliceMode) {
+    if ( false == bPatitionMode ) {
       iSliceCount = GetCurrentSliceNum (pCurLayer);
       do {
         DeblockingFilterSliceAvcbase (pCurLayer, pEnc->pFuncList, iSliceIdx);

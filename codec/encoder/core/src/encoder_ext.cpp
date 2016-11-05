@@ -3680,7 +3680,6 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
         }
 
         //TO DO: add update ppSliceInLayer module based on pSliceInThread[ThreadNum]
-
         SliceLayerInfoUpdate (pCtx, pFbi, pLayerBsInfo, pParam->sSliceArgument.uiSliceMode);
         iLayerSize = AppendSliceToFrameBs (pCtx, pLayerBsInfo, iSliceCount);
       }
@@ -3724,6 +3723,7 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
           ++ iIdx;
         }
 
+        InitAllSlicesInThread(pCtx);
         pCtx->pTaskManage->ExecuteTasks();
 
         if (pCtx->iEncoderError) {
@@ -3735,9 +3735,9 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
 #endif
 
         //TO DO: add update ppSliceInLayer module based on pSliceInThread[ThreadNum]
-        // UpdateSliceInLayerInfo(); // reordering
-
-        iLayerSize = AppendSliceToFrameBs (pCtx, pLayerBsInfo, kiPartitionCnt);
+        SliceLayerInfoUpdate (pCtx, pFbi, pLayerBsInfo, pParam->sSliceArgument.uiSliceMode);
+        iSliceCount = GetCurrentSliceNum (pCtx->pCurDqLayer);
+        iLayerSize = AppendSliceToFrameBs (pCtx, pLayerBsInfo, iSliceCount);
       } else { // for non-dynamic-slicing mode single threading branch..
         const bool bNeedPrefix = pCtx->bNeedPrefixNalFlag;
         int32_t iSliceIdx    = 0;
