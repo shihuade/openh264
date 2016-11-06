@@ -1415,7 +1415,7 @@ void OutputSliceInfo(sWelsEncCtx* pEncCtx, SSlice* pCurSlice, int32_t iSliceBsSi
 
   //FrmNum,ThrIdx,SlcIdx,iSlcBsSize,RefIdx,FirsMB,NumMB,SliceRC.Com,CalcQP,SttMB,EndMB,TotlQP,TolMB,TarBit,BsPos,FrmBitSlc,GomBit,GomTar,
   //SVCRC.AverFrmQP,bGomQP,RemainBit,BitMB,TarBit,BitLevel,GloQP,
-  printf("Slc,%2d,%2d,%2d,%4d,%2d,%4d,%4d,SlcRC,%4d,%4d,%4d,%4d,%5d,%4d,%5d,%5d,%5d,%5d,%4d,SVCRC,%2d,%2d,%4d,%4d,%4d,%4d,GlQP %2d,\n",
+  printf("Slc,%2d,%2d,%2d,%4d,%2d,%4d,%4d,SlcRC,%4d,%4d,%4d,%4d,%5d,%4d,%5d,%5d,%5d,%5d,%4d,SVCRC,%2d,%2d,%4d,%4d,%4d,%4d,%4d,GlQP %2d,\n",
         pCurSlice->sSliceHeaderExt.sSliceHeader.iFrameNum,
         pCurSlice->uiThreadIdx,
         pCurSlice->iSliceIdx,
@@ -1439,6 +1439,7 @@ void OutputSliceInfo(sWelsEncCtx* pEncCtx, SSlice* pCurSlice, int32_t iSliceBsSi
         pWelsSvcRc->iRemainingBits,
         pWelsSvcRc->iBitsPerMb,
         pWelsSvcRc->iTargetBits,
+        pWelsSvcRc->iNumberMbFrame,
         pWelsSvcRc->iCurrentBitsLevel,
         pEncCtx->iGlobalQp);
 }
@@ -1450,17 +1451,17 @@ void OutputAllSliceInfo(sWelsEncCtx* pEncCtx, const int32_t kiThreadNum) {
   SSlice* pSlice      = NULL;
 
   printf("***************ppSliceInLayer**********************\n");
-  for(iSliceIdx = 0; iSliceIdx < pCurLayer->iMaxSliceNum; iSliceIdx ++) {
+  /*for(iSliceIdx = 0; iSliceIdx < pCurLayer->iMaxSliceNum; iSliceIdx ++) {
       printf("==ppSliceIdx,iThreadIdx is ,%d, Idx is ,%2d, iSliceIdx is ,%2d,== \n",
              pCurLayer->ppSliceInLayer[iSliceIdx]->uiThreadIdx,
              iSliceIdx,
              pCurLayer->ppSliceInLayer[iSliceIdx]->iSliceIdx);
-  }
+  }*/
   for(iSliceIdx = 0; iSliceIdx < pCurLayer->iMaxSliceNum; iSliceIdx ++) {
      OutputSliceInfo(pEncCtx, pCurLayer->ppSliceInLayer[iSliceIdx], 0);
   }
 
-  printf("***************pSliceInThread**********************\n");
+  /*printf("***************pSliceInThread**********************\n");
   for( iThreadIdx = 0; iThreadIdx < kiThreadNum; iThreadIdx ++) {
     pSlice    = pCurLayer->sSliceThreadInfo.pSliceInThread[iThreadIdx];
 
@@ -1479,7 +1480,7 @@ void OutputAllSliceInfo(sWelsEncCtx* pEncCtx, const int32_t kiThreadNum) {
     for( iSliceIdx = 0; iSliceIdx < pCurLayer->sSliceThreadInfo.iMaxSliceNumInThread[iThreadIdx]; iSliceIdx ++) {
         OutputSliceInfo(pEncCtx, &pSlice[iSliceIdx], 0);
     }
-  }
+  }*/
   printf("***************End**********************\n\n");
 
 }
