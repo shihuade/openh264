@@ -1410,6 +1410,38 @@ static inline int32_t CheckAllSliceBuffer(SDqLayer* pCurLayer, const int32_t kiC
   return ENC_RETURN_SUCCESS;
 }
 
+void OutputSliceInfo(sWelsEncCtx* pEncCtx, SSlice* pCurSlice, int32_t iSliceBsSize) {
+  SWelsSvcRc* pWelsSvcRc      = &pEncCtx->pWelsSvcRc[pEncCtx->uiDependencyId];
+
+  //FrmNum,ThrIdx,SlcIdx,iSlcBsSize,RefIdx,FirsMB,NumMB,SliceRC.Com,CalcQP,SttMB,EndMB,TotlQP,TolMB,TarBit,BsPos,FrmBitSlc,GomBit,GomTar,
+  //SVCRC.AverFrmQP,bGomQP,RemainBit,BitMB,TarBit,BitLevel,GloQP,
+  printf("Slc,%2d,%2d,%2d,%4d,%2d,%4d,%4d,SlcRC,%4d,%4d,%4d,%4d,%5d,%4d,%5d,%5d,%5d,%5d,%4d,SVCRC,%2d,%2d,%4d,%4d,%4d,%4d,GlQP %2d,\n",
+        pCurSlice->sSliceHeaderExt.sSliceHeader.iFrameNum,
+        pCurSlice->uiThreadIdx,
+        pCurSlice->iSliceIdx,
+        iSliceBsSize,
+        pCurSlice->sSliceHeaderExt.sSliceHeader.uiRefIndex,
+        pCurSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice,
+        pCurSlice->iCountMbNumInSlice,
+        pCurSlice->sSlicingOverRc.iComplexityIndexSlice,  //Start slice RC Info
+        pCurSlice->sSlicingOverRc.iCalculatedQpSlice,
+        pCurSlice->sSlicingOverRc.iStartMbSlice,
+        pCurSlice->sSlicingOverRc.iEndMbSlice,
+        pCurSlice->sSlicingOverRc.iTotalQpSlice,
+        pCurSlice->sSlicingOverRc.iTotalMbSlice,
+        pCurSlice->sSlicingOverRc.iTargetBitsSlice,
+        pCurSlice->sSlicingOverRc.iBsPosSlice,
+        pCurSlice->sSlicingOverRc.iFrameBitsSlice,
+        pCurSlice->sSlicingOverRc.iGomBitsSlice,
+        pCurSlice->sSlicingOverRc.iGomTargetBits,   //End Slice RC
+        pWelsSvcRc->iAverageFrameQp,   //SVCRC
+        pWelsSvcRc->bEnableGomQp,
+        pWelsSvcRc->iRemainingBits,
+        pWelsSvcRc->iBitsPerMb,
+        pWelsSvcRc->iTargetBits,
+        pWelsSvcRc->iCurrentBitsLevel,
+        pEncCtx->iGlobalQp);
+}
 
 void OutputAllSliceInfo(sWelsEncCtx* pEncCtx, const int32_t kiThreadNum) {
   SDqLayer* pCurLayer = pEncCtx->pCurDqLayer;
@@ -1618,39 +1650,6 @@ int32_t SliceLayerInfoUpdate (sWelsEncCtx* pCtx,
   }
 
   return ENC_RETURN_SUCCESS;
-}
-
-void OutputSliceInfo(sWelsEncCtx* pEncCtx, SSlice* pCurSlice, int32_t iSliceBsSize) {
-  SWelsSvcRc* pWelsSvcRc      = &pEncCtx->pWelsSvcRc[pEncCtx->uiDependencyId];
-
-  //FrmNum,ThrIdx,SlcIdx,iSlcBsSize,RefIdx,FirsMB,NumMB,SliceRC.Com,CalcQP,SttMB,EndMB,TotlQP,TolMB,TarBit,BsPos,FrmBitSlc,GomBit,GomTar,
-  //SVCRC.AverFrmQP,bGomQP,RemainBit,BitMB,TarBit,BitLevel,GloQP,
-  printf("Slc,%2d,%2d,%2d,%4d,%2d,%4d,%4d,SlcRC,%4d,%4d,%4d,%4d,%5d,%4d,%5d,%5d,%5d,%5d,%4d,SVCRC,%2d,%2d,%4d,%4d,%4d,%4d,GlQP %2d,\n",
-         pCurSlice->sSliceHeaderExt.sSliceHeader.iFrameNum,
-         pCurSlice->uiThreadIdx,
-         pCurSlice->iSliceIdx,
-         iSliceBsSize,
-         pCurSlice->sSliceHeaderExt.sSliceHeader.uiRefIndex,
-         pCurSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice,
-         pCurSlice->iCountMbNumInSlice,
-         pCurSlice->sSlicingOverRc.iComplexityIndexSlice,  //Start slice RC Info
-         pCurSlice->sSlicingOverRc.iCalculatedQpSlice,
-         pCurSlice->sSlicingOverRc.iStartMbSlice,
-         pCurSlice->sSlicingOverRc.iEndMbSlice,
-         pCurSlice->sSlicingOverRc.iTotalQpSlice,
-         pCurSlice->sSlicingOverRc.iTotalMbSlice,
-         pCurSlice->sSlicingOverRc.iTargetBitsSlice,
-         pCurSlice->sSlicingOverRc.iBsPosSlice,
-         pCurSlice->sSlicingOverRc.iFrameBitsSlice,
-         pCurSlice->sSlicingOverRc.iGomBitsSlice,
-         pCurSlice->sSlicingOverRc.iGomTargetBits,   //End Slice RC
-         pWelsSvcRc->iAverageFrameQp,   //SVCRC
-         pWelsSvcRc->bEnableGomQp,
-         pWelsSvcRc->iRemainingBits,
-         pWelsSvcRc->iBitsPerMb,
-         pWelsSvcRc->iTargetBits,
-         pWelsSvcRc->iCurrentBitsLevel,
-         pEncCtx->iGlobalQp);
 }
 
 int32_t WelsCodeOneSlice (sWelsEncCtx* pEncCtx, SSlice* pCurSlice, const int32_t kiNalType) {
