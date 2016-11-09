@@ -540,6 +540,12 @@ int32_t WriteSliceBs (sWelsEncCtx* pCtx,SWelsSliceBs* pSliceBs,const int32_t iSl
   }
   pSliceBs->uiBsPos = iSliceSize;
 
+    /*printf("WriteSliceBs, iSliceIdx %d, kiNalCnt %d, pSliceBs->iNalLen[0] %6d, pSliceBs->iNalLen[1] %6d, \n",
+           iSliceIdx,
+           kiNalCnt,
+           pSliceBs->iNalLen[0],
+           pSliceBs->iNalLen[1]);
+     */
   return iReturn;
 }
 

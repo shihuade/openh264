@@ -1458,7 +1458,7 @@ void OutputAllSliceInfo(sWelsEncCtx* pEncCtx, const int32_t kiThreadNum) {
              pCurLayer->ppSliceInLayer[iSliceIdx]->iSliceIdx);
   }*/
   for(iSliceIdx = 0; iSliceIdx < pCurLayer->iMaxSliceNum; iSliceIdx ++) {
-     OutputSliceInfo(pEncCtx, pCurLayer->ppSliceInLayer[iSliceIdx], 0);
+     //OutputSliceInfo(pEncCtx, pCurLayer->ppSliceInLayer[iSliceIdx], 0);
   }
 
   /*printf("***************pSliceInThread**********************\n");
