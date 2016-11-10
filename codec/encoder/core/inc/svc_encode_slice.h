@@ -157,6 +157,13 @@ int32_t WelsCodePOverDynamicSlice (sWelsEncCtx* pEncCtx, SSlice* pSlice);
 int32_t WelsCodeOneSlice (sWelsEncCtx* pEncCtx, SSlice* pCurSlice,
                           const int32_t keNalType);
 
+//Output, will remove later
+void OutputOneMBInfo(SMB* pCurMb);
+void OutputMBInfoWithNeighbor(SMB* pMbList,
+                              const int32_t kiMBWidth,
+                              const int32_t kiCurMBIdx);
+void OutputMBInfoForMBList(SMB* pCurMbList, const int32_t kiStartIdx, const int32_t kiEndIdx);
+
 void OutputAllSliceInfo(sWelsEncCtx* pEncCtx, const int32_t kiThreadNum);
 void OutputSliceInfo(sWelsEncCtx* pEncCtx, SSlice* pCurSlice, int32_t iSliceBsSize);
 

@@ -568,6 +568,10 @@ TRY_REENCODING:
 
     pEncCtx->pFuncList->pfRc.pfWelsRcMbInfoUpdate (pEncCtx, pCurMb, sMd.iCostLuma, pSlice);
 
+    if ( 1 == kiSliceIdx ) {
+      OutputMBInfoWithNeighbor(pMbList, 80, iCurMbIdx);
+    }
+
     ++iNumMbCoded;
     iNextMbIdx = WelsGetNextMbOfSlice (pCurLayer, iCurMbIdx);
     if (iNextMbIdx == -1 || iNextMbIdx >= kiTotalNumMb || iNumMbCoded >= kiTotalNumMb) {
@@ -1408,6 +1412,90 @@ static inline int32_t CheckAllSliceBuffer(SDqLayer* pCurLayer, const int32_t kiC
   }
 
   return ENC_RETURN_SUCCESS;
+}
+
+void OutputOneMBInfo(SMB* pCurMb) {
+
+  printf("SlcIdx %d, iMbX %4d, %4d,%4d,Type %d, QP %2d,%2d,%2d, SubTy %d,%d,%d,%d \n \
+         pIntra4x4PredMode \n %d,%d,%d,%d,\n %d,%d,%d,%d,\n %d,%d,%d,%d,\n %d,%d,%d,%d,\n \
+         pNonZeroCount     \n %d,%d,%d,%d,\n %d,%d,%d,%d,\n %d,%d,%d,%d,\n %d,%d,%d,%d,\n \
+         %d,%d,\n \
+         %d,%d,\n \
+         %d,%d,\n \
+         %d,%d,\n",
+        pCurMb->uiSliceIdc,
+        pCurMb->iMbX,
+        pCurMb->iMbY,
+        pCurMb->iMbXY,
+        pCurMb->uiMbType,
+        pCurMb->iLumaDQp,
+        pCurMb->uiLumaQp,
+        pCurMb->uiChromaQp,
+        pCurMb->uiSubMbType[0],pCurMb->uiSubMbType[1],pCurMb->uiSubMbType[2],pCurMb->uiSubMbType[3],
+        pCurMb->pIntra4x4PredMode[0],pCurMb->pIntra4x4PredMode[1],pCurMb->pIntra4x4PredMode[2],pCurMb->pIntra4x4PredMode[3],
+        pCurMb->pIntra4x4PredMode[4],pCurMb->pIntra4x4PredMode[5],pCurMb->pIntra4x4PredMode[6],pCurMb->pIntra4x4PredMode[7],
+        pCurMb->pIntra4x4PredMode[8],pCurMb->pIntra4x4PredMode[9],pCurMb->pIntra4x4PredMode[10],pCurMb->pIntra4x4PredMode[11],
+        pCurMb->pIntra4x4PredMode[12],pCurMb->pIntra4x4PredMode[11],pCurMb->pIntra4x4PredMode[14],pCurMb->pIntra4x4PredMode[15],
+        pCurMb->pNonZeroCount[0], pCurMb->pNonZeroCount[1],pCurMb->pNonZeroCount[2],pCurMb->pNonZeroCount[3],
+        pCurMb->pNonZeroCount[4], pCurMb->pNonZeroCount[5],pCurMb->pNonZeroCount[6],pCurMb->pNonZeroCount[7],
+        pCurMb->pNonZeroCount[8], pCurMb->pNonZeroCount[9],pCurMb->pNonZeroCount[10],pCurMb->pNonZeroCount[11],
+        pCurMb->pNonZeroCount[12], pCurMb->pNonZeroCount[13],pCurMb->pNonZeroCount[14],pCurMb->pNonZeroCount[15],
+        pCurMb->pNonZeroCount[16], pCurMb->pNonZeroCount[17],
+        pCurMb->pNonZeroCount[18], pCurMb->pNonZeroCount[19],
+        pCurMb->pNonZeroCount[20], pCurMb->pNonZeroCount[21],
+        pCurMb->pNonZeroCount[22], pCurMb->pNonZeroCount[22]);
+}
+
+void OutputMBInfoWithNeighbor(SMB* pMbList,
+                              const int32_t kiMBWidth,
+                              const int32_t kiCurMBIdx) {
+  const int32_t kiLetMBIdx  = kiCurMBIdx - 1;
+  const int32_t kiTopMBIdx  = kiCurMBIdx - kiMBWidth;
+  const int32_t kiTopRMBIdx = kiTopMBIdx + 1;
+  const int32_t kiTopLMBIdx = kiTopMBIdx - 1;
+  SMB* pCurMB = &pMbList[kiCurMBIdx];
+
+  // Left MB info
+  if ( pCurMB->iMbX > 0 && kiLetMBIdx >= 0 && NULL != &pMbList[kiLetMBIdx] ) {
+    printf ("****************left mb of curren MB **********************\n");
+    OutputOneMBInfo(&pMbList[kiLetMBIdx]);
+  }
+
+  // Top MB info
+  if ( pCurMB->iMbY > 0 && kiTopMBIdx >= 0 && NULL != &pMbList[kiTopMBIdx] ) {
+    printf ("****************top mb of curren MB **********************\n");
+    OutputOneMBInfo(&pMbList[kiTopMBIdx]);
+  }
+
+  // Top right MB info
+  if ( pCurMB->iMbY > 0 && pCurMB->iMbX < (kiMBWidth -1 ) &&
+      kiTopRMBIdx >= 0 && NULL != &pMbList[kiTopRMBIdx] ) {
+    printf ("****************top right mb of curren MB **********************\n");
+    OutputOneMBInfo(&pMbList[kiTopRMBIdx]);
+  }
+
+  // Top left MB info
+  if ( pCurMB->iMbY > 0 && pCurMB->iMbX > 0 &&
+      kiTopLMBIdx >= 0 && NULL != &pMbList[kiTopLMBIdx] ) {
+    printf ("****************top left mb of curren MB **********************\n");
+    OutputOneMBInfo(&pMbList[kiTopLMBIdx]);
+  }
+
+  // current MB info
+  if ( kiCurMBIdx >= 0 && NULL != &pMbList[kiCurMBIdx] ) {
+    printf ("****************current mb of curren MB **********************\n");
+    OutputOneMBInfo(&pMbList[kiCurMBIdx]);
+  }
+}
+
+void OutputMBInfoForMBList(SMB* pCurMbList, const int32_t kiStartIdx, const int32_t kiEndIdx) {
+  int32_t iMBIdx = 0;
+
+  for(iMBIdx = kiStartIdx; iMBIdx < kiEndIdx; iMBIdx++ ) {
+    if (NULL != pCurMbList + iMBIdx) {
+      OutputOneMBInfo(pCurMbList + iMBIdx);
+    }
+  }
 }
 
 void OutputSliceInfo(sWelsEncCtx* pEncCtx, SSlice* pCurSlice, int32_t iSliceBsSize) {

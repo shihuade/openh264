@@ -819,6 +819,10 @@ static  void  InitMbInfo (sWelsEncCtx* pEnc, SMB*   pList, SDqLayer* pLayer, con
     pList[iIdx].iMbXY = iIdx;
 
     uiSliceIdc = WelsMbToSliceIdc (pLayer, iIdx);
+      printf("%d", uiSliceIdc);
+      if( 0 == (iIdx+1) % iMbWidth) {
+          printf("\n");
+      }
     iLeftXY = iIdx - 1;
     iTopXY = iIdx - iMbWidth;
     iLeftTopXY = iTopXY - 1;
