@@ -3752,7 +3752,6 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
         while (iSliceIdx < iSliceCount) {
           int32_t iSliceSize    = 0;
           int32_t iPayloadSize  = 0;
-
           if (bNeedPrefix) {
             pCtx->iEncoderError = AddPrefixNal (pCtx, pLayerBsInfo, &pLayerBsInfo->pNalLengthInByte[0], &iNalIdxInLayer, eNalType,
                                                 eNalRefIdc,
@@ -3763,11 +3762,23 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
 
           WelsLoadNal (pCtx->pOut, eNalType, eNalRefIdc);
 
+/*
           pCurSlice = &pCtx->pCurDqLayer->sSliceThreadInfo.pSliceInThread[uiTheadIdx][iSliceIdx];
           assert (iSliceIdx == pCurSlice->iSliceIdx);
           pCtx->iEncoderError   = SetSliceBoundaryInfo(pCtx->pCurDqLayer, pCurSlice, iSliceIdx);
-          WELS_VERIFY_RETURN_IFNEQ (pCtx->iEncoderError, ENC_RETURN_SUCCESS)
+*/
 
+///*
+          int32_t iTempSliceIdx = iSliceIdx + 1;
+          if(iTempSliceIdx == iSliceCount) {
+            iTempSliceIdx = 0;
+          }
+
+          pCurSlice = &pCtx->pCurDqLayer->sSliceThreadInfo.pSliceInThread[uiTheadIdx][iTempSliceIdx];
+          assert (iTempSliceIdx == pCurSlice->iSliceIdx);
+          pCtx->iEncoderError   = SetSliceBoundaryInfo(pCtx->pCurDqLayer, pCurSlice, iTempSliceIdx);
+          WELS_VERIFY_RETURN_IFNEQ (pCtx->iEncoderError, ENC_RETURN_SUCCESS)
+//*/
           pCtx->iEncoderError = WelsCodeOneSlice (pCtx, pCurSlice, eNalType);
           WELS_VERIFY_RETURN_IFNEQ (pCtx->iEncoderError, ENC_RETURN_SUCCESS)
 
