@@ -2553,6 +2553,8 @@ void WelsInitCurrentLayer (sWelsEncCtx* pCtx,
   iIdx = 1;
   while (iIdx < iSliceCount) {
     InitSliceHeadWithBase (pCurDq->ppSliceInLayer[iIdx], pBaseSlice);
+
+    pCurDq->pSliceEncodedFlag[iIdx] = false;
     ++ iIdx;
   }
 

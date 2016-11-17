@@ -542,6 +542,10 @@ int32_t WelsISliceMdEnc (sWelsEncCtx* pEncCtx, SSlice* pSlice) { //pMd + encodin
     iCurMbIdx = iNextMbIdx;
     pCurMb = &pMbList[ iCurMbIdx ];
 
+    if ( 0 == kiSliceIdx ) {
+      //OutputMBInfoWithNeighbor(pMbList, 80, iCurMbIdx);
+    }
+
     pEncCtx->pFuncList->pfRc.pfWelsRcMbInit (pEncCtx, pCurMb, pSlice);
     WelsMdIntraInit (pEncCtx, pCurMb, pMbCache, kiSliceFirstMbXY);
 
@@ -568,8 +572,8 @@ TRY_REENCODING:
 
     pEncCtx->pFuncList->pfRc.pfWelsRcMbInfoUpdate (pEncCtx, pCurMb, sMd.iCostLuma, pSlice);
 
-    if ( 1 == kiSliceIdx ) {
-      OutputMBInfoWithNeighbor(pMbList, 80, iCurMbIdx);
+    if ( 0 == kiSliceIdx ) {
+     // OutputMBInfoWithNeighbor(pMbList, 80, iCurMbIdx);
     }
 
     ++iNumMbCoded;
@@ -1455,7 +1459,7 @@ void OutputMBInfoWithNeighbor(SMB* pMbList,
   const int32_t kiTopLMBIdx = kiTopMBIdx - 1;
   SMB* pCurMB = &pMbList[kiCurMBIdx];
 
-  // Left MB info
+ /* // Left MB info
   if ( pCurMB->iMbX > 0 && kiLetMBIdx >= 0 && NULL != &pMbList[kiLetMBIdx] ) {
     printf ("****************left mb of curren MB **********************\n");
     OutputOneMBInfo(&pMbList[kiLetMBIdx]);
@@ -1480,7 +1484,7 @@ void OutputMBInfoWithNeighbor(SMB* pMbList,
     printf ("****************top left mb of curren MB **********************\n");
     OutputOneMBInfo(&pMbList[kiTopLMBIdx]);
   }
-
+*/
   // current MB info
   if ( kiCurMBIdx >= 0 && NULL != &pMbList[kiCurMBIdx] ) {
     printf ("****************current mb of curren MB **********************\n");
@@ -1505,8 +1509,8 @@ void OutputSliceInfo(sWelsEncCtx* pEncCtx, SSlice* pCurSlice, int32_t iSliceBsSi
   //SVCRC.AverFrmQP,bGomQP,RemainBit,BitMB,TarBit,BitLevel,GloQP,
   printf("Slc,%2d,%2d,%2d,%4d,%2d,%4d,%4d,SlcRC,%4d,%4d,%4d,%4d,%5d,%4d,%5d,%5d,%5d,%5d,%4d,SVCRC,%2d,%2d,%4d,%4d,%4d,%4d,%4d,GlQP %2d,\n",
         pCurSlice->sSliceHeaderExt.sSliceHeader.iFrameNum,
-        pCurSlice->uiThreadIdx,
         pCurSlice->iSliceIdx,
+        pCurSlice->uiThreadIdx,
         iSliceBsSize,
         pCurSlice->sSliceHeaderExt.sSliceHeader.uiRefIndex,
         pCurSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice,

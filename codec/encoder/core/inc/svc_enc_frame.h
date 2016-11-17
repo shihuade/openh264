@@ -126,7 +126,7 @@ bool                    bNeedAdjustingSlicing;
 SFeatureSearchPreparation* pFeatureSearchPreparation;
 
 SDqLayer*               pRefLayer;              // pointer to referencing dq_layer of current layer to be decoded
-
+bool                    pSliceEncodedFlag[MAX_SLICES_NUM];
 };
 
 ///////////////////////////////////////////////////////////////////////

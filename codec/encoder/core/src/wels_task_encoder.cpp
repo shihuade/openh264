@@ -150,6 +150,41 @@ void CWelsSliceEncodingTask::FinishTask() {
 }
 
 WelsErrorType CWelsSliceEncodingTask::ExecuteTask() {
+  bool    bStartFlag    = false;
+  int32_t iSliceIdx     = 0;
+  bool    bFlagList[3]  = {false};
+  while(!bStartFlag) {
+
+ /*  
+    bStartFlag = m_pCtx->pCurDqLayer->pSliceEncodedFlag[0];
+    for(iSliceIdx = 0; iSliceIdx < m_iSliceIdx; iSliceIdx++ ) {
+      bStartFlag  = bStartFlag && bFlagList[iSliceIdx];
+    }
+
+    if( 0 == m_iSliceIdx) {
+      bStartFlag = true;
+    }
+
+*/
+    if( 2 == m_iSliceIdx) {
+        bStartFlag = true;
+    }
+  
+    if( 0 == m_iSliceIdx) {
+        bStartFlag = m_pCtx->pCurDqLayer->pSliceEncodedFlag[2];
+    }
+
+    if( 1 == m_iSliceIdx) {
+        bStartFlag = m_pCtx->pCurDqLayer->pSliceEncodedFlag[2] &&
+        m_pCtx->pCurDqLayer->pSliceEncodedFlag[0];
+    }
+
+
+    if(false == bStartFlag) {
+      sleep(1);
+    }
+ }
+
 #if MT_DEBUG_BS_WR
   m_pSliceBs->bSliceCodedFlag = false;
 #endif//MT_DEBUG_BS_WR
@@ -198,7 +233,8 @@ WelsErrorType CWelsSliceEncodingTask::ExecuteTask() {
   m_pSliceBs->bSliceCodedFlag = true;
 #endif//MT_DEBUG_BS_WR
     m_pCtx->pCurDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[m_iThreadIdx] ++;
-
+    printf("m_pCtx->pCurDqLayer->pSliceEncodedFlag[m_iSliceIdx=%d]  %d \n"), m_iSliceIdx, m_pCtx->pCurDqLayer->pSliceEncodedFlag[m_iSliceIdx];
+    m_pCtx->pCurDqLayer->pSliceEncodedFlag[m_iSliceIdx] = true;
   return ENC_RETURN_SUCCESS;
 }
 

@@ -194,7 +194,9 @@ void CWelsTaskManageBase::DestroyTasks() {
 void  CWelsTaskManageBase::OnTaskMinusOne() {
   WelsCommon::CWelsAutoLock cAutoLock (m_cWaitTaskNumLock);
   m_iWaitTaskNum --;
+    printf("OnTaskMinusOne m_iWaitTaskNum-- %d \n", m_iWaitTaskNum);
   if (m_iWaitTaskNum <= 0) {
+    printf("OnTaskMinusOne WelsEventSignal (&m_hTaskEvent) %d \n", m_iWaitTaskNum);
     WelsEventSignal (&m_hTaskEvent);
     //fprintf(stdout, "OnTaskMinusOne WelsEventSignal m_iWaitTaskNum=%d\n", m_iWaitTaskNum);
   }
