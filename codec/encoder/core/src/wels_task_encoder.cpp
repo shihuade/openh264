@@ -112,16 +112,16 @@ WelsErrorType CWelsSliceEncodingTask::InitTask() {
     return ENC_RETURN_UNEXPECTED;
   }
 
-  m_pCtx->iEncoderError = InitOneSliceInThread (m_pCtx, m_pSlice, m_iThreadIdx, m_pCtx->uiDependencyId, m_iSliceIdx);
-  WELS_VERIFY_RETURN_IFNEQ (m_pCtx->iEncoderError, ENC_RETURN_SUCCESS)
+  int32_t iReturn = InitOneSliceInThread (m_pCtx, m_pSlice, m_iThreadIdx, m_pCtx->uiDependencyId, m_iSliceIdx);
+  WELS_VERIFY_RETURN_IFNEQ (iReturn, ENC_RETURN_SUCCESS)
   //m_pSlice = &m_pCtx->pCurDqLayer->sSliceThreadInfo.pSliceInThread[0][m_iSliceIdx];
   m_pSliceBs = &m_pSlice->sSliceBs;
 
   //m_pSliceBs->uiBsPos       = 0;
   //m_pSliceBs->iNalIndex     = 0;
 
-  m_pCtx->iEncoderError   = SetSliceBoundaryInfo(m_pCtx->pCurDqLayer, m_pSlice, m_iSliceIdx);
-  WELS_VERIFY_RETURN_IFNEQ (m_pCtx->iEncoderError, ENC_RETURN_SUCCESS)
+  iReturn   = SetSliceBoundaryInfo(m_pCtx->pCurDqLayer, m_pSlice, m_iSliceIdx);
+  WELS_VERIFY_RETURN_IFNEQ (iReturn, ENC_RETURN_SUCCESS)
 
   //SetOneSliceBsBufferUnderMultithread (m_pCtx, m_iThreadIdx, m_pSlice);
 
@@ -150,40 +150,6 @@ void CWelsSliceEncodingTask::FinishTask() {
 }
 
 WelsErrorType CWelsSliceEncodingTask::ExecuteTask() {
-  bool    bStartFlag    = false;
-  int32_t iSliceIdx     = 0;
-  bool    bFlagList[3]  = {false};
-  while(!bStartFlag) {
-
- /*  
-    bStartFlag = m_pCtx->pCurDqLayer->pSliceEncodedFlag[0];
-    for(iSliceIdx = 0; iSliceIdx < m_iSliceIdx; iSliceIdx++ ) {
-      bStartFlag  = bStartFlag && bFlagList[iSliceIdx];
-    }
-
-    if( 0 == m_iSliceIdx) {
-      bStartFlag = true;
-    }
-
-*/
-    if( 2 == m_iSliceIdx) {
-        bStartFlag = true;
-    }
-  
-    if( 0 == m_iSliceIdx) {
-        bStartFlag = m_pCtx->pCurDqLayer->pSliceEncodedFlag[2];
-    }
-
-    if( 1 == m_iSliceIdx) {
-        bStartFlag = m_pCtx->pCurDqLayer->pSliceEncodedFlag[2] &&
-        m_pCtx->pCurDqLayer->pSliceEncodedFlag[0];
-    }
-
-
-    if(false == bStartFlag) {
-      sleep(1);
-    }
- }
 
 #if MT_DEBUG_BS_WR
   m_pSliceBs->bSliceCodedFlag = false;
@@ -283,37 +249,25 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
   m_pSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice  = kiFirstMbInPartition;
   pCurDq->pNumSliceCodedOfPartition[kiPartitionId]        = 1;
   pCurDq->pLastCodedMbIdxOfPartition[kiPartitionId]       = 0;
-
+  int32_t iReturn                                         = 0;
   //deal with partition: TODO: here SSliceThreadPrivateData is just for parition info and actually has little relationship with threadbuffer, and iThreadIndex is not used in threadpool model, need renaming after removing old logic to avoid confusion
 
   int32_t iAnyMbLeftInPartition           = kiEndMbIdxInPartition - kiFirstMbInPartition + 1;
   int32_t iLocalSliceIdx = m_iSliceIdx;
   while (iAnyMbLeftInPartition > 0) {
-    //TODO: will reallocate
-   /* if (iLocalSliceIdx >= pSliceCtx->iMaxSliceNumConstraint) {
-      WelsLog (&m_pCtx->sLogCtx, WELS_LOG_WARNING,
-               "[MT] CWelsConstrainedSizeSlicingEncodingTask ExecuteTask() coding_idx %d, uiLocalSliceIdx %d, pSliceCtx->iMaxSliceNumConstraint %d",
-               pParamInternal->iCodingIndex,
-               iLocalSliceIdx, pSliceCtx->iMaxSliceNumConstraint);
-      return ENC_RETURN_KNOWN_ISSUE;
-    }
-   */
-    m_pCtx->iEncoderError = InitOneSliceInThread (m_pCtx, m_pSlice, m_iThreadIdx, m_pCtx->uiDependencyId, iLocalSliceIdx);
-    WELS_VERIFY_RETURN_IFNEQ (m_pCtx->iEncoderError, ENC_RETURN_SUCCESS)
-    //m_pSlice = &pCurDq->sSliceThreadInfo.pSliceInThread[0][iLocalSliceIdx];
-    printf("kiFirstMbInPart is %4d, thrdIdx is %d, iLocalSliceIdx is %2d, m_pSlice idx is %2d, iFirstMB %4d\n",
+
+    iReturn = InitOneSliceInThread (m_pCtx, m_pSlice, m_iThreadIdx, m_pCtx->uiDependencyId, iLocalSliceIdx);
+    WELS_VERIFY_RETURN_IFNEQ (iReturn, ENC_RETURN_SUCCESS)
+    printf("ParID %d, FirstMbInPart %4d, thrdIdx %d, iLocalSliceIdx %3d, m_pSlice idx %3d, iFirstMB %4d, codedSliceNum %3d\n",
+           kiPartitionId,
            kiFirstMbInPartition,
            m_iThreadIdx,
            iLocalSliceIdx,
            m_pSlice->iSliceIdx,
-           m_pSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice);
+           m_pSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice,
+           m_pCtx->pCurDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[m_iThreadIdx]);
 
     m_pSliceBs = &m_pSlice->sSliceBs;
-
-    //m_pSliceBs->uiBsPos     = 0;
-    //m_pSliceBs->iNalIndex   = 0;
-
-    //SetOneSliceBsBufferUnderMultithread (m_pCtx, m_iThreadIdx, m_pSlice);
     InitBits (&m_pSliceBs->sBsWrite, m_pSliceBs->pBsBuffer, m_pSliceBs->uiSize);
 
     if (m_bNeedPrefix) {
