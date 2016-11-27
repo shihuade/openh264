@@ -1013,25 +1013,20 @@ int32_t InitOneSliceInThread (sWelsEncCtx* pCtx,
                               const int32_t kiDlayerIdx,
                               const int32_t kiSliceIdx) {
   SDqLayer* pDqLayer                  = pCtx->pCurDqLayer;
-  //TODO: temp test change, will rollback
   const int32_t kiCodedNumInThread    = pDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[kiThreadIdx];
-  //const int32_t kiCodedNumInThread    = pDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[0];
   const int32_t kiMaxSliceNumInThread = pDqLayer->sSliceThreadInfo.iMaxSliceNumInThread[kiThreadIdx];
   int32_t iRet                        = 0;
 
-  if (kiCodedNumInThread + 1 >= kiMaxSliceNumInThread) {
+  if (kiCodedNumInThread >= kiMaxSliceNumInThread - 1) {
     iRet = ReallocateSliceInThread(pCtx, pDqLayer, kiDlayerIdx, kiThreadIdx);
     if (ENC_RETURN_SUCCESS != iRet) {
       return iRet;
     }
   }
-  //TODO: temp test change, will rollback
+
   pSlice = &pDqLayer->sSliceThreadInfo.pSliceInThread [kiThreadIdx][kiCodedNumInThread];
-  //pSlice = &pDqLayer->sSliceThreadInfo.pSliceInThread [0][kiSliceIdx];
   pSlice->iSliceIdx = kiSliceIdx;
-  //TODO: temp test change, will rollback
   pSlice->uiThreadIdx = kiThreadIdx;
-  //pSlice->uiThreadIdx = 0;
 
   // Initialize slice bs buffer info
   pSlice->sSliceBs.uiBsPos   = 0;
@@ -1206,17 +1201,28 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
   }
 
   memcpy (pNewSliceList, pSliceList, sizeof (SSlice) * kiMaxSliceNumOld);
-  iSliceIdx   = kiMaxSliceNumOld;
-  pBaseSlice  = &pSliceList[0];
-
-  for (; iSliceIdx < kiMaxSliceNumNew; iSliceIdx++) {
+  //update Bs writer
+  for (iSliceIdx = 0; iSliceIdx < kiMaxSliceNumOld; iSliceIdx++) {
     pSlice = pNewSliceList + iSliceIdx;
     if (NULL == pSlice) {
       FreeSliceBuffer(pNewSliceList, kiMaxSliceNumNew, pMA, "ReallocateSliceList()::InitSliceBsBuffer()");
       return ENC_RETURN_MEMALLOCERR;
     }
 
-    pSlice->iSliceIdx = iSliceIdx;
+    if (bIndependenceBsBuffer) {
+      pSlice->pSliceBsa  = &pSlice->sSliceBs.sBsWrite;
+    }
+  }
+
+  pBaseSlice  = &pSliceList[0];
+  for (iSliceIdx = kiMaxSliceNumOld; iSliceIdx < kiMaxSliceNumNew; iSliceIdx++) {
+    pSlice = pNewSliceList + iSliceIdx;
+    if (NULL == pSlice) {
+      FreeSliceBuffer(pNewSliceList, kiMaxSliceNumNew, pMA, "ReallocateSliceList()::InitSliceBsBuffer()");
+      return ENC_RETURN_MEMALLOCERR;
+    }
+
+    pSlice->iSliceIdx = -1;
     pSlice->uiThreadIdx = 0;
     pSlice->iCountMbNumInSlice = 0;
     pSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice = 0;
@@ -1823,6 +1829,15 @@ void AddSliceBoundary (sWelsEncCtx* pEncCtx, SSlice* pCurSlice, SSliceCtx* pSlic
   } else {
     pNextSlice = &pSliceInThread[ iNextSliceIdc ];
   }
+
+  /*if(iNextSliceIdc >= 32) {
+        printf("iCurSlcIdx %d, iNextIdx %3d FirstMBSlc addr: 0x%x  pNextSlice addr: 0x%x  \n",
+               iCurSliceIdc,
+               iNextSliceIdc,
+               &pNextSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice,
+               pNextSlice);
+    }
+  */
 
 #if _DEBUG
   assert (NULL != pNextSlice);
