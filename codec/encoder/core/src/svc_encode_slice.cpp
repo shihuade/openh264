@@ -1227,13 +1227,13 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
                               iMaxSliceBufferSize,
                               pMA);
     if (ENC_RETURN_SUCCESS != iRet) {
-      FreeSliceBuffer(pNewSliceList, kiMaxSliceNumNew, pMA, "ReallocateSliceList()::InitSliceBsBuffer()");
+      FreeSliceBuffer(pNewSliceList, kiMaxSliceNumNew, pMA, "Error: ReallocateSliceList()::InitSliceBsBuffer()");
       return iRet;
     }
 
     iRet = AllocateSliceMBBuffer (pSlice, pMA);
     if (ENC_RETURN_SUCCESS != iRet) {
-      FreeSliceBuffer(pNewSliceList, kiMaxSliceNumNew, pMA, "ReallocateSliceList()::InitSliceBsBuffer()");
+      FreeSliceBuffer(pNewSliceList, kiMaxSliceNumNew, pMA, "Error: ReallocateSliceList()::AllocateSliceMBBuffer");
       return iRet;
     }
 
@@ -1242,14 +1242,13 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
 
     iRet = InitSliceRC (pSlice, pCtx->iGlobalQp);
     if (ENC_RETURN_SUCCESS != iRet) {
-      FreeSliceBuffer(pNewSliceList, kiMaxSliceNumNew, pMA, "ReallocateSliceList()::InitSliceBsBuffer()");
+      FreeSliceBuffer(pNewSliceList, kiMaxSliceNumNew, pMA, "Error: ReallocateSliceList()::InitSliceRC()");
       return iRet;
     }
   }
 
   pMA->WelsFree (pSliceList, "Slice");
   pSliceList = pNewSliceList;
-
   return ENC_RETURN_SUCCESS;
 
 }
