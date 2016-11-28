@@ -4480,7 +4480,7 @@ int32_t WelsCodeOnePicPartition (sWelsEncCtx* pCtx,
 
     WelsLoadNal (pCtx->pOut, keNalType, keNalRefIdc);
     pCurSlice = &pCtx->pCurDqLayer->sSliceThreadInfo.pSliceInThread[uiTheadIdx][iSliceIdx];
-    assert (iSliceIdx == pCurSlice->iSliceIdx);
+    pCurSlice->iSliceIdx = iSliceIdx;
 
     iReturn = WelsCodeOneSlice (pCtx, pCurSlice, keNalType);
     WELS_VERIFY_RETURN_IFNEQ (iReturn, ENC_RETURN_SUCCESS)
