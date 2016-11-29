@@ -934,27 +934,7 @@ void FreeDqLayer (SDqLayer*& pDq, CMemoryAlign* pMa) {
     pMa->WelsFree (pDq->pCountMbNumInSlice, "pCountMbNumInSlice");
     pDq->pCountMbNumInSlice = NULL;
   }
-/*
-  if (pDq->pNumSliceCodedOfPartition) {
-    pMa->WelsFree (pDq->pNumSliceCodedOfPartition, "pNumSliceCodedOfPartition");
-    pDq->pNumSliceCodedOfPartition = NULL;
-  }
 
-  if (pDq->pLastCodedMbIdxOfPartition) {
-    pMa->WelsFree (pDq->pLastCodedMbIdxOfPartition, "pLastCodedMbIdxOfPartition");
-    pDq->pLastCodedMbIdxOfPartition = NULL;
-  }
-
-  if (pDq->pFirstMbIdxOfPartition) {
-    pMa->WelsFree (pDq->pFirstMbIdxOfPartition, "pFirstMbIdxOfPartition");
-    pDq->pFirstMbIdxOfPartition = NULL;
-  }
-
-  if (pDq->pEndMbIdxOfPartition) {
-    pMa->WelsFree (pDq->pEndMbIdxOfPartition, "pEndMbIdxOfPartition");
-    pDq->pEndMbIdxOfPartition = NULL;
-  }
-*/
   if (pDq->pFeatureSearchPreparation) {
     ReleaseFeatureSearchPreparation (pMa, pDq->pFeatureSearchPreparation->pFeatureOfBlock);
     pMa->WelsFree (pDq->pFeatureSearchPreparation, "pFeatureSearchPreparation");
@@ -1064,23 +1044,6 @@ static inline int32_t InitDqLayers (sWelsEncCtx** ppCtx, SExistingParasetList* p
     pDqLayer = (SDqLayer*)pMa->WelsMallocz (sizeof (SDqLayer), "pDqLayer");
     WELS_VERIFY_RETURN_PROC_IF (1, (NULL == pDqLayer), FreeDqLayer (pDqLayer, pMa))
 
-    // for dynamic slicing mode
-/*
-    if (SM_SIZELIMITED_SLICE == pDlayer->sSliceArgument.uiSliceMode) {
-      const int32_t iSize                       = pParam->iMultipleThreadIdc * sizeof (int32_t);
-
-      pDqLayer->pNumSliceCodedOfPartition       = (int32_t*)pMa->WelsMallocz (iSize, "pNumSliceCodedOfPartition");
-      pDqLayer->pLastCodedMbIdxOfPartition      = (int32_t*)pMa->WelsMallocz (iSize, "pLastCodedMbIdxOfPartition");
-      pDqLayer->pFirstMbIdxOfPartition          = (int32_t*)pMa->WelsMallocz (iSize, "pFirstMbIdxOfPartition");
-      pDqLayer->pEndMbIdxOfPartition            = (int32_t*)pMa->WelsMallocz (iSize, "pEndMbIdxOfPartition");
-      WELS_VERIFY_RETURN_PROC_IF (1,
-                                  (NULL == pDqLayer->pNumSliceCodedOfPartition  ||
-                                   NULL == pDqLayer->pLastCodedMbIdxOfPartition ||
-                                   NULL == pDqLayer->pFirstMbIdxOfPartition     ||
-                                   NULL == pDqLayer->pEndMbIdxOfPartition),
-                                  FreeDqLayer (pDqLayer, pMa))
-    }
-*/
     pDqLayer->bNeedAdjustingSlicing = false;
 
     pDqLayer->iMbWidth  = kiMbW;
