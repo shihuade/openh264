@@ -899,7 +899,7 @@ int32_t InitSliceBsBuffer (SSlice* pSlice,
 
   if (bIndependenceBsBuffer) {
     pSlice->pSliceBsa      = &pSlice->sSliceBs.sBsWrite;
-    pSlice->sSliceBs.pBs   = (uint8_t*)pMa->WelsMalloc (iMaxSliceBufferSize, "SliceBs");
+    pSlice->sSliceBs.pBs   = (uint8_t*)pMa->WelsMalloc (iMaxSliceBufferSize, "sSliceBs.pBs");
     if (NULL == pSlice->sSliceBs.pBs) {
       return ENC_RETURN_MEMALLOCERR;
     }
@@ -1194,7 +1194,7 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
     return ENC_RETURN_INVALIDINPUT;
   }
 
-  pNewSliceList = (SSlice*)pMA->WelsMallocz (sizeof (SSlice) * kiMaxSliceNumNew, "Slice");
+  pNewSliceList = (SSlice*)pMA->WelsMallocz (sizeof (SSlice) * kiMaxSliceNumNew, "pSliceInThread");
   if (NULL == pNewSliceList) {
     WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR, "CWelsH264SVCEncoder::ReallocateSliceList: pNewSliceList is NULL");
     return ENC_RETURN_MEMALLOCERR;
@@ -1205,7 +1205,7 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
   for (iSliceIdx = 0; iSliceIdx < kiMaxSliceNumOld; iSliceIdx++) {
     pSlice = pNewSliceList + iSliceIdx;
     if (NULL == pSlice) {
-      FreeSliceBuffer(pNewSliceList, kiMaxSliceNumNew, pMA, "ReallocateSliceList()::InitSliceBsBuffer()");
+      FreeSliceBuffer(pNewSliceList, kiMaxSliceNumNew, pMA, "pSliceInThread");
       return ENC_RETURN_MEMALLOCERR;
     }
 
@@ -1218,7 +1218,7 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
   for (iSliceIdx = kiMaxSliceNumOld; iSliceIdx < kiMaxSliceNumNew; iSliceIdx++) {
     pSlice = pNewSliceList + iSliceIdx;
     if (NULL == pSlice) {
-      FreeSliceBuffer(pNewSliceList, kiMaxSliceNumNew, pMA, "ReallocateSliceList()::InitSliceBsBuffer()");
+      FreeSliceBuffer(pNewSliceList, kiMaxSliceNumNew, pMA, "pSliceInThread");
       return ENC_RETURN_MEMALLOCERR;
     }
 
@@ -1233,13 +1233,13 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
                               iMaxSliceBufferSize,
                               pMA);
     if (ENC_RETURN_SUCCESS != iRet) {
-      FreeSliceBuffer(pNewSliceList, kiMaxSliceNumNew, pMA, "Error: ReallocateSliceList()::InitSliceBsBuffer()");
+      FreeSliceBuffer(pNewSliceList, kiMaxSliceNumNew, pMA, "pSliceInThread");
       return iRet;
     }
 
     iRet = AllocateSliceMBBuffer (pSlice, pMA);
     if (ENC_RETURN_SUCCESS != iRet) {
-      FreeSliceBuffer(pNewSliceList, kiMaxSliceNumNew, pMA, "Error: ReallocateSliceList()::AllocateSliceMBBuffer");
+      FreeSliceBuffer(pNewSliceList, kiMaxSliceNumNew, pMA, "pSliceInThread");
       return iRet;
     }
 
@@ -1248,12 +1248,12 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
 
     iRet = InitSliceRC (pSlice, pCtx->iGlobalQp);
     if (ENC_RETURN_SUCCESS != iRet) {
-      FreeSliceBuffer(pNewSliceList, kiMaxSliceNumNew, pMA, "Error: ReallocateSliceList()::InitSliceRC()");
+      FreeSliceBuffer(pNewSliceList, kiMaxSliceNumNew, pMA, "pSliceInThread");
       return iRet;
     }
   }
 
-  pMA->WelsFree (pSliceList, "Slice");
+  pMA->WelsFree (pSliceList, "pSliceInThread");
   pSliceList = pNewSliceList;
   return ENC_RETURN_SUCCESS;
 
@@ -1323,7 +1323,7 @@ int32_t ExtendLayerBuffer(sWelsEncCtx* pCtx,
   int32_t* pCountMbNumInSlice  = NULL;
 
   // update for ppsliceInlayer
-  ppSlice = (SSlice**)pMA->WelsMallocz (sizeof (SSlice*) * kiMaxSliceNumNew, "ppSlice");
+  ppSlice = (SSlice**)pMA->WelsMallocz (sizeof (SSlice*) * kiMaxSliceNumNew, "ppSliceInLayer");
   if (NULL == ppSlice) {
     WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR, "CWelsH264SVCEncoder::ExtendLayerBuffer: ppSlice is NULL");
     return ENC_RETURN_MEMALLOCERR;

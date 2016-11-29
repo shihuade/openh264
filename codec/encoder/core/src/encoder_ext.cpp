@@ -909,7 +909,7 @@ void FreeSliceInLayer (SDqLayer* pDq, CMemoryAlign* pMa) {
   for (; iIdx < MAX_THREADS_NUM; iIdx ++) {
     FreeSliceBuffer (pDq->sSliceThreadInfo.pSliceInThread[iIdx],
                      pDq->sSliceThreadInfo.iMaxSliceNumInThread[iIdx],
-                     pMa, "pSliceInLayer");
+                     pMa, "pSliceInThread");
   }
 }
 
@@ -1954,6 +1954,7 @@ void FreeMemorySvc (sWelsEncCtx** ppCtx) {
       pCtx->pFuncList = NULL;
     }
 
+    printf("Leak size is %d\n\n", pMa->WelsGetMemoryUsage());
 #if defined(MEMORY_MONITOR)
     assert (pMa->WelsGetMemoryUsage() == 0); // ensure all memory free well
 #endif//MEMORY_MONITOR
