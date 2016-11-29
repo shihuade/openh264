@@ -75,7 +75,7 @@ void* WelsMalloc (const uint32_t kuiSize, const char* kpTag, const uint32_t kiAl
 
 #ifdef MEMORY_CHECK
   if (fpMemChkPoint == NULL) {
-    fpMemChkPoint    = fopen ("./enc_mem_check_point.txt",  "at+");
+    fpMemChkPoint    = fopen ("./enc_mem_check_point.txt",  "w+");
     nCountRequestNum = 0;
   }
 

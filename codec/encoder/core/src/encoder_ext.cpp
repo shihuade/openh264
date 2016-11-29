@@ -934,7 +934,7 @@ void FreeDqLayer (SDqLayer*& pDq, CMemoryAlign* pMa) {
     pMa->WelsFree (pDq->pCountMbNumInSlice, "pDq->pCountMbNumInSlice");
     pDq->pCountMbNumInSlice = NULL;
   }
-
+/*
   if (pDq->pNumSliceCodedOfPartition) {
     pMa->WelsFree (pDq->pNumSliceCodedOfPartition, "pNumSliceCodedOfPartition");
     pDq->pNumSliceCodedOfPartition = NULL;
@@ -954,7 +954,7 @@ void FreeDqLayer (SDqLayer*& pDq, CMemoryAlign* pMa) {
     pMa->WelsFree (pDq->pEndMbIdxOfPartition, "pEndMbIdxOfPartition");
     pDq->pEndMbIdxOfPartition = NULL;
   }
-
+*/
   if (pDq->pFeatureSearchPreparation) {
     ReleaseFeatureSearchPreparation (pMa, pDq->pFeatureSearchPreparation->pFeatureOfBlock);
     pMa->WelsFree (pDq->pFeatureSearchPreparation, "pFeatureSearchPreparation");
@@ -1065,6 +1065,7 @@ static inline int32_t InitDqLayers (sWelsEncCtx** ppCtx, SExistingParasetList* p
     WELS_VERIFY_RETURN_PROC_IF (1, (NULL == pDqLayer), FreeDqLayer (pDqLayer, pMa))
 
     // for dynamic slicing mode
+/*
     if (SM_SIZELIMITED_SLICE == pDlayer->sSliceArgument.uiSliceMode) {
       const int32_t iSize                       = pParam->iMultipleThreadIdc * sizeof (int32_t);
 
@@ -1079,6 +1080,7 @@ static inline int32_t InitDqLayers (sWelsEncCtx** ppCtx, SExistingParasetList* p
                                    NULL == pDqLayer->pEndMbIdxOfPartition),
                                   FreeDqLayer (pDqLayer, pMa))
     }
+*/
     pDqLayer->bNeedAdjustingSlicing = false;
 
     pDqLayer->iMbWidth  = kiMbW;
@@ -2439,8 +2441,8 @@ void UpdateSlicepEncCtxWithPartition (SDqLayer* pCurDq, int32_t iPartitionNum) {
       iCountMbNumInPartition = iCountMbNumPerPartition;
     }
 
-    pCurDq->pFirstMbIdxOfPartition[i] = iFirstMbIdx;
-    pCurDq->pEndMbIdxOfPartition[i]   = iFirstMbIdx + iCountMbNumInPartition - 1;
+    pCurDq->FirstMbIdxOfPartition[i] = iFirstMbIdx;
+    pCurDq->EndMbIdxOfPartition[i]   = iFirstMbIdx + iCountMbNumInPartition - 1;
 
     WelsSetMemMultiplebytes_c (pSliceCtx->pOverallMbMap + iFirstMbIdx, i,
                                iCountMbNumInPartition, sizeof (uint16_t));
@@ -4446,9 +4448,9 @@ int32_t WelsCodeOnePicPartition (sWelsEncCtx* pCtx,
   //init
   {
     pStartSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice = iFirstMbIdxInPartition;
-    pCurLayer->pNumSliceCodedOfPartition[kiPartitionId] = 1;
+    pCurLayer->NumSliceCodedOfPartition[kiPartitionId] = 1;
   }
-  pCurLayer->pLastCodedMbIdxOfPartition[kiPartitionId] = 0;
+  pCurLayer->LastCodedMbIdxOfPartition[kiPartitionId] = 0;
 
   while (iAnyMbLeftInPartition > 0) {
     int32_t iSliceSize      = 0;
@@ -4508,7 +4510,7 @@ int32_t WelsCodeOnePicPartition (sWelsEncCtx* pCtx,
 
     ++ iNalIdxInLayer;
     iSliceIdx += kiSliceStep; //if iSliceIdx is not continuous
-    iAnyMbLeftInPartition = iEndMbIdxInPartition - pCurLayer->pLastCodedMbIdxOfPartition[kiPartitionId];
+    iAnyMbLeftInPartition = iEndMbIdxInPartition - pCurLayer->LastCodedMbIdxOfPartition[kiPartitionId];
   }
 
   *pLayerSize           = iPartitionBsSize;

@@ -643,9 +643,9 @@ TRY_REENCODING:
 
     if (DynSlcJudgeSliceBoundaryStepBack (pEncCtx, pSlice, pSliceCtx, pCurMb, &sDss)) { //islice
       pEncCtx->pFuncList->pfStashPopMBStatus (&sDss, pSlice);
-      pCurLayer->pLastCodedMbIdxOfPartition[kiPartitionId] = iCurMbIdx -
-          1; // update pLastCodedMbIdxOfPartition, need to -1 due to stepping back
-      ++ pCurLayer->pNumSliceCodedOfPartition[kiPartitionId];
+      pCurLayer->LastCodedMbIdxOfPartition[kiPartitionId] = iCurMbIdx -
+          1; // update LastCodedMbIdxOfPartition, need to -1 due to stepping back
+      ++ pCurLayer->NumSliceCodedOfPartition[kiPartitionId];
 
       break;
     }
@@ -664,9 +664,9 @@ TRY_REENCODING:
     iNextMbIdx = WelsGetNextMbOfSlice (pCurLayer, iCurMbIdx);
     //whether all of MB in current pSlice encoded or not
     if (iNextMbIdx == -1 || iNextMbIdx >= kiTotalNumMb || iNumMbCoded >= kiTotalNumMb) {
-      pSlice->iCountMbNumInSlice = iCurMbIdx - pCurLayer->pLastCodedMbIdxOfPartition[kiPartitionId];
-      pCurLayer->pLastCodedMbIdxOfPartition[kiPartitionId] =
-        iCurMbIdx; // update pLastCodedMbIdxOfPartition, finish coding, use iCurMbIdx directly
+      pSlice->iCountMbNumInSlice = iCurMbIdx - pCurLayer->LastCodedMbIdxOfPartition[kiPartitionId];
+      pCurLayer->LastCodedMbIdxOfPartition[kiPartitionId] =
+        iCurMbIdx; // update LastCodedMbIdxOfPartition, finish coding, use iCurMbIdx directly
       break;
     }
   }
@@ -1605,10 +1605,10 @@ int32_t ReOrderSliceInLayer (sWelsEncCtx* pCtx,
   for(iPartitionIdx = 0; iPartitionIdx < iPartitionNum; iPartitionIdx++) {
     aiPartitionOffset[iPartitionIdx] = iEncodeSliceNum;
     if ( SM_SIZELIMITED_SLICE == kuiSliceMode) {
-      iEncodeSliceNum  += pCurLayer->pNumSliceCodedOfPartition[iPartitionIdx];
+      iEncodeSliceNum  += pCurLayer->NumSliceCodedOfPartition[iPartitionIdx];
       printf("**********iPartitionIdx is ,%2d, SliceNum is ,%2d,, offset is ,%2d,******\n",
              iPartitionIdx,
-             pCurLayer->pNumSliceCodedOfPartition[iPartitionIdx],
+             pCurLayer->NumSliceCodedOfPartition[iPartitionIdx],
              aiPartitionOffset[iPartitionIdx]);
 
     } else {
@@ -1865,7 +1865,7 @@ bool DynSlcJudgeSliceBoundaryStepBack (void* pCtx, void* pSlice, SSliceCtx* pSli
   int32_t iPosBitOffset = 0;
   const int32_t  kiActiveThreadsNum    = pEncCtx->iActiveThreadsNum;
   const int32_t  kiPartitaionId        = pCurSlice->iSliceIdx % kiActiveThreadsNum;
-  const int32_t  kiEndMbIdxOfPartition = pEncCtx->pCurDqLayer->pEndMbIdxOfPartition[kiPartitaionId];
+  const int32_t  kiEndMbIdxOfPartition = pEncCtx->pCurDqLayer->EndMbIdxOfPartition[kiPartitaionId];
   const int32_t  kiMaxSliceNum         = pEncCtx->pCurDqLayer->sSliceThreadInfo.iMaxSliceNumInThread[pCurSlice->uiThreadIdx];
   const bool    kbCurMbNotFirstMbOfCurSlice  = ((iCurMbIdx > 0) && (pSliceCtx->pOverallMbMap[iCurMbIdx] ==
       pSliceCtx->pOverallMbMap[iCurMbIdx - 1]));
@@ -2097,9 +2097,9 @@ TRY_REENCODING:
     sDss.iCurrentPos = pEncCtx->pFuncList->pfGetBsPosition (pSlice);
     if (DynSlcJudgeSliceBoundaryStepBack (pEncCtx, pSlice, pSliceCtx, pCurMb, &sDss)) {
       pSlice->iMbSkipRun = pEncCtx->pFuncList->pfStashPopMBStatus (&sDss, pSlice);
-      pCurLayer->pLastCodedMbIdxOfPartition[kiPartitionId] = iCurMbIdx -
-          1; // update pLastCodedMbIdxOfPartition, need to -1 due to stepping back
-      ++ pCurLayer->pNumSliceCodedOfPartition[kiPartitionId];
+      pCurLayer->LastCodedMbIdxOfPartition[kiPartitionId] = iCurMbIdx -
+          1; // update LastCodedMbIdxOfPartition, need to -1 due to stepping back
+      ++ pCurLayer->NumSliceCodedOfPartition[kiPartitionId];
 
       break;
     }
@@ -2120,8 +2120,8 @@ TRY_REENCODING:
     iNextMbIdx = WelsGetNextMbOfSlice (pCurLayer, iCurMbIdx);
     //whether all of MB in current pSlice encoded or not
     if (iNextMbIdx == -1 || iNextMbIdx >= kiTotalNumMb || iNumMbCoded >= kiTotalNumMb) {
-      pCurLayer->pLastCodedMbIdxOfPartition[kiPartitionId] =
-        iCurMbIdx; // update pLastCodedMbIdxOfPartition, finish coding, use pCurMb_idx directly
+      pCurLayer->LastCodedMbIdxOfPartition[kiPartitionId] =
+        iCurMbIdx; // update LastCodedMbIdxOfPartition, finish coding, use pCurMb_idx directly
       break;
     }
   }

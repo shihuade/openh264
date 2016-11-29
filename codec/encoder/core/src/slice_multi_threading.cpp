@@ -700,15 +700,15 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
       } else { // for SM_SIZELIMITED_SLICE parallelization
         const int32_t kiPartitionId             = iThreadIdx;
         const int32_t kiSliceIdxStep            = pEncPEncCtx->iActiveThreadsNum;
-        const int32_t kiFirstMbInPartition      = pCurDq->pFirstMbIdxOfPartition[kiPartitionId];
-        const int32_t kiEndMbIdxInPartition     = pCurDq->pEndMbIdxOfPartition[kiPartitionId];
+        const int32_t kiFirstMbInPartition      = pCurDq->FirstMbIdxOfPartition[kiPartitionId];
+        const int32_t kiEndMbIdxInPartition     = pCurDq->EndMbIdxOfPartition[kiPartitionId];
         int32_t iAnyMbLeftInPartition           = kiEndMbIdxInPartition - kiFirstMbInPartition + 1;
         SSpatialLayerInternal *pParamInternal   = &pCodingParam->sDependencyLayers[kiCurDid];
         iSliceIdx                               = pPrivateData->iSliceIndex;
         SSlice* pStartSlice                     = &pCurDq->sSliceThreadInfo.pSliceInThread[iThreadIdx][iSliceIdx];
         pStartSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice = kiFirstMbInPartition;
-        pCurDq->pNumSliceCodedOfPartition[kiPartitionId]          = 1;
-        pCurDq->pLastCodedMbIdxOfPartition[kiPartitionId]         = 0;
+        pCurDq->NumSliceCodedOfPartition[kiPartitionId]          = 1;
+        pCurDq->LastCodedMbIdxOfPartition[kiPartitionId]         = 0;
 
         while (iAnyMbLeftInPartition > 0) {
           if (iSliceIdx >= pCurDq->iMaxSliceNum) {
@@ -781,12 +781,12 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
 #endif//SLICE_INFO_OUTPUT
 
           MT_TRACE_LOG (&(pEncPEncCtx->sLogCtx), WELS_LOG_INFO,
-                        "[MT] CodingSliceThreadProc(), coding_idx %d, iPartitionId %d, iSliceIdx %d, iSliceSize %d, count_mb_slice %d, iEndMbInPartition %d, pCurDq->pLastCodedMbIdxOfPartition[%d] %d\n",
+                        "[MT] CodingSliceThreadProc(), coding_idx %d, iPartitionId %d, iSliceIdx %d, iSliceSize %d, count_mb_slice %d, iEndMbInPartition %d, pCurDq->LastCodedMbIdxOfPartition[%d] %d\n",
                         pEncPEncCtx->iCodingIndex, kiPartitionId, iSliceIdx, iSliceSize,
                         pSlice->iCountMbNumInSlice,
-                        kiEndMbIdxInPartition, kiPartitionId, pCurDq->pLastCodedMbIdxOfPartition[kiPartitionId]);
+                        kiEndMbIdxInPartition, kiPartitionId, pCurDq->LastCodedMbIdxOfPartition[kiPartitionId]);
 
-          iAnyMbLeftInPartition = kiEndMbIdxInPartition - pCurDq->pLastCodedMbIdxOfPartition[kiPartitionId];
+          iAnyMbLeftInPartition = kiEndMbIdxInPartition - pCurDq->LastCodedMbIdxOfPartition[kiPartitionId];
           iSliceIdx += kiSliceIdxStep;
         }
 
