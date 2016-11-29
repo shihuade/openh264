@@ -921,17 +921,17 @@ void FreeDqLayer (SDqLayer*& pDq, CMemoryAlign* pMa) {
   FreeSliceInLayer (pDq, pMa);
 
   if (pDq->ppSliceInLayer) {
-    pMa->WelsFree (pDq->ppSliceInLayer, "pDq->ppSliceInLayer");
+    pMa->WelsFree (pDq->ppSliceInLayer, "ppSliceInLayer");
     pDq->ppSliceInLayer = NULL;
   }
 
   if (pDq->pFirstMbIdxOfSlice) {
-    pMa->WelsFree (pDq->pFirstMbIdxOfSlice, "pDq->pFirstMbIdxOfSlice");
+    pMa->WelsFree (pDq->pFirstMbIdxOfSlice, "pFirstMbIdxOfSlice");
     pDq->pFirstMbIdxOfSlice = NULL;
   }
 
   if (pDq->pCountMbNumInSlice) {
-    pMa->WelsFree (pDq->pCountMbNumInSlice, "pDq->pCountMbNumInSlice");
+    pMa->WelsFree (pDq->pCountMbNumInSlice, "pCountMbNumInSlice");
     pDq->pCountMbNumInSlice = NULL;
   }
 /*
