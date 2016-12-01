@@ -1143,20 +1143,49 @@ int32_t InitSliceInLayer (sWelsEncCtx* pCtx,
 void InitSliceHeadWithBase (SSlice* pSlice, SSlice* pBaseSlice) {
   SSliceHeaderExt* pBaseSHExt  = &pBaseSlice->sSliceHeaderExt;
   SSliceHeaderExt* pSHExt      = &pSlice->sSliceHeaderExt;
-  printf("        pBaseSHExt is: 0x%x  pSlice is 0x%x  0x%x  0x%x %d %d \n",
-         pBaseSHExt,
-         pSHExt,
-         &pSHExt->sSliceHeader.iPpsId,
-         &pSHExt->sSliceHeader.iSpsId,
-         pSHExt->sSliceHeader.iPpsId,
-         pSHExt->sSliceHeader.iSpsId);
-    
+  printf("idx:%d~%d pSlc 0x%x 0x%x pPps 0x%x 0x%x pSps 0x%x val-pPps:0x%x--%d %d %d %d 0x%x--%d \n",
+           pBaseSlice->iSliceIdx,
+           pSlice->iSliceIdx,
+           //pBaseSHExt,
+           pSHExt,
+           &pSlice->bSliceHeaderExtFlag,
+           &pSHExt->sSliceHeader.iPpsId,
+           &pSHExt->sSliceHeader.pPps,
+           &pSHExt->sSliceHeader.iSpsId,
+           &pSHExt->sSliceHeader.pSps,
+           
+           pSHExt->sSliceHeader.pPps,
+           pSHExt->sSliceHeader.pPps,
+           pSlice->bSliceHeaderExtFlag,
+           pSHExt->sSliceHeader.iPpsId,
+           pSHExt->sSliceHeader.iSpsId,
+           pSHExt->sSliceHeader.pSps,
+           pSHExt->sSliceHeader.pSps);
 
   pSlice->bSliceHeaderExtFlag  = pBaseSlice->bSliceHeaderExtFlag;
   pSHExt->sSliceHeader.iPpsId     = pBaseSHExt->sSliceHeader.iPpsId;
   pSHExt->sSliceHeader.pPps       = pBaseSHExt->sSliceHeader.pPps;
   pSHExt->sSliceHeader.iSpsId     = pBaseSHExt->sSliceHeader.iSpsId;
   pSHExt->sSliceHeader.pSps       = pBaseSHExt->sSliceHeader.pSps;
+
+  printf("idx:%d~%d pSlc 0x%x 0x%x 0x%x pPps 0x%x 0x%x pSps 0x%x val-pPps:0x%x--%d %d %d %d 0x%x--%d \n",
+           pBaseSlice->iSliceIdx,
+           pSlice->iSliceIdx,
+           pSHExt,
+           &pSlice->bSliceHeaderExtFlag,
+           &pSHExt->sSliceHeader.iPpsId,
+           &pSHExt->sSliceHeader.pPps,
+           &pSHExt->sSliceHeader.iSpsId,
+           &pSHExt->sSliceHeader.pSps,
+           
+           pSHExt->sSliceHeader.pPps,
+           pSHExt->sSliceHeader.pPps,
+           pSlice->bSliceHeaderExtFlag,
+           pSHExt->sSliceHeader.iPpsId,
+           pSHExt->sSliceHeader.iSpsId,
+           pSHExt->sSliceHeader.pSps,
+           pSHExt->sSliceHeader.pSps);
+
 }
 
 void InitSliceRefInfoWithBase (SSlice* pSlice, SSlice* pBaseSlice, const uint8_t kuiRefCount) {
