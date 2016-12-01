@@ -757,10 +757,11 @@ static const PWelsSliceHeaderWriteFunc g_pWelsWriteSliceHeader[2] = {  // 0: for
 
 //Allocate slice's MB cache buffer
 int32_t AllocMbCacheAligned (SMbCache* pMbCache, CMemoryAlign* pMa) {
-  pMbCache->pCoeffLevel = (int16_t*)pMa->WelsMallocz (MB_COEFF_LIST_SIZE * sizeof (int16_t), "pMbCache->pCoeffLevel");
-  WELS_VERIFY_RETURN_IF (1, (NULL == pMbCache->pCoeffLevel));
   pMbCache->pMemPredMb = (uint8_t*)pMa->WelsMallocz (2 * 256 * sizeof (uint8_t), "pMbCache->pMemPredMb");
   WELS_VERIFY_RETURN_IF (1, (NULL == pMbCache->pMemPredMb));
+
+  pMbCache->pCoeffLevel = (int16_t*)pMa->WelsMallocz (MB_COEFF_LIST_SIZE * sizeof (int16_t), "pMbCache->pCoeffLevel");
+  WELS_VERIFY_RETURN_IF (1, (NULL == pMbCache->pCoeffLevel));
   pMbCache->pSkipMb = (uint8_t*)pMa->WelsMallocz (384 * sizeof (uint8_t), "pMbCache->pSkipMb");
   WELS_VERIFY_RETURN_IF (1, (NULL == pMbCache->pSkipMb));
   pMbCache->pMemPredBlk4 = (uint8_t*)pMa->WelsMallocz (2 * 16 * sizeof (uint8_t), "pMbCache->pMemPredBlk4");
@@ -1047,6 +1048,9 @@ int32_t InitSliceThreadInfo (sWelsEncCtx* pCtx,
   int32_t iIdx                        = 0;
   int32_t iRet                        = 0;
 
+  int32_t iSliceBufferSize  = sizeof (SSlice);
+  int32_t iAllSliceBufferSize = iSliceBufferSize * pDqLayer->iMaxSliceNum;
+
   assert (iThreadNum > 0);
   iMaxSliceNumInThread = pDqLayer->iMaxSliceNum;
   while (iIdx < iThreadNum) {
@@ -1139,6 +1143,14 @@ int32_t InitSliceInLayer (sWelsEncCtx* pCtx,
 void InitSliceHeadWithBase (SSlice* pSlice, SSlice* pBaseSlice) {
   SSliceHeaderExt* pBaseSHExt  = &pBaseSlice->sSliceHeaderExt;
   SSliceHeaderExt* pSHExt      = &pSlice->sSliceHeaderExt;
+  printf("        pBaseSHExt is: 0x%x  pSlice is 0x%x  0x%x  0x%x %d %d \n",
+         pBaseSHExt,
+         pSHExt,
+         &pSHExt->sSliceHeader.iPpsId,
+         &pSHExt->sSliceHeader.iSpsId,
+         pSHExt->sSliceHeader.iPpsId,
+         pSHExt->sSliceHeader.iSpsId);
+    
 
   pSlice->bSliceHeaderExtFlag  = pBaseSlice->bSliceHeaderExtFlag;
   pSHExt->sSliceHeader.iPpsId     = pBaseSHExt->sSliceHeader.iPpsId;
@@ -1193,6 +1205,14 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
   if (NULL == pSliceList || NULL == pSliceArgument) {
     return ENC_RETURN_INVALIDINPUT;
   }
+    
+  uint8_t* pPointer  = pSliceList[0].sMbCacheInfo.pMemPredMb;
+  int32_t BufferSize =   * ((int32_t*) ((uint8_t*)pPointer - sizeof (void**) - sizeof ( int32_t)));
+  printf("--before--ReallocateSliceList, NumOld %3d, NumNew %3d, pPointer is: 0x%x BufferSize is %4d\n",
+         kiMaxSliceNumOld,
+         kiMaxSliceNumNew,
+         pPointer,
+         BufferSize);
 
   pNewSliceList = (SSlice*)pMA->WelsMallocz (sizeof (SSlice) * kiMaxSliceNumNew, "pSliceInThread");
   if (NULL == pNewSliceList) {
@@ -1255,6 +1275,15 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
 
   pMA->WelsFree (pSliceList, "pSliceInThread");
   pSliceList = pNewSliceList;
+    
+  pPointer  = pSliceList[0].sMbCacheInfo.pMemPredMb;
+  BufferSize =   * ((int32_t*) ((uint8_t*)pPointer - sizeof (void**) - sizeof ( int32_t)));
+  printf("--after--ReallocateSliceList, NumOld %3d, NumNew %3d, pPointer is: 0x%x BufferSize is %4d\n",
+           kiMaxSliceNumOld,
+           kiMaxSliceNumNew,
+           pPointer,
+           BufferSize);
+
   return ENC_RETURN_SUCCESS;
 
 }
@@ -1400,6 +1429,10 @@ int32_t ReallocSliceBuffer (sWelsEncCtx* pCtx) {
   for(iThreadIdx = 0; iThreadIdx < pCtx->iActiveThreadsNum; iThreadIdx++ ) {
     for (iSliceIdx = 0; iSliceIdx < pCurLayer->sSliceThreadInfo.iMaxSliceNumInThread[iThreadIdx]; iSliceIdx++) {
       pCurLayer->ppSliceInLayer[iStartIdx + iSliceIdx] = pCurLayer->sSliceThreadInfo.pSliceInThread[iThreadIdx] + iSliceIdx;
+      printf("ReallocSliceBuffer::ppSliceInLayer[%3d] point to pSliceInThread[%d] + %3d \n",
+             iStartIdx + iSliceIdx,
+             iThreadIdx,
+             iSliceIdx);
     }
     iStartIdx += pCurLayer->sSliceThreadInfo.iMaxSliceNumInThread[iThreadIdx];
   }

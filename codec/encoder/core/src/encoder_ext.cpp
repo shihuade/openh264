@@ -2489,6 +2489,13 @@ void WelsInitCurrentLayer (sWelsEncCtx* pCtx,
   if (NULL == pCurDq)
     return;
 
+  uint8_t* pPointer  = pCtx->pCurDqLayer->sSliceThreadInfo.pSliceInThread[0]->sMbCacheInfo.pMemPredMb;
+  int32_t BufferSize =   * ((int32_t*) ((uint8_t*)pPointer - sizeof (void**) - sizeof ( int32_t)));
+  printf("--Before-01--WelsInitCurrentLayer, pPointer is: 0x%x BufferSize is %4d\n",
+           pPointer,
+           BufferSize);
+
+    
   pCurDq->pDecPic = pDecPic;
 
   assert (iSliceCount > 0);
@@ -2516,14 +2523,43 @@ void WelsInitCurrentLayer (sWelsEncCtx* pCtx,
 
   pBaseSlice->bSliceHeaderExtFlag = (NAL_UNIT_CODED_SLICE_EXT == pCtx->eNalType);
 
+  pPointer  = pCtx->pCurDqLayer->sSliceThreadInfo.pSliceInThread[0]->sMbCacheInfo.pMemPredMb;
+  BufferSize =   * ((int32_t*) ((uint8_t*)pPointer - sizeof (void**) - sizeof ( int32_t)));
+  printf("--Before-02--WelsInitCurrentLayer, pPointer is: 0x%x BufferSize is %4d\n",
+           pPointer,
+           BufferSize);
+    
+
   iIdx = 1;
   while (iIdx < iSliceCount) {
+    pPointer  = pCtx->pCurDqLayer->sSliceThreadInfo.pSliceInThread[0]->sMbCacheInfo.pMemPredMb;
+    BufferSize =   * ((int32_t*) ((uint8_t*)pPointer - sizeof (void**) - sizeof ( int32_t)));
+    printf("--------SlcCount %3d, iIdx %3d, InitSliceHeadWithBase, pPointer is: 0x%x BufferSize is %4d\n",
+           iSliceCount,
+           iIdx,
+           pPointer,
+           BufferSize);
+
     InitSliceHeadWithBase (pCurDq->ppSliceInLayer[iIdx], pBaseSlice);
+
+    pPointer  = pCtx->pCurDqLayer->sSliceThreadInfo.pSliceInThread[0]->sMbCacheInfo.pMemPredMb;
+    BufferSize =   * ((int32_t*) ((uint8_t*)pPointer - sizeof (void**) - sizeof ( int32_t)));
+    printf("--------iSliceCount is %3d, iIdx is %3d, InitSliceHeadWithBase, pPointer is: 0x%x BufferSize is %4d\n",
+           iSliceCount,
+           iIdx,
+           pPointer,
+           BufferSize);
 
     pCurDq->pSliceEncodedFlag[iIdx] = false;
     ++ iIdx;
   }
 
+  pPointer  = pCtx->pCurDqLayer->sSliceThreadInfo.pSliceInThread[0]->sMbCacheInfo.pMemPredMb;
+  BufferSize =   * ((int32_t*) ((uint8_t*)pPointer - sizeof (void**) - sizeof ( int32_t)));
+  printf("--Before-03--WelsInitCurrentLayer, pPointer is: 0x%x BufferSize is %4d\n",
+           pPointer,
+           BufferSize);
+    
   memset (pNalHdExt, 0, sizeof (SNalUnitHeaderExt));
   pNalHd->uiNalRefIdc                   = pCtx->eNalPriority;
   pNalHd->eNalUnitType                  = pCtx->eNalType;
@@ -3453,6 +3489,12 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
     int32_t  iDecompositionStages = pSvcParam->sDependencyLayers[iCurDid].iDecompositionStages;
     pCtx->pCurDqLayer           = pCtx->ppDqLayerList[iCurDid];
     pCtx->uiDependencyId        =  iCurDid;
+    
+    uint8_t* pPointer  = pCtx->pCurDqLayer->sSliceThreadInfo.pSliceInThread[0]->sMbCacheInfo.pMemPredMb;
+    int32_t BufferSize =   * ((int32_t*) ((uint8_t*)pPointer - sizeof (void**) - sizeof ( int32_t)));
+    printf("--Before-01--WelsEncoderEncodeExt, pPointer is: 0x%x BufferSize is %4d\n",
+             pPointer,
+             BufferSize);
 
     if (pSvcParam->bSimulcastAVC) {
       eFrameType = PrepareEncodeFrame (pCtx, pLayerBsInfo, iSpatialNum , iCurDid, iCurTid, iLayerNum, iFrameSize,
@@ -3535,7 +3577,21 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
     pCtx->pDecPic->iPictureType = pCtx->eSliceType;
     pCtx->pDecPic->iFramePoc    = pParamInternal->iPOC;
 
+    pPointer  = pCtx->pCurDqLayer->sSliceThreadInfo.pSliceInThread[0]->sMbCacheInfo.pMemPredMb;
+    BufferSize =   * ((int32_t*) ((uint8_t*)pPointer - sizeof (void**) - sizeof ( int32_t)));
+    printf("--Before--01-02--WelsEncoderEncodeExt, pPointer is: 0x%x BufferSize is %4d\n",
+             pPointer,
+             BufferSize);
+      
+
     WelsInitCurrentLayer (pCtx, iCurWidth, iCurHeight);
+
+    pPointer  = pCtx->pCurDqLayer->sSliceThreadInfo.pSliceInThread[0]->sMbCacheInfo.pMemPredMb;
+    BufferSize =   * ((int32_t*) ((uint8_t*)pPointer - sizeof (void**) - sizeof ( int32_t)));
+    printf("--Before--01-03--WelsEncoderEncodeExt, pPointer is: 0x%x BufferSize is %4d\n",
+             pPointer,
+             BufferSize);
+      
 
     pCtx->pReferenceStrategy->MarkPic();
     if (!pCtx->pReferenceStrategy->BuildRefList (pParamInternal->iPOC, 0)) {
@@ -3564,6 +3620,12 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
 
     //TODO Complexity Calculation here for screen content
     iLayerSize = 0;
+
+    pPointer  = pCtx->pCurDqLayer->sSliceThreadInfo.pSliceInThread[0]->sMbCacheInfo.pMemPredMb;
+    BufferSize =   * ((int32_t*) ((uint8_t*)pPointer - sizeof (void**) - sizeof ( int32_t)));
+    printf("--Before--02--WelsEncoderEncodeExt, pPointer is: 0x%x BufferSize is %4d\n",
+             pPointer,
+             BufferSize);
 
     if (SM_SINGLE_SLICE == pParam->sSliceArgument.uiSliceMode) { // only one slice within a sQualityStat layer
       int32_t iSliceSize   = 0;
@@ -4408,6 +4470,13 @@ int32_t WelsCodeOnePicPartition (sWelsEncCtx* pCtx,
   const int32_t kiSliceIdxStep          = pCtx->iActiveThreadsNum;
   int32_t iReturn = ENC_RETURN_SUCCESS;
 
+  uint8_t* pPointer  = pCurLayer->sSliceThreadInfo.pSliceInThread[0]->sMbCacheInfo.pMemPredMb;
+  int32_t BufferSize =   * ((int32_t*) ((uint8_t*)pPointer - sizeof (void**) - sizeof ( int32_t)));
+  printf("--Before--WelsCodeOnePicPartition, pPointer is: 0x%x BufferSize is %4d\n",
+           pPointer,
+           BufferSize);
+    
+
 
   //init
   {
@@ -4476,6 +4545,12 @@ int32_t WelsCodeOnePicPartition (sWelsEncCtx* pCtx,
     iSliceIdx += kiSliceStep; //if iSliceIdx is not continuous
     iAnyMbLeftInPartition = iEndMbIdxInPartition - pCurLayer->LastCodedMbIdxOfPartition[kiPartitionId];
   }
+
+  pPointer   = pCurLayer->sSliceThreadInfo.pSliceInThread[0]->sMbCacheInfo.pMemPredMb;
+  BufferSize =   * ((int32_t*) ((uint8_t*)pPointer - sizeof (void**) - sizeof ( int32_t)));
+  printf("--after--WelsCodeOnePicPartition, pPointer is: 0x%x BufferSize is %4d\n",
+           pPointer,
+           BufferSize);
 
   *pLayerSize           = iPartitionBsSize;
   *pNalIdxInLayer       = iNalIdxInLayer;
