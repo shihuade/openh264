@@ -2532,25 +2532,33 @@ void WelsInitCurrentLayer (sWelsEncCtx* pCtx,
 
   iIdx = 1;
   while (iIdx < iSliceCount) {
-/*    pPointer  = pCtx->pCurDqLayer->sSliceThreadInfo.pSliceInThread[0]->sMbCacheInfo.pMemPredMb;
-    BufferSize =   * ((int32_t*) ((uint8_t*)pPointer - sizeof (void**) - sizeof ( int32_t)));
-    printf("--------SlcCount %3d, iIdx %3d, InitSliceHeadWithBase, pPointer is: 0x%x BufferSize is %4d\n",
-           iSliceCount,
-           iIdx,
-           pPointer,
-           BufferSize);
-*/
-    InitSliceHeadWithBase (pCurDq->ppSliceInLayer[iIdx], pBaseSlice);
-/*
     pPointer  = pCtx->pCurDqLayer->sSliceThreadInfo.pSliceInThread[0]->sMbCacheInfo.pMemPredMb;
     BufferSize =   * ((int32_t*) ((uint8_t*)pPointer - sizeof (void**) - sizeof ( int32_t)));
-    printf("--------iSliceCount is %3d, iIdx is %3d, InitSliceHeadWithBase, pPointer is: 0x%x BufferSize is %4d\n",
-           iSliceCount,
-           iIdx,
-           pPointer,
-           BufferSize);
+/*    printf("--------iSliceCount is %3d, iIdx is %3d, InitSliceHeadWithBase, pPointer is: 0x%x BufferSize is %4d 0x%x \n",
+             iSliceCount,
+             iIdx,
+             pPointer,
+             BufferSize,
+             &pCurDq->pSliceEncodedFlag[iIdx]);
 */
-    pCurDq->pSliceEncodedFlag[iIdx] = false;
+    InitSliceHeadWithBase (pCurDq->ppSliceInLayer[iIdx], pBaseSlice);
+
+    pPointer  = pCtx->pCurDqLayer->sSliceThreadInfo.pSliceInThread[0]->sMbCacheInfo.pMemPredMb;
+    BufferSize =   * ((int32_t*) ((uint8_t*)pPointer - sizeof (void**) - sizeof ( int32_t)));
+/*    printf("--------iSliceCount is %3d, iIdx is %3d, InitSliceHeadWithBase, pPointer is: 0x%x BufferSize is %4d 0x%x \n",
+             iSliceCount,
+             iIdx,
+             pPointer,
+             BufferSize,
+             &pCurDq->pSliceEncodedFlag[iIdx]);
+    printf("--------iSliceCount is %3d, iIdx is %3d, InitSliceHeadWithBase, pPointer is: 0x%x BufferSize is %4d 0x%x \n",
+             iSliceCount,
+             iIdx,
+             pPointer,
+             BufferSize,
+             &pCurDq->pSliceEncodedFlag[iIdx]);
+*/
+    //pCurDq->pSliceEncodedFlag[iIdx] = false;
     ++ iIdx;
   }
 
