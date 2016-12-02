@@ -63,7 +63,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "welsenc.cfg "
+            argument = "welsenc.cfg"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

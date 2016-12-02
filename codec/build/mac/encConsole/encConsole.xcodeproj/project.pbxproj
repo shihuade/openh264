@@ -44,9 +44,15 @@
 		CEC2779D1A4C0D5E00A5B33B /* welsenc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = welsenc.cpp; path = ../../../console/enc/src/welsenc.cpp; sourceTree = "<group>"; };
 		CEC2779F1A4C0D7700A5B33B /* read_config.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = read_config.cpp; path = ../../../console/common/src/read_config.cpp; sourceTree = "<group>"; };
 		CEC277A11A4C0D8200A5B33B /* read_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = read_config.h; path = ../../../console/common/inc/read_config.h; sourceTree = "<group>"; };
+		EC55F0E31DEFE0BA00758F0D /* codec_api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = codec_api.h; sourceTree = "<group>"; };
+		EC55F0E41DEFE0BA00758F0D /* codec_app_def.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = codec_app_def.h; sourceTree = "<group>"; };
+		EC55F0E51DEFE0BA00758F0D /* codec_def.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = codec_def.h; sourceTree = "<group>"; };
+		EC55F0E61DEFE0BA00758F0D /* codec_ver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = codec_ver.h; sourceTree = "<group>"; };
+		EC572A6F1DE6C0A900F7EB0E /* run_ParseMemCheckLog.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = run_ParseMemCheckLog.sh; path = ../../../../bin/mac/Debug/run_ParseMemCheckLog.sh; sourceTree = "<group>"; };
 		ECA2B9EC1B5E10C30095A33B /* libprocessing.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libprocessing.a; path = ../../../../bin/mac/Debug/libprocessing.a; sourceTree = "<group>"; };
 		ECA2B9EE1B5E10C90095A33B /* libcommon.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcommon.a; path = ../../../../bin/mac/Debug/libcommon.a; sourceTree = "<group>"; };
 		ECA2B9F01B5E10D10095A33B /* libwelsenc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libwelsenc.a; path = ../../../../bin/mac/Debug/libwelsenc.a; sourceTree = "<group>"; };
+		ECB638DA1DE595320015D384 /* run_ThreadAnalyse.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = run_ThreadAnalyse.sh; path = ../../../../bin/mac/Debug/run_ThreadAnalyse.sh; sourceTree = "<group>"; };
 		ECE209571BE20B48005EA78C /* layer2.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = layer2.cfg; path = ../../../../bin/mac/Debug/layer2.cfg; sourceTree = "<group>"; };
 		ECE209581BE20B48005EA78C /* welsenc.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = welsenc.cfg; path = ../../../../bin/mac/Debug/welsenc.cfg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -68,6 +74,7 @@
 		CEC277701A4BB42400A5B33B = {
 			isa = PBXGroup;
 			children = (
+				EC55F0E11DEFE0BA00758F0D /* api */,
 				ECE209561BE20B16005EA78C /* ConfigureFile */,
 				ECA2B9F01B5E10D10095A33B /* libwelsenc.a */,
 				ECA2B9EE1B5E10C90095A33B /* libcommon.a */,
@@ -95,9 +102,31 @@
 			name = encconsole;
 			sourceTree = "<group>";
 		};
+		EC55F0E11DEFE0BA00758F0D /* api */ = {
+			isa = PBXGroup;
+			children = (
+				EC55F0E21DEFE0BA00758F0D /* svc */,
+			);
+			name = api;
+			path = ../../../api;
+			sourceTree = "<group>";
+		};
+		EC55F0E21DEFE0BA00758F0D /* svc */ = {
+			isa = PBXGroup;
+			children = (
+				EC55F0E31DEFE0BA00758F0D /* codec_api.h */,
+				EC55F0E41DEFE0BA00758F0D /* codec_app_def.h */,
+				EC55F0E51DEFE0BA00758F0D /* codec_def.h */,
+				EC55F0E61DEFE0BA00758F0D /* codec_ver.h */,
+			);
+			path = svc;
+			sourceTree = "<group>";
+		};
 		ECE209561BE20B16005EA78C /* ConfigureFile */ = {
 			isa = PBXGroup;
 			children = (
+				EC572A6F1DE6C0A900F7EB0E /* run_ParseMemCheckLog.sh */,
+				ECB638DA1DE595320015D384 /* run_ThreadAnalyse.sh */,
 				ECE209571BE20B48005EA78C /* layer2.cfg */,
 				ECE209581BE20B48005EA78C /* welsenc.cfg */,
 			);
