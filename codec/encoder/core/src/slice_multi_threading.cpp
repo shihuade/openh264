@@ -99,6 +99,7 @@ void CalcSliceComplexRatio (SDqLayer* pCurDq) {
   int32_t iSliceIdx             = 0;
   int32_t iAvI[MAX_SLICES_NUM];
 
+  assert(kiSliceCount <= MAX_SLICES_NUM);
   WelsEmms();
 
   while (iSliceIdx < kiSliceCount) {
@@ -364,6 +365,9 @@ int32_t RequestMtResource (sWelsEncCtx** ppCtx, SWelsSvcCodingParam* pCodingPara
   iReturn = WelsMutexInit (&pSmt->mutexThreadBsBufferUsage);
   WELS_VERIFY_RETURN_PROC_IF (1, (WELS_THREAD_ERROR_OK != iReturn), FreeMemorySvc (ppCtx))
 
+  iReturn = WelsMutexInit (&pSmt->mutexThreadSlcBuffReallocate);
+  WELS_VERIFY_RETURN_PROC_IF (1, (WELS_THREAD_ERROR_OK != iReturn), FreeMemorySvc (ppCtx))
+
   iReturn = WelsMutexInit (& (*ppCtx)->mutexEncoderError);
   WELS_VERIFY_RETURN_PROC_IF (1, (WELS_THREAD_ERROR_OK != iReturn), FreeMemorySvc (ppCtx))
 
@@ -412,6 +416,7 @@ void ReleaseMtResource (sWelsEncCtx** ppCtx) {
 
   WelsMutexDestroy (&pSmt->mutexSliceNumUpdate);
   WelsMutexDestroy (&pSmt->mutexThreadBsBufferUsage);
+  WelsMutexDestroy (&pSmt->mutexThreadSlcBuffReallocate);
   WelsMutexDestroy (& ((*ppCtx)->mutexEncoderError));
 
   if (pSmt->pThreadPEncCtx != NULL) {

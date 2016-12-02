@@ -248,16 +248,28 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
   m_pSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice  = kiFirstMbInPartition;
   pCurDq->NumSliceCodedOfPartition[kiPartitionId]        = 1;
   pCurDq->LastCodedMbIdxOfPartition[kiPartitionId]       = 0;
-  int32_t iReturn                                         = 0;
+  int32_t iReturn      = 0;
+  bool bNeedReallocate = false;
+
   //deal with partition: TODO: here SSliceThreadPrivateData is just for parition info and actually has little relationship with threadbuffer, and iThreadIndex is not used in threadpool model, need renaming after removing old logic to avoid confusion
 
   int32_t iAnyMbLeftInPartition           = kiEndMbIdxInPartition - kiFirstMbInPartition + 1;
   int32_t iLocalSliceIdx = m_iSliceIdx;
   while (iAnyMbLeftInPartition > 0) {
+      bNeedReallocate = (pCurDq->sSliceThreadInfo.iEncodedSliceNumInThread[m_iThreadIdx]
+                         >=  pCurDq->sSliceThreadInfo.iMaxSliceNumInThread[m_iThreadIdx] -1) ? true : false;
+      if (bNeedReallocate) {
+          WelsMutexLock (&m_pCtx->pSliceThreading->mutexThreadSlcBuffReallocate);
+          iReturn = ReallocateSliceInThread(m_pCtx, pCurDq, m_pCtx->uiDependencyId, m_iThreadIdx);
+          WelsMutexUnlock (&m_pCtx->pSliceThreading->mutexThreadSlcBuffReallocate);
+          if (ENC_RETURN_SUCCESS != iReturn) {
+              return iReturn;
+          }
+      }
 
     iReturn = InitOneSliceInThread (m_pCtx, m_pSlice, m_iThreadIdx, m_pCtx->uiDependencyId, iLocalSliceIdx);
     WELS_VERIFY_RETURN_IFNEQ (iReturn, ENC_RETURN_SUCCESS)
-    printf("ParID %d, FirstMbInPart %4d, thrdIdx %d, iLocalSliceIdx %3d, m_pSlice idx %3d, iFirstMB %4d, codedSliceNum %3d\n",
+   /* printf("ParID %d, FirstMbInPart %4d, thrdIdx %d, iLocalSliceIdx %3d, m_pSlice idx %3d, iFirstMB %4d, codedSliceNum %3d\n",
            kiPartitionId,
            kiFirstMbInPartition,
            m_iThreadIdx,
@@ -265,7 +277,7 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
            m_pSlice->iSliceIdx,
            m_pSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice,
            m_pCtx->pCurDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[m_iThreadIdx]);
-
+*/
     m_pSliceBs = &m_pSlice->sSliceBs;
     InitBits (&m_pSliceBs->sBsWrite, m_pSliceBs->pBsBuffer, m_pSliceBs->uiSize);
 
