@@ -185,7 +185,7 @@ WelsErrorType CWelsSliceEncodingTask::ExecuteTask() {
     return iReturn;
   }
 
-  OutputSliceInfo(m_pCtx, m_pSlice, m_iSliceSize);
+  //OutputSliceInfo(m_pCtx, m_pSlice, m_iSliceSize);
 
   m_pCtx->pFuncList->pfDeblocking.pfDeblockingFilterSlice (m_pCtx->pCurDqLayer, m_pCtx->pFuncList, m_iSliceIdx);
 
@@ -199,8 +199,7 @@ WelsErrorType CWelsSliceEncodingTask::ExecuteTask() {
   m_pSliceBs->bSliceCodedFlag = true;
 #endif//MT_DEBUG_BS_WR
     m_pCtx->pCurDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[m_iThreadIdx] ++;
-    printf("m_pCtx->pCurDqLayer->pSliceEncodedFlag[m_iSliceIdx=%d]  %d \n"), m_iSliceIdx, m_pCtx->pCurDqLayer->pSliceEncodedFlag[m_iSliceIdx];
-    //m_pCtx->pCurDqLayer->pSliceEncodedFlag[m_iSliceIdx] = true;
+   //m_pCtx->pCurDqLayer->pSliceEncodedFlag[m_iSliceIdx] = true;
   return ENC_RETURN_SUCCESS;
 }
 

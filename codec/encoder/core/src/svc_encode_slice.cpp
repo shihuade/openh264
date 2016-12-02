@@ -1738,8 +1738,7 @@ int32_t ReOrderSliceInLayer (sWelsEncCtx* pCtx,
     }
   }
 
-  printf("**************After*********************\n");
-  OutputAllSliceInfo(pCtx,kiThreadNum);
+  //OutputAllSliceInfo(pCtx,kiThreadNum);
 
   if( iUsedSliceNum != iEncodeSliceNum ||
      pCurLayer->iMaxSliceNum != (iNonUsedBufferNum + iUsedSliceNum)) {
