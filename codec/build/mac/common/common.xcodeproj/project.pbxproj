@@ -68,7 +68,7 @@
 			outputFiles = (
 				"$(OBJECT_FILE_DIR)/$(arch)/$(INPUT_FILE_BASE).o",
 			);
-			script = "echo \"test common!\"\nnasm=\"\"\nnasm_list=(nasm /usr/bin/nasm /opt/local/bin/nasm)\nfor cmd in ${nasm_list[@]}; do\nver=`$cmd -v 2>/dev/null | awk '{print $3}'`\n[[ $ver =~ ^2\\.1[0-9] ]] && nasm=$cmd && break\ndone\n[ \"$nasm\" = \"\" ] && echo \"[Error] pls install nasm (2.10+)\" 1>&2 && exit 1\n\n[ \"$arch\" = \"x86_64\" ] && asflags=\"-f macho64 -DUNIX64 -DPREFIX -DHAVE_AVX2\" || asflags=\"-f macho32 -DX86_32 -DPREFIX -DHAVE_AVX2\"\n$nasm -I ../../../common/x86/ $asflags $INPUT_FILE_PATH -o $OBJECT_FILE_DIR/$arch/$INPUT_FILE_BASE.o\necho $INPUT_FILE_PATH\n\necho $OBJECT_FILE_DIR/$arch/$INPUT_FILE_BASE.o";
+			script = "echo \"test common!\"\nnasm=\"\"\nnasm_list=(nasm /usr/bin/nasm /opt/local/bin/nasm)\nfor cmd in ${nasm_list[@]}; do\nver=`$cmd -v 2>/dev/null | awk '{print $3}'`\n[[ $ver =~ ^2\\.1[0-9] ]] && nasm=$cmd && break\ndone\necho \"nasm is $nasm\"\necho \"ver  is $ver\"\n[ \"$nasm\" = \"\" ] && echo \"[Error] pls install nasm (2.10+)\" 1>&2 && exit 1\n\n[ \"$arch\" = \"x86_64\" ] && asflags=\"-f macho64 -DUNIX64 -DPREFIX -DHAVE_AVX2\" || asflags=\"-f macho32 -DX86_32 -DPREFIX -DHAVE_AVX2\"\n$nasm -I ../../../common/x86/ $asflags $INPUT_FILE_PATH -o $OBJECT_FILE_DIR/$arch/$INPUT_FILE_BASE.o\necho $INPUT_FILE_PATH\n\necho $OBJECT_FILE_DIR/$arch/$INPUT_FILE_BASE.o";
 		};
 /* End PBXBuildRule section */
 
