@@ -39,6 +39,7 @@
 #include "nal_encap.h"
 #include "svc_enc_golomb.h"
 #include "ls_defines.h"
+#include <iostream>
 namespace WelsEnc {
 /*!
  * \brief   load an initialize NAL pRawNal pData
@@ -91,6 +92,11 @@ void WelsLoadNalForSlice (SWelsSliceBs* pSliceBs, const int32_t/*EWelsNalUnitTyp
   pRawNal->pRawData     = &pSliceBs->pBsBuffer[kiStartPos];
   pRawNal->iStartPos    = kiStartPos;
   pRawNal->iPayloadSize = 0;
+
+  /*printf("  --WelsLoadNalForSlice kiStartPos %d, kiNalRefIdc %d, iPayloadSize %d\n\n",
+           kiStartPos,
+           kiNalRefIdc,
+         pRawNal->iPayloadSize);*/
 }
 
 /*!
@@ -105,6 +111,11 @@ void WelsUnloadNalForSlice (SWelsSliceBs* pSliceBs) {
   /* count payload size of pRawNal NAL */
   pRawNal->iPayloadSize = kiEndPos - pRawNal->iStartPos;
 
+  /*printf("  --WelsUnloadNalForSlice pIdx %d, kiStartPos %d, kiEndPos %d, iPayloadSize %d\n\n",
+        pSliceBs->iNalIndex,
+        pRawNal->iStartPos,
+        kiEndPos,
+        pRawNal->iPayloadSize);*/
   ++ (*pIdx);
 }
 
