@@ -1411,7 +1411,7 @@ int32_t ExtendLayerBuffer(sWelsEncCtx* pCtx,
     WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR, "CWelsH264SVCEncoder::ExtendLayerBuffer: pFirstMbIdxOfSlice is NULL");
     return ENC_RETURN_MEMALLOCERR;
   }
-  memset (pFirstMbIdxOfSlice, 0, sizeof(int32_t) * kiMaxSliceNumOld);
+  memset (pFirstMbIdxOfSlice, 0, sizeof(int32_t) * kiMaxSliceNumNew);
   memcpy (pFirstMbIdxOfSlice, pCurLayer->pFirstMbIdxOfSlice, sizeof (int32_t) * kiMaxSliceNumOld);
   pMA->WelsFree (pCurLayer->pFirstMbIdxOfSlice, "pFirstMbIdxOfSlice");
   pCurLayer->pFirstMbIdxOfSlice = pFirstMbIdxOfSlice;
