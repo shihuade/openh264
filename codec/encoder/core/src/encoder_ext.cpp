@@ -3425,6 +3425,7 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
                                          pCtx->pSvcParam->sSpatialLayers[pCtx->pSvcParam->iSpatialLayerNum - 1].fFrameRate);
   for (int32_t iNalIdx = 0; iNalIdx < MAX_LAYER_NUM_OF_FRAME; iNalIdx++) {
     pFbi->sLayerInfo[iNalIdx].eFrameType = videoFrameTypeSkip;
+    pFbi->sLayerInfo[iNalIdx].iNalCount  = 0;
   }
   // perform csc/denoise/downsample/padding, generate spatial layers
   iSpatialNum = pCtx->pVpp->BuildSpatialPicList (pCtx, pSrcPic);
@@ -3732,12 +3733,9 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
         //TO DO: add update ppSliceInLayer module based on pSliceInThread[ThreadNum]
         // UpdateSliceInLayerInfo(); // reordering
 
-        //TO DO: add update ppSliceInLayer module based on pSliceInThread[ThreadNum]
-        // UpdateSliceInLayerInfo(); // reordering
-
-        //TO DO: add update ppSliceInLayer module based on pSliceInThread[ThreadNum]
         SliceLayerInfoUpdate (pCtx, pFbi, pLayerBsInfo, pParam->sSliceArgument.uiSliceMode);
         iSliceCount = GetCurrentSliceNum (pCtx->pCurDqLayer);
+
         iLayerSize = AppendSliceToFrameBs (pCtx, pLayerBsInfo, iSliceCount);
       } else { // for non-dynamic-slicing mode single threading branch..
         const bool bNeedPrefix = pCtx->bNeedPrefixNalFlag;

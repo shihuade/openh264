@@ -1751,6 +1751,29 @@ int32_t ReOrderSliceInLayer (sWelsEncCtx* pCtx,
   return ENC_RETURN_SUCCESS;
 }
 
+int32_t GetCurLayerNalCount(const SDqLayer* pCurDq, const int32_t kiCodedSliceNum) {
+  int32_t iTotalNalCount  = 0;
+  int32_t iSliceIdx       = 0;
+  SWelsSliceBs* pSliceBs  = NULL;
+  for ( ; iSliceIdx < kiCodedSliceNum; iSliceIdx++ ) {
+    pSliceBs  = &pCurDq->ppSliceInLayer[iSliceIdx]->sSliceBs;
+    if (pSliceBs != NULL && pSliceBs->uiBsPos > 0) {
+      iTotalNalCount += pSliceBs->iNalIndex;
+    }
+  }
+
+  return iTotalNalCount;
+}
+
+int32_t GetTotalCodedNalCount(SFrameBSInfo* pFbi) {
+  int32_t iTotalCodedNalCount = 0;
+  for (int32_t iNalIdx = 0; iNalIdx < MAX_LAYER_NUM_OF_FRAME; iNalIdx++) {
+    iTotalCodedNalCount += pFbi->sLayerInfo[iNalIdx].iNalCount;
+  }
+
+  return iTotalCodedNalCount;
+}
+
 int32_t FrameBsRealloc (sWelsEncCtx* pCtx,
                         SFrameBSInfo* pFrameBsInfo,
                         SLayerBSInfo* pLayerBsInfo,
@@ -1774,6 +1797,7 @@ int32_t FrameBsRealloc (sWelsEncCtx* pCtx,
     return ENC_RETURN_MEMALLOCERR;
   }
   memcpy (pNalLen, pCtx->pOut->pNalLen, sizeof (int32_t) * pCtx->pOut->iCountNals);
+    printf("FrameBsRealloc, before pMA->WelsFree (pCtx->pOut->pNalLen, ...)\n");
   pMA->WelsFree (pCtx->pOut->pNalLen, "pOut->pNalLen");
   pCtx->pOut->pNalLen = pNalLen;
 
@@ -1794,34 +1818,37 @@ int32_t SliceLayerInfoUpdate (sWelsEncCtx* pCtx,
                               SFrameBSInfo* pFrameBsInfo,
                               SLayerBSInfo* pLayerBsInfo,
                               const SliceModeEnum kuiSliceMode) {
-  SDqLayer* pCurLayer  = pCtx->pCurDqLayer;
-  int32_t iMaxSliceNum = 0;
-  int32_t iThreadIdx   = 0;
-  int32_t iRet         = 0;
-  int32_t iThreadNum   = pCtx->iActiveThreadsNum;
+  int32_t iMaxSliceNum   = 0;
+  int32_t iCodedSliceNum = 0;
+  int32_t iCodedNalCount = 0;
+  int32_t iRet           = 0;
 
-  for ( ; iThreadIdx < iThreadNum; iThreadIdx++) {
-    iMaxSliceNum += pCurLayer->sSliceThreadInfo.iMaxSliceNumInThread[iThreadIdx];
+  for ( int32_t iThreadIdx = 0; iThreadIdx < pCtx->iActiveThreadsNum; iThreadIdx++) {
+    iMaxSliceNum += pCtx->pCurDqLayer->sSliceThreadInfo.iMaxSliceNumInThread[iThreadIdx];
   }
 
   //reallocate ppSliceInLayer if total encoded slice num exceed max slice num
-  if (iMaxSliceNum > pCurLayer->iMaxSliceNum) {
-
-    //TODO: will add frame bs extend size as input parameters
-    iRet = FrameBsRealloc (pCtx, pFrameBsInfo, pLayerBsInfo, pCtx->pCurDqLayer->iMaxSliceNum);
-    if(ENC_RETURN_SUCCESS != iRet) {
-      return iRet;
-    }
-
+  if (iMaxSliceNum > pCtx->pCurDqLayer->iMaxSliceNum) {
     iRet = ExtendLayerBuffer(pCtx, pCtx->pCurDqLayer->iMaxSliceNum, iMaxSliceNum);
     if (ENC_RETURN_SUCCESS != iRet) {
       return iRet;
     }
-    pCurLayer->iMaxSliceNum = iMaxSliceNum;
+    pCtx->pCurDqLayer->iMaxSliceNum = iMaxSliceNum;
+  }
+
+  //Extend NalList buffer if exceed
+  iCodedSliceNum          = GetCurrentSliceNum (pCtx->pCurDqLayer);
+  pLayerBsInfo->iNalCount = GetCurLayerNalCount(pCtx->pCurDqLayer, iCodedSliceNum);
+  iCodedNalCount          = GetTotalCodedNalCount(pFrameBsInfo);
+  if( iCodedNalCount > pCtx->pOut->iCountNals) {
+    iRet = FrameBsRealloc (pCtx, pFrameBsInfo, pLayerBsInfo, pCtx->pCurDqLayer->iMaxSliceNum);
+    if(ENC_RETURN_SUCCESS != iRet) {
+      return iRet;
+    }
   }
 
   //update ppSliceInLayer based on pSliceInThread, reordering based on slice index
-  iRet = ReOrderSliceInLayer (pCtx, kuiSliceMode, iThreadNum);
+  iRet = ReOrderSliceInLayer (pCtx, kuiSliceMode, pCtx->iActiveThreadsNum);
   if (ENC_RETURN_SUCCESS != iRet) {
     WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR,
              "CWelsH264SVCEncoder::SliceLayerInfoUpdate: ReOrderSliceInLayer failed");
