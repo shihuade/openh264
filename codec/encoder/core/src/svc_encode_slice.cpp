@@ -1836,23 +1836,28 @@ int32_t SliceLayerInfoUpdate (sWelsEncCtx* pCtx,
     pCtx->pCurDqLayer->iMaxSliceNum = iMaxSliceNum;
   }
 
-  //Extend NalList buffer if exceed
-  iCodedSliceNum          = GetCurrentSliceNum (pCtx->pCurDqLayer);
-  pLayerBsInfo->iNalCount = GetCurLayerNalCount(pCtx->pCurDqLayer, iCodedSliceNum);
-  iCodedNalCount          = GetTotalCodedNalCount(pFrameBsInfo);
-  if( iCodedNalCount > pCtx->pOut->iCountNals) {
-    iRet = FrameBsRealloc (pCtx, pFrameBsInfo, pLayerBsInfo, pCtx->pCurDqLayer->iMaxSliceNum);
-    if(ENC_RETURN_SUCCESS != iRet) {
-      return iRet;
-    }
-  }
-
   //update ppSliceInLayer based on pSliceInThread, reordering based on slice index
   iRet = ReOrderSliceInLayer (pCtx, kuiSliceMode, pCtx->iActiveThreadsNum);
   if (ENC_RETURN_SUCCESS != iRet) {
     WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR,
              "CWelsH264SVCEncoder::SliceLayerInfoUpdate: ReOrderSliceInLayer failed");
     return iRet;
+  }
+
+  //Extend NalList buffer if exceed
+  iCodedSliceNum          = GetCurrentSliceNum (pCtx->pCurDqLayer);
+  pLayerBsInfo->iNalCount = GetCurLayerNalCount(pCtx->pCurDqLayer, iCodedSliceNum);
+  iCodedNalCount          = GetTotalCodedNalCount(pFrameBsInfo);
+  printf("SliceLayerInfoUpdate,iMaxSliceNum %2d,iCodedSliceNum %d, pLayerBsInfo->iNalCount %2d,iCodedNalCount %2d \n",
+         iMaxSliceNum,
+         iCodedSliceNum,
+         pLayerBsInfo->iNalCount,
+         iCodedNalCount);
+  if( iCodedNalCount > pCtx->pOut->iCountNals) {
+    iRet = FrameBsRealloc (pCtx, pFrameBsInfo, pLayerBsInfo, pCtx->pCurDqLayer->iMaxSliceNum);
+    if(ENC_RETURN_SUCCESS != iRet) {
+      return iRet;
+    }
   }
 
   return ENC_RETURN_SUCCESS;

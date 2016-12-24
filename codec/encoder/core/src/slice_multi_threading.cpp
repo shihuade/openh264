@@ -457,6 +457,9 @@ int32_t AppendSliceToFrameBs (sWelsEncCtx* pCtx, SLayerBSInfo* pLbi, const int32
   int32_t iNalIdxBase     = pLbi->iNalCount;
   int32_t iSliceIdx       = 0;
 
+  printf("AppendSliceToFrameBs: pLbi->iNalCount %2d, pCtx->pOut->iCountNals %2d\n",
+         pLbi->iNalCount,
+         pCtx->pOut->iCountNals);
   iNalIdxBase  = pLbi->iNalCount = 0;
   while (iSliceIdx < iSliceCount) {
     pSliceBs    = &ppSliceInlayer[iSliceIdx]->sSliceBs;
