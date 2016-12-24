@@ -547,7 +547,7 @@ void RcInitSliceInformation (sWelsEncCtx* pEncCtx) {
 void RcDecideTargetBits (sWelsEncCtx* pEncCtx) {
   SWelsSvcRc* pWelsSvcRc        = &pEncCtx->pWelsSvcRc[pEncCtx->uiDependencyId];
   SRCTemporal* pTOverRc         = &pWelsSvcRc->pTemporalOverRc[pEncCtx->uiTemporalId];
-
+/*
   printf("\n***************RCDecide***********************\n");
   printf("*RcDecide,%6d,%6d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,\n",
         pWelsSvcRc->iFrameDqBits,
@@ -559,7 +559,7 @@ void RcDecideTargetBits (sWelsEncCtx* pEncCtx) {
         pTOverRc->iMaxBitsTl,
         pEncCtx->pSvcParam->bEnableFrameSkip,
         pWelsSvcRc->iCurrentBitsLevel);
-
+*/
   pWelsSvcRc->iCurrentBitsLevel = BITS_NORMAL;
   //allocate bits
   if (pEncCtx->eSliceType == I_SLICE) {
@@ -578,7 +578,7 @@ void RcDecideTargetBits (sWelsEncCtx* pEncCtx) {
   }
   pWelsSvcRc->iRemainingWeights -= pTOverRc->iTlayerWeight;
 
-  printf("*RcDecide,%6d,%6d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,\n",
+ /* printf("*RcDecide,%6d,%6d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,\n",
          pWelsSvcRc->iFrameDqBits,
          pWelsSvcRc->iTargetBits,
          pWelsSvcRc->iBitsPerFrame,
@@ -589,6 +589,7 @@ void RcDecideTargetBits (sWelsEncCtx* pEncCtx) {
          pEncCtx->pSvcParam->bEnableFrameSkip,
          pWelsSvcRc->iCurrentBitsLevel);
   printf("***************end***********************\n\n");
+*/
 }
 
 void RcDecideTargetBitsTimestamp (sWelsEncCtx* pEncCtx) {
@@ -599,6 +600,7 @@ void RcDecideTargetBitsTimestamp (sWelsEncCtx* pEncCtx) {
   SRCTemporal* pTOverRc       = &pWelsSvcRc->pTemporalOverRc[iTl];
   pWelsSvcRc->iCurrentBitsLevel = BITS_NORMAL;
 
+/*
   printf("\n***************RCDecide Timestamp *******************\n");
   printf("*RcDecide,%6d,%6d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,\n",
         pWelsSvcRc->iFrameDqBits,
@@ -610,7 +612,7 @@ void RcDecideTargetBitsTimestamp (sWelsEncCtx* pEncCtx) {
         pTOverRc->iMaxBitsTl,
         pEncCtx->pSvcParam->bEnableFrameSkip,
         pWelsSvcRc->iCurrentBitsLevel);
-
+*/
   if (pEncCtx->eSliceType == I_SLICE) {
     int32_t iBufferTh = static_cast<int32_t> (pWelsSvcRc->iBufferSizeSkip - pWelsSvcRc->iBufferFullnessSkip);
     if (iBufferTh <= 0) {
@@ -653,7 +655,7 @@ void RcDecideTargetBitsTimestamp (sWelsEncCtx* pEncCtx) {
       pWelsSvcRc->iTargetBits = WELS_CLIP3 (pWelsSvcRc->iTargetBits, iMinTh, iMaxTh);
     }
   }
-
+/*
   printf("*RcDecide,%6d,%6d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,\n",
         pWelsSvcRc->iFrameDqBits,
         pWelsSvcRc->iTargetBits,
@@ -665,7 +667,7 @@ void RcDecideTargetBitsTimestamp (sWelsEncCtx* pEncCtx) {
         pEncCtx->pSvcParam->bEnableFrameSkip,
         pWelsSvcRc->iCurrentBitsLevel);
   printf("***************end Timestamp ***********************\n\n");
-
+*/
 }
 
 void RcInitGomParameters (sWelsEncCtx* pEncCtx) {

@@ -404,11 +404,14 @@ int CWelsH264SVCEncoder ::EncodeFrameInternal (const SSourcePicture*  pSrcPic, S
 
   if ((kiEncoderReturn == ENC_RETURN_MEMALLOCERR) || (kiEncoderReturn == ENC_RETURN_MEMOVERFLOWFOUND)
       || (kiEncoderReturn == ENC_RETURN_VLCOVERFLOWFOUND)) {
+      printf("0: Error: %d \n", kiEncoderReturn);
     WelsUninitEncoderExt (&m_pEncContext);
     return cmMallocMemeError;
   } else if ((kiEncoderReturn != ENC_RETURN_SUCCESS) && (kiEncoderReturn == ENC_RETURN_CORRECTED)) {
     WelsLog (&m_pWelsTrace->m_sLogCtx, WELS_LOG_ERROR, "unexpected return(%d) from EncodeFrameInternal()!",
              kiEncoderReturn);
+      printf("1:Error: %d \n", kiEncoderReturn);
+
     return cmUnknownReason;
   }
 
