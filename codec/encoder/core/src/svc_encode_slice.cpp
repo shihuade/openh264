@@ -1251,11 +1251,12 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
     
   uint8_t* pPointer  = pSliceList[0].sMbCacheInfo.pMemPredMb;
   int32_t BufferSize =   * ((int32_t*) ((uint8_t*)pPointer - sizeof (void**) - sizeof ( int32_t)));
-  printf("--before--ReallocateSliceList, NumOld %3d, NumNew %3d, pPointer is: 0x%x BufferSize is %4d\n",
+  printf("--before--ReallocateSliceList, NumOld %3d, NumNew %3d, pPointer is: 0x%x BufferSize is %4d SlcM %d\n",
          kiMaxSliceNumOld,
          kiMaxSliceNumNew,
          pPointer,
-         BufferSize);
+         BufferSize,
+         pSliceArgument->uiSliceMode);
 
   pNewSliceList = (SSlice*)pMA->WelsMallocz (sizeof (SSlice) * kiMaxSliceNumNew, "pSliceInThread");
   if (NULL == pNewSliceList) {
@@ -1322,11 +1323,12 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
     
   pPointer  = pSliceList[0].sMbCacheInfo.pMemPredMb;
   BufferSize =   * ((int32_t*) ((uint8_t*)pPointer - sizeof (void**) - sizeof ( int32_t)));
-  printf("--after--ReallocateSliceList, NumOld %3d, NumNew %3d, pPointer is: 0x%x BufferSize is %4d\n",
+  printf("--after--ReallocateSliceList, NumOld %3d, NumNew %3d, pPointer is: 0x%x BufferSize is %4d, SlicM %d\n",
            kiMaxSliceNumOld,
            kiMaxSliceNumNew,
            pPointer,
-           BufferSize);
+           BufferSize,
+           pSliceArgument->uiSliceMode);
 
   return ENC_RETURN_SUCCESS;
 

@@ -274,15 +274,6 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
 
     iReturn = InitOneSliceInThread (m_pCtx, m_pSlice, m_iThreadIdx, m_pCtx->uiDependencyId, iLocalSliceIdx);
     WELS_VERIFY_RETURN_IFNEQ (iReturn, ENC_RETURN_SUCCESS)
-   /* printf("ParID %d, FirstMbInPart %4d, thrdIdx %d, iLocalSliceIdx %3d, m_pSlice idx %3d, iFirstMB %4d, codedSliceNum %3d\n",
-           kiPartitionId,
-           kiFirstMbInPartition,
-           m_iThreadIdx,
-           iLocalSliceIdx,
-           m_pSlice->iSliceIdx,
-           m_pSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice,
-           m_pCtx->pCurDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[m_iThreadIdx]);
-*/
     m_pSliceBs = &m_pSlice->sSliceBs;
     InitBits (&m_pSliceBs->sBsWrite, m_pSliceBs->pBsBuffer, m_pSliceBs->uiSize);
 
@@ -315,6 +306,16 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
                iLocalSliceIdx, m_pSliceBs->uiSize, m_iSliceSize, m_pSliceBs->sNalList[0].iPayloadSize);
       return iReturn;
     }
+
+    printf("ParID %d, FirMBInPt %4d, thrIdx %d, LocalSlcIdx %3d, m_pSlice idx %3d, iFstMB %4d, codedSlcNum %3d, SlcSize %6d\n",
+          kiPartitionId,
+           kiFirstMbInPartition,
+           m_iThreadIdx,
+           iLocalSliceIdx,
+           m_pSlice->iSliceIdx,
+           m_pSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice,
+           m_pCtx->pCurDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[m_iThreadIdx],
+           m_iSliceSize);
 
     m_pCtx->pFuncList->pfDeblocking.pfDeblockingFilterSlice (pCurDq, m_pCtx->pFuncList, iLocalSliceIdx);
 

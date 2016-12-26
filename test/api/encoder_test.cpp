@@ -129,11 +129,12 @@ static const EncodeFileParam kFileParamArray[] = {
     { "e5dc8db66abf235b146a844a1c890e9e1035daae", "1ddc203a75454e7fe29340d037577aad763d84d4" },
     CAMERA_VIDEO_REAL_TIME, 320, 192, 12.0f, SM_SINGLE_SLICE, false, 2, false, false, false
   },
-    */
+*/
   {
     "res/Cisco_Absolute_Power_1280x720_30fps.yuv",
     {"ce0cbb3d13af5b6e0932ae6393415700d751b374"}, CAMERA_VIDEO_REAL_TIME, 1280, 720, 30.0f, SM_SIZELIMITED_SLICE, false, 1, false, false, false
   },
+/*
   {
     "res/Cisco_Absolute_Power_1280x720_30fps.yuv",
     // Allow for different output depending on whether averaging is done
@@ -141,7 +142,7 @@ static const EncodeFileParam kFileParamArray[] = {
     { "aef963ffd561d43d6390a43a66792d420a6856cc", "f229eeb69065129d898a11c1bd40e79cd25c2af7" },
     CAMERA_VIDEO_REAL_TIME, 1280, 720, 30.0f, SM_SINGLE_SLICE, false, 4, false, false, false
   },
-  /*
+
   // the following values may be adjusted for times since we start tuning the strategy
   {
     "res/CiscoVT2people_320x192_12fps.yuv",
@@ -176,7 +177,8 @@ static const EncodeFileParam kFileParamArray[] = {
     "res/Cisco_Absolute_Power_1280x720_30fps.yuv",
     {"752aa204be96efbf5f838e35164fa5341a464420"}, CAMERA_VIDEO_REAL_TIME, 1280, 720, 30.0f, SM_FIXEDSLCNUM_SLICE, false, 1, false, false, true
   },
-   */
+ */
+
 };
 
 INSTANTIATE_TEST_CASE_P (EncodeFile, EncoderOutputTest,
