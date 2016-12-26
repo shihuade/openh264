@@ -1251,14 +1251,14 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
     
   uint8_t* pPointer  = pSliceList[0].sMbCacheInfo.pMemPredMb;
   int32_t BufferSize =   * ((int32_t*) ((uint8_t*)pPointer - sizeof (void**) - sizeof ( int32_t)));
-  printf("--before--ReallocateSliceList, NumOld %3d, NumNew %3d, pPointer is: 0x%x BufferSize is %4d SlcM %d, Idc %d\n",
+  /*printf("--before--ReallocateSliceList, NumOld %3d, NumNew %3d, pPointer is: 0x%x BufferSize is %4d SlcM %d, Idc %d\n",
          kiMaxSliceNumOld,
          kiMaxSliceNumNew,
          pPointer,
          BufferSize,
          pSliceArgument->uiSliceMode,
          pCtx->pSvcParam->iLoopFilterDisableIdc);
-
+  */
   pNewSliceList = (SSlice*)pMA->WelsMallocz (sizeof (SSlice) * kiMaxSliceNumNew, "pSliceInThread");
   if (NULL == pNewSliceList) {
     WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR, "CWelsH264SVCEncoder::ReallocateSliceList: pNewSliceList is NULL");
@@ -1324,14 +1324,14 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
     
   pPointer  = pSliceList[0].sMbCacheInfo.pMemPredMb;
   BufferSize =   * ((int32_t*) ((uint8_t*)pPointer - sizeof (void**) - sizeof ( int32_t)));
-  printf("--after--ReallocateSliceList, NumOld %3d, NumNew %3d, pPointer is: 0x%x BufferSize is %4d, SlicM %d, Idc %d\n",
+  /*printf("--after--ReallocateSliceList, NumOld %3d, NumNew %3d, pPointer is: 0x%x BufferSize is %4d, SlicM %d, Idc %d\n",
            kiMaxSliceNumOld,
            kiMaxSliceNumNew,
            pPointer,
            BufferSize,
            pSliceArgument->uiSliceMode,
            pCtx->pSvcParam->iLoopFilterDisableIdc);
-
+  */
   return ENC_RETURN_SUCCESS;
 
 }
@@ -1689,11 +1689,11 @@ int32_t ReOrderSliceInLayer (sWelsEncCtx* pCtx,
     aiPartitionOffset[iPartitionIdx] = iEncodeSliceNum;
     if ( SM_SIZELIMITED_SLICE == kuiSliceMode) {
       iEncodeSliceNum  += pCurLayer->NumSliceCodedOfPartition[iPartitionIdx];
-      printf("**********iPartitionIdx is ,%2d, SliceNum is ,%2d,, offset is ,%2d,******\n",
+      /*printf("**********iPartitionIdx is ,%2d, SliceNum is ,%2d,, offset is ,%2d,******\n",
              iPartitionIdx,
              pCurLayer->NumSliceCodedOfPartition[iPartitionIdx],
              aiPartitionOffset[iPartitionIdx]);
-
+      */
     } else {
       iEncodeSliceNum = pCurLayer->sSliceEncCtx.iSliceNumInFrame;
     }
@@ -1852,11 +1852,12 @@ int32_t SliceLayerInfoUpdate (sWelsEncCtx* pCtx,
   iCodedSliceNum          = GetCurrentSliceNum (pCtx->pCurDqLayer);
   pLayerBsInfo->iNalCount = GetCurLayerNalCount(pCtx->pCurDqLayer, iCodedSliceNum);
   iCodedNalCount          = GetTotalCodedNalCount(pFrameBsInfo);
-  printf("SliceLayerInfoUpdate,iMaxSliceNum %2d,iCodedSliceNum %d, pLayerBsInfo->iNalCount %2d,iCodedNalCount %2d \n",
+  /*printf("SliceLayerInfoUpdate,iMaxSliceNum %2d,iCodedSliceNum %d, pLayerBsInfo->iNalCount %2d,iCodedNalCount %2d \n",
          iMaxSliceNum,
          iCodedSliceNum,
          pLayerBsInfo->iNalCount,
          iCodedNalCount);
+  */
   if( iCodedNalCount > pCtx->pOut->iCountNals) {
     iRet = FrameBsRealloc (pCtx, pFrameBsInfo, pLayerBsInfo, pCtx->pCurDqLayer->iMaxSliceNum);
     if(ENC_RETURN_SUCCESS != iRet) {
