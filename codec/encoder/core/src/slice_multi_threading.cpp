@@ -653,7 +653,7 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
                                         iEventIdx);
         }
 
-        pEncPEncCtx->pFuncList->pfDeblocking.pfDeblockingFilterSlice (pCurDq, pEncPEncCtx->pFuncList, iSliceIdx);
+        pEncPEncCtx->pFuncList->pfDeblocking.pfDeblockingFilterSlice (pCurDq, pEncPEncCtx->pFuncList, pSlice);
 
         if (bDsaFlag) {
           pSlice->uiSliceConsumeTime = (uint32_t) (WelsTime() - iSliceStart);
@@ -754,7 +754,7 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
                                           iEventIdx);
           }
 
-          pEncPEncCtx->pFuncList->pfDeblocking.pfDeblockingFilterSlice (pCurDq, pEncPEncCtx->pFuncList, iSliceIdx);
+          pEncPEncCtx->pFuncList->pfDeblocking.pfDeblockingFilterSlice (pCurDq, pEncPEncCtx->pFuncList, pSlice);
 
 #if defined(SLICE_INFO_OUTPUT)
           fprintf (stderr,

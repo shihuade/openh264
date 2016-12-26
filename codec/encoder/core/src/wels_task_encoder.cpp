@@ -192,7 +192,7 @@ WelsErrorType CWelsSliceEncodingTask::ExecuteTask() {
 
   //OutputSliceInfo(m_pCtx, m_pSlice, m_iSliceSize);
 
-  m_pCtx->pFuncList->pfDeblocking.pfDeblockingFilterSlice (m_pCtx->pCurDqLayer, m_pCtx->pFuncList, m_iSliceIdx);
+  m_pCtx->pFuncList->pfDeblocking.pfDeblockingFilterSlice (m_pCtx->pCurDqLayer, m_pCtx->pFuncList, m_pSlice);
 
   WelsLog (&m_pCtx->sLogCtx, WELS_LOG_DETAIL,
            "@pSlice=%-6d sliceType:%c idc:%d size:%-6d",  m_iSliceIdx,
@@ -265,7 +265,14 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
                          >=  pCurDq->sSliceThreadInfo.iMaxSliceNumInThread[m_iThreadIdx] -1) ? true : false;
       if (bNeedReallocate) {
           WelsMutexLock (&m_pCtx->pSliceThreading->mutexThreadSlcBuffReallocate);
+          //for memory statistic variable
           iReturn = ReallocateSliceInThread(m_pCtx, pCurDq, m_pCtx->uiDependencyId, m_iThreadIdx);
+          printf("after reallocate for ParID %d, ThrdIdx %d,SlicIdx %3d, CodeSlcNum %3d, MaxSlcNum %3d\n",
+                 kiPartitionId,
+                 m_iThreadIdx,
+                 iLocalSliceIdx,
+                 pCurDq->sSliceThreadInfo.iEncodedSliceNumInThread[m_iThreadIdx],
+                 pCurDq->sSliceThreadInfo.iMaxSliceNumInThread[m_iThreadIdx]);
           WelsMutexUnlock (&m_pCtx->pSliceThreading->mutexThreadSlcBuffReallocate);
           if (ENC_RETURN_SUCCESS != iReturn) {
               return iReturn;
@@ -307,7 +314,7 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
       return iReturn;
     }
 
-    printf("ParID %d, FirMBInPt %4d, thrIdx %d, LocalSlcIdx %3d, m_pSlice idx %3d, iFstMB %4d, codedSlcNum %3d, SlcSize %6d\n",
+   /* printf("ParID %d, FirMBInPt %4d, thrIdx %d, LocalSlcIdx %3d, m_pSlice idx %3d, iFstMB %4d, codedSlcNum %3d, SlcSize %6d, Idc %d\n",
           kiPartitionId,
            kiFirstMbInPartition,
            m_iThreadIdx,
@@ -315,9 +322,10 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
            m_pSlice->iSliceIdx,
            m_pSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice,
            m_pCtx->pCurDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[m_iThreadIdx],
-           m_iSliceSize);
-
-    m_pCtx->pFuncList->pfDeblocking.pfDeblockingFilterSlice (pCurDq, m_pCtx->pFuncList, iLocalSliceIdx);
+           m_iSliceSize,
+           m_pCtx->pSvcParam->iLoopFilterDisableIdc);
+  */
+    m_pCtx->pFuncList->pfDeblocking.pfDeblockingFilterSlice (pCurDq, m_pCtx->pFuncList, m_pSlice);
 
     WelsLog (&m_pCtx->sLogCtx, WELS_LOG_DETAIL,
              "@pSlice=%-6d sliceType:%c idc:%d size:%-6d\n",
