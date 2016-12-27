@@ -249,7 +249,8 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
   const int32_t kiPartitionId             = m_iSliceIdx % kiSliceIdxStep;
   const int32_t kiFirstMbInPartition      = pCurDq->FirstMbIdxOfPartition[kiPartitionId];
   const int32_t kiEndMbIdxInPartition     = pCurDq->EndMbIdxOfPartition[kiPartitionId];
-  m_pSlice                                = &pCurDq->sSliceThreadInfo.pSliceInThread[m_iThreadIdx][0];
+  const int32_t kiCodedSliceNumByThread   = pCurDq->sSliceThreadInfo.iEncodedSliceNumInThread[m_iThreadIdx];
+  m_pSlice                                = &pCurDq->sSliceThreadInfo.pSliceInThread[m_iThreadIdx][kiCodedSliceNumByThread];
   m_pSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice  = kiFirstMbInPartition;
   pCurDq->NumSliceCodedOfPartition[kiPartitionId]        = 1;
   pCurDq->LastCodedMbIdxOfPartition[kiPartitionId]       = 0;
@@ -314,9 +315,11 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
       return iReturn;
     }
 
-    printf("ParID %d, FirMBInPt %4d, thrIdx %d, LocalSlcIdx %3d, m_pSlice idx %3d, iFstMB %4d, codedSlcNum %3d, SlcSize %6d, Idc %d\n",
+    printf("PID %d, FMBInPt %4d, PtSlcN %3d, PLastMBIdx %4d, thrIdx %d, LocalSlcIdx %3d, mSlcIdx %3d, FstMB %4d, codedSlcNum %3d, SlcSize %6d, Idc %d\n",
           kiPartitionId,
            kiFirstMbInPartition,
+           pCurDq->NumSliceCodedOfPartition[kiPartitionId],
+           pCurDq->LastCodedMbIdxOfPartition[kiPartitionId],
            m_iThreadIdx,
            iLocalSliceIdx,
            m_pSlice->iSliceIdx,
