@@ -1545,7 +1545,7 @@ void Output_SVCParam(SEncParamExt* pSvcParam) {
     printf("Param:Layer[0] iVideoWidth %d \n", pSvcParam->sSpatialLayers[0].iVideoWidth);
     printf("Param:Layer[0] iVideoHeight %d \n", pSvcParam->sSpatialLayers[0].iVideoHeight);
     printf("Param:Layer[0] fFrameRate %f \n", pSvcParam->sSpatialLayers[0].fFrameRate);
-    printf("Param:Layer[0] iSpatialBitrate %d \n", pSvcParam->sSpatialLayers[0].iVideoWidth);
+    printf("Param:Layer[0] iSpatialBitrate %d \n", pSvcParam->sSpatialLayers[0].iSpatialBitrate);
     printf("Param:Layer[0] iMaxSpatialBitrate %d \n", pSvcParam->sSpatialLayers[0].iMaxSpatialBitrate);
     printf("Param:Layer[0] uiProfileIdc %d \n", pSvcParam->sSpatialLayers[0].uiProfileIdc);
     printf("Param:Layer[0] uiLevelIdc %d \n", pSvcParam->sSpatialLayers[0].uiLevelIdc);

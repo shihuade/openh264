@@ -102,7 +102,7 @@ TEST_P (EncoderOutputTest, CompareOutput) {
   }
 }
 static const EncodeFileParam kFileParamArray[] = {
-  {
+  /*{
     "res/CiscoVT2people_320x192_12fps.yuv",
     {"4370a847a8d680a29176489f3194b6e7bd2fc468"}, CAMERA_VIDEO_REAL_TIME, 320, 192, 12.0f, SM_SINGLE_SLICE, false, 1, false, false, false
   },
@@ -167,14 +167,17 @@ static const EncodeFileParam kFileParamArray[] = {
     "res/CiscoVT2people_320x192_12fps.yuv",
     {"a8eec17dc4ae43cf01eeb32f072661d7ad810691"}, CAMERA_VIDEO_REAL_TIME, 320, 192, 12.0f, SM_SINGLE_SLICE, false, 1, false, false, true //turn on cabac
   },
+*/
   {
     "res/Cisco_Absolute_Power_1280x720_30fps.yuv",
     {"a511da916ba97967e18540953d2c0b1287b50aa3"}, CAMERA_VIDEO_REAL_TIME, 1280, 720, 30.0f, SM_SIZELIMITED_SLICE, false, 1, false, false, true
   },
+/*
   {
     "res/Cisco_Absolute_Power_1280x720_30fps.yuv",
     {"752aa204be96efbf5f838e35164fa5341a464420"}, CAMERA_VIDEO_REAL_TIME, 1280, 720, 30.0f, SM_FIXEDSLCNUM_SLICE, false, 1, false, false, true
   },
+*/
 
 };
 
