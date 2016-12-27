@@ -3588,6 +3588,7 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
 
     //TODO Complexity Calculation here for screen content
     iLayerSize = 0;
+    Output_SVCParam(pCtx->pSvcParam);
 
     if (SM_SINGLE_SLICE == pParam->sSliceArgument.uiSliceMode) { // only one slice within a sQualityStat layer
       int32_t iSliceSize   = 0;

@@ -1507,6 +1507,71 @@ static inline int32_t CheckAllSliceBuffer(SDqLayer* pCurLayer, const int32_t kiC
   return ENC_RETURN_SUCCESS;
 }
 
+void Output_SVCParam(SEncParamExt* pSvcParam) {
+    assert (NULL != pSvcParam);
+    printf("Param: Usage %d\n", pSvcParam->iUsageType);
+    printf("Param: PWxPH_fps: %d x %d_%f\n", pSvcParam->iPicWidth, pSvcParam->iPicHeight, pSvcParam->fMaxFrameRate);
+    printf("Param: TLNum %d  SLNum %d\n", pSvcParam->iTemporalLayerNum, pSvcParam->iSpatialLayerNum);
+    printf("Param: RCMode %d  TargetB %d\n", pSvcParam->iRCMode, pSvcParam->iTargetBitrate);
+    printf("Param: MaxQP %d  MiniQP %d\n", pSvcParam->iMaxQp, pSvcParam->iMinQp);
+    printf("Param: MaxBR %d  MaxNalSize %d\n", pSvcParam->iMaxBitrate, pSvcParam->uiMaxNalSize);
+    printf("Param: bFrameSkip %d\n", pSvcParam->bEnableFrameSkip);
+    printf("Param: ComplexMode %d \n", pSvcParam->iComplexityMode);
+    printf("Param: uiIntraPeriod %d \n", pSvcParam->uiIntraPeriod);
+    printf("Param: iNumRefFrame %d \n", pSvcParam->iNumRefFrame);
+    printf("Param: bEnableLongTermReference %d \n", pSvcParam->bEnableLongTermReference);
+    printf("Param: iLTRRefNum %d \n", pSvcParam->iLTRRefNum);
+    printf("Param: iLtrMarkPeriod %d \n", pSvcParam->iLtrMarkPeriod);
+    printf("Param: iPaddingFlag %d \n", pSvcParam->iPaddingFlag);
+    printf("Param: iEntropyCodingModeFlag %d \n", pSvcParam->iEntropyCodingModeFlag);
+    printf("Param: iMultipleThreadIdc %d \n", pSvcParam->iMultipleThreadIdc);
+    printf("Param: bUseLoadBalancing %d \n", pSvcParam->bUseLoadBalancing);
+    printf("Param: bSimulcastAVC %d \n", pSvcParam->bSimulcastAVC);
+    printf("Param: eSpsPpsIdStrategy %d \n", pSvcParam->eSpsPpsIdStrategy);
+    printf("Param: bPrefixNalAddingCtrl %d \n", pSvcParam->bPrefixNalAddingCtrl);
+    printf("Param: bEnableSSEI %d \n", pSvcParam->bEnableSSEI);
+
+    printf("Param: iLoopFilterDisableIdc %d \n", pSvcParam->iLoopFilterDisableIdc);
+    printf("Param: iLoopFilterAlphaC0Offset %d \n", pSvcParam->iLoopFilterAlphaC0Offset);
+    printf("Param: iLoopFilterBetaOffset %d \n", pSvcParam->iLoopFilterBetaOffset);
+    printf("Param: bEnableDenoise %d \n", pSvcParam->bEnableDenoise);
+    printf("Param: bEnableBackgroundDetection %d \n", pSvcParam->bEnableBackgroundDetection);
+    printf("Param: bEnableAdaptiveQuant %d \n", pSvcParam->bEnableAdaptiveQuant);
+    printf("Param: bEnableFrameCroppingFlag %d \n", pSvcParam->bEnableFrameCroppingFlag);
+    printf("Param: bEnableSceneChangeDetect %d \n", pSvcParam->bEnableSceneChangeDetect);
+    printf("Param: bIsLosslessLink %d \n", pSvcParam->bIsLosslessLink);
+
+    printf("*****************Layer Info*******************************\n");
+    printf("Param:Layer[0] iVideoWidth %d \n", pSvcParam->sSpatialLayers[0].iVideoWidth);
+    printf("Param:Layer[0] iVideoHeight %d \n", pSvcParam->sSpatialLayers[0].iVideoHeight);
+    printf("Param:Layer[0] fFrameRate %f \n", pSvcParam->sSpatialLayers[0].fFrameRate);
+    printf("Param:Layer[0] iSpatialBitrate %d \n", pSvcParam->sSpatialLayers[0].iVideoWidth);
+    printf("Param:Layer[0] iMaxSpatialBitrate %d \n", pSvcParam->sSpatialLayers[0].iMaxSpatialBitrate);
+    printf("Param:Layer[0] uiProfileIdc %d \n", pSvcParam->sSpatialLayers[0].uiProfileIdc);
+    printf("Param:Layer[0] uiLevelIdc %d \n", pSvcParam->sSpatialLayers[0].uiLevelIdc);
+    printf("Param:Layer[0] iDLayerQp %d \n", pSvcParam->sSpatialLayers[0].iDLayerQp);
+    printf("Param:Layer[0] bVideoSignalTypePresent %d \n", pSvcParam->sSpatialLayers[0].bVideoSignalTypePresent);
+    printf("Param:Layer[0] uiVideoFormat %d \n", pSvcParam->sSpatialLayers[0].uiVideoFormat);
+    printf("Param:Layer[0] bFullRange %d \n", pSvcParam->sSpatialLayers[0].bFullRange);
+    printf("Param:Layer[0] bColorDescriptionPresent %d \n", pSvcParam->sSpatialLayers[0].bColorDescriptionPresent);
+    printf("Param:Layer[0] uiColorPrimaries %d \n", pSvcParam->sSpatialLayers[0].uiColorPrimaries);
+    printf("Param:Layer[0] uiTransferCharacteristics %d \n", pSvcParam->sSpatialLayers[0].uiTransferCharacteristics);
+    printf("Param:Layer[0] uiColorMatrix %d \n", pSvcParam->sSpatialLayers[0].uiColorMatrix);
+    printf("*****************Layer slice agument*******************************\n");
+
+    printf("Param:Layer[0] sSliceArgument.uiSliceMode %d \n", pSvcParam->sSpatialLayers[0].sSliceArgument.uiSliceMode);
+    printf("Param:Layer[0] sSliceArgument.uiSliceNum  %d \n", pSvcParam->sSpatialLayers[0].sSliceArgument.uiSliceNum);
+    printf("Param:Layer[0] sSliceArgument.uiSliceSizeConstraint %d \n",
+           pSvcParam->sSpatialLayers[0].sSliceArgument.uiSliceSizeConstraint);
+    printf("Param:Layer[0] sSliceArgument.uiSliceMbNum:0~35 %d %d %d %d %d %d\n",
+           pSvcParam->sSpatialLayers[0].sSliceArgument.uiSliceMbNum[0],
+           pSvcParam->sSpatialLayers[0].sSliceArgument.uiSliceMbNum[1],
+           pSvcParam->sSpatialLayers[0].sSliceArgument.uiSliceMbNum[2],
+           pSvcParam->sSpatialLayers[0].sSliceArgument.uiSliceMbNum[3],
+           pSvcParam->sSpatialLayers[0].sSliceArgument.uiSliceMbNum[4],
+           pSvcParam->sSpatialLayers[0].sSliceArgument.uiSliceMbNum[5]);
+}
+
 void OutputOneMBInfo(SMB* pCurMb) {
 
   printf("SlcIdx %d, iMbX %4d, %4d,%4d,Type %d, QP %2d,%2d,%2d, SubTy %d,%d,%d,%d \n \

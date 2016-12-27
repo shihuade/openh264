@@ -161,6 +161,8 @@ int32_t WelsCodeOneSlice (sWelsEncCtx* pEncCtx, SSlice* pCurSlice,
                           const int32_t keNalType);
 
 //Output, will remove later
+void Output_SVCParam(SEncParamExt* pSvcParam);
+
 void OutputOneMBInfo(SMB* pCurMb);
 void OutputMBInfoWithNeighbor(SMB* pMbList,
                               const int32_t kiMBWidth,
