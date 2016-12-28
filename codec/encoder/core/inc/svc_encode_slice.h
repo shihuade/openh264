@@ -160,8 +160,6 @@ int32_t WelsCodePOverDynamicSlice (sWelsEncCtx* pEncCtx, SSlice* pSlice);
 int32_t WelsCodeOneSlice (sWelsEncCtx* pEncCtx, SSlice* pCurSlice,
                           const int32_t keNalType);
 
-//Output, will remove later
-
 void WelsInitSliceEncodingFuncs (uint32_t uiCpuFlag);
 
 void UpdateMbNeighbourInfoForNextSlice (SDqLayer* pCurDq,

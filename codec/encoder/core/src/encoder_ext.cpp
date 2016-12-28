@@ -3664,7 +3664,14 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
         pLayerBsInfo->eFrameType    = eFrameType;
         pLayerBsInfo->iSubSeqId = GetSubSequenceId (pCtx, eFrameType);
 
-        InitAllSlicesInThread(pCtx);
+        int32_t iRet = InitAllSlicesInThread(pCtx);
+        if (iRet) {
+          WelsLog (pLogCtx, WELS_LOG_ERROR,
+                "WelsEncoderEncodeExt(), multi-slice (mode %d) InitAllSlicesInThread() error!",
+                   pParam->sSliceArgument.uiSliceMode);
+          return ENC_RETURN_UNEXPECTED;
+        }
+
         pCtx->pTaskManage->ExecuteTasks();
         if (pCtx->iEncoderError) {
           WelsLog (pLogCtx, WELS_LOG_ERROR,
@@ -3673,8 +3680,14 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
           return pCtx->iEncoderError;
         }
 
-        //TO DO: add update ppSliceInLayer module based on pSliceInThread[ThreadNum]
-        SliceLayerInfoUpdate (pCtx, pFbi, pLayerBsInfo, pParam->sSliceArgument.uiSliceMode);
+        iRet = SliceLayerInfoUpdate (pCtx, pFbi, pLayerBsInfo, pParam->sSliceArgument.uiSliceMode);
+        if (iRet) {
+          WelsLog (pLogCtx, WELS_LOG_ERROR,
+                   "WelsEncoderEncodeExt(), multi-slice (mode %d) SliceLayerInfoUpdate() error!",
+                   pParam->sSliceArgument.uiSliceMode);
+          return ENC_RETURN_UNEXPECTED;
+        }
+
         iLayerSize = AppendSliceToFrameBs (pCtx, pLayerBsInfo, iSliceCount);
       }
       // THREAD_FULLY_FIRE_MODE && SM_SIZELIMITED_SLICE
@@ -3717,7 +3730,13 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
           ++ iIdx;
         }
 
-        InitAllSlicesInThread(pCtx);
+        int32_t iRet = InitAllSlicesInThread(pCtx);
+        if (iRet) {
+          WelsLog (pLogCtx, WELS_LOG_ERROR,
+                  "WelsEncoderEncodeExt(), multi-slice (mode %d) InitAllSlicesInThread() error!",
+                   pParam->sSliceArgument.uiSliceMode);
+          return ENC_RETURN_UNEXPECTED;
+        }
         pCtx->pTaskManage->ExecuteTasks();
 
         if (pCtx->iEncoderError) {
@@ -3727,14 +3746,17 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
           return pCtx->iEncoderError;
         }
 
-#endif     
-        //TO DO: add update ppSliceInLayer module based on pSliceInThread[ThreadNum]
-        // UpdateSliceInLayerInfo(); // reordering
+#endif
+        iRet = SliceLayerInfoUpdate (pCtx, pFbi, pLayerBsInfo, pParam->sSliceArgument.uiSliceMode);
+        if (iRet) {
+          WelsLog (pLogCtx, WELS_LOG_ERROR,
+                   "WelsEncoderEncodeExt(), multi-slice (mode %d) InitAllSlicesInThread() error!",
+                   pParam->sSliceArgument.uiSliceMode);
+          return ENC_RETURN_UNEXPECTED;
+        }
 
-        SliceLayerInfoUpdate (pCtx, pFbi, pLayerBsInfo, pParam->sSliceArgument.uiSliceMode);
         iSliceCount = GetCurrentSliceNum (pCtx->pCurDqLayer);
-
-        iLayerSize = AppendSliceToFrameBs (pCtx, pLayerBsInfo, iSliceCount);
+        iLayerSize  = AppendSliceToFrameBs (pCtx, pLayerBsInfo, iSliceCount);
       } else { // for non-dynamic-slicing mode single threading branch..
         const bool bNeedPrefix = pCtx->bNeedPrefixNalFlag;
         int32_t iSliceIdx    = 0;
