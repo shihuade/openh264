@@ -300,6 +300,19 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
       return iReturn;
     }
 
+      printf("PID %d, FMBInPt %4d, PtSlcN %3d, PLastMBIdx %4d, thrIdx %d, LocalSlcIdx %3d, mSlcIdx %3d, FstMB %4d, codedSlcNum %3d, SlcSize %6d, Idc %d\n",
+             kiPartitionId,
+             kiFirstMbInPartition,
+             pCurDq->NumSliceCodedOfPartition[kiPartitionId],
+             pCurDq->LastCodedMbIdxOfPartition[kiPartitionId],
+             m_iThreadIdx,
+             iLocalSliceIdx,
+             m_pSlice->iSliceIdx,
+             m_pSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice,
+             m_pCtx->pCurDqLayer->sSliceThreadInfo.iEncodedSliceNumInThread[m_iThreadIdx],
+             m_iSliceSize,
+             m_pCtx->pSvcParam->iLoopFilterDisableIdc);
+
     m_pCtx->pFuncList->pfDeblocking.pfDeblockingFilterSlice (pCurDq, m_pCtx->pFuncList, m_pSlice);
 
     WelsLog (&m_pCtx->sLogCtx, WELS_LOG_DETAIL,

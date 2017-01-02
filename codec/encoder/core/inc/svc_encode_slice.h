@@ -83,6 +83,8 @@ int32_t WelsISliceMdEncDynamic (sWelsEncCtx* pEncCtx, SSlice* pSlice);  // for i
 //slice buffer init, allocate/re-allocate and free process
 int32_t AllocMbCacheAligned (SMbCache* pMbCache, CMemoryAlign* pMa);
 void FreeMbCache (SMbCache* pMbCache, CMemoryAlign* pMa);
+    
+void Output_SVCParam(SEncParamExt* pSvcParam);
 
 int32_t InitSliceBoundaryInfo (SDqLayer* pCurLayer,
                                SSliceArgument* pSliceArgument,

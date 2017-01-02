@@ -811,6 +811,226 @@ void FreeMbCache (SMbCache* pMbCache, CMemoryAlign* pMa) {
   }
 }
 
+void Output_SVCParam(SEncParamExt* pSvcParam) {
+    assert (NULL != pSvcParam);
+    printf("Param: Usage %d\n", pSvcParam->iUsageType);
+    printf("Param: PWxPH_fps: %d x %d_%f\n", pSvcParam->iPicWidth, pSvcParam->iPicHeight, pSvcParam->fMaxFrameRate);
+    printf("Param: TLNum %d  SLNum %d\n", pSvcParam->iTemporalLayerNum, pSvcParam->iSpatialLayerNum);
+    printf("Param: RCMode %d  TargetB %d\n", pSvcParam->iRCMode, pSvcParam->iTargetBitrate);
+    printf("Param: MaxQP %d  MiniQP %d\n", pSvcParam->iMaxQp, pSvcParam->iMinQp);
+    printf("Param: MaxBR %d  MaxNalSize %d\n", pSvcParam->iMaxBitrate, pSvcParam->uiMaxNalSize);
+    printf("Param: bFrameSkip %d\n", pSvcParam->bEnableFrameSkip);
+    printf("Param: ComplexMode %d \n", pSvcParam->iComplexityMode);
+    printf("Param: uiIntraPeriod %d \n", pSvcParam->uiIntraPeriod);
+    printf("Param: iNumRefFrame %d \n", pSvcParam->iNumRefFrame);
+    printf("Param: bEnableLongTermReference %d \n", pSvcParam->bEnableLongTermReference);
+    printf("Param: iLTRRefNum %d \n", pSvcParam->iLTRRefNum);
+    printf("Param: iLtrMarkPeriod %d \n", pSvcParam->iLtrMarkPeriod);
+    printf("Param: iPaddingFlag %d \n", pSvcParam->iPaddingFlag);
+    printf("Param: iEntropyCodingModeFlag %d \n", pSvcParam->iEntropyCodingModeFlag);
+    printf("Param: iMultipleThreadIdc %d \n", pSvcParam->iMultipleThreadIdc);
+    printf("Param: bUseLoadBalancing %d \n", pSvcParam->bUseLoadBalancing);
+    printf("Param: bSimulcastAVC %d \n", pSvcParam->bSimulcastAVC);
+    printf("Param: eSpsPpsIdStrategy %d \n", pSvcParam->eSpsPpsIdStrategy);
+    printf("Param: bPrefixNalAddingCtrl %d \n", pSvcParam->bPrefixNalAddingCtrl);
+    printf("Param: bEnableSSEI %d \n", pSvcParam->bEnableSSEI);
+
+    printf("Param: iLoopFilterDisableIdc %d \n", pSvcParam->iLoopFilterDisableIdc);
+    printf("Param: iLoopFilterAlphaC0Offset %d \n", pSvcParam->iLoopFilterAlphaC0Offset);
+    printf("Param: iLoopFilterBetaOffset %d \n", pSvcParam->iLoopFilterBetaOffset);
+    printf("Param: bEnableDenoise %d \n", pSvcParam->bEnableDenoise);
+    printf("Param: bEnableBackgroundDetection %d \n", pSvcParam->bEnableBackgroundDetection);
+    printf("Param: bEnableAdaptiveQuant %d \n", pSvcParam->bEnableAdaptiveQuant);
+    printf("Param: bEnableFrameCroppingFlag %d \n", pSvcParam->bEnableFrameCroppingFlag);
+    printf("Param: bEnableSceneChangeDetect %d \n", pSvcParam->bEnableSceneChangeDetect);
+    printf("Param: bIsLosslessLink %d \n", pSvcParam->bIsLosslessLink);
+
+    printf("*****************Layer Info*******************************\n");
+    printf("Param:Layer[0] iVideoWidth %d \n", pSvcParam->sSpatialLayers[0].iVideoWidth);
+    printf("Param:Layer[0] iVideoHeight %d \n", pSvcParam->sSpatialLayers[0].iVideoHeight);
+    printf("Param:Layer[0] fFrameRate %f \n", pSvcParam->sSpatialLayers[0].fFrameRate);
+    printf("Param:Layer[0] iSpatialBitrate %d \n", pSvcParam->sSpatialLayers[0].iSpatialBitrate);
+    printf("Param:Layer[0] iMaxSpatialBitrate %d \n", pSvcParam->sSpatialLayers[0].iMaxSpatialBitrate);
+    printf("Param:Layer[0] uiProfileIdc %d \n", pSvcParam->sSpatialLayers[0].uiProfileIdc);
+    printf("Param:Layer[0] uiLevelIdc %d \n", pSvcParam->sSpatialLayers[0].uiLevelIdc);
+    printf("Param:Layer[0] iDLayerQp %d \n", pSvcParam->sSpatialLayers[0].iDLayerQp);
+    printf("Param:Layer[0] bVideoSignalTypePresent %d \n", pSvcParam->sSpatialLayers[0].bVideoSignalTypePresent);
+    printf("Param:Layer[0] uiVideoFormat %d \n", pSvcParam->sSpatialLayers[0].uiVideoFormat);
+    printf("Param:Layer[0] bFullRange %d \n", pSvcParam->sSpatialLayers[0].bFullRange);
+    printf("Param:Layer[0] bColorDescriptionPresent %d \n", pSvcParam->sSpatialLayers[0].bColorDescriptionPresent);
+    printf("Param:Layer[0] uiColorPrimaries %d \n", pSvcParam->sSpatialLayers[0].uiColorPrimaries);
+    printf("Param:Layer[0] uiTransferCharacteristics %d \n", pSvcParam->sSpatialLayers[0].uiTransferCharacteristics);
+    printf("Param:Layer[0] uiColorMatrix %d \n", pSvcParam->sSpatialLayers[0].uiColorMatrix);
+    printf("*****************Layer slice agument*******************************\n");
+
+    printf("Param:Layer[0] sSliceArgument.uiSliceMode %d \n", pSvcParam->sSpatialLayers[0].sSliceArgument.uiSliceMode);
+    printf("Param:Layer[0] sSliceArgument.uiSliceNum  %d \n", pSvcParam->sSpatialLayers[0].sSliceArgument.uiSliceNum);
+    printf("Param:Layer[0] sSliceArgument.uiSliceSizeConstraint %d \n",
+           pSvcParam->sSpatialLayers[0].sSliceArgument.uiSliceSizeConstraint);
+    printf("Param:Layer[0] sSliceArgument.uiSliceMbNum:0~35 %d %d %d %d %d %d\n",
+           pSvcParam->sSpatialLayers[0].sSliceArgument.uiSliceMbNum[0],
+           pSvcParam->sSpatialLayers[0].sSliceArgument.uiSliceMbNum[1],
+           pSvcParam->sSpatialLayers[0].sSliceArgument.uiSliceMbNum[2],
+           pSvcParam->sSpatialLayers[0].sSliceArgument.uiSliceMbNum[3],
+           pSvcParam->sSpatialLayers[0].sSliceArgument.uiSliceMbNum[4],
+           pSvcParam->sSpatialLayers[0].sSliceArgument.uiSliceMbNum[5]);
+}
+
+void OutputOneMBInfo(SMB* pCurMb) {
+    printf("SlcIdx %d, iMbX %4d, %4d,%4d,Type %d, QP %2d,%2d,%2d, SubTy %d,%d,%d,%d \n \
+           pIntra4x4PredMode \n %d,%d,%d,%d,\n %d,%d,%d,%d,\n %d,%d,%d,%d,\n %d,%d,%d,%d,\n \
+           pNonZeroCount     \n %d,%d,%d,%d,\n %d,%d,%d,%d,\n %d,%d,%d,%d,\n %d,%d,%d,%d,\n \
+           %d,%d,\n \
+           %d,%d,\n \
+           %d,%d,\n \
+           %d,%d,\n",
+           pCurMb->uiSliceIdc,
+           pCurMb->iMbX,
+           pCurMb->iMbY,
+           pCurMb->iMbXY,
+           pCurMb->uiMbType,
+           pCurMb->iLumaDQp,
+           pCurMb->uiLumaQp,
+           pCurMb->uiChromaQp,
+           pCurMb->uiSubMbType[0],pCurMb->uiSubMbType[1],pCurMb->uiSubMbType[2],pCurMb->uiSubMbType[3],
+           pCurMb->pIntra4x4PredMode[0],pCurMb->pIntra4x4PredMode[1],pCurMb->pIntra4x4PredMode[2],pCurMb->pIntra4x4PredMode[3],
+           pCurMb->pIntra4x4PredMode[4],pCurMb->pIntra4x4PredMode[5],pCurMb->pIntra4x4PredMode[6],pCurMb->pIntra4x4PredMode[7],
+           pCurMb->pIntra4x4PredMode[8],pCurMb->pIntra4x4PredMode[9],pCurMb->pIntra4x4PredMode[10],pCurMb->pIntra4x4PredMode[11],
+           pCurMb->pIntra4x4PredMode[12],pCurMb->pIntra4x4PredMode[11],pCurMb->pIntra4x4PredMode[14],pCurMb->pIntra4x4PredMode[15],
+           pCurMb->pNonZeroCount[0], pCurMb->pNonZeroCount[1],pCurMb->pNonZeroCount[2],pCurMb->pNonZeroCount[3],
+           pCurMb->pNonZeroCount[4], pCurMb->pNonZeroCount[5],pCurMb->pNonZeroCount[6],pCurMb->pNonZeroCount[7],
+           pCurMb->pNonZeroCount[8], pCurMb->pNonZeroCount[9],pCurMb->pNonZeroCount[10],pCurMb->pNonZeroCount[11],
+           pCurMb->pNonZeroCount[12], pCurMb->pNonZeroCount[13],pCurMb->pNonZeroCount[14],pCurMb->pNonZeroCount[15],
+           pCurMb->pNonZeroCount[16], pCurMb->pNonZeroCount[17],
+           pCurMb->pNonZeroCount[18], pCurMb->pNonZeroCount[19],
+           pCurMb->pNonZeroCount[20], pCurMb->pNonZeroCount[21],
+           pCurMb->pNonZeroCount[22], pCurMb->pNonZeroCount[22]);
+}
+
+void OutputMBInfoWithNeighbor(SMB* pMbList,
+                              const int32_t kiMBWidth,
+                              const int32_t kiCurMBIdx) {
+    const int32_t kiLetMBIdx  = kiCurMBIdx - 1;
+    const int32_t kiTopMBIdx  = kiCurMBIdx - kiMBWidth;
+    const int32_t kiTopRMBIdx = kiTopMBIdx + 1;
+    const int32_t kiTopLMBIdx = kiTopMBIdx - 1;
+    SMB* pCurMB = &pMbList[kiCurMBIdx];
+
+    /* // Left MB info
+     if ( pCurMB->iMbX > 0 && kiLetMBIdx >= 0 && NULL != &pMbList[kiLetMBIdx] ) {
+     printf ("****************left mb of curren MB **********************\n");
+     OutputOneMBInfo(&pMbList[kiLetMBIdx]);
+     }
+
+     // Top MB info
+     if ( pCurMB->iMbY > 0 && kiTopMBIdx >= 0 && NULL != &pMbList[kiTopMBIdx] ) {
+     printf ("****************top mb of curren MB **********************\n");
+     OutputOneMBInfo(&pMbList[kiTopMBIdx]);
+     }
+
+     // Top right MB info
+     if ( pCurMB->iMbY > 0 && pCurMB->iMbX < (kiMBWidth -1 ) &&
+     kiTopRMBIdx >= 0 && NULL != &pMbList[kiTopRMBIdx] ) {
+     printf ("****************top right mb of curren MB **********************\n");
+     OutputOneMBInfo(&pMbList[kiTopRMBIdx]);
+     }
+
+     // Top left MB info
+     if ( pCurMB->iMbY > 0 && pCurMB->iMbX > 0 &&
+     kiTopLMBIdx >= 0 && NULL != &pMbList[kiTopLMBIdx] ) {
+     printf ("****************top left mb of curren MB **********************\n");
+     OutputOneMBInfo(&pMbList[kiTopLMBIdx]);
+     }
+     */
+    // current MB info
+    if ( kiCurMBIdx >= 0 && NULL != &pMbList[kiCurMBIdx] ) {
+        printf ("****************current mb of curren MB **********************\n");
+        OutputOneMBInfo(&pMbList[kiCurMBIdx]);
+    }
+}
+
+void OutputMBInfoForMBList(SMB* pCurMbList, const int32_t kiStartIdx, const int32_t kiEndIdx) {
+    int32_t iMBIdx = 0;
+
+    for(iMBIdx = kiStartIdx; iMBIdx < kiEndIdx; iMBIdx++ ) {
+        if (NULL != pCurMbList + iMBIdx) {
+            OutputOneMBInfo(pCurMbList + iMBIdx);
+        }
+    }
+}
+
+void OutputSliceInfo(sWelsEncCtx* pEncCtx, SSlice* pCurSlice, int32_t iSliceBsSize) {
+    SWelsSvcRc* pWelsSvcRc      = &pEncCtx->pWelsSvcRc[pEncCtx->uiDependencyId];
+    //FrmNum,ThrIdx,SlcIdx,iSlcBsSize,RefIdx,FirsMB,NumMB,SliceRC.Com,CalcQP,SttMB,EndMB,TotlQP,TolMB,TarBit,BsPos,FrmBitSlc,GomBit,GomTar,
+    //SVCRC.AverFrmQP,bGomQP,RemainBit,BitMB,TarBit,BitLevel,GloQP,
+    printf("Slc,%2d,%2d,%2d,%4d,%2d,%4d,%4d,SlcRC,%4d,%4d,%4d,%4d,%5d,%4d,%5d,%5d,%5d,%5d,%4d,SVCRC,%2d,%2d,%4d,%4d,%4d,%4d,%4d,QP %2d,\n",
+           pCurSlice->sSliceHeaderExt.sSliceHeader.iFrameNum,
+           pCurSlice->iSliceIdx,
+           pCurSlice->uiThreadIdx,
+           iSliceBsSize,
+           pCurSlice->sSliceHeaderExt.sSliceHeader.uiRefIndex,
+           pCurSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice,
+           pCurSlice->iCountMbNumInSlice,
+           pCurSlice->sSlicingOverRc.iComplexityIndexSlice,  //Start slice RC Info
+           pCurSlice->sSlicingOverRc.iCalculatedQpSlice,
+           pCurSlice->sSlicingOverRc.iStartMbSlice,
+           pCurSlice->sSlicingOverRc.iEndMbSlice,
+           pCurSlice->sSlicingOverRc.iTotalQpSlice,
+           pCurSlice->sSlicingOverRc.iTotalMbSlice,
+           pCurSlice->sSlicingOverRc.iTargetBitsSlice,
+           pCurSlice->sSlicingOverRc.iBsPosSlice,
+           pCurSlice->sSlicingOverRc.iFrameBitsSlice,
+           pCurSlice->sSlicingOverRc.iGomBitsSlice,
+           pCurSlice->sSlicingOverRc.iGomTargetBits,   //End Slice RC
+           pWelsSvcRc->iAverageFrameQp,   //SVCRC
+           pWelsSvcRc->bEnableGomQp,
+           pWelsSvcRc->iRemainingBits,
+           pWelsSvcRc->iBitsPerMb,
+           pWelsSvcRc->iTargetBits,
+           pWelsSvcRc->iNumberMbFrame,
+           pWelsSvcRc->iCurrentBitsLevel,
+           pEncCtx->iGlobalQp);
+}
+
+void OutputAllSliceInfo(sWelsEncCtx* pEncCtx, const int32_t kiThreadNum) {
+    SDqLayer* pCurLayer = pEncCtx->pCurDqLayer;
+    int32_t iSliceIdx   = 0;
+    int32_t iThreadIdx  = 0;
+    SSlice* pSlice      = NULL;
+
+    printf("***************ppSliceInLayer**********************\n");
+    for(iSliceIdx = 0; iSliceIdx < pCurLayer->iMaxSliceNum; iSliceIdx ++) {
+        printf("==ppSliceIdx,iThreadIdx is ,%d, Idx is ,%2d, iSliceIdx is ,%2d,== \n",
+               pCurLayer->ppSliceInLayer[iSliceIdx]->uiThreadIdx,
+               iSliceIdx,
+               pCurLayer->ppSliceInLayer[iSliceIdx]->iSliceIdx);
+    }
+    for(iSliceIdx = 0; iSliceIdx < pCurLayer->iMaxSliceNum; iSliceIdx ++) {
+        //OutputSliceInfo(pEncCtx, pCurLayer->ppSliceInLayer[iSliceIdx], 0);
+    }
+
+    printf("***************pSliceInThread**********************\n");
+    for( iThreadIdx = 0; iThreadIdx < kiThreadNum; iThreadIdx ++) {
+        pSlice    = pCurLayer->sSliceThreadInfo.pSliceInThread[iThreadIdx];
+        for(iSliceIdx = 0; iSliceIdx < pCurLayer->sSliceThreadInfo.iMaxSliceNumInThread[iThreadIdx]; iSliceIdx ++) {
+            printf("BufferIdx is %2d,iThreadIdx is %d, pSliceInThread, Idx is %d, iSliceIdx is %d \n",
+                   iThreadIdx,
+                   pSlice[iSliceIdx].uiThreadIdx,
+                   iSliceIdx,
+                   pSlice[iSliceIdx].iSliceIdx);
+        }
+    }
+
+    for( iThreadIdx = 0; iThreadIdx < kiThreadNum; iThreadIdx ++) {
+        pSlice  = pCurLayer->sSliceThreadInfo.pSliceInThread[iThreadIdx];
+
+        for( iSliceIdx = 0; iSliceIdx < pCurLayer->sSliceThreadInfo.iMaxSliceNumInThread[iThreadIdx]; iSliceIdx ++) {
+            OutputSliceInfo(pEncCtx, &pSlice[iSliceIdx], 0);
+        }
+    }
+    printf("***************End**********************\n\n\n");
+}
+
 //Initialize slice's boundary info)
 int32_t InitSliceBoundaryInfo (SDqLayer* pCurLayer,
                                SSliceArgument* pSliceArgument,
@@ -1029,9 +1249,6 @@ int32_t InitSliceThreadInfo (sWelsEncCtx* pCtx,
   int32_t iMaxSliceNumInThread        = 0;
   int32_t iIdx                        = 0;
   int32_t iRet                        = 0;
-
-  int32_t iSliceBufferSize  = sizeof (SSlice);
-  int32_t iAllSliceBufferSize = iSliceBufferSize * pDqLayer->iMaxSliceNum;
 
   assert (iThreadNum > 0);
   iMaxSliceNumInThread = pDqLayer->iMaxSliceNum;
