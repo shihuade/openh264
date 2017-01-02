@@ -303,7 +303,9 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
       return iReturn;
     }
 
-      printf("PID %d, FMBInPt %4d,LeftMB %3d PtSlcN %3d, PLastMBIdx %4d, thrIdx %d, LocalSlcIdx %3d, mSlcIdx %3d, FstMB %4d, codedSlcNum %3d, SlcSize %6d, Idc %d\n",
+      printf("FrmIdx %4d,IDRIdx %2d :PID %d, FMBInPt %4d,LeftMB %3d PtSlcN %3d, PLastMBIdx %4d, thrIdx %d, LocalSlcIdx %3d, mSlcIdx %3d, FstMB %4d, codedSlcNum %3d, SlcSize %6d, Idc %d\n",
+             m_pSlice->sSliceHeaderExt.sSliceHeader.iFrameNum,
+             m_pSlice->sSliceHeaderExt.sSliceHeader.uiIdrPicId,
              kiPartitionId,
              kiFirstMbInPartition,
              iAnyMbLeftInPartition,

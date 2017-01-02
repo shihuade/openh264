@@ -196,8 +196,11 @@ void CWelsTaskManageBase::DestroyTasks() {
 void  CWelsTaskManageBase::OnTaskMinusOne() {
   WelsCommon::CWelsAutoLock cAutoLock (m_cWaitTaskNumLock);
   m_iWaitTaskNum --;
+  printf("OnTaskMinusOne():: m_iWaitTaskNum %d, m_iThreadNum %d \n", m_iWaitTaskNum, m_iThreadNum);
   if (m_iWaitTaskNum <= 0) {
+    printf("OnTaskMinusOne():: m_iWaitTaskNum %d, m_iThreadNum %d \n", m_iWaitTaskNum, m_iThreadNum);
     WelsEventSignal (&m_hTaskEvent);
+    printf("OnTaskMinusOne():: after WelsEventSignal (&m_hTaskEvent) \n");
     //fprintf(stdout, "OnTaskMinusOne WelsEventSignal m_iWaitTaskNum=%d\n", m_iWaitTaskNum);
   }
   //fprintf(stdout, "OnTaskMinusOne m_iWaitTaskNum=%d\n", m_iWaitTaskNum);
@@ -224,10 +227,12 @@ WelsErrorType  CWelsTaskManageBase::ExecuteTaskList (TASKLIST_TYPE** pTaskList) 
   int32_t iCurrentTaskCount = m_iWaitTaskNum; //if directly use m_iWaitTaskNum in the loop make cause sync problem
   int32_t iIdx = 0;
   while (iIdx < iCurrentTaskCount) {
+    printf("ExecuteTaskList(),iCurrentTaskCount %d, QueueTask iIdx %d \n",iCurrentTaskCount, iIdx);
     m_pThreadPool->QueueTask (pTargetTaskList->GetIndexNode (iIdx));
     iIdx ++;
   }
   WelsEventWait (&m_hTaskEvent,&m_hEventMutex);
+  printf("ExecuteTaskList() after WelsEventWait() \n");
 
   return ENC_RETURN_SUCCESS;
 }

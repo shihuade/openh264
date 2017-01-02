@@ -2404,10 +2404,14 @@ void UpdateSlicepEncCtxWithPartition (SDqLayer* pCurDq, int32_t iPartitionNum) {
   else if (iPartitionNum > AVERSLICENUM_CONSTRAINT)
     iPartitionNum = AVERSLICENUM_CONSTRAINT; // AVERSLICENUM_CONSTRAINT might be variable, however not fixed by MACRO
   iCountMbNumPerPartition /= iPartitionNum;
-  if(iCountMbNumPerPartition == 0) {
+  if(iCountMbNumPerPartition == 0 || iCountMbNumPerPartition == 1) {
     iCountMbNumPerPartition = kiMbNumInFrame;
     iPartitionNum           = 1;
   }
+  printf("********iCountMbNumPerPartition %d iPartitionNum %d \n",
+         iCountMbNumPerPartition,
+         iPartitionNum);
+
   pSliceCtx->iSliceNumInFrame = iPartitionNum;
 
   i = 0;
