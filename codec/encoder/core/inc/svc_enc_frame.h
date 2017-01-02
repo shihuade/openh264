@@ -70,9 +70,8 @@ int32_t iHighFreMbCount;
 
 typedef struct TagSliceThreadInfo {
 SSlice*                 pSliceInThread;// slice buffer for multi thread,
-                                                        // pSliceInThread[0] for single thread
-                                                        // will not alloated when multi thread is off
-int32_t                 iMaxSliceNumInThread;
+                                       // pSliceInThread[0] for single thread
+int32_t                 iMaxSliceNum;
 int32_t                 iEncodedSliceNumInThread;
 }SSliceThreadInfo;
 

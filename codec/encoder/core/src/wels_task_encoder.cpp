@@ -257,7 +257,7 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
   int32_t iLocalSliceIdx = m_iSliceIdx;
   while (iAnyMbLeftInPartition > 0) {
       bNeedReallocate = (pCurDq->sSliceThreadInfo[m_iThreadIdx].iEncodedSliceNumInThread
-                         >=  pCurDq->sSliceThreadInfo[m_iThreadIdx].iMaxSliceNumInThread -1) ? true : false;
+                         >=  pCurDq->sSliceThreadInfo[m_iThreadIdx].iMaxSliceNum -1) ? true : false;
       if (bNeedReallocate) {
           WelsMutexLock (&m_pCtx->pSliceThreading->mutexThreadSlcBuffReallocate);
           //for memory statistic variable

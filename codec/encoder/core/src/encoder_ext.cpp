@@ -905,7 +905,7 @@ void FreeSliceInLayer (SDqLayer* pDq, CMemoryAlign* pMa) {
   int32_t iIdx = 0;
   for (; iIdx < MAX_THREADS_NUM; iIdx ++) {
     FreeSliceBuffer (pDq->sSliceThreadInfo[iIdx].pSliceInThread,
-                     pDq->sSliceThreadInfo[iIdx].iMaxSliceNumInThread,
+                     pDq->sSliceThreadInfo[iIdx].iMaxSliceNum,
                      pMa, "pSliceInThread");
   }
 }
@@ -4468,7 +4468,7 @@ int32_t WelsCodeOnePicPartition (sWelsEncCtx* pCtx,
     int32_t iPayloadSize    = 0;
     SSlice* pCurSlice = NULL;
 
-    if (iSliceIdx >= (pCurLayer->sSliceThreadInfo[uiTheadIdx].iMaxSliceNumInThread - kiSliceIdxStep)) { // insufficient memory in pSliceInLayer[]
+    if (iSliceIdx >= (pCurLayer->sSliceThreadInfo[uiTheadIdx].iMaxSliceNum - kiSliceIdxStep)) { // insufficient memory in pSliceInLayer[]
       if (pCtx->iActiveThreadsNum == 1) {
         //only single thread support re-alloc now
         if (DynSliceRealloc (pCtx, pFrameBSInfo, pLayerBsInfo)) {
