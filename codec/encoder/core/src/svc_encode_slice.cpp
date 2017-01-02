@@ -660,8 +660,9 @@ TRY_REENCODING:
     //whether all of MB in current pSlice encoded or not
     if (iNextMbIdx == -1 || iNextMbIdx >= kiTotalNumMb || iNumMbCoded >= kiTotalNumMb) {
       pSlice->iCountMbNumInSlice = iCurMbIdx - pCurLayer->LastCodedMbIdxOfPartition[kiPartitionId];
-      pCurLayer->LastCodedMbIdxOfPartition[kiPartitionId] =
-        iCurMbIdx; // update LastCodedMbIdxOfPartition, finish coding, use iCurMbIdx directly
+      pCurLayer->LastCodedMbIdxOfPartition[kiPartitionId] = iCurMbIdx;
+      ++ pCurLayer->NumSliceCodedOfPartition[kiPartitionId];
+
       break;
     }
   }
@@ -2174,8 +2175,9 @@ TRY_REENCODING:
     iNextMbIdx = WelsGetNextMbOfSlice (pCurLayer, iCurMbIdx);
     //whether all of MB in current pSlice encoded or not
     if (iNextMbIdx == -1 || iNextMbIdx >= kiTotalNumMb || iNumMbCoded >= kiTotalNumMb) {
-      pCurLayer->LastCodedMbIdxOfPartition[kiPartitionId] =
-        iCurMbIdx; // update LastCodedMbIdxOfPartition, finish coding, use pCurMb_idx directly
+      pCurLayer->LastCodedMbIdxOfPartition[kiPartitionId] = iCurMbIdx;
+      ++ pCurLayer->NumSliceCodedOfPartition[kiPartitionId];
+
       break;
     }
   }

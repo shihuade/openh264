@@ -2404,7 +2404,12 @@ void UpdateSlicepEncCtxWithPartition (SDqLayer* pCurDq, int32_t iPartitionNum) {
   else if (iPartitionNum > AVERSLICENUM_CONSTRAINT)
     iPartitionNum = AVERSLICENUM_CONSTRAINT; // AVERSLICENUM_CONSTRAINT might be variable, however not fixed by MACRO
   iCountMbNumPerPartition /= iPartitionNum;
+  if(iCountMbNumPerPartition == 0) {
+    iCountMbNumPerPartition = kiMbNumInFrame;
+    iPartitionNum           = 1;
+  }
   pSliceCtx->iSliceNumInFrame = iPartitionNum;
+
   i = 0;
   while (i < iPartitionNum) {
     if (i + 1 == iPartitionNum) {
@@ -2413,8 +2418,10 @@ void UpdateSlicepEncCtxWithPartition (SDqLayer* pCurDq, int32_t iPartitionNum) {
       iCountMbNumInPartition = iCountMbNumPerPartition;
     }
 
-    pCurDq->FirstMbIdxOfPartition[i] = iFirstMbIdx;
-    pCurDq->EndMbIdxOfPartition[i]   = iFirstMbIdx + iCountMbNumInPartition - 1;
+    pCurDq->FirstMbIdxOfPartition[i]     = iFirstMbIdx;
+    pCurDq->EndMbIdxOfPartition[i]       = iFirstMbIdx + iCountMbNumInPartition - 1;
+    pCurDq->LastCodedMbIdxOfPartition[i] = 0;
+    pCurDq->NumSliceCodedOfPartition[i]  = 0;
 
     WelsSetMemMultiplebytes_c (pSliceCtx->pOverallMbMap + iFirstMbIdx, i,
                                iCountMbNumInPartition, sizeof (uint16_t));
@@ -2422,6 +2429,14 @@ void UpdateSlicepEncCtxWithPartition (SDqLayer* pCurDq, int32_t iPartitionNum) {
     // for next partition(or pSlice)
     iFirstMbIdx       += iCountMbNumInPartition;
     iAssignableMbLeft -= iCountMbNumInPartition;
+    ++ i;
+  }
+
+  while(i<MAX_THREADS_NUM) {
+    pCurDq->FirstMbIdxOfPartition[i]     = 0;
+    pCurDq->EndMbIdxOfPartition[i]       = 0;
+    pCurDq->LastCodedMbIdxOfPartition[i] = 0;
+    pCurDq->NumSliceCodedOfPartition[i]  = 0;
     ++ i;
   }
 }
@@ -4443,12 +4458,7 @@ int32_t WelsCodeOnePicPartition (sWelsEncCtx* pCtx,
   const int32_t kiSliceIdxStep          = pCtx->iActiveThreadsNum;
   int32_t iReturn = ENC_RETURN_SUCCESS;
 
-  //init
-  {
-    pStartSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice = iFirstMbIdxInPartition;
-    pCurLayer->NumSliceCodedOfPartition[kiPartitionId] = 1;
-  }
-  pCurLayer->LastCodedMbIdxOfPartition[kiPartitionId] = 0;
+  pStartSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice = iFirstMbIdxInPartition;
 
   while (iAnyMbLeftInPartition > 0) {
     int32_t iSliceSize      = 0;

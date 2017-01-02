@@ -243,14 +243,17 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
   const int32_t kiCodedSliceNumByThread   = pCurDq->sSliceThreadInfo.iEncodedSliceNumInThread[m_iThreadIdx];
   m_pSlice                                = &pCurDq->sSliceThreadInfo.pSliceInThread[m_iThreadIdx][kiCodedSliceNumByThread];
   m_pSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice  = kiFirstMbInPartition;
-  pCurDq->NumSliceCodedOfPartition[kiPartitionId]        = 1;
-  pCurDq->LastCodedMbIdxOfPartition[kiPartitionId]       = 0;
   int32_t iReturn      = 0;
   bool bNeedReallocate = false;
 
   //deal with partition: TODO: here SSliceThreadPrivateData is just for parition info and actually has little relationship with threadbuffer, and iThreadIndex is not used in threadpool model, need renaming after removing old logic to avoid confusion
+  int32_t iDiffMbIdx = kiEndMbIdxInPartition - kiFirstMbInPartition;
+  if( 0 == iDiffMbIdx) {
+    m_pSlice->iSliceIdx = -1;
+    return ENC_RETURN_SUCCESS;
+  }
 
-  int32_t iAnyMbLeftInPartition           = kiEndMbIdxInPartition - kiFirstMbInPartition + 1;
+  int32_t iAnyMbLeftInPartition = iDiffMbIdx + 1;
   int32_t iLocalSliceIdx = m_iSliceIdx;
   while (iAnyMbLeftInPartition > 0) {
       bNeedReallocate = (pCurDq->sSliceThreadInfo.iEncodedSliceNumInThread[m_iThreadIdx]
@@ -300,9 +303,10 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
       return iReturn;
     }
 
-      printf("PID %d, FMBInPt %4d, PtSlcN %3d, PLastMBIdx %4d, thrIdx %d, LocalSlcIdx %3d, mSlcIdx %3d, FstMB %4d, codedSlcNum %3d, SlcSize %6d, Idc %d\n",
+      printf("PID %d, FMBInPt %4d,LeftMB %3d PtSlcN %3d, PLastMBIdx %4d, thrIdx %d, LocalSlcIdx %3d, mSlcIdx %3d, FstMB %4d, codedSlcNum %3d, SlcSize %6d, Idc %d\n",
              kiPartitionId,
              kiFirstMbInPartition,
+             iAnyMbLeftInPartition,
              pCurDq->NumSliceCodedOfPartition[kiPartitionId],
              pCurDq->LastCodedMbIdxOfPartition[kiPartitionId],
              m_iThreadIdx,

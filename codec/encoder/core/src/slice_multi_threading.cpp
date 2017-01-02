@@ -684,9 +684,6 @@ WELS_THREAD_ROUTINE_TYPE CodingSliceThreadProc (void* arg) {
         iSliceIdx                               = pPrivateData->iSliceIndex;
         SSlice* pStartSlice                     = &pCurDq->sSliceThreadInfo.pSliceInThread[iThreadIdx][iSliceIdx];
         pStartSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice = kiFirstMbInPartition;
-        pCurDq->NumSliceCodedOfPartition[kiPartitionId]          = 1;
-        pCurDq->LastCodedMbIdxOfPartition[kiPartitionId]         = 0;
-
         while (iAnyMbLeftInPartition > 0) {
           if (iSliceIdx >= pCurDq->iMaxSliceNum) {
             // TODO: need exception handler for not large enough of MAX_SLICES_NUM related memory usage
