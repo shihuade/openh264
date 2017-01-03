@@ -72,7 +72,7 @@ typedef struct TagSliceThreadInfo {
 SSlice*                 pSliceInThread;// slice buffer for multi thread,
                                        // pSliceInThread[0] for single thread
 int32_t                 iMaxSliceNum;
-int32_t                 iEncodedSliceNumInThread;
+int32_t                 iCodedSliceNum;
 }SSliceThreadInfo;
 
 typedef struct TagLayerInfo {
