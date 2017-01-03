@@ -846,35 +846,36 @@ void Output_SVCParam(SEncParamExt* pSvcParam) {
     printf("Param: bEnableSceneChangeDetect %d \n", pSvcParam->bEnableSceneChangeDetect);
     printf("Param: bIsLosslessLink %d \n", pSvcParam->bIsLosslessLink);
 
-    printf("*****************Layer Info*******************************\n");
-    printf("Param:Layer[0] iVideoWidth %d \n", pSvcParam->sSpatialLayers[0].iVideoWidth);
-    printf("Param:Layer[0] iVideoHeight %d \n", pSvcParam->sSpatialLayers[0].iVideoHeight);
-    printf("Param:Layer[0] fFrameRate %f \n", pSvcParam->sSpatialLayers[0].fFrameRate);
-    printf("Param:Layer[0] iSpatialBitrate %d \n", pSvcParam->sSpatialLayers[0].iSpatialBitrate);
-    printf("Param:Layer[0] iMaxSpatialBitrate %d \n", pSvcParam->sSpatialLayers[0].iMaxSpatialBitrate);
-    printf("Param:Layer[0] uiProfileIdc %d \n", pSvcParam->sSpatialLayers[0].uiProfileIdc);
-    printf("Param:Layer[0] uiLevelIdc %d \n", pSvcParam->sSpatialLayers[0].uiLevelIdc);
-    printf("Param:Layer[0] iDLayerQp %d \n", pSvcParam->sSpatialLayers[0].iDLayerQp);
-    printf("Param:Layer[0] bVideoSignalTypePresent %d \n", pSvcParam->sSpatialLayers[0].bVideoSignalTypePresent);
-    printf("Param:Layer[0] uiVideoFormat %d \n", pSvcParam->sSpatialLayers[0].uiVideoFormat);
-    printf("Param:Layer[0] bFullRange %d \n", pSvcParam->sSpatialLayers[0].bFullRange);
-    printf("Param:Layer[0] bColorDescriptionPresent %d \n", pSvcParam->sSpatialLayers[0].bColorDescriptionPresent);
-    printf("Param:Layer[0] uiColorPrimaries %d \n", pSvcParam->sSpatialLayers[0].uiColorPrimaries);
-    printf("Param:Layer[0] uiTransferCharacteristics %d \n", pSvcParam->sSpatialLayers[0].uiTransferCharacteristics);
-    printf("Param:Layer[0] uiColorMatrix %d \n", pSvcParam->sSpatialLayers[0].uiColorMatrix);
-    printf("*****************Layer slice agument*******************************\n");
+    for(int32_t iLayerIdx = 0; iLayerIdx < pSvcParam->iSpatialLayerNum; iLayerIdx ++) {
+        printf("\n*****************Layer Info LayerID %d*******************************\n",
+               iLayerIdx);
+        printf("Param:Layer[%d] iVideoWidth %d \n", iLayerIdx, pSvcParam->sSpatialLayers[iLayerIdx].iVideoWidth);
+        printf("Param:Layer[%d] iVideoHeight %d \n", iLayerIdx, pSvcParam->sSpatialLayers[iLayerIdx].iVideoHeight);
+        printf("Param:Layer[%d] fFrameRate %f \n", iLayerIdx, pSvcParam->sSpatialLayers[iLayerIdx].fFrameRate);
+        printf("Param:Layer[%d] iSpatialBitrate %d \n", iLayerIdx, pSvcParam->sSpatialLayers[iLayerIdx].iSpatialBitrate);
+        printf("Param:Layer[%d] iMaxSpatialBitrate %d \n", iLayerIdx, pSvcParam->sSpatialLayers[iLayerIdx].iMaxSpatialBitrate);
+        printf("Param:Layer[%d] uiProfileIdc %d \n", iLayerIdx, pSvcParam->sSpatialLayers[iLayerIdx].uiProfileIdc);
+        printf("Param:Layer[%d] uiLevelIdc %d \n", iLayerIdx, pSvcParam->sSpatialLayers[iLayerIdx].uiLevelIdc);
+        printf("Param:Layer[%d] iDLayerQp %d \n", iLayerIdx, pSvcParam->sSpatialLayers[iLayerIdx].iDLayerQp);
+        printf("Param:Layer[%d] bVideoSignalTypePresent %d \n", iLayerIdx, pSvcParam->sSpatialLayers[iLayerIdx].bVideoSignalTypePresent);
+        printf("Param:Layer[%d] uiVideoFormat %d \n", iLayerIdx, pSvcParam->sSpatialLayers[iLayerIdx].uiVideoFormat);
+        printf("Param:Layer[%d] bFullRange %d \n", iLayerIdx, pSvcParam->sSpatialLayers[iLayerIdx].bFullRange);
+        printf("Param:Layer[%d] bColorDescriptionPresent %d \n", iLayerIdx, pSvcParam->sSpatialLayers[iLayerIdx].bColorDescriptionPresent);
+        printf("Param:Layer[%d] uiColorPrimaries %d \n", iLayerIdx, pSvcParam->sSpatialLayers[iLayerIdx].uiColorPrimaries);
+        printf("Param:Layer[%d] uiTransferCharacteristics %d \n", iLayerIdx, pSvcParam->sSpatialLayers[iLayerIdx].uiTransferCharacteristics);
+        printf("Param:Layer[%d] uiColorMatrix %d \n", iLayerIdx, pSvcParam->sSpatialLayers[iLayerIdx].uiColorMatrix);
 
-    printf("Param:Layer[0] sSliceArgument.uiSliceMode %d \n", pSvcParam->sSpatialLayers[0].sSliceArgument.uiSliceMode);
-    printf("Param:Layer[0] sSliceArgument.uiSliceNum  %d \n", pSvcParam->sSpatialLayers[0].sSliceArgument.uiSliceNum);
-    printf("Param:Layer[0] sSliceArgument.uiSliceSizeConstraint %d \n",
-           pSvcParam->sSpatialLayers[0].sSliceArgument.uiSliceSizeConstraint);
-    printf("Param:Layer[0] sSliceArgument.uiSliceMbNum:0~35 %d %d %d %d %d %d\n",
-           pSvcParam->sSpatialLayers[0].sSliceArgument.uiSliceMbNum[0],
-           pSvcParam->sSpatialLayers[0].sSliceArgument.uiSliceMbNum[1],
-           pSvcParam->sSpatialLayers[0].sSliceArgument.uiSliceMbNum[2],
-           pSvcParam->sSpatialLayers[0].sSliceArgument.uiSliceMbNum[3],
-           pSvcParam->sSpatialLayers[0].sSliceArgument.uiSliceMbNum[4],
-           pSvcParam->sSpatialLayers[0].sSliceArgument.uiSliceMbNum[5]);
+        printf("\n*****************Layer slice agument %d*******************************\n");
+        printf("Param:Layer[%d] sSliceArgument.uiSliceMode %d \n", iLayerIdx, pSvcParam->sSpatialLayers[iLayerIdx].sSliceArgument.uiSliceMode);
+        printf("Param:Layer[%d] sSliceArgument.uiSliceNum  %d \n", iLayerIdx, pSvcParam->sSpatialLayers[iLayerIdx].sSliceArgument.uiSliceNum);
+        printf("Param:Layer[%d] sSliceArgument.uiSliceSizeConstraint %d \n",
+               iLayerIdx, pSvcParam->sSpatialLayers[iLayerIdx].sSliceArgument.uiSliceSizeConstraint);
+        printf("Param:Layer[0] sSliceArgument.uiSliceMbNum:0~35: ");
+        for(int32_t iSlcIdx = 0; iSlcIdx < pSvcParam->sSpatialLayers[iLayerIdx].sSliceArgument.uiSliceNum; iSlcIdx ++)
+            printf(" %3d ",
+                   pSvcParam->sSpatialLayers[iLayerIdx].sSliceArgument.uiSliceMbNum[iSlcIdx]);
+        }
+        printf("\n");
 }
 
 void OutputOneMBInfo(SMB* pCurMb) {
@@ -1244,17 +1245,22 @@ int32_t InitSliceThreadInfo (sWelsEncCtx* pCtx,
                              SDqLayer* pDqLayer,
                              const int32_t kiDlayerIndex,
                              CMemoryAlign* pMa) {
-  int32_t iThreadNum                  = pCtx->pSvcParam->iMultipleThreadIdc;
-  int32_t iMaxSliceNumInThread        = 0;
-  int32_t iIdx                        = 0;
-  int32_t iRet                        = 0;
+  int32_t iThreadNum   = pCtx->pSvcParam->iMultipleThreadIdc;
+  int32_t iMaxSliceNum = 0;
+  int32_t iIdx         = 0;
+  int32_t iRet         = 0;
 
   assert (iThreadNum > 0);
-  iMaxSliceNumInThread = pDqLayer->iMaxSliceNum;
+  if( iThreadNum == 1 ) {
+    iMaxSliceNum = pDqLayer->iMaxSliceNum;
+  } else {
+      iMaxSliceNum = pDqLayer->iMaxSliceNum / iThreadNum + 1;
+  }
+
   while (iIdx < iThreadNum) {
-    pDqLayer->sSliceThreadInfo[iIdx].iMaxSliceNum   = iMaxSliceNumInThread;
+    pDqLayer->sSliceThreadInfo[iIdx].iMaxSliceNum   = iMaxSliceNum;
     pDqLayer->sSliceThreadInfo[iIdx].iCodedSliceNum = 0;
-    pDqLayer->sSliceThreadInfo[iIdx].pSliceInThread = (SSlice*)pMa->WelsMallocz (sizeof (SSlice) * iMaxSliceNumInThread, "pSliceInThread");
+    pDqLayer->sSliceThreadInfo[iIdx].pSliceInThread = (SSlice*)pMa->WelsMallocz (sizeof (SSlice) * iMaxSliceNum, "pSliceInThread");
     if (NULL == pDqLayer->sSliceThreadInfo[iIdx].pSliceInThread) {
       WelsLog (& (pCtx->sLogCtx), WELS_LOG_ERROR,
                "CWelsH264SVCEncoder::InitSliceThreadInfo: pSliceThreadInfo->pSliceInThread[iIdx] is NULL");
@@ -1263,7 +1269,7 @@ int32_t InitSliceThreadInfo (sWelsEncCtx* pCtx,
     iRet = InitSliceList (pCtx,
                           pDqLayer,
                           pDqLayer->sSliceThreadInfo[iIdx].pSliceInThread,
-                          iMaxSliceNumInThread,
+                          iMaxSliceNum,
                           kiDlayerIndex,
                           pMa);
     if (ENC_RETURN_SUCCESS != iRet) {
@@ -1328,7 +1334,7 @@ int32_t InitSliceInLayer (sWelsEncCtx* pCtx,
 
   iStartIdx = 0;
   for(iThreadIdx = 0; iThreadIdx < pCtx->iActiveThreadsNum; iThreadIdx++ ) {
-      for (iSliceIdx = 0; iSliceIdx < pDqLayer->sSliceThreadInfo[iThreadIdx].iMaxSliceNum; iSliceIdx++ ) {
+    for (iSliceIdx = 0; iSliceIdx < pDqLayer->sSliceThreadInfo[iThreadIdx].iMaxSliceNum; iSliceIdx++ ) {
       pDqLayer->ppSliceInLayer[iStartIdx + iSliceIdx] = pDqLayer->sSliceThreadInfo[iThreadIdx].pSliceInThread+ iSliceIdx;
     }
 
@@ -1389,13 +1395,13 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
   int32_t iRet                = 0;
   const int32_t kiCurDid      = pCtx->uiDependencyId;
   int32_t iMaxSliceBufferSize = (pCtx)->iSliceBufferSize[kiCurDid];
-  bool bIndependenceBsBuffer  = (pCtx->pSvcParam->iMultipleThreadIdc > 1 &&
-                                 SM_SINGLE_SLICE != pSliceArgument->uiSliceMode) ? true : false;
 
   if (NULL == pSliceList || NULL == pSliceArgument) {
     return ENC_RETURN_INVALIDINPUT;
   }
-    
+
+  bool bIndependenceBsBuffer  = (pCtx->pSvcParam->iMultipleThreadIdc > 1 &&
+                                 SM_SINGLE_SLICE != pSliceArgument->uiSliceMode) ? true : false;
   uint8_t* pPointer  = pSliceList[0].sMbCacheInfo.pMemPredMb;
   int32_t BufferSize =   * ((int32_t*) ((uint8_t*)pPointer - sizeof (void**) - sizeof ( int32_t)));
 
@@ -1469,24 +1475,29 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
 
 }
 
-int32_t CalculateNewSliceNum (SDqLayer* pDqLayer,
+int32_t CalculateNewSliceNum (sWelsEncCtx* pCtx,
                               SSlice* pLastCodedSlice,
                               const int32_t iMaxSliceNumOld,
                               int32_t& iMaxSliceNumNew) {
-  int32_t CodedMBNum = 0;
-
-  if (NULL == pLastCodedSlice)
+  if ( NULL == pCtx || NULL == pLastCodedSlice || 0 == iMaxSliceNumOld ) {
     return ENC_RETURN_INVALIDINPUT;
-
-  CodedMBNum = pLastCodedSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice +
-               pLastCodedSlice->iCountMbNumInSlice;
-  if (CodedMBNum <= 0) {
-    return ENC_RETURN_UNEXPECTED;
   }
-  //iMaxSliceNumNew = iMaxSliceNumOld * (pDqLayer->iMbWidth * pDqLayer->iMbHeight / CodedMBNum + 1);
-  //TO DO, will used above logic later, here keep origin logic in order to pass ut
-  iMaxSliceNumNew = iMaxSliceNumOld;
-  iMaxSliceNumNew *= SLICE_NUM_EXPAND_COEF;
+
+  if ( 1 == pCtx->iActiveThreadsNum ) {
+    iMaxSliceNumNew = iMaxSliceNumOld * SLICE_NUM_EXPAND_COEF;
+    return ENC_RETURN_SUCCESS;
+  }
+
+  int32_t iPartitionID     = pLastCodedSlice->iSliceIdx / pCtx->iActiveThreadsNum;
+  int32_t iMBNumInPatition = pCtx->pCurDqLayer->EndMbIdxOfPartition[iPartitionID]
+                             - pCtx->pCurDqLayer->FirstMbIdxOfPartition[iPartitionID] + 1;
+  int32_t iLeftMBNum       = pCtx->pCurDqLayer->EndMbIdxOfPartition[iPartitionID]
+                             - pCtx->pCurDqLayer->LastCodedMbIdxOfPartition[iPartitionID] + 1;
+  int32_t iIncreaseSlicNum = (iLeftMBNum * INT_MULTIPLY / iMBNumInPatition) * iMaxSliceNumOld;
+
+  iIncreaseSlicNum  = ( 0 == (iIncreaseSlicNum / INT_MULTIPLY) ) ? 1 : (iIncreaseSlicNum / INT_MULTIPLY);
+  iMaxSliceNumNew   = iMaxSliceNumOld + iIncreaseSlicNum;
+
   return ENC_RETURN_SUCCESS;
 }
 
@@ -1495,16 +1506,21 @@ int32_t ReallocateSliceInThread (sWelsEncCtx* pCtx,
                                  const int32_t kiDlayerIdx,
                                  const int32_t kiThreadIndex) {
 
-  int32_t iMaxSliceNumInThread   = pDqLayer->sSliceThreadInfo[kiThreadIndex].iMaxSliceNum;
-  int32_t iMaxSliceNumUpdate     = 0;
-  int32_t iRet                   = 0;
-  SSlice* pLastCodedSlice        = pDqLayer->sSliceThreadInfo[kiThreadIndex].pSliceInThread + (iMaxSliceNumInThread - 1);
+  int32_t iMaxSliceNum    = pDqLayer->sSliceThreadInfo[kiThreadIndex].iMaxSliceNum;
+  int32_t iMaxSliceNumNew = 0;
+  int32_t iRet            = 0;
+  SSlice* pLastCodedSlice = &pDqLayer->sSliceThreadInfo[kiThreadIndex].pSliceInThread [iMaxSliceNum - 1];
   SSliceArgument* pSliceArgument = & pCtx->pSvcParam->sSpatialLayers[kiDlayerIdx].sSliceArgument;
 
-  iRet = CalculateNewSliceNum (pDqLayer,
+  iRet = CalculateNewSliceNum (pCtx,
                                pLastCodedSlice,
-                               iMaxSliceNumInThread,
-                               iMaxSliceNumUpdate);
+                               iMaxSliceNum,
+                               iMaxSliceNumNew);
+
+  printf("*************Reallocate()*******ThreadIndex %d iMaxSliceNumOld %d iMaxSlcNumNew %d\n",
+         kiThreadIndex,
+         iMaxSliceNum,
+         iMaxSliceNumNew);
 
   if (ENC_RETURN_SUCCESS != iRet) {
     return iRet;
@@ -1513,13 +1529,13 @@ int32_t ReallocateSliceInThread (sWelsEncCtx* pCtx,
   iRet = ReallocateSliceList (pCtx,
                               pSliceArgument,
                               pDqLayer->sSliceThreadInfo[kiThreadIndex].pSliceInThread,
-                              iMaxSliceNumInThread,
-                              iMaxSliceNumUpdate);
+                              iMaxSliceNum,
+                              iMaxSliceNumNew);
   if (ENC_RETURN_SUCCESS != iRet) {
     return iRet;
   }
 
-  pDqLayer->sSliceThreadInfo[kiThreadIndex].iMaxSliceNum = iMaxSliceNumUpdate;
+  pDqLayer->sSliceThreadInfo[kiThreadIndex].iMaxSliceNum = iMaxSliceNumNew;
 
   return ENC_RETURN_SUCCESS;
 }
@@ -1579,7 +1595,7 @@ int32_t ReallocSliceBuffer (sWelsEncCtx* pCtx) {
   const int32_t kiCurDid   = pCtx->uiDependencyId;
   SSlice* pLastCodedSlice        = pCurLayer->sSliceThreadInfo[0].pSliceInThread + (iMaxSliceNumOld - 1);
   SSliceArgument* pSliceArgument = & pCtx->pSvcParam->sSpatialLayers[kiCurDid].sSliceArgument;
-  iRet = CalculateNewSliceNum (pCurLayer,
+  iRet = CalculateNewSliceNum (pCtx,
                                pLastCodedSlice,
                                iMaxSliceNumOld,
                                iMaxSliceNumNew);
