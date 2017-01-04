@@ -871,7 +871,7 @@ void Output_SVCParam(SEncParamExt* pSvcParam) {
         printf("Param:Layer[%d] sSliceArgument.uiSliceSizeConstraint %d \n",
                iLayerIdx, pSvcParam->sSpatialLayers[iLayerIdx].sSliceArgument.uiSliceSizeConstraint);
         printf("Param:Layer[0] sSliceArgument.uiSliceMbNum:0~35: ");
-        for(int32_t iSlcIdx = 0; iSlcIdx < pSvcParam->sSpatialLayers[iLayerIdx].sSliceArgument.uiSliceNum; iSlcIdx ++)
+        for(uint32_t iSlcIdx = 0; iSlcIdx < pSvcParam->sSpatialLayers[iLayerIdx].sSliceArgument.uiSliceNum; iSlcIdx ++)
             printf(" %3d ",
                    pSvcParam->sSpatialLayers[iLayerIdx].sSliceArgument.uiSliceMbNum[iSlcIdx]);
         }
