@@ -2408,10 +2408,6 @@ void UpdateSlicepEncCtxWithPartition (SDqLayer* pCurDq, int32_t iPartitionNum) {
     iCountMbNumPerPartition = kiMbNumInFrame;
     iPartitionNum           = 1;
   }
-  printf("********iCountMbNumPerPartition %d iPartitionNum %d \n",
-         iCountMbNumPerPartition,
-         iPartitionNum);
-
   pSliceCtx->iSliceNumInFrame = iPartitionNum;
 
   i = 0;
