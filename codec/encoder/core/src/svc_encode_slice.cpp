@@ -865,7 +865,7 @@ void Output_SVCParam(SEncParamExt* pSvcParam) {
         printf("Param:Layer[%d] uiTransferCharacteristics %d \n", iLayerIdx, pSvcParam->sSpatialLayers[iLayerIdx].uiTransferCharacteristics);
         printf("Param:Layer[%d] uiColorMatrix %d \n", iLayerIdx, pSvcParam->sSpatialLayers[iLayerIdx].uiColorMatrix);
 
-        printf("\n*****************Layer slice agument %d*******************************\n");
+        printf("\n*****************Layer slice agument *******************************\n");
         printf("Param:Layer[%d] sSliceArgument.uiSliceMode %d \n", iLayerIdx, pSvcParam->sSpatialLayers[iLayerIdx].sSliceArgument.uiSliceMode);
         printf("Param:Layer[%d] sSliceArgument.uiSliceNum  %d \n", iLayerIdx, pSvcParam->sSpatialLayers[iLayerIdx].sSliceArgument.uiSliceNum);
         printf("Param:Layer[%d] sSliceArgument.uiSliceSizeConstraint %d \n",
@@ -1245,16 +1245,17 @@ int32_t InitSliceThreadInfo (sWelsEncCtx* pCtx,
                              SDqLayer* pDqLayer,
                              const int32_t kiDlayerIndex,
                              CMemoryAlign* pMa) {
-  int32_t iThreadNum   = pCtx->pSvcParam->iMultipleThreadIdc;
-  int32_t iMaxSliceNum = 0;
-  int32_t iIdx         = 0;
-  int32_t iRet         = 0;
+  int32_t iThreadNum      = pCtx->pSvcParam->iMultipleThreadIdc;
+  int32_t iMaxSliceNum    = 0;
+  int32_t iIdx            = 0;
+  int32_t iRet            = 0;
+  SliceModeEnum eSlicMode = pCtx->pSvcParam->sSpatialLayers[kiDlayerIndex].sSliceArgument.uiSliceMode;
 
   assert (iThreadNum > 0);
-  if( iThreadNum == 1 ) {
-    iMaxSliceNum = pDqLayer->iMaxSliceNum;
+  if( SM_SIZELIMITED_SLICE == eSlicMode && iThreadNum > 1) {
+     iMaxSliceNum = pDqLayer->iMaxSliceNum / iThreadNum + 1;
   } else {
-      iMaxSliceNum = pDqLayer->iMaxSliceNum / iThreadNum + 1;
+    iMaxSliceNum = pDqLayer->iMaxSliceNum;
   }
 
   while (iIdx < iThreadNum) {
