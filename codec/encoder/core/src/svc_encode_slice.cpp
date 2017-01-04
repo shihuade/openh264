@@ -1227,6 +1227,15 @@ int32_t InitOneSliceInThread (sWelsEncCtx* pCtx,
   SDqLayer* pDqLayer                  = pCtx->pCurDqLayer;
   const int32_t kiCodedNumInThread    = pDqLayer->sSliceThreadInfo[kiThreadIdx].iCodedSliceNum;
 
+  if( kiCodedNumInThread >= pDqLayer->sSliceThreadInfo[kiThreadIdx].iMaxSliceNum -1) {
+      Output_SVCParam(pCtx->pSvcParam);
+      printf("SlcIdx %d LayIdx %d ThrdIdx %d CodedSlcNum %d, MaxSlcNum %d \n",
+             kiSliceIdx,
+             kiDlayerIdx,
+             kiThreadIdx,
+             kiCodedNumInThread,
+             pDqLayer->sSliceThreadInfo[kiThreadIdx].iMaxSliceNum);
+  }
   assert(kiCodedNumInThread < pDqLayer->sSliceThreadInfo[kiThreadIdx].iMaxSliceNum -1 );
 
   pSlice = &pDqLayer->sSliceThreadInfo [kiThreadIdx].pSliceInThread[kiCodedNumInThread];

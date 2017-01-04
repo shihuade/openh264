@@ -303,7 +303,7 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
       return iReturn;
     }
 
-      printf("FrmIdx %4d,IDRIdx %2d :PID %d, FMBInPt %4d,LeftMB %3d PtSlcN %3d, PLastMBIdx %4d, thrIdx %d, LocalSlcIdx %3d, mSlcIdx %3d, FstMB %4d, codedSlcNum %3d, SlcSize %6d, Idc %d\n",
+/*      printf("FrmIdx %4d,IDRIdx %2d :PID %d, FMBInPt %4d,LeftMB %3d PtSlcN %3d, PLastMBIdx %4d, thrIdx %d, LocalSlcIdx %3d, mSlcIdx %3d, FstMB %4d, codedSlcNum %3d, SlcSize %6d, Idc %d\n",
              m_pSlice->sSliceHeaderExt.sSliceHeader.iFrameNum,
              m_pSlice->sSliceHeaderExt.sSliceHeader.uiIdrPicId,
              kiPartitionId,
@@ -318,7 +318,7 @@ WelsErrorType CWelsConstrainedSizeSlicingEncodingTask::ExecuteTask() {
              m_pCtx->pCurDqLayer->sSliceThreadInfo[m_iThreadIdx].iCodedSliceNum,
              m_iSliceSize,
              m_pCtx->pSvcParam->iLoopFilterDisableIdc);
-
+*/
     m_pCtx->pFuncList->pfDeblocking.pfDeblockingFilterSlice (pCurDq, m_pCtx->pFuncList, m_pSlice);
 
     WelsLog (&m_pCtx->sLogCtx, WELS_LOG_DETAIL,
