@@ -918,7 +918,7 @@ void OutputMBInfoWithNeighbor(SMB* pMbList,
     const int32_t kiTopLMBIdx = kiTopMBIdx - 1;
     SMB* pCurMB = &pMbList[kiCurMBIdx];
 
-    /* // Left MB info
+     // Left MB info
      if ( pCurMB->iMbX > 0 && kiLetMBIdx >= 0 && NULL != &pMbList[kiLetMBIdx] ) {
      printf ("****************left mb of curren MB **********************\n");
      OutputOneMBInfo(&pMbList[kiLetMBIdx]);
@@ -943,7 +943,7 @@ void OutputMBInfoWithNeighbor(SMB* pMbList,
      printf ("****************top left mb of curren MB **********************\n");
      OutputOneMBInfo(&pMbList[kiTopLMBIdx]);
      }
-     */
+
     // current MB info
     if ( kiCurMBIdx >= 0 && NULL != &pMbList[kiCurMBIdx] ) {
         printf ("****************current mb of curren MB **********************\n");
@@ -1934,8 +1934,7 @@ bool DynSlcJudgeSliceBoundaryStepBack (void* pCtx, void* pSlice, SSliceCtx* pSli
   const int32_t  kiActiveThreadsNum    = pEncCtx->iActiveThreadsNum;
   const int32_t  kiPartitaionId        = pCurSlice->iSliceIdx % kiActiveThreadsNum;
   const int32_t  kiEndMbIdxOfPartition = pEncCtx->pCurDqLayer->EndMbIdxOfPartition[kiPartitaionId];
-  const int32_t  kiMaxSliceNum         = pEncCtx->pCurDqLayer->sSliceThreadInfo[pCurSlice->uiThreadIdx].iMaxSliceNum;
-  const bool    kbCurMbNotFirstMbOfCurSlice  = ((iCurMbIdx > 0) && (pSliceCtx->pOverallMbMap[iCurMbIdx] ==
+  const bool kbCurMbNotFirstMbOfCurSlice  = ((iCurMbIdx > 0) && (pSliceCtx->pOverallMbMap[iCurMbIdx] ==
       pSliceCtx->pOverallMbMap[iCurMbIdx - 1]));
   const bool    kbCurMbNotLastMbOfCurPartition = iCurMbIdx < kiEndMbIdxOfPartition;
 
