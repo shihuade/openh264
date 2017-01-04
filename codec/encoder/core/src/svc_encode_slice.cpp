@@ -1403,8 +1403,6 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
 
   bool bIndependenceBsBuffer  = (pCtx->pSvcParam->iMultipleThreadIdc > 1 &&
                                  SM_SINGLE_SLICE != pSliceArgument->uiSliceMode) ? true : false;
-  uint8_t* pPointer  = pSliceList[0].sMbCacheInfo.pMemPredMb;
-  int32_t BufferSize =   * ((int32_t*) ((uint8_t*)pPointer - sizeof (void**) - sizeof ( int32_t)));
 
   pNewSliceList = (SSlice*)pMA->WelsMallocz (sizeof (SSlice) * kiMaxSliceNumNew, "pSliceInThread");
   if (NULL == pNewSliceList) {
@@ -1468,9 +1466,6 @@ int32_t ReallocateSliceList (sWelsEncCtx* pCtx,
 
   pMA->WelsFree (pSliceList, "pSliceInThread");
   pSliceList = pNewSliceList;
-    
-  pPointer  = pSliceList[0].sMbCacheInfo.pMemPredMb;
-  BufferSize =   * ((int32_t*) ((uint8_t*)pPointer - sizeof (void**) - sizeof ( int32_t)));
 
   return ENC_RETURN_SUCCESS;
 
