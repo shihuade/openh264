@@ -162,7 +162,8 @@ typedef enum {
 
   DECODER_OPTION_GET_STATISTICS,        ///< feedback decoder statistics
   DECODER_OPTION_GET_SAR_INFO,          ///< feedback decoder Sample Aspect Ratio info in Vui
-
+  DECODER_OPTION_PROFILE,               ///< get current AU profile info, only is used in GetOption
+  DECODER_OPTION_LEVEL                  ///< get current AU level info,only is used in GetOption
 } DECODER_OPTION;
 
 /**
@@ -235,6 +236,7 @@ typedef struct {
   unsigned int uiIDRPicId;           ///< distinguish request from different IDR
   int          iLastCorrectFrameNum;
   int          iCurrentFrameNum;     ///< specify current decoder frame_num.
+  int          iLayerId;           //specify the layer for recovery request
 } SLTRRecoverRequest;
 
 /**
@@ -244,6 +246,7 @@ typedef struct {
   unsigned int  uiFeedbackType; ///< mark failed or successful
   unsigned int  uiIDRPicId;     ///< distinguish request from different IDR
   int           iLTRFrameNum;   ///< specify current decoder frame_num
+  int           iLayerId;        //specify the layer for LTR marking feedback
 } SLTRMarkingFeedback;
 
 /**
@@ -288,24 +291,24 @@ typedef enum {
 * @brief Enumerate the type of level id
 */
 typedef enum {
-  LEVEL_UNKNOWN,
-  LEVEL_1_0,
-  LEVEL_1_B,
-  LEVEL_1_1,
-  LEVEL_1_2,
-  LEVEL_1_3,
-  LEVEL_2_0,
-  LEVEL_2_1,
-  LEVEL_2_2,
-  LEVEL_3_0,
-  LEVEL_3_1,
-  LEVEL_3_2,
-  LEVEL_4_0,
-  LEVEL_4_1,
-  LEVEL_4_2,
-  LEVEL_5_0,
-  LEVEL_5_1,
-  LEVEL_5_2
+  LEVEL_UNKNOWN = 0,
+  LEVEL_1_0 = 10,
+  LEVEL_1_B = 9,
+  LEVEL_1_1 = 11,
+  LEVEL_1_2 = 12,
+  LEVEL_1_3 = 13,
+  LEVEL_2_0 = 20,
+  LEVEL_2_1 = 21,
+  LEVEL_2_2 = 22,
+  LEVEL_3_0 = 30,
+  LEVEL_3_1 = 31,
+  LEVEL_3_2 = 32,
+  LEVEL_4_0 = 40,
+  LEVEL_4_1 = 41,
+  LEVEL_4_2 = 42,
+  LEVEL_5_0 = 50,
+  LEVEL_5_1 = 51,
+  LEVEL_5_2 = 52
 } ELevelIdc;
 
 /**
@@ -415,6 +418,30 @@ typedef enum {
   CM_NUM_ENUM
 } EColorMatrix;
 
+
+/**
+* @brief Enumerate the type of sample aspect ratio
+*/
+typedef enum {
+  ASP_UNSPECIFIED = 0,
+  ASP_1x1 = 1,
+  ASP_12x11 = 2,
+  ASP_10x11 = 3,
+  ASP_16x11 = 4,
+  ASP_40x33 = 5,
+  ASP_24x11 = 6,
+  ASP_20x11 = 7,
+  ASP_32x11 = 8,
+  ASP_80x33 = 9,
+  ASP_18x11 = 10,
+  ASP_15x11 = 11,
+  ASP_64x33 = 12,
+  ASP_160x99 = 13,
+  
+  ASP_EXT_SAR = 255
+} ESampleAspectRatio;
+
+
 /**
 * @brief  Structure for spatial layer configuration
 */
@@ -441,6 +468,12 @@ typedef struct {
 										    //   smpte240m, linear, log100, log316, iec61966-2-4, bt1361e, iec61966-2-1, bt2020-10, bt2020-12
   unsigned char	uiColorMatrix;				// EColorMatrix; 8 bits in header (corresponds to FFmpeg "colorspace"); 0 - 10 => GBR, bt709,
 										    //   undef, ???, fcc, bt470bg, smpte170m, smpte240m, YCgCo, bt2020nc, bt2020c
+
+  bool bAspectRatioPresent; ///< aspect ratio present in VUI
+  ESampleAspectRatio eAspectRatio; ///< aspect ratio idc
+  unsigned short sAspectRatioExtWidth; ///< use if aspect ratio idc == 255
+  unsigned short sAspectRatioExtHeight; ///< use if aspect ratio idc == 255
+
 } SSpatialLayerConfig;
 
 /**

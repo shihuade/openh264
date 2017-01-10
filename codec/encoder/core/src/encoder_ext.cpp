@@ -79,8 +79,10 @@ int32_t WelsBitRateVerification (SLogContext* pLogCtx, SSpatialLayerConfig* pLay
   }
 
   // deal with LEVEL_MAX_BR and MAX_BR setting
-  const int32_t iLevelMaxBitrate = (pLayerParam->uiLevelIdc != LEVEL_UNKNOWN) ? (g_ksLevelLimits[pLayerParam->uiLevelIdc -
-                                   1].uiMaxBR * CpbBrNalFactor) : UNSPECIFIED_BIT_RATE;
+  const SLevelLimits* pCurLevelLimit = g_ksLevelLimits;
+  while ((pCurLevelLimit->uiLevelIdc != LEVEL_5_2) && (pCurLevelLimit->uiLevelIdc != pLayerParam->uiLevelIdc))
+    pCurLevelLimit++;
+  const int32_t iLevelMaxBitrate = pCurLevelLimit->uiMaxBR * CpbBrNalFactor;
   const int32_t iLevel52MaxBitrate = g_ksLevelLimits[LEVEL_NUMBER - 1].uiMaxBR * CpbBrNalFactor;
   if (UNSPECIFIED_BIT_RATE != iLevelMaxBitrate) {
     if ((pLayerParam->iMaxSpatialBitrate == UNSPECIFIED_BIT_RATE)
@@ -91,7 +93,7 @@ int32_t WelsBitRateVerification (SLogContext* pLogCtx, SSpatialLayerConfig* pLay
                pLayerParam->iMaxSpatialBitrate, pLayerParam->uiLevelIdc);
     } else if (pLayerParam->iMaxSpatialBitrate > iLevelMaxBitrate) {
       ELevelIdc iCurLevel = pLayerParam->uiLevelIdc;
-      WelsAdjustLevel (pLayerParam);
+      WelsAdjustLevel (pLayerParam, pCurLevelLimit);
       WelsLog (pLogCtx, WELS_LOG_INFO,
                "LevelIdc is changed from (%d) to (%d) according to the iMaxSpatialBitrate(%d)",
                iCurLevel, pLayerParam->uiLevelIdc, pLayerParam->iMaxSpatialBitrate);
@@ -123,36 +125,55 @@ int32_t WelsBitRateVerification (SLogContext* pLogCtx, SSpatialLayerConfig* pLay
 
 void CheckProfileSetting (SLogContext* pLogCtx, SWelsSvcCodingParam* pParam, int32_t iLayer, EProfileIdc uiProfileIdc) {
   SSpatialLayerConfig* pLayerInfo = &pParam->sSpatialLayers[iLayer];
-  if (PRO_UNKNOWN == uiProfileIdc) {
-    pLayerInfo->uiProfileIdc = (((iLayer == SPATIAL_LAYER_0)
-                                 || pParam->bSimulcastAVC) ? PRO_BASELINE : PRO_SCALABLE_BASELINE);
-  } else {
-    pLayerInfo->uiProfileIdc = uiProfileIdc;
-    if ((iLayer == SPATIAL_LAYER_0) && (uiProfileIdc != PRO_BASELINE)) {
-      WelsLog (pLogCtx, WELS_LOG_WARNING, "doesn't support profile(%d), change to baseline profile",
+  pLayerInfo->uiProfileIdc = uiProfileIdc;
+  if (pParam->bSimulcastAVC) {
+    if ((uiProfileIdc != PRO_BASELINE) && (uiProfileIdc != PRO_MAIN) && (uiProfileIdc != PRO_HIGH)) {
+      WelsLog (pLogCtx, WELS_LOG_WARNING, "layerId(%d) doesn't support profile(%d), change to baseline profile", iLayer,
                uiProfileIdc);
       pLayerInfo->uiProfileIdc = PRO_BASELINE;
     }
-    if (iLayer > SPATIAL_LAYER_0) {
-      if (pParam->bSimulcastAVC && (uiProfileIdc != PRO_BASELINE)) {
-        pLayerInfo->uiProfileIdc = PRO_BASELINE;
-        WelsLog (pLogCtx, WELS_LOG_WARNING, "doesn't support profile(%d) with bSimulcastAVC, change to baseline profile",
+    if (pParam->iEntropyCodingModeFlag && pLayerInfo->uiProfileIdc == PRO_BASELINE) {
+      pLayerInfo->uiProfileIdc = PRO_MAIN;
+      WelsLog (pLogCtx, WELS_LOG_WARNING, "layerId(%d) change to main profile because cabac is enabled", iLayer);
+    }
+  } else {
+    if (iLayer == SPATIAL_LAYER_0) {
+      if ((uiProfileIdc != PRO_BASELINE) && (uiProfileIdc != PRO_MAIN) && (uiProfileIdc != PRO_HIGH)) {
+        WelsLog (pLogCtx, WELS_LOG_WARNING, "layerId(%d) doesn't support profile(%d), change to baseline profile", iLayer,
                  uiProfileIdc);
+        pLayerInfo->uiProfileIdc = PRO_BASELINE;
       }
-      if ((uiProfileIdc != PRO_BASELINE) || (uiProfileIdc != PRO_SCALABLE_BASELINE)) {
-        pLayerInfo->uiProfileIdc = PRO_BASELINE;
-        WelsLog (pLogCtx, WELS_LOG_WARNING, "doesn't support profile(%d), change to baseline profile",
-                 uiProfileIdc);
+      if (pParam->iEntropyCodingModeFlag && (pLayerInfo->uiProfileIdc == PRO_BASELINE)) {
+        pLayerInfo->uiProfileIdc = PRO_MAIN;
+        WelsLog (pLogCtx, WELS_LOG_WARNING, "layerId(%d) change to main profile because cabac is enabled", iLayer);
+      }
+    } else {
+      if ((uiProfileIdc != PRO_SCALABLE_BASELINE) && (uiProfileIdc != PRO_SCALABLE_HIGH)) {
+        pLayerInfo->uiProfileIdc = PRO_SCALABLE_BASELINE;
+        WelsLog (pLogCtx, WELS_LOG_WARNING, "layerId(%d) doesn't support profile(%d), change to scalable baseline profile",
+                 iLayer, uiProfileIdc);
+      }
+      if (pParam->iEntropyCodingModeFlag && (pLayerInfo->uiProfileIdc == PRO_SCALABLE_BASELINE)) {
+        pLayerInfo->uiProfileIdc = PRO_SCALABLE_HIGH;
+        WelsLog (pLogCtx, WELS_LOG_WARNING, "layerId(%d) change to scalable hight profile because cabac is enabled", iLayer);
       }
     }
   }
 }
 void CheckLevelSetting (SLogContext* pLogCtx, SWelsSvcCodingParam* pParam, int32_t iLayer, ELevelIdc uiLevelIdc) {
   SSpatialLayerConfig* pLayerInfo = &pParam->sSpatialLayers[iLayer];
-  pLayerInfo->uiLevelIdc = uiLevelIdc;
-  if (uiLevelIdc > LEVEL_5_2) {
-    WelsLog (pLogCtx, WELS_LOG_INFO, "change unexpected levelidc(%d) setting to LEVEL_UNKNOWN", pLayerInfo->uiLevelIdc);
-    pLayerInfo->uiLevelIdc = LEVEL_UNKNOWN;
+  pLayerInfo->uiLevelIdc = LEVEL_UNKNOWN;
+  int32_t iLevelIdx = LEVEL_NUMBER - 1;
+  do {
+    if (g_ksLevelLimits[iLevelIdx].uiLevelIdc == uiLevelIdc) {
+      pLayerInfo->uiLevelIdc = uiLevelIdc;
+      break;
+    }
+    iLevelIdx--;
+  } while (iLevelIdx >= 0);
+  if (pLayerInfo->uiLevelIdc == LEVEL_UNKNOWN) {
+    WelsLog (pLogCtx, WELS_LOG_INFO, "change unexpected levelidc(%d) setting to LEVEL_5_2", pLayerInfo->uiLevelIdc);
+    pLayerInfo->uiLevelIdc = LEVEL_5_2;
   }
 }
 void CheckReferenceNumSetting (SLogContext* pLogCtx, SWelsSvcCodingParam* pParam, int32_t iNumRef) {
@@ -1036,6 +1057,7 @@ static inline int32_t InitDqLayers (sWelsEncCtx** ppCtx, SExistingParasetList* p
     pParamInternal->iFrameIndex = 0;
     pParamInternal->iFrameNum = 0;
     pParamInternal->iPOC = 0;
+    pParamInternal->uiIdrPicId = 0;
     pParamInternal->bEncCurFrmAsIdrFlag = true;  // make sure first frame is IDR
     // pDq layers list
     pDqLayer = (SDqLayer*)pMa->WelsMallocz (sizeof (SDqLayer), "pDqLayer");
@@ -1478,8 +1500,11 @@ void GetMvMvdRange (SWelsSvcCodingParam* pParam, int32_t& iMvRange, int32_t& iMv
     if (pParam->sSpatialLayers[iLayer].uiLevelIdc < iMinLevelIdc)
       iMinLevelIdc = pParam->sSpatialLayers[iLayer].uiLevelIdc;
   }
-  iMinMv = (g_ksLevelLimits[iMinLevelIdc - 1].iMinVmv) >> 2;
-  iMaxMv = (g_ksLevelLimits[iMinLevelIdc - 1].iMaxVmv) >> 2;
+  const SLevelLimits* pLevelLimit = g_ksLevelLimits;
+  while ((pLevelLimit->uiLevelIdc != LEVEL_5_2) && (pLevelLimit->uiLevelIdc != iMinLevelIdc))
+    pLevelLimit++;
+  iMinMv = (pLevelLimit->iMinVmv) >> 2;
+  iMaxMv = (pLevelLimit->iMaxVmv) >> 2;
 
   iMvRange = WELS_MIN (WELS_ABS (iMinMv), iMaxMv);
 
@@ -2521,7 +2546,7 @@ void WelsInitCurrentLayer (sWelsEncCtx* pCtx,
   int32_t iCurSpsId = pDqIdc->iSpsId;
 
   iCurPpsId = pCtx->pFuncList->pParametersetStrategy->GetCurrentPpsId (iCurPpsId,
-              WELS_ABS (pCtx->uiIdrPicId - 1) % MAX_PPS_COUNT);
+              WELS_ABS (pParamInternal->uiIdrPicId - 1) % MAX_PPS_COUNT);
 
   pBaseSlice->sSliceHeaderExt.sSliceHeader.iPpsId       = iCurPpsId;
   pCurDq->sLayerInfo.pPpsP                              =
@@ -3098,7 +3123,14 @@ int32_t WriteSsvcParaset (sWelsEncCtx* pCtx, const int32_t kiSpatialNum,
   int32_t iNonVclSize = 0, iCountNal = 0, iReturn = ENC_RETURN_SUCCESS;
   iReturn = WelsWriteParameterSets (pCtx, &pLayerBsInfo->pNalLengthInByte[0], &iCountNal, &iNonVclSize);
   WELS_VERIFY_RETURN_IFNEQ (iReturn, ENC_RETURN_SUCCESS)
-
+  for (int32_t iSpatialId = 0; iSpatialId < kiSpatialNum; iSpatialId++) {
+    SSpatialLayerInternal* pParamInternal = &pCtx->pSvcParam->sDependencyLayers[iSpatialId];
+    if (pParamInternal->uiIdrPicId < 65535) {
+      ++ pParamInternal->uiIdrPicId;
+    } else {
+      pParamInternal->uiIdrPicId = 0;
+    }
+  }
   pLayerBsInfo->uiSpatialId     = 0;
   pLayerBsInfo->uiTemporalId    = 0;
   pLayerBsInfo->uiQualityId     = 0;
@@ -3214,7 +3246,15 @@ int32_t WriteSavcParaset_Listing (sWelsEncCtx* pCtx, const int32_t kiSpatialNum,
   iNonVclSize = 0;
 
   for (int32_t iSpatialId = 0; iSpatialId < kiSpatialNum; iSpatialId++) {
+    SSpatialLayerInternal* pParamInternal = &pCtx->pSvcParam->sDependencyLayers[iSpatialId];
+    if (pParamInternal->uiIdrPicId < 65535) {
+      ++ pParamInternal->uiIdrPicId;
+    } else {
+      pParamInternal->uiIdrPicId = 0;
+    }
+
     iCountNal = 0;
+
     for (int32_t iIdx = 0; iIdx < pCtx->iSpsNum; iIdx++) {
       //writing one NAL
       int32_t iNalSize = 0;
@@ -3311,7 +3351,7 @@ void StackBackEncoderStatus (sWelsEncCtx* pEncCtx,
     pEncCtx->eSliceType   = P_SLICE;
     //pEncCtx->eNalPriority = pEncCtx->eLastNalPriority; //not need this since eNalPriority will be updated at the beginning of coding a frame
   } else if (keFrameType == videoFrameTypeIDR) {
-    pEncCtx->uiIdrPicId --;
+    pParamInternal->uiIdrPicId --;
 
     //set the next frame to be IDR
     ForceCodingIDR (pEncCtx, pEncCtx->uiDependencyId);
@@ -3365,7 +3405,7 @@ EVideoFrameType PrepareEncodeFrame (sWelsEncCtx* pCtx, SLayerBSInfo*& pLayerBsIn
   } else {
     SSpatialLayerInternal* pParamInternal = &pSvcParam->sDependencyLayers[iCurDid];
 
-    iCurTid = GetTemporalLevel (&pSvcParam->sDependencyLayers[iCurDid], pParamInternal->iCodingIndex,
+    iCurTid = GetTemporalLevel (pParamInternal, pParamInternal->iCodingIndex,
                                 pSvcParam->uiGopSize);
     pCtx->uiTemporalId = iCurTid;
     if (eFrameType == videoFrameTypeIDR) {
@@ -3374,15 +3414,14 @@ EVideoFrameType PrepareEncodeFrame (sWelsEncCtx* pCtx, SLayerBSInfo*& pLayerBsIn
       if (! (SPS_LISTING & pCtx->pSvcParam->eSpsPpsIdStrategy)) {
         if (pSvcParam->bSimulcastAVC) {
           pCtx->iEncoderError = WriteSavcParaset (pCtx, iCurDid, pLayerBsInfo, iLayerNum, iFrameSize);
-          ++ pCtx->uiIdrPicId;
+          ++ pParamInternal->uiIdrPicId;
         } else {
           pCtx->iEncoderError = WriteSsvcParaset (pCtx, iSpatialNum, pLayerBsInfo, iLayerNum, iFrameSize);
-          ++ pCtx->uiIdrPicId;
         }
       } else {
         pCtx->iEncoderError = WriteSavcParaset_Listing (pCtx, iSpatialNum, pLayerBsInfo, iLayerNum, iFrameSize);
 
-        ++ pCtx->uiIdrPicId;
+
       }
     }
   }
@@ -3885,9 +3924,10 @@ int32_t WelsEncoderEncodeExt (sWelsEncCtx* pCtx, SFrameBSInfo* pFbi, const SSour
     iFrameSize += iLayerSize;
     //check MinCr
     {
-      int32_t iImageSize = (pParam->iVideoWidth * pParam->iVideoHeight * 3) >> 1;
-      int32_t iMinCr = g_ksLevelLimits[pParam->uiLevelIdc - 1].uiMinCR;
-      if (iFrameSize > (iImageSize / iMinCr))
+      int32_t iMinCrFrameSize = (pParam->iVideoWidth * pParam->iVideoHeight * 3) >> 2; //MinCr = 2;
+      if (pParam->uiLevelIdc == LEVEL_3_1 || pParam->uiLevelIdc == LEVEL_3_2 || pParam->uiLevelIdc == LEVEL_4_0)
+        iMinCrFrameSize >>= 1; //MinCr = 4
+      if (iFrameSize > iMinCrFrameSize)
         WelsLog (pLogCtx, WELS_LOG_WARNING,
                  "WelsEncoderEncodeExt()MinCr Checking,codec bitstream size is larger than Level limitation");
     }
@@ -4241,7 +4281,12 @@ int32_t WelsEncoderParamAdjust (sWelsEncCtx** ppCtx, SWelsSvcCodingParam* pNewPa
     int32_t iOldSpsPpsIdStrategy = pOldParam->eSpsPpsIdStrategy;
     SParaSetOffsetVariable sTmpPsoVariable[PARA_SET_TYPE];
     int32_t  iTmpPpsIdList[MAX_DQ_LAYER_NUM * MAX_PPS_COUNT];
-    uint16_t uiTmpIdrPicId = (*ppCtx)->uiIdrPicId;//this is for LTR!
+    //for LTR or SPS,PPS ID update
+    uint16_t uiMaxIdrPicId = 0;
+    for (iIndexD = 0; iIndexD < pOldParam->iSpatialLayerNum; iIndexD++) {
+      if (pOldParam->sDependencyLayers[iIndexD].uiIdrPicId > uiMaxIdrPicId)
+        uiMaxIdrPicId = pOldParam->sDependencyLayers[iIndexD].uiIdrPicId;
+    }
 
     SEncoderStatistics sTempEncoderStatistics[MAX_DEPENDENCY_LAYER];
     memcpy (sTempEncoderStatistics, (*ppCtx)->sEncoderStatistics, sizeof (sTempEncoderStatistics));
@@ -4265,8 +4310,10 @@ int32_t WelsEncoderParamAdjust (sWelsEncCtx** ppCtx, SWelsSvcCodingParam* pNewPa
     if (WelsInitEncoderExt (ppCtx, pNewParam, &sLogCtx, pExistingParasetList))
       return 1;
     //if WelsInitEncoderExt succeed
-    //for LTR
-    (*ppCtx)->uiIdrPicId = uiTmpIdrPicId ;//this is for LTR!; //this is for LTR!
+    //for LTR or SPS,PPS ID update
+    for (iIndexD = 0; iIndexD < pNewParam->iSpatialLayerNum; iIndexD++) {
+      pNewParam->sDependencyLayers[iIndexD].uiIdrPicId = uiMaxIdrPicId;
+    }
 
     //for sEncoderStatistics
     memcpy ((*ppCtx)->sEncoderStatistics, sTempEncoderStatistics, sizeof (sTempEncoderStatistics));
@@ -4356,7 +4403,6 @@ int32_t WelsEncoderParamAdjust (sWelsEncCtx** ppCtx, SWelsSvcCodingParam* pNewPa
       /* Derived variants below */
       pOldDlpInternal->iTemporalResolution      = pNewDlpInternal->iTemporalResolution;
       pOldDlpInternal->iDecompositionStages     = pNewDlpInternal->iDecompositionStages;
-
       memcpy (pOldDlpInternal->uiCodingIdx2TemporalId, pNewDlpInternal->uiCodingIdx2TemporalId,
               sizeof (pOldDlpInternal->uiCodingIdx2TemporalId)); // confirmed_safe_unsafe_usage
       ++ iIndexD;
