@@ -50,6 +50,33 @@ TEST_F(CSliceBufferReallocatTest, ReallocateTest) {
 	EncodeStream(&fileStream, &m_EncParamExt);
 }
 
+TEST_F(CSliceBufferReallocatTest, ReOrderSliceInLayer) {
+
+	m_EncParamExt.iMultipleThreadIdc = rand() % ( MAX_THREADS_NUM +1);
+	m_EncParamExt.sSpatialLayers[0].sSliceArgument.uiSliceMode = (SliceModeEnum) (rand() % 4);
+	m_EncParamExt.iSpatialLayerNum = 1;
+
+	int iRet = InitWithParam(m_pEncoder, pEncParamExt);
+	int32_t GetInitialSliceNum(SSliceArgument* pSliceArgument)
+	/*
+	int32_t ReOrderSliceInLayer(sWelsEncCtx* pCtx,
+		const SliceModeEnum kuiSliceMode,
+		const int32_t kiThreadNum);
+
+	int32_t ReallocateSliceList(sWelsEncCtx* pCtx,
+		SSliceArgument* pSliceArgument,
+		SSlice*& pSliceList,
+		const int32_t kiMaxSliceNumOld,
+		const int32_t kiMaxSliceNumNew);
+
+	int32_t ReallocateSliceInThread(sWelsEncCtx* pCtx,
+		SDqLayer* pDqLayer,
+		const int32_t kiDlayerIdx,
+		const int32_t kiThreadIndex);
+
+		*/
+
+}
 
 static const EncodeFileParam kFileParamArray[] = {
 	{ "res/CiscoVT2people_320x192_12fps.yuv", 320, 192, 12.0f },

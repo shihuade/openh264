@@ -148,6 +148,10 @@ int32_t FrameBsRealloc (sWelsEncCtx* pCtx,
                         SLayerBSInfo* pLayerBsInfo,
                         const int32_t kiMaxSliceNumOld);
 
+int32_t ReOrderSliceInLayer(sWelsEncCtx* pCtx,
+	                          const SliceModeEnum kuiSliceMode,
+	                          const int32_t kiThreadNum);
+
 int32_t SliceLayerInfoUpdate (sWelsEncCtx* pCtx,
                               SFrameBSInfo* pFrameBsInfo,
                               SLayerBSInfo* pLayerBsInfo,
