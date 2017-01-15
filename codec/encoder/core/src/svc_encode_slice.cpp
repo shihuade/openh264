@@ -892,6 +892,8 @@ int32_t InitSliceBsBuffer (SSlice* pSlice,
                            bool bIndependenceBsBuffer,
                            const int32_t iMaxSliceBufferSize,
                            CMemoryAlign* pMa) {
+  assert(iMaxSliceBufferSize > 0);
+
   pSlice->sSliceBs.uiSize  = iMaxSliceBufferSize;
   pSlice->sSliceBs.uiBsPos = 0;
 
@@ -929,13 +931,10 @@ void FreeSliceBuffer (SSlice*& pSliceList, const int32_t kiMaxSliceNum, CMemoryA
 }
 
 int32_t InitSliceList (sWelsEncCtx* pCtx,
-                       SDqLayer* pDqLayer,
                        SSlice*& pSliceList,
                        const int32_t kiMaxSliceNum,
                        const int32_t kiDlayerIndex,
                        CMemoryAlign* pMa) {
-  const int32_t kiMBWidth         = pDqLayer->iMbWidth;
-  const int32_t kiMBHeight        = pDqLayer->iMbHeight;
   SSliceArgument* pSliceArgument  = & pCtx->pSvcParam->sSpatialLayers[kiDlayerIndex].sSliceArgument;
   int32_t iMaxSliceBufferSize     = (pCtx)->iSliceBufferSize[kiDlayerIndex];
   int32_t iSliceIdx               = 0;
@@ -945,11 +944,6 @@ int32_t InitSliceList (sWelsEncCtx* pCtx,
   //even though multi-thread is on for other layers
   bool bIndependenceBsBuffer   = (pCtx->pSvcParam->iMultipleThreadIdc > 1 &&
                                   SM_SINGLE_SLICE != pSliceArgument->uiSliceMode) ? true : false;
-
-  if (iMaxSliceBufferSize <= 0 || kiMBWidth <= 0 || kiMBHeight <= 0) {
-    return ENC_RETURN_UNEXPECTED;
-  }
-
   while (iSliceIdx < kiMaxSliceNum) {
     SSlice* pSlice = pSliceList + iSliceIdx;
     if (NULL == pSlice) {
@@ -1048,7 +1042,6 @@ int32_t InitSliceThreadInfo (sWelsEncCtx* pCtx,
       return ENC_RETURN_MEMALLOCERR;
     }
     iRet = InitSliceList (pCtx,
-                          pDqLayer,
                           pDqLayer->sSliceThreadInfo[iIdx].pSliceInThread,
                           iMaxSliceNum,
                           kiDlayerIndex,
