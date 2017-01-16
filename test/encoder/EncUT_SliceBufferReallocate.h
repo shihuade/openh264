@@ -1,9 +1,10 @@
 #include <gtest/gtest.h>
-#include "codec_def.h"
-#include "codec_app_def.h"
-#include "codec_api.h"
 #include "utils/FileInputStream.h"
 #include "svc_encode_slice.h"
+#include "WelsEncoderExt.h"
+
+#define MAX_WIDTH  (4096)
+#define MAX_HEIGH  (2304)
 
 struct EncodeFileParam {
 	const char* pkcFileName;
@@ -20,7 +21,7 @@ class CSliceBufferReallocatTest : public ::testing::Test { //WithParamInterface<
 	    ASSERT_EQ(0, iRet);
 	    ASSERT_TRUE(m_pEncoder != NULL);
 
-			iRet = m_pEncoder->GetDefaultParams(&m_EncParamExt);
+			iRet = m_pEncoder->GetDefaultParams(m_EncContext.pSvcParam);
 			ASSERT_EQ(0, iRet);
 		}
 
@@ -33,8 +34,8 @@ class CSliceBufferReallocatTest : public ::testing::Test { //WithParamInterface<
 	void EncodeStream(InputStream* in, SEncParamExt* pEncParamExt);
 
 	ISVCEncoder*  m_pEncoder;
-	SEncParamExt  m_EncParamExt;
-
+	sWelsEncCtx   m_EncContext;
+	CMemoryAlign  m_MemoryAlign;
   private:
 
 };
