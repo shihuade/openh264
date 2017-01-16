@@ -23,11 +23,20 @@ class CSliceBufferReallocatTest : public ::testing::Test { //WithParamInterface<
 
 			iRet = m_pEncoder->GetDefaultParams(m_EncContext.pSvcParam);
 			ASSERT_EQ(0, iRet);
+
+			int32_t iCacheLineSize = 16;
+			m_EncContext.pMemAlign = new CMemoryAlign(iCacheLineSize);
+			ASSERT_TRUE(NULL != m_EncContext.pMemAlign);
 		}
 
 		virtual void TearDown() {
 	    WelsDestroySVCEncoder(m_pEncoder);
 			m_pEncoder = NULL;
+
+			if (m_EncContext.pMemAlign != NULL)  {
+				delete m_EncContext.pMemAlign;
+				m_EncContext.pMemAlign = NULL;
+			}
 	}
 
 	void EncodeFile(const char* fileName, SEncParamExt* pEncParamExt);
@@ -40,7 +49,6 @@ class CSliceBufferReallocatTest : public ::testing::Test { //WithParamInterface<
 
 	ISVCEncoder*  m_pEncoder;
 	sWelsEncCtx   m_EncContext;
-	CMemoryAlign  m_MemoryAlign;
   private:
 
 };

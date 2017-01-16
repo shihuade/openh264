@@ -77,19 +77,19 @@ void CSliceBufferReallocatTest::InitFrameBsBuffer() {
 	ASSERT_TRUE(0 == iRet);
 
 	// Output
-	pCtx->pOut = (SWelsEncoderOutput*)m_MemoryAlign.WelsMallocz(sizeof(SWelsEncoderOutput), "SWelsEncoderOutput");
+	pCtx->pOut = (SWelsEncoderOutput*)pCtx->pMemAlign->WelsMallocz(sizeof(SWelsEncoderOutput), "SWelsEncoderOutput");
 	ASSERT_TRUE(NULL != pCtx->pOut);
-	pCtx->pOut->pBsBuffer = (uint8_t*)m_MemoryAlign.WelsMallocz(iCountBsLen, "pOut->pBsBuffer");
+	pCtx->pOut->pBsBuffer = (uint8_t*)pCtx->pMemAlign->WelsMallocz(iCountBsLen, "pOut->pBsBuffer");
 	ASSERT_TRUE(NULL != pCtx->pOut->pBsBuffer);
 	pCtx->pOut->uiSize = iCountBsLen;
-	pCtx->pOut->sNalList = (SWelsNalRaw*)m_MemoryAlign.WelsMallocz(iCountNals * sizeof(SWelsNalRaw), "pOut->sNalList");
+	pCtx->pOut->sNalList = (SWelsNalRaw*)pCtx->pMemAlign->WelsMallocz(iCountNals * sizeof(SWelsNalRaw), "pOut->sNalList");
 	ASSERT_TRUE(NULL != pCtx->pOut->sNalList);
-	pCtx->pOut->pNalLen = (int32_t*)m_MemoryAlign.WelsMallocz(iCountNals * sizeof(int32_t), "pOut->pNalLen");
+	pCtx->pOut->pNalLen = (int32_t*)pCtx->pMemAlign->WelsMallocz(iCountNals * sizeof(int32_t), "pOut->pNalLen");
 	ASSERT_TRUE(NULL != pCtx->pOut->pNalLen);
 	pCtx->pOut->iCountNals = iCountNals;
 	pCtx->pOut->iNalIndex = 0;
 	pCtx->pOut->iLayerBsIndex = 0;
-	pCtx->pFrameBs = (uint8_t*)m_MemoryAlign.WelsMalloc(iCountBsLen, "pFrameBs");
+	pCtx->pFrameBs = (uint8_t*)pCtx->pMemAlign->WelsMalloc(iCountBsLen, "pFrameBs");
 	ASSERT_TRUE(NULL != pCtx->pOut);
 	pCtx->iFrameBsSize = iCountBsLen;
 	pCtx->iPosBsBuffer = 0;
@@ -99,27 +99,27 @@ void CSliceBufferReallocatTest::UnInitFrameBsBuffer() {
 	sWelsEncCtx* pCtx = &m_EncContext;
 
 	if (NULL != pCtx->pOut->pBsBuffer) {
-		m_MemoryAlign.WelsFree(pCtx->pOut->pBsBuffer, "pCtx->pOut->pBsBuffer");
+		pCtx->pMemAlign->WelsFree(pCtx->pOut->pBsBuffer, "pCtx->pOut->pBsBuffer");
 		pCtx->pOut->pBsBuffer = NULL;
 	}
 
 	if (NULL != pCtx->pOut->sNalList) {
-		m_MemoryAlign.WelsFree(pCtx->pOut->sNalList, "pCtx->pOut->sNalList");
+		pCtx->pMemAlign->WelsFree(pCtx->pOut->sNalList, "pCtx->pOut->sNalList");
 		pCtx->pOut->sNalList = NULL;
 	}
 
 	if (NULL != pCtx->pOut->pNalLen) {
-		m_MemoryAlign.WelsFree(pCtx->pOut->pNalLen, "pCtx->pOut->pNalLen");
+		pCtx->pMemAlign->WelsFree(pCtx->pOut->pNalLen, "pCtx->pOut->pNalLen");
 		pCtx->pOut->pNalLen = NULL;
 	}
 
 	if (NULL != pCtx->pOut) {
-		m_MemoryAlign.WelsFree(pCtx->pOut, "pCtx->pOut");
+		pCtx->pMemAlign->WelsFree(pCtx->pOut, "pCtx->pOut");
 		pCtx->pOut = NULL;
 	}
 
 	if (NULL != pCtx->pFrameBs) {
-		m_MemoryAlign.WelsFree(pCtx->pFrameBs, "pCtx->pFrameBs");
+		pCtx->pMemAlign->WelsFree(pCtx->pFrameBs, "pCtx->pFrameBs");
 		pCtx->pFrameBs = NULL;
 	}
 }
@@ -133,7 +133,7 @@ void CSliceBufferReallocatTest::InitLayerSliceBuffer(const int32_t iLayerIdx) {
 	pLayerCfg->iVideoHeight = WelsClip3(((rand() + 15) >> 4 + 1) << 4, 16, MAX_HEIGH);
 	pSliceArgument->uiSliceMode = (SliceModeEnum)(rand() % 4);
 
-	SDqLayer* pDqLayer = (SDqLayer*)m_MemoryAlign.WelsMallocz(sizeof(SDqLayer), "pDqLayer");
+	SDqLayer* pDqLayer = (SDqLayer*)pCtx->pMemAlign->WelsMallocz(sizeof(SDqLayer), "pDqLayer");
 	ASSERT_TRUE(NULL != pDqLayer);
 	pCtx->ppDqLayerList[0] = pDqLayer;
 
@@ -141,9 +141,9 @@ void CSliceBufferReallocatTest::InitLayerSliceBuffer(const int32_t iLayerIdx) {
 	pDqLayer->iMbHeight = pLayerCfg->iVideoHeight;
 	pDqLayer->iMaxSliceNum = GetInitialSliceNum(&pLayerCfg->sSliceArgument);
 
-	int32_t iRet = InitSliceInLayer(pCtx, pDqLayer, iLayerIdx, &m_MemoryAlign);
+	int32_t iRet = InitSliceInLayer(pCtx, pDqLayer, iLayerIdx, pCtx->pMemAlign);
 	if (ENC_RETURN_SUCCESS != iRet) {
-		FreeDqLayer(pDqLayer, &m_MemoryAlign);
+		FreeDqLayer(pDqLayer, pCtx->pMemAlign);
 	}
 	ASSERT_TRUE(ENC_RETURN_SUCCESS == iRet);
 }
@@ -151,7 +151,7 @@ void CSliceBufferReallocatTest::InitLayerSliceBuffer(const int32_t iLayerIdx) {
 void CSliceBufferReallocatTest::UnInitLayerSliceBuffer(const int32_t iLayerIdx) {
 	sWelsEncCtx* pCtx = &m_EncContext;
 	if (NULL != pCtx->ppDqLayerList[iLayerIdx]) {
-		FreeDqLayer(pCtx->ppDqLayerList[0], &m_MemoryAlign);
+		FreeDqLayer(pCtx->ppDqLayerList[0], pCtx->pMemAlign);
 		pCtx->ppDqLayerList[iLayerIdx] = NULL;
 	}
 }
@@ -171,8 +171,21 @@ TEST_F(CSliceBufferReallocatTest, ReallocateTest) {
 	EncodeStream(&fileStream, m_EncContext.pSvcParam);
 }
 
-	
+TEST_F(CSliceBufferReallocatTest, ReorderTest) {
+	InitParam();
+	InitFrameBsBuffer();
+	InitLayerSliceBuffer(0);
 
+	//param validation
+	int32_t iRet = m_pEncoder->InitializeExt((SEncParamExt*)m_EncContext.pSvcParam);
+	ASSERT_TRUE(cmResultSuccess == iRet);
+
+	UnInitFrameBsBuffer();
+	UnInitLayerSliceBuffer(0);
+
+
+
+}
 
 	/*iRet      = InitWithParam(m_pEncoder, pCtx->pSvcParam);
 	ASSERT_EQ (iRet, 0);
