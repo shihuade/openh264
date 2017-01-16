@@ -7,6 +7,10 @@
 #include "EncUT_SliceBufferReallocate.h"
 
 extern void FreeDqLayer(SDqLayer*& pDq, CMemoryAlign* pMa);
+extern int32_t AcquireLayersNals(sWelsEncCtx** ppCtx,
+	                               SWelsSvcCodingParam* pParam,
+	                               int32_t* pCountLayers,
+	                               int32_t* pCountNals);
 
 void CSliceBufferReallocatTest::EncodeStream(InputStream* in, SEncParamExt* pEncParamExt) {
 	ASSERT_TRUE(NULL != pEncParamExt);
