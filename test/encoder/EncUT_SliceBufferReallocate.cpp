@@ -3,8 +3,10 @@
 #include "BaseEncoderTest.h"
 #include "svc_encode_slice.h"
 #include "encoder.h"
+#include "macros.h"
 #include "EncUT_SliceBufferReallocate.h"
 
+extern void FreeDqLayer(SDqLayer*& pDq, CMemoryAlign* pMa);
 
 void CSliceBufferReallocatTest::EncodeStream(InputStream* in, SEncParamExt* pEncParamExt) {
 	ASSERT_TRUE(NULL != pEncParamExt);
@@ -37,6 +39,119 @@ void CSliceBufferReallocatTest::EncodeStream(InputStream* in, SEncParamExt* pEnc
 	}
 }
 
+void CSliceBufferReallocatTest::InitParam() {
+	sWelsEncCtx* pCtx = &m_EncContext;
+	SWelsFuncPtrList sEncFunctionList;
+	pCtx->pFuncList = &sEncFunctionList;
+
+	pCtx->pSvcParam->iMultipleThreadIdc = (rand() % MAX_THREADS_NUM) + 1;
+	pCtx->pSvcParam->iSpatialLayerNum = 1;
+	pCtx->pSvcParam->bSimulcastAVC = (bool)rand() % 2;
+
+	int32_t iParamStraIdx = rand() % 5;
+	pCtx->pSvcParam->eSpsPpsIdStrategy = (EParameterSetStrategy)(iParamStraIdx == 4 ? 0x06 : iParamStraIdx);
+
+	pCtx->pFuncList->pParametersetStrategy = IWelsParametersetStrategy::CreateParametersetStrategy(pCtx->pSvcParam->eSpsPpsIdStrategy,
+		pCtx->pSvcParam->bSimulcastAVC, pCtx->pSvcParam->iSpatialLayerNum);
+	ASSERT_TRUE(NULL != pCtx->pFuncList->pParametersetStrategy);
+}
+
+void CSliceBufferReallocatTest::InitFrameBsBuffer() {
+	const int32_t iLayerIdx = 0;
+	sWelsEncCtx* pCtx = &m_EncContext;
+	SSpatialLayerConfig* pLayerCfg = &pCtx->pSvcParam->sSpatialLayers[iLayerIdx];
+	const int32_t kiSpsSize = pCtx->pFuncList->pParametersetStrategy->GetNeededSpsNum() * SPS_BUFFER_SIZE;
+	const int32_t kiPpsSize = pCtx->pFuncList->pParametersetStrategy->GetNeededPpsNum() * PPS_BUFFER_SIZE;
+
+	int32_t iNonVclLayersBsSizeCount = SSEI_BUFFER_SIZE + kiSpsSize + kiPpsSize;
+	int32_t iLayerBsSize = WELS_ROUND(((3 * pLayerCfg->iVideoWidth * pLayerCfg->iVideoHeight) >> 1) * COMPRESS_RATIO_THR) + MAX_MACROBLOCK_SIZE_IN_BYTE_x2;
+	int32_t iVclLayersBsSizeCount = WELS_ALIGN(iLayerBsSize, 4);
+	int32_t iCountBsLen = iNonVclLayersBsSizeCount + iVclLayersBsSizeCount;
+	int32_t iCountNals = 0;
+
+	int32_t iRet = AcquireLayersNals(&pCtx, pCtx->pSvcParam, &pCtx->pSvcParam->iSpatialLayerNum, &iCountNals);
+	ASSERT_TRUE(0 == iRet);
+
+	// Output
+	pCtx->pOut = (SWelsEncoderOutput*)m_MemoryAlign.WelsMallocz(sizeof(SWelsEncoderOutput), "SWelsEncoderOutput");
+	ASSERT_TRUE(NULL != pCtx->pOut);
+	pCtx->pOut->pBsBuffer = (uint8_t*)m_MemoryAlign.WelsMallocz(iCountBsLen, "pOut->pBsBuffer");
+	ASSERT_TRUE(NULL != pCtx->pOut->pBsBuffer);
+	pCtx->pOut->uiSize = iCountBsLen;
+	pCtx->pOut->sNalList = (SWelsNalRaw*)m_MemoryAlign.WelsMallocz(iCountNals * sizeof(SWelsNalRaw), "pOut->sNalList");
+	ASSERT_TRUE(NULL != pCtx->pOut->sNalList);
+	pCtx->pOut->pNalLen = (int32_t*)m_MemoryAlign.WelsMallocz(iCountNals * sizeof(int32_t), "pOut->pNalLen");
+	ASSERT_TRUE(NULL != pCtx->pOut->pNalLen);
+	pCtx->pOut->iCountNals = iCountNals;
+	pCtx->pOut->iNalIndex = 0;
+	pCtx->pOut->iLayerBsIndex = 0;
+	pCtx->pFrameBs = (uint8_t*)m_MemoryAlign.WelsMalloc(iCountBsLen, "pFrameBs");
+	ASSERT_TRUE(NULL != pCtx->pOut);
+	pCtx->iFrameBsSize = iCountBsLen;
+	pCtx->iPosBsBuffer = 0;
+}
+
+void CSliceBufferReallocatTest::UnInitFrameBsBuffer() {
+	sWelsEncCtx* pCtx = &m_EncContext;
+
+	if (NULL != pCtx->pOut->pBsBuffer) {
+		m_MemoryAlign.WelsFree(pCtx->pOut->pBsBuffer, "pCtx->pOut->pBsBuffer");
+		pCtx->pOut->pBsBuffer = NULL;
+	}
+
+	if (NULL != pCtx->pOut->sNalList) {
+		m_MemoryAlign.WelsFree(pCtx->pOut->sNalList, "pCtx->pOut->sNalList");
+		pCtx->pOut->sNalList = NULL;
+	}
+
+	if (NULL != pCtx->pOut->pNalLen) {
+		m_MemoryAlign.WelsFree(pCtx->pOut->pNalLen, "pCtx->pOut->pNalLen");
+		pCtx->pOut->pNalLen = NULL;
+	}
+
+	if (NULL != pCtx->pOut) {
+		m_MemoryAlign.WelsFree(pCtx->pOut, "pCtx->pOut");
+		pCtx->pOut = NULL;
+	}
+
+	if (NULL != pCtx->pFrameBs) {
+		m_MemoryAlign.WelsFree(pCtx->pFrameBs, "pCtx->pFrameBs");
+		pCtx->pFrameBs = NULL;
+	}
+}
+
+void CSliceBufferReallocatTest::InitLayerSliceBuffer(const int32_t iLayerIdx) {
+	sWelsEncCtx* pCtx = &m_EncContext;
+	SSpatialLayerConfig* pLayerCfg = &pCtx->pSvcParam->sSpatialLayers[iLayerIdx];
+	SSliceArgument* pSliceArgument = &pLayerCfg->sSliceArgument;
+
+	pLayerCfg->iVideoWidth = WelsClip3(((rand() + 15) >> 4 + 1) << 4, 16, MAX_WIDTH);
+	pLayerCfg->iVideoHeight = WelsClip3(((rand() + 15) >> 4 + 1) << 4, 16, MAX_HEIGH);
+	pSliceArgument->uiSliceMode = (SliceModeEnum)(rand() % 4);
+
+	SDqLayer* pDqLayer = (SDqLayer*)m_MemoryAlign.WelsMallocz(sizeof(SDqLayer), "pDqLayer");
+	ASSERT_TRUE(NULL != pDqLayer);
+	pCtx->ppDqLayerList[0] = pDqLayer;
+
+	pDqLayer->iMbWidth = pLayerCfg->iVideoWidth;
+	pDqLayer->iMbHeight = pLayerCfg->iVideoHeight;
+	pDqLayer->iMaxSliceNum = GetInitialSliceNum(&pLayerCfg->sSliceArgument);
+
+	int32_t iRet = InitSliceInLayer(pCtx, pDqLayer, iLayerIdx, &m_MemoryAlign);
+	if (ENC_RETURN_SUCCESS != iRet) {
+		FreeDqLayer(pDqLayer, &m_MemoryAlign);
+	}
+	ASSERT_TRUE(ENC_RETURN_SUCCESS == iRet);
+}
+
+void CSliceBufferReallocatTest::UnInitLayerSliceBuffer(const int32_t iLayerIdx) {
+	sWelsEncCtx* pCtx = &m_EncContext;
+	if (NULL != pCtx->ppDqLayerList[iLayerIdx]) {
+		FreeDqLayer(pCtx->ppDqLayerList[0], &m_MemoryAlign);
+		pCtx->ppDqLayerList[iLayerIdx] = NULL;
+	}
+}
+
 TEST_F(CSliceBufferReallocatTest, ReallocateTest) {
 	EncodeFileParam pEncFileParam; // = GetParam();
 	pEncFileParam.pkcFileName = "res/CiscoVT2people_320x192_12fps.yuv";
@@ -52,64 +167,14 @@ TEST_F(CSliceBufferReallocatTest, ReallocateTest) {
 	EncodeStream(&fileStream, m_EncContext.pSvcParam);
 }
 
-TEST_F(CSliceBufferReallocatTest, ReOrderSliceInLayer) {
-
-	const int32_t iLayerIdx = 0;
-	int32_t iRet            = 0;
-	int32_t iCodedSliceNum  = 0;
-	int32_t iThrdIdx        = 0;
-	float fCompressRatioThr = COMPRESS_RATIO_THR;
-	SSpatialLayerConfig* pLayerCfg = &pCtx->pSvcParam->sSpatialLayers[iLayerIdx];
-	SSliceArgument* pSliceArgument = &pLayerCfg->sSliceArgument;
-	sWelsEncCtx* pCtx = &m_EncContext;
-
-	pCtx->pSvcParam->iMultipleThreadIdc = (rand() % MAX_THREADS_NUM) + 1;
-	pSliceArgument->uiSliceMode                = (SliceModeEnum) (rand() % 4);
-	pCtx->pSvcParam->iSpatialLayerNum   = 1;
-	pLayerCfg->iVideoWidth                     = WelsClip3(((rand() + 15) >> 4 + 1) << 4, 16, MAX_WIDTH);
-	pLayerCfg->iVideoHeight                    = WelsClip3(((rand() + 15) >> 4 + 1) << 4, 16, MAX_HEIGH);
-
-		//InitSliceList(m_EncContext,);
 	
 
-	const int32_t kiSpsSize          = 1 * SPS_BUFFER_SIZE;
-	const int32_t kiPpsSize          = 1 * PPS_BUFFER_SIZE;
-	int32_t iNonVclLayersBsSizeCount = SSEI_BUFFER_SIZE + kiSpsSize + kiPpsSize;
-	int32_t iLayerBsSize             = WELS_ROUND (((3 * pLayerCfg->iVideoWidth * pLayerCfg->iVideoHeight) >> 1) * fCompressRatioThr) + MAX_MACROBLOCK_SIZE_IN_BYTE_x2;
-	int32_t iVclLayersBsSizeCount    = WELS_ALIGN(iLayerBsSize, 4);
-	int32_t iCountBsLen              = iNonVclLayersBsSizeCount + iVclLayersBsSizeCount;
-	int32_t iCountNals               = 10;
-
-
-	  // Output
-  pCtx->pOut = (SWelsEncoderOutput*)m_MemoryAlign.WelsMallocz (sizeof (SWelsEncoderOutput), "SWelsEncoderOutput");
-  WELS_VERIFY_RETURN_PROC_IF (1, (NULL == pCtx->pOut), FreeMemorySvc (&pCtx))
-  pCtx->pOut->pBsBuffer = (uint8_t*)m_MemoryAlign.WelsMallocz (iCountBsLen, "pOut->pBsBuffer");
-  WELS_VERIFY_RETURN_PROC_IF (1, (NULL == pCtx->pOut->pBsBuffer), FreeMemorySvc (m_EncContext))
-  pCtx->pOut->uiSize = iCountBsLen;
-  pCtx->pOut->sNalList = (SWelsNalRaw*)m_MemoryAlign.WelsMallocz (iCountNals * sizeof (SWelsNalRaw), "pOut->sNalList");
-  WELS_VERIFY_RETURN_PROC_IF (1, (NULL == pCtx->pOut->sNalList), FreeMemorySvc (m_EncContext))
-  pCtx->pOut->pNalLen = (int32_t*)m_MemoryAlign.WelsMallocz (iCountNals * sizeof (int32_t), "pOut->pNalLen");
-  WELS_VERIFY_RETURN_PROC_IF (1, (NULL == pCtx->pOut->pNalLen), FreeMemorySvc (ppCtx))
-  pCtx->pOut->iCountNals    = iCountNals;
-  pCtx->pOut->iNalIndex     = 0;
-  pCtx->pOut->iLayerBsIndex = 0;
-
-
-  pCtx->pFrameBs = (uint8_t*)m_MemoryAlign.WelsMalloc (iTotalLength, "pFrameBs");
-  WELS_VERIFY_RETURN_PROC_IF (1, (NULL == pCtx->pFrameBs), FreeMemorySvc (ppCtx))
-  pCtx->iFrameBsSize = iTotalLength;
-  pCtx->iPosBsBuffer = 0;
-
-	
 
 	/*iRet      = InitWithParam(m_pEncoder, pCtx->pSvcParam);
 	ASSERT_EQ (iRet, 0);
 	iCodedSliceNum = GetInitialSliceNum(pSliceArgument);
 	ASSERT_LT(iCodedSliceNum, 0);
-	*/
 
-	/*
 	int32_t InitSliceList (sWelsEncCtx* pCtx,
                        SDqLayer* pDqLayer,
                        SSlice*& pSliceList,
@@ -117,7 +182,7 @@ TEST_F(CSliceBufferReallocatTest, ReOrderSliceInLayer) {
                        const int32_t kiDlayerIndex,
                        CMemoryAlign* pMa) {
 
-	*/
+
 
   //init slice idex in all thread slice buffer
 	for (int32_t iSlcIdx = 0; iSlcIdx < iCodedSliceNum; iSlcIdx++) {
@@ -151,8 +216,6 @@ TEST_F(CSliceBufferReallocatTest, ReOrderSliceInLayer) {
 		const int32_t kiThreadIndex);
 
 		*/
-
-}
 
 static const EncodeFileParam kFileParamArray[] = {
 	{ "res/CiscoVT2people_320x192_12fps.yuv", 320, 192, 12.0f },
