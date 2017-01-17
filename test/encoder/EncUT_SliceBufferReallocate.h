@@ -51,6 +51,7 @@ class CSliceBufferReallocatTest : public ::testing::Test { //WithParamInterface<
 	void EncodeFile(const char* fileName, SEncParamExt* pEncParamExt);
 	void EncodeStream(InputStream* in, SEncParamExt* pEncParamExt);
 	void InitParam();
+	void UnInitParam();
 	void InitFrameBsBuffer();
 	void UnInitFrameBsBuffer();
 	void InitLayerSliceBuffer(const int32_t iLayerIdx);
