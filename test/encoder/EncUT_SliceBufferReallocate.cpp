@@ -171,7 +171,7 @@ void CSliceBufferReallocatTest::InitLayerSliceBuffer(const int32_t iLayerIdx) {
 	pDqLayer->iMbHeight = (pLayerCfg->iVideoHeight + 15) >> 4;
 
 	//Slice argument
-	pSliceArgument->uiSliceMode = (SliceModeEnum)(rand() % 4);
+	pSliceArgument->uiSliceMode = (SliceModeEnum) (rand() % 4);
 	pSliceArgument->uiSliceNum = rand() % MAX_SLICES_NUM + 1;
 
 	if (pSliceArgument->uiSliceMode == SM_SIZELIMITED_SLICE) {
@@ -249,7 +249,8 @@ TEST_F(CSliceBufferReallocatTest, ReallocateTest) {
 }
 */
 
-int32_t RandAvailableThread(sWelsEncCtx* pCtx) {
+int32_t RandAvailableThread(sWelsEncCtx* pCtx, const int32_t kiMinBufferNum) {
+	int32_t iLayerIdx = 0;
 	int32_t aiThrdList[MAX_THREADS_NUM] = { -1 };
 	int32_t iCodedSlcNum = 0;
 	int32_t iMaxSlcNumInThrd = 0;
@@ -264,7 +265,7 @@ int32_t RandAvailableThread(sWelsEncCtx* pCtx) {
 		iCodedSlcNum = pCtx->pCurDqLayer->sSliceThreadInfo[iThrdIdx].iCodedSliceNum;
 		iMaxSlcNumInThrd = pCtx->pCurDqLayer->sSliceThreadInfo[iThrdIdx].iMaxSliceNum;
 
-		if (iCodedSlcNum < iMaxSlcNumInThrd) {
+		if ((iCodedSlcNum + kiMinBufferNum) <= iMaxSlcNumInThrd) {
 			aiThrdList[iAvailableThrdNum] = iThrdIdx;
 			iAvailableThrdNum++;
 		}
@@ -294,7 +295,7 @@ void CSliceBufferReallocatTest::SimulateSliceInOnePartition(const int32_t kiPart
 	int32_t iSlcIdxInPart = 0;
 
 	//slice within same partition will encoded by same thread in current design
-	int32_t iPartitionThrdIdx = RandAvailableThread(&m_EncContext);
+	int32_t iPartitionThrdIdx = RandAvailableThread(&m_EncContext, kiSlcNumInPart);
 	ASSERT_TRUE(-1 != iPartitionThrdIdx);
 
 	for (int32_t iSlcIdx = 0; iSlcIdx < kiSlcNumInPart; iSlcIdx++) {
@@ -314,12 +315,14 @@ void CSliceBufferReallocatTest::SimulateSliceInOneLayer() {
 	int32_t iSimulateSliceNum = rand() % iTotalSliceBuffer + 1;
 
 	if (SM_SIZELIMITED_SLICE == pLayerCfg->sSliceArgument.uiSliceMode) {
-		int32_t iPartNum        = m_EncContext.iActiveThreadsNum;
-		int32_t iSlicNumPerPart = iSimulateSliceNum / iPartNum;
+		int32_t iPartNum         = m_EncContext.iActiveThreadsNum;
+		int32_t iSlicNumPerPart  = iSimulateSliceNum / iPartNum;
+		int32_t iMaxSlcNumInThrd = m_EncContext.pCurDqLayer->sSliceThreadInfo[0].iMaxSliceNum;
 		int32_t iLastPartSlcNum = 0;
 
-		iSlicNumPerPart = WelsClip3(iSlicNumPerPart, 1, iSimulateSliceNum);
+		iSlicNumPerPart = WelsClip3(iSlicNumPerPart, 1, iMaxSlcNumInThrd);
 		iLastPartSlcNum = iSimulateSliceNum - iSlicNumPerPart * (iPartNum - 1);
+		iLastPartSlcNum = WelsClip3(iLastPartSlcNum, 1, iMaxSlcNumInThrd);
 
 		for (int32_t iPartIdx = 0; iPartIdx < iPartNum; iPartIdx ++) {
 			int32_t iSlcNumInPart = (iPartIdx < (iPartNum - 1)) ? iSlicNumPerPart : iLastPartSlcNum;
@@ -327,7 +330,7 @@ void CSliceBufferReallocatTest::SimulateSliceInOneLayer() {
 		}
 	} else {
 		for (int32_t iSlcIdx = 0; iSlcIdx < iSimulateSliceNum; iSlcIdx ++) {
-			int32_t iSlcThrdIdx = RandAvailableThread(&m_EncContext);
+			int32_t iSlcThrdIdx = RandAvailableThread(&m_EncContext, 1);
 			ASSERT_TRUE(-1 != iSlcThrdIdx);
 			printf("--iTotalSlcBuf %d, iSimlSlcNum %d, iSlcIdx %d iSlcThrdIdx %d ThrdNum %d \n",
 				iTotalSliceBuffer,
