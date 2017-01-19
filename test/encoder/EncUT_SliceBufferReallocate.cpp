@@ -332,12 +332,6 @@ void CSliceBufferReallocatTest::SimulateSliceInOneLayer() {
 		for (int32_t iSlcIdx = 0; iSlcIdx < iSimulateSliceNum; iSlcIdx ++) {
 			int32_t iSlcThrdIdx = RandAvailableThread(&m_EncContext, 1);
 			ASSERT_TRUE(-1 != iSlcThrdIdx);
-			printf("--iTotalSlcBuf %d, iSimlSlcNum %d, iSlcIdx %d iSlcThrdIdx %d ThrdNum %d \n",
-				iTotalSliceBuffer,
-				iSimulateSliceNum,
-				iSlcIdx,
-				iSlcThrdIdx,
-				m_EncContext.iActiveThreadsNum);
 
 			SimulateEncodedOneSlice(iSlcIdx, iSlcThrdIdx);
 			m_EncContext.pCurDqLayer->sSliceEncCtx.iSliceNumInFrame++;
@@ -372,6 +366,15 @@ TEST_F(CSliceBufferReallocatTest, ReorderTest) {
 	iRet = ReOrderSliceInLayer(pCtx, pSliceArgument->uiSliceMode, pCtx->iActiveThreadsNum);
 	ASSERT_TRUE(cmResultSuccess == iRet);
 
+	int32_t iCodedSlcNum = pCtx->pCurDqLayer->sSliceEncCtx.iSliceNumInFrame;
+	int32_t iMaxSlicNum = pCtx->pCurDqLayer->iMaxSliceNum;
+	ASSERT_TRUE(iCodedSlcNum <= iMaxSlicNum);
+	ASSERT_TRUE(NULL != pCtx->pCurDqLayer);
+	ASSERT_TRUE(NULL != pCtx->pCurDqLayer->ppSliceInLayer);
+	for (int32_t iSlcIdx = 0; iSlcIdx < iCodedSlcNum; iSlcIdx++) {
+		ASSERT_TRUE(NULL != &pCtx->pCurDqLayer->ppSliceInLayer[iSlcIdx]);
+		ASSERT_TRUE(iSlcIdx == pCtx->pCurDqLayer->ppSliceInLayer[iSlcIdx]->iSliceIdx);
+	}
 
 	//
 	iRet = m_pEncoder->Uninitialize();
