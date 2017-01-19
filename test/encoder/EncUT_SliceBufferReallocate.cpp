@@ -171,13 +171,15 @@ void IntParamForSizeLimitSlcMode(sWelsEncCtx* pCtx, const int32_t iLayerIdx, int
 }
 
 void IntParamForRasterSlcMode(sWelsEncCtx* pCtx, const int32_t iLayerIdx) {
-
-	SSliceArgument* pSliceArgument = &pCtx->pSvcParam->sSpatialLayers[iLayerIdx].sSliceArgument;
-	SDqLayer* pDqLayer = pCtx->ppDqLayerList[iLayerIdx];
-	int32_t iMbNumInFrame = pDqLayer->iMbWidth * pDqLayer->iMbHeight;
+	SSpatialLayerConfig* pLayerCfg = &pCtx->pSvcParam->sSpatialLayers[iLayerIdx];
+	SSliceArgument* pSliceArgument = &pLayerCfg->sSliceArgument;
+	int32_t iMBWidth = (pLayerCfg->iVideoWidth + 15) >> 4;
+	int32_t iMBHeight = (pLayerCfg->iVideoHeight + 15) >> 4;
+	int32_t iMbNumInFrame = iMBWidth * iMBHeight;
 	int32_t iSliceMBNum = 0;
+
 	pSliceArgument->uiSliceMbNum[0] = rand() % 2;
-	if (0 == pSliceArgument->uiSliceMbNum[0] && pDqLayer->iMbHeight > MAX_SLICES_NUM) {
+	if (0 == pSliceArgument->uiSliceMbNum[0] && iMBHeight > MAX_SLICES_NUM) {
 		pSliceArgument->uiSliceNum = MAX_SLICES_NUM;
 		pSliceArgument->uiSliceMbNum[0] = 1;
 	}
@@ -192,37 +194,47 @@ void IntParamForRasterSlcMode(sWelsEncCtx* pCtx, const int32_t iLayerIdx) {
 	}
 }
 
-int32_t AllocateSliceBuffer() {
+int32_t AllocateLayerBuffer(sWelsEncCtx* pCtx, const int32_t iLayerIdx) {
+	SSpatialLayerConfig* pLayerCfg = &pCtx->pSvcParam->sSpatialLayers[iLayerIdx];
+	SDqLayer* pDqLayer = (SDqLayer*)pCtx->pMemAlign->WelsMallocz(sizeof(SDqLayer), "pDqLayer");
+	if (NULL == pDqLayer) {
+		return ENC_RETURN_MEMALLOCERR;
+	}
 
+	pDqLayer->iMbWidth = (pLayerCfg->iVideoWidth + 15) >> 4;
+	pDqLayer->iMbHeight = (pLayerCfg->iVideoHeight + 15) >> 4;
+	pDqLayer->iMaxSliceNum = GetInitialSliceNum(&pLayerCfg->sSliceArgument);
 
+	int32_t iRet = InitSliceInLayer(pCtx, pDqLayer, iLayerIdx, pCtx->pMemAlign);
+	if (ENC_RETURN_SUCCESS != iRet) {
+		FreeDqLayer(pDqLayer, pCtx->pMemAlign);
+		return ENC_RETURN_MEMALLOCERR;
+	}
+
+	pCtx->ppDqLayerList[iLayerIdx] = pDqLayer;
+	return ENC_RETURN_SUCCESS;
 }
 
 void CSliceBufferReallocatTest::InitLayerSliceBuffer(const int32_t iLayerIdx) {
 	sWelsEncCtx* pCtx = &m_EncContext;
-	SSpatialLayerConfig* pLayerCfg = &pCtx->pSvcParam->sSpatialLayers[iLayerIdx];
+  SSpatialLayerConfig* pLayerCfg = &pCtx->pSvcParam->sSpatialLayers[iLayerIdx];
 	SSliceArgument* pSliceArgument = &pLayerCfg->sSliceArgument;
-	SDqLayer* pDqLayer = (SDqLayer*)pCtx->pMemAlign->WelsMallocz(sizeof(SDqLayer), "pDqLayer");
-	pCtx->ppDqLayerList[iLayerIdx] = pDqLayer;
-	ASSERT_TRUE(NULL != pDqLayer);
-
-	pLayerCfg->iVideoWidth = pCtx->pSvcParam->iPicWidth;
-	pLayerCfg->iVideoHeight = pCtx->pSvcParam->iPicHeight;
-	pLayerCfg->iSpatialBitrate = pCtx->pSvcParam->iTargetBitrate / pCtx->pSvcParam->iSpatialLayerNum;
-	pDqLayer->iMbWidth = (pLayerCfg->iVideoWidth + 15) >> 4;
-	pDqLayer->iMbHeight = (pLayerCfg->iVideoHeight + 15) >> 4;
-
-	//Slice argument
-	pSliceArgument->uiSliceMode = (SliceModeEnum) (rand() % 4);
-	pSliceArgument->uiSliceNum = rand() % MAX_SLICES_NUM + 1;
-
-	//Slice buffer size
-	int32_t iLayerBsSize = WELS_ROUND(((3 * pLayerCfg->iVideoWidth * pLayerCfg->iVideoHeight) >> 1) * COMPRESS_RATIO_THR) + MAX_MACROBLOCK_SIZE_IN_BYTE_x2;
+	int32_t iLayerBsSize = 0;
 	int32_t iSliceBufferSize = 0;
 
+	pLayerCfg->iVideoWidth = pCtx->pSvcParam->iPicWidth >> (pCtx->pSvcParam->iSpatialLayerNum -1 - iLayerIdx);
+	pLayerCfg->iVideoHeight = pCtx->pSvcParam->iPicHeight >> (pCtx->pSvcParam->iSpatialLayerNum - 1 - iLayerIdx);
+	pLayerCfg->iSpatialBitrate = pCtx->pSvcParam->iTargetBitrate / pCtx->pSvcParam->iSpatialLayerNum;
+
+	//Slice argument
+	pSliceArgument->uiSliceMode = (SliceModeEnum)(rand() % 4);
+	pSliceArgument->uiSliceNum = rand() % MAX_SLICES_NUM + 1;
+	iLayerBsSize = WELS_ROUND(((3 * pLayerCfg->iVideoWidth * pLayerCfg->iVideoHeight) >> 1) * COMPRESS_RATIO_THR) 
+		             + MAX_MACROBLOCK_SIZE_IN_BYTE_x2;
 	if (pSliceArgument->uiSliceMode == SM_SIZELIMITED_SLICE) {
 		IntParamForSizeLimitSlcMode(pCtx, iLayerIdx, iLayerBsSize);
 	} else {
-		if (pSliceArgument->uiSliceMode == SM_SIZELIMITED_SLICE) {
+		if (pSliceArgument->uiSliceMode == SM_RASTER_SLICE) {
 			IntParamForRasterSlcMode(pCtx, iLayerIdx);
 		}
 		pCtx->iMaxSliceCount = WELS_MAX(pCtx->iMaxSliceCount, (int)pSliceArgument->uiSliceNum);
@@ -231,13 +243,9 @@ void CSliceBufferReallocatTest::InitLayerSliceBuffer(const int32_t iLayerIdx) {
 		pCtx->iSliceBufferSize[iLayerIdx] = iSliceBufferSize;
 	}
 
-	//Slice buffer allocate
-	pDqLayer->iMaxSliceNum = GetInitialSliceNum(&pLayerCfg->sSliceArgument);
-	int32_t iRet = InitSliceInLayer(pCtx, pDqLayer, iLayerIdx, pCtx->pMemAlign);
-	if (ENC_RETURN_SUCCESS != iRet) {
-		FreeDqLayer(pDqLayer, pCtx->pMemAlign);
-	}
+	int32_t iRet = AllocateLayerBuffer(pCtx, iLayerIdx);
 	ASSERT_TRUE(ENC_RETURN_SUCCESS == iRet);
+	ASSERT_TRUE(NULL != pCtx->ppDqLayerList[iLayerIdx]);
 }
 
 void CSliceBufferReallocatTest::UnInitLayerSliceBuffer(const int32_t iLayerIdx) {
