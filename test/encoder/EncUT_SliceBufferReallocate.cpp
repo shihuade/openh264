@@ -551,10 +551,28 @@ TEST_F(CSliceBufferReallocatTest, ReallocateTest_02) {
 	UnInitParamForTestCase(iLayerIdx);
 }
 
-	/*iRet      = InitWithParam(m_pEncoder, pCtx->pSvcParam);
-	ASSERT_EQ (iRet, 0);
-	iCodedSliceNum = GetInitialSliceNum(pSliceArgument);
-	ASSERT_LT(iCodedSliceNum, 0);
+TEST_F(CSliceBufferReallocatTest, FrameBsReallocateTest) {
+	sWelsEncCtx* pCtx = &m_EncContext;
+	int32_t iLayerIdx = 0;
+	int32_t iRet = 0;
+
+	InitParamForTestCase(iLayerIdx);
+
+	/*
+	int32_t FrameBsRealloc(sWelsEncCtx* pCtx,
+		SFrameBSInfo* pFrameBsInfo,
+		SLayerBSInfo* pLayerBsInfo,
+		const int32_t kiMaxSliceNumOld);
+		*/
+
+	pCtx->pCurDqLayer = pCtx->ppDqLayerList[iLayerIdx];
+	iRet = InitAllSlicesInThread(pCtx);
+	ASSERT_TRUE(cmResultSuccess == iRet);
+
+
+	UnInitParamForTestCase(iLayerIdx);
+}
+	/*
 
 	int32_t InitSliceList (sWelsEncCtx* pCtx,
                        SDqLayer* pDqLayer,
@@ -580,21 +598,6 @@ TEST_F(CSliceBufferReallocatTest, ReallocateTest_02) {
 	iMaxSliceNum = pDqLayer->iMaxSliceNum;
   }
 
-
-	int32_t ReOrderSliceInLayer(sWelsEncCtx* pCtx,
-		const SliceModeEnum kuiSliceMode,
-		const int32_t kiThreadNum);
-
-	int32_t ReallocateSliceList(sWelsEncCtx* pCtx,
-		SSliceArgument* pSliceArgument,
-		SSlice*& pSliceList,
-		const int32_t kiMaxSliceNumOld,
-		const int32_t kiMaxSliceNumNew);
-
-	int32_t ReallocateSliceInThread(sWelsEncCtx* pCtx,
-		SDqLayer* pDqLayer,
-		const int32_t kiDlayerIdx,
-		const int32_t kiThreadIndex);
 
 		*/
 
