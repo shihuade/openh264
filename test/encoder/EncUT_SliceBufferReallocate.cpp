@@ -141,12 +141,11 @@ void IntParamForRasterSlcMode(sWelsEncCtx* pCtx, const int32_t iLayerIdx) {
 }
 
 void ParamSetForReallocateTest(sWelsEncCtx* pCtx, int32_t iLayerIdx,
-	int32_t iThreadIndex, int32_t iPartitionNum) {
+	                             int32_t iThreadIndex, int32_t iPartitionNum) {
 	SSpatialLayerConfig* pLayerCfg = &pCtx->pSvcParam->sSpatialLayers[iLayerIdx];
 	int32_t iPartitionID = rand() % iPartitionNum;
 	int32_t iMBNumInPatition = 0;
-	int32_t iMaxSlcNum = pCtx->pCurDqLayer->sSliceThreadInfo[iThreadIndex].iMaxSliceNum;
-	int32_t iCodedSlcNum = iMaxSlcNum - 1;
+	int32_t iCodedSlcNum = pCtx->pCurDqLayer->sSliceThreadInfo[iThreadIndex].iMaxSliceNum - 1;
 	int32_t iLastCodeSlcIdx = iPartitionID + iCodedSlcNum * iPartitionNum;
 	SSlice* pLastCodedSlc = &pCtx->pCurDqLayer->sSliceThreadInfo[iThreadIndex].pSliceInThread[iCodedSlcNum - 1];
 	pLastCodedSlc->iSliceIdx = iLastCodeSlcIdx;
@@ -511,6 +510,16 @@ TEST_F(CSliceBufferReallocatTest, ReallocateTest) {
 	int32_t iPartitionNum = rand() % pCtx->iActiveThreadsNum + 1;
 	int32_t iSlcBufferNum = pCtx->pCurDqLayer->sSliceThreadInfo[iThreadIndex].iMaxSliceNum;
 
+	ParamSetForReallocateTest(pCtx, iLayerIdx, iThreadIndex, iPartitionNum);
+
+	//test case for reallocate during encoder one partition
+	iRet = ReallocateSliceInThread(pCtx, pCtx->pCurDqLayer, iLayerIdx, iThreadIndex);
+	ASSERT_TRUE(cmResultSuccess == iRet);
+	ASSERT_TRUE(NULL != pCtx->pCurDqLayer->sSliceThreadInfo[iThreadIndex].pSliceInThread);
+	ASSERT_TRUE(iSlcBufferNum < pCtx->pCurDqLayer->sSliceThreadInfo[iThreadIndex].iMaxSliceNum);
+
+	//encoded at lest tow partitions in one thread
+	iSlcBufferNum = pCtx->pCurDqLayer->sSliceThreadInfo[iThreadIndex].iMaxSliceNum;
 	ParamSetForReallocateTest(pCtx, iLayerIdx, iThreadIndex, iPartitionNum);
 
 	iRet = ReallocateSliceInThread(pCtx, pCtx->pCurDqLayer, iLayerIdx, iThreadIndex);
