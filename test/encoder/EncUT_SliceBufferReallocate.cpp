@@ -454,6 +454,26 @@ TEST_F(CSliceBufferReallocatTest, ReorderTest) {
 	UnInitParam();
 }
 
+
+void ParamSetForReallocateTest(sWelsEncCtx* pCtx , int32_t iLayerIdx,
+	                             int32_t iThreadIndex, int32_t iPartitionNum) {
+	SSpatialLayerConfig* pLayerCfg = &pCtx->pSvcParam->sSpatialLayers[iLayerIdx];
+	int32_t iPartitionID = rand() % iPartitionNum;
+	int32_t iMBNumInPatition = 0;
+	int32_t iMaxSlcNum = pCtx->pCurDqLayer->sSliceThreadInfo[iThreadIndex].iMaxSliceNum;
+	int32_t iCodedSlcNum = iMaxSlcNum - 1;
+	int32_t iLastCodeSlcIdx = iPartitionID + iCodedSlcNum * iPartitionNum;
+	SSlice* pLastCodedSlc = &pCtx->pCurDqLayer->sSliceThreadInfo[iThreadIndex].pSliceInThread[iCodedSlcNum - 1];
+	pLastCodedSlc->iSliceIdx = iLastCodeSlcIdx;
+
+	SetPartitonMBNum(pCtx->ppDqLayerList[iLayerIdx], pLayerCfg, iPartitionNum);
+
+	iMBNumInPatition = pCtx->pCurDqLayer->EndMbIdxOfPartition[iPartitionID];
+	pCtx->pCurDqLayer->sSliceThreadInfo[iThreadIndex].iCodedSliceNum = iCodedSlcNum;
+	pCtx->pCurDqLayer->LastCodedMbIdxOfPartition[iPartitionID] = rand() % iMBNumInPatition + 1;
+
+}
+
 TEST_F(CSliceBufferReallocatTest, ReallocateTest) {
 	int32_t iLayerIdx = 0;
 	int32_t iRet = 0;
@@ -484,25 +504,12 @@ TEST_F(CSliceBufferReallocatTest, ReallocateTest) {
 
   int32_t iThreadIndex     = rand() % pCtx->iActiveThreadsNum;
 	int32_t iPartitionNum    = rand() % pCtx->iActiveThreadsNum + 1; // for partiontion num less than thread num case
-	int32_t iPartitionID     = rand() % iPartitionNum;
-	int32_t iMBNumInPatition = 0;
-	int32_t iMaxSlcNum       = pCtx->pCurDqLayer->sSliceThreadInfo[iThreadIndex].iMaxSliceNum;
-	int32_t iCodedSlcNum     = iMaxSlcNum - 1;
-	int32_t iLastCodeSlcIdx  = iPartitionID + iCodedSlcNum * iPartitionNum;
-	SSlice* pLastCodedSlc    = &pCtx->pCurDqLayer->sSliceThreadInfo[iThreadIndex].pSliceInThread[iCodedSlcNum - 1];
-	pLastCodedSlc->iSliceIdx = iLastCodeSlcIdx;
 
-	SetPartitonMBNum(pCtx->ppDqLayerList[iLayerIdx], pLayerCfg, iPartitionNum);
-
-	iMBNumInPatition = pCtx->pCurDqLayer->EndMbIdxOfPartition[iPartitionID];
-	pCtx->pCurDqLayer->sSliceThreadInfo[iThreadIndex].iCodedSliceNum = iCodedSlcNum;
-	pCtx->pCurDqLayer->LastCodedMbIdxOfPartition[iPartitionID]       = rand() % iMBNumInPatition + 1;
+	ParamSetForReallocateTest(pCtx, iLayerIdx, iThreadIndex, iPartitionNum);
 
 	iRet = ReallocateSliceInThread(pCtx, pCtx->pCurDqLayer, iLayerIdx, iThreadIndex);
 	ASSERT_TRUE(cmResultSuccess == iRet);
 	ASSERT_TRUE(NULL != pCtx->pCurDqLayer->sSliceThreadInfo[iThreadIndex].pSliceInThread);
-
-	ASSERT_TRUE(iCodedSlcNum == pCtx->pCurDqLayer->sSliceThreadInfo[iThreadIndex].iCodedSliceNum);
 
 
 
