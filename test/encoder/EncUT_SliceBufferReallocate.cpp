@@ -506,22 +506,12 @@ TEST_F(CSliceBufferReallocatTest, ReallocateTest) {
 	iRet = InitAllSlicesInThread(pCtx);
 	ASSERT_TRUE(cmResultSuccess == iRet);
 
+	//case: reallocate during encoder one partition
   int32_t iThreadIndex  = rand() % pCtx->iActiveThreadsNum;
-	int32_t iPartitionNum = rand() % pCtx->iActiveThreadsNum + 1;
+	int32_t iPartitionNum = rand() % pCtx->iActiveThreadsNum + 1; //include cases which part num less than thread num
 	int32_t iSlcBufferNum = pCtx->pCurDqLayer->sSliceThreadInfo[iThreadIndex].iMaxSliceNum;
 
 	ParamSetForReallocateTest(pCtx, iLayerIdx, iThreadIndex, iPartitionNum);
-
-	//test case for reallocate during encoder one partition
-	iRet = ReallocateSliceInThread(pCtx, pCtx->pCurDqLayer, iLayerIdx, iThreadIndex);
-	ASSERT_TRUE(cmResultSuccess == iRet);
-	ASSERT_TRUE(NULL != pCtx->pCurDqLayer->sSliceThreadInfo[iThreadIndex].pSliceInThread);
-	ASSERT_TRUE(iSlcBufferNum < pCtx->pCurDqLayer->sSliceThreadInfo[iThreadIndex].iMaxSliceNum);
-
-	//encoded at lest tow partitions in one thread
-	iSlcBufferNum = pCtx->pCurDqLayer->sSliceThreadInfo[iThreadIndex].iMaxSliceNum;
-	ParamSetForReallocateTest(pCtx, iLayerIdx, iThreadIndex, iPartitionNum);
-
 	iRet = ReallocateSliceInThread(pCtx, pCtx->pCurDqLayer, iLayerIdx, iThreadIndex);
 	ASSERT_TRUE(cmResultSuccess == iRet);
 	ASSERT_TRUE(NULL != pCtx->pCurDqLayer->sSliceThreadInfo[iThreadIndex].pSliceInThread);
@@ -529,6 +519,37 @@ TEST_F(CSliceBufferReallocatTest, ReallocateTest) {
 
 	UnInitParamForTestCase(iLayerIdx);
 }
+
+TEST_F(CSliceBufferReallocatTest, ReallocateTest_02) {
+	sWelsEncCtx* pCtx = &m_EncContext;
+	int32_t iLayerIdx = 0;
+	int32_t iRet = 0;
+
+	InitParamForSizeLimitSlcModeCase(iLayerIdx);
+
+	pCtx->pCurDqLayer = pCtx->ppDqLayerList[iLayerIdx];
+	iRet = InitAllSlicesInThread(pCtx);
+	ASSERT_TRUE(cmResultSuccess == iRet);
+
+	//case: all partitions encoder by one thread
+	int32_t iThreadIndex = rand() % pCtx->iActiveThreadsNum;
+	int32_t iPartitionNum = MAX_THREADS_NUM;
+	int32_t iSlcBufferNum = 0;
+
+	ParamSetForReallocateTest(pCtx, iLayerIdx, iThreadIndex, iPartitionNum);
+
+	for (int32_t iPartIdx = 0; iPartIdx < iPartitionNum; iPartIdx++) {
+		iSlcBufferNum = pCtx->pCurDqLayer->sSliceThreadInfo[iThreadIndex].iMaxSliceNum;
+
+		iRet = ReallocateSliceInThread(pCtx, pCtx->pCurDqLayer, iLayerIdx, iThreadIndex);
+		ASSERT_TRUE(cmResultSuccess == iRet);
+		ASSERT_TRUE(NULL != pCtx->pCurDqLayer->sSliceThreadInfo[iThreadIndex].pSliceInThread);
+		ASSERT_TRUE(iSlcBufferNum < pCtx->pCurDqLayer->sSliceThreadInfo[iThreadIndex].iMaxSliceNum);
+	}
+
+	UnInitParamForTestCase(iLayerIdx);
+}
+
 	/*iRet      = InitWithParam(m_pEncoder, pCtx->pSvcParam);
 	ASSERT_EQ (iRet, 0);
 	iCodedSliceNum = GetInitialSliceNum(pSliceArgument);
