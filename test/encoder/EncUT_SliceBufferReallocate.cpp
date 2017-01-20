@@ -152,7 +152,8 @@ void ParamSetForReallocateTest(sWelsEncCtx* pCtx, int32_t iLayerIdx,
 
 	SetPartitonMBNum(pCtx->ppDqLayerList[iLayerIdx], pLayerCfg, iPartitionNum);
 
-	iMBNumInPatition = pCtx->pCurDqLayer->EndMbIdxOfPartition[iPartitionID];
+	iMBNumInPatition = pCtx->pCurDqLayer->EndMbIdxOfPartition[iPartitionID] -
+		                 pCtx->pCurDqLayer->FirstMbIdxOfPartition[iPartitionID] + 1;
 	pCtx->pCurDqLayer->sSliceThreadInfo[iThreadIndex].iCodedSliceNum = iCodedSlcNum;
 	pCtx->pCurDqLayer->LastCodedMbIdxOfPartition[iPartitionID] = rand() % iMBNumInPatition + 1;
 
@@ -495,7 +496,7 @@ TEST_F(CSliceBufferReallocatTest, ReorderTest) {
 	UnInitParamForTestCase(iLayerIdx);
 }
 
-TEST_F(CSliceBufferReallocatTest, ReallocateTest) {
+TEST_F(CSliceBufferReallocatTest, ReallocateTest_01) {
 	sWelsEncCtx* pCtx = &m_EncContext;
 	int32_t iLayerIdx = 0;
 	int32_t iRet      = 0;
@@ -532,8 +533,8 @@ TEST_F(CSliceBufferReallocatTest, ReallocateTest_02) {
 	ASSERT_TRUE(cmResultSuccess == iRet);
 
 	//case: all partitions encoder by one thread
-	int32_t iThreadIndex = rand() % pCtx->iActiveThreadsNum;
-	int32_t iPartitionNum = MAX_THREADS_NUM;
+	int32_t iThreadIndex =  rand() % pCtx->iActiveThreadsNum;
+	int32_t iPartitionNum = pCtx->iActiveThreadsNum;
 	int32_t iSlcBufferNum = 0;
 
 	ParamSetForReallocateTest(pCtx, iLayerIdx, iThreadIndex, iPartitionNum);
