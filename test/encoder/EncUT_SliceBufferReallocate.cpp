@@ -555,15 +555,32 @@ TEST_F(CSliceBufferReallocatTest, FrameBsReallocateTest) {
 	sWelsEncCtx* pCtx = &m_EncContext;
 	int32_t iLayerIdx = 0;
 	int32_t iRet = 0;
+	SFrameBSInfo pFrameBsInfo;
+	SLayerBSInfo* pLayerBsInfo = NULL;
+	int32_t iLayerIdx = rand() % MAX_LAYER_NUM_OF_FRAME + 2;
+
+	pCtx->iPosBsBuffer = rand() % pCtx->iFrameBsSize + 1;
+
+	pLayerBsInfo->pBsBuf = pCtx->pFrameBs + pCtx->iPosBsBuffer;
 
 	InitParamForTestCase(iLayerIdx);
 
-	/*
+	pCtx->bNeedPrefixNalFlag = rand() % 2;
+
+	typedef struct {
+		int           iLayerNum;
+		SLayerBSInfo  sLayerInfo[MAX_LAYER_NUM_OF_FRAME];
+
+		EVideoFrameType eFrameType;
+		int iFrameSizeInBytes;
+		long long uiTimeStamp;
+	} SFrameBSInfo, *PFrameBSInfo;
+	
 	int32_t FrameBsRealloc(sWelsEncCtx* pCtx,
 		SFrameBSInfo* pFrameBsInfo,
 		SLayerBSInfo* pLayerBsInfo,
 		const int32_t kiMaxSliceNumOld);
-		*/
+		
 
 	pCtx->pCurDqLayer = pCtx->ppDqLayerList[iLayerIdx];
 	iRet = InitAllSlicesInThread(pCtx);
