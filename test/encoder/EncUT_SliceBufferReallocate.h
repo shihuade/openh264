@@ -53,10 +53,17 @@ class CSliceBufferReallocatTest : public ::testing::Test { //WithParamInterface<
 	void SimulateEncodedOneSlice(const int32_t kiSlcIdx, const int32_t kiThreadIdx);
 	void SimulateSliceInOnePartition(const int32_t kiPartNum,  const int32_t kiPartIdx, const int32_t kiSlcNumInPart);
 	void SimulateSliceInOneLayer();
+
+	void InitParamForTestCase(int32_t iLayerIdx);
+	void InitParamForSizeLimitSlcModeCase(int32_t iLayerIdx);
+	void UnInitParamForTestCase(int32_t iLayerIdx);
+
 	void InitParam();
 	void UnInitParam();
+
 	void InitFrameBsBuffer();
 	void UnInitFrameBsBuffer();
+
 	void InitLayerSliceBuffer(const int32_t iLayerIdx);
 	void UnInitLayerSliceBuffer(const int32_t iLayerIdx);
 
