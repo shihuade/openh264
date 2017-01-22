@@ -551,22 +551,65 @@ TEST_F(CSliceBufferReallocatTest, ReallocateTest_02) {
 	UnInitParamForTestCase(iLayerIdx);
 }
 
+
 TEST_F(CSliceBufferReallocatTest, FrameBsReallocateTest) {
 	sWelsEncCtx* pCtx = &m_EncContext;
 	int32_t iLayerIdx = 0;
 	int32_t iRet = 0;
-	SFrameBSInfo pFrameBsInfo;
+	SFrameBSInfo FrameBsInfo;
 	SLayerBSInfo* pLayerBsInfo = NULL;
-	int32_t iLayerIdx = rand() % MAX_LAYER_NUM_OF_FRAME + 2;
+	int32_t iCurLayerIdx = rand() % MAX_LAYER_NUM_OF_FRAME;
 
+	memset(&FrameBsInfo, 0, sizeof(SFrameBSInfo));
+	InitParamForTestCase(iLayerIdx);
+
+	//init for FrameBs and LayerBs
 	pCtx->iPosBsBuffer = rand() % pCtx->iFrameBsSize + 1;
-
+	pLayerBsInfo = &FrameBsInfo.sLayerInfo[iCurLayerIdx];
 	pLayerBsInfo->pBsBuf = pCtx->pFrameBs + pCtx->iPosBsBuffer;
+	pCtx->bNeedPrefixNalFlag = rand() % 2;
+
+	int32_t iCodedNalCount = pCtx->pOut->iCountNals;
+	iRet = FrameBsRealloc(pCtx, &FrameBsInfo, pLayerBsInfo, iCodedNalCount);
+
+	ASSERT_TRUE(cmResultSuccess == iRet);
+	ASSERT_TRUE(iCodedNalCount < pCtx->pOut->iCountNals);
+	ASSERT_TRUE(NULL != pCtx->pOut->sNalList);
+	ASSERT_TRUE(NULL != pCtx->pOut->pNalLen);
+	ASSERT_TRUE(NULL != pCtx->pOut->pNalLen);
+
+
+	UnInitParamForTestCase(iLayerIdx);
+}
+/*
+TEST_F(CSliceBufferReallocatTest, LayerInfoUpteTest) {
+	sWelsEncCtx* pCtx = &m_EncContext;
+	int32_t iLayerIdx = 0;
+	int32_t iRet = 0;
+	SFrameBSInfo FrameBsInfo;
+	SLayerBSInfo* pLayerBsInfo = NULL;
+	int32_t iCurLayerIdx = rand() % MAX_LAYER_NUM_OF_FRAME + 2;
 
 	InitParamForTestCase(iLayerIdx);
 
+	//init for FrameBs and LayerBs
+	pCtx->iPosBsBuffer = rand() % pCtx->iFrameBsSize + 1;
+	pLayerBsInfo->pBsBuf = pCtx->pFrameBs + pCtx->iPosBsBuffer;
+	pLayerBsInfo = &FrameBsInfo.sLayerInfo[iCurLayerIdx];
 	pCtx->bNeedPrefixNalFlag = rand() % 2;
 
+	int32_t iMaxSliceNumOld = pCtx->pOut->iCountNals;
+
+
+	//Extend NalList buffer if exceed
+	int32_t iCodedSliceNum = GetCurrentSliceNum(pCtx->pCurDqLayer);
+	int32_t pLayerBsInfo->iNalCount = GetCurLayerNalCount(pCtx->pCurDqLayer, iCodedSliceNum);
+	int32_t iCodedNalCount = GetTotalCodedNalCount(&FrameBsInfo);
+
+	iRet = FrameBsRealloc(pCtx, &FrameBsInfo, pLayerBsInfo, iMaxSliceNumOld);
+	ASSERT_TRUE(cmResultSuccess == iRet);
+
+	/*
 	typedef struct {
 		int           iLayerNum;
 		SLayerBSInfo  sLayerInfo[MAX_LAYER_NUM_OF_FRAME];
@@ -580,8 +623,17 @@ TEST_F(CSliceBufferReallocatTest, FrameBsReallocateTest) {
 		SFrameBSInfo* pFrameBsInfo,
 		SLayerBSInfo* pLayerBsInfo,
 		const int32_t kiMaxSliceNumOld);
-		
 
+		int32_t GetTotalCodedNalCount(SFrameBSInfo* pFbi) {
+		int32_t iTotalCodedNalCount = 0;
+		for (int32_t iNalIdx = 0; iNalIdx < MAX_LAYER_NUM_OF_FRAME; iNalIdx++) {
+		iTotalCodedNalCount += pFbi->sLayerInfo[iNalIdx].iNalCount;
+		}
+
+		return iTotalCodedNalCount;
+		}
+	*/
+/*
 	pCtx->pCurDqLayer = pCtx->ppDqLayerList[iLayerIdx];
 	iRet = InitAllSlicesInThread(pCtx);
 	ASSERT_TRUE(cmResultSuccess == iRet);
@@ -589,6 +641,7 @@ TEST_F(CSliceBufferReallocatTest, FrameBsReallocateTest) {
 
 	UnInitParamForTestCase(iLayerIdx);
 }
+*/
 	/*
 
 	int32_t InitSliceList (sWelsEncCtx* pCtx,
