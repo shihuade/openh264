@@ -6,13 +6,6 @@
 #define MAX_WIDTH  (4096)
 #define MAX_HEIGH  (2304)
 
-struct EncodeFileParam {
-	const char* pkcFileName;
-	int iWidth;
-	int iHeight;
-	float fFrameRate;
-};
-
 class CSliceBufferReallocatTest : public ::testing::Test { //WithParamInterface<EncodeFileParam>{
   public:
 		virtual void SetUp() {

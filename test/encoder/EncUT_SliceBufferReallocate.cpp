@@ -19,7 +19,6 @@ namespace WelsEnc {
 }
 
 int32_t RandAvailableThread(sWelsEncCtx* pCtx, const int32_t kiMinBufferNum) {
-	int32_t iLayerIdx = 0;
 	int32_t aiThrdList[MAX_THREADS_NUM] = { -1 };
 	int32_t iCodedSlcNum = 0;
 	int32_t iMaxSlcNumInThrd = 0;
@@ -685,7 +684,3 @@ TEST_F(CSliceBufferReallocatTest, LayerInfoUpteTest) {
 
 	UnInitParamForTestCase(iLayerIdx);
 }
-//todo: will enhance if need
-static const EncodeFileParam kFileParamArray[] = {
-	{ "res/CiscoVT2people_320x192_12fps.yuv", 320, 192, 12.0f },
-};
