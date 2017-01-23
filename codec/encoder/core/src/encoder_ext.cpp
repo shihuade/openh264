@@ -727,7 +727,7 @@ int32_t WelsEncoderApplyBitVaryRang (SLogContext* pLogCtx, SWelsSvcCodingParam* 
  * \pParam  iCountNals      pointer of count number of nals indeed
  * \return  0 - successful; otherwise failed
  */
-static inline int32_t AcquireLayersNals (sWelsEncCtx** ppCtx, SWelsSvcCodingParam* pParam, int32_t* pCountLayers,
+int32_t AcquireLayersNals (sWelsEncCtx** ppCtx, SWelsSvcCodingParam* pParam, int32_t* pCountLayers,
     int32_t* pCountNals) {
   int32_t iCountNumLayers       = 0;
   int32_t iCountNumNals         = 0;
