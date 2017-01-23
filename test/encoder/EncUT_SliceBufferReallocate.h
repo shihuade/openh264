@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include "utils/FileInputStream.h"
 #include "svc_encode_slice.h"
-#include "WelsEncoderExt.h"
+#include "../../codec/encoder/plus/inc/WelsEncoderExt.h"
 
 #define MAX_WIDTH  (4096)
 #define MAX_HEIGH  (2304)
