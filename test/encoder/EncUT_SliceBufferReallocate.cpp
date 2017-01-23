@@ -470,35 +470,6 @@ void CSliceBufferReallocatTest::SimulateSliceInOneLayer() {
 	}
 }
 
-TEST_F(CSliceBufferReallocatTest, ReorderTest) {
-	int32_t iLayerIdx = 0;
-	sWelsEncCtx* pCtx = &m_EncContext;
-	SSliceArgument* pSliceArgument = &pCtx->pSvcParam->sSpatialLayers[iLayerIdx].sSliceArgument;
-
-	InitParamForTestCase(iLayerIdx);
-
-	pCtx->pCurDqLayer = pCtx->ppDqLayerList[iLayerIdx];
-	int32_t iRet = InitAllSlicesInThread(pCtx);
-	ASSERT_TRUE(cmResultSuccess == iRet);
-
-	SimulateSliceInOneLayer();
-
-	iRet = ReOrderSliceInLayer(pCtx, pSliceArgument->uiSliceMode, pCtx->iActiveThreadsNum);
-	ASSERT_TRUE(cmResultSuccess == iRet);
-
-	int32_t iCodedSlcNum = pCtx->pCurDqLayer->sSliceEncCtx.iSliceNumInFrame;
-	int32_t iMaxSlicNum = pCtx->pCurDqLayer->iMaxSliceNum;
-	ASSERT_TRUE(iCodedSlcNum <= iMaxSlicNum);
-	ASSERT_TRUE(NULL != pCtx->pCurDqLayer);
-	ASSERT_TRUE(NULL != pCtx->pCurDqLayer->ppSliceInLayer);
-	for (int32_t iSlcIdx = 0; iSlcIdx < iCodedSlcNum; iSlcIdx++) {
-		ASSERT_TRUE(NULL != &pCtx->pCurDqLayer->ppSliceInLayer[iSlcIdx]);
-		ASSERT_TRUE(iSlcIdx == pCtx->pCurDqLayer->ppSliceInLayer[iSlcIdx]->iSliceIdx);
-	}
-
-	UnInitParamForTestCase(iLayerIdx);
-}
-
 TEST_F(CSliceBufferReallocatTest, ReallocateTest_01) {
 	sWelsEncCtx* pCtx = &m_EncContext;
 	int32_t iLayerIdx = 0;
@@ -554,7 +525,7 @@ TEST_F(CSliceBufferReallocatTest, ReallocateTest_02) {
 	UnInitParamForTestCase(iLayerIdx);
 }
 
-	TEST_F(CSliceBufferReallocatTest, ExtendLayerBufferTest) {
+TEST_F(CSliceBufferReallocatTest, ExtendLayerBufferTest) {
 	sWelsEncCtx* pCtx = &m_EncContext;
 	SSlice* pSlcListInThrd = NULL;
 	int32_t iLayerIdx = 0;
@@ -562,7 +533,7 @@ TEST_F(CSliceBufferReallocatTest, ReallocateTest_02) {
 	int32_t iMaxSliceNumNew = 0;
 	int32_t iSlcBuffNumInThrd = 0;
 
-	InitParamForSizeLimitSlcModeCase(iLayerIdx);
+	InitParamForTestCase(iLayerIdx);
 	pCtx->pCurDqLayer = pCtx->ppDqLayerList[iLayerIdx];
 	iRet = InitAllSlicesInThread(pCtx);
 	ASSERT_TRUE(cmResultSuccess == iRet);
@@ -622,97 +593,99 @@ TEST_F(CSliceBufferReallocatTest, FrameBsReallocateTest) {
 	UnInitParamForTestCase(iLayerIdx);
 }
 
+TEST_F(CSliceBufferReallocatTest, ReorderTest) {
+	int32_t iLayerIdx = 0;
+	sWelsEncCtx* pCtx = &m_EncContext;
+	SSliceArgument* pSliceArgument = &pCtx->pSvcParam->sSpatialLayers[iLayerIdx].sSliceArgument;
+
+	InitParamForTestCase(iLayerIdx);
+
+	pCtx->pCurDqLayer = pCtx->ppDqLayerList[iLayerIdx];
+	int32_t iRet = InitAllSlicesInThread(pCtx);
+	ASSERT_TRUE(cmResultSuccess == iRet);
+
+	SimulateSliceInOneLayer();
+
+	iRet = ReOrderSliceInLayer(pCtx, pSliceArgument->uiSliceMode, pCtx->iActiveThreadsNum);
+	ASSERT_TRUE(cmResultSuccess == iRet);
+
+	int32_t iCodedSlcNum = pCtx->pCurDqLayer->sSliceEncCtx.iSliceNumInFrame;
+	int32_t iMaxSlicNum = pCtx->pCurDqLayer->iMaxSliceNum;
+	ASSERT_TRUE(iCodedSlcNum <= iMaxSlicNum);
+	ASSERT_TRUE(NULL != pCtx->pCurDqLayer);
+	ASSERT_TRUE(NULL != pCtx->pCurDqLayer->ppSliceInLayer);
+	for (int32_t iSlcIdx = 0; iSlcIdx < iCodedSlcNum; iSlcIdx++) {
+		ASSERT_TRUE(NULL != &pCtx->pCurDqLayer->ppSliceInLayer[iSlcIdx]);
+		ASSERT_TRUE(iSlcIdx == pCtx->pCurDqLayer->ppSliceInLayer[iSlcIdx]->iSliceIdx);
+	}
+
+	UnInitParamForTestCase(iLayerIdx);
+}
+
 TEST_F(CSliceBufferReallocatTest, LayerInfoUpteTest) {
 	sWelsEncCtx* pCtx = &m_EncContext;
 	int32_t iLayerIdx = 0;
 	int32_t iRet = 0;
 	SFrameBSInfo FrameBsInfo;
 	SLayerBSInfo* pLayerBsInfo = NULL;
-	int32_t iCurLayerIdx = rand() % MAX_LAYER_NUM_OF_FRAME + 2;
 
 	InitParamForTestCase(iLayerIdx);
-	/*
-	//init for FrameBs and LayerBs
-	pCtx->iPosBsBuffer = rand() % pCtx->iFrameBsSize + 1;
-	pLayerBsInfo->pBsBuf = pCtx->pFrameBs + pCtx->iPosBsBuffer;
-	pLayerBsInfo = &FrameBsInfo.sLayerInfo[iCurLayerIdx];
-	pCtx->bNeedPrefixNalFlag = rand() % 2;
-
-	int32_t iMaxSliceNumOld = pCtx->pOut->iCountNals;
-
-
-	//Extend NalList buffer if exceed
-	int32_t iCodedSliceNum = GetCurrentSliceNum(pCtx->pCurDqLayer);
-	int32_t pLayerBsInfo->iNalCount = GetCurLayerNalCount(pCtx->pCurDqLayer, iCodedSliceNum);
-	int32_t iCodedNalCount = GetTotalCodedNalCount(&FrameBsInfo);
-
-	iRet = FrameBsRealloc(pCtx, &FrameBsInfo, pLayerBsInfo, iMaxSliceNumOld);
-	ASSERT_TRUE(cmResultSuccess == iRet);
-
-
-	typedef struct {
-		int           iLayerNum;
-		SLayerBSInfo  sLayerInfo[MAX_LAYER_NUM_OF_FRAME];
-
-		EVideoFrameType eFrameType;
-		int iFrameSizeInBytes;
-		long long uiTimeStamp;
-	} SFrameBSInfo, *PFrameBSInfo;
-	
-	int32_t FrameBsRealloc(sWelsEncCtx* pCtx,
-		SFrameBSInfo* pFrameBsInfo,
-		SLayerBSInfo* pLayerBsInfo,
-		const int32_t kiMaxSliceNumOld);
-
-		int32_t GetTotalCodedNalCount(SFrameBSInfo* pFbi) {
-		int32_t iTotalCodedNalCount = 0;
-		for (int32_t iNalIdx = 0; iNalIdx < MAX_LAYER_NUM_OF_FRAME; iNalIdx++) {
-		iTotalCodedNalCount += pFbi->sLayerInfo[iNalIdx].iNalCount;
-		}
-
-		return iTotalCodedNalCount;
-		}
-
 	pCtx->pCurDqLayer = pCtx->ppDqLayerList[iLayerIdx];
 	iRet = InitAllSlicesInThread(pCtx);
 	ASSERT_TRUE(cmResultSuccess == iRet);
-	*/
+
+	SimulateSliceInOneLayer();
+
+	//simulate reallocate slice buffer in one thread
+	int32_t iReallocateThrdIdx = rand() % pCtx->iActiveThreadsNum;
+	int32_t iSlcBuffNumInThrd  = pCtx->pCurDqLayer->sSliceThreadInfo[iReallocateThrdIdx].iMaxSliceNum;
+	int32_t iCodedSlcNumInThrd = pCtx->pCurDqLayer->sSliceThreadInfo[iReallocateThrdIdx].iCodedSliceNum;
+	SSlice* pSlcListInThrd     = pCtx->pCurDqLayer->sSliceThreadInfo[iReallocateThrdIdx].pSliceInThread;
+	SliceModeEnum eSlcMode     = pCtx->pSvcParam->sSpatialLayers[iLayerIdx].sSliceArgument.uiSliceMode;
+	int32_t iSlcIdxInThrd      = 0;
+	int32_t iPartitionNum      = (SM_SIZELIMITED_SLICE == eSlcMode) ? pCtx->iActiveThreadsNum : 1;
+	int32_t iPartitionIdx      = 0;
+	iPartitionIdx = (iCodedSlcNumInThrd <= 0) ? 0 :
+			             pSlcListInThrd[iCodedSlcNumInThrd - 1].iSliceIdx % pCtx->iActiveThreadsNum;
+
+	iRet = ReallocateSliceList(pCtx, &pCtx->pSvcParam->sSpatialLayers[iLayerIdx].sSliceArgument,
+		pSlcListInThrd, iSlcBuffNumInThrd, iSlcBuffNumInThrd * 2);
+	ASSERT_TRUE(cmResultSuccess == iRet);
+	ASSERT_TRUE(NULL != pSlcListInThrd);
+	pCtx->pCurDqLayer->sSliceThreadInfo[iReallocateThrdIdx].pSliceInThread = pSlcListInThrd;
+	pCtx->pCurDqLayer->sSliceThreadInfo[iReallocateThrdIdx].iMaxSliceNum = iSlcBuffNumInThrd * 2;
+
+	//update reallocate slice idx/NalNum info
+	for (int32_t iSlcIdx = iCodedSlcNumInThrd; iSlcIdx < iSlcBuffNumInThrd * 2; iSlcIdx++) {
+		if (SM_SIZELIMITED_SLICE == eSlcMode) {
+			iSlcIdxInThrd = iPartitionIdx + pCtx->pCurDqLayer->NumSliceCodedOfPartition[iPartitionIdx] * iPartitionNum;
+			pCtx->pCurDqLayer->NumSliceCodedOfPartition[iPartitionIdx] ++;
+		} else {
+			iSlcIdxInThrd = pCtx->pCurDqLayer->sSliceEncCtx.iSliceNumInFrame;
+		}
+		ASSERT_TRUE(NULL != &pSlcListInThrd[iSlcIdx]);
+		pSlcListInThrd[iSlcIdx].iSliceIdx = iSlcIdxInThrd;
+		pSlcListInThrd[iSlcIdx].sSliceBs.iNalIndex = rand() % 2 + 1;
+		pSlcListInThrd[iSlcIdx].sSliceBs.uiBsPos = rand() % pSlcListInThrd[iSlcIdx].sSliceBs.uiSize + 1;
+		pCtx->pCurDqLayer->sSliceEncCtx.iSliceNumInFrame ++;
+		pCtx->pCurDqLayer->sSliceThreadInfo[iReallocateThrdIdx].iCodedSliceNum++;
+	}
+
+	//simulate for layer bs
+	int32_t iCurLayerIdx = rand() % MAX_LAYER_NUM_OF_FRAME;
+	memset(&FrameBsInfo, 0, sizeof(SFrameBSInfo));
+
+	pCtx->iPosBsBuffer = rand() % pCtx->iFrameBsSize + 1;
+	pLayerBsInfo = &FrameBsInfo.sLayerInfo[iCurLayerIdx];
+	pLayerBsInfo->pBsBuf = pCtx->pFrameBs + pCtx->iPosBsBuffer;
+	pCtx->bNeedPrefixNalFlag = rand() % 2;
+
+	iRet = SliceLayerInfoUpdate(pCtx, &FrameBsInfo, pLayerBsInfo,	eSlcMode);
+	ASSERT_TRUE(cmResultSuccess == iRet);
 
 	UnInitParamForTestCase(iLayerIdx);
 }
-
-	/*
-
-	int32_t InitSliceList (sWelsEncCtx* pCtx,
-                       SDqLayer* pDqLayer,
-                       SSlice*& pSliceList,
-                       const int32_t kiMaxSliceNum,
-                       const int32_t kiDlayerIndex,
-                       CMemoryAlign* pMa) {
-
-
-
-  //init slice idex in all thread slice buffer
-	for (int32_t iSlcIdx = 0; iSlcIdx < iCodedSliceNum; iSlcIdx++) {
-		iThrdIdx = rand() % pCtx->pSvcParam->iMultipleThreadIdc;
-		m_pEncoder->m_pEncContext->
-
-	}
-
-	/*
-	assert (iThreadNum > 0);
-	if( SM_SIZELIMITED_SLICE == eSlicMode && iThreadNum > 1) {
-	iMaxSliceNum = pDqLayer->iMaxSliceNum / iThreadNum + 1;
-	} else {
-	iMaxSliceNum = pDqLayer->iMaxSliceNum;
-  }
-
-
-		*/
-
+//todo: will enhance if need
 static const EncodeFileParam kFileParamArray[] = {
 	{ "res/CiscoVT2people_320x192_12fps.yuv", 320, 192, 12.0f },
-	//{ "res/CiscoVT2people_320x192_12fps.yuv", 320, 192, 12.0f },
-	//{ "res/CiscoVT2people_320x192_12fps.yuv", 320, 192, 12.0f },
-	//{ "res/CiscoVT2people_320x192_12fps.yuv", 320, 192, 12.0f },
 };
