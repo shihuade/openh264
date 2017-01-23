@@ -13,6 +13,9 @@ namespace WelsEnc {
 		                               SWelsSvcCodingParam* pParam,
 		                               int32_t* pCountLayers,
 		                               int32_t* pCountNals);
+	extern int32_t ExtendLayerBuffer(sWelsEncCtx* pCtx,
+		                               const int32_t kiMaxSliceNumOld,
+		                               const int32_t kiMaxSliceNumNew);
 }
 
 int32_t RandAvailableThread(sWelsEncCtx* pCtx, const int32_t kiMinBufferNum) {
@@ -551,6 +554,43 @@ TEST_F(CSliceBufferReallocatTest, ReallocateTest_02) {
 	UnInitParamForTestCase(iLayerIdx);
 }
 
+	TEST_F(CSliceBufferReallocatTest, ExtendLayerBufferTest) {
+	sWelsEncCtx* pCtx = &m_EncContext;
+	SSlice* pSlcListInThrd = NULL;
+	int32_t iLayerIdx = 0;
+	int32_t iRet = 0;
+	int32_t iMaxSliceNumNew = 0;
+	int32_t iSlcBuffNumInThrd = 0;
+
+	InitParamForSizeLimitSlcModeCase(iLayerIdx);
+	pCtx->pCurDqLayer = pCtx->ppDqLayerList[iLayerIdx];
+	iRet = InitAllSlicesInThread(pCtx);
+	ASSERT_TRUE(cmResultSuccess == iRet);
+
+	//before extend, simulate reallocate slice buffer in one thread
+	int32_t iReallocateThrdIdx = rand() % pCtx->iActiveThreadsNum;
+	iSlcBuffNumInThrd = pCtx->pCurDqLayer->sSliceThreadInfo[iReallocateThrdIdx].iMaxSliceNum;
+	pSlcListInThrd = pCtx->pCurDqLayer->sSliceThreadInfo[iReallocateThrdIdx].pSliceInThread;
+
+	iRet = ReallocateSliceList(pCtx, &pCtx->pSvcParam->sSpatialLayers[iLayerIdx].sSliceArgument,
+		                         pSlcListInThrd, iSlcBuffNumInThrd, iSlcBuffNumInThrd * 2);
+	ASSERT_TRUE(cmResultSuccess == iRet);
+	ASSERT_TRUE(NULL != pSlcListInThrd);
+	pCtx->pCurDqLayer->sSliceThreadInfo[iReallocateThrdIdx].pSliceInThread = pSlcListInThrd;
+	pCtx->pCurDqLayer->sSliceThreadInfo[iReallocateThrdIdx].iMaxSliceNum   = iSlcBuffNumInThrd * 2;
+
+	for (int32_t iThreadIdx = 0; iThreadIdx < pCtx->iActiveThreadsNum; iThreadIdx++) {
+		iMaxSliceNumNew += pCtx->pCurDqLayer->sSliceThreadInfo[iThreadIdx].iMaxSliceNum;
+	}
+
+	iRet = ExtendLayerBuffer(pCtx, pCtx->pCurDqLayer->iMaxSliceNum, iMaxSliceNumNew);
+	ASSERT_TRUE(cmResultSuccess == iRet);
+	ASSERT_TRUE(NULL != pCtx->pCurDqLayer->ppSliceInLayer);
+	ASSERT_TRUE(NULL != pCtx->pCurDqLayer->pFirstMbIdxOfSlice);
+	ASSERT_TRUE(NULL != pCtx->pCurDqLayer->pCountMbNumInSlice);
+
+	UnInitParamForTestCase(iLayerIdx);
+}
 
 TEST_F(CSliceBufferReallocatTest, FrameBsReallocateTest) {
 	sWelsEncCtx* pCtx = &m_EncContext;
@@ -581,7 +621,7 @@ TEST_F(CSliceBufferReallocatTest, FrameBsReallocateTest) {
 
 	UnInitParamForTestCase(iLayerIdx);
 }
-/*
+
 TEST_F(CSliceBufferReallocatTest, LayerInfoUpteTest) {
 	sWelsEncCtx* pCtx = &m_EncContext;
 	int32_t iLayerIdx = 0;
@@ -591,7 +631,7 @@ TEST_F(CSliceBufferReallocatTest, LayerInfoUpteTest) {
 	int32_t iCurLayerIdx = rand() % MAX_LAYER_NUM_OF_FRAME + 2;
 
 	InitParamForTestCase(iLayerIdx);
-
+	/*
 	//init for FrameBs and LayerBs
 	pCtx->iPosBsBuffer = rand() % pCtx->iFrameBsSize + 1;
 	pLayerBsInfo->pBsBuf = pCtx->pFrameBs + pCtx->iPosBsBuffer;
@@ -609,7 +649,7 @@ TEST_F(CSliceBufferReallocatTest, LayerInfoUpteTest) {
 	iRet = FrameBsRealloc(pCtx, &FrameBsInfo, pLayerBsInfo, iMaxSliceNumOld);
 	ASSERT_TRUE(cmResultSuccess == iRet);
 
-	/*
+
 	typedef struct {
 		int           iLayerNum;
 		SLayerBSInfo  sLayerInfo[MAX_LAYER_NUM_OF_FRAME];
@@ -632,16 +672,15 @@ TEST_F(CSliceBufferReallocatTest, LayerInfoUpteTest) {
 
 		return iTotalCodedNalCount;
 		}
-	*/
-/*
+
 	pCtx->pCurDqLayer = pCtx->ppDqLayerList[iLayerIdx];
 	iRet = InitAllSlicesInThread(pCtx);
 	ASSERT_TRUE(cmResultSuccess == iRet);
-
+	*/
 
 	UnInitParamForTestCase(iLayerIdx);
 }
-*/
+
 	/*
 
 	int32_t InitSliceList (sWelsEncCtx* pCtx,
