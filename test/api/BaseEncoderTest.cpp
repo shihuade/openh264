@@ -5,7 +5,7 @@
 #include "utils/FileInputStream.h"
 #include "BaseEncoderTest.h"
 
-static int InitWithParam (ISVCEncoder* encoder, SEncParamExt* pEncParamExt) {
+int InitWithParam (ISVCEncoder* encoder, SEncParamExt* pEncParamExt) {
 
   SliceModeEnum eSliceMode = pEncParamExt->sSpatialLayers[0].sSliceArgument.uiSliceMode;
   bool bBaseParamFlag      = (SM_SINGLE_SLICE == eSliceMode             && !pEncParamExt->bEnableDenoise
