@@ -892,8 +892,6 @@ int32_t InitSliceBsBuffer (SSlice* pSlice,
                            bool bIndependenceBsBuffer,
                            const int32_t iMaxSliceBufferSize,
                            CMemoryAlign* pMa) {
-  assert(iMaxSliceBufferSize > 0);
-
   pSlice->sSliceBs.uiSize  = iMaxSliceBufferSize;
   pSlice->sSliceBs.uiBsPos = 0;
 
@@ -944,6 +942,10 @@ int32_t InitSliceList (sWelsEncCtx* pCtx,
   //even though multi-thread is on for other layers
   bool bIndependenceBsBuffer   = (pCtx->pSvcParam->iMultipleThreadIdc > 1 &&
                                   SM_SINGLE_SLICE != pSliceArgument->uiSliceMode) ? true : false;
+  if (iMaxSliceBufferSize <= 0) {
+    return ENC_RETURN_UNEXPECTED;
+  }
+
   while (iSliceIdx < kiMaxSliceNum) {
     SSlice* pSlice = pSliceList + iSliceIdx;
     if (NULL == pSlice) {
