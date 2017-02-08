@@ -105,7 +105,7 @@ int32_t InitParamForSizeLimitSlcMode(sWelsEncCtx* pCtx, const int32_t iLayerIdx)
     int32_t iMaxSliceNumEstimation = WELS_MIN(AVERSLICENUM_CONSTRAINT,
                                      (iLayerBsSize / pSliceArgument->uiSliceSizeConstraint) + 1);
     pCtx->iMaxSliceCount = WELS_MAX(pCtx->iMaxSliceCount, iMaxSliceNumEstimation);
-    iSliceBufferSize = (WELS_MAX(pSliceArgument->uiSliceSizeConstraint,
+    iSliceBufferSize = (WELS_MAX((int32_t)pSliceArgument->uiSliceSizeConstraint,
                                  iLayerBsSize / iMaxSliceNumEstimation) << 1) + MAX_MACROBLOCK_SIZE_IN_BYTE_x2;
     pCtx->iSliceBufferSize[iLayerIdx] = iSliceBufferSize;
 
@@ -134,7 +134,7 @@ void InitParamForRasterSlcMode(sWelsEncCtx* pCtx, const int32_t iLayerIdx) {
 
     if (0 != pSliceArgument->uiSliceMbNum[0]) {
         iSliceMBNum = iMbNumInFrame / pSliceArgument->uiSliceNum;
-        for (int32_t iSlcIdx = 0; iSlcIdx < pSliceArgument->uiSliceNum - 1; iSlcIdx++) {
+        for (int32_t iSlcIdx = 0; iSlcIdx < (int32_t)pSliceArgument->uiSliceNum - 1; iSlcIdx++) {
             pSliceArgument->uiSliceMbNum[iSlcIdx] = iSliceMBNum;
         }
         iSliceMBNum = iMbNumInFrame / pSliceArgument->uiSliceNum;
