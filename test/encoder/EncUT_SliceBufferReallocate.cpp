@@ -571,7 +571,7 @@ TEST_F(CSliceBufferReallocatTest, ReorderTest) {
 	UnInitParamForTestCase(iLayerIdx);
 }
 
-TEST_F(CSliceBufferReallocatTest, LayerInfoUpteTest) {
+TEST_F(CSliceBufferReallocatTest, LayerInfoUpdateTest) {
 	sWelsEncCtx* pCtx = &m_EncContext;
 	int32_t iLayerIdx = 0;
 	int32_t iRet = 0;
