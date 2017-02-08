@@ -5,8 +5,6 @@
 #include "codec_app_def.h"
 #include "utils/InputStream.h"
 
-int InitWithParam(ISVCEncoder* encoder, SEncParamExt* pEncParamExt);
-
 class BaseEncoderTest {
  public:
   struct Callback {
