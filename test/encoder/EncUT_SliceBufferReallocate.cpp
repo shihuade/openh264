@@ -93,7 +93,7 @@ void SetPartitonMBNum(SDqLayer* pCurDqLayer, SSpatialLayerConfig* pLayerCfg, int
 	}
 }
 
-int32_t IntParamForSizeLimitSlcMode(sWelsEncCtx* pCtx, const int32_t iLayerIdx) {
+int32_t InitParamForSizeLimitSlcMode(sWelsEncCtx* pCtx, const int32_t iLayerIdx) {
 	SSpatialLayerConfig* pLayerCfg = &pCtx->pSvcParam->sSpatialLayers[iLayerIdx];
 	SSliceArgument* pSliceArgument = &pLayerCfg->sSliceArgument;
 	int32_t iSliceBufferSize = 0;
@@ -118,7 +118,7 @@ int32_t IntParamForSizeLimitSlcMode(sWelsEncCtx* pCtx, const int32_t iLayerIdx) 
 	return ENC_RETURN_SUCCESS;
 }
 
-void IntParamForRasterSlcMode(sWelsEncCtx* pCtx, const int32_t iLayerIdx) {
+void InitParamForRasterSlcMode(sWelsEncCtx* pCtx, const int32_t iLayerIdx) {
 	SSpatialLayerConfig* pLayerCfg = &pCtx->pSvcParam->sSpatialLayers[iLayerIdx];
 	SSliceArgument* pSliceArgument = &pLayerCfg->sSliceArgument;
 	int32_t iMBWidth = (pLayerCfg->iVideoWidth + 15) >> 4;
@@ -161,37 +161,6 @@ void ParamSetForReallocateTest(sWelsEncCtx* pCtx, int32_t iLayerIdx,
 
 }
 
-void CSliceBufferReallocatTest::EncodeStream(InputStream* in, SEncParamExt* pEncParamExt) {
-	ASSERT_TRUE(NULL != pEncParamExt);
-	int frameSize = pEncParamExt->iPicWidth * pEncParamExt->iPicHeight * 3 / 2;
-
-	BufferedData buf;
-	buf.SetLength(frameSize);
-	ASSERT_TRUE(buf.Length() == (size_t)frameSize);
-
-	SFrameBSInfo info;
-	memset(&info, 0, sizeof(SFrameBSInfo));
-
-	SSourcePicture pic;
-	memset(&pic, 0, sizeof(SSourcePicture));
-	pic.iPicWidth = pEncParamExt->iPicWidth;
-	pic.iPicHeight = pEncParamExt->iPicHeight;
-	pic.iColorFormat = videoFormatI420;
-	pic.iStride[0] = pic.iPicWidth;
-	pic.iStride[1] = pic.iStride[2] = pic.iPicWidth >> 1;
-	pic.pData[0] = buf.data();
-	pic.pData[1] = pic.pData[0] + pEncParamExt->iPicWidth * pEncParamExt->iPicHeight;
-	pic.pData[2] = pic.pData[1] + (pEncParamExt->iPicWidth * pEncParamExt->iPicHeight >> 2);
-
-	int iRet = InitWithParam(m_pEncoder, pEncParamExt);
-	ASSERT_TRUE(iRet == cmResultSuccess);
-
-	while (in->read(buf.data(), frameSize) == frameSize) {
-		int32_t iRet = m_pEncoder->EncodeFrame(&pic, &info);
-		ASSERT_TRUE(iRet == cmResultSuccess);
-	}
-}
-
 void CSliceBufferReallocatTest::InitParamForTestCase(int32_t iLayerIdx) {
 	InitParam();
 	InitLayerSliceBuffer(iLayerIdx);
@@ -212,7 +181,7 @@ void CSliceBufferReallocatTest::InitParamForSizeLimitSlcModeCase(int32_t iLayerI
 	if (SM_SIZELIMITED_SLICE != pSliceArgument->uiSliceMode && NULL != m_EncContext.ppDqLayerList[iLayerIdx]) {
 		UnInitLayerSliceBuffer(iLayerIdx);
 		pSliceArgument->uiSliceMode = SM_SIZELIMITED_SLICE;
-		iRet = IntParamForSizeLimitSlcMode(&m_EncContext, iLayerIdx);
+		iRet = InitParamForSizeLimitSlcMode(&m_EncContext, iLayerIdx);
 		ASSERT_TRUE(ENC_RETURN_SUCCESS == iRet);
 		ASSERT_TRUE(NULL != m_EncContext.ppDqLayerList[iLayerIdx]);
 	}
@@ -360,10 +329,10 @@ void CSliceBufferReallocatTest::InitLayerSliceBuffer(const int32_t iLayerIdx) {
 	pSliceArgument->uiSliceNum = rand() % MAX_SLICES_NUM + 1;
 
 	if (pSliceArgument->uiSliceMode == SM_SIZELIMITED_SLICE) {
-		iRet = IntParamForSizeLimitSlcMode(pCtx, iLayerIdx);
+		iRet = InitParamForSizeLimitSlcMode(pCtx, iLayerIdx);
 	} else {
 		if (pSliceArgument->uiSliceMode == SM_RASTER_SLICE) {
-			IntParamForRasterSlcMode(pCtx, iLayerIdx);
+			InitParamForRasterSlcMode(pCtx, iLayerIdx);
 		}
 
 		iLayerBsSize = WELS_ROUND(((3 * pLayerCfg->iVideoWidth * pLayerCfg->iVideoHeight) >> 1) * COMPRESS_RATIO_THR)
@@ -389,25 +358,6 @@ void CSliceBufferReallocatTest::UnInitLayerSliceBuffer(const int32_t iLayerIdx) 
 		pCtx->ppDqLayerList[iLayerIdx] = NULL;
 	}
 }
-/*
-TEST_F(CSliceBufferReallocatTest, ReallocateTest) {
-	sWelsEncCtx* pCtx = &m_EncContext;
-	EncodeFileParam pEncFileParam; // = GetParam();
-	pEncFileParam.pkcFileName = "res/CiscoVT2people_320x192_12fps.yuv";
-	pEncFileParam.iWidth      = 320;
-	pEncFileParam.iHeight     = 192;
-	pEncFileParam.fFrameRate  = 12.0;
-	FileInputStream fileStream;
-	ASSERT_TRUE(fileStream.Open(pEncFileParam.pkcFileName));
-	m_EncContext.pSvcParam->iUsageType    = CAMERA_VIDEO_REAL_TIME;
-	m_EncContext.pSvcParam->iPicHeight    = pEncFileParam.iHeight;
-	m_EncContext.pSvcParam->iPicWidth     = pEncFileParam.iWidth;
-	m_EncContext.pSvcParam->fMaxFrameRate = pEncFileParam.fFrameRate;
-	EncodeStream(&fileStream, m_EncContext.pSvcParam);
-
-	FreeMemorySvc(&pCtx);
-}
-*/
 
 void CSliceBufferReallocatTest::SimulateEncodedOneSlice(const int32_t kiSlcIdx, const int32_t kiThreadIdx) {
 	int32_t iCodedSlcNumInThrd = m_EncContext.pCurDqLayer->sSliceThreadInfo[kiThreadIdx].iCodedSliceNum;
@@ -420,8 +370,8 @@ void CSliceBufferReallocatTest::SimulateEncodedOneSlice(const int32_t kiSlcIdx, 
 }
 
 void CSliceBufferReallocatTest::SimulateSliceInOnePartition(const int32_t kiPartNum,
-	                                                          const int32_t kiPartIdx,
-																														const int32_t kiSlcNumInPart) {
+                                                            const int32_t kiPartIdx,
+															const int32_t kiSlcNumInPart) {
 	int32_t iSlcIdxInPart = 0;
 
 	//slice within same partition will encoded by same thread in current design
