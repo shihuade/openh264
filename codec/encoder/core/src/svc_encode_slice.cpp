@@ -1426,12 +1426,12 @@ int32_t WelsCodeOneSlice (sWelsEncCtx* pEncCtx, const int32_t kiSliceIdx, const 
     pCurSlice->sScaleShift = kuiTemporalId ? (kuiTemporalId - pEncCtx->pRefPic->uiTemporalId) : 0;
   }
 
-  WelsSliceHeaderExtInit (pEncCtx, pCurLayer, pCurSlice);
-
   //GomRC init slice by slice
   if (pWelsSvcRc->bGomRC) {
     GomRCInitForOneSlice(pCurSlice, pWelsSvcRc->iBitsPerMb);
   }
+
+  WelsSliceHeaderExtInit (pEncCtx, pCurLayer, pCurSlice);
 
   g_pWelsWriteSliceHeader[pCurSlice->bSliceHeaderExtFlag] (pEncCtx, pBs, pCurLayer, pCurSlice,
       pEncCtx->pFuncList->pParametersetStrategy);
