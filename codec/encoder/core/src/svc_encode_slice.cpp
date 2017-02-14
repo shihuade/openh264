@@ -1408,12 +1408,13 @@ int32_t SliceLayerInfoUpdate (sWelsEncCtx* pCtx, const int32_t kiDlayerIndex) {
 */
 
 int32_t WelsCodeOneSlice (sWelsEncCtx* pEncCtx, const int32_t kiSliceIdx, const int32_t kiNalType) {
-  SDqLayer* pCurLayer                   = pEncCtx->pCurDqLayer;
-  SNalUnitHeaderExt* pNalHeadExt        = &pCurLayer->sLayerInfo.sNalHeaderExt;
-  SSlice* pCurSlice                     = pCurLayer->ppSliceInLayer[kiSliceIdx];
-  SBitStringAux* pBs                    = pCurSlice->pSliceBsa;
-  const int32_t kiDynamicSliceFlag      = (pEncCtx->pSvcParam->sSpatialLayers[pEncCtx->uiDependencyId].sSliceArgument.uiSliceMode
-                                          == SM_SIZELIMITED_SLICE);
+  SDqLayer* pCurLayer              = pEncCtx->pCurDqLayer;
+  SWelsSvcRc* pWelsSvcRc           = &pEncCtx->pWelsSvcRc[pEncCtx->uiDependencyId];
+  SNalUnitHeaderExt* pNalHeadExt   = &pCurLayer->sLayerInfo.sNalHeaderExt;
+  SSlice* pCurSlice                = pCurLayer->ppSliceInLayer[kiSliceIdx];
+  SBitStringAux* pBs               = pCurSlice->pSliceBsa;
+  const int32_t kiDynamicSliceFlag = (pEncCtx->pSvcParam->sSpatialLayers[pEncCtx->uiDependencyId].sSliceArgument.uiSliceMode
+                                     == SM_SIZELIMITED_SLICE);
 
   assert (kiSliceIdx == (int) pCurSlice->uiSliceIdx);
 
@@ -1427,8 +1428,10 @@ int32_t WelsCodeOneSlice (sWelsEncCtx* pEncCtx, const int32_t kiSliceIdx, const 
 
   WelsSliceHeaderExtInit (pEncCtx, pCurLayer, pCurSlice);
 
-  //init slice RC information
-  RCInitOneSliceInformation(pEncCtx, pCurSlice);
+  //RomRC init slice by slice
+  if (pWelsSvcRc->bGomRC) {
+    GomRCInitForOneSlice(pCurSlice, pWelsSvcRc->iBitsPerMb);
+  }
 
   g_pWelsWriteSliceHeader[pCurSlice->bSliceHeaderExtFlag] (pEncCtx, pBs, pCurLayer, pCurSlice,
       pEncCtx->pFuncList->pParametersetStrategy);
