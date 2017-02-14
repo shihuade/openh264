@@ -1608,7 +1608,7 @@ int32_t WelsCodeOneSlice (sWelsEncCtx* pEncCtx, SSlice* pCurSlice, const int32_t
 
   WelsSliceHeaderExtInit (pEncCtx, pCurLayer, pCurSlice);
 
-  //RomRC init slice by slice
+  //GomRC init slice by slice
   if (pWelsSvcRc->bGomRC) {
     GomRCInitForOneSlice(pCurSlice, pWelsSvcRc->iBitsPerMb);
   }
