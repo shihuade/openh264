@@ -996,11 +996,14 @@ int32_t InitOneSliceInThread (sWelsEncCtx* pCtx,
                               const int32_t kiThreadIdx,
                               const int32_t kiDlayerIdx,
                               const int32_t kiSliceIdx) {
-  const int32_t kiCodedNumInThread = pCtx->pCurDqLayer->sSliceThreadInfo[kiThreadIdx].iCodedSliceNum;
 
-  assert(kiCodedNumInThread <= pCtx->pCurDqLayer->sSliceThreadInfo[kiThreadIdx].iMaxSliceNum -1 );
-
-  pSlice = &pCtx->pCurDqLayer->sSliceThreadInfo [kiThreadIdx].pSliceInThread[kiCodedNumInThread];
+  if (pCtx->pCurDqLayer->bThreadSlcBufferFlag) {
+      const int32_t kiCodedNumInThread = pCtx->pCurDqLayer->sSliceThreadInfo[kiThreadIdx].iCodedSliceNum;
+      assert(kiCodedNumInThread <= pCtx->pCurDqLayer->sSliceThreadInfo[kiThreadIdx].iMaxSliceNum -1 );
+      pSlice = &pCtx->pCurDqLayer->sSliceThreadInfo [kiThreadIdx].pSliceInThread[kiCodedNumInThread];
+  } else {
+      pSlice = &pCtx->pCurDqLayer->sSliceThreadInfo [0].pSliceInThread[kiSliceIdx];
+  }
   pSlice->iSliceIdx   = kiSliceIdx;
   pSlice->uiThreadIdx = kiThreadIdx;
 
@@ -1030,7 +1033,7 @@ int32_t InitSliceThreadInfo (sWelsEncCtx* pCtx,
     iSlcBufferNum = iThreadNum;
   } else {
     iMaxSliceNum  = pDqLayer->iMaxSliceNum;
-    iSlcBufferNum = iThreadNum;
+    iSlcBufferNum = 1;
   }
 
   while (iIdx < iSlcBufferNum) {
