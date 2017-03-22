@@ -1042,7 +1042,7 @@ int32_t InitSliceThreadInfo (sWelsEncCtx* pCtx,
                           &pCtx->pOut->sBsWrite,
                           iMaxSliceNum,
                           pCtx->iSliceBufferSize[kiDlayerIndex],
-                          pDqLayer->bThreadSlcBufferFlag,
+                          pDqLayer->bSliceBsBufferFlag,
                           pMa);
     if (ENC_RETURN_SUCCESS != iRet) {
       return iRet;
