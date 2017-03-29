@@ -1678,7 +1678,7 @@ void UpdateMbNeighbourInfoForNextSlice (SDqLayer* pCurDq,
 void AddSliceBoundary (sWelsEncCtx* pEncCtx, SSlice* pCurSlice, SSliceCtx* pSliceCtx, SMB* pCurMb,
                        int32_t iFirstMbIdxOfNextSlice, const int32_t kiLastMbIdxInPartition) {
   SDqLayer*     pCurLayer       = pEncCtx->pCurDqLayer;
-  SSlice*       pSliceInThread  = pCurLayer->sSliceThreadInfo[pCurSlice->uiThreadIdx].pSliceInThread;
+  SSlice*       pSliceBuffer    = pCurLayer->sSliceThreadInfo[pCurSlice->uiThreadIdx].pSliceBuffer;
   int32_t       iCodedSliceNum  = pCurLayer->sSliceThreadInfo[pCurSlice->uiThreadIdx].iCodedSliceNum;
   int32_t       iCurMbIdx       = pCurMb->iMbXY;
   uint16_t      iCurSliceIdc    = pSliceCtx->pOverallMbMap[ iCurMbIdx ];
@@ -1693,9 +1693,9 @@ void AddSliceBoundary (sWelsEncCtx* pEncCtx, SSlice* pCurSlice, SSliceCtx* pSlic
 
   //pNextSlice pointer/initialization
   if(pEncCtx->iActiveThreadsNum > 1) {
-    pNextSlice = &pSliceInThread[ iCodedSliceNum + 1 ];
+    pNextSlice = &pSliceBuffer[ iCodedSliceNum + 1 ];
   } else {
-    pNextSlice = &pSliceInThread[ iNextSliceIdc ];
+    pNextSlice = &pSliceBuffer[ iNextSliceIdc ];
   }
 
 #if _DEBUG
