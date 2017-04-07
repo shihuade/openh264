@@ -213,7 +213,7 @@ void CSliceBufferReallocatTest::InitParam() {
 
     pCtx->pSvcParam->iPicHeight = (((rand() % MAX_WIDTH ) >> 4 ) << 4) + 16;
     pCtx->pSvcParam->iPicWidth  = (((rand() % MAX_HEIGH ) >> 4) << 4) + 16;
-    pCtx->iGlobalQp = WelsClip3( rand() % 35, 26, 35);
+    pCtx->iGlobalQp = WelsClip3( rand() % 35, 12, 42);
     pCtx->pSvcParam->iRCMode = RC_OFF_MODE;
     pCtx->pSvcParam->iTargetBitrate = WelsClip3(rand() % MAX_BIT_RATE, MIN_BIT_RATE, MAX_BIT_RATE);
     int32_t iParamStraIdx = rand() % 5;
@@ -419,7 +419,7 @@ void CSliceBufferReallocatTest::SimulateSliceInOneLayer() {
     }
 }
 
-TEST_F(CSliceBufferReallocatTest, ReallocateTest_01) {
+TEST_F(CSliceBufferReallocatTest, Reallocate_in_one_partition) {
     sWelsEncCtx* pCtx = &m_EncContext;
     int32_t iLayerIdx = 0;
     int32_t iRet      = 0;
@@ -430,9 +430,14 @@ TEST_F(CSliceBufferReallocatTest, ReallocateTest_01) {
     iRet = InitAllSlicesInThread(pCtx);
     ASSERT_TRUE(cmResultSuccess == iRet);
 
-    //case: reallocate during encoder one partition
+    //case: reallocate during encoding one partition
+    //      include cases which part num less than thread num
+    //example: 3 threads but 2 partitions
+    //          thrd_0: partition_0
+    //          thrd_1: partition_1
+    //          thrd_2: idle
     int32_t iThreadIndex  = rand() % pCtx->iActiveThreadsNum;
-    int32_t iPartitionNum = rand() % pCtx->iActiveThreadsNum + 1; //include cases which part num less than thread num
+    int32_t iPartitionNum = rand() % pCtx->iActiveThreadsNum + 1;
     int32_t iSlcBufferNum = pCtx->pCurDqLayer->sSliceThreadInfo[iThreadIndex].iMaxSliceNum;
 
     ParamSetForReallocateTest(pCtx, iLayerIdx, iThreadIndex, iPartitionNum);
@@ -444,7 +449,7 @@ TEST_F(CSliceBufferReallocatTest, ReallocateTest_01) {
     UnInitParamForTestCase(iLayerIdx);
 }
 
-TEST_F(CSliceBufferReallocatTest, ReallocateTest_02) {
+TEST_F(CSliceBufferReallocatTest, Reallocate_in_one_thread) {
     sWelsEncCtx* pCtx = &m_EncContext;
     int32_t iLayerIdx = 0;
     int32_t iRet = 0;
@@ -455,8 +460,12 @@ TEST_F(CSliceBufferReallocatTest, ReallocateTest_02) {
     iRet = InitAllSlicesInThread(pCtx);
     ASSERT_TRUE(cmResultSuccess == iRet);
 
-    //case: all partitions encoder by one thread
-    int32_t iThreadIndex =  rand() % pCtx->iActiveThreadsNum;
+    //case: all partitions encoded by one thread
+    //example: 3 threads 3 partions
+    //         thrd_0:  partion_0 -->partition_1 -->partition_2
+    //         thrd_1:  idle
+    //         thrd_2:  idle
+    int32_t iThreadIndex  =  rand() % pCtx->iActiveThreadsNum;
     int32_t iPartitionNum = pCtx->iActiveThreadsNum;
     int32_t iSlcBufferNum = 0;
 
