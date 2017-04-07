@@ -319,9 +319,13 @@ void CSliceBufferReallocatTest::InitLayerSliceBuffer(const int32_t iLayerIdx) {
     int32_t iLayerBsSize = 0;
     int32_t iSliceBufferSize = 0;
     int32_t iRet = 0;
+    int32_t iMaxFrameRate = 0.0;
 
-    pLayerCfg->iVideoWidth = pCtx->pSvcParam->iPicWidth >> (pCtx->pSvcParam->iSpatialLayerNum -1 - iLayerIdx);
+    pLayerCfg->iVideoWidth  = pCtx->pSvcParam->iPicWidth >> (pCtx->pSvcParam->iSpatialLayerNum -1 - iLayerIdx);
     pLayerCfg->iVideoHeight = pCtx->pSvcParam->iPicHeight >> (pCtx->pSvcParam->iSpatialLayerNum - 1 - iLayerIdx);
+    iMaxFrameRate           = MAX_SAMPLES_PER_SECOND / (pLayerCfg->iVideoWidth * pLayerCfg->iVideoHeight);
+    pLayerCfg->fFrameRate   = (float) (rand() % iMaxFrameRate);
+    pLayerCfg->fFrameRate   =  (pLayerCfg->fFrameRate < MIN_FRAME_RATE) ? MIN_FRAME_RATE : pLayerCfg->fFrameRate;
     pLayerCfg->iSpatialBitrate = pCtx->pSvcParam->iTargetBitrate / pCtx->pSvcParam->iSpatialLayerNum;
 
     //Slice argument
