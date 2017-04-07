@@ -2,8 +2,10 @@
 #include "utils/FileInputStream.h"
 #include "svc_encode_slice.h"
 
-#define MAX_WIDTH  (4096)
-#define MAX_HEIGH  (2304)
+//level 5.2, table A-6, Max frame rates setting
+#define MAX_WIDTH               (4096)
+#define MAX_HEIGH               (2304)
+#define MAX_SAMPLES_PER_SECOND  (530841600)
 
 class CSliceBufferReallocatTest : public ::testing::Test { //WithParamInterface<EncodeFileParam>{
 public:
