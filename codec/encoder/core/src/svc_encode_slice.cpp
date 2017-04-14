@@ -1317,6 +1317,16 @@ int32_t ReallocateSliceInThread (sWelsEncCtx* pCtx,
     return iRet;
   }
 
+  printf("POC %d, CodeIdx %d, BuffIdx %d, MaxSlcNum %d, MaxSlcNumNew %d, SlcIdx %d, PartID %d\n",
+        pCtx->pSvcParam->sDependencyLayers[0].iPOC,
+        pCtx->pSvcParam->sDependencyLayers[0].iCodingIndex,
+        KiSlcBuffIdx,
+        iMaxSliceNum,
+        iMaxSliceNumNew,
+        pLastCodedSlice->iSliceIdx,
+        pLastCodedSlice->iSliceIdx % pCtx->iActiveThreadsNum);
+
+
   iRet = ReallocateSliceList (pCtx,
                               pSliceArgument,
                               pDqLayer->sSliceBufferInfo[KiSlcBuffIdx].pSliceBuffer,
