@@ -35,10 +35,14 @@ runInputParamCheck()
 #usage: runUnitTest
 runUnitTest()
 {
-  CFLAGS=-Werror make -B ENABLE64BIT=Yes BUILDTYPE=Release all plugin test
+  CFLAGS=-Werror make -B ENABLE64BIT=Yes BUILDTYPE=Release all plugin test 
+  ./codec_unittest --gtest_filter=*EncoderInterfaceTest.NalSizeChecking* --seed=1490760177
   CFLAGS=-Werror make -B ENABLE64BIT=Yes BUILDTYPE=Debug   all plugin test
+  ./codec_unittest --gtest_filter=*EncoderInterfaceTest.NalSizeChecking* --seed=1490760177
   CFLAGS=-Werror make -B ENABLE64BIT=No  BUILDTYPE=Release all plugin test
+  ./codec_unittest --gtest_filter=*EncoderInterfaceTest.NalSizeChecking* --seed=1490760177
   CFLAGS=-Werror make -B ENABLE64BIT=No  BUILDTYPE=Debug   all plugin test
+  ./codec_unittest --gtest_filter=*EncoderInterfaceTest.NalSizeChecking* --seed=1490760177
   return $?
 }
 #usage: runPrepareAndBinaryTest $TestBitStream
@@ -84,7 +88,8 @@ runMain()
   if [  "${TestType}"  = "BinaryCompare" ]
   then
     set -e
-    runPrepareAndBinaryTest ${TestBitStream} TravisTest
+	echo "skip binanry test, only ut failed case reproduce"
+    #runPrepareAndBinaryTest ${TestBitStream} TravisTest
     return $?
   fi
 }
