@@ -231,6 +231,7 @@ int CWelsH264SVCEncoder::InitializeExt (const SEncParamExt* argv) {
     return cmInitParaError;
   }
 
+    printf("InitializeExt::InitializeInternal \n");
   return InitializeInternal (&sConfig);
 }
 
@@ -240,6 +241,7 @@ int CWelsH264SVCEncoder::InitializeInternal (SWelsSvcCodingParam* pCfg) {
              pCfg);
     return cmInitParaError;
   }
+    printf("InitializeInternal:: 01\n");
 
   if (m_bInitialFlag) {
     WelsLog (&m_pWelsTrace->m_sLogCtx, WELS_LOG_WARNING,
@@ -247,6 +249,8 @@ int CWelsH264SVCEncoder::InitializeInternal (SWelsSvcCodingParam* pCfg) {
              m_bInitialFlag);
     Uninitialize();
   }
+    printf("InitializeInternal:: 02\n");
+
   // Check valid parameters
   const int32_t iNumOfLayers = pCfg->iSpatialLayerNum;
   if (iNumOfLayers < 1 || iNumOfLayers > MAX_DEPENDENCY_LAYER) {
@@ -256,6 +260,9 @@ int CWelsH264SVCEncoder::InitializeInternal (SWelsSvcCodingParam* pCfg) {
     Uninitialize();
     return cmInitParaError;
   }
+    printf("InitializeInternal:: 03\n");
+
+    
   if (pCfg->iTemporalLayerNum < 1)
     pCfg->iTemporalLayerNum = 1;
   if (pCfg->iTemporalLayerNum > MAX_TEMPORAL_LEVEL) {
@@ -267,6 +274,7 @@ int CWelsH264SVCEncoder::InitializeInternal (SWelsSvcCodingParam* pCfg) {
   }
 
   // assert( cfg.uiGopSize >= 1 && ( cfg.uiIntraPeriod && (cfg.uiIntraPeriod % cfg.uiGopSize) == 0) );
+    printf("InitializeInternal:: 04\n");
 
   if (pCfg->uiGopSize < 1 || pCfg->uiGopSize > MAX_GOP_SIZE) {
     WelsLog (&m_pWelsTrace->m_sLogCtx, WELS_LOG_ERROR,
@@ -276,6 +284,8 @@ int CWelsH264SVCEncoder::InitializeInternal (SWelsSvcCodingParam* pCfg) {
     return cmInitParaError;
   }
 
+    printf("InitializeInternal:: 05\n");
+
   if (!WELS_POWER2_IF (pCfg->uiGopSize)) {
     WelsLog (&m_pWelsTrace->m_sLogCtx, WELS_LOG_ERROR,
              "CWelsH264SVCEncoder::Initialize(), invalid uiGopSize= %d, valid at range of [1, %d] and yield to power of 2.",
@@ -283,6 +293,8 @@ int CWelsH264SVCEncoder::InitializeInternal (SWelsSvcCodingParam* pCfg) {
     Uninitialize();
     return cmInitParaError;
   }
+    printf("InitializeInternal:: 06\n");
+
 
   if (pCfg->uiIntraPeriod && pCfg->uiIntraPeriod < pCfg->uiGopSize) {
     WelsLog (&m_pWelsTrace->m_sLogCtx, WELS_LOG_ERROR,
@@ -291,6 +303,9 @@ int CWelsH264SVCEncoder::InitializeInternal (SWelsSvcCodingParam* pCfg) {
     Uninitialize();
     return cmInitParaError;
   }
+    
+    printf("InitializeInternal:: 07\n");
+
 
   if ((pCfg->uiIntraPeriod && (pCfg->uiIntraPeriod & (pCfg->uiGopSize - 1)) != 0)) {
     WelsLog (&m_pWelsTrace->m_sLogCtx, WELS_LOG_ERROR,
@@ -299,6 +314,9 @@ int CWelsH264SVCEncoder::InitializeInternal (SWelsSvcCodingParam* pCfg) {
     Uninitialize();
     return cmInitParaError;
   }
+
+    printf("InitializeInternal:: 08\n");
+
   if (pCfg->iUsageType == SCREEN_CONTENT_REAL_TIME) {
     if (pCfg->bEnableLongTermReference) {
       pCfg->iLTRRefNum = LONG_TERM_REF_NUM_SCREEN;
@@ -322,6 +340,8 @@ int CWelsH264SVCEncoder::InitializeInternal (SWelsSvcCodingParam* pCfg) {
     pCfg->iLtrMarkPeriod = 30;
   }
 
+    printf("InitializeInternal:: 09\n");
+
   const int32_t kiDecStages = WELS_LOG2 (pCfg->uiGopSize);
   pCfg->iTemporalLayerNum        = (int8_t) (1 + kiDecStages);
   pCfg->iLoopFilterAlphaC0Offset = WELS_CLIP3 (pCfg->iLoopFilterAlphaC0Offset, -6, 6);
@@ -330,8 +350,12 @@ int CWelsH264SVCEncoder::InitializeInternal (SWelsSvcCodingParam* pCfg) {
   // decide property list size between INIT_TYPE_PARAMETER_BASED/INIT_TYPE_CONFIG_BASED
   m_iMaxPicWidth  = pCfg->iPicWidth;
   m_iMaxPicHeight = pCfg->iPicHeight;
+    
+  printf("InitializeInternal:: TraceParamInfo\n");
 
   TraceParamInfo (pCfg);
+    printf("InitializeInternal:: WelsInitEncoderExt\n");
+
   if (WelsInitEncoderExt (&m_pEncContext, pCfg, &m_pWelsTrace->m_sLogCtx, NULL)) {
     WelsLog (&m_pWelsTrace->m_sLogCtx, WELS_LOG_ERROR, "CWelsH264SVCEncoder::Initialize(), WelsInitEncoderExt failed.");
     WelsLog (&m_pWelsTrace->m_sLogCtx, WELS_LOG_DEBUG,

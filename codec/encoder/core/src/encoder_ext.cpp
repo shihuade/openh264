@@ -1542,6 +1542,8 @@ int32_t RequestMemorySvc (sWelsEncCtx** ppCtx, SExistingParasetList* pExistingPa
   iMaxPicWidth  = pFinalSpatial->iVideoWidth;
   iMaxPicHeight = pFinalSpatial->iVideoHeight;
   iCountMaxMbNum = ((15 + iMaxPicWidth) >> 4) * ((15 + iMaxPicHeight) >> 4);
+   
+    printf(" RequestMemorySvc:: 01 AcquireLayersNals\n");
 
   iResult = AcquireLayersNals (ppCtx, pParam, &iCountLayers, &iCountNals);
   if (iResult) {
@@ -1595,6 +1597,8 @@ int32_t RequestMemorySvc (sWelsEncCtx** ppCtx, SExistingParasetList* pExistingPa
   pParam->iNumRefFrame = WELS_CLIP3 (pParam->iNumRefFrame, MIN_REF_PIC_COUNT,
                                      (pParam->iUsageType == CAMERA_VIDEO_REAL_TIME ? MAX_REFERENCE_PICTURE_COUNT_NUM_CAMERA :
                                       MAX_REFERENCE_PICTURE_COUNT_NUM_SCREEN));
+
+    printf(" RequestMemorySvc:: 02\n");
 
   // Output
   (*ppCtx)->pOut = (SWelsEncoderOutput*)pMa->WelsMallocz (sizeof (SWelsEncoderOutput), "SWelsEncoderOutput");
@@ -1731,11 +1735,15 @@ int32_t RequestMemorySvc (sWelsEncCtx** ppCtx, SExistingParasetList* pExistingPa
   (*ppCtx)->ppDqLayerList = (SDqLayer**)pMa->WelsMallocz (kiNumDependencyLayers * sizeof (SDqLayer*), "ppDqLayerList");
   WELS_VERIFY_RETURN_IF (1, (NULL == (*ppCtx)->ppDqLayerList))
 
+    printf(" RequestMemorySvc:: 03 InitDqLayers\n");
+
   iResult = InitDqLayers (ppCtx, pExistingParasetList);
   if (iResult) {
     WelsLog (& (*ppCtx)->sLogCtx, WELS_LOG_WARNING, "RequestMemorySvc(), InitDqLayers failed(%d)!", iResult);
     return iResult;
   }
+
+    printf(" RequestMemorySvc:: 04\n");
 
   if (InitMbListD (ppCtx)) {
     WelsLog (& (*ppCtx)->sLogCtx, WELS_LOG_WARNING, "RequestMemorySvc(), InitMbListD failed!");
@@ -2269,12 +2277,14 @@ int32_t WelsInitEncoderExt (sWelsEncCtx** ppCtx, SWelsSvcCodingParam* pCodingPar
              (void*)ppCtx, (void*)pCodingParam);
     return 1;
   }
+    printf("WelsInitEncoderExt::ParamValidationExt \n");
 
   iRet = ParamValidationExt (pLogCtx, pCodingParam);
   if (iRet != 0) {
     WelsLog (pLogCtx, WELS_LOG_ERROR, "WelsInitEncoderExt(), ParamValidationExt failed return %d.", iRet);
     return iRet;
   }
+    printf("WelsInitEncoderExt::02 \n");
   iRet = pCodingParam->DetermineTemporalSettings();
   if (iRet != ENC_RETURN_SUCCESS) {
     WelsLog (pLogCtx, WELS_LOG_ERROR,
@@ -2282,6 +2292,9 @@ int32_t WelsInitEncoderExt (sWelsEncCtx** ppCtx, SWelsSvcCodingParam* pCodingPar
              iRet);
     return iRet;
   }
+    
+    printf("WelsInitEncoderExt::03 \n");
+
   iRet = GetMultipleThreadIdc (pLogCtx, pCodingParam, iSliceNum, iCacheLineSize, uiCpuFeatureFlags);
   if (iRet != 0) {
     WelsLog (pLogCtx, WELS_LOG_ERROR, "WelsInitEncoderExt(), GetMultipleThreadIdc failed return %d.", iRet);
@@ -2301,6 +2314,8 @@ int32_t WelsInitEncoderExt (sWelsEncCtx** ppCtx, SWelsSvcCodingParam* pCodingPar
   pCtx->pMemAlign = new CMemoryAlign (iCacheLineSize);
   WELS_VERIFY_RETURN_PROC_IF (1, (NULL == pCtx->pMemAlign), WelsUninitEncoderExt (&pCtx))
 
+    printf("WelsInitEncoderExt::04 \n");
+
   iRet = AllocCodingParam (&pCtx->pSvcParam, pCtx->pMemAlign);
   if (iRet != 0) {
     WelsUninitEncoderExt (&pCtx);
@@ -2313,10 +2328,15 @@ int32_t WelsInitEncoderExt (sWelsEncCtx** ppCtx, SWelsSvcCodingParam* pCodingPar
     WelsUninitEncoderExt (&pCtx);
     return 1;
   }
+    printf("WelsInitEncoderExt::05 \n");
+
   InitFunctionPointers (pCtx, pCtx->pSvcParam, uiCpuFeatureFlags);
 
   pCtx->iActiveThreadsNum = pCodingParam->iMultipleThreadIdc;
   pCtx->iMaxSliceCount = iSliceNum;
+
+    printf("WelsInitEncoderExt::06 RequestMemorySvc\n");
+
   iRet = RequestMemorySvc (&pCtx, pExistingParasetList);
   if (iRet != 0) {
     WelsLog (pLogCtx, WELS_LOG_ERROR, "WelsInitEncoderExt(), RequestMemorySvc failed return %d.", iRet);
@@ -2327,7 +2347,7 @@ int32_t WelsInitEncoderExt (sWelsEncCtx** ppCtx, SWelsSvcCodingParam* pCodingPar
   if (pCodingParam->iEntropyCodingModeFlag)
     WelsCabacInit (pCtx);
   WelsRcInitModule (pCtx,  pCtx->pSvcParam->iRCMode);
-
+    printf("WelsInitEncoderExt::07\n");
   pCtx->pVpp = CWelsPreProcess::CreatePreProcess (pCtx);
   if (pCtx->pVpp == NULL) {
     iRet = 1;
@@ -2340,6 +2360,7 @@ int32_t WelsInitEncoderExt (sWelsEncCtx** ppCtx, SWelsSvcCodingParam* pCodingPar
     WelsUninitEncoderExt (&pCtx);
     return iRet;
   }
+    printf("WelsInitEncoderExt::08\n");
 
 #if defined(MEMORY_MONITOR)
   WelsLog (pLogCtx, WELS_LOG_INFO, "WelsInitEncoderExt() exit, overall memory usage: %llu bytes",
