@@ -1068,12 +1068,16 @@ static inline int32_t InitDqLayers (sWelsEncCtx** ppCtx, SExistingParasetList* p
       iMaxSliceNum = kiSliceNum;
     pDqLayer->iMaxSliceNum = iMaxSliceNum;
 
+      printf(" InitDqLayers:: 01 InitSliceInLayer\n");
+
     iResult = InitSliceInLayer (*ppCtx, pDqLayer, iDlayerIndex, pMa);
     if (iResult) {
       WelsLog (& (*ppCtx)->sLogCtx, WELS_LOG_WARNING, "InitDqLayers(), InitSliceInLayer failed(%d)!", iResult);
       FreeDqLayer (pDqLayer, pMa);
       return iResult;
     }
+      
+      printf(" InitDqLayers:: 02 after InitSliceInLayer\n");
 
     //deblocking parameters initialization
     //target-layer deblocking
@@ -1626,12 +1630,16 @@ int32_t RequestMemorySvc (sWelsEncCtx** ppCtx, SExistingParasetList* pExistingPa
       WELS_VERIFY_RETURN_IF (1, (NULL == (*ppCtx)->pDynamicBsBuffer[iIdx]))
     }
   }
+    
+    printf(" RequestMemorySvc:: 02-01MT RequestMtResource\n");
+
   // for pSlice bs buffers
   if (pParam->iMultipleThreadIdc > 1
       && RequestMtResource (ppCtx, pParam, iCountBsLen, iMaxSliceBufferSize, bDynamicSlice)) {
     WelsLog (& (*ppCtx)->sLogCtx, WELS_LOG_WARNING, "RequestMemorySvc(), RequestMtResource failed!");
     return 1;
   }
+    printf(" RequestMemorySvc:: 02-02MT RequestMtResource\n");
 
   (*ppCtx)->pReferenceStrategy = IWelsReferenceStrategy::CreateReferenceStrategy ((*ppCtx), pParam->iUsageType,
                                  pParam->bEnableLongTermReference);

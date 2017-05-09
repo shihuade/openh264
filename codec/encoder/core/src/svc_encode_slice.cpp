@@ -937,6 +937,8 @@ int32_t InitSliceList (SSlice*& pSliceList,
   int32_t iSliceIdx               = 0;
   int32_t iRet                    = 0;
 
+    printf(" InitSliceList:: 01 \n");
+
   if (kiMaxSliceBufferSize <= 0) {
     return ENC_RETURN_UNEXPECTED;
   }
@@ -952,6 +954,8 @@ int32_t InitSliceList (SSlice*& pSliceList,
     pSlice->iCountMbNumInSlice = 0;
     pSlice->sSliceHeaderExt.sSliceHeader.iFirstMbInSlice = 0;
 
+      printf(" InitSliceList:: 02 InitSliceBsBuffer, SlcIdx %d \n", iSliceIdx);
+
     iRet = InitSliceBsBuffer (pSlice,
                               pBsWrite,
                               bIndependenceBsBuffer,
@@ -961,6 +965,8 @@ int32_t InitSliceList (SSlice*& pSliceList,
       return iRet;
     }
 
+      printf(" InitSliceList:: 03 AllocateSliceMBBuffer, SlcIdx %d \n", iSliceIdx);
+
     iRet = AllocateSliceMBBuffer (pSlice, pMa);
 
     if (ENC_RETURN_SUCCESS != iRet) {
@@ -968,6 +974,7 @@ int32_t InitSliceList (SSlice*& pSliceList,
     }
     ++ iSliceIdx;
   }
+    printf(" InitSliceList:: 04\n");
   return ENC_RETURN_SUCCESS;
 }
 
@@ -1027,6 +1034,8 @@ int32_t InitSliceThreadInfo (sWelsEncCtx* pCtx,
 
   assert (iThreadNum > 0);
 
+    printf(" InitSliceThreadInfo:: 01 \n");
+
   //for fixed slice num case, no need to reallocate, so one slice buffer for all thread
   if( pDqLayer->bThreadSlcBufferFlag) {
     iMaxSliceNum  = pDqLayer->iMaxSliceNum / iThreadNum + 1;
@@ -1045,6 +1054,9 @@ int32_t InitSliceThreadInfo (sWelsEncCtx* pCtx,
                "CWelsH264SVCEncoder::InitSliceThreadInfo: pSliceThreadInfo->pSliceBuffer[iIdx] is NULL");
       return ENC_RETURN_MEMALLOCERR;
     }
+      
+      printf(" InitSliceThreadInfo:: 02 InitSliceList, SlcBuffIdx %d \n", iIdx);
+
     iRet = InitSliceList (pDqLayer->sSliceBufferInfo[iIdx].pSliceBuffer,
                           &pCtx->pOut->sBsWrite,
                           iMaxSliceNum,
@@ -1056,6 +1068,8 @@ int32_t InitSliceThreadInfo (sWelsEncCtx* pCtx,
     }
     iIdx++;
   }
+
+    printf(" InitSliceThreadInfo:: 03 after InitSliceList \n");
 
   for (; iIdx < MAX_THREADS_NUM; iIdx++) {
     pDqLayer->sSliceBufferInfo[iIdx].iMaxSliceNum   = 0;
@@ -1085,6 +1099,8 @@ int32_t InitSliceInLayer (sWelsEncCtx* pCtx,
   pDqLayer->bThreadSlcBufferFlag = (pCtx->pSvcParam->iMultipleThreadIdc > 1 &&
                                    SM_SIZELIMITED_SLICE == pSliceArgument->uiSliceMode) ? true : false;
 
+    printf(" InitSliceInLayer:: 01 InitSliceThreadInfo\n");
+
   iRet = InitSliceThreadInfo (pCtx,
                         pDqLayer,
                         kiDlayerIndex,
@@ -1092,6 +1108,9 @@ int32_t InitSliceInLayer (sWelsEncCtx* pCtx,
   if (ENC_RETURN_SUCCESS != iRet) {
     return ENC_RETURN_MEMALLOCERR;
   }
+    
+    printf(" InitSliceInLayer:: 02 after InitSliceThreadInfo\n");
+
 
   pDqLayer->iMaxSliceNum = 0;
   for(iSlcBuffIdx = 0; iSlcBuffIdx < pCtx->iActiveThreadsNum; iSlcBuffIdx++ ) {
@@ -1116,10 +1135,14 @@ int32_t InitSliceInLayer (sWelsEncCtx* pCtx,
     return ENC_RETURN_MEMALLOCERR;
   }
 
+    printf(" InitSliceInLayer:: 03 InitSliceBoundaryInfo\n");
+
   iRet = InitSliceBoundaryInfo (pDqLayer, pSliceArgument, iMaxSliceNum);
   if (ENC_RETURN_SUCCESS != iRet) {
     return iRet;
   }
+
+    printf(" InitSliceInLayer:: 04\n");
 
   iStartIdx = 0;
   for(iSlcBuffIdx = 0; iSlcBuffIdx < pCtx->iActiveThreadsNum; iSlcBuffIdx++ ) {
