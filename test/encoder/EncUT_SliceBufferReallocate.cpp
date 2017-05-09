@@ -176,21 +176,35 @@ void CSliceBufferReallocatTest::InitParamForSizeLimitSlcModeCase (int32_t iLayer
   SSliceArgument* pSliceArgument = &m_EncContext.pSvcParam->sSpatialLayers[iLayerIdx].sSliceArgument;
   int32_t iRet = 0;
 
+  printf("  InitParamForSizeLimitSlcModeCase:: 01 \n");
+
   InitParam();
+    printf("  InitParamForSizeLimitSlcModeCase:: 02 \n");
+
   InitFrameBsBuffer();
+    printf("  InitParamForSizeLimitSlcModeCase:: 03 \n");
+
   InitLayerSliceBuffer (iLayerIdx);
+    printf("  InitParamForSizeLimitSlcModeCase:: 04 \n");
 
   if (SM_SIZELIMITED_SLICE != pSliceArgument->uiSliceMode && NULL != m_EncContext.ppDqLayerList[iLayerIdx]) {
+      printf("  InitParamForSizeLimitSlcModeCase:: 05 \n");
+
     UnInitLayerSliceBuffer (iLayerIdx);
+      printf("  InitParamForSizeLimitSlcModeCase:: 06 \n");
+
     pSliceArgument->uiSliceMode = SM_SIZELIMITED_SLICE;
     iRet = InitParamForSizeLimitSlcMode (&m_EncContext, iLayerIdx);
     EXPECT_TRUE (ENC_RETURN_SUCCESS == iRet);
     EXPECT_TRUE (NULL != m_EncContext.ppDqLayerList[iLayerIdx]);
   }
+    printf("  InitParamForSizeLimitSlcModeCase:: 07 \n");
 
   //param validation
   iRet = m_pEncoder->InitializeExt ((SEncParamExt*)m_EncContext.pSvcParam);
   EXPECT_TRUE (cmResultSuccess == iRet);
+    printf("  InitParamForSizeLimitSlcModeCase:: 08 end \n");
+
 }
 
 void CSliceBufferReallocatTest::UnInitParamForTestCase (int32_t iLayerIdx) {
@@ -571,16 +585,21 @@ TEST_F (CSliceBufferReallocatTest, ReorderTest) {
   sWelsEncCtx* pCtx = &m_EncContext;
   SSliceArgument* pSliceArgument = &pCtx->pSvcParam->sSpatialLayers[iLayerIdx].sSliceArgument;
 
+  printf("ReorderTest:: 01 \n");
   InitParamForSizeLimitSlcModeCase (iLayerIdx);
+  printf("ReorderTest:: 02 \n");
 
   pCtx->pCurDqLayer = pCtx->ppDqLayerList[iLayerIdx];
   int32_t iRet = InitAllSlicesInThread (pCtx);
   EXPECT_TRUE (cmResultSuccess == iRet);
+    printf("ReorderTest:: 03 \n");
 
   SimulateSliceInOneLayer();
+    printf("ReorderTest:: 04 \n");
 
   iRet = ReOrderSliceInLayer (pCtx, pSliceArgument->uiSliceMode, pCtx->iActiveThreadsNum);
   EXPECT_TRUE (cmResultSuccess == iRet);
+    printf("ReorderTest:: 05 \n");
 
   int32_t iCodedSlcNum = pCtx->pCurDqLayer->sSliceEncCtx.iSliceNumInFrame;
   int32_t iMaxSlicNum = pCtx->pCurDqLayer->iMaxSliceNum;
@@ -592,7 +611,11 @@ TEST_F (CSliceBufferReallocatTest, ReorderTest) {
     EXPECT_TRUE (iSlcIdx == pCtx->pCurDqLayer->ppSliceInLayer[iSlcIdx]->iSliceIdx);
   }
 
+    printf("ReorderTest:: 06 \n");
+
   UnInitParamForTestCase (iLayerIdx);
+    printf("ReorderTest:: 07 \n");
+
 }
 
 TEST_F (CSliceBufferReallocatTest, LayerInfoUpdateTest) {
