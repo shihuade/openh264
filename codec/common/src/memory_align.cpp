@@ -95,6 +95,17 @@ void* WelsMalloc (const uint32_t kuiSize, const char* kpTag, const uint32_t kiAl
   * ((void**) (pAlignedBuffer - kiSizeOfVoidPointer)) = pBuf;
   * ((int32_t*) (pAlignedBuffer - (kiSizeOfVoidPointer + kiSizeOfInt))) = kiPayloadSize;
 
+#ifdef MEMORY_CHECK
+    printf("Num %3d,ActSize %6d,Size %6d,AliB %2d,dif %2d, pBuf 0x%x,pAliBuff 0x%x,for %s\n",
+     nCountRequestNum,
+     kiActualRequestedSize,
+     kuiSize,
+     kiAlignedBytes,
+     (pAlignedBuffer - pBuf),
+     (void*)pBuf,
+     (uint8_t*) pAlignedBuffer,
+     kpTag);
+#endif
   return pAlignedBuffer;
 }
 
