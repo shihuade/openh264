@@ -1607,13 +1607,25 @@ int32_t RequestMemorySvc (sWelsEncCtx** ppCtx, SExistingParasetList* pExistingPa
   // Output
   (*ppCtx)->pOut = (SWelsEncoderOutput*)pMa->WelsMallocz (sizeof (SWelsEncoderOutput), "SWelsEncoderOutput");
   WELS_VERIFY_RETURN_IF (1, (NULL == (*ppCtx)->pOut))
+
+    printf(" RequestMemorySvc:: 02-->(*ppCtx)->pOut->pBsBuffer\n");
+
   (*ppCtx)->pOut->pBsBuffer = (uint8_t*)pMa->WelsMallocz (iCountBsLen, "pOut->pBsBuffer");
   WELS_VERIFY_RETURN_IF (1, (NULL == (*ppCtx)->pOut->pBsBuffer))
+    
+    printf(" RequestMemorySvc:: 02-->(*ppCtx)->pOut->sNalList\n");
+
   (*ppCtx)->pOut->uiSize = iCountBsLen;
   (*ppCtx)->pOut->sNalList = (SWelsNalRaw*)pMa->WelsMallocz (iCountNals * sizeof (SWelsNalRaw), "pOut->sNalList");
   WELS_VERIFY_RETURN_IF (1, (NULL == (*ppCtx)->pOut->sNalList))
+    
+    printf(" RequestMemorySvc:: 02-->(*ppCtx)->pOut->pNalLen\n");
+
   (*ppCtx)->pOut->pNalLen = (int32_t*)pMa->WelsMallocz (iCountNals * sizeof (int32_t), "pOut->pNalLen");
   WELS_VERIFY_RETURN_IF (1, (NULL == (*ppCtx)->pOut->pNalLen))
+    
+    printf(" RequestMemorySvc:: 02-->(*ppCtx)->pFrameBs \n");
+
   (*ppCtx)->pOut->iCountNals    = iCountNals;
   (*ppCtx)->pOut->iNalIndex     = 0;
   (*ppCtx)->pOut->iLayerBsIndex = 0;
@@ -1623,9 +1635,13 @@ int32_t RequestMemorySvc (sWelsEncCtx** ppCtx, SExistingParasetList* pExistingPa
   (*ppCtx)->iFrameBsSize = iTotalLength;
   (*ppCtx)->iPosBsBuffer = 0;
 
+    printf(" RequestMemorySvc:: 02-->bDynamicSlice \n");
   // for dynamic slice mode&& CABAC,allocate slice buffer to restore slice data
   if (bDynamicSlice && pParam->iEntropyCodingModeFlag) {
     for (int32_t iIdx = 0; iIdx < MAX_THREADS_NUM; iIdx++) {
+        
+        printf(" RequestMemorySvc:: 02-->bDynamicSlice (*ppCtx)->pDynamicBsBuffer iIdx %d\n", iIdx);
+
       (*ppCtx)->pDynamicBsBuffer[iIdx] = (uint8_t*)pMa->WelsMalloc (iMaxSliceBufferSize, "DynamicSliceBs");
       WELS_VERIFY_RETURN_IF (1, (NULL == (*ppCtx)->pDynamicBsBuffer[iIdx]))
     }
