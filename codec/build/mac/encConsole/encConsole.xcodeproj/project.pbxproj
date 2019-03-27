@@ -1,0 +1,303 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CEC2779E1A4C0D5E00A5B33B /* welsenc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC2779D1A4C0D5E00A5B33B /* welsenc.cpp */; };
+		CEC277A01A4C0D7700A5B33B /* read_config.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC2779F1A4C0D7700A5B33B /* read_config.cpp */; };
+		ECA2B9ED1B5E10C30095A33B /* libprocessing.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ECA2B9EC1B5E10C30095A33B /* libprocessing.a */; };
+		ECA2BAD21B5E363D0095A33B /* libwelsenc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ECA2B9F01B5E10D10095A33B /* libwelsenc.a */; };
+		ECDF75541B5F7C69000171F9 /* libcommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ECA2B9EE1B5E10C90095A33B /* libcommon.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CEC277771A4BB42400A5B33B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		CEC277791A4BB42400A5B33B /* encConsole */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = encConsole; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEC2779D1A4C0D5E00A5B33B /* welsenc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = welsenc.cpp; path = ../../../console/enc/src/welsenc.cpp; sourceTree = "<group>"; };
+		CEC2779F1A4C0D7700A5B33B /* read_config.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = read_config.cpp; path = ../../../console/common/src/read_config.cpp; sourceTree = "<group>"; };
+		CEC277A11A4C0D8200A5B33B /* read_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = read_config.h; path = ../../../console/common/inc/read_config.h; sourceTree = "<group>"; };
+		ECA2B9EC1B5E10C30095A33B /* libprocessing.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libprocessing.a; path = ../../../../bin/mac/Debug/libprocessing.a; sourceTree = "<group>"; };
+		ECA2B9EE1B5E10C90095A33B /* libcommon.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcommon.a; path = ../../../../bin/mac/Debug/libcommon.a; sourceTree = "<group>"; };
+		ECA2B9F01B5E10D10095A33B /* libwelsenc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libwelsenc.a; path = ../../../../bin/mac/Debug/libwelsenc.a; sourceTree = "<group>"; };
+		ECE209571BE20B48005EA78C /* layer2.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = layer2.cfg; path = ../../../../bin/mac/Debug/layer2.cfg; sourceTree = "<group>"; };
+		ECE209581BE20B48005EA78C /* welsenc.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = welsenc.cfg; path = ../../../../bin/mac/Debug/welsenc.cfg; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CEC277761A4BB42400A5B33B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECDF75541B5F7C69000171F9 /* libcommon.a in Frameworks */,
+				ECA2BAD21B5E363D0095A33B /* libwelsenc.a in Frameworks */,
+				ECA2B9ED1B5E10C30095A33B /* libprocessing.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CEC277701A4BB42400A5B33B = {
+			isa = PBXGroup;
+			children = (
+				ECE209561BE20B16005EA78C /* ConfigureFile */,
+				ECA2B9F01B5E10D10095A33B /* libwelsenc.a */,
+				ECA2B9EE1B5E10C90095A33B /* libcommon.a */,
+				ECA2B9EC1B5E10C30095A33B /* libprocessing.a */,
+				CEC2779C1A4C0D4900A5B33B /* encconsole */,
+				CEC2777A1A4BB42400A5B33B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CEC2777A1A4BB42400A5B33B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CEC277791A4BB42400A5B33B /* encConsole */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CEC2779C1A4C0D4900A5B33B /* encconsole */ = {
+			isa = PBXGroup;
+			children = (
+				CEC277A11A4C0D8200A5B33B /* read_config.h */,
+				CEC2779F1A4C0D7700A5B33B /* read_config.cpp */,
+				CEC2779D1A4C0D5E00A5B33B /* welsenc.cpp */,
+			);
+			name = encconsole;
+			sourceTree = "<group>";
+		};
+		ECE209561BE20B16005EA78C /* ConfigureFile */ = {
+			isa = PBXGroup;
+			children = (
+				ECE209571BE20B48005EA78C /* layer2.cfg */,
+				ECE209581BE20B48005EA78C /* welsenc.cfg */,
+			);
+			name = ConfigureFile;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CEC277781A4BB42400A5B33B /* encConsole */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CEC277801A4BB42400A5B33B /* Build configuration list for PBXNativeTarget "encConsole" */;
+			buildPhases = (
+				CEC277751A4BB42400A5B33B /* Sources */,
+				CEC277761A4BB42400A5B33B /* Frameworks */,
+				CEC277771A4BB42400A5B33B /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = encConsole;
+			productName = encConsole;
+			productReference = CEC277791A4BB42400A5B33B /* encConsole */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CEC277711A4BB42400A5B33B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = cisco;
+				TargetAttributes = {
+					CEC277781A4BB42400A5B33B = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+				};
+			};
+			buildConfigurationList = CEC277741A4BB42400A5B33B /* Build configuration list for PBXProject "encConsole" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CEC277701A4BB42400A5B33B;
+			productRefGroup = CEC2777A1A4BB42400A5B33B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CEC277781A4BB42400A5B33B /* encConsole */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CEC277751A4BB42400A5B33B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEC277A01A4C0D7700A5B33B /* read_config.cpp in Sources */,
+				CEC2779E1A4C0D5E00A5B33B /* welsenc.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		CEC2777E1A4BB42400A5B33B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/../../../../bin/mac/$(CONFIGURATION)";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OBJROOT = "$(SRCROOT)/../../../../bin/mac/$(CONFIGURATION)/objs";
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SYMROOT = "$(SRCROOT)/../../../../bin/mac/$(CONFIGURATION)";
+			};
+			name = Debug;
+		};
+		CEC2777F1A4BB42400A5B33B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/../../../../bin/mac/$(CONFIGURATION)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OBJROOT = "$(SRCROOT)/../../../../bin/mac/$(CONFIGURATION)/objs";
+				SDKROOT = macosx;
+				SYMROOT = "$(SRCROOT)/../../../../bin/mac/$(CONFIGURATION)";
+			};
+			name = Release;
+		};
+		CEC277811A4BB42400A5B33B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/../../../common/inc",
+					"$(SRCROOT)/../../../api/svc",
+					"$(SRCROOT)/../../../encoder/core/inc",
+					"$(SRCROOT)/../../../processing/interface",
+					"$SRCROOT)/../../../encoder/plus/inc",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/huashi/project/Openh264/Huade/bin/mac/Debug,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		CEC277821A4BB42400A5B33B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/../../../common/inc",
+					"$(SRCROOT)/../../../api/svc",
+					"$(SRCROOT)/../../../encoder/core/inc",
+					"$(SRCROOT)/../../../processing/interface",
+					"$SRCROOT)/../../../encoder/plus/inc",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/huashi/project/Openh264/Huade/bin/mac/Debug,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CEC277741A4BB42400A5B33B /* Build configuration list for PBXProject "encConsole" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEC2777E1A4BB42400A5B33B /* Debug */,
+				CEC2777F1A4BB42400A5B33B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CEC277801A4BB42400A5B33B /* Build configuration list for PBXNativeTarget "encConsole" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEC277811A4BB42400A5B33B /* Debug */,
+				CEC277821A4BB42400A5B33B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CEC277711A4BB42400A5B33B /* Project object */;
+}

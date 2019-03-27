@@ -1,0 +1,290 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CE6092241A513FCD0078A7E0 /* d3d9_utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE6092221A513FCD0078A7E0 /* d3d9_utils.cpp */; };
+		CE6092251A513FCD0078A7E0 /* h264dec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE6092231A513FCD0078A7E0 /* h264dec.cpp */; };
+		CE6092281A5141D60078A7E0 /* read_config.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE6092271A5141D60078A7E0 /* read_config.cpp */; };
+		ECA2B9F31B5E15C70095A33B /* libcommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ECA2B9F21B5E15C70095A33B /* libcommon.a */; };
+		ECA2B9F51B5E15CC0095A33B /* libprocessing.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ECA2B9F41B5E15CC0095A33B /* libprocessing.a */; };
+		ECA2B9F71B5E15D30095A33B /* libwelsdec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ECA2B9F61B5E15D30095A33B /* libwelsdec.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CE6092151A513FAC0078A7E0 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		CE6092171A513FAC0078A7E0 /* decConsole */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = decConsole; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE6092221A513FCD0078A7E0 /* d3d9_utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = d3d9_utils.cpp; path = ../../../console/dec/src/d3d9_utils.cpp; sourceTree = "<group>"; };
+		CE6092231A513FCD0078A7E0 /* h264dec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = h264dec.cpp; path = ../../../console/dec/src/h264dec.cpp; sourceTree = "<group>"; };
+		CE6092261A513FDE0078A7E0 /* d3d9_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = d3d9_utils.h; path = ../../../console/dec/inc/d3d9_utils.h; sourceTree = "<group>"; };
+		CE6092271A5141D60078A7E0 /* read_config.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = read_config.cpp; path = ../../../console/common/src/read_config.cpp; sourceTree = "<group>"; };
+		CE6092291A5141E40078A7E0 /* read_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = read_config.h; path = ../../../console/common/inc/read_config.h; sourceTree = "<group>"; };
+		ECA2B9F21B5E15C70095A33B /* libcommon.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcommon.a; path = ../../../../bin/mac/Debug/libcommon.a; sourceTree = "<group>"; };
+		ECA2B9F41B5E15CC0095A33B /* libprocessing.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libprocessing.a; path = ../../../../bin/mac/Debug/libprocessing.a; sourceTree = "<group>"; };
+		ECA2B9F61B5E15D30095A33B /* libwelsdec.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libwelsdec.a; path = ../../../../bin/mac/Debug/libwelsdec.a; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CE6092141A513FAC0078A7E0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECA2B9F71B5E15D30095A33B /* libwelsdec.a in Frameworks */,
+				ECA2B9F51B5E15CC0095A33B /* libprocessing.a in Frameworks */,
+				ECA2B9F31B5E15C70095A33B /* libcommon.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CE60920E1A513FAC0078A7E0 = {
+			isa = PBXGroup;
+			children = (
+				ECA2B9F61B5E15D30095A33B /* libwelsdec.a */,
+				ECA2B9F41B5E15CC0095A33B /* libprocessing.a */,
+				ECA2B9F21B5E15C70095A33B /* libcommon.a */,
+				CE6092211A513FB50078A7E0 /* decConsole */,
+				CE6092181A513FAC0078A7E0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CE6092181A513FAC0078A7E0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CE6092171A513FAC0078A7E0 /* decConsole */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CE6092211A513FB50078A7E0 /* decConsole */ = {
+			isa = PBXGroup;
+			children = (
+				CE6092291A5141E40078A7E0 /* read_config.h */,
+				CE6092271A5141D60078A7E0 /* read_config.cpp */,
+				CE6092261A513FDE0078A7E0 /* d3d9_utils.h */,
+				CE6092221A513FCD0078A7E0 /* d3d9_utils.cpp */,
+				CE6092231A513FCD0078A7E0 /* h264dec.cpp */,
+			);
+			name = decConsole;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CE6092161A513FAC0078A7E0 /* decConsole */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE60921E1A513FAC0078A7E0 /* Build configuration list for PBXNativeTarget "decConsole" */;
+			buildPhases = (
+				CE6092131A513FAC0078A7E0 /* Sources */,
+				CE6092141A513FAC0078A7E0 /* Frameworks */,
+				CE6092151A513FAC0078A7E0 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = decConsole;
+			productName = decConsole;
+			productReference = CE6092171A513FAC0078A7E0 /* decConsole */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CE60920F1A513FAC0078A7E0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = cisco;
+				TargetAttributes = {
+					CE6092161A513FAC0078A7E0 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+				};
+			};
+			buildConfigurationList = CE6092121A513FAC0078A7E0 /* Build configuration list for PBXProject "decConsole" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CE60920E1A513FAC0078A7E0;
+			productRefGroup = CE6092181A513FAC0078A7E0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CE6092161A513FAC0078A7E0 /* decConsole */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CE6092131A513FAC0078A7E0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE6092251A513FCD0078A7E0 /* h264dec.cpp in Sources */,
+				CE6092281A5141D60078A7E0 /* read_config.cpp in Sources */,
+				CE6092241A513FCD0078A7E0 /* d3d9_utils.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		CE60921C1A513FAC0078A7E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/../../../../bin/mac/$(CONFIGURATION)";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OBJROOT = "$(SRCROOT)/../../../../bin/mac/$(CONFIGURATION) /objs";
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SYMROOT = "$(SRCROOT)/../../../../bin/mac/$(CONFIGURATION)";
+			};
+			name = Debug;
+		};
+		CE60921D1A513FAC0078A7E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/../../../../bin/mac/$(CONFIGURATION)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OBJROOT = "$(SRCROOT)/../../../../bin/mac/$(CONFIGURATION)/objs";
+				SDKROOT = macosx;
+				SYMROOT = "$(SRCROOT)/../../../../bin/mac/$(CONFIGURATION)";
+			};
+			name = Release;
+		};
+		CE60921F1A513FAC0078A7E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../../../api/svc",
+					"$(SRCROOT)/../../../common/inc",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/huashi/project/Openh264/Huade/bin/mac/Debug,
+				);
+				OBJROOT = "$(SRCROOT)/../../../../bin/mac/$(CONFIGURATION)/objs";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		CE6092201A513FAC0078A7E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../../../api/svc",
+					"$(SRCROOT)/../../../common/inc",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/huashi/project/Openh264/Huade/bin/mac/Debug,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CE6092121A513FAC0078A7E0 /* Build configuration list for PBXProject "decConsole" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE60921C1A513FAC0078A7E0 /* Debug */,
+				CE60921D1A513FAC0078A7E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CE60921E1A513FAC0078A7E0 /* Build configuration list for PBXNativeTarget "decConsole" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE60921F1A513FAC0078A7E0 /* Debug */,
+				CE6092201A513FAC0078A7E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CE60920F1A513FAC0078A7E0 /* Project object */;
+}

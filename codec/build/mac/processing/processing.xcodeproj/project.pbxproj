@@ -1,0 +1,543 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CEC290121A4AB88300777576 /* AdaptiveQuantization.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC290101A4AB88300777576 /* AdaptiveQuantization.cpp */; };
+		CEC290131A4AB88300777576 /* AdaptiveQuantization.h in Headers */ = {isa = PBXBuildFile; fileRef = CEC290111A4AB88300777576 /* AdaptiveQuantization.h */; };
+		CEC290171A4AB89C00777576 /* BackgroundDetection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC290151A4AB89C00777576 /* BackgroundDetection.cpp */; };
+		CEC290181A4AB89C00777576 /* BackgroundDetection.h in Headers */ = {isa = PBXBuildFile; fileRef = CEC290161A4AB89C00777576 /* BackgroundDetection.h */; };
+		CEC290331A4AB93A00777576 /* ComplexityAnalysis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC290311A4AB93A00777576 /* ComplexityAnalysis.cpp */; };
+		CEC290341A4AB93A00777576 /* ComplexityAnalysis.h in Headers */ = {isa = PBXBuildFile; fileRef = CEC290321A4AB93A00777576 /* ComplexityAnalysis.h */; };
+		CEC290391A4AB97F00777576 /* denoise_filter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC290361A4AB97F00777576 /* denoise_filter.cpp */; };
+		CEC2903A1A4AB97F00777576 /* denoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC290371A4AB97F00777576 /* denoise.cpp */; };
+		CEC2903B1A4AB97F00777576 /* denoise.h in Headers */ = {isa = PBXBuildFile; fileRef = CEC290381A4AB97F00777576 /* denoise.h */; };
+		CEC290401A4AB99900777576 /* downsample.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC2903D1A4AB99900777576 /* downsample.cpp */; };
+		CEC290411A4AB99900777576 /* downsample.h in Headers */ = {isa = PBXBuildFile; fileRef = CEC2903E1A4AB99900777576 /* downsample.h */; };
+		CEC290421A4AB99900777576 /* downsamplefuncs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC2903F1A4AB99900777576 /* downsamplefuncs.cpp */; };
+		CEC290471A4AB9C200777576 /* imagerotate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC290441A4AB9C200777576 /* imagerotate.cpp */; };
+		CEC290481A4AB9C200777576 /* imagerotate.h in Headers */ = {isa = PBXBuildFile; fileRef = CEC290451A4AB9C200777576 /* imagerotate.h */; };
+		CEC290491A4AB9C200777576 /* imagerotatefuncs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC290461A4AB9C200777576 /* imagerotatefuncs.cpp */; };
+		CEC2904D1A4AB9F100777576 /* SceneChangeDetection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC2904B1A4AB9F100777576 /* SceneChangeDetection.cpp */; };
+		CEC2904E1A4AB9F100777576 /* SceneChangeDetection.h in Headers */ = {isa = PBXBuildFile; fileRef = CEC2904C1A4AB9F100777576 /* SceneChangeDetection.h */; };
+		CEC290541A4ABA1900777576 /* ScrollDetection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC290501A4ABA1900777576 /* ScrollDetection.cpp */; };
+		CEC290551A4ABA1900777576 /* ScrollDetection.h in Headers */ = {isa = PBXBuildFile; fileRef = CEC290511A4ABA1900777576 /* ScrollDetection.h */; };
+		CEC290561A4ABA1900777576 /* ScrollDetectionFuncs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC290521A4ABA1900777576 /* ScrollDetectionFuncs.cpp */; };
+		CEC290571A4ABA1900777576 /* ScrollDetectionFuncs.h in Headers */ = {isa = PBXBuildFile; fileRef = CEC290531A4ABA1900777576 /* ScrollDetectionFuncs.h */; };
+		CEC2905C1A4ABA3600777576 /* vaacalcfuncs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC290591A4ABA3600777576 /* vaacalcfuncs.cpp */; };
+		CEC2905D1A4ABA3600777576 /* vaacalculation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC2905A1A4ABA3600777576 /* vaacalculation.cpp */; };
+		CEC2905E1A4ABA3600777576 /* vaacalculation.h in Headers */ = {isa = PBXBuildFile; fileRef = CEC2905B1A4ABA3600777576 /* vaacalculation.h */; };
+		CEC290601A4ABA4900777576 /* IWelsVP.h in Headers */ = {isa = PBXBuildFile; fileRef = CEC2905F1A4ABA4900777576 /* IWelsVP.h */; };
+		CEC2906C1A4ABBA000777576 /* common.h in Headers */ = {isa = PBXBuildFile; fileRef = CEC290611A4ABBA000777576 /* common.h */; };
+		CEC2906D1A4ABBA000777576 /* memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC290621A4ABBA000777576 /* memory.cpp */; };
+		CEC2906E1A4ABBA000777576 /* memory.h in Headers */ = {isa = PBXBuildFile; fileRef = CEC290631A4ABBA000777576 /* memory.h */; };
+		CEC2906F1A4ABBA000777576 /* resource.h in Headers */ = {isa = PBXBuildFile; fileRef = CEC290641A4ABBA000777576 /* resource.h */; };
+		CEC290701A4ABBA000777576 /* typedef.h in Headers */ = {isa = PBXBuildFile; fileRef = CEC290651A4ABBA000777576 /* typedef.h */; };
+		CEC290711A4ABBA000777576 /* util.h in Headers */ = {isa = PBXBuildFile; fileRef = CEC290661A4ABBA000777576 /* util.h */; };
+		CEC290721A4ABBA000777576 /* WelsFrameWork.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC290671A4ABBA000777576 /* WelsFrameWork.cpp */; };
+		CEC290731A4ABBA000777576 /* WelsFrameWork.h in Headers */ = {isa = PBXBuildFile; fileRef = CEC290681A4ABBA000777576 /* WelsFrameWork.h */; };
+		CEC290741A4ABBA000777576 /* WelsFrameWorkEx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC290691A4ABBA000777576 /* WelsFrameWorkEx.cpp */; };
+		CEF1D5821A52A27300AAAA15 /* denoisefilter.asm in Sources */ = {isa = PBXBuildFile; fileRef = CEF1D57F1A52A27300AAAA15 /* denoisefilter.asm */; };
+		CEF1D5831A52A27300AAAA15 /* downsample_bilinear.asm in Sources */ = {isa = PBXBuildFile; fileRef = CEF1D5801A52A27300AAAA15 /* downsample_bilinear.asm */; };
+		CEF1D5841A52A27300AAAA15 /* vaa.asm in Sources */ = {isa = PBXBuildFile; fileRef = CEF1D5811A52A27300AAAA15 /* vaa.asm */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		CE242B931A59285D001A9E92 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = sourcecode.nasm;
+			isEditable = 1;
+			outputFiles = (
+				"$(OBJECT_FILE_DIR)/$(arch)/$(INPUT_FILE_BASE).o",
+			);
+			script = "nasm=\"\"\nnasm_list=(nasm /usr/bin/nasm /opt/local/bin/nasm)\nfor cmd in ${nasm_list[@]}; do\nver=`$cmd -v 2>/dev/null | awk '{print $3}'`\n[[ $ver =~ ^2\\.1[0-9] ]] && nasm=$cmd && break\ndone\n[ \"$nasm\" = \"\" ] && echo \"[Error] pls install nasm (2.10+)\" 1>&2 && exit 1\n\n[ \"$arch\" = \"x86_64\" ] && asflags=\"-f macho64 -DUNIX64 -DPREFIX\" || asflags=\"-f macho32 -DX86_32 -DPREFIX\"\n$nasm -I ../../../common/x86/ $asflags $INPUT_FILE_PATH -o $OBJECT_FILE_DIR/$arch/$INPUT_FILE_BASE.o\n";
+		};
+/* End PBXBuildRule section */
+
+/* Begin PBXFileReference section */
+		CEC290051A4AB4AA00777576 /* libprocessing.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libprocessing.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEC290101A4AB88300777576 /* AdaptiveQuantization.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AdaptiveQuantization.cpp; path = ../../../processing/src/adaptivequantization/AdaptiveQuantization.cpp; sourceTree = "<group>"; };
+		CEC290111A4AB88300777576 /* AdaptiveQuantization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AdaptiveQuantization.h; path = ../../../processing/src/adaptivequantization/AdaptiveQuantization.h; sourceTree = "<group>"; };
+		CEC290151A4AB89C00777576 /* BackgroundDetection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BackgroundDetection.cpp; path = ../../../processing/src/backgrounddetection/BackgroundDetection.cpp; sourceTree = "<group>"; };
+		CEC290161A4AB89C00777576 /* BackgroundDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BackgroundDetection.h; path = ../../../processing/src/backgrounddetection/BackgroundDetection.h; sourceTree = "<group>"; };
+		CEC290311A4AB93A00777576 /* ComplexityAnalysis.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ComplexityAnalysis.cpp; path = ../../../processing/src/complexityanalysis/ComplexityAnalysis.cpp; sourceTree = "<group>"; };
+		CEC290321A4AB93A00777576 /* ComplexityAnalysis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComplexityAnalysis.h; path = ../../../processing/src/complexityanalysis/ComplexityAnalysis.h; sourceTree = "<group>"; };
+		CEC290361A4AB97F00777576 /* denoise_filter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = denoise_filter.cpp; path = ../../../processing/src/denoise/denoise_filter.cpp; sourceTree = "<group>"; };
+		CEC290371A4AB97F00777576 /* denoise.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = denoise.cpp; path = ../../../processing/src/denoise/denoise.cpp; sourceTree = "<group>"; };
+		CEC290381A4AB97F00777576 /* denoise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = denoise.h; path = ../../../processing/src/denoise/denoise.h; sourceTree = "<group>"; };
+		CEC2903D1A4AB99900777576 /* downsample.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = downsample.cpp; path = ../../../processing/src/downsample/downsample.cpp; sourceTree = "<group>"; };
+		CEC2903E1A4AB99900777576 /* downsample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = downsample.h; path = ../../../processing/src/downsample/downsample.h; sourceTree = "<group>"; };
+		CEC2903F1A4AB99900777576 /* downsamplefuncs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = downsamplefuncs.cpp; path = ../../../processing/src/downsample/downsamplefuncs.cpp; sourceTree = "<group>"; };
+		CEC290441A4AB9C200777576 /* imagerotate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = imagerotate.cpp; path = ../../../processing/src/imagerotate/imagerotate.cpp; sourceTree = "<group>"; };
+		CEC290451A4AB9C200777576 /* imagerotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = imagerotate.h; path = ../../../processing/src/imagerotate/imagerotate.h; sourceTree = "<group>"; };
+		CEC290461A4AB9C200777576 /* imagerotatefuncs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = imagerotatefuncs.cpp; path = ../../../processing/src/imagerotate/imagerotatefuncs.cpp; sourceTree = "<group>"; };
+		CEC2904B1A4AB9F100777576 /* SceneChangeDetection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SceneChangeDetection.cpp; path = ../../../processing/src/scenechangedetection/SceneChangeDetection.cpp; sourceTree = "<group>"; };
+		CEC2904C1A4AB9F100777576 /* SceneChangeDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SceneChangeDetection.h; path = ../../../processing/src/scenechangedetection/SceneChangeDetection.h; sourceTree = "<group>"; };
+		CEC290501A4ABA1900777576 /* ScrollDetection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ScrollDetection.cpp; path = ../../../processing/src/scrolldetection/ScrollDetection.cpp; sourceTree = "<group>"; };
+		CEC290511A4ABA1900777576 /* ScrollDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScrollDetection.h; path = ../../../processing/src/scrolldetection/ScrollDetection.h; sourceTree = "<group>"; };
+		CEC290521A4ABA1900777576 /* ScrollDetectionFuncs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ScrollDetectionFuncs.cpp; path = ../../../processing/src/scrolldetection/ScrollDetectionFuncs.cpp; sourceTree = "<group>"; };
+		CEC290531A4ABA1900777576 /* ScrollDetectionFuncs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScrollDetectionFuncs.h; path = ../../../processing/src/scrolldetection/ScrollDetectionFuncs.h; sourceTree = "<group>"; };
+		CEC290591A4ABA3600777576 /* vaacalcfuncs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vaacalcfuncs.cpp; path = ../../../processing/src/vaacalc/vaacalcfuncs.cpp; sourceTree = "<group>"; };
+		CEC2905A1A4ABA3600777576 /* vaacalculation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vaacalculation.cpp; path = ../../../processing/src/vaacalc/vaacalculation.cpp; sourceTree = "<group>"; };
+		CEC2905B1A4ABA3600777576 /* vaacalculation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vaacalculation.h; path = ../../../processing/src/vaacalc/vaacalculation.h; sourceTree = "<group>"; };
+		CEC2905F1A4ABA4900777576 /* IWelsVP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IWelsVP.h; path = ../../../processing/interface/IWelsVP.h; sourceTree = "<group>"; };
+		CEC290611A4ABBA000777576 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = common.h; path = ../../../processing/src/common/common.h; sourceTree = "<group>"; };
+		CEC290621A4ABBA000777576 /* memory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = memory.cpp; path = ../../../processing/src/common/memory.cpp; sourceTree = "<group>"; };
+		CEC290631A4ABBA000777576 /* memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = memory.h; path = ../../../processing/src/common/memory.h; sourceTree = "<group>"; };
+		CEC290641A4ABBA000777576 /* resource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = resource.h; path = ../../../processing/src/common/resource.h; sourceTree = "<group>"; };
+		CEC290651A4ABBA000777576 /* typedef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = typedef.h; path = ../../../processing/src/common/typedef.h; sourceTree = "<group>"; };
+		CEC290661A4ABBA000777576 /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = util.h; path = ../../../processing/src/common/util.h; sourceTree = "<group>"; };
+		CEC290671A4ABBA000777576 /* WelsFrameWork.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WelsFrameWork.cpp; path = ../../../processing/src/common/WelsFrameWork.cpp; sourceTree = "<group>"; };
+		CEC290681A4ABBA000777576 /* WelsFrameWork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WelsFrameWork.h; path = ../../../processing/src/common/WelsFrameWork.h; sourceTree = "<group>"; };
+		CEC290691A4ABBA000777576 /* WelsFrameWorkEx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WelsFrameWorkEx.cpp; path = ../../../processing/src/common/WelsFrameWorkEx.cpp; sourceTree = "<group>"; };
+		CEC2906A1A4ABBA000777576 /* WelsVP.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = WelsVP.def; path = ../../../processing/src/common/WelsVP.def; sourceTree = "<group>"; };
+		CEC2906B1A4ABBA000777576 /* WelsVP.rc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = WelsVP.rc; path = ../../../processing/src/common/WelsVP.rc; sourceTree = "<group>"; };
+		CEF1D57F1A52A27300AAAA15 /* denoisefilter.asm */ = {isa = PBXFileReference; explicitFileType = sourcecode.nasm; name = denoisefilter.asm; path = ../../../processing/src/x86/denoisefilter.asm; sourceTree = "<group>"; };
+		CEF1D5801A52A27300AAAA15 /* downsample_bilinear.asm */ = {isa = PBXFileReference; explicitFileType = sourcecode.nasm; name = downsample_bilinear.asm; path = ../../../processing/src/x86/downsample_bilinear.asm; sourceTree = "<group>"; };
+		CEF1D5811A52A27300AAAA15 /* vaa.asm */ = {isa = PBXFileReference; explicitFileType = sourcecode.nasm; name = vaa.asm; path = ../../../processing/src/x86/vaa.asm; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CEC290021A4AB4AA00777576 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CEC28FFC1A4AB4AA00777576 = {
+			isa = PBXGroup;
+			children = (
+				CEC2900C1A4AB4B400777576 /* processing */,
+				CEC290061A4AB4AA00777576 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CEC290061A4AB4AA00777576 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CEC290051A4AB4AA00777576 /* libprocessing.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CEC2900C1A4AB4B400777576 /* processing */ = {
+			isa = PBXGroup;
+			children = (
+				CEC2900E1A4AB4C800777576 /* interface */,
+				CEC2900D1A4AB4C400777576 /* src */,
+			);
+			name = processing;
+			sourceTree = "<group>";
+		};
+		CEC2900D1A4AB4C400777576 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				CEF1D57E1A52A24600AAAA15 /* asm */,
+				CEC290581A4ABA2000777576 /* vaacalc */,
+				CEC2904F1A4AB9F400777576 /* scrolldetection */,
+				CEC2904A1A4AB9C700777576 /* scenechangedetection */,
+				CEC290431A4AB99D00777576 /* imagerotate */,
+				CEC2903C1A4AB98300777576 /* downsample */,
+				CEC290351A4AB94B00777576 /* denoise */,
+				CEC290301A4AB91600777576 /* complexityanalysis */,
+				CEC290191A4AB89F00777576 /* common */,
+				CEC290141A4AB88700777576 /* backgrounddetection */,
+				CEC2900F1A4AB87000777576 /* adaptivequantization */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		CEC2900E1A4AB4C800777576 /* interface */ = {
+			isa = PBXGroup;
+			children = (
+				CEC2905F1A4ABA4900777576 /* IWelsVP.h */,
+			);
+			name = interface;
+			sourceTree = "<group>";
+		};
+		CEC2900F1A4AB87000777576 /* adaptivequantization */ = {
+			isa = PBXGroup;
+			children = (
+				CEC290101A4AB88300777576 /* AdaptiveQuantization.cpp */,
+				CEC290111A4AB88300777576 /* AdaptiveQuantization.h */,
+			);
+			name = adaptivequantization;
+			sourceTree = "<group>";
+		};
+		CEC290141A4AB88700777576 /* backgrounddetection */ = {
+			isa = PBXGroup;
+			children = (
+				CEC290151A4AB89C00777576 /* BackgroundDetection.cpp */,
+				CEC290161A4AB89C00777576 /* BackgroundDetection.h */,
+			);
+			name = backgrounddetection;
+			sourceTree = "<group>";
+		};
+		CEC290191A4AB89F00777576 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				CEC290611A4ABBA000777576 /* common.h */,
+				CEC290621A4ABBA000777576 /* memory.cpp */,
+				CEC290631A4ABBA000777576 /* memory.h */,
+				CEC290641A4ABBA000777576 /* resource.h */,
+				CEC290651A4ABBA000777576 /* typedef.h */,
+				CEC290661A4ABBA000777576 /* util.h */,
+				CEC290671A4ABBA000777576 /* WelsFrameWork.cpp */,
+				CEC290681A4ABBA000777576 /* WelsFrameWork.h */,
+				CEC290691A4ABBA000777576 /* WelsFrameWorkEx.cpp */,
+				CEC2906A1A4ABBA000777576 /* WelsVP.def */,
+				CEC2906B1A4ABBA000777576 /* WelsVP.rc */,
+			);
+			name = common;
+			sourceTree = "<group>";
+		};
+		CEC290301A4AB91600777576 /* complexityanalysis */ = {
+			isa = PBXGroup;
+			children = (
+				CEC290311A4AB93A00777576 /* ComplexityAnalysis.cpp */,
+				CEC290321A4AB93A00777576 /* ComplexityAnalysis.h */,
+			);
+			name = complexityanalysis;
+			sourceTree = "<group>";
+		};
+		CEC290351A4AB94B00777576 /* denoise */ = {
+			isa = PBXGroup;
+			children = (
+				CEC290361A4AB97F00777576 /* denoise_filter.cpp */,
+				CEC290371A4AB97F00777576 /* denoise.cpp */,
+				CEC290381A4AB97F00777576 /* denoise.h */,
+			);
+			name = denoise;
+			sourceTree = "<group>";
+		};
+		CEC2903C1A4AB98300777576 /* downsample */ = {
+			isa = PBXGroup;
+			children = (
+				CEC2903D1A4AB99900777576 /* downsample.cpp */,
+				CEC2903E1A4AB99900777576 /* downsample.h */,
+				CEC2903F1A4AB99900777576 /* downsamplefuncs.cpp */,
+			);
+			name = downsample;
+			sourceTree = "<group>";
+		};
+		CEC290431A4AB99D00777576 /* imagerotate */ = {
+			isa = PBXGroup;
+			children = (
+				CEC290441A4AB9C200777576 /* imagerotate.cpp */,
+				CEC290451A4AB9C200777576 /* imagerotate.h */,
+				CEC290461A4AB9C200777576 /* imagerotatefuncs.cpp */,
+			);
+			name = imagerotate;
+			sourceTree = "<group>";
+		};
+		CEC2904A1A4AB9C700777576 /* scenechangedetection */ = {
+			isa = PBXGroup;
+			children = (
+				CEC2904B1A4AB9F100777576 /* SceneChangeDetection.cpp */,
+				CEC2904C1A4AB9F100777576 /* SceneChangeDetection.h */,
+			);
+			name = scenechangedetection;
+			sourceTree = "<group>";
+		};
+		CEC2904F1A4AB9F400777576 /* scrolldetection */ = {
+			isa = PBXGroup;
+			children = (
+				CEC290501A4ABA1900777576 /* ScrollDetection.cpp */,
+				CEC290511A4ABA1900777576 /* ScrollDetection.h */,
+				CEC290521A4ABA1900777576 /* ScrollDetectionFuncs.cpp */,
+				CEC290531A4ABA1900777576 /* ScrollDetectionFuncs.h */,
+			);
+			name = scrolldetection;
+			sourceTree = "<group>";
+		};
+		CEC290581A4ABA2000777576 /* vaacalc */ = {
+			isa = PBXGroup;
+			children = (
+				CEC290591A4ABA3600777576 /* vaacalcfuncs.cpp */,
+				CEC2905A1A4ABA3600777576 /* vaacalculation.cpp */,
+				CEC2905B1A4ABA3600777576 /* vaacalculation.h */,
+			);
+			name = vaacalc;
+			sourceTree = "<group>";
+		};
+		CEF1D57E1A52A24600AAAA15 /* asm */ = {
+			isa = PBXGroup;
+			children = (
+				CEF1D57F1A52A27300AAAA15 /* denoisefilter.asm */,
+				CEF1D5801A52A27300AAAA15 /* downsample_bilinear.asm */,
+				CEF1D5811A52A27300AAAA15 /* vaa.asm */,
+			);
+			name = asm;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		CEC290031A4AB4AA00777576 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEC290601A4ABA4900777576 /* IWelsVP.h in Headers */,
+				CEC290181A4AB89C00777576 /* BackgroundDetection.h in Headers */,
+				CEC2906F1A4ABBA000777576 /* resource.h in Headers */,
+				CEC290481A4AB9C200777576 /* imagerotate.h in Headers */,
+				CEC290341A4AB93A00777576 /* ComplexityAnalysis.h in Headers */,
+				CEC290701A4ABBA000777576 /* typedef.h in Headers */,
+				CEC2903B1A4AB97F00777576 /* denoise.h in Headers */,
+				CEC2904E1A4AB9F100777576 /* SceneChangeDetection.h in Headers */,
+				CEC2905E1A4ABA3600777576 /* vaacalculation.h in Headers */,
+				CEC2906E1A4ABBA000777576 /* memory.h in Headers */,
+				CEC290711A4ABBA000777576 /* util.h in Headers */,
+				CEC290731A4ABBA000777576 /* WelsFrameWork.h in Headers */,
+				CEC2906C1A4ABBA000777576 /* common.h in Headers */,
+				CEC290551A4ABA1900777576 /* ScrollDetection.h in Headers */,
+				CEC290571A4ABA1900777576 /* ScrollDetectionFuncs.h in Headers */,
+				CEC290131A4AB88300777576 /* AdaptiveQuantization.h in Headers */,
+				CEC290411A4AB99900777576 /* downsample.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		CEC290041A4AB4AA00777576 /* processing */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CEC290091A4AB4AA00777576 /* Build configuration list for PBXNativeTarget "processing" */;
+			buildPhases = (
+				CEC290011A4AB4AA00777576 /* Sources */,
+				CEC290021A4AB4AA00777576 /* Frameworks */,
+				CEC290031A4AB4AA00777576 /* Headers */,
+			);
+			buildRules = (
+				CE242B931A59285D001A9E92 /* PBXBuildRule */,
+			);
+			dependencies = (
+			);
+			name = processing;
+			productName = processing;
+			productReference = CEC290051A4AB4AA00777576 /* libprocessing.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CEC28FFD1A4AB4AA00777576 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = cisco;
+				TargetAttributes = {
+					CEC290041A4AB4AA00777576 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+				};
+			};
+			buildConfigurationList = CEC290001A4AB4AA00777576 /* Build configuration list for PBXProject "processing" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CEC28FFC1A4AB4AA00777576;
+			productRefGroup = CEC290061A4AB4AA00777576 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CEC290041A4AB4AA00777576 /* processing */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CEC290011A4AB4AA00777576 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEC290541A4ABA1900777576 /* ScrollDetection.cpp in Sources */,
+				CEC2905D1A4ABA3600777576 /* vaacalculation.cpp in Sources */,
+				CEF1D5841A52A27300AAAA15 /* vaa.asm in Sources */,
+				CEC2903A1A4AB97F00777576 /* denoise.cpp in Sources */,
+				CEC290421A4AB99900777576 /* downsamplefuncs.cpp in Sources */,
+				CEC290121A4AB88300777576 /* AdaptiveQuantization.cpp in Sources */,
+				CEC2906D1A4ABBA000777576 /* memory.cpp in Sources */,
+				CEC290561A4ABA1900777576 /* ScrollDetectionFuncs.cpp in Sources */,
+				CEF1D5821A52A27300AAAA15 /* denoisefilter.asm in Sources */,
+				CEC2905C1A4ABA3600777576 /* vaacalcfuncs.cpp in Sources */,
+				CEC290491A4AB9C200777576 /* imagerotatefuncs.cpp in Sources */,
+				CEF1D5831A52A27300AAAA15 /* downsample_bilinear.asm in Sources */,
+				CEC290741A4ABBA000777576 /* WelsFrameWorkEx.cpp in Sources */,
+				CEC290171A4AB89C00777576 /* BackgroundDetection.cpp in Sources */,
+				CEC2904D1A4AB9F100777576 /* SceneChangeDetection.cpp in Sources */,
+				CEC290721A4ABBA000777576 /* WelsFrameWork.cpp in Sources */,
+				CEC290401A4AB99900777576 /* downsample.cpp in Sources */,
+				CEC290391A4AB97F00777576 /* denoise_filter.cpp in Sources */,
+				CEC290471A4AB9C200777576 /* imagerotate.cpp in Sources */,
+				CEC290331A4AB93A00777576 /* ComplexityAnalysis.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		CEC290071A4AB4AA00777576 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/../../../../bin/mac/$(CONFIGURATION)";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OBJROOT = "$(SRCROOT)/../../../../bin/mac/$(CONFIGURATION) /objs";
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SYMROOT = "$(SRCROOT)/../../../../bin/mac/$(CONFIGURATION)";
+			};
+			name = Debug;
+		};
+		CEC290081A4AB4AA00777576 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/../../../../bin/mac/$(CONFIGURATION)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OBJROOT = "$(SRCROOT)/../../../../bin/mac/$(CONFIGURATION)/objs";
+				SDKROOT = macosx;
+				SYMROOT = "$(SRCROOT)/../../../../bin/mac/$(CONFIGURATION)";
+			};
+			name = Release;
+		};
+		CEC2900A1A4AB4AA00777576 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/../../../../bin/mac/$(CONFIGURATION)";
+				EXECUTABLE_PREFIX = lib;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					X86_ASM,
+					"DEBUG=1",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/../../../common/inc",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/openh264-efkppfuvruoybbbuqjjyavavkfgo/Build/Products/Debug",
+				);
+				OBJROOT = "$(SRCROOT)/../../../../bin/mac/$(CONFIGURATION)/objs";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYMROOT = "$(SRCROOT)/../../../../bin/mac/$(CONFIGURATION)";
+			};
+			name = Debug;
+		};
+		CEC2900B1A4AB4AA00777576 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/../../../../bin/mac/$(CONFIGURATION)";
+				EXECUTABLE_PREFIX = lib;
+				GCC_PREPROCESSOR_DEFINITIONS = X86_ASM;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/../../../common/inc",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/openh264-efkppfuvruoybbbuqjjyavavkfgo/Build/Products/Debug",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYMROOT = "$(SRCROOT)/../../../../bin/mac/$(CONFIGURATION)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CEC290001A4AB4AA00777576 /* Build configuration list for PBXProject "processing" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEC290071A4AB4AA00777576 /* Debug */,
+				CEC290081A4AB4AA00777576 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		CEC290091A4AB4AA00777576 /* Build configuration list for PBXNativeTarget "processing" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEC2900A1A4AB4AA00777576 /* Debug */,
+				CEC2900B1A4AB4AA00777576 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CEC28FFD1A4AB4AA00777576 /* Project object */;
+}

@@ -1,0 +1,517 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7AA20817224B70E80039DAE9 /* golomb_common.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AA20812224B70E80039DAE9 /* golomb_common.h */; };
+		7AA20818224B70E80039DAE9 /* asmdefs_mmi.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AA20813224B70E80039DAE9 /* asmdefs_mmi.h */; };
+		7AA20819224B70E80039DAE9 /* wels_const_common.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AA20814224B70E80039DAE9 /* wels_const_common.h */; };
+		7AA2081A224B70E80039DAE9 /* mc.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AA20815224B70E80039DAE9 /* mc.h */; };
+		7AA20832224B8A120039DAE9 /* dct.asm in Sources */ = {isa = PBXBuildFile; fileRef = 7AA20831224B8A120039DAE9 /* dct.asm */; };
+		CEC28FCC1A4AB35400777576 /* common_tables.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC28FC11A4AB35400777576 /* common_tables.cpp */; };
+		CEC28FCD1A4AB35400777576 /* copy_mb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC28FC21A4AB35400777576 /* copy_mb.cpp */; };
+		CEC28FCE1A4AB35400777576 /* cpu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC28FC31A4AB35400777576 /* cpu.cpp */; };
+		CEC28FCF1A4AB35400777576 /* crt_util_safe_x.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC28FC41A4AB35400777576 /* crt_util_safe_x.cpp */; };
+		CEC28FD01A4AB35400777576 /* deblocking_common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC28FC51A4AB35400777576 /* deblocking_common.cpp */; };
+		CEC28FD11A4AB35400777576 /* expand_pic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC28FC61A4AB35400777576 /* expand_pic.cpp */; };
+		CEC28FD21A4AB35400777576 /* intra_pred_common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC28FC71A4AB35400777576 /* intra_pred_common.cpp */; };
+		CEC28FD31A4AB35400777576 /* sad_common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC28FC81A4AB35400777576 /* sad_common.cpp */; };
+		CEC28FD41A4AB35400777576 /* utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC28FC91A4AB35400777576 /* utils.cpp */; };
+		CEC28FD51A4AB35400777576 /* welsCodecTrace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC28FCA1A4AB35400777576 /* welsCodecTrace.cpp */; };
+		CEC28FD61A4AB35400777576 /* WelsThreadLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC28FCB1A4AB35400777576 /* WelsThreadLib.cpp */; };
+		CEC28FEA1A4AB36700777576 /* copy_mb.h in Headers */ = {isa = PBXBuildFile; fileRef = CEC28FD71A4AB36700777576 /* copy_mb.h */; };
+		CEC28FEB1A4AB36700777576 /* cpu_core.h in Headers */ = {isa = PBXBuildFile; fileRef = CEC28FD81A4AB36700777576 /* cpu_core.h */; };
+		CEC28FEC1A4AB36700777576 /* cpu.h in Headers */ = {isa = PBXBuildFile; fileRef = CEC28FD91A4AB36700777576 /* cpu.h */; };
+		CEC28FED1A4AB36700777576 /* crt_util_safe_x.h in Headers */ = {isa = PBXBuildFile; fileRef = CEC28FDA1A4AB36700777576 /* crt_util_safe_x.h */; };
+		CEC28FEE1A4AB36700777576 /* deblocking_common.h in Headers */ = {isa = PBXBuildFile; fileRef = CEC28FDB1A4AB36700777576 /* deblocking_common.h */; };
+		CEC28FEF1A4AB36700777576 /* expand_pic.h in Headers */ = {isa = PBXBuildFile; fileRef = CEC28FDC1A4AB36700777576 /* expand_pic.h */; };
+		CEC28FF01A4AB36700777576 /* intra_pred_common.h in Headers */ = {isa = PBXBuildFile; fileRef = CEC28FDD1A4AB36700777576 /* intra_pred_common.h */; };
+		CEC28FF11A4AB36700777576 /* ls_defines.h in Headers */ = {isa = PBXBuildFile; fileRef = CEC28FDE1A4AB36700777576 /* ls_defines.h */; };
+		CEC28FF21A4AB36700777576 /* macros.h in Headers */ = {isa = PBXBuildFile; fileRef = CEC28FDF1A4AB36700777576 /* macros.h */; };
+		CEC28FF41A4AB36700777576 /* measure_time.h in Headers */ = {isa = PBXBuildFile; fileRef = CEC28FE11A4AB36700777576 /* measure_time.h */; };
+		CEC28FF51A4AB36700777576 /* sad_common.h in Headers */ = {isa = PBXBuildFile; fileRef = CEC28FE21A4AB36700777576 /* sad_common.h */; };
+		CEC28FF61A4AB36700777576 /* typedefs.h in Headers */ = {isa = PBXBuildFile; fileRef = CEC28FE31A4AB36700777576 /* typedefs.h */; };
+		CEC28FF71A4AB36700777576 /* utils.h in Headers */ = {isa = PBXBuildFile; fileRef = CEC28FE41A4AB36700777576 /* utils.h */; };
+		CEC28FF81A4AB36700777576 /* version.h in Headers */ = {isa = PBXBuildFile; fileRef = CEC28FE51A4AB36700777576 /* version.h */; };
+		CEC28FF91A4AB36700777576 /* wels_common_defs.h in Headers */ = {isa = PBXBuildFile; fileRef = CEC28FE71A4AB36700777576 /* wels_common_defs.h */; };
+		CEC28FFA1A4AB36700777576 /* welsCodecTrace.h in Headers */ = {isa = PBXBuildFile; fileRef = CEC28FE81A4AB36700777576 /* welsCodecTrace.h */; };
+		CEC28FFB1A4AB36700777576 /* WelsThreadLib.h in Headers */ = {isa = PBXBuildFile; fileRef = CEC28FE91A4AB36700777576 /* WelsThreadLib.h */; };
+		CEF1D5741A52A0F800AAAA15 /* asm_inc.asm in Sources */ = {isa = PBXBuildFile; fileRef = CEF1D56A1A52A0F800AAAA15 /* asm_inc.asm */; };
+		CEF1D5751A52A0F800AAAA15 /* cpuid.asm in Sources */ = {isa = PBXBuildFile; fileRef = CEF1D56B1A52A0F800AAAA15 /* cpuid.asm */; };
+		CEF1D5761A52A0F800AAAA15 /* deblock.asm in Sources */ = {isa = PBXBuildFile; fileRef = CEF1D56C1A52A0F800AAAA15 /* deblock.asm */; };
+		CEF1D5771A52A0F800AAAA15 /* expand_picture.asm in Sources */ = {isa = PBXBuildFile; fileRef = CEF1D56D1A52A0F800AAAA15 /* expand_picture.asm */; };
+		CEF1D5781A52A0F800AAAA15 /* intra_pred_com.asm in Sources */ = {isa = PBXBuildFile; fileRef = CEF1D56E1A52A0F800AAAA15 /* intra_pred_com.asm */; };
+		CEF1D5791A52A0F800AAAA15 /* mb_copy.asm in Sources */ = {isa = PBXBuildFile; fileRef = CEF1D56F1A52A0F800AAAA15 /* mb_copy.asm */; };
+		CEF1D57A1A52A0F800AAAA15 /* mc_chroma.asm in Sources */ = {isa = PBXBuildFile; fileRef = CEF1D5701A52A0F800AAAA15 /* mc_chroma.asm */; };
+		CEF1D57B1A52A0F800AAAA15 /* mc_luma.asm in Sources */ = {isa = PBXBuildFile; fileRef = CEF1D5711A52A0F800AAAA15 /* mc_luma.asm */; };
+		CEF1D57C1A52A0F800AAAA15 /* satd_sad.asm in Sources */ = {isa = PBXBuildFile; fileRef = CEF1D5721A52A0F800AAAA15 /* satd_sad.asm */; };
+		CEF1D57D1A52A0F800AAAA15 /* vaa.asm in Sources */ = {isa = PBXBuildFile; fileRef = CEF1D5731A52A0F800AAAA15 /* vaa.asm */; };
+		EC555D911BFB29E800050F96 /* WelsList.h in Headers */ = {isa = PBXBuildFile; fileRef = EC555D8A1BFB29E800050F96 /* WelsList.h */; };
+		EC555D921BFB29E800050F96 /* WelsLock.h in Headers */ = {isa = PBXBuildFile; fileRef = EC555D8B1BFB29E800050F96 /* WelsLock.h */; };
+		EC555D931BFB29E800050F96 /* WelsTask.h in Headers */ = {isa = PBXBuildFile; fileRef = EC555D8C1BFB29E800050F96 /* WelsTask.h */; };
+		EC555D941BFB29E800050F96 /* WelsTaskThread.h in Headers */ = {isa = PBXBuildFile; fileRef = EC555D8D1BFB29E800050F96 /* WelsTaskThread.h */; };
+		EC555D951BFB29E800050F96 /* WelsThread.h in Headers */ = {isa = PBXBuildFile; fileRef = EC555D8E1BFB29E800050F96 /* WelsThread.h */; };
+		EC555D961BFB29E800050F96 /* WelsThreadPool.h in Headers */ = {isa = PBXBuildFile; fileRef = EC555D8F1BFB29E800050F96 /* WelsThreadPool.h */; };
+		EC555D9A1BFB2A2000050F96 /* WelsTaskThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EC555D971BFB2A2000050F96 /* WelsTaskThread.cpp */; };
+		EC555D9B1BFB2A2000050F96 /* WelsThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EC555D981BFB2A2000050F96 /* WelsThread.cpp */; };
+		EC555D9C1BFB2A2000050F96 /* WelsThreadPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EC555D991BFB2A2000050F96 /* WelsThreadPool.cpp */; };
+		ECCBBA5E1C7590DB0081FBB2 /* memory_align.h in Headers */ = {isa = PBXBuildFile; fileRef = ECCBBA5D1C7590DB0081FBB2 /* memory_align.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		CEF1D5511A5287C500AAAA15 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = sourcecode.nasm;
+			isEditable = 1;
+			outputFiles = (
+				"$(OBJECT_FILE_DIR)/$(arch)/$(INPUT_FILE_BASE).o",
+			);
+			script = "echo \"test common!\"\nnasm=\"\"\nnasm_list=(nasm /usr/bin/nasm /opt/local/bin/nasm)\nfor cmd in ${nasm_list[@]}; do\nver=`$cmd -v 2>/dev/null | awk '{print $3}'`\n[[ $ver =~ ^2\\.1[0-9] ]] && nasm=$cmd && break\ndone\n[ \"$nasm\" = \"\" ] && echo \"[Error] pls install nasm (2.10+)\" 1>&2 && exit 1\n\n[ \"$arch\" = \"x86_64\" ] && asflags=\"-f macho64 -DUNIX64 -DPREFIX\" || asflags=\"-f macho32 -DX86_32 -DPREFIX\"\n$nasm -I ../../../common/x86/ $asflags $INPUT_FILE_PATH -o $OBJECT_FILE_DIR/$arch/$INPUT_FILE_BASE.o\necho $INPUT_FILE_PATH\n\necho $OBJECT_FILE_DIR/$arch/$INPUT_FILE_BASE.o";
+		};
+/* End PBXBuildRule section */
+
+/* Begin PBXFileReference section */
+		7AA20812224B70E80039DAE9 /* golomb_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = golomb_common.h; path = ../../../common/inc/golomb_common.h; sourceTree = "<group>"; };
+		7AA20813224B70E80039DAE9 /* asmdefs_mmi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = asmdefs_mmi.h; path = ../../../common/inc/asmdefs_mmi.h; sourceTree = "<group>"; };
+		7AA20814224B70E80039DAE9 /* wels_const_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wels_const_common.h; path = ../../../common/inc/wels_const_common.h; sourceTree = "<group>"; };
+		7AA20815224B70E80039DAE9 /* mc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mc.h; path = ../../../common/inc/mc.h; sourceTree = "<group>"; };
+		7AA20831224B8A120039DAE9 /* dct.asm */ = {isa = PBXFileReference; explicitFileType = sourcecode.nasm; name = dct.asm; path = ../../../common/x86/dct.asm; sourceTree = "<group>"; };
+		CEC28FB71A4AB2B100777576 /* libcommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libcommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEC28FC11A4AB35400777576 /* common_tables.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = common_tables.cpp; path = ../../../common/src/common_tables.cpp; sourceTree = "<group>"; };
+		CEC28FC21A4AB35400777576 /* copy_mb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = copy_mb.cpp; path = ../../../common/src/copy_mb.cpp; sourceTree = "<group>"; };
+		CEC28FC31A4AB35400777576 /* cpu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cpu.cpp; path = ../../../common/src/cpu.cpp; sourceTree = "<group>"; };
+		CEC28FC41A4AB35400777576 /* crt_util_safe_x.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = crt_util_safe_x.cpp; path = ../../../common/src/crt_util_safe_x.cpp; sourceTree = "<group>"; };
+		CEC28FC51A4AB35400777576 /* deblocking_common.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = deblocking_common.cpp; path = ../../../common/src/deblocking_common.cpp; sourceTree = "<group>"; };
+		CEC28FC61A4AB35400777576 /* expand_pic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = expand_pic.cpp; path = ../../../common/src/expand_pic.cpp; sourceTree = "<group>"; };
+		CEC28FC71A4AB35400777576 /* intra_pred_common.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = intra_pred_common.cpp; path = ../../../common/src/intra_pred_common.cpp; sourceTree = "<group>"; };
+		CEC28FC81A4AB35400777576 /* sad_common.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sad_common.cpp; path = ../../../common/src/sad_common.cpp; sourceTree = "<group>"; };
+		CEC28FC91A4AB35400777576 /* utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = utils.cpp; path = ../../../common/src/utils.cpp; sourceTree = "<group>"; };
+		CEC28FCA1A4AB35400777576 /* welsCodecTrace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = welsCodecTrace.cpp; path = ../../../common/src/welsCodecTrace.cpp; sourceTree = "<group>"; };
+		CEC28FCB1A4AB35400777576 /* WelsThreadLib.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WelsThreadLib.cpp; path = ../../../common/src/WelsThreadLib.cpp; sourceTree = "<group>"; };
+		CEC28FD71A4AB36700777576 /* copy_mb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = copy_mb.h; path = ../../../common/inc/copy_mb.h; sourceTree = "<group>"; };
+		CEC28FD81A4AB36700777576 /* cpu_core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cpu_core.h; path = ../../../common/inc/cpu_core.h; sourceTree = "<group>"; };
+		CEC28FD91A4AB36700777576 /* cpu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cpu.h; path = ../../../common/inc/cpu.h; sourceTree = "<group>"; };
+		CEC28FDA1A4AB36700777576 /* crt_util_safe_x.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = crt_util_safe_x.h; path = ../../../common/inc/crt_util_safe_x.h; sourceTree = "<group>"; };
+		CEC28FDB1A4AB36700777576 /* deblocking_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = deblocking_common.h; path = ../../../common/inc/deblocking_common.h; sourceTree = "<group>"; };
+		CEC28FDC1A4AB36700777576 /* expand_pic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = expand_pic.h; path = ../../../common/inc/expand_pic.h; sourceTree = "<group>"; };
+		CEC28FDD1A4AB36700777576 /* intra_pred_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = intra_pred_common.h; path = ../../../common/inc/intra_pred_common.h; sourceTree = "<group>"; };
+		CEC28FDE1A4AB36700777576 /* ls_defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ls_defines.h; path = ../../../common/inc/ls_defines.h; sourceTree = "<group>"; };
+		CEC28FDF1A4AB36700777576 /* macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = macros.h; path = ../../../common/inc/macros.h; sourceTree = "<group>"; };
+		CEC28FE11A4AB36700777576 /* measure_time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = measure_time.h; path = ../../../common/inc/measure_time.h; sourceTree = "<group>"; };
+		CEC28FE21A4AB36700777576 /* sad_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sad_common.h; path = ../../../common/inc/sad_common.h; sourceTree = "<group>"; };
+		CEC28FE31A4AB36700777576 /* typedefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = typedefs.h; path = ../../../common/inc/typedefs.h; sourceTree = "<group>"; };
+		CEC28FE41A4AB36700777576 /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = utils.h; path = ../../../common/inc/utils.h; sourceTree = "<group>"; };
+		CEC28FE51A4AB36700777576 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = version.h; path = ../../../common/inc/version.h; sourceTree = "<group>"; };
+		CEC28FE71A4AB36700777576 /* wels_common_defs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wels_common_defs.h; path = ../../../common/inc/wels_common_defs.h; sourceTree = "<group>"; };
+		CEC28FE81A4AB36700777576 /* welsCodecTrace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = welsCodecTrace.h; path = ../../../common/inc/welsCodecTrace.h; sourceTree = "<group>"; };
+		CEC28FE91A4AB36700777576 /* WelsThreadLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WelsThreadLib.h; path = ../../../common/inc/WelsThreadLib.h; sourceTree = "<group>"; };
+		CEF1D56A1A52A0F800AAAA15 /* asm_inc.asm */ = {isa = PBXFileReference; explicitFileType = sourcecode.nasm; name = asm_inc.asm; path = ../../../common/x86/asm_inc.asm; sourceTree = "<group>"; };
+		CEF1D56B1A52A0F800AAAA15 /* cpuid.asm */ = {isa = PBXFileReference; explicitFileType = sourcecode.nasm; name = cpuid.asm; path = ../../../common/x86/cpuid.asm; sourceTree = "<group>"; };
+		CEF1D56C1A52A0F800AAAA15 /* deblock.asm */ = {isa = PBXFileReference; explicitFileType = sourcecode.nasm; name = deblock.asm; path = ../../../common/x86/deblock.asm; sourceTree = "<group>"; };
+		CEF1D56D1A52A0F800AAAA15 /* expand_picture.asm */ = {isa = PBXFileReference; explicitFileType = sourcecode.nasm; name = expand_picture.asm; path = ../../../common/x86/expand_picture.asm; sourceTree = "<group>"; };
+		CEF1D56E1A52A0F800AAAA15 /* intra_pred_com.asm */ = {isa = PBXFileReference; explicitFileType = sourcecode.nasm; name = intra_pred_com.asm; path = ../../../common/x86/intra_pred_com.asm; sourceTree = "<group>"; };
+		CEF1D56F1A52A0F800AAAA15 /* mb_copy.asm */ = {isa = PBXFileReference; explicitFileType = sourcecode.nasm; name = mb_copy.asm; path = ../../../common/x86/mb_copy.asm; sourceTree = "<group>"; };
+		CEF1D5701A52A0F800AAAA15 /* mc_chroma.asm */ = {isa = PBXFileReference; explicitFileType = sourcecode.nasm; name = mc_chroma.asm; path = ../../../common/x86/mc_chroma.asm; sourceTree = "<group>"; };
+		CEF1D5711A52A0F800AAAA15 /* mc_luma.asm */ = {isa = PBXFileReference; explicitFileType = sourcecode.nasm; name = mc_luma.asm; path = ../../../common/x86/mc_luma.asm; sourceTree = "<group>"; };
+		CEF1D5721A52A0F800AAAA15 /* satd_sad.asm */ = {isa = PBXFileReference; explicitFileType = sourcecode.nasm; name = satd_sad.asm; path = ../../../common/x86/satd_sad.asm; sourceTree = "<group>"; };
+		CEF1D5731A52A0F800AAAA15 /* vaa.asm */ = {isa = PBXFileReference; explicitFileType = sourcecode.nasm; name = vaa.asm; path = ../../../common/x86/vaa.asm; sourceTree = "<group>"; };
+		EC555D8A1BFB29E800050F96 /* WelsList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WelsList.h; path = ../../../common/inc/WelsList.h; sourceTree = "<group>"; };
+		EC555D8B1BFB29E800050F96 /* WelsLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WelsLock.h; path = ../../../common/inc/WelsLock.h; sourceTree = "<group>"; };
+		EC555D8C1BFB29E800050F96 /* WelsTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WelsTask.h; path = ../../../common/inc/WelsTask.h; sourceTree = "<group>"; };
+		EC555D8D1BFB29E800050F96 /* WelsTaskThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WelsTaskThread.h; path = ../../../common/inc/WelsTaskThread.h; sourceTree = "<group>"; };
+		EC555D8E1BFB29E800050F96 /* WelsThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WelsThread.h; path = ../../../common/inc/WelsThread.h; sourceTree = "<group>"; };
+		EC555D8F1BFB29E800050F96 /* WelsThreadPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WelsThreadPool.h; path = ../../../common/inc/WelsThreadPool.h; sourceTree = "<group>"; };
+		EC555D971BFB2A2000050F96 /* WelsTaskThread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WelsTaskThread.cpp; path = ../../../common/src/WelsTaskThread.cpp; sourceTree = "<group>"; };
+		EC555D981BFB2A2000050F96 /* WelsThread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WelsThread.cpp; path = ../../../common/src/WelsThread.cpp; sourceTree = "<group>"; };
+		EC555D991BFB2A2000050F96 /* WelsThreadPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WelsThreadPool.cpp; path = ../../../common/src/WelsThreadPool.cpp; sourceTree = "<group>"; };
+		ECCBBA5D1C7590DB0081FBB2 /* memory_align.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = memory_align.h; path = ../../../common/inc/memory_align.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CEC28FB41A4AB2B100777576 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CEC28FAE1A4AB2B100777576 = {
+			isa = PBXGroup;
+			children = (
+				CEC28FBE1A4AB2CE00777576 /* common */,
+				CEC28FB81A4AB2B100777576 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CEC28FB81A4AB2B100777576 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CEC28FB71A4AB2B100777576 /* libcommon.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CEC28FBE1A4AB2CE00777576 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				CEF1D51D1A5271B500AAAA15 /* asm */,
+				CEC28FC01A4AB31E00777576 /* inc */,
+				CEC28FBF1A4AB2D600777576 /* src */,
+			);
+			name = common;
+			sourceTree = "<group>";
+		};
+		CEC28FBF1A4AB2D600777576 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				CEC28FC11A4AB35400777576 /* common_tables.cpp */,
+				CEC28FC21A4AB35400777576 /* copy_mb.cpp */,
+				CEC28FC31A4AB35400777576 /* cpu.cpp */,
+				CEC28FC41A4AB35400777576 /* crt_util_safe_x.cpp */,
+				CEC28FC51A4AB35400777576 /* deblocking_common.cpp */,
+				CEC28FC61A4AB35400777576 /* expand_pic.cpp */,
+				CEC28FC71A4AB35400777576 /* intra_pred_common.cpp */,
+				CEC28FC81A4AB35400777576 /* sad_common.cpp */,
+				CEC28FC91A4AB35400777576 /* utils.cpp */,
+				CEC28FCA1A4AB35400777576 /* welsCodecTrace.cpp */,
+				EC555D971BFB2A2000050F96 /* WelsTaskThread.cpp */,
+				EC555D981BFB2A2000050F96 /* WelsThread.cpp */,
+				CEC28FCB1A4AB35400777576 /* WelsThreadLib.cpp */,
+				EC555D991BFB2A2000050F96 /* WelsThreadPool.cpp */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		CEC28FC01A4AB31E00777576 /* inc */ = {
+			isa = PBXGroup;
+			children = (
+				7AA20813224B70E80039DAE9 /* asmdefs_mmi.h */,
+				7AA20812224B70E80039DAE9 /* golomb_common.h */,
+				7AA20815224B70E80039DAE9 /* mc.h */,
+				7AA20814224B70E80039DAE9 /* wels_const_common.h */,
+				ECCBBA5D1C7590DB0081FBB2 /* memory_align.h */,
+				CEC28FD71A4AB36700777576 /* copy_mb.h */,
+				CEC28FD81A4AB36700777576 /* cpu_core.h */,
+				CEC28FD91A4AB36700777576 /* cpu.h */,
+				CEC28FDA1A4AB36700777576 /* crt_util_safe_x.h */,
+				CEC28FDB1A4AB36700777576 /* deblocking_common.h */,
+				CEC28FDC1A4AB36700777576 /* expand_pic.h */,
+				CEC28FDD1A4AB36700777576 /* intra_pred_common.h */,
+				CEC28FDE1A4AB36700777576 /* ls_defines.h */,
+				CEC28FDF1A4AB36700777576 /* macros.h */,
+				CEC28FE11A4AB36700777576 /* measure_time.h */,
+				CEC28FE21A4AB36700777576 /* sad_common.h */,
+				CEC28FE31A4AB36700777576 /* typedefs.h */,
+				CEC28FE41A4AB36700777576 /* utils.h */,
+				CEC28FE51A4AB36700777576 /* version.h */,
+				CEC28FE71A4AB36700777576 /* wels_common_defs.h */,
+				CEC28FE81A4AB36700777576 /* welsCodecTrace.h */,
+				EC555D8A1BFB29E800050F96 /* WelsList.h */,
+				EC555D8B1BFB29E800050F96 /* WelsLock.h */,
+				EC555D8C1BFB29E800050F96 /* WelsTask.h */,
+				EC555D8D1BFB29E800050F96 /* WelsTaskThread.h */,
+				EC555D8E1BFB29E800050F96 /* WelsThread.h */,
+				CEC28FE91A4AB36700777576 /* WelsThreadLib.h */,
+				EC555D8F1BFB29E800050F96 /* WelsThreadPool.h */,
+			);
+			name = inc;
+			sourceTree = "<group>";
+		};
+		CEF1D51D1A5271B500AAAA15 /* asm */ = {
+			isa = PBXGroup;
+			children = (
+				7AA20831224B8A120039DAE9 /* dct.asm */,
+				CEF1D56A1A52A0F800AAAA15 /* asm_inc.asm */,
+				CEF1D56B1A52A0F800AAAA15 /* cpuid.asm */,
+				CEF1D56C1A52A0F800AAAA15 /* deblock.asm */,
+				CEF1D56D1A52A0F800AAAA15 /* expand_picture.asm */,
+				CEF1D56E1A52A0F800AAAA15 /* intra_pred_com.asm */,
+				CEF1D56F1A52A0F800AAAA15 /* mb_copy.asm */,
+				CEF1D5701A52A0F800AAAA15 /* mc_chroma.asm */,
+				CEF1D5711A52A0F800AAAA15 /* mc_luma.asm */,
+				CEF1D5721A52A0F800AAAA15 /* satd_sad.asm */,
+				CEF1D5731A52A0F800AAAA15 /* vaa.asm */,
+			);
+			name = asm;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		CEC28FB51A4AB2B100777576 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEC28FF01A4AB36700777576 /* intra_pred_common.h in Headers */,
+				CEC28FF61A4AB36700777576 /* typedefs.h in Headers */,
+				EC555D951BFB29E800050F96 /* WelsThread.h in Headers */,
+				EC555D961BFB29E800050F96 /* WelsThreadPool.h in Headers */,
+				CEC28FF71A4AB36700777576 /* utils.h in Headers */,
+				CEC28FEE1A4AB36700777576 /* deblocking_common.h in Headers */,
+				CEC28FEC1A4AB36700777576 /* cpu.h in Headers */,
+				CEC28FEB1A4AB36700777576 /* cpu_core.h in Headers */,
+				CEC28FF41A4AB36700777576 /* measure_time.h in Headers */,
+				EC555D931BFB29E800050F96 /* WelsTask.h in Headers */,
+				ECCBBA5E1C7590DB0081FBB2 /* memory_align.h in Headers */,
+				EC555D911BFB29E800050F96 /* WelsList.h in Headers */,
+				CEC28FED1A4AB36700777576 /* crt_util_safe_x.h in Headers */,
+				7AA20817224B70E80039DAE9 /* golomb_common.h in Headers */,
+				CEC28FF21A4AB36700777576 /* macros.h in Headers */,
+				CEC28FFA1A4AB36700777576 /* welsCodecTrace.h in Headers */,
+				CEC28FEA1A4AB36700777576 /* copy_mb.h in Headers */,
+				7AA20819224B70E80039DAE9 /* wels_const_common.h in Headers */,
+				CEC28FF81A4AB36700777576 /* version.h in Headers */,
+				CEC28FF91A4AB36700777576 /* wels_common_defs.h in Headers */,
+				CEC28FF11A4AB36700777576 /* ls_defines.h in Headers */,
+				EC555D921BFB29E800050F96 /* WelsLock.h in Headers */,
+				EC555D941BFB29E800050F96 /* WelsTaskThread.h in Headers */,
+				7AA20818224B70E80039DAE9 /* asmdefs_mmi.h in Headers */,
+				CEC28FF51A4AB36700777576 /* sad_common.h in Headers */,
+				CEC28FEF1A4AB36700777576 /* expand_pic.h in Headers */,
+				7AA2081A224B70E80039DAE9 /* mc.h in Headers */,
+				CEC28FFB1A4AB36700777576 /* WelsThreadLib.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		CEC28FB61A4AB2B100777576 /* common */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CEC28FBB1A4AB2B100777576 /* Build configuration list for PBXNativeTarget "common" */;
+			buildPhases = (
+				CEC28FB31A4AB2B100777576 /* Sources */,
+				CEC28FB41A4AB2B100777576 /* Frameworks */,
+				CEC28FB51A4AB2B100777576 /* Headers */,
+			);
+			buildRules = (
+				CEF1D5511A5287C500AAAA15 /* PBXBuildRule */,
+			);
+			dependencies = (
+			);
+			name = common;
+			productName = common;
+			productReference = CEC28FB71A4AB2B100777576 /* libcommon.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CEC28FAF1A4AB2B100777576 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = cisco;
+				TargetAttributes = {
+					CEC28FB61A4AB2B100777576 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+				};
+			};
+			buildConfigurationList = CEC28FB21A4AB2B100777576 /* Build configuration list for PBXProject "common" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CEC28FAE1A4AB2B100777576;
+			productRefGroup = CEC28FB81A4AB2B100777576 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CEC28FB61A4AB2B100777576 /* common */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CEC28FB31A4AB2B100777576 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEF1D5741A52A0F800AAAA15 /* asm_inc.asm in Sources */,
+				CEF1D57A1A52A0F800AAAA15 /* mc_chroma.asm in Sources */,
+				CEC28FCE1A4AB35400777576 /* cpu.cpp in Sources */,
+				CEF1D5751A52A0F800AAAA15 /* cpuid.asm in Sources */,
+				CEF1D5771A52A0F800AAAA15 /* expand_picture.asm in Sources */,
+				CEC28FCC1A4AB35400777576 /* common_tables.cpp in Sources */,
+				CEF1D57C1A52A0F800AAAA15 /* satd_sad.asm in Sources */,
+				CEC28FD11A4AB35400777576 /* expand_pic.cpp in Sources */,
+				CEC28FD01A4AB35400777576 /* deblocking_common.cpp in Sources */,
+				EC555D9A1BFB2A2000050F96 /* WelsTaskThread.cpp in Sources */,
+				EC555D9B1BFB2A2000050F96 /* WelsThread.cpp in Sources */,
+				7AA20832224B8A120039DAE9 /* dct.asm in Sources */,
+				CEF1D5781A52A0F800AAAA15 /* intra_pred_com.asm in Sources */,
+				CEC28FCD1A4AB35400777576 /* copy_mb.cpp in Sources */,
+				CEC28FD21A4AB35400777576 /* intra_pred_common.cpp in Sources */,
+				CEF1D5761A52A0F800AAAA15 /* deblock.asm in Sources */,
+				CEF1D57B1A52A0F800AAAA15 /* mc_luma.asm in Sources */,
+				EC555D9C1BFB2A2000050F96 /* WelsThreadPool.cpp in Sources */,
+				CEC28FD61A4AB35400777576 /* WelsThreadLib.cpp in Sources */,
+				CEF1D57D1A52A0F800AAAA15 /* vaa.asm in Sources */,
+				CEF1D5791A52A0F800AAAA15 /* mb_copy.asm in Sources */,
+				CEC28FD41A4AB35400777576 /* utils.cpp in Sources */,
+				CEC28FD51A4AB35400777576 /* welsCodecTrace.cpp in Sources */,
+				CEC28FCF1A4AB35400777576 /* crt_util_safe_x.cpp in Sources */,
+				CEC28FD31A4AB35400777576 /* sad_common.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		CEC28FB91A4AB2B100777576 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/../../../../bin/mac/$(CONFIGURATION)";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OBJROOT = "$(SRCROOT)/../../../../bin/mac/$(CONFIGURATION)/objs";
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SYMROOT = "$(SRCROOT)/../../../../bin/mac/$(CONFIGURATION)";
+			};
+			name = Debug;
+		};
+		CEC28FBA1A4AB2B100777576 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/../../../../bin/mac/$(CONFIGURATION)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OBJROOT = "$(SRCROOT)/../../../../bin/mac/$(CONFIGURATION)/objs";
+				SDKROOT = macosx;
+				SYMROOT = "$(SRCROOT)/../../../../bin/mac/$(CONFIGURATION)";
+			};
+			name = Release;
+		};
+		CEC28FBC1A4AB2B100777576 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_X86_VECTOR_INSTRUCTIONS = default;
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_SSE41_EXTENSIONS = YES;
+				GCC_ENABLE_SSE42_EXTENSIONS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					X86_ASM,
+					"DEBUG=1",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/../../../common/x86",
+					"$(SRCROOT)/../../../api/svc",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		CEC28FBD1A4AB2B100777576 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_X86_VECTOR_INSTRUCTIONS = default;
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_SSE41_EXTENSIONS = YES;
+				GCC_ENABLE_SSE42_EXTENSIONS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = X86_ASM;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/../../../common/x86",
+					"$(SRCROOT)/../../../api/svc",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CEC28FB21A4AB2B100777576 /* Build configuration list for PBXProject "common" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEC28FB91A4AB2B100777576 /* Debug */,
+				CEC28FBA1A4AB2B100777576 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CEC28FBB1A4AB2B100777576 /* Build configuration list for PBXNativeTarget "common" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEC28FBC1A4AB2B100777576 /* Debug */,
+				CEC28FBD1A4AB2B100777576 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CEC28FAF1A4AB2B100777576 /* Project object */;
+}
